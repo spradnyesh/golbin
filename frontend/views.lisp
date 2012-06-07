@@ -14,8 +14,9 @@
 		  (:li
 		   (:a :class "a-title"
 			   :href (restas:genurl 'route-article
-									:title (article-title article)
-									:id (article-id article))
+									:title-and-id (format nil "~A-~A"
+														  (article-title article)
+														  (article-id article)))
 			   (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
 		   (:p :class "a-summary" (str (article-summary article)))))))))))
