@@ -28,4 +28,4 @@
 							 (:file "routes" :depends-on ("packages"))
 							 (:file "models" :depends-on ("packages"))
 							 (:file "views" :depends-on ("packages"))))|#)
-  :depends-on (:hunchentoot :restas :cl-who :local-time :cl-memcached :regex))
+  :depends-on (:hunchentoot :restas :cl-who :local-time :cl-memcached))

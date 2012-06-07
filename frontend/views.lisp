@@ -68,12 +68,12 @@
 		   (:p :class "a-date" (str (article-date article)))
 		   (:p :class "a-summary" (str (article-summary article)))))))))))
 
-(defun view-article (title id)
-  (declare (ignore title))
-  (let ((article (get-article-by-id *article-storage* (parse-integer id))))
+(defun view-article (title-and-id)
+  (let* ((id (first (split-sequence:split-sequence "-" title-and-id :from-end t :test #'string-equal :count 1)))
+		 (article (get-article-by-id *article-storage* (parse-integer id))))
 	(who:with-html-output-to-string (out)
 	  (:html
 	   (:body
-		(:div (:p (str (article-title article)))
-			  (:p (str (article-date article)))
-			  (:p (str (article-body article)))))))))
+		(:div (:p :class "a-title" (str (article-title article)))
+			  (:p :class "a-date" (str (article-date article)))
+			  (:p :class "a-body" (str (article-body article)))))))))
