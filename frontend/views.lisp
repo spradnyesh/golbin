@@ -4,24 +4,26 @@
 
 (defun foot ())
 
-(defun view-home ()
-  (who:with-html-output-to-string (out)
-    (:html
-     (:body
-	  (:ul
-	   (dolist (article (paginate (get-all-articles *article-storage*)))
-		 (htm
-		  (:li
-		   (:a :class "a-title"
-			   :href (restas:genurl 'route-article
-									:title-and-id (format nil "~A-~A"
-														  (article-title article)
-														  (article-id article)))
-			   (str (article-title article)))
-		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))
+(defun view-home (page-number)
+  (let ((offset (* (parse-integer page-number) *article-pagination-limit*)))
+	(who:with-html-output-to-string (out)
+	  (:html
+	   (:body
+		(:ul
+		 (dolist (article (paginate (get-all-articles *article-storage*)
+									:offset offset))
+		   (htm
+			(:li
+			 (:a :class "a-title"
+				 :href "abcde" #|(restas:genurl 'route-article
+									  :title-and-id (format nil "~A-~A"
+															(article-title article)
+															(article-id article)))|#
+				 (str (article-title article)))
+			 (:p :class "a-date" (str (article-date article)))
+			 (:p :class "a-summary" (str (article-summary article))))))))))))
 
-(defun view-cat (cat)
+#|(defun view-cat (cat)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -31,9 +33,9 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))
+		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
 
-(defun view-cat-subcat (cat subcat)
+#|(defun view-cat-subcat (cat subcat)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -43,9 +45,9 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))
+		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
 
-(defun view-author (author)
+#|(defun view-author (author)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -55,9 +57,9 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))
+		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
 
-(defun view-tag (tag)
+#|(defun view-tag (tag)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -67,7 +69,7 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))
+		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
 
 (defun view-article (title-and-id)
   (let* ((id (first (split-sequence:split-sequence "-" title-and-id :from-end t :test #'string-equal :count 1)))
