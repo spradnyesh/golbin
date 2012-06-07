@@ -1,12 +1,12 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :restas :cl-who :local-time)
-  (:export :route-home-page
+  (:use :cl :cl-who :local-time)
+  #|(:export :route-home-page
 		   :route-cat
 		   :route-cat-subcat
 		   :route-article
 		   :route-home
 		   :route-author
-		   :route-tag))
+		   :route-tag)|#)
 
 (in-package :hawksbill.golbin.frontend)
 
