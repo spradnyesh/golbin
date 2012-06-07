@@ -16,7 +16,8 @@
 				:components ((:file "packages")
 							 (:file "models" :depends-on ("packages"))
 							 (:file "storage" :depends-on ("packages" "models"))
-							 (:file "routes" :depends-on ("packages" "models")))
+							 (:file "views" :depends-on ("packages" "models"))
+							 (:file "routes" :depends-on ("packages" "views")))
 				:depends-on ("utils"))
 			   #|(:module
 				"boomerang"
@@ -27,4 +28,4 @@
 							 (:file "routes" :depends-on ("packages"))
 							 (:file "models" :depends-on ("packages"))
 							 (:file "views" :depends-on ("packages"))))|#)
-  :depends-on (:hunchentoot :restas :cl-who :local-time :cl-memcached))
+  :depends-on (:hunchentoot :restas :cl-who :local-time :cl-memcached :regex))
