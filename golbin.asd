@@ -15,9 +15,8 @@
 				"frontend"
 				:components ((:file "packages")
 							 (:file "models" :depends-on ("packages"))
-							 (:file "views" :depends-on ("packages" "models"))
-							 (:file "storage":depends-on ("packages" "models"))
-							 (:file "routes" :depends-on ("packages" "views")))
+							 (:file "storage" :depends-on ("packages" "models"))
+							 (:file "routes" :depends-on ("packages" "models")))
 				:depends-on ("utils"))
 			   #|(:module
 				"boomerang"
