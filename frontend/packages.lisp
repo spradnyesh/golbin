@@ -7,7 +7,8 @@
 		   :route-article
 		   :route-home
 		   :route-author
-		   :route-tag))
+		   :route-tag
+		   :route-search))
 
 (in-package :hawksbill.golbin.frontend)
 

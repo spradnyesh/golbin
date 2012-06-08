@@ -112,3 +112,5 @@
 		(:div (:p :class "a-title" (str (article-title article)))
 			  (:p :class "a-date" (str (article-date article)))
 			  (:p :class "a-body" (str (article-body article)))))))))
+
+(defun view-search ())
