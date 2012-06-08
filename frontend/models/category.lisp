@@ -3,6 +3,8 @@
 (defclass category ()
   ((id :initarg :id :initform nil :accessor id)
    (name :initarg :name :initform nil :accessor name)
+   (status :initarg :status :initform nil :accessor status
+           :documentation "nil/t => dis/en-able; to be able to hide certain cat/subcat from navigation")
    (parent :initarg :parent :initform nil :accessor parent)))
 
 (defclass category-storage ()

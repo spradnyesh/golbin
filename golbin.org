@@ -49,9 +49,9 @@
 	- [ ] static files
 	- [ ] caching
 ** editorial
-*** UNDERGOING models
+*** TODO models
 	:CLOCK:
-    CLOCK: [2012-06-08 Fri 19:07]
+    CLOCK: [2012-06-08 Fri 19:07]--[2012-06-08 Fri 20:15] =>  1:08
 	CLOCK: [2012-06-08 Fri 17:20]--[2012-06-08 Fri 18:20] =>  1:00
 	CLOCK: [2012-06-08 Fri 16:45]--[2012-06-08 Fri 17:11] =>  0:26
 	:END:

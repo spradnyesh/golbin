@@ -14,10 +14,12 @@
     (let* ((cat-name (first cs))
            (subcats (rest cs))
            (cat-id (add-category (make-instance 'category
-                                                :name cat-name))))
-      (dolist (subcat-name subcats)
+                                                :name cat-name
+                                                :status t))))
+      (dolist (sc subcats)
         (add-category (make-instance 'category
-                                     :name subcat-name
+                                     :name (first sc)
+                                     :status (second sc)
                                      :parent cat-id))))))
 
 (defun add-articles ()
