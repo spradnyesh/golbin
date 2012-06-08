@@ -26,10 +26,10 @@
 
 (defun paginate (list &key (offset 0) (limit *article-pagination-limit*))
   (let* ((list (if (consp list)
-				   list
-				   (list list)))
-		 (len (length list))
-		 (end (+ limit offset)))
+                   list
+                   (list list)))
+         (len (length list))
+         (end (+ limit offset)))
     (if (and (not (minusp offset))
              (> len offset))
         (subseq list
@@ -52,25 +52,71 @@
   (find tag
         (slot-value storage 'articles)
         :key #'tags
-		:test #'string-equal))
+        :test #'string-equal))
 
 (defmethod get-articles-by-cat ((storage article-storage) cat)
   "return articles w/ category 'cat' from 'storage'"
   (find cat
         (slot-value storage 'articles)
         :key #'cat
-		:test #'string-equal))
+        :test #'string-equal))
 
 (defmethod get-articles-by-cat-subcat ((storage article-storage) cat subcat)
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
   (let ((cat-articles (find cat
-							(slot-value storage 'articles)
-							:key #'cat
-							:test #'string-equal)))
-	(when cat-articles
-	  (find subcat
-			(if (consp cat-articles)
-				cat-articles
-				(list cat-articles))
-			:key #'subcat
-			:test #'string-equal))))
+                            (slot-value storage 'articles)
+                            :key #'cat
+                            :test #'string-equal)))
+    (when cat-articles
+      (find subcat
+            (if (consp cat-articles)
+                cat-articles
+                (list cat-articles))
+            :key #'subcat
+            :test #'string-equal))))
+
+(defun slugify (title)
+  "create slug out of title: took help from http://stackoverflow.com/questions/1302022/best-way-to-generate-slugs-human-readable-ids-in-rails"
+  ;; steps
+  ;; 1. strip (left and right spaces)
+  ;;     (string-trim " " "  trim me  ")
+  ;; 1. "&" -> "and", "@" -> "at", "  *" -> " " (strip multiple consequtive spaces to a single space)
+  ;;     (cl-ppcre:regex-replace-all " +" "rt   ear  &e  snr  &es  rnt" " ")
+  ;; 1. " " -> "-"
+  ;;     (substitute #\- #\Space "spr @y.com")
+  ;; 1. remove all non-alphanum characters
+  ;;     (cl-ppcre:regex-replace-all "[^a-z0-9]" "esnt@!#<,.fewnt" "")
+  ;; 1. downcase
+  ;;     (string-downcase "RAT")
+  (string-downcase
+   (regex-replace-all             ; remove all non-alphanum characters
+    "[^-a-zA-Z0-9]"
+    (regex-replace-all                  ; " " -> "-"
+     " "
+     (regex-replace-all                 ; " +" -> " "
+      " +"
+      (regex-replace-all                ; "@" -> "or"
+       "@"
+       (regex-replace-all               ; "&" -> "and"
+        "&"
+        (string-trim " " title)         ; remove left/right spaces
+        "and")
+       "at")
+      " ")
+     "-")
+    "")))
+
+(defmethod storage-add-article ((storage article-storage) article)
+  "add article 'article' to 'storage'"
+  ;; set some article params
+  (setf (slot-value article 'id)
+        (incf (slot-value storage 'last-id)))
+  (setf (slot-value article 'date)
+        (now))
+  (setf (slot-value article 'slug)
+        (slugify (slot-value article 'title)))
+
+  ;; save article into storage
+  (push article
+        (slot-value storage 'articles))
+  article)

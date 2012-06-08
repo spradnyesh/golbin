@@ -1,14 +1,14 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time)
+  (:use :cl :cl-who :local-time :cl-ppcre)
   (:export :route-home
-		   :route-home-page
-		   :route-cat
-		   :route-cat-subcat
-		   :route-article
-		   :route-home
-		   :route-author
-		   :route-tag
-		   :route-search))
+           :route-home-page
+           :route-cat
+           :route-cat-subcat
+           :route-article
+           :route-home
+           :route-author
+           :route-tag
+           :route-search))
 
 (in-package :hawksbill.golbin.frontend)
 
