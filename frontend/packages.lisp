@@ -16,5 +16,3 @@
 
 (setf hunchentoot:*show-lisp-errors-p* t)
 (setf hunchentoot:*show-lisp-backtraces-p* t)
-#|(restas:stop-all)|#
-#|(restas:start :hawksbill.golbin.frontend :port 8000)|#

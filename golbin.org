@@ -1,33 +1,111 @@
 * tasks
-** editorial
-*** models
-	- [ ] user
-	- [ ] author(user)
-	- [ ] category
-	- [ ] tag
-	- [ ] view
-	- [ ] article
 ** frontend
-*** TODO routes
-	:CLOCK:
-	CLOCK: [2012-06-08 Fri 13:02]--[2012-06-08 Fri 13:06] =>  0:04
-	:END:
-	- [X] home
-	- [ ] home-page
-	- [ ] cat
-	- [ ] cat-subcat
-	- [ ] tag
-	- [ ] author
-	- [X] article
+*** UNDERGOING routes
+    :CLOCK:
+	CLOCK: [2012-06-08 Fri 15:11]
+    CLOCK: [2012-06-08 Fri 13:02]--[2012-06-08 Fri 13:06] =>  0:04
+    :END:
+    - [X] home
+    - [ ] home-page
+    - [ ] cat
+    - [ ] cat-subcat
+    - [ ] tag
+    - [ ] author
+    - [X] article
+    - [ ] static-files
 *** [[*models][models]]
 *** views
+**** common
+***** header
+***** footer
+***** left-ads
+***** right-ads
+***** pagination
+***** related-carousel
+**** home
+***** latest
+***** most-popular
+**** article
+**** cat/subcat
+***** list of other cat/subcat
+**** author
+***** list of other authors
+**** tags
+***** list of other tags
 *** DONE template@pencil
-	 CLOSED: [2012-06-08 Fri 14:35]
-	:CLOCK:
-	CLOCK: [2012-06-08 Fri 13:59]--[2012-06-08 Fri 14:35] =>  0:36
-	:END:
-	- [X] template
-	- [X] navigation
+     CLOSED: [2012-06-08 Fri 14:35]
+    :CLOCK:
+    CLOCK: [2012-06-08 Fri 13:59]--[2012-06-08 Fri 14:35] =>  0:36
+    :END:
+    - [X] template
+    - [X] navigation
+*** nginx
+	- [ ] proxy
+	- [ ] static files
+	- [ ] caching
+** editorial
+*** models
+    - [ ] user
+    - [ ] author(user)
+    - [ ] category
+    - [ ] tag
+    - [ ] view
+    - [ ] article
+*** TODO initial content
+    :CLOCK:
+    CLOCK: [2012-06-08 Fri 14:43]--[2012-06-08 Fri 14:50] =>  0:07
+    :END:
+**** categories [fn:1] [fn:2]
+     - Sports
+       - American Football
+       - Badminton
+       - Baseball
+       - Basketball
+       - Boxing
+       - Cricket
+       - Cycling
+       - Hockey
+       - Golf
+       - Handball
+       - Olympics
+       - Racing
+       - Rugby
+       - Table Tennis
+       - Tennis
+     - Entenrtainment
+       - Arts
+       - Books
+       - Celebrities
+       - Movies
+       - Music
+       - TV
+       - Humor
+     - Lifestyle
+       - Automotive
+       - Culture
+       - Food and Beverage
+       - Home and Garden
+       - Theatre
+       - Travel
+       - Health
+     - Technology
+       - Computing
+       - Internet
+       - Personal Technology
+       - Video Games
+     - Business
+       - Companies
+       - Economy
+       - Industry
+       - Markets
+     - Education
+     - Science
+       - Environmenent
+       - Geography
+       - Space
+     - Headlines
+     - Politics
+     - Religion
 ** utils
 *** html
 *** caching
@@ -42,8 +120,11 @@
 ** horizontal
 *** tests
 **** TODO stefil
-	 :CLOCK:
-	 :END:
-	 - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
-	 - http://www.cliki.net/test%20framework
+     :CLOCK:
+     :END:
+     - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
+     - http://www.cliki.net/test%20framework
 **** coverage (sb-cover)
+* Footnotes
+[fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
+[fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993

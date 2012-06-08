@@ -14,6 +14,7 @@
 			   (:module
 				"frontend"
 				:components ((:file "packages")
+							 (:file "init" :depends-on ("packages"))
 							 (:file "models" :depends-on ("packages"))
 							 (:file "storage" :depends-on ("packages" "models"))
 							 (:file "views" :depends-on ("packages" "models"))
