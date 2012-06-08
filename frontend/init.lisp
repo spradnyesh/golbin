@@ -8,9 +8,10 @@
   (restas-stop)
   (tmp-init)
   (restas-start))
-(defun tmp-init ()
-  "add a new article to the db"
-  (flet (( storage-add-article (storage article)
+
+(defun add-articles ()
+  "add a new articles to the db"
+  (flet ((storage-add-article (storage article)
 		   "add article 'article' to 'storage'"
 		   (setf (slot-value article 'id)
 				 (incf (slot-value storage 'last-id)))
@@ -30,5 +31,6 @@
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." (1+ i))
 															:cat (format nil "cat-~A" (mod (1+ i) 5))
 															:subcat (format nil "subcat-~A" (mod (1+ i) 3))
-															:author (format nil "author-~A" (1+ i))))))
-  (describe *article-storage*))
+															:author (format nil "author-~A" (1+ i)))))))
+(defun tmp-init ()
+  (add-articles))

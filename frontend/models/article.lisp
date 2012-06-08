@@ -1,16 +1,18 @@
 (in-package :hawksbill.golbin.frontend)
 
 (defclass article ()
-  ((id :initarg :id :initform nil :accessor article-id)
-   (author :initarg :author :initform nil :accessor article-author)
-   (title :initarg :title :initform nil :accessor article-title)
-   (slug :initarg :slug :initform nil :accessor article-slug)
-   (date :initarg :date :initform nil :accessor article-date)
-   (cat :initarg :cat :initform nil :accessor article-cat)
-   (subcat :initarg :subcat :initform nil :accessor article-subcat)
-   (tags :initarg :tags :initform nil :accessor article-tags)
-   (body :initarg :body :initform nil :accessor article-body)
-   (summary :initarg :summary :initform nil :accessor article-summary))
+  ((id :initarg :id :initform nil :accessor id)
+   (title :initarg :title :initform nil :accessor title)
+   (slug :initarg :slug :initform nil :accessor slug)
+   (summary :initarg :summary :initform nil :accessor summary)
+   (date :initarg :date :initform nil :accessor date)
+   (body :initarg :body :initform nil :accessor body)
+   (status :initarg :status :initform nil :accessor status)
+   (cat :initarg :cat :initform nil :accessor cat)
+   (subcat :initarg :subcat :initform nil :accessor subcat)
+   (tags :initarg :tags :initform nil :accessor tags)
+   (location :initarg :location :initform nil :accessor location)
+   (author :initarg :author :initform nil :accessor author))
   (:documentation "Article Class"))
 
 (defclass article-storage ()
@@ -43,32 +45,32 @@
   "return article w/ ID 'id' from 'storage'"
   (find id
         (slot-value storage 'articles)
-        :key #'article-id))
+        :key #'id))
 
 (defmethod get-articles-by-tag ((storage article-storage) tag)
   "return articles w/ tag 'tag' from 'storage'"
   (find tag
         (slot-value storage 'articles)
-        :key #'article-tags
+        :key #'tags
 		:test #'string-equal))
 
 (defmethod get-articles-by-cat ((storage article-storage) cat)
   "return articles w/ category 'cat' from 'storage'"
   (find cat
         (slot-value storage 'articles)
-        :key #'article-cat
+        :key #'cat
 		:test #'string-equal))
 
 (defmethod get-articles-by-cat-subcat ((storage article-storage) cat subcat)
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
   (let ((cat-articles (find cat
 							(slot-value storage 'articles)
-							:key #'article-cat
+							:key #'cat
 							:test #'string-equal)))
 	(when cat-articles
 	  (find subcat
 			(if (consp cat-articles)
 				cat-articles
 				(list cat-articles))
-			:key #'article-subcat
+			:key #'subcat
 			:test #'string-equal))))

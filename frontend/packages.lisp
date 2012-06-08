@@ -13,6 +13,9 @@
 
 (defvar *article-storage* nil)
 (defvar *article-pagination-limit* 10)
+(defvar *category-storage* nil)
+(defvar *view-storage* nil)
+(defvar *tag-storage* nil)
 
 (setf hunchentoot:*show-lisp-errors-p* t)
 (setf hunchentoot:*show-lisp-backtraces-p* t)
