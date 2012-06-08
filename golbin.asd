@@ -12,7 +12,8 @@
                                      (:file "init" :depends-on ("packages" "config"))))|#
                (:module "frontend"
                         :components ((:file "packages")
-                                     (:file "init" :depends-on ("packages"))
+                                     (:file "config" :depends-on ("packages"))
+                                     (:file "init" :depends-on ("packages" "config"))
                                      (:module "models"
                                               :components ((:file "article")
                                                            (:file "category")

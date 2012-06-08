@@ -17,6 +17,7 @@
 (defvar *category-storage* nil)
 (defvar *view-storage* nil)
 (defvar *tag-storage* nil)
+(defvar *categories* nil)
 
 (setf hunchentoot:*show-lisp-errors-p* t)
 (setf hunchentoot:*show-lisp-backtraces-p* t)

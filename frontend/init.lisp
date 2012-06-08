@@ -10,7 +10,16 @@
   (restas-start))
 
 (defun add-cat/subcat ()
-  )
+  (dolist (cs *categories*)
+    (let* ((cat-name (first cs))
+           (subcats (rest cs))
+           (cat-id (add-category (make-instance 'category
+                                                :name cat-name))))
+      (dolist (subcat-name subcats)
+        (add-category (make-instance 'category
+                                     :name subcat-name
+                                     :parent cat-id))))))
+
 (defun add-articles ()
   "add a new articles to the db"
   (dotimes (i 100)
@@ -26,4 +35,6 @@ It is a long established fact that a reader will be distracted by the readable c
                                                           :author (format nil "author-~A" (1+ i))))))
 (defun tmp-init ()
   (setf *article-storage* (make-instance 'article-storage))
-  (add-articles))
+  (add-articles)
+  (setf *category-storage* (make-instance 'category-storage))
+  (add-cat/subcat))
