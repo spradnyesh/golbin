@@ -47,61 +47,25 @@
                                (:a :class "a-title"
                                    :href (restas:genurl 'route-article
                                                         :title-and-id (format nil "~A-~A"
-                                                                              (article-title article)
-                                                                              (article-id article)))
-                                   (str (article-title article)))
-                               (:p :class "a-date" (str (article-date article)))
-                               (:p :class "a-summary" (str (article-summary article))))))))
+                                                                              (title article)
+                                                                              (id article)))
+                                   (str (title article)))
+                               (:p :class "a-date" (str (date article)))
+                               (:p :class "a-summary" (str (summary article))))))))
                     #|(:div :class "popular" (htm (most-popular-articles offset)))|#))
         (:div :class "ft"))))))
 
 (defun view-cat (cat)
-  (with-html-output-to-string (out)
-    (:html
-     (:body
-      (:ul
-       (dolist (article (paginate (get-articles-by-cat *article-storage* cat)))
-         (htm
-          (:li
-           (:p :class "a-title" (str (article-title article)))
-           (:p :class "a-date" (str (article-date article)))
-           (:p :class "a-summary" (str (article-summary article)))))))))))
+  (declare (ignore cat)))
 
 (defun view-cat-subcat (cat subcat)
-  (with-html-output-to-string (out)
-    (:html
-     (:body
-      (:ul
-       (dolist (article (paginated-list-of-articles *article-storage*))
-         (htm
-          (:li
-           (:p :class "a-title" (str (article-title article)))
-           (:p :class "a-date" (str (article-date article)))
-           (:p :class "a-summary" (str (article-summary article)))))))))))
+  (declare (ignore cat subcat)))
 
 (defun view-author (author)
-  (with-html-output-to-string (out)
-    (:html
-     (:body
-      (:ul
-       (dolist (article (paginated-list-of-articles *article-storage*))
-         (htm
-          (:li
-           (:p :class "a-title" (str (article-title article)))
-           (:p :class "a-date" (str (article-date article)))
-           (:p :class "a-summary" (str (article-summary article)))))))))))
+  (declare (ignore author)))
 
 (defun view-tag (tag)
-  (with-html-output-to-string (out)
-    (:html
-     (:body
-      (:ul
-       (dolist (article (paginated-list-of-articles *article-storage*))
-         (htm
-          (:li
-           (:p :class "a-title" (str (article-title article)))
-           (:p :class "a-date" (str (article-date article)))
-           (:p :class "a-summary" (str (article-summary article)))))))))))
+  (declare (ignore tag)))
 
 (defun view-article (title-and-id)
   (let* ((id (first (split-sequence:split-sequence "-" title-and-id :from-end t :test #'string-equal :count 1)))
@@ -109,8 +73,8 @@
     (with-html-output-to-string (out)
       (:html
        (:body
-        (:div (:p :class "a-title" (str (article-title article)))
-              (:p :class "a-date" (str (article-date article)))
-              (:p :class "a-body" (str (article-body article)))))))))
+        (:div (:p :class "a-title" (str (title article)))
+              (:p :class "a-date" (str (date article)))
+              (:p :class "a-body" (str (body article)))))))))
 
 (defun view-search ())
