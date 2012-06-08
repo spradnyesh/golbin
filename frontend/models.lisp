@@ -22,21 +22,12 @@
   "count the number of articles in 'storage'"
   (length (slot-value storage 'articles)))
 
-#|(defmethod paginated-list-of-articles ((storage article-storage) &optional (offset 0) (limit *article-pagination-limit*))
-  "return list of 'limit' articles (not IDs) starting from 'offset' from 'storage'"
-  (let* ((articles (slot-value storage 'articles))
-         (len (length articles))
-         (end (+ limit offset)))
-    (if (and (not (minusp offset))
-             (> len offset))
-        (subseq articles
-                offset
-                (if (and articles (< end len))
-                    end)))))|#
-
 (defun paginate (list &key (offset 0) (limit *article-pagination-limit*))
-  (let ((len (length list))
-		(end (+ limit offset)))
+  (let* ((list (if (consp list)
+				   list
+				   (list list)))
+		 (len (length list))
+		 (end (+ limit offset)))
     (if (and (not (minusp offset))
              (> len offset))
         (subseq list
