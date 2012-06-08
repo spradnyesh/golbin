@@ -89,12 +89,12 @@
   ;; 1. downcase
   ;;     (string-downcase "RAT")
   (string-downcase
-   (regex-replace-all             ; remove all non-alphanum characters
-    "[^-a-zA-Z0-9]"
-    (regex-replace-all                  ; " " -> "-"
-     " "
-     (regex-replace-all                 ; " +" -> " "
-      " +"
+   (regex-replace-all                   ; " " -> "-"
+    " "
+    (regex-replace-all                  ; " +" -> " "
+     " +"
+     (regex-replace-all           ; remove all non-alphanum characters
+      "[^- a-zA-Z0-9]"
       (regex-replace-all                ; "@" -> "or"
        "@"
        (regex-replace-all               ; "&" -> "and"
@@ -102,9 +102,9 @@
         (string-trim " " title)         ; remove left/right spaces
         "and")
        "at")
-      " ")
-     "-")
-    "")))
+      "")
+     " ")
+    "-")))
 
 (defmethod storage-add-article ((storage article-storage) article)
   "add article 'article' to 'storage'"

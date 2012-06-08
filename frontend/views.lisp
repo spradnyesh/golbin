@@ -47,7 +47,7 @@
                                (:a :class "a-title"
                                    :href (restas:genurl 'route-article
                                                         :title-and-id (format nil "~A-~A"
-                                                                              (title article)
+                                                                              (slug article)
                                                                               (id article)))
                                    (str (title article)))
                                (:p :class "a-date" (str (date article)))
