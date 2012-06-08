@@ -4,7 +4,7 @@
 
 (defun foot ())
 
-(defun view-home (page-number)
+(defun view-home (&optional (page-number "0"))
   (let ((offset (* (parse-integer page-number) *article-pagination-limit*)))
 	(who:with-html-output-to-string (out)
 	  (:html
@@ -15,15 +15,15 @@
 		   (htm
 			(:li
 			 (:a :class "a-title"
-				 :href "abcde" #|(restas:genurl 'route-article
+				 :href (restas:genurl 'route-article
 									  :title-and-id (format nil "~A-~A"
 															(article-title article)
-															(article-id article)))|#
+															(article-id article)))
 				 (str (article-title article)))
 			 (:p :class "a-date" (str (article-date article)))
 			 (:p :class "a-summary" (str (article-summary article))))))))))))
 
-#|(defun view-cat (cat)
+(defun view-cat (cat)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -33,9 +33,9 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
+		   (:p :class "a-summary" (str (article-summary article)))))))))))
 
-#|(defun view-cat-subcat (cat subcat)
+(defun view-cat-subcat (cat subcat)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -45,9 +45,9 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
+		   (:p :class "a-summary" (str (article-summary article)))))))))))
 
-#|(defun view-author (author)
+(defun view-author (author)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -57,9 +57,9 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
+		   (:p :class "a-summary" (str (article-summary article)))))))))))
 
-#|(defun view-tag (tag)
+(defun view-tag (tag)
   (who:with-html-output-to-string (out)
     (:html
      (:body
@@ -69,7 +69,7 @@
 		  (:li
 		   (:p :class "a-title" (str (article-title article)))
 		   (:p :class "a-date" (str (article-date article)))
-		   (:p :class "a-summary" (str (article-summary article)))))))))))|#
+		   (:p :class "a-summary" (str (article-summary article)))))))))))
 
 (defun view-article (title-and-id)
   (let* ((id (first (split-sequence:split-sequence "-" title-and-id :from-end t :test #'string-equal :count 1)))
