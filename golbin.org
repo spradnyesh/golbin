@@ -1,0 +1,49 @@
+* tasks
+** editorial
+*** models
+	- [ ] user
+	- [ ] author(user)
+	- [ ] category
+	- [ ] tag
+	- [ ] view
+	- [ ] article
+** frontend
+*** TODO routes
+	:CLOCK:
+	CLOCK: [2012-06-08 Fri 13:02]--[2012-06-08 Fri 13:06] =>  0:04
+	:END:
+	- [X] home
+	- [ ] home-page
+	- [ ] cat
+	- [ ] cat-subcat
+	- [ ] tag
+	- [ ] author
+	- [X] article
+*** [[*models][models]]
+*** views
+*** DONE template@pencil
+	 CLOSED: [2012-06-08 Fri 14:35]
+	:CLOCK:
+	CLOCK: [2012-06-08 Fri 13:59]--[2012-06-08 Fri 14:35] =>  0:36
+	:END:
+	- [X] template
+	- [X] navigation
+** utils
+*** html
+*** caching
+*** db
+*** init
+*** config
+*** l10n
+** queue
+*** producer (boomerang)
+*** consumer (cron)
+** reports
+** horizontal
+*** tests
+**** TODO stefil
+	 :CLOCK:
+	 :END:
+	 - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
+	 - http://www.cliki.net/test%20framework
+**** coverage (sb-cover)
