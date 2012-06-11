@@ -1,7 +1,6 @@
 (in-package :hawksbill.golbin.frontend)
 
 (restas:define-route route-home ("/") (view-home))
-(restas:define-route route-home-page ("page/:page/") (view-home page))
 (restas:define-route route-cat ("c/:cat/") (view-cat cat))
 (restas:define-route route-cat-subcat ("c/:cat/:subcat/") (view-cat-subcat cat subcat))
 (restas:define-route route-tag ("t/:tag/") (view-tag tag))

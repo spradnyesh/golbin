@@ -87,11 +87,38 @@
   (declare (ignore offset))
   (most-popular-articles category))
 
+(defun pagination-low (page-number)
+  "page number can be 0 at minimum"
+  (let ((p (- page-number (/ *article-pagination-limit* 2)))
+        (min 0))
+    (if (< p min)
+        min
+        p)))
+(defun pagination-high (page-number max-results)
+  "page number can be (/ max-results *article-pagination-limit*) at maximum"
+  (let ((p (+ page-number (/ *article-pagination-limit* 2)))
+        (max (/ max-results *article-pagination-limit*)))
+    (if (> p max)
+        max
+        p)))
+(defun pagination-markup (route page-number max-results)
+  "build URLs b/n route?p=low and route?p=high"
+  ;; don't show pagination-markup when page-number = 13, *article-pagination-limit* = 10 and max-results = 100 ;)
+  (if (< (* page-number *article-pagination-limit*) max-results)
+      (with-html
+        (:ul
+         (loop for i
+            from (pagination-low page-number) to (pagination-high page-number max-results) do
+            (if (eql page-number i)
+                (htm (:li :id "pagination-match" (str i)))
+                (htm (:li (:a :href (restas:genurl route :p i) (str i))))))))
+      ""))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun view-article (slug-and-id)
-  (let* ((id (first (split-sequence:split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
+  (let* ((id (first (split-sequence:split-sequence ")-" slug-and-id :from-end t :test #'string-equal :count 1)))
          (article (get-article-by-id *article-storage* (parse-integer id))))
     (page-template
         (title article)
@@ -100,26 +127,32 @@
             (:p :id "a-date" (str (date article)))
             (:p :id "a-body" (str (body article)))))))
 
-(defun view-home (&optional (page-number "0"))
-  (let ((offset (* (parse-integer page-number) *article-pagination-limit*)))
+(defun view-home ()
+  (let* ((page-number (if (hunchentoot:get-parameter "p")
+                          (parse-integer (hunchentoot:get-parameter "p"))
+                          0))
+         (offset (* page-number *article-pagination-limit*)))
     (page-template
         "Home"
         (most-popular-articles-markup)
-      (:div :class "articles"
-            (:div :class "latest"
-                  (:ul
-                   (dolist (article (paginate (get-all-articles *article-storage*)
-                                              :offset offset))
-                     (htm
-                      (:li
-                       (:a :class "a-title"
-                           :href (restas:genurl 'route-article
-                                                :slug-and-id (format nil "~A-~A"
-                                                                      (slug article)
-                                                                      (id article)))
-                           (str (title article)))
-                       (:p :class "a-date" (str (date article)))
-                       (:p :class "a-summary" (str (summary article))))))))))))
+      (htm
+       (:div :id "articles"
+             (:ul
+              (dolist (article (paginate (get-all-articles *article-storage*)
+                                         :offset offset))
+                (htm
+                 (:li
+                  (:a :class "a-title"
+                      :href (restas:genurl 'route-article
+                                           :slug-and-id (format nil "~A-~A"
+                                                                (slug article)
+                                                                (id article)))
+                      (str (title article)))
+                  (:p :class "a-date" (str (date article)))
+                  (:p :class "a-summary" (str (summary article))))))))
+       (str (pagination-markup 'route-home
+                               page-number
+                               (count-articles *article-storage*)))))))
 
 (defun view-cat (cat)
   (declare (ignore cat)))

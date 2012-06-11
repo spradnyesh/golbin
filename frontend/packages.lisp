@@ -12,13 +12,24 @@
 
 (in-package :hawksbill.golbin.frontend)
 
-(defvar *site-name* "Golbin")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; parameters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defparameter *site-name* "Golbin")
+(defparameter *article-pagination-range* 10)
+(defparameter *article-pagination-limit* 10)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; storages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar *article-storage* nil)
-(defvar *article-pagination-limit* 10)
 (defvar *category-storage* nil)
 (defvar *view-storage* nil)
 (defvar *tag-storage* nil)
 (defvar *categories* nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; debugging
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf hunchentoot:*show-lisp-errors-p* t)
 (setf hunchentoot:*show-lisp-backtraces-p* t)
