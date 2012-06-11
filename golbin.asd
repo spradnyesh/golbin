@@ -24,7 +24,7 @@
                                      (:file "storage" :depends-on ("packages" "models"))
                                      (:file "views" :depends-on ("packages" "models"))
                                      (:file "routes" :depends-on ("packages" "views")))
-                        depends-on ("utils"))
+                        :depends-on ("utils"))
                #|(:module
                "boomerang"
                :components ((:file "src")))|#

@@ -18,14 +18,16 @@
 *** views
 **** common
 ***** header
-***** TODO navigation
-	  :CLOCK:
-	  CLOCK: [2012-06-08 Fri 16:44]--[2012-06-08 Fri 16:45] =>  0:01
-	  :END:
+****** logo
+****** trending
+****** TODO navigation
+	   :CLOCK:
+	   CLOCK: [2012-06-08 Fri 16:44]--[2012-06-08 Fri 16:45] =>  0:01
+	   :END:
 ***** footer
-***** left-ads
-***** right-ads
-***** pagination
+***** ads
+***** DONE pagination
+      CLOSED: [2012-06-11 Mon 17:54]
 ***** related-carousel
 **** home
 ***** latest
