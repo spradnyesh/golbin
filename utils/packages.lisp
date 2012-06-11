@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.utils
-	(:use :cl :hunchentoot :cl-who :cl-memcached)
+	(:use :cl :hunchentoot :cl-who :cl-memcached :cl-ppcre)
   (:export
    ;; config
    :*home*

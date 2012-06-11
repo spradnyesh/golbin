@@ -12,7 +12,7 @@
 ;;;; macros for html
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro with-html (&body body)
-  `(with-html-output (*standard-output* nil)
+  `(with-html-output-to-string (*standard-output* nil)
      (htm
       ,@body)))
 
