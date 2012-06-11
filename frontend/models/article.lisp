@@ -120,3 +120,9 @@
   (push article
         (slot-value storage 'articles))
   article)
+
+(defun latest-articles (category)
+  (declare (ignore category)))
+
+(defun most-popular-articles (category)
+  (declare (ignore category)))

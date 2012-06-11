@@ -12,6 +12,7 @@
 
 (in-package :hawksbill.golbin.frontend)
 
+(defvar *site-name* "Golbin")
 (defvar *article-storage* nil)
 (defvar *article-pagination-limit* 10)
 (defvar *category-storage* nil)

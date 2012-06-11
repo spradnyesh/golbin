@@ -10,7 +10,7 @@
           :alt "logo")))
 
 (defun site-search ()
-  (with-html
+  #|(with-html
     (:form :method "GET"
            :action "/search/"
            :name "search"
@@ -19,7 +19,7 @@
                    :name "q"
                    :value "Search")
            (:input :type "submit"
-                   :value "Submit"))))
+                   :value "Submit")))|#)
 
 (defun trending ()
   (with-html
@@ -59,14 +59,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro page-template (&body content)
+(defmacro page-template (title popular-articles &body content)
   `(with-html
      (:html
+      (:head
+       (:title (str (format nil "~A - ~A" *site-name* ,title))))
       (:body
        (str (header))
        (:div :id "bd"
              (:div :id "col-1"
-                   (:div :id "popular")
+                   (str ,popular-articles)
                    (str (ads-1)))
              (:div :id "col-2"
                    ,@content)
@@ -75,34 +77,34 @@
        (str (footer))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; helpers
+;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun latest-articles (offset)
-  (declare (ignore offset)))
+(defun latest-articles-markup (&key (offset 0) (category (most-viewed-category)))
+  (declare (ignore offset))
+  (latest-articles category))
 
-(defun latest-articles-in-category (offset &optional (category (most-viewed-category)))
-  (declare (ignore offset category)))
-
-(defun most-popular-articles (offset)
-  (declare (ignore offset)))
-
-(defun most-popular-articles-in-category (offset &optional (category (most-viewed-category)))
-  (declare (ignore offset category)))
+(defun most-popular-articles-markup (&key (offset 0) (category (most-viewed-category)))
+  (declare (ignore offset))
+  (most-popular-articles category))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun view-article (title-and-id)
-  (let* ((id (first (split-sequence:split-sequence "-" title-and-id :from-end t :test #'string-equal :count 1)))
+(defun view-article (slug-and-id)
+  (let* ((id (first (split-sequence:split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
          (article (get-article-by-id *article-storage* (parse-integer id))))
     (page-template
+        (title article)
+      (most-popular-articles-markup :category (cat article))
       (:div (:p :id "a-title" (str (title article)))
-              (:p :id "a-date" (str (date article)))
-              (:p :id "a-body" (str (body article)))))))
+            (:p :id "a-date" (str (date article)))
+            (:p :id "a-body" (str (body article)))))))
 
 (defun view-home (&optional (page-number "0"))
   (let ((offset (* (parse-integer page-number) *article-pagination-limit*)))
     (page-template
+        "Home"
+        (most-popular-articles-markup)
       (:div :class "articles"
             (:div :class "latest"
                   (:ul
@@ -112,13 +114,12 @@
                       (:li
                        (:a :class "a-title"
                            :href (restas:genurl 'route-article
-                                                :title-and-id (format nil "~A-~A"
+                                                :slug-and-id (format nil "~A-~A"
                                                                       (slug article)
                                                                       (id article)))
                            (str (title article)))
                        (:p :class "a-date" (str (date article)))
-                       (:p :class "a-summary" (str (summary article))))))))
-            #|(:div :class "popular" (htm (most-popular-articles offset)))|#))))
+                       (:p :class "a-summary" (str (summary article))))))))))))
 
 (defun view-cat (cat)
   (declare (ignore cat)))
