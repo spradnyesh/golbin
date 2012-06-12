@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin.utils)
+(in-package :hawksbill.utils)
 
 (defmacro with-cache (&body body)
   `(let ((data (mc-get+ key)))

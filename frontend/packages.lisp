@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.golbin.utils)
+  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils)
   (:export :route-home
            :route-home-page
            :route-cat

@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin.utils)
+(in-package :hawksbill.utils)
 
 (defun get-feedback-types ()
   (with-html

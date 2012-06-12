@@ -1,4 +1,4 @@
-(restas:define-module :hawksbill.golbin.utils
+(defpackage :hawksbill.utils
 	(:use :cl :hunchentoot :cl-who :cl-memcached :cl-ppcre)
   (:export
    ;; config
@@ -16,4 +16,4 @@
    :with-cache
    ))
 
-(in-package :hawksbill.golbin.utils)
+(in-package :hawksbill.utils)
