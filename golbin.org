@@ -26,6 +26,10 @@
 	   :END:
 ***** footer
 ***** ads
+***** TODO navigation
+      :CLOCK:
+      CLOCK: [2012-06-12 Tue 19:26]--[2012-06-12 Tue 20:26] =>  1:00
+      :END:
 ***** DONE pagination
       CLOSED: [2012-06-11 Mon 17:54]
 ***** related-carousel
@@ -50,6 +54,10 @@
 	- [ ] proxy
 	- [ ] static files
 	- [ ] caching
+*** future requirements/improvements
+    - extra (empty), user-settable, primary-navigation fields
+      - html5
+      - html4 + cookie
 ** editorial
 *** TODO models
 	:CLOCK:
@@ -131,9 +139,10 @@
 ** reports
 ** horizontal
 *** tests
-**** TODO stefil
+**** TODO fiveam
      :CLOCK:
      :END:
+     - http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-7
      - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
      - http://www.cliki.net/test%20framework
 **** coverage (sb-cover)

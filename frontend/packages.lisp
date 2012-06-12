@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils)
+  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas)
   (:export :route-home
            :route-home-page
            :route-cat
@@ -20,8 +20,14 @@
 (defparameter *article-pagination-limit* 10)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; variables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar *static-path* nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; storages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar *db-storage* nil)
 (defvar *article-storage* nil)
 (defvar *category-storage* nil)
 (defvar *view-storage* nil)

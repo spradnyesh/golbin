@@ -8,15 +8,15 @@
    (parent :initarg :parent :initform nil :accessor parent)))
 
 (defclass category-storage ()
-  ((categorys :initform nil)
+  ((categories :initform nil)
    (last-id :initform 0))
-  (:documentation "Object of this class will act as the storage for Categorys"))
+  (:documentation "Object of this class will act as the storage for Categories"))
 
 (defun get-category-by-name (category-name &optional (storage *category-storage*))
   (find category-name
-                        (slot-value storage 'categorys)
-                        :key 'name
-                        :test #'string-equal))
+        (slot-value storage 'categories)
+        :key 'name
+        :test #'string-equal))
 
 (defun add-category (category &optional (storage *category-storage*))
   "add category 'category' to 'storage'"
@@ -25,5 +25,13 @@
                   (incf (slot-value storage 'last-id)))))
     ;; add to store
     (push category
-          (slot-value storage 'categorys))
+          (slot-value storage 'categories))
     id))
+
+(defun get-root-categories (&optional (storage *category-storage*))
+  (sort
+   (conditional-accumulate (lambda (cat)
+                             (null (parent cat)))
+                           (slot-value storage 'categories))
+   #'string<
+   :key 'name))

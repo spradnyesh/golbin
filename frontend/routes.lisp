@@ -1,5 +1,10 @@
 (in-package :hawksbill.golbin.frontend)
 
+#|(setf *dispatch-table*
+      (nconc
+       (mapcar (lambda (args)
+                 (apply 'create-folder-dispatcher-and-handler args))
+               `(("/static/" ,*static-path*)))))|#
 (restas:define-route route-home ("/") (view-home))
 (restas:define-route route-cat ("c/:cat/") (view-cat cat))
 (restas:define-route route-cat-subcat ("c/:cat/:subcat/") (view-cat-subcat cat subcat))

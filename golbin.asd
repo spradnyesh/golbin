@@ -9,6 +9,7 @@
                                      (:file "config" :depends-on ("packages"))
                                      (:file "memcache" :depends-on ("packages"))
                                      (:file "html":depends-on ("packages"))
+                                     (:file "helpers":depends-on ("packages"))
                                      (:file "init" :depends-on ("packages" "config"))))
                (:module "frontend"
                         :components ((:file "packages")

@@ -12,7 +12,7 @@
 (defun site-search ()
   #|(with-html
     (:form :method "GET"
-           :action "/search/"
+           :action (genurl 'route-search)
            :name "search"
            :id "search"
            (:input :type "input"
@@ -27,7 +27,11 @@
 
 (defun navigation ()
   (with-html
-    (:div :id "navigation")))
+    (:ul :id "nav"
+         (:li (:a :href (genurl 'route-home) "Home"))
+         (:li "Categories")
+         (:li "Tags")
+         (:li "Authors"))))
 
 (defun header ()
   (with-html
@@ -111,7 +115,7 @@
             from (pagination-low page-number) to (pagination-high page-number max-results) do
             (if (eql page-number i)
                 (htm (:li :id "pagination-match" (str i)))
-                (htm (:li (:a :href (restas:genurl route :p i) (str i))))))))
+                (htm (:li (:a :href (genurl route :p i) (str i))))))))
       ""))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -143,7 +147,7 @@
                 (htm
                  (:li
                   (:a :class "a-title"
-                      :href (restas:genurl 'route-article
+                      :href (genurl 'route-article
                                            :slug-and-id (format nil "~A-~A"
                                                                 (slug article)
                                                                 (id article)))
