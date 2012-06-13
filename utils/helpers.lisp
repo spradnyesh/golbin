@@ -1,7 +1,7 @@
 (in-package :hawksbill.utils)
 
-(defun conditional-accumulate (cond list)
-  (when list
-    (if (funcall cond (first list))
-        (cons (first list) (helper cond (rest list)))
-        (helper cond (rest list)))))
+(defun conditionally-accumulate (cond list)
+  (let ((rslt nil))
+    (dolist (l list rslt)
+      (when (funcall cond l)
+        (push l rslt)))))
