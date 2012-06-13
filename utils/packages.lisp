@@ -16,6 +16,7 @@
    :with-cache
    ;; helpers
    :conditionally-accumulate
+   :slugify
    ))
 
 (in-package :hawksbill.utils)
