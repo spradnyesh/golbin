@@ -14,6 +14,8 @@
    :hu-stop
    ;; memcache
    :with-cache
+   ;; helpers
+   :conditionally-accumulate
    ))
 
 (in-package :hawksbill.utils)
