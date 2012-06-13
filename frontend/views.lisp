@@ -123,10 +123,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun view-article (slug-and-id)
   (let* ((id (first (split-sequence:split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
-         (article (get-article-by-id *article-storage* (parse-integer id))))
+         (article (get-article-by-id (parse-integer id) *article-storage*)))
     (page-template
         (title article)
-      (most-popular-articles-markup :category (cat article))
+        (most-popular-articles-markup :category (cat article))
       (:div (:p :id "a-title" (str (title article)))
             (:p :id "a-date" (str (date article)))
             (:p :id "a-body" (str (body article)))))))
@@ -148,9 +148,9 @@
                  (:li
                   (:a :class "a-title"
                       :href (genurl 'route-article
-                                           :slug-and-id (format nil "~A-~A"
-                                                                (slug article)
-                                                                (id article)))
+                                    :slug-and-id (format nil "~A-~A"
+                                                         (slug article)
+                                                         (id article)))
                       (str (title article)))
                   (:p :class "a-date" (str (date article)))
                   (:p :class "a-summary" (str (summary article))))))))

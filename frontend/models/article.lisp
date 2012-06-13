@@ -16,13 +16,17 @@
   (:documentation "Article Class"))
 
 (defclass article-storage ()
-  ((articles :initform nil)
-   (last-id :initform 0))
+  ((articles :initform nil :accessor articles)
+   (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Articles"))
 
-(defmethod count-articles ((storage article-storage))
+(defun get-all-articles (&optional (storage *article-storage*))
+  "return all articles"
+  (articles storage))
+
+(defun count-articles (&optional (storage *article-storage*))
   "count the number of articles in 'storage'"
-  (length (slot-value storage 'articles)))
+  (length (get-all-articles storage)))
 
 (defun paginate (list &key (offset 0) (limit *article-pagination-limit*))
   (let* ((list (if (consp list)
@@ -37,34 +41,30 @@
                 (if (and list (< end len))
                     end)))))
 
-(defmethod get-all-articles ((storage article-storage))
-  "return all articles"
-  (slot-value storage 'articles))
-
-(defmethod get-article-by-id ((storage article-storage) id)
+(defun get-article-by-id (id &optional (storage *article-storage*))
   "return article w/ ID 'id' from 'storage'"
   (find id
-        (slot-value storage 'articles)
+        (get-all-articles storage)
         :key #'id))
 
-(defmethod get-articles-by-tag ((storage article-storage) tag)
+(defun get-articles-by-tag (tag &optional (storage *article-storage*))
   "return articles w/ tag 'tag' from 'storage'"
   (find tag
-        (slot-value storage 'articles)
+        (get-all-articles storage)
         :key #'tags
         :test #'string-equal))
 
-(defmethod get-articles-by-cat ((storage article-storage) cat)
+(defun get-articles-by-cat (cat &optional (storage *article-storage*))
   "return articles w/ category 'cat' from 'storage'"
   (find cat
-        (slot-value storage 'articles)
+        (get-all-articles storage)
         :key #'cat
         :test #'string-equal))
 
-(defmethod get-articles-by-cat-subcat ((storage article-storage) cat subcat)
+(defun get-articles-by-cat-subcat (cat subcat &optional (storage *article-storage*))
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
   (let ((cat-articles (find cat
-                            (slot-value storage 'articles)
+                            (get-all-articles storage)
                             :key #'cat
                             :test #'string-equal)))
     (when cat-articles
@@ -106,19 +106,19 @@
      " ")
     "-")))
 
-(defmethod storage-add-article ((storage article-storage) article)
+(defun add-article (article &optional (storage *article-storage*))
   "add article 'article' to 'storage'"
   ;; set some article params
-  (setf (slot-value article 'id)
-        (incf (slot-value storage 'last-id)))
-  (setf (slot-value article 'date)
+  (setf (id article)
+        (incf (last-id storage)))
+  (setf (date article)
         (now))
-  (setf (slot-value article 'slug)
-        (slugify (slot-value article 'title)))
+  (setf (slug article)
+        (slugify (title article)))
 
   ;; save article into storage
   (push article
-        (slot-value storage 'articles))
+        (articles storage))
   article)
 
 (defun latest-articles (category)
