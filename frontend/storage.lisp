@@ -5,4 +5,4 @@
 (setf *view-storage* (make-instance 'views-storage))
 (setf *count-storage* (make-instance 'count-storage))
 (setf *tag-storage* (make-instance 'tag-storage))
-(setf *author-storage* (make-instance 'tag-storage))
+(setf *author-storage* (make-instance 'author-storage))

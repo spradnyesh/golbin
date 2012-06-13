@@ -3,9 +3,9 @@
 (defclass user ()
   ((id :initarg :id :initform nil :accessor id)
    (username :initarg :username :initform nil :accessor username)
+   (handle :initarg :handle :initform nil :accessor handle) ; name that the user wants others to see
    (password :initarg :password :initform nil :accessor password)
-   (firstname :initarg :firstname :initform nil :accessor firstname)
-   (lastname :initarg :lastname :initform nil :accessor lastname)
+   (name :initarg :name :initform nil :accessor name)
    (gender :initarg :gender :initform nil :accessor gender)
    (age :initarg :age :initform nil :accessor age)
    (email :initarg :email :initform nil :accessor email)))
@@ -30,6 +30,15 @@
   ((preference :initarg :preference :initform nil :accessor preference)))
 
 (defclass author-storage ()
-  ((authors :initform nil :accessor author)
+  ((authors :initform nil :accessor authors)
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Authors"))
+
+(defun add-author (author &optional (storage *author-storage*))
+  (push author (authors storage))
+  author)
+
+(defun get-all-authors (&optional (storage *author-storage*))
+  (sort (authors storage)
+        #'string<
+        :key 'name))

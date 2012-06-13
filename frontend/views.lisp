@@ -46,13 +46,40 @@
                                             :subcat (slug subcat))
                               (str (name subcat)))))))))))))))
 
+(defun nav-tags ()
+  (with-html
+    (:ul
+     (dolist (tag (get-all-tags *tag-storage*))
+       (htm
+        (:li :class "tag"
+             (:a :href (genurl 'route-tag
+                               :tag (slug tag))
+                 (str (name tag)))))))))
+
+(defun nav-authors ()
+  (with-html
+    (:ul
+     (dolist (author (get-all-authors *author-storage*))
+       (htm
+        (:li :class "author"
+             (:a :href (genurl 'route-author
+                               :author (handle author))
+                 (str (name author)))))))))
+
 (defun navigation ()
   (with-html
     (:ul :id "nav"
-         (:li (:a :href (genurl 'route-home) "Home"))
-         (:li (str (nav-category)))
-         (:li "Tags")
-         (:li "Authors"))))
+         (:li :id "nav-home"
+              (:a :href (genurl 'route-home) "Home"))
+         (:li :id "cat"
+              (:p "Categories")
+              (str (nav-category)))
+         (:li  :id "tags"
+               (:p "Tags")
+              (str (nav-tags)))
+         (:li :id "authors"
+              (:p "Authors")
+              (str (nav-authors))))))
 
 (defun header ()
   (with-html
