@@ -25,11 +25,32 @@
   (with-html
     (:div :id "trending-tags")))
 
+(defun nav-category ()
+  (with-html
+    (:ul
+     (dolist (cat-node (get-category-tree *category-storage*))
+       (let ((cat (first cat-node))
+             (subcat-node (second cat-node)))
+         (htm
+          (:li :class "cat"
+               (:a :href (genurl 'route-cat
+                                 :cat (slug cat))
+                   (str (name cat)))
+               (:ul
+                (dolist (subcat subcat-node)
+                  (when (status subcat) ; show only enabled sub-categories
+                    (htm
+                     (:li :class "subcat"
+                          (:a :href (genurl 'route-cat-subcat
+                                            :cat (slug cat)
+                                            :subcat (slug subcat))
+                              (str (name subcat)))))))))))))))
+
 (defun navigation ()
   (with-html
     (:ul :id "nav"
          (:li (:a :href (genurl 'route-home) "Home"))
-         (:li "Categories")
+         (:li (str (nav-category)))
          (:li "Tags")
          (:li "Authors"))))
 

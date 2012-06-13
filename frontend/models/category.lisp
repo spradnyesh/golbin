@@ -5,44 +5,51 @@
    (name :initarg :name :initform nil :accessor name)
    (status :initarg :status :initform nil :accessor status
            :documentation "nil/t => dis/en-able; to be able to hide certain cat/subcat from navigation")
-   (parent :initarg :parent :initform nil :accessor parent)))
+   (parent :initarg :parent :initform nil :accessor parent)
+   (slug :initarg :slug :initform nil :accessor slug)))
 
 (defclass category-storage ()
   ((categories :initform nil :accessor categories)
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Categories"))
 
-(defmacro get-all-categories ()
-  `(categories storage))
-
-(defun get-category-by-name (category-name &optional (storage *category-storage*))
-  (find category-name
-        (get-all-categories)
-        :key 'name
-        :test #'string-equal))
-
 (defun add-category (category &optional (storage *category-storage*))
   "add category 'category' to 'storage'"
-  ;; set id
-  (let ((id (setf (id category)
-                  (incf (last-id storage)))))
-    ;; add to store
-    (push category
-          (get-all-categories))
-    id))
+  ;; set some params
+  (setf (id category)
+        (incf (last-id storage)))
+  (setf (slug category)
+        (slugify (name category)))
 
-(defun get-root-categories (&optional (storage *category-storage*))
-  (sort
-   (conditionally-accumulate (lambda (cat)
-                               (null (parent cat)))
-                             (get-all-categories))
-   #'string<
-   :key 'name))
+  ;; add to store
+  (push category
+        (categories storage))
+  category)
+
+(defun get-all-categories (&optional (storage *category-storage*))
+  (categories storage))
+
+(defun get-category-by-slug (category-slug &optional (storage *category-storage*))
+  (find category-slug
+        (get-all-categories storage)
+        :key 'slug
+        :test #'string-equal))
 
 (defun get-subcategories (cat-id &optional (storage *category-storage*))
   (sort
    (conditionally-accumulate (lambda (cat)
                                (= cat-id (parent cat)))
-                             (get-all-categories))
+                             (get-all-categories storage))
    #'string<
    :key 'name))
+
+(defun get-root-categories (&optional (storage *category-storage*))
+  (get-subcategories 0 storage))
+
+(defun get-category-tree (&optional (storage *category-storage*))
+  (let ((rslt nil)
+        (root (get-root-categories storage)))
+    (dolist (r root)
+      (push (list r (get-subcategories (id r) storage))
+            rslt))
+    (nreverse rslt)))

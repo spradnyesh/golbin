@@ -13,14 +13,15 @@
   (dolist (cs *categories*)
     (let* ((cat-name (first cs))
            (subcats (rest cs))
-           (cat-id (add-category (make-instance 'category
-                                                :name cat-name
-                                                :status t))))
+           (cat (add-category (make-instance 'category
+                                             :name cat-name
+                                             :status t
+                                             :parent 0))))
       (dolist (sc subcats)
         (add-category (make-instance 'category
                                      :name (first sc)
                                      :status (second sc)
-                                     :parent cat-id))))))
+                                     :parent (id cat)))))))
 
 (defun add-articles ()
   "add a new articles to the db"
