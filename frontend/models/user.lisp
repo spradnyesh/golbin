@@ -28,3 +28,8 @@
    (education :initarg :education :initform nil :accessor education)))
 (defclass visitor (user)
   ((preference :initarg :preference :initform nil :accessor preference)))
+
+(defclass author-storage ()
+  ((authors :initform nil :accessor author)
+   (last-id :initform 0 :accessor last-id))
+  (:documentation "Object of this class will act as the storage for Authors"))

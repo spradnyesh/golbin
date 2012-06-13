@@ -104,11 +104,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun latest-articles-markup (&key (offset 0) (category (most-viewed-category)))
+(defun latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))
   (latest-articles category))
 
-(defun most-popular-articles-markup (&key (offset 0) (category (most-viewed-category)))
+(defun most-popular-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))
   (most-popular-articles category))
 

@@ -31,8 +31,10 @@
 (defvar *article-storage* nil)
 (defvar *category-storage* nil)
 (defvar *view-storage* nil)
+(defvar *count-storage* nil)
 (defvar *tag-storage* nil)
 (defvar *categories* nil)
+(defvar *author-storage* nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debugging
