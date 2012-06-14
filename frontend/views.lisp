@@ -163,7 +163,7 @@
             from (pagination-low page-number) to (pagination-high page-number max-results) do
             (if (eql page-number i)
                 (htm (:li :id "pagination-match" (str i)))
-                (htm (:li (:a :href (genurl route :p i) (str i))))))))
+                (htm (:li (:a :href (genurl route :page i) (str i))))))))
       ""))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -179,11 +179,9 @@
             (:p :id "a-date" (str (date article)))
             (:p :id "a-body" (str (body article)))))))
 
-(defun view-home ()
-  (let* ((page-number (if (hunchentoot:get-parameter "p")
-                          (parse-integer (hunchentoot:get-parameter "p"))
-                          0))
-         (offset (* page-number *article-pagination-limit*)))
+(defun view-home (&optional (page "0"))
+  (let* ((page (parse-integer page))
+         (offset (* page *article-pagination-limit*)))
     (page-template
         "Home"
         (most-popular-articles-markup)
@@ -202,20 +200,20 @@
                       (str (title article)))
                   (:p :class "a-date" (str (date article)))
                   (:p :class "a-summary" (str (summary article))))))))
-       (str (pagination-markup 'route-home
-                               page-number
+       (str (pagination-markup 'route-home-page
+                               page
                                (count-articles *article-storage*)))))))
 
-(defun view-cat (cat)
-  (declare (ignore cat)))
+(defun view-cat (cat &optional (page "0"))
+  (declare (ignore cat page)))
 
-(defun view-cat-subcat (cat subcat)
-  (declare (ignore cat subcat)))
+(defun view-cat-subcat (cat subcat &optional (page "0"))
+  (declare (ignore cat subcat page)))
 
-(defun view-author (author)
-  (declare (ignore author)))
+(defun view-author (author &optional (page "0"))
+  (declare (ignore author page)))
 
-(defun view-tag (tag)
-  (declare (ignore tag)))
+(defun view-tag (tag &optional (page "0"))
+  (declare (ignore tag page)))
 
 (defun view-search ())
