@@ -41,6 +41,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helpers for css and js
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro js-script (&rest body)
+  "Utility macro for including ParenScript into the HTML notation.
+Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/parenscript/manual/parenscript-tutorial.pdf)"
+  `(with-html
+    (:script :type "text/javascript"
+             (format nil "~%//<![CDATA[~%")
+             (str (ps ,@body))
+             (format nil "~%//]]>~%"))))
+
 (defun link-css (path)
   (when (and (equal *environment* "prod")
              (not (search "yui" path)))

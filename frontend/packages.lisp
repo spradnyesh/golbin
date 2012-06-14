@@ -1,13 +1,17 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas)
+  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json)
+  (:shadowing-import-from :json :prototype)
   (:export :route-home
            :route-home-page
            :route-cat
+           :route-cat-page
            :route-cat-subcat
-           :route-article
-           :route-home
+           :route-cat-subcat-page
            :route-author
+           :route-author-page
            :route-tag
+           :route-tag-page
+           :route-article
            :route-search))
 
 (in-package :hawksbill.golbin.frontend)
@@ -23,6 +27,7 @@
 ;; variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar *static-path* nil)
+(defvar *nav-cat-json* nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; storages

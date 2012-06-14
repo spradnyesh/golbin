@@ -1,51 +1,8 @@
 (in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; page header
+;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun logo ()
-  (with-html
-    (:img :id "logo"
-          :source ""
-          :alt "logo")))
-
-(defun site-search ()
-  #|(with-html
-    (:form :method "GET"
-           :action (genurl 'route-search)
-           :name "search"
-           :id "search"
-           (:input :type "input"
-                   :name "q"
-                   :value "Search")
-           (:input :type "submit"
-                   :value "Submit")))|#)
-
-(defun trending ()
-  (with-html
-    (:div :id "trending-tags")))
-
-(defun nav-category ()
-  (with-html
-    (:ul
-     (dolist (cat-node (get-category-tree *category-storage*))
-       (let ((cat (first cat-node))
-             (subcat-node (second cat-node)))
-         (htm
-          (:li :class "cat"
-               (:a :href (genurl 'route-cat
-                                 :cat (slug cat))
-                   (str (name cat)))
-               (:ul
-                (dolist (subcat subcat-node)
-                  (when (status subcat) ; show only enabled sub-categories
-                    (htm
-                     (:li :class "subcat"
-                          (:a :href (genurl 'route-cat-subcat
-                                            :cat (slug cat)
-                                            :subcat (slug subcat))
-                              (str (name subcat)))))))))))))))
-
 (defmacro nav- (list class route-name route-param field)
   `(with-html
     (:ul
@@ -56,54 +13,6 @@
                                ,route-param (,field l))
                  (str (name l)))))))))
 
-(defun nav-tags ()
-  (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))
-
-(defun nav-authors ()
-  (nav- (get-all-authors *author-storage*) "author" route-author :author handle))
-
-(defun navigation ()
-  (with-html
-    (:ul :id "nav"
-         (:li :id "nav-home"
-              (:a :href (genurl 'route-home) "Home"))
-         (:li :id "cat"
-              (:p "Categories")
-              (str (nav-category)))
-         (:li  :id "tags"
-               (:p "Tags")
-              (str (nav-tags)))
-         (:li :id "authors"
-              (:p "Authors")
-              (str (nav-authors))))))
-
-(defun header ()
-  (with-html
-    (:div :id "hd"
-          (:div :id "banner"
-                (str (logo))
-                (str (site-search)))
-          (str (trending))
-          (str (navigation)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; page footer
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun footer ()
-  (with-html
-    (:div :id "ft")))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ads
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun ads-1 ()
-  (with-html
-    (:div :id "ads-1")))
-
-(defun ads-2 ()
-  (with-html
-    (:div :id "ads-2")))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -111,7 +20,10 @@
   `(with-html
      (:html
       (:head
-       (:title (str (format nil "~A - ~A" *site-name* ,title))))
+       (:title (str (format nil "~A - ~A" *site-name* ,title)))
+       (:script :type "text/javascript"
+                #|(str (format nil "var nav-categories = ~A" (nav-categories-json)))|#
+                (str (format nil "var a = ~A;" (nav-categories-json)))))
       (:body
        (str (header))
        (:div :id "bd"
@@ -161,6 +73,100 @@
                 (htm (:li :id "pagination-match" (str i)))
                 (htm (:li (:a :href (genurl route :page i) (str i))))))))
       ""))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; page header
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun logo ()
+  (with-html
+    (:img :id "logo"
+          :source ""
+          :alt "logo")))
+
+(defun site-search ()
+  #|(with-html
+    (:form :method "GET"
+           :action (genurl 'route-search)
+           :name "search"
+           :id "search"
+           (:input :type "input"
+                   :name "q"
+                   :value "Search")
+           (:input :type "submit"
+                   :value "Submit")))|#)
+
+(defun trending ()
+  (with-html
+    (:div :id "trending-tags")))
+
+(defun nav-categories-json ()
+  (let ((rslt nil))
+    (dolist (cat-node (get-category-tree *category-storage*))
+      (let* ((cat (first cat-node))
+             (subcat-node (second cat-node))
+             (c-node nil))
+        (push (make-instance 'navigation-node
+                             :name (name cat)
+                             :url (slug cat)#|(genurl 'route-cat
+                                          :cat (slug cat))|#)
+              c-node)
+        (dolist (subcat subcat-node)
+          (when (status subcat)     ; show only enabled sub-categories
+            (let ((s-node (make-instance 'navigation-node
+                                         :name (name subcat)
+                                         :url (slug subcat)#|(genurl 'route-cat-subcat
+                                                      :cat (slug cat)
+                                                      :subcat (slug subcat))|#)))
+              (push s-node c-node))))
+        (push (reverse c-node) rslt)))
+     (encode-json (reverse rslt))))
+
+(defun nav-tags ()
+  (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))
+
+(defun nav-authors ()
+  (nav- (get-all-authors *author-storage*) "author" route-author :author handle))
+
+(defun navigation ()
+  (with-html
+    (:ul :id "nav"
+         (:li :id "nav-home"
+              (:a :href (genurl 'route-home) "Home"))
+         (:li :id "cat"
+              (:p "Categories"))
+         (:li  :id "tags"
+               (:p "Tags")
+              (str (nav-tags)))
+         (:li :id "authors"
+              (:p "Authors")
+              (str (nav-authors))))))
+
+(defun header ()
+  (with-html
+    (:div :id "hd"
+          (:div :id "banner"
+                (str (logo))
+                (str (site-search)))
+          (str (trending))
+          (str (navigation)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; page footer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun footer ()
+  (with-html
+    (:div :id "ft")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ads
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun ads-1 ()
+  (with-html
+    (:div :id "ads-1")))
+
+(defun ads-2 ()
+  (with-html
+    (:div :id "ads-2")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views

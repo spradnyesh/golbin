@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-	(:use :cl :hunchentoot :cl-who :cl-memcached :cl-ppcre)
+	(:use :cl :hunchentoot :cl-who :cl-memcached :cl-ppcre :parenscript)
   (:export
    ;; config
    :*home*
@@ -9,6 +9,7 @@
    :make-config-tuple
    ;; html
    :with-html
+   :js-script
    ;; init
    :hu-start
    :hu-stop

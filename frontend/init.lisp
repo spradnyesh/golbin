@@ -5,9 +5,9 @@
 (defun r-start ()
   (restas:start :hawksbill.golbin.frontend :port 8000))
 (defun r-restart ()
-  (restas-stop)
+  (r-stop)
   (tmp-init)
-  (restas-start))
+  (r-start))
 
 (defun add-cat/subcat ()
   (dolist (cs *categories*)

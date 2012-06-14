@@ -18,7 +18,6 @@
     - [X] article
     - [ ] static-files
     - [X] search
-*** [[*models][models]]
 *** views
 **** common
 ***** header
@@ -32,6 +31,7 @@
 ***** ads
 ***** TODO navigation
       :CLOCK:
+      CLOCK: [2012-06-14 Thu 13:46]--[2012-06-14 Thu 15:15] =>  1:29
       CLOCK: [2012-06-13 Wed 11:41]--[2012-06-13 Wed 12:02] =>  0:21
       CLOCK: [2012-06-13 Wed 08:40]--[2012-06-13 Wed 10:40] =>  2:00
       CLOCK: [2012-06-12 Tue 19:26]--[2012-06-12 Tue 20:26] =>  1:00
@@ -54,6 +54,7 @@
 ***** list of other authors
 **** tags
 ***** list of other tags
+*** [[*models][models]]
 *** DONE template@pencil
      CLOSED: [2012-06-08 Fri 14:35]
     :CLOCK:
