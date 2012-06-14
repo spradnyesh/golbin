@@ -46,25 +46,21 @@
                                             :subcat (slug subcat))
                               (str (name subcat)))))))))))))))
 
-(defun nav-tags ()
-  (with-html
+(defmacro nav- (list class route-name route-param field)
+  `(with-html
     (:ul
-     (dolist (tag (get-all-tags *tag-storage*))
+     (dolist (l ,list)
        (htm
-        (:li :class "tag"
-             (:a :href (genurl 'route-tag
-                               :tag (slug tag))
-                 (str (name tag)))))))))
+        (:li :class ,class
+             (:a :href (genurl ',route-name
+                               ,route-param (,field l))
+                 (str (name l)))))))))
+
+(defun nav-tags ()
+  (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))
 
 (defun nav-authors ()
-  (with-html
-    (:ul
-     (dolist (author (get-all-authors *author-storage*))
-       (htm
-        (:li :class "author"
-             (:a :href (genurl 'route-author
-                               :author (handle author))
-                 (str (name author)))))))))
+  (nav- (get-all-authors *author-storage*) "author" route-author :author handle))
 
 (defun navigation ()
   (with-html
