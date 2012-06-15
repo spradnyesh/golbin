@@ -177,7 +177,11 @@
         (title article)
         (most-popular-articles-markup :category (cat article))
       (:div (:p :id "a-title" (str (title article)))
-            (:p :id "a-date" (str (date article)))
+            (:p :id "a-details"
+                (:a :id "a-author"
+                    :href (genurl 'route-author :author (handle (author article)))
+                    (str (name (author article))))
+                (:span :id "a-date" (str (date article))))
             (:p :id "a-body" (str (body article)))))))
 
 (defun view-home (&optional (page "0"))

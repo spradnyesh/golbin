@@ -29,12 +29,20 @@
 (defclass visitor (user)
   ((preference :initarg :preference :initform nil :accessor preference)))
 
+(defclass mini-author (author)
+  ((id :initarg :id :initform nil :accessor id)
+   (handle :initarg :handle :initform nil :accessor handle)
+   (name :initarg :name :initform nil :accessor name))
+  (:documentation "to be used as a foreign key in articles"))
+
 (defclass author-storage ()
   ((authors :initform nil :accessor authors)
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Authors"))
 
 (defun add-author (author &optional (storage *author-storage*))
+  (setf (id author)
+        (incf (last-id storage)))
   (push author (authors storage))
   author)
 
@@ -42,3 +50,14 @@
   (sort (authors storage)
         #'string<
         :key 'name))
+
+(defun get-mini-author-details-from-id (id &optional (storage *author-storage*))
+  (let ((author (find id (get-all-authors storage)
+                      :key #'id)))
+    (values (id author)
+            (name author)
+            (handle author))))
+
+(defun get-current-author-id ()
+  "TODO: return the id of the currently logged in author"
+  1)

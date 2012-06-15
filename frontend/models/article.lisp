@@ -71,6 +71,12 @@
         (now))
   (setf (slug article)
         (slugify (title article)))
+  (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
+    (setf (author article)
+          (make-instance 'mini-author
+                         :id id
+                         :name name
+                         :handle handle)))
 
   ;; save article into storage
   (push article

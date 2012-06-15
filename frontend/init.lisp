@@ -39,6 +39,9 @@ It is a long established fact that a reader will be distracted by the readable c
                  *article-storage*)))
 
 (defun tmp-init ()
+  (add-author (make-instance 'author
+                             :name "Hawksbill"
+                             :handle "hawksbill"))
   (setf *article-storage* (make-instance 'article-storage))
   (add-articles)
   (setf *category-storage* (make-instance 'category-storage))
