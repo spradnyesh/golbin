@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas)
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence)
   (:export
    ;; config
    :*home*

@@ -1,6 +1,17 @@
 * tasks
+** next
+   1. config
+   2. db
+   3. cache
+   4. parenscript
+   5. css
+   6. tests
+   7. utils/config
 ** utils
-*** config
+*** TODO config
+    :CLOCK:
+    CLOCK: [2012-06-15 Fri 16:32]--[2012-06-15 Fri 20:04] =>  3:32
+    :END:
     - class w/ slots (default values for all dimensions = nil)
       - environment
       - locale
