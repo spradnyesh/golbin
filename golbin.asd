@@ -5,17 +5,17 @@
 
 (defsystem golbin
   :components ((:module "utils"
-                        :components ((:file "packages")
-                                     (:file "config" :depends-on ("packages"))
-                                     (:file "memcache" :depends-on ("packages"))
-                                     (:file "html":depends-on ("packages"))
-                                     (:file "helpers":depends-on ("packages"))
-                                     (:file "init" :depends-on ("packages" "config"))))
+                        :components ((:file "package")
+                                     (:file "config" :depends-on ("package"))
+                                     (:file "memcache" :depends-on ("package"))
+                                     (:file "html":depends-on ("package"))
+                                     (:file "helpers":depends-on ("package"))
+                                     (:file "init" :depends-on ("package" "config"))))
                (:module "frontend"
-                        :components ((:file "packages")
-                                     (:file "config" :depends-on ("packages"))
-                                     (:file "init" :depends-on ("packages" "config"))
-                                     (:module "models"
+                        :components ((:file "package")
+                                     (:file "config" :depends-on ("package"))
+                                     (:file "init" :depends-on ("package" "config"))
+                                     (:module "model"
                                               :components ((:file "article")
                                                            (:file "category")
                                                            (:file "user")
@@ -23,18 +23,22 @@
                                                            (:file "tag")
                                                            (:file "view")
                                                            (:file "misc"))
-                                              :depends-on ("packages"))
-                                     (:file "storage" :depends-on ("packages" "models"))
-                                     (:file "views" :depends-on ("packages" "models"))
-                                     (:file "routes" :depends-on ("packages" "views")))
+                                              :depends-on ("package"))
+                                     (:file "storage" :depends-on ("package" "model"))
+                                     (:module "view"
+                                              :components ((:file "helpers")
+                                                           (:file "template")
+                                                           (:file "views"))
+                                              :depends-on ("package" "model"))
+                                     (:file "routes" :depends-on ("package" "view")))
                         :depends-on ("utils"))
                #|(:module
                "boomerang"
                :components ((:file "src")))|#
                #|(:module
                "reports"
-               :components ((:file "packages")
-               (:file "routes" :depends-on ("packages"))
-               (:file "models" :depends-on ("packages"))
-               (:file "views" :depends-on ("packages"))))|#)
+               :components ((:file "package")
+               (:file "routes" :depends-on ("package"))
+               (:file "models" :depends-on ("package"))
+               (:file "views" :depends-on ("package"))))|#)
   :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json))

@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-	(:use :cl :hunchentoot :cl-who :cl-memcached :cl-ppcre :parenscript)
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas)
   (:export
    ;; config
    :*home*
@@ -19,6 +19,7 @@
    :conditionally-accumulate
    :slugify
    :paginate
+   :pagination-markup
    ))
 
 (in-package :hawksbill.utils)
