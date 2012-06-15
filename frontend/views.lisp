@@ -22,8 +22,7 @@
       (:head
        (:title (str (format nil "~A - ~A" *site-name* ,title)))
        (:script :type "text/javascript"
-                #|(str (format nil "var nav-categories = ~A" (nav-categories-json)))|#
-                (str (format nil "var a = ~A;" (nav-categories-json)))))
+                (str (format nil "var nav-categories = ~A;" (nav-categories-json)))))
       (:body
        (str (header))
        (:div :id "bd"
@@ -118,8 +117,8 @@
                                                       :cat (slug cat)
                                                       :subcat (slug subcat))|#)))
               (push s-node c-node))))
-        (push (reverse c-node) rslt)))
-     (encode-json (reverse rslt))))
+        (push (nreverse c-node) rslt)))
+    (encode-json-to-string (nreverse rslt))))
 
 (defun nav-tags ()
   (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))
@@ -191,7 +190,8 @@
        (:div :id "articles"
              (:ul
               (dolist (article (paginate (get-all-articles *article-storage*)
-                                         :offset offset))
+                                         :offset offset
+                                         :limit *article-pagination-limit*))
                 (htm
                  (:li
                   (:a :class "a-title"

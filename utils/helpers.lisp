@@ -36,3 +36,16 @@
     (dolist (l list rslt)
       (when (funcall cond l)
         (push l rslt)))))
+
+(defun paginate (list &key (offset 0) (limit *pagination-limit*))
+  (let* ((list (if (consp list)
+                   list
+                   (list list)))
+         (len (length list))
+         (end (+ limit offset)))
+    (if (and (not (minusp offset))
+             (> len offset))
+        (subseq list
+                offset
+                (if (and list (< end len))
+                    end)))))

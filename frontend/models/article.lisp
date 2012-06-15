@@ -28,19 +28,6 @@
   "count the number of articles in 'storage'"
   (length (get-all-articles storage)))
 
-(defun paginate (list &key (offset 0) (limit *article-pagination-limit*))
-  (let* ((list (if (consp list)
-                   list
-                   (list list)))
-         (len (length list))
-         (end (+ limit offset)))
-    (if (and (not (minusp offset))
-             (> len offset))
-        (subseq list
-                offset
-                (if (and list (< end len))
-                    end)))))
-
 (defun get-article-by-id (id &optional (storage *article-storage*))
   "return article w/ ID 'id' from 'storage'"
   (find id

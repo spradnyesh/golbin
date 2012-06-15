@@ -1,5 +1,24 @@
 * tasks
+** utils
+*** config
+    - class w/ slots (default values for all dimensions = nil)
+      - environment
+      - locale
+      - lang
+      - ...
+      - paramName
+      - paramValue
+    - store
+    - find
+      - search through store to find object w/ longest match
+*** cache
+    - w/ time for each with-cache call
+    - cache BE calls (especially DB reads)
 ** TODO frontend
+*** misc
+    - mini-author class for
+      - nav
+      - foreign key in article
 *** TODO wireframes
     :CLOCK:
     CLOCK: [2012-06-13 Wed 10:40]--[2012-06-13 Wed 10:54] =>  0:14

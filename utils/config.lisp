@@ -7,6 +7,7 @@
 (defvar *translation-file-root* nil)
 (defvar *db-init-ids* nil)
 (defvar *save-photo-to-db-function* nil)
+(defvar *pagination-limit* 10)
 
 (defmacro scwe (key)
   `(search-config (with-environment ,key)))
