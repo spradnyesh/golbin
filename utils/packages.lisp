@@ -18,6 +18,7 @@
    ;; helpers
    :conditionally-accumulate
    :slugify
+   :paginate
    ))
 
 (in-package :hawksbill.utils)
