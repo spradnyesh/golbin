@@ -3,10 +3,18 @@
   (:export
    ;; config
    :*home*
-   :*config*
-   :*environment*
-   :scwe
-   :make-config-tuple
+   :config-storage
+   :*config-storage*
+   :*dimensions*
+   :*valid-envts*
+   :*valid-intls*
+   :*valid-langs*
+   :*default-envt*
+   :*default-intl*
+   :*default-lang*
+   :get-config
+   :add-config
+   :show-config-tree
    ;; html
    :with-html
    :js-script

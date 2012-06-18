@@ -1,27 +1,23 @@
 * tasks
 ** next
-   1. config
-   2. db
-   3. cache
-   4. parenscript
-   5. css
-   6. tests
-   7. utils/config
+   - [ ] populate/tmp-init of categories/tags
+   - [ ] db
+   - [ ] cache
+   - [ ] parenscript
+   - [ ] css
+   - [ ] tests
+   - [ ] utils/config
+   - [X] config
 ** utils
-*** TODO config
+*** DONE config
+    CLOSED: [2012-06-18 Mon 17:42]
     :CLOCK:
+    CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
+    CLOCK: [2012-06-18 Mon 13:33]--[2012-06-18 Mon 15:06] =>  1:33
+    CLOCK: [2012-06-18 Mon 13:07]--[2012-06-18 Mon 13:21] =>  0:14
+    CLOCK: [2012-06-18 Mon 11:07]--[2012-06-18 Mon 12:07] =>  1:00
     CLOCK: [2012-06-15 Fri 16:32]--[2012-06-15 Fri 20:04] =>  3:32
     :END:
-    - class w/ slots (default values for all dimensions = nil)
-      - environment
-      - locale
-      - lang
-      - ...
-      - paramName
-      - paramValue
-    - store
-    - find
-      - search through store to find object w/ longest match
 *** cache
     - w/ time for each with-cache call
     - cache BE calls (especially DB reads)

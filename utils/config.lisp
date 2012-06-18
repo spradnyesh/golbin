@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; make sure these are initialized in every project
 (defvar *home* "")
-(defvar *config* nil)
+(defvar *config-storage* nil)
 (defvar *translation-file-root* nil)
 (defvar *db-init-ids* nil)
 (defvar *save-photo-to-db-function* nil)
@@ -14,13 +14,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; dimensions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *dimensions* '("envt" "intl" "lang"))
+(defvar *dimensions* nil)
 (defvar *default-envt* nil)
 (defvar *default-intl* nil)
 (defvar *default-lang* nil)
-(defvar *valid-envts* '("dev" "prod"))
-(defvar *valid-intls* '("IN"))
-(defvar *valid-langs* '("en-IN"))
+(defvar *valid-envts* nil)
+(defvar *valid-intls* nil)
+(defvar *valid-langs* nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config
@@ -30,118 +30,78 @@
    (value :initarg :value :initform nil :accessor value)))
 (defclass config-node ()
   ((dimension :initarg :dimension :initform nil :accessor dimension)
-   (values :initarg :values :initform nil :accessor values)))
+   (value :initarg :value :initform nil :accessor value)))
 (defclass config-storage ()
   ((configs :initform nil :accessor configs)))
 
-(defvar *config-tree* nil "((('envt'))
-                            (('intl'))
-                            (('lang'))
-                            (('envt' 'intl'))
-                            (('envt' 'lang'))
-                            (('intl' 'lang'))
-                            (('intl' 'envt'))
-                            (('lang' 'intl'))
-                            (('lang' 'envt'))
-                            (('envt' 'intl' 'lang')
-                                    (('dev' 'IN' 'en-IN') ('name1' 'val1') ('name2' 'val2'))
-                                    (('prod' 'IN' 'en-IN') ('name1' 'val3') ('name2' 'val4')))
-                            (('envt' 'lang' 'intl'))
-                            (('intl' 'envt' 'lang'))
-                            (('intl' 'lang' 'envt'))
-                            (('lang' 'envt' 'intl'))
-                            (('lang' 'intl' 'envt')))")
-
-(defun make-config-tree (&optional (list *dimensions*))
-  (do ((queue list)
-       (rslt nil))
-      ((null queue) rslt)
-    (let* ((item (pop queue))
-           (item (if (consp item)
-                     item
-                     (list item)))
-           (diff (set-difference list
-                                 item)))
-      (push (make-instance 'config-node
-                           :dimension item) rslt)
-      (dolist (d diff)
-        (push (cons d item)
-              queue)))))
-
-(setf *config-tree* (sort (make-config-tree *dimensions*)
-                          #'(lambda (a b)
-                              (< (length (dimension a)) (length (dimension b))))))
-
-(defun populate-config-tree (&optional config-tree *config-tree*)
-  (dolist (ct config-tree)
-    (let ((value nil))
-      (dolist (d (dimension ct))
-        (dolist (vd (symbol-value (intern (format nil "*VALID-~a" (string-upcase d))))))))))
-
-#|(defmacro vcp (dimension list) ; dunno why this ain't working below
-  `((eql dimension ,dimension)
-              (set-difference (list param) ,list :test #'string-equal)))|#
 (defun is-valid-dimension-value (dimension value)
   (not (cond ((equal dimension "envt")
-              (set-difference (list value) *valid-envt* :test #'string-equal))
+              (set-difference (list value) *valid-envts* :test #'string-equal))
              ((equal dimension "intl")
-              (set-difference (list value) *valid-intl* :test #'string-equal))
+              (set-difference (list value) *valid-intls* :test #'string-equal))
              ((equal dimension "lang")
-              (set-difference (list value) *valid-lang* :test #'string-equal)))))
+              (set-difference (list value) *valid-langs* :test #'string-equal)))))
 
-(defun get-dimensions-map (dimensions)
-  (let ((rslt nil))
-    (dolist (dl (split-sequence "," dimensions :test #'string-equal))
-      (let ((d (split-sequence ":" dl :test #'string-equal)))
-        (when (is-valid-dimension-value (first d) (second d))
-          (push d rslt))))
-    (nreverse rslt)))
-
-(defun are-dimension-nodes-equal (dimensions-map node fn)
-  (dotimes (i (length dimensions-map))
-    (when (not (string-equal (nth i node)
-                      (funcall fn (nth i dimensions-map))))
-      (return-from are-dimension-nodes-equal nil)))
+(defun is-valid-dimension (dimensions-map)
+  (dolist (dm dimensions-map)
+    (unless (is-valid-dimension-value (first dm) (second dm))
+      (return-from is-valid-dimension nil)))
   t)
 
-(defun get-dimension-node (dimensions-map &optional (config-tree *config-tree*))
-  (let ((len (length dimensions-map)))
-    (dolist (ct config-tree)
-      (let ((node (first ct)))
-        (when (and (= len (length node))
-                   (are-dimension-nodes-equal dimensions-map node #'first))
-          (return-from get-dimension-node ct)))))
-  nil)
+(defun get-dimensions-string (dimensions-map)
+  (join-string-list-with-delim ","
+                               (let ((rslt nil))
+                                 (dolist (dm dimensions-map)
+                                   (push (join-string-list-with-delim ":" dm) rslt))
+                                 (nreverse rslt))))
 
-(defun get-dimension-value-node (dimensions-map dimensions-value-nodes)
-  (dolist (dvn dimensions-value-nodes)
-    (let ((node (first dvn)))
-      (when (are-dimension-nodes-equal dimensions-map node #'second)
-        (return-from get-dimension-value-node dvn))))
-  nil)
-
-(defun get-config (name dimensions &optional (config-tree *config-tree*))
-  (let* ((dimensions-map (get-dimensions-map dimensions))
-         (config-value-node (get-dimension-value-node dimensions-map
-                                                      (rest (get-dimension-node dimensions-map config-tree)))))
-    (find name config-value-node :test #'string-equal)))
-
-(defun make-value-node (dimensions-map)
+(defun get-dimensions-map (dimensions-string)
   (let ((rslt nil))
-    (dolist (m dimensions-map)
-      (push (second m) rslt))
-    (list (reverse rslt))))
+    (dolist (dl (split-sequence "," dimensions-string :test #'string-equal))
+      (let ((d (split-sequence ":" dl :test #'string-equal)))
+        (push d rslt)))
+    (nreverse rslt)))
 
-(defun add-config (name value dimensions &optional (config-tree *config-tree*))
-  (let* ((dimensions-map (get-dimensions-map dimensions))
-         (dimension-node (get-dimension-node dimensions-map config-tree))
-         (value-node (get-dimension-value-node dimensions-map
-                                               (rest dimension-node))))
-    (print dimension-node)
-    (print value-node)
-    (if value-node
-        (append value-node (list (list name value)))
-        (append dimension-node
-                (list (append (make-value-node dimensions-map)
-                              (list (list name value)))))))
-  config-tree)
+(defun reduce-dimensions-map (dimensions-map)
+  (nreverse (rest (nreverse dimensions-map))))
+
+(defun reduce-dimensions-string (dimensions-string)
+  (get-dimensions-string (reduce-dimensions-map (get-dimensions-map dimensions-string))))
+
+(defun get-config-helper (name dimensions-map config-storage)
+  (when dimensions-map
+    (let ((config-node (find (get-dimensions-string dimensions-map)
+                             (configs config-storage)
+                             :key #'dimension
+                             :test #'string-equal)))
+      (if config-node
+          (let ((value (find name
+                             (value config-node)
+                             :key #'name
+                             :test #'string-equal)))
+            (if value
+                (value value)
+                (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
+          (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))))
+
+(defun get-config (name dimensions-string &optional (config-storage *config-storage*))
+  (get-config-helper name (get-dimensions-map dimensions-string) config-storage))
+
+(defun add-config (name value dimensions-string &optional (config-storage *config-storage*))
+  "does _not_ check for duplicates while adding; due to _push_, get-config will always get the latest value => the older values just increase the size, but that's nominal, and hence ok ;)"
+  (when (is-valid-dimension (get-dimensions-map dimensions-string))
+    (let ((config (make-instance 'config :name name :value value))
+          (config-node (find dimensions-string
+                             (configs config-storage)
+                             :key #'dimension
+                             :test #'string-equal)))
+      (if config-node
+          (push config (value config-node))
+          (push (make-instance 'config-node :dimension dimensions-string :value (list config))
+                (configs config-storage))))))
+
+(defun show-config-tree (&optional (config-storage *config-storage*))
+  (dolist (cn (configs config-storage))
+    (format t "***** ~a *****~%" (dimension cn))
+    (dolist (v (value cn))
+      (format t "~a: ~a~%" (name v) (value v)))))

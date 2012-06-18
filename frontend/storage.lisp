@@ -6,3 +6,4 @@
 (setf *count-storage* (make-instance 'count-storage))
 (setf *tag-storage* (make-instance 'tag-storage))
 (setf *author-storage* (make-instance 'author-storage))
+(setf *config-storage* (make-instance 'config-storage))

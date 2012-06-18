@@ -42,6 +42,17 @@
 (defvar *author-storage* nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; config
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setf *dimensions* '("envt" "intl" "lang"))
+(setf *valid-envts* '("dev" "prod"))
+(setf *valid-intls* '("IN"))
+(setf *valid-langs* '("en-IN"))
+(setf *default-envt* "dev")
+(setf *default-intl* "IN")
+(setf *default-lang* "en-IN")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debugging
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf hunchentoot:*show-lisp-errors-p* t)
