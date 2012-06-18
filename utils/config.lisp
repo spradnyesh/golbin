@@ -18,13 +18,22 @@
 (defvar *default-envt* nil)
 (defvar *default-intl* nil)
 (defvar *default-lang* nil)
-(defvar *valid-envt* '("dev" "prod"))
-(defvar *valid-intl* '("IN"))
-(defvar *valid-lang* '("en-IN"))
+(defvar *valid-envts* '("dev" "prod"))
+(defvar *valid-intls* '("IN"))
+(defvar *valid-langs* '("en-IN"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defclass config ()
+  ((name :initarg :name :initform nil :accessor name)
+   (value :initarg :value :initform nil :accessor value)))
+(defclass config-node ()
+  ((dimension :initarg :dimension :initform nil :accessor dimension)
+   (values :initarg :values :initform nil :accessor values)))
+(defclass config-storage ()
+  ((configs :initform nil :accessor configs)))
+
 (defvar *config-tree* nil "((('envt'))
                             (('intl'))
                             (('lang'))
@@ -53,14 +62,21 @@
                      (list item)))
            (diff (set-difference list
                                  item)))
-      (push (list item) rslt)
+      (push (make-instance 'config-node
+                           :dimension item) rslt)
       (dolist (d diff)
         (push (cons d item)
               queue)))))
 
 (setf *config-tree* (sort (make-config-tree *dimensions*)
                           #'(lambda (a b)
-                              (< (length (first a)) (length (first b))))))
+                              (< (length (dimension a)) (length (dimension b))))))
+
+(defun populate-config-tree (&optional config-tree *config-tree*)
+  (dolist (ct config-tree)
+    (let ((value nil))
+      (dolist (d (dimension ct))
+        (dolist (vd (symbol-value (intern (format nil "*VALID-~a" (string-upcase d))))))))))
 
 #|(defmacro vcp (dimension list) ; dunno why this ain't working below
   `((eql dimension ,dimension)
