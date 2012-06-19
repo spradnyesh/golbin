@@ -53,13 +53,14 @@
          (:li :id "nav-home"
               (:a :href (genurl 'route-home) "Home"))
          (:li :id "cat"
-              (:p "Categories"))
+              (:p "Categories")
+              (:ul))
          (:li  :id "tags"
                (:p "Tags")
-              (str (nav-tags)))
+               (:ul (str (nav-tags))))
          (:li :id "authors"
-              (:p "Authors")
-              (str (nav-authors))))))
+               (:p "Authors")
+               (:ul (str (nav-authors)))))))
 
 (defun header ()
   (with-html

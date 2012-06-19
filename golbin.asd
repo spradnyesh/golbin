@@ -14,8 +14,6 @@
                                      (:file "init" :depends-on ("package" "config"))))
                (:module "frontend"
                         :components ((:file "package")
-                                     (:file "config" :depends-on ("package"))
-                                     (:file "init" :depends-on ("package" "config"))
                                      (:module "model"
                                               :components ((:file "article")
                                                            (:file "category")
@@ -25,13 +23,15 @@
                                                            (:file "view")
                                                            (:file "misc"))
                                               :depends-on ("package"))
-                                     (:file "storage" :depends-on ("package" "model"))
+                                     (:file "storage" :depends-on ("model"))
+                                     (:file "config" :depends-on ("storage"))
+                                     (:file "init" :depends-on ("package"))
                                      (:module "view"
                                               :components ((:file "helpers")
                                                            (:file "template")
                                                            (:file "views"))
-                                              :depends-on ("package" "model"))
-                                     (:file "routes" :depends-on ("package" "view")))
+                                              :depends-on ("model"))
+                                     (:file "routes" :depends-on ("view")))
                         :depends-on ("utils"))
                #|(:module
                "boomerang"

@@ -5,37 +5,37 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro nav- (list class route-name route-param field)
   `(with-html
-    (:ul
      (dolist (l ,list)
        (htm
         (:li :class ,class
              (:a :href (genurl ',route-name
                                ,route-param (,field l))
-                 (str (name l)))))))))
+                 (str (name l))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun nav-categories-json ()
-  (let ((rslt nil))
-    (dolist (cat-node (get-category-tree *category-storage*))
-      (let* ((cat (first cat-node))
-             (subcat-node (second cat-node))
-             (c-node nil))
-        (push (make-instance 'navigation-node
-                             :name (name cat)
-                             :url (slug cat)#|(genurl 'route-cat
-                                          :cat (slug cat))|#)
-              c-node)
-        (dolist (subcat subcat-node)
-          (let ((s-node (make-instance 'navigation-node
-                                       :name (name subcat)
-                                       :url (slug subcat)#|(genurl 'route-cat-subcat
-                                       :cat (slug cat)
-                                       :subcat (slug subcat))|#)))
-            (push s-node c-node)))
-        (push (nreverse c-node) rslt)))
-    (encode-json-to-string (nreverse rslt))))
+  (encode-json-to-string
+   (with-html
+     (let ((rslt nil))
+       (declare (ignore rslt))
+       (dolist (cat-node (get-category-tree *category-storage*))
+         (let* ((cat (first cat-node))
+                (subcat-node (second cat-node)))
+           (htm
+            (:li
+             (:a :href (genurl 'route-cat
+                               :cat (slug cat))
+                 (str (name cat)))
+             (:ul
+              (dolist (subcat subcat-node)
+                (htm
+                 (:li
+                  (:a :href (genurl 'route-cat-subcat
+                                    :cat (slug cat)
+                                    :subcat (slug subcat))
+                      (str (name subcat)))))))))))))))
 
 (defun nav-tags ()
   (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))

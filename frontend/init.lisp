@@ -3,32 +3,11 @@
 (defun r-stop ()
   (restas:stop-all))
 (defun r-start ()
+  (tmp-init)
   (restas:start :hawksbill.golbin.frontend :port 8000))
 (defun r-restart ()
   (r-stop)
-  (tmp-init)
   (r-start))
-
-(defun add-cat/subcat (&optional (storage *category-storage*))
-  (dolist (cs *categories*)
-    (let* ((cat-name (first cs))
-           (subcats (rest cs))
-           (cat (add-category (make-instance 'category
-                                             :name cat-name
-                                             :parent 0)
-                              storage)))
-      (dolist (sc-name subcats)
-        (add-category (make-instance 'category
-                                     :name sc-name
-                                     :parent (id cat))
-                      storage)))))
-
-(defun get-random-cat-subcat (&optional (storage *category-storage*))
-  (let* ((all-categories (get-root-categories storage))
-         (random-category (nth (random (length all-categories)) all-categories))
-         (all-subcategories (get-subcategories (id random-category) storage))
-         (random-subcategory (nth (random (length all-subcategories)) all-subcategories)))
-    (values random-category random-subcategory)))
 
 (defun add-articles (&optional (article-storage *article-storage*) (category-storage *category-storage*))
   "add a new articles to the db"
