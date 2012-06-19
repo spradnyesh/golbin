@@ -1,10 +1,10 @@
 (in-package :hawksbill.utils)
 
 (defun db-connect ()
-  (cond ((string-equal "sqlite3"
+  (cond ((equal "sqlite3"
                        (scwe ".database.type"))
          (open-store `(:clsql (:sqlite3 ,(scwe ".database.path")))))
-        ((string-equal "mysql"
+        ((equal "mysql"
                        (scwe ".database.type"))
          (open-store `(:clsql (:mysql ,(scwe ".database.host")
                                             (scwe ".database.database-name")

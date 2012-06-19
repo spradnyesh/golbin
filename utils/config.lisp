@@ -24,15 +24,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun is-valid-dimension-value (dimension value)
   (not (set-difference (list value)
-                       (symbol-value (intern (string-upcase (format nil
-                                                                    "*valid-~as*"
-                                                                    dimension))))
+                       (handler-case (symbol-value (intern (string-upcase (format nil
+                                                                      "*valid-~as*"
+                                                                      dimension))))
+                         (unbound-variable () (return-from is-valid-dimension-value nil)))
                        :test #'string-equal)))
 
 (defun is-valid-dimensions-map (dimensions-map)
-  (dolist (dm dimensions-map)
-    (unless (is-valid-dimension-value (first dm) (second dm))
-      (return-from is-valid-dimensions-map nil)))
+  (if (and (= 1 (length dimensions-map))
+           (equal "master" (first (first dimensions-map))))
+      t
+      (dolist (dm dimensions-map)
+        (unless (is-valid-dimension-value (first dm) (second dm))
+          (return-from is-valid-dimensions-map nil))))
   t)
 
 (defun get-dimensions-string (dimensions-map)
@@ -44,8 +48,8 @@
 
 (defun get-dimensions-map (dimensions-string)
   (let ((rslt nil))
-    (dolist (dl (split-sequence "," dimensions-string :test #'string-equal))
-      (let ((d (split-sequence ":" dl :test #'string-equal)))
+    (dolist (dl (split-sequence "," dimensions-string :test #'equal))
+      (let ((d (split-sequence ":" dl :test #'equal)))
         (push d rslt)))
     (nreverse rslt)))
 
@@ -56,25 +60,29 @@
   (get-dimensions-string (reduce-dimensions-map (get-dimensions-map dimensions-string))))
 
 (defun get-config-helper (name dimensions-map config-storage)
-  (when dimensions-map
-    (let ((config-node (find (get-dimensions-string dimensions-map)
-                             (configs config-storage)
-                             :key #'dimension
-                             :test #'string-equal)))
-      (if config-node
-          (let ((value (find name
-                             (value config-node)
-                             :key #'name
-                             :test #'string-equal)))
-            (if value
-                (value value)
-                (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
-          (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))))
+  (let ((config-node (if dimensions-map
+                         (find (get-dimensions-string dimensions-map)
+                               (configs config-storage)
+                               :key #'dimension
+                               :test #'string-equal)
+                         (find "master"
+                               (configs config-storage)
+                               :key #'dimension
+                               :test #'string-equal))))
+    (if config-node
+        (let ((value (find name
+                           (value config-node)
+                           :key #'name
+                           :test #'string-equal)))
+          (if value
+              (value value)
+              (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
+        (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-config (name dimensions-string &optional (config-storage *config-storage*))
+(defun get-config (name &optional (dimensions-string "master") (config-storage *config-storage*))
   (get-config-helper name (get-dimensions-map dimensions-string) config-storage))
 
 (defun add-config (name value dimensions-string &optional (config-storage *config-storage*))
