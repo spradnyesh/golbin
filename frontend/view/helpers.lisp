@@ -28,13 +28,12 @@
                                           :cat (slug cat))|#)
               c-node)
         (dolist (subcat subcat-node)
-          (when (status subcat)     ; show only enabled sub-categories
-            (let ((s-node (make-instance 'navigation-node
-                                         :name (name subcat)
-                                         :url (slug subcat)#|(genurl 'route-cat-subcat
-                                                      :cat (slug cat)
-                                                      :subcat (slug subcat))|#)))
-              (push s-node c-node))))
+          (let ((s-node (make-instance 'navigation-node
+                                       :name (name subcat)
+                                       :url (slug subcat)#|(genurl 'route-cat-subcat
+                                       :cat (slug cat)
+                                       :subcat (slug subcat))|#)))
+            (push s-node c-node)))
         (push (nreverse c-node) rslt)))
     (encode-json-to-string (nreverse rslt))))
 

@@ -1,53 +1,73 @@
 (in-package :hawksbill.golbin.frontend)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; dimensional configs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setf *dimensions* '("envt"))
+(defvar *valid-envts* '("dev" "prod"))
+(setf *config*
+      '(("envt:dev" ("n1" "v1") ("n2" "v2"))
+        ("envt:prod" ("n3" "v3") ("n4" "v4"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; other configs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf *categories*
       '(("Sports"
-         ("American Football" nil)
-         ("Badminton" t)
-         ("Baseball" nil)
-         ("Basketball" nil)
-         ("Boxing" nil)
-         ("Cricket" t)
-         ("Cycling" nil)
-         ("Hockey" t)
-         ("Golf" t)
-         ("Handball" nil)
-         ("Olympics" nil)
-         ("Racing" nil)
-         ("Rugby" nil)
-         ("Table Tennis" nil)
-         ("Tennis" nil))
+         "American Football"
+         "Badminton"
+         "Baseball"
+         "Basketball"
+         "Boxing"
+         "Cricket"
+         "Cycling"
+         "Hockey"
+         "Golf"
+         "Handball"
+         "Olympics"
+         "Racing"
+         "Rugby"
+         "Table Tennis"
+         "Tennis")
         ("Entenrtainment"
-         ("Arts" t)
-         ("Books" t)
-         ("Celebrities" t)
-         ("Movies" t)
-         ("Music" t)
-         ("TV" t)
-         ("Humor" t))
+         "Arts"
+         "Books"
+         "Celebrities"
+         "Movies"
+         "Music"
+         "TV"
+         "Humor")
         ("Lifestyle"
-         ("Automotive" t)
-         ("Culture" t)
-         ("Food and Beverage" t)
-         ("Home and Garden" t)
-         ("Theatre" t)
-         ("Travel" t)
-         ("Health" t))
+         "Automotive"
+         "Culture"
+         "Food and Beverage"
+         "Home and Garden"
+         "Theatre"
+         "Travel"
+         "Health")
         ("Technology"
-         ("Computing" t)
-         ("Internet" t)
-         ("Personal Technology" t)
-         ("Video Games" t))
+         "Computing"
+         "Internet"
+         "Personal Technology"
+         "Video Games")
         ("Business"
-         ("Companies" t)
-         ("Economy" t)
-         ("Industry" t)
-         ("Markets" t))
-        ("Education")
+         "Companies"
+         "Economy"
+         "Industry"
+         "Markets")
+        #|("Education")|#
         ("Science"
-         ("Environmenent" t)
-         ("Geography" t)
-         ("Space" t))
-        ("Headlines")
-        ("Politics")
-        ("Religion")))
+         "Environmenent"
+         "Geography"
+         "Space")
+        #|("Headlines")|#
+        #|("Politics")|#
+        #|("Religion")|#))
+
+(defun init ()
+  (setf *category-storage* (make-instance 'category-storage))
+  (add-cat/subcat *category-storage*)
+  (setf *config-storage* (make-instance 'config-storage))
+  (init-config-tree *config* *config-storage*))
+
+(init)

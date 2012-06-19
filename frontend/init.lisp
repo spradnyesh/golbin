@@ -9,40 +9,47 @@
   (tmp-init)
   (r-start))
 
-(defun add-cat/subcat ()
+(defun add-cat/subcat (&optional (storage *category-storage*))
   (dolist (cs *categories*)
     (let* ((cat-name (first cs))
            (subcats (rest cs))
            (cat (add-category (make-instance 'category
                                              :name cat-name
-                                             :status t
-                                             :parent 0))))
-      (dolist (sc subcats)
+                                             :parent 0)
+                              storage)))
+      (dolist (sc-name subcats)
         (add-category (make-instance 'category
-                                     :name (first sc)
-                                     :status (second sc)
-                                     :parent (id cat)))))))
+                                     :name sc-name
+                                     :parent (id cat))
+                      storage)))))
 
-(defun add-articles ()
+(defun get-random-cat-subcat (&optional (storage *category-storage*))
+  (let* ((all-categories (get-root-categories storage))
+         (random-category (nth (random (length all-categories)) all-categories))
+         (all-subcategories (get-subcategories (id random-category) storage))
+         (random-subcategory (nth (random (length all-subcategories)) all-subcategories)))
+    (values random-category random-subcategory)))
+
+(defun add-articles (&optional (article-storage *article-storage*) (category-storage *category-storage*))
   "add a new articles to the db"
-  (dotimes (i 100)
-    (add-article (make-instance 'article
-                                :title (format nil "title  of $ % ^ * the ~Ath article" (1+ i))
-                                :summary (format nil "~A: There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain... --http://lipsum.com/" (1+ i))
-                                :tags (format nil "tags-~A" (1+ i))
-                                :body (format nil "~A: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  (dotimes (i 1000)
+    (multiple-value-bind (cat subcat) (get-random-cat-subcat category-storage)
+      (add-article (make-instance 'article
+                                  :title (format nil "title  of $ % ^ * the ~Ath article" (1+ i))
+                                  :summary (format nil "~A: There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain... --http://lipsum.com/" (1+ i))
+                                  :tags (format nil "tags-~A" (1+ i))
+                                  :body (format nil "~A: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." (1+ i))
-                                :cat (format nil "cat-~A" (mod (1+ i) 5))
-                                :subcat (format nil "subcat-~A" (mod (1+ i) 3))
-                                :author (format nil "author-~A" (1+ i)))
-                 *article-storage*)))
+                                  :cat cat
+                                  :subcat subcat)
+                   article-storage))))
 
 (defun tmp-init ()
+  (setf *author-storage* (make-instance 'author-storage))
   (add-author (make-instance 'author
                              :name "Hawksbill"
-                             :handle "hawksbill"))
+                             :handle "hawksbill")
+              *author-storage*)
   (setf *article-storage* (make-instance 'article-storage))
-  (add-articles)
-  (setf *category-storage* (make-instance 'category-storage))
-  (add-cat/subcat))
+  (add-articles *article-storage* *category-storage*))

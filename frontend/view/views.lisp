@@ -11,10 +11,22 @@
         (most-popular-articles-markup :category (cat article))
       (:div (:p :id "a-title" (str (title article)))
             (:p :id "a-details"
+                "written by "
                 (:a :id "a-author"
                     :href (genurl 'route-author :author (handle (author article)))
                     (str (name (author article))))
-                (:span :id "a-date" (str (date article))))
+                " on "
+                (:span :id "a-date" (str (date article)))
+                " in category "
+                (:a :id "a-cat"
+                    :href (genurl 'route-cat :cat (slug (cat article)))
+                    (str (name (cat article))))
+                ", subcategory "
+                (:a :id "a-cat-subcat"
+                    :href (genurl 'route-cat-subcat :cat (slug (cat article)) :subcat (slug (subcat article)))
+                    (str (name (subcat article))))
+                " using tags "
+                (:span :id "a-tags" (str (tags article))))
             (:p :id "a-body" (str (body article)))))))
 
 (defun view-home (&optional (page "0"))

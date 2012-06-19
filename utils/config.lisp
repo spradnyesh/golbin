@@ -4,12 +4,6 @@
 ;; dimensions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar *dimensions* nil)
-(defvar *default-envt* nil)
-(defvar *default-intl* nil)
-(defvar *default-lang* nil)
-(defvar *valid-envts* nil)
-(defvar *valid-intls* nil)
-(defvar *valid-langs* nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config

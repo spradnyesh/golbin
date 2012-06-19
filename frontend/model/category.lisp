@@ -3,8 +3,6 @@
 (defclass category ()
   ((id :initarg :id :initform nil :accessor id)
    (name :initarg :name :initform nil :accessor name)
-   (status :initarg :status :initform nil :accessor status
-           :documentation "nil/t => dis/en-able; to be able to hide certain cat/subcat from navigation")
    (parent :initarg :parent :initform nil :accessor parent)
    (slug :initarg :slug :initform nil :accessor slug)))
 
@@ -29,8 +27,13 @@
 (defun get-all-categories (&optional (storage *category-storage*))
   (categories storage))
 
-(defun get-category-by-slug (category-slug &optional (storage *category-storage*))
-  (find category-slug
+(defun get-category-by-id (id &optional (storage *category-storage*))
+  (find id
+        (get-all-categories storage)
+        :key 'id))
+
+(defun get-category-by-slug (slug &optional (storage *category-storage*))
+  (find slug
         (get-all-categories storage)
         :key 'slug
         :test #'string-equal))

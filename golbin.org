@@ -1,5 +1,6 @@
 * tasks
 ** next
+   - [ ] 'master' in config
    - [ ] populate/tmp-init of categories/tags
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] db
@@ -9,8 +10,7 @@
    - [ ] utils/config
    - [X] config
 ** utils
-*** DONE config
-    CLOSED: [2012-06-19 Tue 14:47]
+*** TODO config
     :CLOCK:
     CLOCK: [2012-06-19 Tue 14:27]--[2012-06-19 Tue 14:47] =>  0:20
     CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
@@ -24,10 +24,45 @@
     - cache BE calls (especially DB reads)
     - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
 ** TODO frontend
-*** misc
-    - mini-author class for
-      - nav
-      - foreign key in article
+*** views
+**** common
+***** TODO navigation
+      :CLOCK:
+      CLOCK: [2012-06-14 Thu 13:46]--[2012-06-14 Thu 15:15] =>  1:29
+      CLOCK: [2012-06-13 Wed 11:41]--[2012-06-13 Wed 12:02] =>  0:21
+      CLOCK: [2012-06-13 Wed 08:40]--[2012-06-13 Wed 10:40] =>  2:00
+      CLOCK: [2012-06-12 Tue 19:26]--[2012-06-12 Tue 20:26] =>  1:00
+      :END:
+***** header
+****** logo
+****** trending
+****** TODO navigation
+	   :CLOCK:
+	   CLOCK: [2012-06-08 Fri 16:44]--[2012-06-08 Fri 16:45] =>  0:01
+	   :END:
+***** footer
+***** ads
+***** DONE pagination
+      CLOSED: [2012-06-11 Mon 17:54]
+***** TODO #views
+      :CLOCK:
+      CLOCK: [2012-06-13 Wed 11:14]--[2012-06-13 Wed 11:35] =>  0:21
+      CLOCK: [2012-06-13 Wed 10:55]--[2012-06-13 Wed 11:14] =>  0:19
+      :END:
+**** home
+***** latest
+***** most-popular
+**** TODO article
+     :CLOCK:
+     CLOCK: [2012-06-19 Tue 14:48]--[2012-06-19 Tue 15:40] =>  0:52
+     :END:
+***** related-carousel
+**** cat/subcat
+***** list of other cat/subcat
+**** author
+***** list of other authors
+**** tags
+***** list of other tags
 *** TODO wireframes
     :CLOCK:
     CLOCK: [2012-06-13 Wed 10:40]--[2012-06-13 Wed 10:54] =>  0:14
@@ -46,42 +81,6 @@
     - [X] article
     - [ ] static-files
     - [X] search
-*** views
-**** common
-***** header
-****** logo
-****** trending
-****** TODO navigation
-	   :CLOCK:
-	   CLOCK: [2012-06-08 Fri 16:44]--[2012-06-08 Fri 16:45] =>  0:01
-	   :END:
-***** footer
-***** ads
-***** TODO navigation
-      :CLOCK:
-      CLOCK: [2012-06-14 Thu 13:46]--[2012-06-14 Thu 15:15] =>  1:29
-      CLOCK: [2012-06-13 Wed 11:41]--[2012-06-13 Wed 12:02] =>  0:21
-      CLOCK: [2012-06-13 Wed 08:40]--[2012-06-13 Wed 10:40] =>  2:00
-      CLOCK: [2012-06-12 Tue 19:26]--[2012-06-12 Tue 20:26] =>  1:00
-      :END:
-***** DONE pagination
-      CLOSED: [2012-06-11 Mon 17:54]
-***** TODO #views
-      :CLOCK:
-      CLOCK: [2012-06-13 Wed 11:14]--[2012-06-13 Wed 11:35] =>  0:21
-      CLOCK: [2012-06-13 Wed 10:55]--[2012-06-13 Wed 11:14] =>  0:19
-      :END:
-**** home
-***** latest
-***** most-popular
-**** article
-***** related-carousel
-**** cat/subcat
-***** list of other cat/subcat
-**** author
-***** list of other authors
-**** tags
-***** list of other tags
 *** [[*models][models]]
 *** DONE template@pencil
      CLOSED: [2012-06-08 Fri 14:35]
