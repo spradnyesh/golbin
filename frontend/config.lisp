@@ -60,9 +60,5 @@
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))
 
 (defun init ()
-  (setf *config-storage* (make-instance 'config-storage))
   (init-config-tree *config*)
-  (setf *category-storage* (make-instance 'category-storage))
   (add-cat/subcat *config-storage* *category-storage*))
-
-(init)

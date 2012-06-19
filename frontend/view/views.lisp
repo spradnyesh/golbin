@@ -26,7 +26,7 @@
                     :href (genurl 'route-cat-subcat :cat (slug (cat article)) :subcat (slug (subcat article)))
                     (str (name (subcat article))))
                 " using tags "
-                (:span :id "a-tags" (str (tags article))))
+                (:span :id "a-tags" (str (get-article-tags-markup article))))
             (:p :id "a-body" (str (body article)))))))
 
 (defun view-home (&optional (page "0"))

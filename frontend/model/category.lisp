@@ -70,11 +70,3 @@
       (push (list r (get-subcategories (id r) storage))
             rslt))
     (nreverse rslt)))
-
-(defun get-random-cat-subcat (&optional (storage *category-storage*))
-  (let* ((all-categories (get-root-categories storage))
-         (random-category (nth (random (length all-categories)) all-categories))
-         (all-subcategories (get-subcategories (id random-category) storage)))
-    (if all-subcategories
-        (values random-category (nth (random (length all-subcategories)) all-subcategories))
-        (get-random-cat-subcat storage))))

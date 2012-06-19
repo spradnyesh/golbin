@@ -43,6 +43,13 @@
 (defun nav-authors ()
   (nav- (get-all-authors *author-storage*) "author" route-author :author handle))
 
+(defun get-article-tags-markup (article)
+  (with-html
+    (dolist (tag (tags article))
+      (htm " "
+       (:a :href (genurl 'route-tag :tag (slug tag))
+           (str (name tag)))))))
+
 (defun latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))
   (latest-articles category))

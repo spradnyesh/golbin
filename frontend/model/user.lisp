@@ -47,9 +47,7 @@
   author)
 
 (defun get-all-authors (&optional (storage *author-storage*))
-  (sort (authors storage)
-        #'string<
-        :key 'name))
+  (authors storage))
 
 (defun get-mini-author-details-from-id (id &optional (storage *author-storage*))
   (let ((author (find id (get-all-authors storage)

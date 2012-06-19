@@ -36,31 +36,15 @@
 
 (defun get-articles-by-tag (tag &optional (storage *article-storage*))
   "return articles w/ tag 'tag' from 'storage'"
-  (find tag
-        (get-all-articles storage)
-        :key #'tags
-        :test #'string-equal))
+  (declare (ignore tag storage)))
 
 (defun get-articles-by-cat (cat &optional (storage *article-storage*))
   "return articles w/ category 'cat' from 'storage'"
-  (find cat
-        (get-all-articles storage)
-        :key #'cat
-        :test #'string-equal))
+  (declare (ignore cat storage)))
 
 (defun get-articles-by-cat-subcat (cat subcat &optional (storage *article-storage*))
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
-  (let ((cat-articles (find cat
-                            (get-all-articles storage)
-                            :key #'cat
-                            :test #'string-equal)))
-    (when cat-articles
-      (find subcat
-            (if (consp cat-articles)
-                cat-articles
-                (list cat-articles))
-            :key #'subcat
-            :test #'string-equal))))
+  (declare (ignore cat subcat storage)))
 
 (defun add-article (article &optional (storage *article-storage*))
   "add article 'article' to 'storage'"
