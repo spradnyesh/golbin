@@ -60,5 +60,6 @@
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))
 
 (defun init ()
+  (init-storage)
   (init-config-tree *config*)
   (add-cat/subcat *config-storage* *category-storage*))

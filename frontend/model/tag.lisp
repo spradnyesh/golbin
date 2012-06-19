@@ -15,4 +15,4 @@
   tag)
 
 (defun get-all-tags (&optional (storage *tag-storage*))
-  (tags storage))
+  (setf (tags storage) (sort (tags storage) #'string< :key #'name)))

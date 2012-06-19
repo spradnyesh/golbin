@@ -9,7 +9,9 @@
       (:head
        (:title (str (format nil "~A - ~A" *site-name* ,title)))
        (:script :type "text/javascript"
-                (str (format nil "var nav-categories = ~A;" (nav-categories-json)))))
+                (str (format nil "var nav-categories = ~A;" (nav-categories-json)))
+                (str (format nil "var nav-tags = ~A;" (nav-tags-json)))
+                (str (format nil "var nav-authors = ~A;" (nav-authors-json)))))
       (:body
        (str (header))
        (:div :id "bd"
@@ -57,10 +59,10 @@
               (:ul))
          (:li  :id "tags"
                (:p "Tags")
-               (:ul (str (nav-tags))))
+               (:ul))
          (:li :id "authors"
                (:p "Authors")
-               (:ul (str (nav-authors)))))))
+               (:ul)))))
 
 (defun header ()
   (with-html

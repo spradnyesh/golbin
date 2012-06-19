@@ -18,24 +18,42 @@
 (defun nav-categories-json ()
   (encode-json-to-string
    (with-html
-     (let ((rslt nil))
-       (declare (ignore rslt))
-       (dolist (cat-node (get-category-tree *category-storage*))
-         (let* ((cat (first cat-node))
-                (subcat-node (second cat-node)))
-           (htm
-            (:li
-             (:a :href (genurl 'route-cat
-                               :cat (slug cat))
-                 (str (name cat)))
-             (:ul
-              (dolist (subcat subcat-node)
-                (htm
-                 (:li
-                  (:a :href (genurl 'route-cat-subcat
-                                    :cat (slug cat)
-                                    :subcat (slug subcat))
-                      (str (name subcat)))))))))))))))
+     (dolist (cat-node (get-category-tree *category-storage*))
+       (let* ((cat (first cat-node))
+              (subcat-node (second cat-node)))
+         (htm
+          (:li
+           (:a :href (genurl 'route-cat
+                             :cat (slug cat))
+               (str (name cat)))
+           (:ul
+            (dolist (subcat subcat-node)
+              (htm
+               (:li
+                (:a :href (genurl 'route-cat-subcat
+                                  :cat (slug cat)
+                                  :subcat (slug subcat))
+                    (str (name subcat))))))))))))))
+
+(defun nav-tags-json ()
+  (encode-json-to-string
+   (with-html
+     (dolist (tag (get-all-tags *tag-storage*))
+       (htm
+        (:li
+         (:a :href (genurl 'route-tag
+                           :tag (slug tag))
+             (str (name tag)))))))))
+
+(defun nav-authors-json ()
+  (encode-json-to-string
+   (with-html
+     (dolist (author (get-all-authors *author-storage*))
+       (htm
+        (:li
+         (:a :href (genurl 'route-author
+                           :author (handle author))
+             (str (name author)))))))))
 
 (defun nav-tags ()
   (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))
