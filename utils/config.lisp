@@ -48,8 +48,8 @@
 
 (defun get-dimensions-map (dimensions-string)
   (let ((rslt nil))
-    (dolist (dl (split-sequence "," dimensions-string :test #'equal))
-      (let ((d (split-sequence ":" dl :test #'equal)))
+    (dolist (dl (split-sequence "," dimensions-string :test #'string-equal))
+      (let ((d (split-sequence ":" dl :test #'string-equal)))
         (push d rslt)))
     (nreverse rslt)))
 
