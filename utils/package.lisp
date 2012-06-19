@@ -1,10 +1,11 @@
 (defpackage :hawksbill.utils
   (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence)
   (:export
-   ;; config
    :*home*
-   :config-storage
+   ;; config
+   :config-storage ; class
    :*config-storage*
+   :*config* ; input to init-config-tree
    :*dimensions*
    :*valid-envts*
    :*valid-intls*
@@ -15,6 +16,7 @@
    :get-config
    :add-config
    :show-config-tree
+   :init-config-tree
    ;; html
    :with-html
    :js-script
@@ -31,3 +33,13 @@
    ))
 
 (in-package :hawksbill.utils)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; global configs for use in this package
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; make sure these are initialized in every project
+(defvar *home* "")
+(defvar *translation-file-root* nil)
+(defvar *db-init-ids* nil)
+(defvar *save-photo-to-db-function* nil)
+(defvar *pagination-limit* 10)

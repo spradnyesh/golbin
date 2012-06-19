@@ -1,17 +1,18 @@
 * tasks
 ** next
    - [ ] populate/tmp-init of categories/tags
+   - [ ] parenscript for categories/tags/authors in navigation
    - [ ] db
    - [ ] cache
-   - [ ] parenscript
    - [ ] css
    - [ ] tests
    - [ ] utils/config
    - [X] config
 ** utils
 *** DONE config
-    CLOSED: [2012-06-18 Mon 17:42]
+    CLOSED: [2012-06-19 Tue 14:47]
     :CLOCK:
+    CLOCK: [2012-06-19 Tue 14:27]--[2012-06-19 Tue 14:47] =>  0:20
     CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
     CLOCK: [2012-06-18 Mon 13:33]--[2012-06-18 Mon 15:06] =>  1:33
     CLOCK: [2012-06-18 Mon 13:07]--[2012-06-18 Mon 13:21] =>  0:14
@@ -21,6 +22,7 @@
 *** cache
     - w/ time for each with-cache call
     - cache BE calls (especially DB reads)
+    - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
 ** TODO frontend
 *** misc
     - mini-author class for
@@ -96,6 +98,11 @@
     - extra (empty), user-settable, primary-navigation fields
       - html5
       - html4 + cookie
+    - related articles
+      - users who viewed this also viewed
+        - http://coding.smashingmagazine.com/2011/03/23/speeding-up-your-websites-database/
+          - How Can A Database Slow Down A Website?
+          - …Or Just Cheat
 ** editorial
 *** TODO models
 	:CLOCK:
