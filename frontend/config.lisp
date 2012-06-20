@@ -6,7 +6,36 @@
 (setf *dimensions* '("envt"))
 (defvar *valid-envts* '("dev" "prod"))
 (setf *config*
-      '(("master" ("categories" (("Sports"
+      '(("master" ("categories" (("Business"
+                                  "Companies"
+                                  "Economy"
+                                  "Industry"
+                                  "Markets")
+                                 ("Education")
+                                 ("Entenrtainment"
+                                  "Arts"
+                                  "Books"
+                                  "Celebrities"
+                                  "Humor"
+                                  "Movies"
+                                  "Music"
+                                  "TV")
+                                 ("Headlines")
+                                 ("Lifestyle"
+                                  "Automotive"
+                                  "Culture"
+                                  "Food and Beverage"
+                                  "Home and Garden"
+                                  "Health"
+                                  "Theatre"
+                                  "Travel")
+                                 ("Politics")
+                                 ("Religion")
+                                 ("Science"
+                                  "Environmenent"
+                                  "Geography"
+                                  "Space")
+                                 ("Sports"
                                   "American Football"
                                   "Badminton"
                                   "Baseball"
@@ -22,40 +51,11 @@
                                   "Rugby"
                                   "Table Tennis"
                                   "Tennis")
-                                 ("Entenrtainment"
-                                  "Arts"
-                                  "Books"
-                                  "Celebrities"
-                                  "Movies"
-                                  "Music"
-                                  "TV"
-                                  "Humor")
-                                 ("Lifestyle"
-                                  "Automotive"
-                                  "Culture"
-                                  "Food and Beverage"
-                                  "Home and Garden"
-                                  "Theatre"
-                                  "Travel"
-                                  "Health")
                                  ("Technology"
                                   "Computing"
                                   "Internet"
                                   "Personal Technology"
-                                  "Video Games")
-                                 ("Business"
-                                  "Companies"
-                                  "Economy"
-                                  "Industry"
-                                  "Markets")
-                                 ("Education")
-                                 ("Science"
-                                  "Environmenent"
-                                  "Geography"
-                                  "Space")
-                                 ("Headlines")
-                                 ("Politics")
-                                 ("Religion"))))
+                                  "Video Games"))))
         ("envt:dev" ("n1" "v1") ("n2" "v2"))
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))
 

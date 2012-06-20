@@ -53,12 +53,9 @@
         :test #'string-equal))
 
 (defun get-subcategories (cat-id &optional (storage *category-storage*))
-  (sort
-   (conditionally-accumulate (lambda (cat)
+  (conditionally-accumulate (lambda (cat)
                                (= cat-id (parent cat)))
-                             (get-all-categories storage))
-   #'string<
-   :key 'name))
+                             (get-all-categories storage)))
 
 (defun get-root-categories (&optional (storage *category-storage*))
   (get-subcategories 0 storage))
