@@ -43,12 +43,12 @@
                                          :limit *article-pagination-limit*))
                 (htm
                  (:li
-                  (:a :class "a-title"
-                      :href (genurl 'route-article
-                                    :slug-and-id (format nil "~A-~A"
-                                                         (slug article)
-                                                         (id article)))
-                      (str (title article)))
+                  (:h3(:a :class "a-title"
+                          :href (genurl 'route-article
+                                        :slug-and-id (format nil "~A-~A"
+                                                             (slug article)
+                                                             (id article)))
+                          (str (title article))))
                   (:p :class "a-date" (str (date article)))
                   (:p :class "a-summary" (str (summary article))))))))
        (str (pagination-markup 'route-home-page

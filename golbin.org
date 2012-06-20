@@ -1,6 +1,7 @@
 * tasks
 ** next
-   - [ ] populate/tmp-init of categories/tags
+   - [X] populate/tmp-init of categories/tags
+   - [ ] navigation
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] db
    - [ ] cache
@@ -29,8 +30,14 @@
 ** TODO frontend
 *** views
 **** common
+***** DONE layout
+      CLOSED: [2012-06-20 Wed 16:55]
+      :CLOCK:
+      CLOCK: [2012-06-20 Wed 14:12]--[2012-06-20 Wed 16:55] =>  2:43
+      :END:
 ***** TODO navigation
       :CLOCK:
+      CLOCK: [2012-06-20 Wed 13:19]--[2012-06-20 Wed 14:12] =>  0:53
       CLOCK: [2012-06-19 Tue 19:00]--[2012-06-19 Tue 19:26] =>  0:26
       CLOCK: [2012-06-19 Tue 17:36]--[2012-06-19 Tue 18:11] =>  0:35
       CLOCK: [2012-06-19 Tue 16:35]--[2012-06-19 Tue 17:35] =>  1:00

@@ -1,6 +1,7 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence)
+  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence :css-lite)
   (:shadowing-import-from :json :prototype)
+  (:shadow :%)
   (:export :route-home
            :route-home-page
            :route-cat
@@ -45,7 +46,7 @@
 ;; config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf *dimensions* '("envt"))
-(setf *valid-envts* '("dev" "prod"))
+(defvar *valid-envts* '("dev" "prod"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debugging
