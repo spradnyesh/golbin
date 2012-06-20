@@ -44,11 +44,11 @@
   ;; don't show pagination-markup when page-number = 13, *article-pagination-limit* = 10 and max-results = 100 ;)
   `(if (< (* ,page-number ,pagination-limit) ,max-results)
        (with-html
-         (:ul :class "pagination"
+         (:ol :class "pagination"
               (loop for i
                  from (pagination-low ,page-number ,pagination-limit)
                  to (pagination-high ,page-number ,max-results ,pagination-limit) do
                  (if (eql ,page-number i)
-                     (htm (:li :class "pagination-match" (str i)))
+                     (htm (:li :class "disabled" (str i)))
                      (htm (:li (:a :href (genurl ,route :page i) (str i))))))))
        ""))

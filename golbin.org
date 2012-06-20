@@ -1,6 +1,8 @@
 * tasks
 ** next
-   - [X] populate/tmp-init of categories/tags
+   - [ ] layout
+   - [ ] add authors
+   - [ ] author/category/tag pages
    - [ ] navigation
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] db
@@ -10,6 +12,7 @@
    - [ ] utils/config
    - [X] config
    - [X] 'master' in config
+   - [X] populate/tmp-init of categories/tags
 ** utils
 *** DONE config
     CLOSED: [2012-06-19 Tue 16:35]
@@ -30,11 +33,13 @@
 ** TODO frontend
 *** views
 **** common
-***** DONE layout
-      CLOSED: [2012-06-20 Wed 16:55]
+***** TODO layout
       :CLOCK:
-      CLOCK: [2012-06-20 Wed 14:12]--[2012-06-20 Wed 16:55] =>  2:43
+      CLOCK: [2012-06-20 Wed 17:55]--[2012-06-20 Wed 18:48] =>  0:53
+      CLOCK: [2012-06-20 Wed 14:12]--[2012-06-20 Wed 17:15] =>  3:03
       :END:
+      - http://travel.yahoo.com/ideas/
+      - http://travel.yahoo.com/ideas/five-miles-up-with-----christopher-gorham.html
 ***** TODO navigation
       :CLOCK:
       CLOCK: [2012-06-20 Wed 13:19]--[2012-06-20 Wed 14:12] =>  0:53
@@ -55,13 +60,13 @@
 	   :END:
 ***** footer
 ***** ads
-***** DONE pagination
-      CLOSED: [2012-06-11 Mon 17:54]
 ***** TODO #views
       :CLOCK:
       CLOCK: [2012-06-13 Wed 11:14]--[2012-06-13 Wed 11:35] =>  0:21
       CLOCK: [2012-06-13 Wed 10:55]--[2012-06-13 Wed 11:14] =>  0:19
       :END:
+***** DONE pagination
+      CLOSED: [2012-06-11 Mon 17:54]
 **** home
 ***** latest
 ***** most-popular
@@ -72,7 +77,10 @@
 ***** related-carousel
 **** cat/subcat
 ***** list of other cat/subcat
-**** author
+**** TODO author
+     :CLOCK:
+     CLOCK: [2012-06-20 Wed 17:34]--[2012-06-20 Wed 17:54] =>  0:20
+     :END:
 ***** list of other authors
 **** tags
 ***** list of other tags
