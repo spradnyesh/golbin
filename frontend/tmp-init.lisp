@@ -27,6 +27,24 @@
     (dolist (tag (split-sequence " " tags :test #'string-equal))
       (add-tag (make-instance 'tag :name tag) *tag-storage*))))
 
+(defun add-authors ()
+  (let ((authors '("Kristen Stewart"
+                   "Cameron Diaz"
+                   "Penelope Cruz"
+                   "Charlize Theron"
+                   "Sandra Bullock"
+                   "Angelina Jolie"
+                   "Floyd Mayweather"
+                   "Manny Pacquiao"
+                   "Tiger Woods"
+                   "LeBron James"
+                   "Roger Federer")))
+        (dolist (author-name authors)
+          (add-author (make-instance 'author
+                                     :name author-name
+                                     :handle (slugify author-name))
+                      *author-storage*))))
+
 (defun add-articles ()
   "add a new articles to the db"
   (dotimes (i 1000)
@@ -43,9 +61,6 @@ It is a long established fact that a reader will be distracted by the readable c
                    *article-storage*))))
 
 (defun tmp-init ()
-  (add-author (make-instance 'author
-                             :name "Hawksbill"
-                             :handle "hawksbill")
-              *author-storage*)
+  (add-authors)
   (add-tags)
   (add-articles))

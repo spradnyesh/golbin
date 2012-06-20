@@ -34,17 +34,42 @@
         (get-all-articles storage)
         :key #'id))
 
-(defun get-articles-by-tag (tag &optional (storage *article-storage*))
+(defun get-articles-by-tag-name (tag &optional (storage *article-storage*))
   "return articles w/ tag 'tag' from 'storage'"
   (declare (ignore tag storage)))
 
-(defun get-articles-by-cat (cat &optional (storage *article-storage*))
+(defun get-articles-by-cat-slug (cat &optional (article-storage *article-storage*) (category-storage *category-storage*))
   "return articles w/ category 'cat' from 'storage'"
-  (declare (ignore cat storage)))
+  (conditionally-accumulate #'(lambda (article)
+                                (= (id (get-category-by-name cat 0 category-storage))
+                                   (id (cat article))))
+                            (get-all-articles article-storage)))
 
-(defun get-articles-by-cat-subcat (cat subcat &optional (storage *article-storage*))
+(defun get-articles-by-cat-subcat-slugs (cat subcat &optional (article-storage *article-storage*) (category-storage *category-storage*))
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
-  (declare (ignore cat subcat storage)))
+  (let ((cat-id (id (get-category-by-name cat 0 category-storage))))
+    (conditionally-accumulate #'(lambda (article)
+                                  (= (id (get-category-by-name subcat cat-id category-storage))
+                                     (id (subcat article))))
+                              (conditionally-accumulate #'(lambda (article)
+                                                            (= cat-id
+                                                               (id (cat article))))
+                                                        (get-all-articles article-storage)))))
+
+(defun get-articles-by-author-handle (author &optional (article-storage *article-storage*) (author-storage *author-storage*))
+  "return articles w/ handle 'author' from 'storage'"
+  (conditionally-accumulate #'(lambda (article)
+                                (= (id (get-author-by-handle author author-storage))
+                                   (id (author article))))
+                            (get-all-articles article-storage)))
+
+(defun get-articles-by-tag-slug (slug &optional (article-storage *article-storage*))
+  "return articles w/ slug 'slug' from 'storage'"
+  (conditionally-accumulate #'(lambda (article)
+                                (dolist (tag (tags article))
+                                  (when (equal slug (slug tag))
+                                    (return t))))
+                            (get-all-articles article-storage)))
 
 (defun add-article (article &optional (storage *article-storage*))
   "add article 'article' to 'storage'"

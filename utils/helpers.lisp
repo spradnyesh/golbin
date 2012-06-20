@@ -39,7 +39,7 @@
     (if (> p max)
         max
         p)))
-(defmacro pagination-markup (route page-number max-results &optional (pagination-limit *pagination-limit*))
+(defmacro pagination-markup (route page-number max-results pagination-limit &rest route-params)
   "build URLs b/n route?p=low and route?p=high"
   ;; don't show pagination-markup when page-number = 13, *article-pagination-limit* = 10 and max-results = 100 ;)
   `(if (< (* ,page-number ,pagination-limit) ,max-results)
@@ -50,5 +50,5 @@
                  to (pagination-high ,page-number ,max-results ,pagination-limit) do
                  (if (eql ,page-number i)
                      (htm (:li :class "disabled" (str i)))
-                     (htm (:li (:a :href (genurl ,route :page i) (str i))))))))
+                     (htm (:li (:a :href (genurl ,route ,@route-params :page i) (str i))))))))
        ""))

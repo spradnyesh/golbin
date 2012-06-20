@@ -1,8 +1,8 @@
 * tasks
 ** next
+   - [ ] fix bug w/ pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
    - [ ] layout
-   - [ ] add authors
-   - [ ] author/category/tag pages
+   - [ ] article look-n-feel
    - [ ] navigation
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] db
@@ -13,6 +13,8 @@
    - [X] config
    - [X] 'master' in config
    - [X] populate/tmp-init of categories/tags
+   - [X] add authors
+   - [X] author/category/tag pages
 ** utils
 *** DONE config
     CLOSED: [2012-06-19 Tue 16:35]
@@ -31,7 +33,10 @@
     - cache BE calls (especially DB reads)
     - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
 ** TODO frontend
-*** views
+*** TODO views
+    :CLOCK:
+    CLOCK: [2012-06-20 Wed 18:50]--[2012-06-20 Wed 20:11] =>  1:21
+    :END:
 **** common
 ***** TODO layout
       :CLOCK:
@@ -65,24 +70,28 @@
       CLOCK: [2012-06-13 Wed 11:14]--[2012-06-13 Wed 11:35] =>  0:21
       CLOCK: [2012-06-13 Wed 10:55]--[2012-06-13 Wed 11:14] =>  0:19
       :END:
-***** DONE pagination
-      CLOSED: [2012-06-11 Mon 17:54]
-**** home
+***** TODO pagination
+**** DONE home
+     CLOSED: [2012-06-20 Wed 20:12]
 ***** latest
 ***** most-popular
-**** TODO article
+**** DONE article
+     CLOSED: [2012-06-20 Wed 20:12]
      :CLOCK:
      CLOCK: [2012-06-19 Tue 14:48]--[2012-06-19 Tue 15:40] =>  0:52
      :END:
 ***** related-carousel
-**** cat/subcat
+**** DONE cat/subcat
+     CLOSED: [2012-06-20 Wed 20:12]
 ***** list of other cat/subcat
-**** TODO author
+**** DONE author
+     CLOSED: [2012-06-20 Wed 20:12]
      :CLOCK:
      CLOCK: [2012-06-20 Wed 17:34]--[2012-06-20 Wed 17:54] =>  0:20
      :END:
 ***** list of other authors
-**** tags
+**** DONE tags
+     CLOSED: [2012-06-20 Wed 20:12]
 ***** list of other tags
 *** TODO wireframes
     :CLOCK:

@@ -44,6 +44,7 @@
   (setf (id author)
         (incf (last-id storage)))
   (push author (authors storage))
+  (setf (authors storage) (sort (authors storage) #'string< :key #'name))
   author)
 
 (defun get-all-authors (&optional (storage *author-storage*))
@@ -56,6 +57,16 @@
             (name author)
             (handle author))))
 
+(defun get-author-by-handle (handle &optional (storage *author-storage*))
+  (find handle
+        (get-all-authors storage)
+        :key #'handle
+        :test #'string-equal))
+
+(defun get-random-author (&optional (storage *author-storage*))
+  (let ((all-authors (get-all-authors storage)))
+    (nth (random (length all-authors)) all-authors)))
+
 (defun get-current-author-id ()
   "TODO: return the id of the currently logged in author"
-  1)
+  (id (get-random-author)))

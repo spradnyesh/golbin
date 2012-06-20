@@ -46,10 +46,12 @@
         (get-all-categories storage)
         :key 'id))
 
-(defun get-category-by-slug (slug &optional (storage *category-storage*))
+(defun get-category-by-slug (slug &optional (parent-id 0) (storage *category-storage*))
   (find slug
-        (get-all-categories storage)
-        :key 'slug
+        (if (zerop parent-id)
+            (get-root-categories storage)
+            (get-subcategories parent-id storage))
+        :key #'slug
         :test #'string-equal))
 
 (defun get-subcategories (cat-id &optional (storage *category-storage*))
