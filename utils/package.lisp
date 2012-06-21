@@ -27,7 +27,10 @@
    :with-cache
    ;; helpers
    :conditionally-accumulate
+   ;; string
    :slugify
+   :join-string-list-with-delim
+   ;; pagination
    :paginate
    :pagination-markup
    ))

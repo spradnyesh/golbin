@@ -12,8 +12,16 @@
    - [X] add authors
    - [X] author/category/tag pages
    - [X] layout
+** TODO refactor
+   :CLOCK:
+   CLOCK: [2012-06-21 Thu 11:15]--[2012-06-21 Thu 11:46] =>  0:31
+   :END:
 ** bugs
-*** pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
+*** DONE pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
+    CLOSED: [2012-06-21 Thu 11:52]
+    :CLOCK:
+    CLOCK: [2012-06-21 Thu 11:47]--[2012-06-21 Thu 11:52] =>  0:05
+    :END:
 *** DONE cat/subcat pages (some fn not found)
     CLOSED: [2012-06-21 Thu 11:15]
     :CLOCK:

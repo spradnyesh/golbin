@@ -11,6 +11,7 @@
                                      (:file "html":depends-on ("package"))
                                      (:file "string":depends-on ("package"))
                                      (:file "helpers":depends-on ("package"))
+                                     (:file "pagination":depends-on ("package"))
                                      (:file "init" :depends-on ("package" "config"))))
                (:module "frontend"
                         :components ((:file "package")

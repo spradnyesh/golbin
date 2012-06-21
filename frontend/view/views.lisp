@@ -57,12 +57,12 @@
         (str ,(if route-params
                   `(pagination-markup ,route
                        page
-                       (count-articles *article-storage*)
+                       (length ,articles-list)
                        *article-pagination-limit*
                      ,@route-params)
                   `(pagination-markup ,route
                        page
-                       (count-articles *article-storage*)
+                       (length ,articles-list)
                        *article-pagination-limit*)))))))
 
 (defun view-home (&optional (page "0"))
