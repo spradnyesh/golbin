@@ -35,8 +35,10 @@
      :END:
 **** TODO db
      :CLOCK:
+     CLOCK: [2012-06-21 Thu 19:00]--[2012-06-21 Thu 19:51] =>  0:51
      CLOCK: [2012-06-21 Thu 15:00]--[2012-06-21 Thu 17:40] =>  2:40
      :END:
+     - check cl-prevalence, cl-store
 **** TODO cache
 *** TODO views
     :CLOCK:

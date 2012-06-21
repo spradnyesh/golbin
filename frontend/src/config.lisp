@@ -72,5 +72,4 @@
   (db-connect)
   (init-storage)
   (init-config-tree *config*)
-  (add-cat/subcat *config-storage* *category-storage*)
-  )
+  (add-cat/subcat *config-storage* *category-storage*))
