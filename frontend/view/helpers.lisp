@@ -12,16 +12,43 @@
                                ,route-param (,field l))
                  (str (name l))))))))
 
-#|(defmacro li-a-rest (list route-name route-param-1 route-fn-1 value-fn &optional route-param-2 route-fn-2 rest)
-  `(dolist (l ,list)
-      (htm
-       (:li
-        (:a :href (genurl ,route-name
-                          ,route-param-1 (,route-fn-1 l)
-                          ,(when route-param-2
-                                 `,route-param-2 `(,route-fn-2 l)))
-            (str (,value-fn l)))
-        ,@rest))))|#
+(defmacro view-index (title popular-markup articles-list route &rest route-params)
+  `(let* ((page (parse-integer page))
+          (offset (* page *article-pagination-limit*)))
+     (page-template
+         ,title
+         ,popular-markup
+       (htm
+        (:div :id "articles"
+              (:ul
+               (dolist (article (paginate ,articles-list
+                                          :offset offset
+                                          :limit *article-pagination-limit*))
+                 (htm
+                  (:li
+                   (:h3 (:a :class "a-title"
+                            :href (genurl 'route-article
+                                          :slug-and-id (format nil "~A-~A"
+                                                               (slug article)
+                                                               (id article)))
+                            (str (title article))))
+                   (:cite :class "a-cite" (str (format nil
+                                                       "~a, ~a - ~a"
+                                                       (name (cat article))
+                                                       (name (subcat article)) (date article))))
+                   (:p :class "a-summary" (str (summary article))))))))
+        (str ,(if route-params
+                  `(pagination-markup ,route
+                       page
+                       (length ,articles-list)
+                       *article-pagination-limit*
+                     ,@route-params)
+                  `(pagination-markup ,route
+                       page
+                       (length ,articles-list)
+                       *article-pagination-limit*)))))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
@@ -45,23 +72,21 @@
                                  :subcat (slug subcat))
                    (str (name subcat)))))))))))))
 
+(defmacro dolist-li-a (list route value-fn &rest route-params)
+  `(with-html
+     (dolist (l ,list)
+       (htm
+        (:li
+         (:a :href ,(if route-params
+                        `(genurl ,route ,@route-params)
+                        `(genurl ,route))
+
+             (str (,value-fn l))))))))
 (defun nav-tags-markup ()
-  (with-html
-    (dolist (tag (get-all-tags *tag-storage*))
-      (htm
-       (:li
-        (:a :href (genurl 'route-tag
-                          :tag (slug tag))
-            (str (name tag))))))))
+  (dolist-li-a (get-all-tags *tag-storage*) 'route-tag name :tag (slug l)))
 
 (defun nav-authors-markup ()
-  (with-html
-    (dolist (author (get-all-authors *author-storage*))
-      (htm
-       (:li
-        (:a :href (genurl 'route-author
-                          :author (handle author))
-            (str (name author))))))))
+  (dolist-li-a (get-all-authors *author-storage*) 'route-author name :author (handle l)))
 
 (defun nav-tags ()
   (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))

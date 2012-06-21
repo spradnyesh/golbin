@@ -17,3 +17,9 @@
 
 (defun get-all-tags (&optional (storage *tag-storage*))
   (tags storage))
+
+(defun get-tag-by-slug (slug &optional (storage *tag-storage*))
+  (find slug
+        (get-all-tags storage)
+        :test #'string-equal
+        :key #'slug))
