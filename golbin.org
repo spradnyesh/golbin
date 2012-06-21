@@ -1,8 +1,8 @@
 * tasks
 ** next
    - [ ] article look-n-feel
-   - [ ] static files
    - [ ] db
+   - [ ] populate *current-dimensions-string* and make it thread-safe
    - [ ] cache
    - [ ] navigation
    - [ ] parenscript for categories/tags/authors in navigation
@@ -13,12 +13,7 @@
    - [X] add authors
    - [X] author/category/tag pages
    - [X] layout
-** TODO refactor
-   :CLOCK:
-   CLOCK: [2012-06-21 Thu 13:19]--[2012-06-21 Thu 13:47] =>  0:28
-   CLOCK: [2012-06-21 Thu 11:59]--[2012-06-21 Thu 12:06] =>  0:07
-   CLOCK: [2012-06-21 Thu 11:15]--[2012-06-21 Thu 11:46] =>  0:31
-   :END:
+   - [X] static files
 ** bugs
 *** DONE pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
     CLOSED: [2012-06-21 Thu 11:52]
@@ -30,23 +25,6 @@
     :CLOCK:
     CLOCK: [2012-06-21 Thu 11:12]--[2012-06-21 Thu 11:15] =>  0:03
     :END:
-** utils
-*** DONE config
-    CLOSED: [2012-06-19 Tue 16:35]
-    :CLOCK:
-    CLOCK: [2012-06-19 Tue 16:22]--[2012-06-19 Tue 16:35] =>  0:13
-    CLOCK: [2012-06-19 Tue 15:42]--[2012-06-19 Tue 16:10] =>  0:28
-    CLOCK: [2012-06-19 Tue 14:27]--[2012-06-19 Tue 14:47] =>  0:20
-    CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
-    CLOCK: [2012-06-18 Mon 13:33]--[2012-06-18 Mon 15:06] =>  1:33
-    CLOCK: [2012-06-18 Mon 13:07]--[2012-06-18 Mon 13:21] =>  0:14
-    CLOCK: [2012-06-18 Mon 11:07]--[2012-06-18 Mon 12:07] =>  1:00
-    CLOCK: [2012-06-15 Fri 16:32]--[2012-06-15 Fri 20:04] =>  3:32
-    :END:
-*** cache
-    - w/ time for each with-cache call
-    - cache BE calls (especially DB reads)
-    - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
 ** TODO frontend
 *** misc
 **** DONE static files
@@ -56,6 +34,9 @@
      CLOCK: [2012-06-21 Thu 13:50]--[2012-06-21 Thu 14:10] =>  0:20
      :END:
 **** TODO db
+     :CLOCK:
+     CLOCK: [2012-06-21 Thu 15:00]--[2012-06-21 Thu 17:40] =>  2:40
+     :END:
 **** TODO cache
 *** TODO views
     :CLOCK:
@@ -156,6 +137,29 @@
         - http://coding.smashingmagazine.com/2011/03/23/speeding-up-your-websites-database/
           - How Can A Database Slow Down A Website?
           - …Or Just Cheat
+** TODO refactor
+   :CLOCK:
+   CLOCK: [2012-06-21 Thu 13:19]--[2012-06-21 Thu 13:47] =>  0:28
+   CLOCK: [2012-06-21 Thu 11:59]--[2012-06-21 Thu 12:06] =>  0:07
+   CLOCK: [2012-06-21 Thu 11:15]--[2012-06-21 Thu 11:46] =>  0:31
+   :END:
+** utils
+*** DONE config
+    CLOSED: [2012-06-19 Tue 16:35]
+    :CLOCK:
+    CLOCK: [2012-06-19 Tue 16:22]--[2012-06-19 Tue 16:35] =>  0:13
+    CLOCK: [2012-06-19 Tue 15:42]--[2012-06-19 Tue 16:10] =>  0:28
+    CLOCK: [2012-06-19 Tue 14:27]--[2012-06-19 Tue 14:47] =>  0:20
+    CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
+    CLOCK: [2012-06-18 Mon 13:33]--[2012-06-18 Mon 15:06] =>  1:33
+    CLOCK: [2012-06-18 Mon 13:07]--[2012-06-18 Mon 13:21] =>  0:14
+    CLOCK: [2012-06-18 Mon 11:07]--[2012-06-18 Mon 12:07] =>  1:00
+    CLOCK: [2012-06-15 Fri 16:32]--[2012-06-15 Fri 20:04] =>  3:32
+    :END:
+*** cache
+    - w/ time for each with-cache call
+    - cache BE calls (especially DB reads)
+    - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
 ** editorial
 *** TODO models
 	:CLOCK:

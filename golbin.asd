@@ -45,4 +45,4 @@
                (:file "routes" :depends-on ("package"))
                (:file "models" :depends-on ("package"))
                (:file "views" :depends-on ("package"))))|#)
-  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher))
+  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-kyoto-cabinet))

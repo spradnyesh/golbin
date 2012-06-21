@@ -21,9 +21,9 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for views (time-based views of a page (index/article))"))
 
-(defclass count-storage ()
+(defclass page-count-storage ()
   ((counts :initform nil :accessor counts))
-  (:documentation "Object of this class will act as the storage for count"))
+  (:documentation "Object of this class will act as the storage for page-count"))
 
 (defun get-all-counts (&optional (storage *count-storage*))
   (counts storage))

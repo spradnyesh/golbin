@@ -1,13 +1,6 @@
 (in-package :hawksbill.utils)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; variables
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *dimensions* nil)
-(defvar *config* nil)
-(defvar *config-storage* nil)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config classes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass config ()
@@ -60,29 +53,30 @@
   (get-dimensions-string (reduce-dimensions-map (get-dimensions-map dimensions-string))))
 
 (defun get-config-helper (name dimensions-map config-storage)
-  (let ((config-node (if dimensions-map
-                         (find (get-dimensions-string dimensions-map)
-                               (configs config-storage)
-                               :key #'dimension
-                               :test #'string-equal)
-                         (find "master"
-                               (configs config-storage)
-                               :key #'dimension
-                               :test #'string-equal))))
-    (if config-node
-        (let ((value (find name
-                           (value config-node)
-                           :key #'name
-                           :test #'string-equal)))
-          (if value
-              (value value)
-              (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
-        (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage))))
+  (when dimensions-map
+    (let ((config-node (if dimensions-map
+                           (find (get-dimensions-string dimensions-map)
+                                 (configs config-storage)
+                                 :key #'dimension
+                                 :test #'string-equal)
+                           (find "master"
+                                 (configs config-storage)
+                                 :key #'dimension
+                                 :test #'string-equal))))
+      (if config-node
+          (let ((value (find name
+                             (value config-node)
+                             :key #'name
+                             :test #'string-equal)))
+            (if value
+                (value value)
+                (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
+          (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-config (name &optional (dimensions-string "master") (config-storage *config-storage*))
+(defun get-config (name &optional (dimensions-string *current-dimensions-string*) (config-storage *config-storage*))
   (get-config-helper name (get-dimensions-map dimensions-string) config-storage))
 
 (defun add-config (name value dimensions-string &optional (config-storage *config-storage*))
@@ -109,7 +103,14 @@
   (dolist (c config)
     (let ((dimension-string (first c)))
       (dolist (name-value (rest c))
-        (add-config (first name-value)
-                    (second name-value)
-                    dimension-string
-                    config-storage)))))
+        (if (= 2 (length name-value))
+            (add-config (first name-value)
+                        (second name-value)
+                        dimension-string
+                        config-storage)
+            (let ((module-name (first name-value)))
+              (dolist (module (rest name-value))
+                (add-config (format nil "~a.~a" module-name (first module))
+                            (second module)
+                            dimension-string
+                            config-storage))))))))

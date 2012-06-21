@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence :css-lite)
+  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence :css-lite :kyoto-cabinet)
   (:shadowing-import-from :json :prototype)
   (:shadow :%)
   (:export :route-home
@@ -51,6 +51,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf *dimensions* '("envt"))
 (defvar *valid-envts* '("dev" "prod"))
+(setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debugging

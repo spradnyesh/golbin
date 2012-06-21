@@ -1,11 +1,11 @@
 (in-package :hawksbill.golbin.frontend)
 
 (defun r-stop ()
-  (restas:stop-all))
+  (stop-all))
 (defun r-start ()
   (init)
   (tmp-init)
-  (restas:start :hawksbill.golbin.frontend :port 8000))
+  (start :hawksbill.golbin.frontend :port 8000))
 (defun r-restart ()
   (r-stop)
   (r-start))
