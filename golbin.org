@@ -1,20 +1,24 @@
 * tasks
 ** next
-   - [ ] fix bug w/ pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
-   - [ ] layout
    - [ ] article look-n-feel
-   - [ ] navigation
-   - [ ] parenscript for categories/tags/authors in navigation
    - [ ] db
    - [ ] cache
-   - [ ] css
+   - [ ] navigation
+   - [ ] parenscript for categories/tags/authors in navigation
    - [ ] tests
-   - [ ] utils/config
    - [X] config
    - [X] 'master' in config
    - [X] populate/tmp-init of categories/tags
    - [X] add authors
    - [X] author/category/tag pages
+   - [X] layout
+** bugs
+*** pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
+*** DONE cat/subcat pages (some fn not found)
+    CLOSED: [2012-06-21 Thu 11:15]
+    :CLOCK:
+    CLOCK: [2012-06-21 Thu 11:12]--[2012-06-21 Thu 11:15] =>  0:03
+    :END:
 ** utils
 *** DONE config
     CLOSED: [2012-06-19 Tue 16:35]

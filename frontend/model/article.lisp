@@ -41,15 +41,15 @@
 (defun get-articles-by-cat-slug (cat &optional (article-storage *article-storage*) (category-storage *category-storage*))
   "return articles w/ category 'cat' from 'storage'"
   (conditionally-accumulate #'(lambda (article)
-                                (= (id (get-category-by-name cat 0 category-storage))
+                                (= (id (get-category-by-slug cat 0 category-storage))
                                    (id (cat article))))
                             (get-all-articles article-storage)))
 
 (defun get-articles-by-cat-subcat-slugs (cat subcat &optional (article-storage *article-storage*) (category-storage *category-storage*))
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
-  (let ((cat-id (id (get-category-by-name cat 0 category-storage))))
+  (let ((cat-id (id (get-category-by-slug cat 0 category-storage))))
     (conditionally-accumulate #'(lambda (article)
-                                  (= (id (get-category-by-name subcat cat-id category-storage))
+                                  (= (id (get-category-by-slug subcat cat-id category-storage))
                                      (id (subcat article))))
                               (conditionally-accumulate #'(lambda (article)
                                                             (= cat-id
