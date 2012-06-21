@@ -29,9 +29,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf *home*
       (make-pathname :directory
-                     (pathname-directory
-                      (load-time-value
-                       (or #.*compile-file-pathname* *load-pathname*)))))
+                     (butlast (pathname-directory
+                               (load-time-value
+                                (or #.*compile-file-pathname* *load-pathname*))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

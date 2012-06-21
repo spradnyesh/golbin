@@ -14,26 +14,27 @@
                                      (:file "pagination":depends-on ("package"))
                                      (:file "init" :depends-on ("config"))))
                (:module "frontend"
-                        :components ((:file "package")
-                                     (:module "model"
-                                              :components ((:file "article")
-                                                           (:file "category")
-                                                           (:file "user")
-                                                           (:file "photo")
-                                                           (:file "tag")
-                                                           (:file "view")
-                                                           (:file "misc"))
-                                              :depends-on ("package"))
-                                     (:file "storage" :depends-on ("model"))
-                                     (:file "config" :depends-on ("storage"))
-                                     (:file "tmp-init" :depends-on ("storage"))
-                                     (:module "view"
-                                              :components ((:file "css")
-                                                           (:file "helpers")
-                                                           (:file "template" :depends-on ("css" "helpers"))
-                                                           (:file "views" :depends-on ("template")))
-                                              :depends-on ("model"))
-                                     (:file "routes" :depends-on ("view")))
+                        :components ((:module "src"
+                                              :components ((:file "package")
+                                                           (:module "model"
+                                                                    :components ((:file "article")
+                                                                                 (:file "category")
+                                                                                 (:file "user")
+                                                                                 (:file "photo")
+                                                                                 (:file "tag")
+                                                                                 (:file "view")
+                                                                                 (:file "misc"))
+                                                                    :depends-on ("package"))
+                                                           (:file "storage" :depends-on ("model"))
+                                                           (:file "config" :depends-on ("storage"))
+                                                           (:file "tmp-init" :depends-on ("storage"))
+                                                           (:module "view"
+                                                                    :components ((:file "css")
+                                                                                 (:file "helpers")
+                                                                                 (:file "template" :depends-on ("css" "helpers"))
+                                                                                 (:file "views" :depends-on ("template")))
+                                                                    :depends-on ("model"))
+                                                           (:file "routes" :depends-on ("view")))))
                         :depends-on ("utils"))
                #|(:module
                "boomerang"
