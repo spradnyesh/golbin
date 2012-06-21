@@ -29,47 +29,44 @@
   (length (get-all-articles storage)))
 
 (defun get-article-by-id (id &optional (storage *article-storage*))
-  "return article w/ ID 'id' from 'storage'"
   (find id
         (get-all-articles storage)
         :key #'id))
 
-(defun get-articles-by-tag-name (tag &optional (storage *article-storage*))
-  "return articles w/ tag 'tag' from 'storage'"
-  (declare (ignore tag storage)))
+(defmacro get-articles-by (cond)
+  `(sort (conditionally-accumulate ,cond
+                                   (get-all-articles article-storage))
+         #'>
+         :key #'id))
+
+(defun get-articles-by-author-handle (author &optional (article-storage *article-storage*) (author-storage *author-storage*))
+  (get-articles-by #'(lambda (article)
+                                (= (id (get-author-by-handle author author-storage))
+                                   (id (author article))))))
+
+(defun get-articles-by-tag-slug (slug &optional (article-storage *article-storage*))
+  (get-articles-by #'(lambda (article)
+                                (dolist (tag (tags article))
+                                  (when (equal slug (slug tag))
+                                    (return t))))))
 
 (defun get-articles-by-cat-slug (cat &optional (article-storage *article-storage*) (category-storage *category-storage*))
-  "return articles w/ category 'cat' from 'storage'"
-  (conditionally-accumulate #'(lambda (article)
-                                (= (id (get-category-by-slug cat 0 category-storage))
-                                   (id (cat article))))
-                            (get-all-articles article-storage)))
+  (get-articles-by #'(lambda (article)
+                                 (= (id (get-category-by-slug cat 0 category-storage))
+                                    (id (cat article))))))
 
 (defun get-articles-by-cat-subcat-slugs (cat subcat &optional (article-storage *article-storage*) (category-storage *category-storage*))
   "return articles w/ category='cat' and subcategory='subcat' from 'storage'"
   (let ((cat-id (id (get-category-by-slug cat 0 category-storage))))
-    (conditionally-accumulate #'(lambda (article)
-                                  (= (id (get-category-by-slug subcat cat-id category-storage))
-                                     (id (subcat article))))
-                              (conditionally-accumulate #'(lambda (article)
-                                                            (= cat-id
-                                                               (id (cat article))))
-                                                        (get-all-articles article-storage)))))
-
-(defun get-articles-by-author-handle (author &optional (article-storage *article-storage*) (author-storage *author-storage*))
-  "return articles w/ handle 'author' from 'storage'"
-  (conditionally-accumulate #'(lambda (article)
-                                (= (id (get-author-by-handle author author-storage))
-                                   (id (author article))))
-                            (get-all-articles article-storage)))
-
-(defun get-articles-by-tag-slug (slug &optional (article-storage *article-storage*))
-  "return articles w/ slug 'slug' from 'storage'"
-  (conditionally-accumulate #'(lambda (article)
-                                (dolist (tag (tags article))
-                                  (when (equal slug (slug tag))
-                                    (return t))))
-                            (get-all-articles article-storage)))
+    (sort (conditionally-accumulate #'(lambda (article)
+                                        (= (id (get-category-by-slug subcat cat-id category-storage))
+                                           (id (subcat article))))
+                                    (conditionally-accumulate #'(lambda (article) ; not putting the get-articles-by macro here, since i don't want the unnecessary sorting (it'll be done anyways at the end)
+                                                         (= cat-id
+                                                            (id (cat article))))
+                                                              (get-all-articles article-storage)))
+          #'timestamp>
+          :key #'date)))
 
 (defun add-article (article &optional (storage *article-storage*))
   "add article 'article' to 'storage'"
