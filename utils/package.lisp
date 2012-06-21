@@ -1,5 +1,6 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence)
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot)
+  (:shadowing-import-from :restas :redirect :acceptor :start)
   (:export
    :*home*
    ;; config

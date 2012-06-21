@@ -8,9 +8,7 @@
      (:html
       (:head
        (:title (str (format nil "~A - ~A" *site-name* ,title)))
-       (:link :rel "stylesheet" :type "text/css" :href "http://yui.yahooapis.com/3.5.1/build/cssreset/cssreset-min.css")
-       (:link :rel "stylesheet" :type "text/css" :href "http://yui.yahooapis.com/3.5.1/build/cssfonts/cssfonts-min.css")
-       (:link :rel "stylesheet" :type "text/css" :href "http://yui.yahooapis.com/3.5.1/build/cssgrids/grids-min.css")
+       (:link :rel "stylesheet" :type "text/css" :href "/static/yui3-reset-fonts-grids-min.css")
        (:style :type "text/css"
                (str (get-css))))
       (:body

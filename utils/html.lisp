@@ -8,6 +8,13 @@
 ;;; prologue
 (setf *prologue* "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">")
 
+#|(setf *dispatch-table*
+      (nconc
+       (mapcar (lambda (args)
+                 (apply 'create-folder-dispatcher-and-handler args))
+               `(("/static/" ,*static-path*)
+                 ("/uploads/" ,*uploads-path*)))))|#
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; macros for html
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

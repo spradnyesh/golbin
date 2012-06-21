@@ -27,8 +27,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *static-path* nil)
-(defvar *nav-cat-json* nil)
+(setf *home*
+      (make-pathname :directory
+                     (pathname-directory
+                      (load-time-value
+                       (or #.*compile-file-pathname* *load-pathname*)))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; storages

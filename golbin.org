@@ -1,6 +1,7 @@
 * tasks
 ** next
    - [ ] article look-n-feel
+   - [ ] static files
    - [ ] db
    - [ ] cache
    - [ ] navigation
@@ -47,6 +48,15 @@
     - cache BE calls (especially DB reads)
     - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
 ** TODO frontend
+*** misc
+**** DONE static files
+     CLOSED: [2012-06-21 Thu 15:13]
+     :CLOCK:
+     CLOCK: [2012-06-21 Thu 14:27]--[2012-06-21 Thu 15:00] =>  0:33
+     CLOCK: [2012-06-21 Thu 13:50]--[2012-06-21 Thu 14:10] =>  0:20
+     :END:
+**** TODO db
+**** TODO cache
 *** TODO views
     :CLOCK:
     CLOCK: [2012-06-20 Wed 18:50]--[2012-06-20 Wed 20:11] =>  1:21

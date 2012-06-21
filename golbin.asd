@@ -6,13 +6,13 @@
 (defsystem golbin
   :components ((:module "utils"
                         :components ((:file "package")
-                                     (:file "config" :depends-on ("package"))
+                                     (:file "string":depends-on ("package"))
+                                     (:file "config" :depends-on ("string"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html":depends-on ("package"))
-                                     (:file "string":depends-on ("package"))
                                      (:file "helpers":depends-on ("package"))
                                      (:file "pagination":depends-on ("package"))
-                                     (:file "init" :depends-on ("package" "config"))))
+                                     (:file "init" :depends-on ("config"))))
                (:module "frontend"
                         :components ((:file "package")
                                      (:module "model"
@@ -44,4 +44,4 @@
                (:file "routes" :depends-on ("package"))
                (:file "models" :depends-on ("package"))
                (:file "views" :depends-on ("package"))))|#)
-  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite))
+  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher))
