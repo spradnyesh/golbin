@@ -9,7 +9,7 @@
       `(("master"
          ("restas" ("package" :hawksbill.golbin.frontend)
                    ("port" 8000))
-         ("categories" (("Business"
+         ("categorys" (("Business"
                          "Companies"
                          "Economy"
                          "Industry"
@@ -71,5 +71,5 @@
 (defun init ()
   (init-config)
   (db-connect)
-  (init-storage)
-  (add-cat/subcat *config-storage*))
+  #|(init-storage)|#
+  #|(add-cat/subcat *config-storage*)|#)
