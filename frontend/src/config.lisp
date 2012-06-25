@@ -60,16 +60,16 @@
                          "Personal Technology"
                          "Video Games"))))
         ("envt:dev"
-         ("db" ("type" "kc")
+         ("db" ("type" "prevalence")
                ("path" ,(format nil "/~a"
                                 (join-string-list-with-delim
                                  "/"
                                  (rest (append (pathname-directory *home*)
-                                               '("data/frontend.dev.kch"))))))))
+                                               '("data/dev/"))))))))
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))
 
 (defun init ()
+  (init-config)
   (db-connect)
   (init-storage)
-  (init-config-tree *config*)
-  (add-cat/subcat *config-storage* *category-storage*))
+  (add-cat/subcat *config-storage*))

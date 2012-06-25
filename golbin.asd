@@ -12,7 +12,8 @@
                                      (:file "html":depends-on ("package"))
                                      (:file "helpers":depends-on ("package"))
                                      (:file "pagination":depends-on ("package"))
-                                     (:file "init" :depends-on ("config"))))
+                                     (:file "init" :depends-on ("config"))
+                                     (:file "db" :depends-on ("config"))))
                (:module "frontend"
                         :components ((:module "src"
                                               :components ((:file "package")
@@ -45,4 +46,4 @@
                (:file "routes" :depends-on ("package"))
                (:file "models" :depends-on ("package"))
                (:file "views" :depends-on ("package"))))|#)
-  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-kyoto-cabinet))
+  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence))

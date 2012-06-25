@@ -53,25 +53,24 @@
   (get-dimensions-string (reduce-dimensions-map (get-dimensions-map dimensions-string))))
 
 (defun get-config-helper (name dimensions-map config-storage)
-  (when dimensions-map
-    (let ((config-node (if dimensions-map
-                           (find (get-dimensions-string dimensions-map)
-                                 (configs config-storage)
-                                 :key #'dimension
-                                 :test #'string-equal)
-                           (find "master"
-                                 (configs config-storage)
-                                 :key #'dimension
-                                 :test #'string-equal))))
-      (if config-node
-          (let ((value (find name
-                             (value config-node)
-                             :key #'name
-                             :test #'string-equal)))
-            (if value
-                (value value)
-                (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
-          (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))))
+  (let ((config-node (if dimensions-map
+                         (find (get-dimensions-string dimensions-map)
+                               (configs config-storage)
+                               :key #'dimension
+                               :test #'string-equal)
+                         (find "master"
+                               (configs config-storage)
+                               :key #'dimension
+                               :test #'string-equal))))
+    (if config-node
+        (let ((value (find name
+                           (value config-node)
+                           :key #'name
+                           :test #'string-equal)))
+          (if value
+              (value value)
+              (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
+        (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions

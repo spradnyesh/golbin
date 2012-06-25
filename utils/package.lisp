@@ -1,6 +1,6 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :kyoto-cabinet)
-  (:shadowing-import-from :restas :redirect :acceptor :start)
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence)
+  (:shadow :redirect :acceptor :start :mime-type :size)
   (:export
    :*home*
    :*db*
@@ -20,6 +20,8 @@
    ;; init
    :hu-start
    :hu-stop
+   ;; db
+   :get-storage
    :db-connect
    :db-disconnect
    ;; memcache
@@ -42,7 +44,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init
 (defvar *home* "")
-(defparameter *db* (make-instance 'kc-dbm))
+(defparameter *db* nil)
 ;; pagination
 (defvar *pagination-limit* 10)
 ;; config

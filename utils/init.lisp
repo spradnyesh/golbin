@@ -1,10 +1,5 @@
 (in-package :hawksbill.utils)
 
-(defun db-connect ()
-  (dbm-open *db* (get-config "db.path") :create :write))
-(defun db-disconnect ()
-  (dbm-close *db*))
-
 #|(defun memcache-connect ()
   (setf *use-pool* ((get-config "memcache.use-pool"))
   (setf *memcache*
@@ -32,8 +27,8 @@
 (defun hu-start ()
   (db-connect)
   #|(rb-init)|# ; rb-init should actually be done for all intls and not just once, so disabling it for now
-  (memcache-connect)
-  (start (get-config "restas.package" "restas.port")))
+  #|(memcache-connect)|#
+  #|(start (get-config "restas.package" "restas.port"))|#)
 (defun hu-stop ()
   (format t "Shutting down")
   (db-disconnect)

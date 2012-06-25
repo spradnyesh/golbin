@@ -1,7 +1,6 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence :css-lite :kyoto-cabinet)
-  (:shadowing-import-from :json :prototype)
-  (:shadow :%)
+  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence :css-lite :cl-prevalence)
+  (:shadow :% :prototype :size)
   (:export :route-home
            :route-home-page
            :route-cat
@@ -27,7 +26,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setf *home*
+(setf hawksbill.utils:*home*
       (make-pathname :directory
                      (butlast (pathname-directory
                                (load-time-value
@@ -37,14 +36,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; storages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *db-storage* nil)
+(defvar *config* nil)
 (defvar *article-storage* nil)
-(defvar *view-storage* nil)
-(defvar *count-storage* nil)
-(defvar *tag-storage* nil)
-(defvar *categories* nil)
 (defvar *author-storage* nil)
 (defvar *category-storage* nil)
+(defvar *tag-storage* nil)
+#|(defvar *view-storage* nil)|#
+#|(defvar *count-storage* nil)|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config

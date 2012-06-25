@@ -1,10 +1,15 @@
 (in-package :hawksbill.golbin.frontend)
 
+(defun init-config ()
+  (setf *config-storage* (make-instance 'config-storage))
+  (init-config-tree *config*))
+
+(defmacro init-cl-prevalence (system class)
+  `(setf (get-root-object *db* ,system) (make-instance ,class)))
 (defun init-storage ()
-  (dbm-put *db* "article" (make-instance 'article-storage) :mode :keep)
-  (dbm-put *db* "category" (make-instance 'category-storage) :mode :keep)
-  (dbm-put *db* "view" (make-instance 'views-storage) :mode :keep)
-  (dbm-put *db* "count" (make-instance 'page-count-storage) :mode :keep)
-  (dbm-put *db* "tag" (make-instance 'tag-storage) :mode :keep)
-  (dbm-put *db* "author" (make-instance 'author-storage) :mode :keep)
-  (dbm-put *db* "config" (make-instance 'config-storage) :mode :keep))
+  (init-cl-prevalence :articles 'article-storage)
+  (init-cl-prevalence :authors 'author-storage)
+  (init-cl-prevalence :categories 'category-storage)
+  (init-cl-prevalence :tags 'tag-storage)
+  #|(setf *view-storage* (make-instance 'views-storage))|#
+  #|(setf *count-storage* (make-instance 'page-count-storage))|#)

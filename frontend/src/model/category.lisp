@@ -11,32 +11,35 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Categories"))
 
-(defun add-category (category &optional (storage *category-storage*))
-  "add category 'category' to 'storage'"
-  ;; set some params
-  (setf (id category)
-        (incf (last-id storage)))
-  (setf (slug category)
-        (slugify (name category)))
+(defun insert-category (system category)
+  (let ((categories (get-root-object system :categories)))
+    (push category (categories categories))))
 
-  ;; add to store
-  (push category
-        (categories storage))
-  category)
+(defun add-category (category)
+  (let ((storage (get-storage :categories)))
+    "add category 'category' to 'storage'"
+    ;; set some params
+    (setf (id category)
+          (incf (last-id storage)))
+    (setf (slug category)
+          (slugify (name category)))
 
-(defun add-cat/subcat (&optional (config-storage *config-storage*) (category-storage *category-storage*))
+    ;; add to store
+    (execute *db* (make-transaction 'insert-category category))
+
+    category))
+
+(defun add-cat/subcat (&optional (config-storage *config-storage*))
   (dolist (cs (get-config "categories" "master" config-storage))
     (let* ((cat-name (first cs))
            (subcats (rest cs))
            (cat (add-category (make-instance 'category
                                              :name cat-name
-                                             :parent 0)
-                              category-storage)))
+                                             :parent 0))))
       (dolist (sc-name subcats)
         (add-category (make-instance 'category
                                      :name sc-name
-                                     :parent (id cat))
-                      category-storage)))))
+                                     :parent (id cat)))))))
 
 (defun get-all-categories (&optional (storage *category-storage*))
   (categories storage))

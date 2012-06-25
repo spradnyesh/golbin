@@ -57,21 +57,21 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
              (str (ps ,@body))
              (format nil "~%//]]>~%"))))
 
-(defun link-css (path)
+#|(defun link-css (path)
   (when (and (equal *environment* "prod")
              (not (search "yui" path)))
     (setf path (regex-replace ".css$" path "-min.css")))
   (with-html
     (:link :rel "stylesheet"
            :type "text/css"
-           :href path)))
-(defun link-js (path)
+           :href path)))|#
+#|(defun link-js (path)
   (when (and (equal *environment* "prod")
              (not (search "yui" path)))
     (setf path (regex-replace ".js$" path "-min.js")))
   (with-html
     (:script :type "text/javascript"
-             :src path)))
+             :src path)))|#
 (defun get-css (title)
   (declare (ignore title))
   (link-css "/static/yui/yui.css")
@@ -89,9 +89,9 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun logout ()
+#|(defun logout ()
   (remove-session *session*)
-  (redirect "/"))
+  (redirect "/"))|#
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
