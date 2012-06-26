@@ -28,7 +28,7 @@
                                                                     :depends-on ("package"))
                                                            (:file "storage" :depends-on ("model"))
                                                            (:file "config" :depends-on ("storage"))
-                                                           (:file "tmp-init" :depends-on ("storage"))
+                                                           (:file "init" :depends-on ("storage"))
                                                            (:module "view"
                                                                     :components ((:file "css")
                                                                                  (:file "helpers")

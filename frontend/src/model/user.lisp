@@ -1,5 +1,8 @@
 (in-package :hawksbill.golbin.frontend)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; classes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass user ()
   ((id :initarg :id :initform nil :accessor id)
    (username :initarg :username :initform nil :accessor username)
@@ -9,6 +12,7 @@
    (gender :initarg :gender :initform nil :accessor gender)
    (age :initarg :age :initform nil :accessor age)
    (email :initarg :email :initform nil :accessor email)))
+
 (defclass author (user)
   ((address-1 :initarg :address1 :initform nil :accessor address-1)
    (address-2 :initarg :address2 :initform nil :accessor address-2)
@@ -26,6 +30,7 @@
    (bank-ifsc :initarg :ifsc :initform nil :accessor bank-ifsc)
    (author-type :initarg :author-type :initform nil :accessor author-type)
    (education :initarg :education :initform nil :accessor education)))
+
 (defclass visitor (user)
   ((preference :initarg :preference :initform nil :accessor preference)))
 
@@ -40,6 +45,9 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Authors"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun insert-author (system author)
   (let ((authors (get-root-object system :authors)))
     (push author (authors authors))))
@@ -56,6 +64,9 @@
 
     author))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; getters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-all-authors ()
   (let ((storage (get-storage :authors)))
     (authors storage)))
@@ -80,3 +91,23 @@
 (defun get-current-author-id ()
   "TODO: return the id of the currently logged in author"
   (id (get-random-author)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for tmp-init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun add-authors ()
+  (let ((authors '("Kristen Stewart"
+                   "Cameron Diaz"
+                   "Penelope Cruz"
+                   "Charlize Theron"
+                   "Sandra Bullock"
+                   "Angelina Jolie"
+                   "Floyd Mayweather"
+                   "Manny Pacquiao"
+                   "Tiger Woods"
+                   "LeBron James"
+                   "Roger Federer")))
+        (dolist (author-name authors)
+          (add-author (make-instance 'author
+                                     :name author-name
+                                     :handle (slugify author-name))))))

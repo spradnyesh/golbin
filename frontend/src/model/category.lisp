@@ -1,5 +1,8 @@
 (in-package :hawksbill.golbin.frontend)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; classes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass category ()
   ((id :initarg :id :initform nil :accessor id)
    (name :initarg :name :initform nil :accessor name)
@@ -11,6 +14,9 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Categories"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun insert-category (system category)
   (let ((categorys (get-root-object system :categorys)))
     (push category (categorys categorys))))
@@ -40,6 +46,9 @@
                                      :name sc-name
                                      :parent (id cat)))))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; getters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-all-categorys ()
   (let ((storage (get-storage :categorys)))
     (categorys storage)))
@@ -72,3 +81,14 @@
       (push (list r (get-subcategorys (id r)))
             rslt))
     (nreverse rslt)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for tmp-init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-random-cat-subcat ()
+  (let* ((all-categories (get-root-categorys))
+         (random-category (nth (random (length all-categories)) all-categories))
+         (all-subcategories (get-subcategorys (id random-category))))
+    (if all-subcategories
+        (values random-category (nth (random (length all-subcategories)) all-subcategories))
+        (get-random-cat-subcat))))

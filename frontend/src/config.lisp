@@ -1,8 +1,5 @@
 (in-package :hawksbill.golbin.frontend)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; dimensional configs
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf *dimensions* '("envt"))
 (defvar *valid-envts* '("dev" "prod"))
 (setf *config*
@@ -67,9 +64,3 @@
                                  (rest (append (pathname-directory *home*)
                                                '("data/dev/"))))))))
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))
-
-(defun init ()
-  (init-config)
-  (db-connect)
-  (init-storage)
-  (add-cat/subcat *config-storage*))

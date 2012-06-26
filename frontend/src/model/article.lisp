@@ -1,5 +1,8 @@
 (in-package :hawksbill.golbin.frontend)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; classes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass article ()
   ((id :initarg :id :initform nil :accessor id)
    (title :initarg :title :initform nil :accessor title)
@@ -20,6 +23,37 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Articles"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun insert-article (system article)
+  (let ((articles (get-root-object system :articles)))
+    (push article (articles articles))))
+
+(defun add-article (article)
+  (let ((storage (get-storage :categorys)))
+    ;; set some article params
+    (setf (id article)
+          (incf (last-id storage)))
+    (setf (date article)
+          (now))
+    (setf (slug article)
+          (slugify (title article)))
+    (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
+      (setf (author article)
+            (make-instance 'mini-author
+                           :id id
+                           :name name
+                           :handle handle)))
+
+    ;; save article into storage
+    (execute *db* (make-transaction 'insert-article article))
+
+    article))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; getters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-all-articles ()
   (let ((storage (get-storage :articles)))
     (articles storage)))
@@ -67,33 +101,25 @@
         #'>
         :key #'id))
 
-(defun insert-article (system article)
-  (let ((articles (get-root-object system :articles)))
-    (push article (articles articles))))
-
-(defun add-article (article)
-  (let ((storage (get-storage :categorys)))
-    ;; set some article params
-    (setf (id article)
-          (incf (last-id storage)))
-    (setf (date article)
-          (now))
-    (setf (slug article)
-          (slugify (title article)))
-    (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
-      (setf (author article)
-            (make-instance 'mini-author
-                           :id id
-                           :name name
-                           :handle handle)))
-
-    ;; save article into storage
-    (execute *db* (make-transaction 'insert-article article))
-
-    article))
-
 (defun latest-articles (category)
   (declare (ignore category)))
 
 (defun most-popular-articles (category)
   (declare (ignore category)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for tmp-init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun add-articles ()
+  "add a new articles to the db"
+  (dotimes (i 1000)
+    (multiple-value-bind (cat subcat) (get-random-cat-subcat)
+      (add-article (make-instance 'article
+                                  :title (format nil "title  of $ % ^ * the ~Ath article" (1+ i))
+                                  :summary (format nil "~A: There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain... --http://lipsum.com/" (1+ i))
+                                  :tags (list (get-random-tag) (get-random-tag))
+                                  :body (format nil "~A: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." (1+ i))
+                                  :cat cat
+                                  :subcat subcat)))))
