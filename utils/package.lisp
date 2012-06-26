@@ -22,6 +22,7 @@
    :hu-stop
    ;; db
    :get-storage
+   :init-db-system
    :db-connect
    :db-disconnect
    ;; memcache

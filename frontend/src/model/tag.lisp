@@ -14,10 +14,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun insert-tag (system tag)
-  (let ((tags (get-root-object system :tags)))
-    (push tag (tags tags))))
-
 (defun add-tag (tag)
   (setf (slug tag)
         (slugify (name tag)))
@@ -32,10 +28,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-all-tags ()
-  (let ((storage (get-storage :tags)))
-    (tags storage)))
-
 (defun get-tag-by-slug (slug)
   (find slug
         (get-all-tags)

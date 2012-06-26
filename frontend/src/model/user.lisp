@@ -48,10 +48,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun insert-author (system author)
-  (let ((authors (get-root-object system :authors)))
-    (push author (authors authors))))
-
 (defun add-author (author)
   (let ((storage (get-storage :authors)))
     (setf (id author)
@@ -67,10 +63,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-all-authors ()
-  (let ((storage (get-storage :authors)))
-    (authors storage)))
-
 (defun get-mini-author-details-from-id (id)
   (let ((author (find id (get-all-authors)
                       :key #'id)))

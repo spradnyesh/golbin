@@ -17,10 +17,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun insert-category (system category)
-  (let ((categorys (get-root-object system :categorys)))
-    (push category (categorys categorys))))
-
 (defun add-category (category)
   (let ((storage (get-storage :categorys)))
     ;; set some params
@@ -34,6 +30,9 @@
 
     category))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-cat/subcat (&optional (config-storage *config-storage*))
   (dolist (cs (get-config "categorys" "master" config-storage))
     (let* ((cat-name (first cs))
@@ -49,10 +48,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-all-categorys ()
-  (let ((storage (get-storage :categorys)))
-    (categorys storage)))
-
 (defun get-category-by-id (id)
   (find id
         (get-all-categorys)

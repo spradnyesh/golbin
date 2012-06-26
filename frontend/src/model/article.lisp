@@ -26,12 +26,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun insert-article (system article)
-  (let ((articles (get-root-object system :articles)))
-    (push article (articles articles))))
-
 (defun add-article (article)
-  (let ((storage (get-storage :categorys)))
+  (let ((storage (get-storage :articles)))
     ;; set some article params
     (setf (id article)
           (incf (last-id storage)))
@@ -54,10 +50,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-all-articles ()
-  (let ((storage (get-storage :articles)))
-    (articles storage)))
-
 (defun count-articles ()
   (length (get-all-articles)))
 
