@@ -1,21 +1,8 @@
 * tasks
-** next
-   - [ ] parenscript for categories/tags/authors in navigation
-   - [ ] article, navigation look-n-feel
-   - [ ] populate *current-dimensions-string* for every request and make it thread-safe
-   - [ ] photos
-   - [ ] cache
-   - [ ] tests
-   - [ ] header, footer look-n-feel
-   - [X] config
-   - [X] 'master' in config
-   - [X] populate/tmp-init of categories/tags
-   - [X] add authors
-   - [X] author/category/tag pages
-   - [X] layout
-   - [X] static files
-   - [X] db
 ** bugs
+*** TODO db
+    - [ ] id != title when add-articles
+    - [ ] last-id of article not incrementing when add-articles
 *** DONE pagination (http://localhost:8000/t/scrambled/3/ should not show page#s > 3)
     CLOSED: [2012-06-21 Thu 11:52]
     :CLOCK:
@@ -26,6 +13,31 @@
     :CLOCK:
     CLOCK: [2012-06-21 Thu 11:12]--[2012-06-21 Thu 11:15] =>  0:03
     :END:
+** next
+   - [ ] article, navigation look-n-feel
+   - [ ] parenscript for categories/tags/authors in navigation
+   - [ ] photos
+   - [ ] populate *current-dimensions-string* for every request and make it thread-safe
+   - [ ] cache
+   - [ ] tests
+   - [ ] header, footer look-n-feel
+   - [ ] logo, favicon
+   - [ ] seo
+     - [ ] meta-keywords (tags + cat/subcat)
+   - [ ] performance
+     - [ ] http caching headers
+   - [ ] security
+     - [ ] escape input/editorial data
+     - [ ] escape printing user-inputted data
+       - search for 'alert ("hi");' should not show alert
+   - [X] config
+   - [X] 'master' in config
+   - [X] populate/tmp-init of categories/tags
+   - [X] add authors
+   - [X] author/category/tag pages
+   - [X] layout
+   - [X] static files
+   - [X] db
 ** TODO frontend
 *** misc
 **** DONE static files
@@ -34,9 +46,10 @@
      CLOCK: [2012-06-21 Thu 14:27]--[2012-06-21 Thu 15:00] =>  0:33
      CLOCK: [2012-06-21 Thu 13:50]--[2012-06-21 Thu 14:10] =>  0:20
      :END:
-**** DONE db
-     CLOSED: [2012-06-26 Tue 18:29]
+**** UNDERGOING db
      :CLOCK:
+     CLOCK: [2012-06-26 Tue 19:30]
+     CLOCK: [2012-06-26 Tue 17:30]--[2012-06-26 Tue 19:02] =>  1:32
      CLOCK: [2012-06-26 Tue 12:19]--[2012-06-26 Tue 12:35] =>  0:16
      CLOCK: [2012-06-21 Thu 19:00]--[2012-06-21 Thu 19:51] =>  0:51
      CLOCK: [2012-06-21 Thu 15:00]--[2012-06-21 Thu 17:40] =>  2:40

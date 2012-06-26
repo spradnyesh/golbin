@@ -23,6 +23,7 @@
    ;; db
    :get-storage
    :init-db-system
+   :get-object-by
    :db-connect
    :db-disconnect
    ;; memcache

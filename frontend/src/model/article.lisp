@@ -51,10 +51,7 @@
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro get-articles-by (cond)
-  `(sort (conditionally-accumulate ,cond
-                                   (get-all-articles))
-         #'>
-         :key #'id))
+  `(get-object-by ,cond (get-all-articles)))
 
 (defun get-articles-by-author (author)
   (get-articles-by #'(lambda (article)
