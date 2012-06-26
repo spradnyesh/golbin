@@ -55,21 +55,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun nav-categories-markup ()
   (with-html
-    (dolist (cat-node (get-category-tree *category-storage*))
+    (dolist (cat-node (get-category-tree))
       (let* ((cat (first cat-node))
              (subcat-node (second cat-node)))
         (htm
          (:li
-          (:a :href (genurl 'route-cat
-                            :cat (slug cat))
+          (:a :href "abc" #|(genurl 'route-cat
+                            :cat (slug cat))|#
               (str (name cat)))
           (:ul
            (dolist (subcat subcat-node)
              (htm
               (:li
-               (:a :href (genurl 'route-cat-subcat
+               (:a :href "def"#|(genurl 'route-cat-subcat
                                  :cat (slug cat)
-                                 :subcat (slug subcat))
+                                 :subcat (slug subcat))|#
                    (str (name subcat)))))))))))))
 
 (defmacro dolist-li-a (list route value-fn &rest route-params)
@@ -83,16 +83,16 @@
 
              (str (,value-fn l))))))))
 (defun nav-tags-markup ()
-  (dolist-li-a (get-all-tags *tag-storage*) 'route-tag name :tag (slug l)))
+  (dolist-li-a (get-all-tags) 'route-tag name :tag (slug l)))
 
 (defun nav-authors-markup ()
-  (dolist-li-a (get-all-authors *author-storage*) 'route-author name :author (handle l)))
+  (dolist-li-a (get-all-authors) 'route-author name :author (handle l)))
 
 (defun nav-tags ()
-  (nav- (get-all-tags *tag-storage*) "tag" route-tag :tag slug))
+  (nav- (get-all-tags) "tag" route-tag :tag slug))
 
 (defun nav-authors ()
-  (nav- (get-all-authors *author-storage*) "author" route-author :author handle))
+  (nav- (get-all-authors) "author" route-author :author handle))
 
 (defun get-article-tags-markup (article)
   (with-html
