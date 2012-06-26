@@ -48,11 +48,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-category-by-id (id)
-  (find id
-        (get-all-categorys)
-        :key 'id))
-
 (defun get-category-by-slug (slug &optional (parent-id 0))
   (find slug
         (if (zerop parent-id)

@@ -50,14 +50,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun count-articles ()
-  (length (get-all-articles)))
-
-(defun get-article-by-id (id)
-  (find id
-        (get-all-articles)
-        :key #'id))
-
 (defmacro get-articles-by (cond)
   `(sort (conditionally-accumulate ,cond
                                    (get-all-articles))
