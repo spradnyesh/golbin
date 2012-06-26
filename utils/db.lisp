@@ -23,6 +23,11 @@
                 (let ((storage (get-root-object system ,system)))
                   (push object (,(intern (string-upcase (format nil "~as" `,name))) storage))))
 
+              ;; incf-<name>-last-id (system)
+              (defun ,(intern (string-upcase (format nil "incf-~a-last-id" `,name))) (system)
+                (let ((storage (get-root-object system ,system)))
+                  (incf (last-id storage))))
+
               ;; get-<name>-by-id (id)
               (defun ,(intern (string-upcase (format nil "get-~a-by-id" `,name))) (id)
                 (find id

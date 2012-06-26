@@ -27,25 +27,25 @@
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-article (article)
-  (let ((storage (get-storage :articles)))
-    ;; set some article params
-    (setf (id article)
-          (incf (last-id storage)))
-    (setf (date article)
-          (now))
-    (setf (slug article)
-          (slugify (title article)))
-    (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
-      (setf (author article)
-            (make-instance 'mini-author
-                           :id id
-                           :name name
-                           :handle handle)))
+  ;; set some article params
+  (setf (id article)
+        (execute *db* (make-transaction 'incf-article-last-id)))
+  (setf (date article)
+        (now))
+  (setf (slug article)
+        (slugify (title article)))
+  (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
+    (setf (author article)
+          (make-instance 'mini-author
+                         :id id
+                         :name name
+                         :handle handle)))
 
     ;; save article into storage
-    (execute *db* (make-transaction 'insert-article article))
 
-    article))
+  (execute *db* (make-transaction 'insert-article article))
+
+  article)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
