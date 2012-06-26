@@ -8,15 +8,26 @@
   `(let ((db-type (get-config "db.type")))
      (cond ((equal db-type "prevalence")
             (progn
+              ;; make-<name>s-root (system)
               (defun ,(intern (string-upcase (format nil "make-~as-root" `,name))) (system)
                 (setf (get-root-object system ,system)
                       (make-instance ',(intern (string-upcase (format nil "~a-storage" `,name))))))
+              ;; get-all-<name>s ()
               (defun ,(intern (string-upcase (format nil "get-all-~as" `,name))) ()
                 (let ((storage (get-storage ,system)))
                   (,(intern (string-upcase (format nil "~as" `,name))) storage)))
+              ;; insert-<name> (system object)
               (defun ,(intern (string-upcase (format nil "insert-~a" `,name))) (system object)
                 (let ((storage (get-root-object system ,system)))
-                  (push object (,(intern (string-upcase (format nil "~as" `,name))) storage)))))))))
+                  (push object (,(intern (string-upcase (format nil "~as" `,name))) storage))))
+              ;; add-<name>-helper (object &key prefix suffix):- ; internally calls insert-<name>
+              #|(defmacro ,(intern (string-upcase (format nil "add-~a-helper" `,name)))
+                  ((object ,(intern (string-upcase (format nil "~a" `,name)))) add-system &key prefix suffix)
+                `(let ((storage (get-storage ,add-system)))
+                   ,@prefix
+                   (execute *db* (make-transaction ',(intern (string-upcase (format nil "insert-~a" `,name))) object))
+                   ,@suffix
+                   object))|#)))))
 
 (defun db-connect ()
   (let ((db-type (get-config "db.type")))
