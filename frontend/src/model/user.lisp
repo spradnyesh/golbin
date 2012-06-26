@@ -40,31 +40,41 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Authors"))
 
-(defun add-author (author &optional (storage *author-storage*))
-  (setf (id author)
-        (incf (last-id storage)))
-  (push author (authors storage))
-  (setf (authors storage) (sort (authors storage) #'string< :key #'name))
-  author)
+(defun insert-author (system author)
+  (let ((authors (get-root-object system :authors)))
+    (push author (authors authors))))
 
-(defun get-all-authors (&optional (storage *author-storage*))
-  (authors storage))
+(defun add-author (author)
+  (let ((storage (get-storage :authors)))
+    (setf (id author)
+          (incf (last-id storage)))
+    ;; save author into storage
+    (execute *db* (make-transaction 'insert-author author))
 
-(defun get-mini-author-details-from-id (id &optional (storage *author-storage*))
-  (let ((author (find id (get-all-authors storage)
+    ;; TODO: sort authors in storage
+    #|(setf (authors storage) (sort (authors storage) #'string< :key #'name))|#
+
+    author))
+
+(defun get-all-authors ()
+  (let ((storage (get-storage :authors)))
+    (authors storage)))
+
+(defun get-mini-author-details-from-id (id)
+  (let ((author (find id (get-all-authors)
                       :key #'id)))
     (values (id author)
             (name author)
             (handle author))))
 
-(defun get-author-by-handle (handle &optional (storage *author-storage*))
+(defun get-author-by-handle (handle)
   (find handle
-        (get-all-authors storage)
+        (get-all-authors)
         :key #'handle
         :test #'string-equal))
 
-(defun get-random-author (&optional (storage *author-storage*))
-  (let ((all-authors (get-all-authors storage)))
+(defun get-random-author ()
+  (let ((all-authors (get-all-authors)))
     (nth (random (length all-authors)) all-authors)))
 
 (defun get-current-author-id ()

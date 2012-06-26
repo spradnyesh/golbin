@@ -20,42 +20,41 @@
    (last-id :initform 0 :accessor last-id))
   (:documentation "Object of this class will act as the storage for Articles"))
 
-(defun get-all-articles (&optional (storage *article-storage*))
-  "return all articles"
-  (articles storage))
+(defun get-all-articles ()
+  (let ((storage (get-storage :articles)))
+    (articles storage)))
 
-(defun count-articles (&optional (storage *article-storage*))
-  "count the number of articles in 'storage'"
-  (length (get-all-articles storage)))
+(defun count-articles ()
+  (length (get-all-articles)))
 
-(defun get-article-by-id (id &optional (storage *article-storage*))
+(defun get-article-by-id (id)
   (find id
-        (get-all-articles storage)
+        (get-all-articles)
         :key #'id))
 
 (defmacro get-articles-by (cond)
   `(sort (conditionally-accumulate ,cond
-                                   (get-all-articles article-storage))
+                                   (get-all-articles))
          #'>
          :key #'id))
 
-(defun get-articles-by-author (author &optional (article-storage *article-storage*))
+(defun get-articles-by-author (author)
   (get-articles-by #'(lambda (article)
                                 (= (id author)
                                    (id (author article))))))
 
-(defun get-articles-by-tag-slug (slug &optional (article-storage *article-storage*))
+(defun get-articles-by-tag-slug (slug)
   (get-articles-by #'(lambda (article)
                                 (dolist (tag (tags article))
                                   (when (equal slug (slug tag))
                                     (return t))))))
 
-(defun get-articles-by-cat (cat &optional (article-storage *article-storage*))
+(defun get-articles-by-cat (cat)
   (get-articles-by #'(lambda (article)
                                  (= (id cat)
                                     (id (cat article))))))
 
-(defun get-articles-by-cat-subcat (cat subcat &optional (article-storage *article-storage*))
+(defun get-articles-by-cat-subcat (cat subcat)
   (sort (conditionally-accumulate
          #'(lambda (article)
              (= (id subcat)
@@ -64,30 +63,34 @@
           #'(lambda (article)
               (= (id cat)
                  (id (cat article))))
-          (get-all-articles article-storage)))
+          (get-all-articles)))
         #'>
         :key #'id))
 
-(defun add-article (article &optional (storage *article-storage*))
-  "add article 'article' to 'storage'"
-  ;; set some article params
-  (setf (id article)
-        (incf (last-id storage)))
-  (setf (date article)
-        (now))
-  (setf (slug article)
-        (slugify (title article)))
-  (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
-    (setf (author article)
-          (make-instance 'mini-author
-                         :id id
-                         :name name
-                         :handle handle)))
+(defun insert-article (system article)
+  (let ((articles (get-root-object system :articles)))
+    (push article (articles articles))))
 
-  ;; save article into storage
-  (push article
-        (articles storage))
-  article)
+(defun add-article (article)
+  (let ((storage (get-storage :categorys)))
+    ;; set some article params
+    (setf (id article)
+          (incf (last-id storage)))
+    (setf (date article)
+          (now))
+    (setf (slug article)
+          (slugify (title article)))
+    (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
+      (setf (author article)
+            (make-instance 'mini-author
+                           :id id
+                           :name name
+                           :handle handle)))
+
+    ;; save article into storage
+    (execute *db* (make-transaction 'insert-article article))
+
+    article))
 
 (defun latest-articles (category)
   (declare (ignore category)))

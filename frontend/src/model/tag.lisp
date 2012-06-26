@@ -8,18 +8,27 @@
   ((tags :initform nil :accessor tags))
   (:documentation "Object of this class will act as the storage for Tags"))
 
-(defun add-tag (tag &optional (storage *tag-storage*))
+(defun insert-tag (system tag)
+  (let ((tags (get-root-object system :tags)))
+    (push tag (tags tags))))
+
+(defun add-tag (tag)
   (setf (slug tag)
         (slugify (name tag)))
-  (push tag (tags storage))
-  (setf (tags storage) (sort (tags storage) #'string< :key #'name))
+    ;; save tag into storage
+
+  (execute *db* (make-transaction 'insert-tag tag))
+
+    ;; TODO: sort tags in storage
+    #|(setf (tags storage) (sort (tags storage) #'string< :key #'name))|#
   tag)
 
-(defun get-all-tags (&optional (storage *tag-storage*))
-  (tags storage))
+(defun get-all-tags ()
+  (let ((storage (get-storage :tags)))
+    (tags storage)))
 
-(defun get-tag-by-slug (slug &optional (storage *tag-storage*))
+(defun get-tag-by-slug (slug)
   (find slug
-        (get-all-tags storage)
+        (get-all-tags)
         :test #'string-equal
         :key #'slug))

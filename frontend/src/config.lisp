@@ -71,5 +71,5 @@
 (defun init ()
   (init-config)
   (db-connect)
-  #|(init-storage)|#
-  #|(add-cat/subcat *config-storage*)|#)
+  (init-storage)
+  (add-cat/subcat *config-storage*))
