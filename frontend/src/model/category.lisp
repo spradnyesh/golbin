@@ -21,7 +21,7 @@
   (let ((storage (get-storage :categorys)))
     ;; set some params
     (setf (id category)
-          (incf (last-id storage)))
+          (execute *db* (make-transaction 'incf-category-last-id)))
     (setf (slug category)
           (slugify (name category)))
 

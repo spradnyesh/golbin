@@ -9,8 +9,8 @@
       (:head
        (:title (str (format nil "~A - ~A" *site-name* ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/yui3-reset-fonts-grids-min.css")
-       #|(:style :type "text/css"
-               (str (get-css)))|#)
+       (:style :type "text/css"
+               (str (get-css))))
       (:body
        (:div :class "yui3-g"
             (:div :id "hd"

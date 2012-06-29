@@ -51,7 +51,7 @@
 (defun add-author (author)
   (let ((storage (get-storage :authors)))
     (setf (id author)
-          (incf (last-id storage)))
+          (execute *db* (make-transaction 'incf-author-last-id)))
     ;; save author into storage
     (execute *db* (make-transaction 'insert-author author))
 
