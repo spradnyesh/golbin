@@ -6,7 +6,9 @@
       `(("master"
          ("restas" ("package" :hawksbill.golbin.frontend)
                    ("port" 8000))
-         ("categorys" (("Business"
+         ("author" ("article-logo" ("width" 120)
+                                   ("height" 30)))
+         ("categorys" '(("Business"
                          "Companies"
                          "Economy"
                          "Industry"

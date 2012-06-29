@@ -72,6 +72,20 @@
               (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
         (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage))))
 
+(defun build-config-node (node &optional (namespace nil))
+  (let ((rslt nil)
+        (name (first node))
+        (value (rest node)))
+    (if (consp (first value))
+        (dolist (v value)
+          (setf rslt (append
+                      rslt
+                      (build-config-node v (cons name namespace)))))
+        (push (list (join-string-list-with-delim "." (reverse (push name namespace)))
+                    (first value))
+              rslt))
+    rslt))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -99,6 +113,7 @@
 
 (defun init-config-tree (&optional (config *config*) (config-storage *config-storage*))
   "input: '(('envt:dev' ('n1' 'v1') ('n2' 'v2')) ('envt:prod' ('n3' 'v3') ('n4' 'v4')))"
+  (setf *config-storage* (make-instance 'config-storage))
   (dolist (c config)
     (let ((dimension-string (first c)))
       (dolist (name-value (rest c))
