@@ -8,7 +8,7 @@
    (value :initarg :value :initform nil :accessor value)))
 (defclass config-node ()
   ((dimension :initarg :dimension :initform nil :accessor dimension)
-   (value :initarg :value :initform nil :accessor value)))
+   (config-list :initarg :config-list :initform nil :accessor config-list)))
 (defclass config-storage ()
   ((configs :initform nil :accessor configs)))
 
@@ -64,7 +64,7 @@
                                :test #'string-equal))))
     (if config-node
         (let ((value (find name
-                           (value config-node)
+                           (config-list config-node)
                            :key #'name
                            :test #'string-equal)))
           (if value
@@ -76,13 +76,19 @@
   (let ((rslt nil)
         (name (first node))
         (value (rest node)))
-    (if (consp (first value))
-        (dolist (v value)
-          (setf rslt (append
-                      rslt
-                      (build-config-node v (cons name namespace)))))
-        (push (list (join-string-list-with-delim "." (reverse (push name namespace)))
-                    (first value))
+    (if (stringp name)
+        ;; normal case
+        (if (consp (first value))
+            (dolist (v value)
+              (setf rslt (append
+                          rslt
+                          (build-config-node v (cons name namespace)))))
+            (push (list (join-string-list-with-delim "." (reverse (push name namespace)))
+                        (first value))
+                  rslt))
+        ;; abnormal (see 'categorys' in *config* in golbin.frontend.src.config)
+        (push (list (join-string-list-with-delim "." (reverse namespace))
+                    node)
               rslt))
     rslt))
 
@@ -92,39 +98,34 @@
 (defun get-config (name &optional (dimensions-string *current-dimensions-string*) (config-storage *config-storage*))
   (get-config-helper name (get-dimensions-map dimensions-string) config-storage))
 
-(defun add-config (name value dimensions-string &optional (config-storage *config-storage*))
+(defun add-config (name value dimensions-string &optional (storage *config-storage*))
   "does _not_ check for duplicates while adding; due to _push_, get-config will always get the latest value => the older values just increase the size, but that's nominal, and hence ok ;)"
   (when (is-valid-dimensions-map (get-dimensions-map dimensions-string))
     (let ((config (make-instance 'config :name name :value value))
           (config-node (find dimensions-string
-                             (configs config-storage)
+                             (configs storage)
                              :key #'dimension
                              :test #'string-equal)))
       (if config-node
-          (push config (value config-node))
-          (push (make-instance 'config-node :dimension dimensions-string :value (list config))
-                (configs config-storage))))))
+          (push config (config-list config-node))
+          (push (make-instance 'config-node :dimension dimensions-string :config-list (list config))
+                (configs storage))))))
 
-(defun show-config-tree (&optional (config-storage *config-storage*))
-  (dolist (cn (configs config-storage))
+(defun show-config-tree (&optional (storage *config-storage*))
+  (dolist (cn (configs storage))
     (format t "***** ~a *****~%" (dimension cn))
-    (dolist (v (value cn))
+    (dolist (v (config-list cn))
       (format t "~a: ~a~%" (name v) (value v)))))
 
-(defun init-config-tree (&optional (config *config*) (config-storage *config-storage*))
-  "input: '(('envt:dev' ('n1' 'v1') ('n2' 'v2')) ('envt:prod' ('n3' 'v3') ('n4' 'v4')))"
-  (setf *config-storage* (make-instance 'config-storage))
+(defun init-config-tree (&optional (config *config*) (storage *config-storage*))
+  "(('master' ('author' ('article-logo' ('width' 120)
+                                        ('height' 30)))
+              ('categorys' '(('Business' 'Companies' 'Markets')
+                             ('Entenrtainment' 'Arts' 'TV'))))
+    ('envt:prod' ('n3' 'v3') ('n4' 'v4')))"
   (dolist (c config)
-    (let ((dimension-string (first c)))
-      (dolist (name-value (rest c))
-        (if (= 2 (length name-value))
-            (add-config (first name-value)
-                        (second name-value)
-                        dimension-string
-                        config-storage)
-            (let ((module-name (first name-value)))
-              (dolist (module (rest name-value))
-                (add-config (format nil "~a.~a" module-name (first module))
-                            (second module)
-                            dimension-string
-                            config-storage))))))))
+    (let ((dimensions-string (first c)))
+      (dolist (config-node (rest c)) ; (rest c) => config-list (list of config nodes)
+        (let ((configs (build-config-node config-node)))
+          (dolist (config configs)
+            (add-config (first config) (second config) dimensions-string storage)))))))
