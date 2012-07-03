@@ -3,14 +3,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro nav- (list class route-name route-param field)
-  `(with-html
-     (dolist (l ,list)
-       (htm
-        (:li :class ,class
-             (:a :href (genurl ',route-name
-                               ,route-param (,field l))
-                 (str (name l))))))))
+(defmacro dolist-li-a (list class route value-fn &rest route-params)
+  `(dolist (l ,list)
+     (htm
+      (:li :class ,class
+           (:a :href ,(if route-params
+                          `(genurl ,route ,@route-params)
+                          `(genurl ,route))
+
+               (str (,value-fn l)))))))
 
 (defmacro view-index (title popular-markup articles-list route &rest route-params)
   `(let* ((page (parse-integer page))
@@ -55,44 +56,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun nav-categories-markup ()
   (with-html
-    (dolist (cat-node (get-category-tree))
-      (let* ((cat (first cat-node))
-             (subcat-node (second cat-node)))
-        (htm
-         (:li
-          (:a :href "abc" #|(genurl 'route-cat
-                            :cat (slug cat))|#
-              (str (name cat)))
-          (:ul
-           (dolist (subcat subcat-node)
-             (htm
-              (:li
-               (:a :href "def"#|(genurl 'route-cat-subcat
-                                 :cat (slug cat)
-                                 :subcat (slug subcat))|#
-                   (str (name subcat)))))))))))))
+    (dolist (cat (get-active-categorys))
+      (htm
+       (:li :class "cat"
+        (:a :href (genurl 'route-cat
+                          :cat (slug cat))
+            (str (name cat)))
+        (:ul
+         (dolist-li-a (get-active-subcategorys cat) "subcat" 'route-cat-subcat name :cat (slug cat) :subcat (slug l))))))))
 
-(defmacro dolist-li-a (list route value-fn &rest route-params)
-  `(with-html
-     (dolist (l ,list)
-       (htm
-        (:li
-         (:a :href ,(if route-params
-                        `(genurl ,route ,@route-params)
-                        `(genurl ,route))
-
-             (str (,value-fn l))))))))
 (defun nav-tags-markup ()
-  (dolist-li-a (get-all-tags) 'route-tag name :tag (slug l)))
+  (with-html
+    (dolist-li-a (get-all-tags) "tag" 'route-tag name :tag (slug l))))
 
 (defun nav-authors-markup ()
-  (dolist-li-a (get-all-authors) 'route-author name :author (handle l)))
-
-(defun nav-tags ()
-  (nav- (get-all-tags) "tag" route-tag :tag slug))
-
-(defun nav-authors ()
-  (nav- (get-all-authors) "author" route-author :author handle))
+  (with-html
+    (dolist-li-a (get-all-authors) "author" 'route-author name :author (handle l))))
 
 (defun get-article-tags-markup (article)
   (with-html

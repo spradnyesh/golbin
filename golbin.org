@@ -1,5 +1,6 @@
 * tasks
 ** bugs
+*** TODO fix helpers macro 'dolist-li-a'
 *** DONE db
     CLOSED: [2012-06-29 Fri 17:48]
     :CLOCK:
@@ -18,9 +19,7 @@
     CLOCK: [2012-06-21 Thu 11:12]--[2012-06-21 Thu 11:15] =>  0:03
     :END:
 ** next
-   - [X] db
-     - [X] active articles and authors
-     - [X] edit articles (to activate/approve them)
+   - [ ] show only active (ones that have some articles in them) authors, categories and tags in navigation
    - [ ] article, navigation look-n-feel
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] photos
@@ -45,8 +44,14 @@
    - [X] layout
    - [X] static files
    - [X] db
+     - [X] active articles and authors
+     - [X] edit articles (to activate/approve them)
 ** TODO frontend
 *** misc
+**** TODO show only active (ones that have some articles in them) authors, categories and tags in navigation
+     :CLOCK:
+     CLOCK: [2012-07-03 Tue 17:40]--[2012-07-03 Tue 18:14] =>  0:34
+     :END:
 **** DONE static files
      CLOSED: [2012-06-21 Thu 15:13]
      :CLOCK:
