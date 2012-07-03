@@ -8,7 +8,7 @@
                    ("port" 8000))
          ("author" ("article-logo" ("width" 120)
                                    ("height" 30)))
-         ("categorys" '(("Business"
+         ("categorys" (("Business"
                         "Companies"
                         "Economy"
                         "Industry"
