@@ -1,6 +1,10 @@
 * tasks
 ** bugs
-*** TODO fix helpers macro 'dolist-li-a'
+*** DONE fix helpers macro 'dolist-li-a'
+    CLOSED: [2012-07-04 Wed 08:50]
+    :CLOCK:
+    CLOCK: [2012-07-04 Wed 08:44]--[2012-07-04 Wed 08:50] =>  0:06
+    :END:
 *** DONE db
     CLOSED: [2012-06-29 Fri 17:48]
     :CLOCK:

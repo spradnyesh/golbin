@@ -4,14 +4,15 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro dolist-li-a (list class route value-fn &rest route-params)
-  `(dolist (l ,list)
-     (htm
-      (:li :class ,class
-           (:a :href ,(if route-params
-                          `(genurl ,route ,@route-params)
-                          `(genurl ,route))
+  `(with-html
+     (dolist (l ,list)
+       (htm
+        (:li :class ,class
+             (:a :href ,(if route-params
+                            `(genurl ,route ,@route-params)
+                            `(genurl ,route))
 
-               (str (,value-fn l)))))))
+                 (str (,value-fn l))))))))
 
 (defmacro view-index (title popular-markup articles-list route &rest route-params)
   `(let* ((page (parse-integer page))
