@@ -18,15 +18,23 @@
                 (let ((storage (get-storage ,system)))
                   (,(intern (string-upcase (format nil "~as" `,name))) storage)))
 
+              ;; incf-<name>-last-id (system)
+              (defun ,(intern (string-upcase (format nil "incf-~a-last-id" `,name))) (system)
+                (let ((storage (get-root-object system ,system)))
+                  (incf (,(intern (string-upcase (format nil "last-id"))) storage))))
+
               ;; insert-<name> (system object)
               (defun ,(intern (string-upcase (format nil "insert-~a" `,name))) (system object)
                 (let ((storage (get-root-object system ,system)))
                   (push object (,(intern (string-upcase (format nil "~as" `,name))) storage))))
 
-              ;; incf-<name>-last-id (system)
-              (defun ,(intern (string-upcase (format nil "incf-~a-last-id" `,name))) (system)
-                (let ((storage (get-root-object system ,system)))
-                  (incf (,(intern (string-upcase (format nil "last-id"))) storage))))
+              ;; update-<name> (system object)
+              (defun ,(intern (string-upcase (format nil "update-~a" `,name))) (system object)
+                (let* ((storage (get-root-object system ,system))
+                       (list (,(intern (string-upcase (format nil "~as" `,name))) storage)))
+                  (setf (nth (position (id object) list :key #'id)
+                             list)
+                        object)))
 
               ;; get-<name>-by-id (id)
               (defun ,(intern (string-upcase (format nil "get-~a-by-id" `,name))) (id)

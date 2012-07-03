@@ -10,7 +10,7 @@
    (summary :initarg :summary :initform nil :accessor summary)
    (date :initarg :date :initform nil :accessor date)
    (body :initarg :body :initform nil :accessor body)
-   (status :initarg :status :initform nil :accessor status)
+   (status :initarg :status :initform nil :accessor status) ; :d draft (for withdrawn by author too), :s submitted, :a approved/active, :w withdrawn (deleted by admin)
    (cat :initarg :cat :initform nil :accessor cat)
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
@@ -34,24 +34,42 @@
         (now))
   (setf (slug article)
         (slugify (title article)))
-  (multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
+  (multiple-value-bind (id name handle status) (get-mini-author-details-from-id (get-current-author-id))
     (setf (author article)
           (make-instance 'mini-author
                          :id id
                          :name name
-                         :handle handle)))
+                         :handle handle
+                         :status status)))
 
-    ;; save article into storage
-
+  ;; save article into storage
   (execute *db* (make-transaction 'insert-article article))
+
+  article)
+
+(defun edit-article (article)
+  (execute *db* (make-transaction 'update-article article))
 
   article)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-active-articles ()
+  (get-object-by #'(lambda (article)
+                     (and
+                      (eq :a (status article))
+                      (eq :a (status (author article)))))
+                 (get-all-articles)))
+
+(defun get-all-articles-by-author (author)
+  (get-object-by #'(lambda (article)
+                                (= (id author)
+                                   (id (author article))))
+                 (get-all-articles)))
+
 (defmacro get-articles-by (cond)
-  `(get-object-by ,cond (get-all-articles)))
+  `(get-object-by ,cond (get-active-articles)))
 
 (defun get-articles-by-author (author)
   (get-articles-by #'(lambda (article)
@@ -78,7 +96,7 @@
           #'(lambda (article)
               (= (id cat)
                  (id (cat article))))
-          (get-all-articles)))
+          (get-active-articles)))
         #'>
         :key #'id))
 
@@ -103,4 +121,9 @@
 
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." (1+ i))
                                   :cat cat
-                                  :subcat subcat)))))
+                                  :subcat subcat
+                                  :status (let ((r (random 4)))
+                                            (cond ((zerop r) :d)
+                                                  ((= 1 r) :s)
+                                                  ((= 2 r) :a)
+                                                  ((= 3 r) :w))))))))

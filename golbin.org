@@ -18,6 +18,9 @@
     CLOCK: [2012-06-21 Thu 11:12]--[2012-06-21 Thu 11:15] =>  0:03
     :END:
 ** next
+   - [X] db
+     - [X] active articles and authors
+     - [X] edit articles (to activate/approve them)
    - [ ] article, navigation look-n-feel
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] photos
@@ -50,15 +53,18 @@
      CLOCK: [2012-06-21 Thu 14:27]--[2012-06-21 Thu 15:00] =>  0:33
      CLOCK: [2012-06-21 Thu 13:50]--[2012-06-21 Thu 14:10] =>  0:20
      :END:
-**** TODO db
+**** DONE db
+     CLOSED: [2012-07-03 Tue 16:17]
      :CLOCK:
+     CLOCK: [2012-07-03 Tue 15:21]--[2012-07-03 Tue 16:17] =>  0:56
+     CLOCK: [2012-07-03 Tue 14:49]--[2012-07-03 Tue 15:10] =>  0:21
      CLOCK: [2012-06-26 Tue 19:30]--[2012-06-26 Tue 20:00] =>  0:30
      CLOCK: [2012-06-26 Tue 17:30]--[2012-06-26 Tue 19:02] =>  1:32
      CLOCK: [2012-06-26 Tue 12:19]--[2012-06-26 Tue 12:35] =>  0:16
      CLOCK: [2012-06-21 Thu 19:00]--[2012-06-21 Thu 19:51] =>  0:51
      CLOCK: [2012-06-21 Thu 15:00]--[2012-06-21 Thu 17:40] =>  2:40
      :END:
-     - check cl-prevalence, cl-store
+     - this completes the CRU (D isn't needed) of DB using cl-prevalence
 **** TODO navigation
 *** TODO views
     :CLOCK:

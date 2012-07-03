@@ -32,7 +32,7 @@
 (defun view-home (&optional (page "0"))
   (view-index "Home"
               (most-popular-articles-markup)
-              (get-all-articles)
+              (get-active-articles)
               'route-home-page))
 
 (defun view-cat (cat-slug &optional (page "0"))

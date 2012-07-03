@@ -9,6 +9,7 @@
    (handle :initarg :handle :initform nil :accessor handle) ; name that the user wants others to see
    (password :initarg :password :initform nil :accessor password)
    (name :initarg :name :initform nil :accessor name)
+   (status :initarg :status :initform nil :accessor status) ; :d draft, :a active, :b blocked
    (gender :initarg :gender :initform nil :accessor gender)
    (age :initarg :age :initform nil :accessor age)
    (email :initarg :email :initform nil :accessor email)))
@@ -68,7 +69,8 @@
                       :key #'id)))
     (values (id author)
             (name author)
-            (handle author))))
+            (handle author)
+            (status author))))
 
 (defun get-author-by-handle (handle)
   (find handle
@@ -102,4 +104,5 @@
         (dolist (author-name authors)
           (add-author (make-instance 'author
                                      :name author-name
-                                     :handle (slugify author-name))))))
+                                     :handle (slugify author-name)
+                                     :status :a)))))
