@@ -29,20 +29,20 @@
                 (:span :id "a-tags" (str (get-article-tags-markup article))))
             (:p :id "a-body" (str (body article)))))))
 
-(defun view-home (&optional (page "0"))
+(defun view-home (&optional (page 0))
   (view-index "Home"
               (most-popular-articles-markup)
               (get-active-articles)
               'route-home-page))
 
-(defun view-cat (cat-slug &optional (page "0"))
+(defun view-cat (cat-slug &optional (page 0))
   (let ((cat (get-category-by-slug cat-slug 0)))
     (view-index (name cat)
                 (most-popular-articles-markup)
                 (get-articles-by-cat cat)
                 'route-cat-page :cat (slug cat))))
 
-(defun view-cat-subcat (cat-slug subcat-slug &optional (page "0"))
+(defun view-cat-subcat (cat-slug subcat-slug &optional (page 0))
   (let* ((cat (get-category-by-slug cat-slug 0))
          (subcat (get-category-by-slug subcat-slug (id cat))))
     (view-index (format nil "~a, ~a" (name cat) (name subcat))
@@ -50,14 +50,14 @@
                 (get-articles-by-cat-subcat cat subcat)
                 'route-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))
 
-(defun view-author (author-handle &optional (page "0"))
+(defun view-author (author-handle &optional (page 0))
   (let ((author (get-author-by-handle author-handle)))
     (view-index (name author)
                 (most-popular-articles-markup)
                 (get-articles-by-author author)
                 'route-author-page :author (handle author))))
 
-(defun view-tag (slug &optional (page "0"))
+(defun view-tag (slug &optional (page 0))
   (view-index (name (get-tag-by-slug slug))
               (most-popular-articles-markup)
               (get-articles-by-tag-slug slug)

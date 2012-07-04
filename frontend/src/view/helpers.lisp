@@ -15,8 +15,7 @@
                  (str (,value-fn l))))))))
 
 (defmacro view-index (title popular-markup articles-list route &rest route-params)
-  `(let* ((page (parse-integer page))
-          (offset (* page *article-pagination-limit*)))
+  `(let* ((offset (* page *article-pagination-limit*)))
      (page-template
          ,title
          ,popular-markup
