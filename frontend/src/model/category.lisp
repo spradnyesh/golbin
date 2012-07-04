@@ -72,14 +72,26 @@
     (nreverse rslt)))
 
 (defun get-active-categorys ()
-  (conditionally-accumulate #'(lambda (cat)
-                                (> (length (get-articles-by-cat cat)) 1))
-                            (get-root-categorys)))
+  (let ((rslt nil))
+    (dolist (cat (get-root-categorys))
+      (dolist (article (get-active-articles))
+        (when (= (id cat)
+                 (id (cat article)))
+          (push cat rslt) ; the moment we find a category having 1 article, add it to result, and break from the loop
+          (return))))
+    rslt))
 
 (defun get-active-subcategorys (cat)
-  (conditionally-accumulate #'(lambda (subcat)
-                                (> (length (get-articles-by-cat-subcat cat subcat)) 1))
-                            (get-subcategorys (id cat))))
+  (let ((rslt nil))
+    (dolist (subcat (get-subcategorys (id cat)))
+      (dolist (article (get-active-articles))
+        (when (and (= (id cat)
+                      (id (cat article)))
+                   (= (id subcat)
+                      (id (subcat article))))
+          (push subcat rslt)
+          (return))))
+    rslt))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
