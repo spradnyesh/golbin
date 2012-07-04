@@ -35,6 +35,8 @@
    - [ ] logo, favicon
    - [ ] seo
      - [ ] meta-keywords (tags + cat/subcat)
+     - [ ] robots.txt
+     - [ ] favicon
    - [ ] performance
      - [ ] http caching headers
    - [ ] security
@@ -181,6 +183,7 @@
           - …Or Just Cheat
 ** TODO refactor
    :CLOCK:
+   CLOCK: [2012-07-04 Wed 09:30]--[2012-07-04 Wed 11:15] =>  1:45
    CLOCK: [2012-06-21 Thu 13:19]--[2012-06-21 Thu 13:47] =>  0:28
    CLOCK: [2012-06-21 Thu 11:59]--[2012-06-21 Thu 12:06] =>  0:07
    CLOCK: [2012-06-21 Thu 11:15]--[2012-06-21 Thu 11:46] =>  0:31

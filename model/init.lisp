@@ -1,0 +1,21 @@
+(in-package :hawksbill.golbin.model)
+
+(defun init-storage ()
+  (init-db-system "article" :articles)
+  (init-db-system "author" :authors)
+  (init-db-system "category" :categorys)
+  (init-db-system "tag" :tags))
+
+(defun model-first-run ()
+  (dolist (l '("article" "author" "category" "tag"))
+    (execute *db* (make-transaction (intern (string-upcase (format nil "make-~as-root" l))))))
+  (add-cat/subcat))
+
+(defun model-init ()
+  (init-config)
+  (init-storage)
+  (db-connect))
+(defun model-tmp-init ()
+  (add-authors)
+  (add-tags)
+  (add-articles))

@@ -4,7 +4,7 @@
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun view-article (slug-and-id)
-  (let* ((id (first (split-sequence:split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
+  (let* ((id (first (split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
          (article (get-article-by-id (parse-integer id))))
     (page-template
         (title article)

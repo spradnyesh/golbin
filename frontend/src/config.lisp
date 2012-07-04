@@ -63,6 +63,6 @@
                ("path" ,(format nil "/~a"
                                 (join-string-list-with-delim
                                  "/"
-                                 (rest (append (pathname-directory *home*)
-                                               '("data/dev/"))))))))
+                                 (rest (append (butlast (pathname-directory *home*))
+                                               '("model/data/dev/"))))))))
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))

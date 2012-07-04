@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :local-time :cl-ppcre :hawksbill.utils :restas :parenscript :json :split-sequence :css-lite :cl-prevalence)
+  (:use :cl :cl-who :cl-ppcre :hawksbill.utils :hawksbill.golbin.model :restas :parenscript :json :split-sequence :css-lite)
   (:shadow :% :prototype :size)
   (:export :route-home
            :route-home-page
@@ -43,13 +43,6 @@
 (defvar *tag-storage* nil)
 #|(defvar *view-storage* nil)|#
 #|(defvar *count-storage* nil)|#
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; config
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setf *dimensions* '("envt"))
-(defvar *valid-envts* '("dev" "prod"))
-(setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debugging

@@ -52,14 +52,14 @@
 (defun reduce-dimensions-string (dimensions-string)
   (get-dimensions-string (reduce-dimensions-map (get-dimensions-map dimensions-string))))
 
-(defun get-config-helper (name dimensions-map config-storage)
+(defun get-config-helper (name dimensions-map storage)
   (let ((config-node (if dimensions-map
                          (find (get-dimensions-string dimensions-map)
-                               (configs config-storage)
+                               (configs storage)
                                :key #'dimension
                                :test #'string-equal)
                          (find "master"
-                               (configs config-storage)
+                               (configs storage)
                                :key #'dimension
                                :test #'string-equal))))
     (if config-node
@@ -69,8 +69,8 @@
                            :test #'string-equal)))
           (if value
               (value value)
-              (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage)))
-        (get-config-helper name (reduce-dimensions-map dimensions-map) config-storage))))
+              (get-config-helper name (reduce-dimensions-map dimensions-map) storage)))
+        (get-config-helper name (reduce-dimensions-map dimensions-map) storage))))
 
 (defun build-config-node (node &optional (namespace nil))
   (let ((rslt nil)
@@ -95,8 +95,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-config (name &optional (dimensions-string *current-dimensions-string*) (config-storage *config-storage*))
-  (get-config-helper name (get-dimensions-map dimensions-string) config-storage))
+(defun get-config (name &optional (dimensions-string *current-dimensions-string*) (storage *config-storage*))
+  (get-config-helper name (get-dimensions-map dimensions-string) storage))
 
 (defun add-config (name value dimensions-string &optional (storage *config-storage*))
   "does _not_ check for duplicates while adding; due to _push_, get-config will always get the latest value => the older values just increase the size, but that's nominal, and hence ok ;)"
@@ -129,3 +129,7 @@
         (let ((configs (build-config-node config-node)))
           (dolist (config configs)
             (add-config (first config) (second config) dimensions-string storage)))))))
+
+(defun init-config ()
+  (setf *config-storage* (make-instance 'config-storage))
+  (init-config-tree *config*))

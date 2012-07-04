@@ -6,7 +6,6 @@
    :*db*
    ;; config
    :config-storage ; class
-   :*config-storage*
    :*config* ; input to init-config-tree
    :*dimensions*
    :*current-dimensions-string*
@@ -14,6 +13,7 @@
    :add-config
    :show-config-tree
    :init-config-tree
+   :init-config
    ;; html
    :with-html
    :js-script
