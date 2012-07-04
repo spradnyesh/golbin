@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin.frontend)
+(in-package :hawksbill.golbin)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views

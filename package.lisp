@@ -1,5 +1,5 @@
-(restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :cl-who :cl-ppcre :hawksbill.utils :hawksbill.golbin.model :restas :parenscript :json :split-sequence :css-lite)
+(restas:define-module :hawksbill.golbin
+  (:use :cl :hawksbill.utils :cl-who :cl-ppcre :cl-prevalence :local-time :split-sequence :restas :parenscript :json :split-sequence :css-lite)
   (:shadow :% :prototype :size)
   (:export :route-home
            :route-home-page
@@ -14,7 +14,7 @@
            :route-article
            :route-search))
 
-(in-package :hawksbill.golbin.frontend)
+(in-package :hawksbill.golbin)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; parameters
@@ -28,10 +28,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setf hawksbill.utils:*home*
       (make-pathname :directory
-                     (butlast (pathname-directory
-                               (load-time-value
-                                (or #.*compile-file-pathname* *load-pathname*))))))
-
+                     (pathname-directory
+                                (load-time-value
+                                 (or #.*compile-file-pathname* *load-pathname*)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; storages
@@ -43,6 +42,13 @@
 (defvar *tag-storage* nil)
 #|(defvar *view-storage* nil)|#
 #|(defvar *count-storage* nil)|#
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; config
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setf *dimensions* '("envt"))
+(defvar *valid-envts* '("dev" "prod"))
+(setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; debugging

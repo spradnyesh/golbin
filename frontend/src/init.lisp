@@ -1,9 +1,4 @@
-(in-package :hawksbill.golbin.frontend)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; various inits
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(in-package :hawksbill.golbin)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; start/stop/restart various servers
@@ -13,7 +8,7 @@
   (stop-all))
 (defun r-start ()
   (model-init)
-  (start :hawksbill.golbin.frontend :port 8000))
+  (start :hawksbill.golbin :port 8000))
 (defun r-restart ()
   (r-stop)
   (r-start))

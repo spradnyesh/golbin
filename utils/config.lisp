@@ -86,7 +86,7 @@
             (push (list (join-string-list-with-delim "." (reverse (push name namespace)))
                         (first value))
                   rslt))
-        ;; abnormal (see 'categorys' in *config* in golbin.frontend.src.config)
+        ;; abnormal (see 'categorys' in *config* in golbin.src.config)
         (push (list (join-string-list-with-delim "." (reverse namespace))
                     node)
               rslt))

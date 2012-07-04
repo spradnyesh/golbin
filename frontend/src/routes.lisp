@@ -1,8 +1,8 @@
-(in-package :hawksbill.golbin.frontend)
+(in-package :hawksbill.golbin)
 
 (mount-submodule -static- (#:restas.directory-publisher)
   (restas.directory-publisher:*baseurl* '("static"))
-  (restas.directory-publisher:*directory* (merge-pathnames "static/" *home*)))
+  (restas.directory-publisher:*directory* (merge-pathnames "frontend/static/" *home*)))
 
 (define-route route-home ("/") (view-home))
 (define-route route-home-page ("/:page/") (view-home page))

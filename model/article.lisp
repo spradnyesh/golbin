@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin.model)
+(in-package :hawksbill.golbin)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; classes

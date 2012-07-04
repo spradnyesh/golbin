@@ -1,10 +1,10 @@
-(in-package :hawksbill.golbin.frontend)
+(in-package :hawksbill.golbin)
 
 (setf *dimensions* '("envt"))
 (defvar *valid-envts* '("dev" "prod"))
 (setf *config*
       `(("master"
-         ("restas" ("package" :hawksbill.golbin.frontend)
+         ("restas" ("package" :hawksbill.golbin)
                    ("port" 8000))
          ("author" ("article-logo" ("width" 120)
                                    ("height" 30)))
@@ -63,6 +63,6 @@
                ("path" ,(format nil "/~a"
                                 (join-string-list-with-delim
                                  "/"
-                                 (rest (append (butlast (pathname-directory *home*))
+                                 (rest (append (pathname-directory *home*)
                                                '("model/data/dev/"))))))))
         ("envt:prod" ("n3" "v3") ("n4" "v4"))))

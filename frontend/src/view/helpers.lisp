@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin.frontend)
+(in-package :hawksbill.golbin)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
@@ -64,7 +64,11 @@
                           :cat (slug cat))
             (str (name cat)))
         (:ul
-         (dolist-li-a (get-active-subcategorys cat) "subcat" 'route-cat-subcat name :cat (slug cat) :subcat (slug l))))))))
+         (dolist (subcat (get-active-subcategorys cat))
+           (htm
+            (:li :class "subcat"
+                 (:a :href (genurl 'route-cat-subcat :cat (slug cat) :subcat (slug subcat))
+                     (str (name subcat))))))))))))
 
 (defun nav-tags-markup ()
   (with-html
