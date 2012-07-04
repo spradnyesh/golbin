@@ -23,12 +23,13 @@
     CLOCK: [2012-06-21 Thu 11:12]--[2012-06-21 Thu 11:15] =>  0:03
     :END:
 ** next
-   - [ ] show only active (ones that have some articles in them) authors, categories and tags in navigation
    - [ ] article, navigation look-n-feel
    - [ ] parenscript for categories/tags/authors in navigation
    - [ ] photos
    - [ ] populate *current-dimensions-string* for every request and make it thread-safe
-   - [ ] cache
+   - [-] cache
+     - [X] do _not_ get-all-articles
+     - [ ] get-active-*
    - [ ] tests
    - [ ] header, footer look-n-feel
    - [ ] logo, favicon
@@ -50,10 +51,13 @@
    - [X] db
      - [X] active articles and authors
      - [X] edit articles (to activate/approve them)
+   - [X] show only active (ones that have some articles in them) authors, categories and tags in navigation
 ** TODO frontend
 *** misc
-**** TODO show only active (ones that have some articles in them) authors, categories and tags in navigation
+**** DONE show only active (ones that have some articles in them) authors, categories and tags in navigation
+     CLOSED: [2012-07-04 Wed 09:24]
      :CLOCK:
+     CLOCK: [2012-07-04 Wed 08:50]--[2012-07-04 Wed 09:24] =>  0:34
      CLOCK: [2012-07-03 Tue 17:40]--[2012-07-03 Tue 18:14] =>  0:34
      :END:
 **** DONE static files

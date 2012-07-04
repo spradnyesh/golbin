@@ -34,6 +34,11 @@
         :test #'string-equal
         :key #'slug))
 
+(defun get-active-tags ()
+  (conditionally-accumulate #'(lambda (tag)
+                                (> (length (get-articles-by-tag-slug (slug tag))) 1))
+                            (get-all-tags)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

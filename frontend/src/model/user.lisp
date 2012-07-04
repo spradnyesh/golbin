@@ -82,6 +82,11 @@
   (let ((all-authors (get-all-authors)))
     (nth (random (length all-authors)) all-authors)))
 
+(defun get-active-authors ()
+  (conditionally-accumulate #'(lambda (author)
+                                (> (length (get-articles-by-author author)) 1))
+                            (get-all-authors)))
+
 (defun get-current-author-id ()
   "TODO: return the id of the currently logged in author"
   (id (get-random-author)))
