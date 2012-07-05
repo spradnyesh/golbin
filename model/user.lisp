@@ -47,6 +47,18 @@
   (:documentation "Object of this class will act as the storage for Authors"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper macros
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro set-mini-author (object)
+  `(multiple-value-bind (id name handle status) (get-mini-author-details-from-id (get-current-author-id))
+     (setf (author ,object)
+           (make-instance 'mini-author
+                          :id id
+                          :name name
+                          :handle handle
+                          :status status))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-author (author)

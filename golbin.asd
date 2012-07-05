@@ -10,30 +10,43 @@
                                      (:file "config" :depends-on ("string"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("package"))
+                                     (:file "l10n" :depends-on ("package"))
                                      (:file "helpers" :depends-on ("package"))
                                      (:file "pagination" :depends-on ("package"))
-                                     (:file "init" :depends-on ("config"))
-                                     (:file "db" :depends-on ("config"))))
-               (:file "package" :depends-on ("utils")) ; common for all of model, frontend, boomerang and reports
-               (:module "model" ; so that it can be shared b/n frontend, editorial, boomerang
-                        :components ((:file "article")
-                                     (:file "category")
-                                     (:file "user")
-                                     (:file "photo")
+                                     (:file "db" :depends-on ("config"))
+                                     (:file "datetime" :depends-on ("package"))
+                                     (:file "file" :depends-on ("config"))
+                                     (:file "photo" :depends-on ("file" "datetime"))))
+               (:module "common"
+                        :components ((:file "package")
+                                     (:file "config" :depends-on ("package"))
+                                     (:file "init" :depends-on ("config")))
+                        :depends-on ("utils"))
+               (:module "model"
+                        :components ((:file "category")
                                      (:file "tag")
+                                     (:file "user")
+                                     (:file "article" :depends-on ("user"))
+                                     (:file "photo" :depends-on ("user"))
                                      (:file "view")
                                      (:file "init" :depends-on ("article" "category" "user" "photo" "tag" "view")))
-                        :depends-on ("package"))
+                        :depends-on ("common"))
                (:module "frontend"
-                        :components ((:module "src"
-                                              :components ((:file "config")
-                                                           (:file "init")
-                                                           (:module "view"
-                                                                    :components ((:file "css")
-                                                                                 (:file "helpers")
-                                                                                 (:file "template" :depends-on ("css" "helpers"))
-                                                                                 (:file "views" :depends-on ("template"))))
-                                                           (:file "routes" :depends-on ("view")))))
+                        :components ((:file "init")
+                                     (:module "view"
+                                              :components ((:file "css")
+                                                           (:file "helpers")
+                                                           (:file "template" :depends-on ("css" "helpers"))
+                                                           (:file "views" :depends-on ("template"))))
+                                     (:file "routes" :depends-on ("view")))
+                        :depends-on ("model"))
+               (:module "editorial"
+                        :components ((:module "view"
+                                              :components ((:file "css")
+                                                           (:file "helpers")
+                                                           (:file "template" :depends-on ("css" "helpers"))
+                                                           (:file "views" :depends-on ("template"))))
+                                     (:file "routes" :depends-on ("view")))
                         :depends-on ("model"))
                #|(:module
                "boomerang"
@@ -44,4 +57,4 @@
                (:file "routes" :depends-on ("package"))
                (:file "models" :depends-on ("package"))
                (:file "views" :depends-on ("package"))))|#)
-  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence))
+  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence :cl-gd :md5))

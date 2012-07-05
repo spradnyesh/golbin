@@ -1,6 +1,7 @@
 (restas:define-module :hawksbill.golbin
-  (:use :cl :hawksbill.utils :cl-who :cl-ppcre :cl-prevalence :local-time :split-sequence :restas :parenscript :json :split-sequence :css-lite)
-  (:shadow :% :prototype :size)
+  (:use :cl :hawksbill.utils :cl-who :cl-ppcre :cl-prevalence :local-time :split-sequence :restas :parenscript :json :split-sequence :css-lite :hunchentoot)
+  (:shadow :% :prototype :size :acceptor :mime-type)
+  (:shadowing-import-from :restas :redirect :start)
   (:export :route-home
            :route-home-page
            :route-cat
@@ -44,14 +45,8 @@
 #|(defvar *count-storage* nil)|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; config
+;; default routes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setf *dimensions* '("envt"))
-(defvar *valid-envts* '("dev" "prod"))
-(setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; debugging
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setf hunchentoot:*show-lisp-errors-p* t)
-(setf hunchentoot:*show-lisp-backtraces-p* t)
+(mount-submodule -static- (#:restas.directory-publisher)
+  (restas.directory-publisher:*baseurl* '("static"))
+  (restas.directory-publisher:*directory* (merge-pathnames "../data/static/" *home*)))

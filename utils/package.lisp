@@ -1,42 +1,41 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence)
-  (:shadow :redirect :acceptor :start :mime-type :size)
-  (:export
-   :*home*
-   :*db*
-   ;; config
-   :config-storage ; class
-   :*config* ; input to init-config-tree
-   :*dimensions*
-   :*current-dimensions-string*
-   :get-config
-   :add-config
-   :show-config-tree
-   :init-config-tree
-   :init-config
-   ;; html
-   :with-html
-   :js-script
-   ;; init
-   :hu-start
-   :hu-stop
-   ;; db
-   :get-storage
-   :init-db-system
-   :get-object-by
-   :db-connect
-   :db-disconnect
-   ;; memcache
-   :with-cache
-   ;; helpers
-   :conditionally-accumulate
-   ;; string
-   :slugify
-   :join-string-list-with-delim
-   ;; pagination
-   :paginate
-   :pagination-markup
-   ))
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :md5)
+  (:shadow :acceptor :start :mime-type :size)
+  (:shadowing-import-from :restas :redirect)
+  (:export :*home*
+           :*system-status*
+           ;; db
+           :*db*
+           ;; config
+           :config-storage              ; class
+           :*config*                    ; input to init-config-tree
+           :*dimensions*
+           :*current-dimensions-string*
+           :get-config
+           :add-config
+           :show-config-tree
+           :init-config-tree
+           :init-config
+           ;; html
+           :with-html
+           :js-script
+           :hu-init
+           ;; db
+           :get-storage
+           :init-db-system
+           :get-object-by
+           :db-connect
+           :db-disconnect
+           ;; memcache
+           :with-cache
+           ;; helpers
+           :conditionally-accumulate
+           ;; string
+           :slugify
+           :join-string-list-with-delim
+           ;; pagination
+           :paginate
+           :pagination-markup))
 
 (in-package :hawksbill.utils)
 
@@ -44,8 +43,9 @@
 ;; global configs for use in this package
 ;; make sure these are initialized in every project
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; init
 (defvar *home* "")
+(defvar *system-status* nil)
+;; db
 (defparameter *db* nil)
 ;; pagination
 (defvar *pagination-limit* 10)

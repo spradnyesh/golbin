@@ -22,7 +22,7 @@
 (defun pagination-high (page-number max-results &optional (pagination-limit *pagination-limit*))
   "page number can be (/ max-results *article-pagination-limit*) at maximum"
   (let ((p (+ page-number (/ pagination-limit 2)))
-        (max (/ max-results pagination-limit)))
+        (max (/ (1- max-results) pagination-limit)))
     (if (> p max)
         max
         p)))

@@ -34,13 +34,7 @@
         (now))
   (setf (slug article)
         (slugify (title article)))
-  (multiple-value-bind (id name handle status) (get-mini-author-details-from-id (get-current-author-id))
-    (setf (author article)
-          (make-instance 'mini-author
-                         :id id
-                         :name name
-                         :handle handle
-                         :status status)))
+  (set-mini-author article)
 
   ;; save article into storage
   (execute *db* (make-transaction 'insert-article article))
@@ -110,7 +104,7 @@
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-articles ()
-  "add a new articles to the db"
+  "add new articles to the db"
   (dotimes (i 1000)
     (multiple-value-bind (cat subcat) (get-random-cat-subcat)
       (add-article (make-instance 'article

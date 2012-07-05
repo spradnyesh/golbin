@@ -4,16 +4,7 @@
 ;;;; hunchentoot params
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defparameter hunchentoot:*default-content-type* "text/html; charset=utf-8")
-
-;;; prologue
 (setf *prologue* "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">")
-
-#|(setf *dispatch-table*
-      (nconc
-       (mapcar (lambda (args)
-                 (apply 'create-folder-dispatcher-and-handler args))
-               `(("/static/" ,*static-path*)
-                 ("/uploads/" ,*uploads-path*)))))|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; macros for html
@@ -57,42 +48,46 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
              (str (ps ,@body))
              (format nil "~%//]]>~%"))))
 
-#|(defun link-css (path)
-  (when (and (equal *environment* "prod")
-             (not (search "yui" path)))
-    (setf path (regex-replace ".css$" path "-min.css")))
-  (with-html
-    (:link :rel "stylesheet"
-           :type "text/css"
-           :href path)))|#
-#|(defun link-js (path)
-  (when (and (equal *environment* "prod")
-             (not (search "yui" path)))
-    (setf path (regex-replace ".js$" path "-min.js")))
-  (with-html
-    (:script :type "text/javascript"
-             :src path)))|#
-(defun get-css (title)
-  (declare (ignore title))
-  (link-css "/static/yui/yui.css")
-  (link-css "/static/css/common.css")
-    #|(if (search "admin" title :test #'char-equal)
-        (link-css "/static/css/admin.css")
-        (link-css "/static/css/home.css"))|#)
-(defun get-js (title)
-  (declare (ignore title))
-  (link-js "/static/yui/yui.js")
+#|(
+ (defun link-css (path)
+   (when (and (equal *environment* "prod")
+              (not (search "yui" path)))
+     (setf path (regex-replace ".css$" path "-min.css")))
+   (with-html
+     (:link :rel "stylesheet"
+            :type "text/css"
+            :href path)))
+ (defun link-js (path)
+   (when (and (equal *environment* "prod")
+              (not (search "yui" path)))
+     (setf path (regex-replace ".js$" path "-min.js")))
+   (with-html
+     (:script :type "text/javascript"
+              :src path)))
+ (defun get-css (title)
+   (declare (ignore title))
+   (link-css "/static/yui/yui.css")
+   (link-css "/static/css/common.css")
+   #|(if (search "admin" title :test #'char-equal)
+   (link-css "/static/css/admin.css")
+   (link-css "/static/css/home.css"))|#)
+ (defun get-js (title)
+   (declare (ignore title))
+   (link-js "/static/yui/yui.js")
    #|(if (search "admin" title :test #'char-equal)
    (link-js "/static/js/admin.js")
-   (link-js "/static/js/home.js"))|#)
+   (link-js "/static/js/home.js"))|#))|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-#|(defun logout ()
-  (remove-session *session*)
-  (redirect "/"))|#
+(defun hu-init ()
+  (setf hunchentoot:*show-lisp-errors-p* (get-config "hunchentoot.debug.errors"))
+  (setf hunchentoot:*show-lisp-backtraces-p* (get-config "hunchentoot.debug.backtraces")))
 
+(defun logout ()
+  (remove-session *session*)
+  (redirect "/"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
@@ -117,6 +112,7 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
           (traverse node))))
     (traverse root)
     rslt))
+
 (defun get-element-by-id (root id)
   (let ((rslt nil))
     (defun traverse (root)
@@ -133,6 +129,7 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
               (traverse node)))))
     (traverse root)
     rslt))
+
 (defun get-elements-by-class (root class)
   (let ((rslt nil))
     (defun traverse (root)
