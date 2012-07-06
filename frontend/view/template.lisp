@@ -14,18 +14,18 @@
       (:body
        (:div :class "yui3-g"
             (:div :id "hd"
-                  (str (header)))
+                  (str (fe-header)))
             (:div :id "bd"
                   (:div :class "yui3-u-3-4"
                         (:div :id "col-1" :class "yui3-u-1-5"
                               (str ,popular-articles)
-                              (str (ads-1)))
+                              (str (fe-ads-1)))
                         (:div :id "col-2" :class "yui3-u-4-5"
                               ,@content))
                   (:div :id "col-3" :class "yui3-u-1-4"
-                        (str (ads-2))))
+                        (str (fe-ads-2))))
             (:div :id "ft"
-                  (str (footer))))))))
+                  (str (fe-footer))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header

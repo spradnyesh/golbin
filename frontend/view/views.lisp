@@ -8,7 +8,7 @@
          (article (get-article-by-id (parse-integer id))))
     (fe-page-template
         (title article)
-        (most-popular-articles-markup :category (cat article))
+        (fe-most-popular-articles-markup :category (cat article))
       (:div (:p :id "a-title" (str (title article)))
             (:p :id "a-details"
                 "written by "
@@ -26,19 +26,19 @@
                     :href (genurl 'fe-r-cat-subcat :cat (slug (cat article)) :subcat (slug (subcat article)))
                     (str (name (subcat article))))
                 " using tags "
-                (:span :id "a-tags" (str (get-article-tags-markup article))))
+                (:span :id "a-tags" (str (fe-get-article-tags-markup article))))
             (:p :id "a-body" (str (body article)))))))
 
 (defun fe-v-home (&optional (page 0))
   (view-index "Home"
-              (most-popular-articles-markup)
+              (fe-most-popular-articles-markup)
               (get-active-articles)
               'fe-r-home-page))
 
 (defun fe-v-cat (cat-slug &optional (page 0))
   (let ((cat (get-category-by-slug cat-slug 0)))
     (view-index (name cat)
-                (most-popular-articles-markup)
+                (fe-most-popular-articles-markup)
                 (get-articles-by-cat cat)
                 'fe-r-cat-page :cat (slug cat))))
 
@@ -46,20 +46,20 @@
   (let* ((cat (get-category-by-slug cat-slug 0))
          (subcat (get-category-by-slug subcat-slug (id cat))))
     (view-index (format nil "~a, ~a" (name cat) (name subcat))
-                (most-popular-articles-markup)
+                (fe-most-popular-articles-markup)
                 (get-articles-by-cat-subcat cat subcat)
                 'fe-r-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))
 
 (defun fe-v-author (author-handle &optional (page 0))
   (let ((author (get-author-by-handle author-handle)))
     (view-index (name author)
-                (most-popular-articles-markup)
+                (fe-most-popular-articles-markup)
                 (get-articles-by-author author)
                 'fe-r-author-page :author (handle author))))
 
 (defun fe-v-tag (slug &optional (page 0))
   (view-index (name (get-tag-by-slug slug))
-              (most-popular-articles-markup)
+              (fe-most-popular-articles-markup)
               (get-articles-by-tag-slug slug)
               'fe-r-tag-page :tag slug))
 

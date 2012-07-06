@@ -2,18 +2,20 @@
   (:use :cl :hawksbill.utils :cl-who :cl-ppcre :cl-prevalence :local-time :split-sequence :restas :parenscript :json :split-sequence :css-lite :hunchentoot)
   (:shadow :% :prototype :size :acceptor :mime-type)
   (:shadowing-import-from :restas :redirect :start)
-  (:export :route-home
-           :route-home-page
-           :route-cat
-           :route-cat-page
-           :route-cat-subcat
-           :route-cat-subcat-page
-           :route-author
-           :route-author-page
-           :route-tag
-           :route-tag-page
-           :route-article
-           :route-search))
+  (:export :fe-r-home
+           :fe-r-home-page
+           :fe-r-cat
+           :fe-r-cat-page
+           :fe-r-cat-subcat
+           :fe-r-cat-subcat-page
+           :fe-r-author
+           :fe-r-author-page
+           :fe-r-tag
+           :fe-r-tag-page
+           :fe-r-article
+           :fe-r-search
+           :ed-r-login-get
+           :ed-r-login-post))
 
 (in-package :hawksbill.golbin)
 

@@ -1,5 +1,8 @@
 (in-package :hawksbill.utils)
 
+(defgeneric model-init ()
+  (:documentation "dummy function so that the below macro will work correctly"))
+
 (defmacro start/stop/restart-system (system)
   `(progn
      (defun ,(intern (string-upcase (format nil "~a-start" `,system))) ()
@@ -8,7 +11,6 @@
          (init-config)
          (model-init)
          (db-connect))
-       (init-base)
        (hu-init)
        (start (get-config ,(format nil "~a.restas.package" `,system))
               :port (get-config ,(format nil "~a.restas.port" `,system))))

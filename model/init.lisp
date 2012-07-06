@@ -12,7 +12,7 @@
     (execute *db* (make-transaction (intern (string-upcase (format nil "make-~as-root" l))))))
   (add-cat/subcat))
 
-(defun model-init ()
+(defmethod model-init ()
   (init-storage))
 
 (defun model-tmp-init ()
