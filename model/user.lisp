@@ -8,6 +8,7 @@
    (username :initarg :username :initform nil :accessor username)
    (handle :initarg :handle :initform nil :accessor handle) ; name that the user wants others to see
    (password :initarg :password :initform nil :accessor password)
+   (salt :initarg :salt :initform nil :accessor salt) ; for encryption of password
    (name :initarg :name :initform nil :accessor name)
    (status :initarg :status :initform nil :accessor status) ; :d draft, :a active, :b blocked
    (gender :initarg :gender :initform nil :accessor gender)

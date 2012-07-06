@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :md5)
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad)
   (:shadow :acceptor :start :mime-type :size)
   (:shadowing-import-from :restas :redirect)
   (:export :*home*

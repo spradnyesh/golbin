@@ -51,12 +51,7 @@
     dest))
 
 (defun build-file-name (file-name user-id)
-  (let ((md5 (md5sum-file file-name))
-        (new-file-name ""))
-    (dotimes (i (length md5))
-      (setf new-file-name (concatenate 'string
-                                       new-file-name
-                                       (write-to-string (aref md5 i)))))
+  (let ((new-file-name (byte-array-to-hex-string (digest-file :md5 file-name))))
     (unless (string-equal user-id "")
       (setf new-file-name
             (concatenate 'string
