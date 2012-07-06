@@ -3,14 +3,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro page-template (title popular-articles &body content)
+(defmacro fe-page-template (title popular-articles &body content)
   `(with-html
      (:html
       (:head
        (:title (str (format nil "~A - ~A" *site-name* ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
        (:style :type "text/css"
-               (str (get-css))))
+               (str (fe-get-css))))
       (:body
        (:div :class "yui3-g"
             (:div :id "hd"
@@ -30,7 +30,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun logo ()
+(defun fe-logo ()
   (with-html
     (:h1
      (:a :href (genurl 'fe-r-home)
@@ -38,7 +38,7 @@
                :source ""
                :alt *site-name*)))))
 
-(defun site-search ()
+(defun fe-site-search ()
   #|(with-html
     (:form :method "GET"
            :action (genurl 'fe-r-search)
@@ -50,46 +50,46 @@
            (:input :type "submit"
                    :value "Submit")))|#)
 
-(defun trending ()
+(defun fe-trending ()
   (with-html
     (:div :id "trending-tags")))
 
-(defun navigation ()
+(defun fe-navigation ()
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
               (:h2 (:a :href (genurl 'fe-r-home) "Home")))
          (:li :id "nav-cats"
               (:h2 (:p "Categories"))
-              (:ul (str (nav-categories-markup))))
+              (:ul (str (fe-nav-categories-markup))))
          (:li :id "nav-tags"
               (:h2 (:p "Tags"))
-              (:ul (str (nav-tags-markup))))
+              (:ul (str (fe-nav-tags-markup))))
          (:li :id "nav-authors"
               (:h2 (:p "Authors"))
-              (:ul (str (nav-authors-markup)))))))
+              (:ul (str (fe-nav-authors-markup)))))))
 
-(defun header ()
+(defun fe-header ()
   (with-html
     (:div :id "banner"
-          (str (logo))
-          (str (site-search)))
+          (str (fe-logo))
+          (str (fe-site-search)))
           #|(str (trending))|#
-    (str (navigation))))
+    (str (fe-navigation))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun footer ()
+(defun fe-footer ()
   (with-html "This is the footer"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun ads-1 ()
+(defun fe-ads-1 ()
   (with-html
     (:div :id "ads-1" "These are ads-1")))
 
-(defun ads-2 ()
+(defun fe-ads-2 ()
   (with-html
     (:div :id "ads-2""These are ads-2")))

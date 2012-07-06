@@ -6,7 +6,7 @@
 (defun fe-v-article (slug-and-id)
   (let* ((id (first (split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
          (article (get-article-by-id (parse-integer id))))
-    (page-template
+    (fe-page-template
         (title article)
         (most-popular-articles-markup :category (cat article))
       (:div (:p :id "a-title" (str (title article)))

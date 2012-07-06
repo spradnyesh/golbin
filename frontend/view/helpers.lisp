@@ -16,7 +16,7 @@
 
 (defmacro view-index (title popular-markup articles-list route &rest route-params)
   `(let* ((offset (* page *article-pagination-limit*)))
-     (page-template
+     (fe-page-template
          ,title
          ,popular-markup
        (htm
@@ -50,11 +50,10 @@
                        *article-pagination-limit*)))))))
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun nav-categories-markup ()
+(defun fe-nav-categories-markup ()
   (with-html
     (dolist (cat (get-active-categorys))
       (htm
@@ -69,25 +68,25 @@
                  (:a :href (genurl 'fe-r-cat-subcat :cat (slug cat) :subcat (slug subcat))
                      (str (name subcat))))))))))))
 
-(defun nav-tags-markup ()
+(defun fe-nav-tags-markup ()
   (with-html
     (dolist-li-a (get-all-tags) "tag" 'fe-r-tag name :tag (slug l))))
 
-(defun nav-authors-markup ()
+(defun fe-nav-authors-markup ()
   (with-html
     (dolist-li-a (get-all-authors) "author" 'fe-r-author name :author (handle l))))
 
-(defun get-article-tags-markup (article)
+(defun fe-get-article-tags-markup (article)
   (with-html
     (dolist (tag (tags article))
       (htm " "
        (:a :href (genurl 'fe-r-tag :tag (slug tag))
            (str (name tag)))))))
 
-(defun latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
+(defun fe-latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))
   (latest-articles category))
 
-(defun most-popular-articles-markup (&key (offset 0) (category (most-popular-categories)))
+(defun fe-most-popular-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))
   (most-popular-articles category))
