@@ -3,7 +3,8 @@
 (defun create-system ()
   (init-config)
   (model-init)
-  (db-connect))
+  (db-connect)
+  (hu-init))
 
 (defun restas-stop (port)
   (dolist (acceptor restas::*acceptors*)
