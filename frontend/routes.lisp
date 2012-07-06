@@ -12,3 +12,8 @@
 (define-route fe-r-author-page ("a/:author/:page" :parse-vars (list :page #'parse-integer)) (fe-v-author author page))
 (define-route fe-r-article (":(slug-and-id).html") (fe-v-article slug-and-id))
 (define-route fe-r-search ("search/") (fe-v-search))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; start/stop/restart various servers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(start/stop/restart "fe")

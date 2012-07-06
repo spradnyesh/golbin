@@ -8,6 +8,7 @@
                         :components ((:file "package")
                                      (:file "string" :depends-on ("package"))
                                      (:file "config" :depends-on ("string"))
+                                     (:file "init" :depends-on ("config"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("package"))
                                      (:file "l10n" :depends-on ("package"))
@@ -19,8 +20,7 @@
                                      (:file "photo" :depends-on ("file" "datetime"))))
                (:module "common"
                         :components ((:file "package")
-                                     (:file "config" :depends-on ("package"))
-                                     (:file "init" :depends-on ("config")))
+                                     (:file "config" :depends-on ("package")))
                         :depends-on ("utils"))
                (:module "model"
                         :components ((:file "category")
@@ -32,8 +32,7 @@
                                      (:file "init" :depends-on ("article" "category" "user" "photo" "tag" "view")))
                         :depends-on ("common"))
                (:module "frontend"
-                        :components ((:file "init")
-                                     (:module "view"
+                        :components ((:module "view"
                                               :components ((:file "css")
                                                            (:file "helpers")
                                                            (:file "template" :depends-on ("css" "helpers"))

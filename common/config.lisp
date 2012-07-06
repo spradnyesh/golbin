@@ -67,9 +67,9 @@
         ("envt:dev"
          ("db" ("type" "prevalence")
                ("path" ,(merge-pathnames "../data/db/dev/" *home*)))
-         ("frontend" ("restas" ("package" :hawksbill.golbin)
+         ("fe" ("restas" ("package" :hawksbill.golbin)
                          ("port" 8000)))
-         ("editorial" ("restas" ("package" :hawksbill.golbin)
+         ("ed" ("restas" ("package" :hawksbill.golbin)
                          ("port" 8080)))
          ("hunchentoot" ("debug" ("errors" t)
                                  ("backtraces" t))))

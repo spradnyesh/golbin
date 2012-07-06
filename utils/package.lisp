@@ -3,7 +3,10 @@
   (:shadow :acceptor :start :mime-type :size)
   (:shadowing-import-from :restas :redirect)
   (:export :*home*
+           ;; init
            :*system-status*
+           :start/stop/restart-system
+           :destroy-system
            ;; db
            :*db*
            ;; config
@@ -44,6 +47,7 @@
 ;; make sure these are initialized in every project
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar *home* "")
+;; init
 (defvar *system-status* nil)
 ;; db
 (defparameter *db* nil)
