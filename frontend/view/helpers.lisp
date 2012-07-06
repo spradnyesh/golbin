@@ -28,7 +28,7 @@
                  (htm
                   (:li
                    (:h3 (:a :class "a-title"
-                            :href (genurl 'route-article
+                            :href (genurl 'fe-r-article
                                           :slug-and-id (format nil "~A-~A"
                                                                (slug article)
                                                                (id article)))
@@ -59,29 +59,29 @@
     (dolist (cat (get-active-categorys))
       (htm
        (:li :class "cat"
-        (:a :href (genurl 'route-cat
+        (:a :href (genurl 'fe-r-cat
                           :cat (slug cat))
             (str (name cat)))
         (:ul
          (dolist (subcat (get-active-subcategorys cat))
            (htm
             (:li :class "subcat"
-                 (:a :href (genurl 'route-cat-subcat :cat (slug cat) :subcat (slug subcat))
+                 (:a :href (genurl 'fe-r-cat-subcat :cat (slug cat) :subcat (slug subcat))
                      (str (name subcat))))))))))))
 
 (defun nav-tags-markup ()
   (with-html
-    (dolist-li-a (get-all-tags) "tag" 'route-tag name :tag (slug l))))
+    (dolist-li-a (get-all-tags) "tag" 'fe-r-tag name :tag (slug l))))
 
 (defun nav-authors-markup ()
   (with-html
-    (dolist-li-a (get-all-authors) "author" 'route-author name :author (handle l))))
+    (dolist-li-a (get-all-authors) "author" 'fe-r-author name :author (handle l))))
 
 (defun get-article-tags-markup (article)
   (with-html
     (dolist (tag (tags article))
       (htm " "
-       (:a :href (genurl 'route-tag :tag (slug tag))
+       (:a :href (genurl 'fe-r-tag :tag (slug tag))
            (str (name tag)))))))
 
 (defun latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
