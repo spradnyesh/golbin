@@ -7,6 +7,7 @@
   (unless *system-status*
     (setf *system-status* t)
     (create-system))
+  (hu-init)
   (start (get-config "frontend.restas.package") :port (get-config "frontend.restas.port")))
 (defun fe-stop ()
   (restas-stop (get-config "frontend.restas.port")))

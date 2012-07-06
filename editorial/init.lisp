@@ -7,6 +7,7 @@
   (unless *system-status*
     (setf *system-status* t)
     (create-system))
+  (hu-init)
   (start (get-config "editorial.restas.package") :port (get-config "editorial.restas.port")))
 (defun ed-stop ()
   (restas-stop (get-config "editorial.restas.port")))
