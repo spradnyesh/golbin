@@ -5,7 +5,7 @@
    (title :initarg  :title :initform nil :accessor title)
    (typeof :initarg  :typeof :initform nil :accessor typeof) ; article, author, slideshow
    (orig-filename :initarg :orig-filename :initform nil :accessor orig-filename)
-   (new-filename :initarg :new-filename :initform nil :accessor new-filename)
+   (path :initarg :path :initform nil :accessor path)
    (date :initarg :date :initform nil :accessor date)
    (tags :initarg :tags :initform nil :accessor tags)
    (author :initarg :author :initform nil :accessor author)))

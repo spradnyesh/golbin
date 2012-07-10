@@ -15,7 +15,9 @@
            :fe-r-article
            :fe-r-search
            :ed-r-login-get
-           :ed-r-login-post))
+           :ed-r-login-post
+           :ed-r-photo-get
+           :ed-r-photo-post))
 
 (in-package :hawksbill.golbin)
 

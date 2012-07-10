@@ -8,7 +8,7 @@
   (init-db-system "photo" :photos))
 
 (defun model-first-run ()
-  (dolist (l '("article" "author" "category" "tag"))
+  (dolist (l '("article" "author" "category" "photo" "tag"))
     (execute *db* (make-transaction (intern (string-upcase (format nil "make-~as-root" l))))))
   (add-cat/subcat))
 

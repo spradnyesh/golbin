@@ -14,16 +14,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun add-tag (tag)
-  (setf (slug tag)
-        (slugify (name tag)))
-    ;; save tag into storage
-
-  (execute *db* (make-transaction 'insert-tag tag))
-
-    ;; TODO: sort tags in storage
-    #|(setf (tags storage) (sort (tags storage) #'string< :key #'name))|#
-  tag)
+(defun add-tag (name)
+  (let* ((name (string-trim " " name))
+         (slug (slugify name))
+         (new-tag (make-instance 'tag :name name :slug slug))
+         (existing-tag (get-tag-by-slug slug)))
+    ;; save tag into storage only if it does not already exist
+    (unless existing-tag
+      (execute *db* (make-transaction 'insert-tag new-tag))
+      new-tag)
+    existing-tag))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
@@ -44,4 +44,4 @@
 (defun add-tags ()
   (let ((tags "1500s 1960s aldus been book centuries containing desktop dummy electronic essentially ever five galley including industry industrys into ipsum leap letraset like lorem make more only pagemaker passages popularised printer printing publishing recently release remaining scrambled sheets simply since software specimen standard survived text took type typesetting unchanged unknown versions when with"))
     (dolist (tag (split-sequence " " tags :test #'string-equal))
-      (add-tag (make-instance 'tag :name tag)))))
+      (add-tag tag))))

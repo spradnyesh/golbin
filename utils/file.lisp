@@ -19,12 +19,11 @@
      finally (write-sequence buffer output :end bytes-read)))
 
 (defun get-parent-directory-path-string (path)
-  (join-string-list-with-delim
-   (reverse (rest (reverse
-                   (split-sequence "/"
-                                   path
-                                   :test #'string-equal))))
-   "/"))
+  (concatenate 'string
+               "/"
+               (join-string-list-with-delim
+                "/"
+                (replace-all (rest (pathname-directory path)) :up ".."))))
 
 (defun get-new-path (path)
   (let* ((parent-directory (get-parent-directory-path-string path))
@@ -50,15 +49,15 @@
         (copy-stream fp-in fp-out)))
     dest))
 
-(defun build-file-name (file-name user-id)
-  (let ((new-file-name (byte-array-to-hex-string (digest-file :md5 file-name))))
+(defun build-file-name (file-path user-id)
+  (let ((file-name (byte-array-to-hex-string (digest-file :md5 file-path))))
     (unless (string-equal user-id "")
-      (setf new-file-name
+      (setf file-name
             (concatenate 'string
                          user-id
                          "_"
-                         new-file-name)))
-    new-file-name))
+                         file-name)))
+    file-name))
 
 (defun get-upload-file-path (filename filetype upload-type)
   (multiple-value-bind (year month date)
