@@ -6,8 +6,8 @@
 (setf *config*
       `(("master" ("hunchentoot" ("debug" ("errors" nil)
                                           ("backtraces" nil)))
-                  ("path" ("uploads" ,(merge-pathnames "uploads/" *home*))
-                          ("images" ,(merge-pathnames "static/images/" *home*)))
+                  ("path" ("uploads" ,(merge-pathnames "../data/uploads/" *home*))
+                          ("images" ,(merge-pathnames "../data/static/images/" *home*)))
                   ("photo" ("article-lead" ("center" ("max-width" 600)
                                                      ("max-height" 300))
                                            ("side" ("max-width" 300)
