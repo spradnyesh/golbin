@@ -7,47 +7,46 @@
 (setf *prologue* "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; macros for html
+;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro with-html (&body body)
   `(with-html-output-to-string (*standard-output* nil)
      (htm
       ,@body)))
 
-(defmacro with-html-title-hd-bd-ft (&key site
-                                    title
-                                    hd
-                                    bd
-                                    ft)
-  (declare (ignore hd ft))
-  `(with-html-output-to-string (*standard-output* nil
-                                                  :prologue t
-                                                  :indent t)
-     (:html
-      (:head
-       (:title ,title)
-       (get-css ,title))
-      (:body
-       (:div :id "doc4" :class "yui-t5"
-             (:div :id "hd"
-                   (:div :id "containertop")
-                   (:h1 (:a :href "/" ,site)))
-             (:div :id "bd" :class "yui-skin-sam"
-                   (:div :id "yui-main" ,@bd)))
-       (get-js ,title)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; helper functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun tr-td-input (name &key (value "") (typeof "text"))
+  (with-html
+    (htm
+     (:tr
+      (:td (format t "~A" (string-capitalize name)))
+      (:td (:input :class "td-input"
+                   :type typeof
+                   :name (format nil "~A" name)
+                   :id (format nil "~A" name)
+                   :value value))
+      #|(:td (:textarea :cols 40
+                          :rows 7
+                          :name (format nil "~A" name)
+                          :id (format nil "~A" name)
+                          :value value))|#))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; standard functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun hu-init ()
+  (setf hunchentoot:*show-lisp-errors-p* (get-config "hunchentoot.debug.errors"))
+  (setf hunchentoot:*show-lisp-backtraces-p* (get-config "hunchentoot.debug.backtraces")))
+
+(defun logout ()
+  (remove-session *session*)
+  (redirect "/"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helpers for css and js
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro js-script (&rest body)
-  "Utility macro for including ParenScript into the HTML notation.
-Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/parenscript/manual/parenscript-tutorial.pdf)"
-  `(with-html
-    (:script :type "text/javascript"
-             (format nil "~%//<![CDATA[~%")
-             (str (ps ,@body))
-             (format nil "~%//]]>~%"))))
-
 #|(
  (defun link-css (path)
    (when (and (equal *environment* "prod")
@@ -77,74 +76,3 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
    #|(if (search "admin" title :test #'char-equal)
    (link-js "/static/js/admin.js")
    (link-js "/static/js/home.js"))|#))|#
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; standard functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun hu-init ()
-  (setf hunchentoot:*show-lisp-errors-p* (get-config "hunchentoot.debug.errors"))
-  (setf hunchentoot:*show-lisp-backtraces-p* (get-config "hunchentoot.debug.backtraces")))
-
-(defun logout ()
-  (remove-session *session*)
-  (redirect "/"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun make-tag-body-valid-plist (tag-body)
-  (append (list (first tag-body))
-          '(1)
-          (rest tag-body)))
-(defun get-elements-by-tag (root tag)
-  (let ((rslt nil))
-    (defun traverse (root)
-      (dolist (node root)
-        (when (and (consp node)
-                   (string-equal
-                    tag
-                    (handler-case
-                        (string (first node))
-                      (simple-type-error () nil))))
-          (setf rslt
-                (append rslt
-                        (list root)))
-          (traverse node))))
-    (traverse root)
-    rslt))
-
-(defun get-element-by-id (root id)
-  (let ((rslt nil))
-    (defun traverse (root)
-      (dolist (node root)
-        (when (consp node)
-          (if (string-equal
-               (handler-case
-                   (getf (make-tag-body-valid-plist
-                          node)
-                         :ID)
-                 (simple-type-error () nil))
-               id)
-              (setf rslt root)
-              (traverse node)))))
-    (traverse root)
-    rslt))
-
-(defun get-elements-by-class (root class)
-  (let ((rslt nil))
-    (defun traverse (root)
-      (dolist (node root)
-        (when (consp node)
-          (if (string-equal
-               (handler-case
-                   (getf (make-tag-body-valid-plist
-                          node)
-                         :CLASS)
-                 (simple-type-error () nil))
-               class)
-              (setf rslt
-                    (append rslt
-                            (list root)))
-              (traverse node)))))
-    (traverse root)
-    rslt))

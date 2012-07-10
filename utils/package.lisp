@@ -22,8 +22,10 @@
            :init-config
            ;; html
            :with-html
-           :js-script
+           :tr-td-input
            :hu-init
+           ;; js
+           :js-script
            ;; db
            :get-storage
            :init-db-system
@@ -32,14 +34,17 @@
            :db-disconnect
            ;; memcache
            :with-cache
-           ;; helpers
+           ;; list
            :conditionally-accumulate
+           :replace-all
            ;; string
            :slugify
            :join-string-list-with-delim
            ;; pagination
            :paginate
-           :pagination-markup))
+           :pagination-markup
+           ;; photo
+           :save-photo-to-disk))
 
 (in-package :hawksbill.utils)
 

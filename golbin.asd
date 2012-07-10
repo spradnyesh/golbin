@@ -11,8 +11,9 @@
                                      (:file "init" :depends-on ("config"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("package"))
+                                     (:file "js" :depends-on ("package"))
                                      (:file "l10n" :depends-on ("package"))
-                                     (:file "helpers" :depends-on ("package"))
+                                     (:file "list" :depends-on ("package"))
                                      (:file "pagination" :depends-on ("package"))
                                      (:file "db" :depends-on ("config"))
                                      (:file "datetime" :depends-on ("package"))
@@ -47,13 +48,6 @@
                                                            (:file "views" :depends-on ("template"))))
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model"))
-               #|(:module
-               "boomerang"
-               :components ((:file "src")))|#
-               #|(:module
-               "reports"
-               :components ((:file "package")
-               (:file "routes" :depends-on ("package"))
-               (:file "models" :depends-on ("package"))
-               (:file "views" :depends-on ("package"))))|#)
+               (:module "boomerang")
+               (:module "reports"))
   :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence :cl-gd :ironclad))
