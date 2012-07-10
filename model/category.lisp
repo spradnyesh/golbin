@@ -71,16 +71,6 @@
             rslt))
     (nreverse rslt)))
 
-(defun get-active-categorys ()
-  (conditionally-accumulate #'(lambda (cat)
-                                (> (length (get-articles-by-cat cat)) 1))
-                            (get-root-categorys)))
-
-(defun get-active-subcategorys (cat)
-  (conditionally-accumulate #'(lambda (subcat)
-                                (> (length (get-articles-by-cat-subcat cat subcat)) 1))
-                            (get-subcategorys (id cat))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

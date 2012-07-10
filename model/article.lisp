@@ -49,13 +49,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-active-articles ()
-  (get-object-by #'(lambda (article)
-                     (and
-                      (eq :a (status article))
-                      (eq :a (status (author article)))))
-                 (get-all-articles)))
-
 (defun get-all-articles-by-author (author)
   (get-object-by #'(lambda (article)
                                 (= (id author)

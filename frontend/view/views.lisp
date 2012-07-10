@@ -32,7 +32,7 @@
 (defun fe-v-home (&optional (page 0))
   (view-index "Home"
               (fe-most-popular-articles-markup)
-              (get-active-articles)
+              (get-all-articles)
               'fe-r-home-page))
 
 (defun fe-v-cat (cat-slug &optional (page 0))

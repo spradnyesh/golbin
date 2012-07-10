@@ -55,14 +55,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-nav-categories-markup ()
   (with-html
-    (dolist (cat (get-active-categorys))
+    (dolist (cat (get-root-categorys))
       (htm
        (:li :class "cat"
         (:a :href (genurl 'fe-r-cat
                           :cat (slug cat))
             (str (name cat)))
         (:ul
-         (dolist (subcat (get-active-subcategorys cat))
+         (dolist (subcat (get-subcategorys (id cat)))
            (htm
             (:li :class "subcat"
                  (:a :href (genurl 'fe-r-cat-subcat :cat (slug cat) :subcat (slug subcat))
