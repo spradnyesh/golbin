@@ -17,8 +17,8 @@
      (defun ,(intern (string-upcase (format nil "~a-stop" `,system))) ()
        (restas-stop (get-config ,(format nil "~a.restas.port" `,system))))
      (defun ,(intern (string-upcase (format nil "~a-restart" `,system))) ()
-       (fe-stop)
-       (fe-start))))
+       (,(intern (string-upcase (format nil "~a-start" `,system))))
+       (,(intern (string-upcase (format nil "~a-stop" `,system)))))))
 
 (defun restas-stop (port)
   (dolist (acceptor restas::*acceptors*)
