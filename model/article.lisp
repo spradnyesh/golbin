@@ -56,7 +56,7 @@
                  (get-all-articles)))
 
 (defmacro get-articles-by (cond)
-  `(get-object-by ,cond (get-active-articles)))
+  `(get-object-by ,cond (get-all-articles)))
 
 (defun get-articles-by-author (author)
   (get-articles-by #'(lambda (article)
@@ -83,7 +83,7 @@
           #'(lambda (article)
               (= (id cat)
                  (id (cat article))))
-          (get-active-articles)))
+          (get-all-articles)))
         #'>
         :key #'id))
 
