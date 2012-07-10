@@ -18,7 +18,7 @@
             (:div :id "bd"
                   (:div ,@content))
             (:div :id "ft"
-                  (str (footer))))))))
+                  (str (ed-footer))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
