@@ -18,7 +18,6 @@
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-photo (photo)
-  (log-message* :INFO "inside add-photo ~a" (title photo))
   ;; set some photo params
   (setf (id photo)
         (execute *db* (make-transaction 'incf-photo-last-id)))

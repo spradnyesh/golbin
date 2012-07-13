@@ -93,7 +93,6 @@
   (let ((count (post-parameter "count"))
 		(typeof (post-parameter "typeof")))
     (dotimes (i (parse-integer count))
-	  (log-message* :INFO "adding photo: i: ~a" i)
       (let* ((photo (post-parameter (format nil "photo-~A" i)))
 			 (photo-tags nil))
         (when (and photo (listp photo))
@@ -104,8 +103,6 @@
 												   :test #'string-equal))))
 				(dolist (tag tags)
 				  (push (add-tag tag) photo-tags))
-				(log-message* :INFO "tags: ~a" tags)
-				(log-message* :INFO "adding photo ~a" new-path)
 				(add-photo (make-instance 'photo
 										  :title orig-filename
 										  :typeof typeof

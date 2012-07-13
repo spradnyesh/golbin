@@ -3,8 +3,8 @@
 (define-route ed-r-login-get ("/login/" :method :get) (ed-v-login-get))
 (define-route ed-r-photo-get ("/photo/" :method :get) (ed-v-photo-get))
 (define-route ed-r-photo-post ("/photo/" :method :post) (ed-v-photo-post))
-(define-route ed-r-tmp-photo-get ("/photo/" :method :get) (ed-v-tmp-photo-get))
-(define-route ed-r-tmp-photo-post ("/photo/" :method :post) (ed-v-tmp-photo-post))
+(define-route ed-r-tmp-photo-get ("/tmp-photo/" :method :get) (ed-v-tmp-photo-get))
+(define-route ed-r-tmp-photo-post ("/tmp-photo/" :method :post) (ed-v-tmp-photo-post))
 #|(
  ;; only for logged-in users
  (define-route ed-r-home ("/") (ed-v-home))
