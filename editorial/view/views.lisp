@@ -46,17 +46,20 @@
 		(photo-tags nil)
         (typeof (post-parameter "typeof"))
         (photo (post-parameter "photo")))
-    (when (and photo (listp photo))
-      (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
-        (when new-path
+	(when (and photo (listp photo))
+	  (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
+		(when new-path
 		  (dolist (tag tags)
 			(push (add-tag tag) photo-tags))
-          (add-photo (make-instance 'photo
-                                    :title title
-                                    :typeof typeof
-                                    :orig-filename orig-filename
-                                    :path new-path
-                                    :tags photo-tags)))))
+		  (add-photo (make-instance 'photo
+									:title title
+									:typeof typeof
+									:orig-filename orig-filename
+									:new-filename (format nil
+														  "~A.~A"
+														  (pathname-name new-path)
+														  (pathname-type new-path))
+									:tags photo-tags)))))
     (redirect (genurl 'ed-r-photo-get))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
