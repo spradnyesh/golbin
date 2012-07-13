@@ -9,6 +9,7 @@
                                      (:file "string" :depends-on ("package"))
                                      (:file "config" :depends-on ("string"))
                                      (:file "init" :depends-on ("config"))
+                                     (:file "restas" :depends-on ("config"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("package"))
                                      (:file "js" :depends-on ("package"))

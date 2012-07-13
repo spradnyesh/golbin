@@ -14,10 +14,10 @@
            :fe-r-tag-page
            :fe-r-article
            :fe-r-search
-           :ed-r-login-get
-           :ed-r-login-post
            :ed-r-photo-get
-           :ed-r-photo-post))
+		   :ed-r-photo-post
+		   :ed-r-tmp-photo-get
+		   :ed-r-tmp-photo-post))
 
 (in-package :hawksbill.golbin)
 

@@ -1,7 +1,5 @@
 (in-package :hawksbill.utils)
 
-
-
 (defmacro start/stop/restart-system (system)
   `(progn
 	 (ensure-directories-exist ,(format nil "/tmp/hunchentoot/~a/" system))

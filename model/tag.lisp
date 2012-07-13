@@ -16,14 +16,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-tag (name)
   (let* ((name (string-trim " " name))
-         (slug (slugify name))
-         (new-tag (make-instance 'tag :name name :slug slug))
-         (existing-tag (get-tag-by-slug slug)))
-    ;; save tag into storage only if it does not already exist
-    (unless existing-tag
-      (execute *db* (make-transaction 'insert-tag new-tag))
-      new-tag)
-    existing-tag))
+		 (slug (slugify name))
+		 (new-tag (make-instance 'tag :name name :slug slug))
+		 (existing-tag (get-tag-by-slug slug)))
+	;; save tag into storage only if it does not already exist
+	(unless existing-tag
+	  (execute *db* (make-transaction 'insert-tag new-tag))
+	  new-tag)
+	existing-tag))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
