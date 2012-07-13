@@ -20,10 +20,11 @@
 		 (new-tag (make-instance 'tag :name name :slug slug))
 		 (existing-tag (get-tag-by-slug slug)))
 	;; save tag into storage only if it does not already exist
-	(unless existing-tag
-	  (execute *db* (make-transaction 'insert-tag new-tag))
-	  new-tag)
-	existing-tag))
+	(if existing-tag
+		existing-tag
+		(progn
+		  (execute *db* (make-transaction 'insert-tag new-tag))
+		  new-tag))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
