@@ -3,16 +3,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; upload
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun save-photo-to-disk (photo &optional (user-id ""))
+(defun save-photo-to-disk (photo)
   (destructuring-bind (orig-path orig-filename content-type) photo
     (when (search "image" content-type :test #'char-equal)
       (let* ((orig-filename (normalize-file-name orig-filename))
              (new-path (get-upload-file-path
-                        (build-file-name orig-path
-                                         user-id)
-                        (second (split-sequence "/"
-                                                content-type
-                                                :test #'string-equal))
+                        (build-file-name orig-path)
+                        (second (split-sequence "/" content-type :test #'string-equal))
                         "images")))
         (values orig-filename (mv orig-path (ensure-directories-exist new-path)))))))
 

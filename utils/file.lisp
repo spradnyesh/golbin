@@ -34,7 +34,9 @@
                                                   parent-directory
                                                   name
                                                   type))))))
-    (format nil "~A/~A-~A.~A" parent-directory name id type)))
+	(make-pathname :directory parent-directory
+				   :name (format nil "~A-~A" name id)
+				   :type type)))
 
 (defun mv (src dest)
   (when (probe-file src)
@@ -49,25 +51,11 @@
         (copy-stream fp-in fp-out)))
     dest))
 
-(defun build-file-name (file-path user-id)
-  (let ((file-name (byte-array-to-hex-string (digest-file :md5 file-path))))
-    (unless (string-equal user-id "")
-      (setf file-name
-            (concatenate 'string
-                         user-id
-                         "_"
-                         file-name)))
-    file-name))
+(defun build-file-name (file-path)
+  (byte-array-to-hex-string (digest-file :md5 file-path)))
 
 (defun get-upload-file-path (filename filetype upload-type)
-  (multiple-value-bind (year month date)
-      (get-year-month-date)
-    (make-pathname
-     :name filename
-     :type filetype
-     :defaults (make-pathname :directory
-                              (append (pathname-directory (get-config "path.uploads"))
-                                      (list upload-type
-                                            (write-to-string year)
-                                            (write-to-string month)
-                                            (write-to-string date)))))))
+  (make-pathname
+   :name filename
+   :type filetype
+   :directory (pathname-directory (make-pathname :directory (append (pathname-directory (get-config "path.uploads")) (list upload-type))))))
