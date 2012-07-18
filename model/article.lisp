@@ -11,6 +11,8 @@
    (date :initarg :date :initform nil :accessor date)
    (body :initarg :body :initform nil :accessor body)
    (status :initarg :status :initform nil :accessor status) ; :d draft (for withdrawn by author too), :s submitted, :a approved/active, :w withdrawn (deleted by admin)
+   (photo :initarg :photo :initform nil :accessor photo)
+   (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :c center
    (cat :initarg :cat :initform nil :accessor cat)
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
@@ -113,6 +115,13 @@
                                   :body (format nil "~A: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." (1+ i))
+								  :photo (let ((r (random 4)))
+										   (if (zerop r) nil
+											   (get-random-photo :a))) ; put a photo in 75% articles
+								  :photo-direction (let ((r (random 3)))
+													 (cond ((zerop r) :l)
+														   ((= 1 r) :c)
+														   ((= 2 r) :r)))
                                   :cat cat
                                   :subcat subcat
                                   :status (let ((r (random 4)))

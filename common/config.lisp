@@ -7,7 +7,7 @@
       `(("master" ("hunchentoot" ("debug" ("errors" nil)
                                           ("backtraces" nil)))
                   ("path" ("uploads" ,(merge-pathnames "../data/uploads/" *home*))
-                          ("images" ,(merge-pathnames "../data/static/images/" *home*)))
+                          ("photos" ,(merge-pathnames "../data/static/photos/" *home*)))
                   ("photo" ("article-lead" ("center" ("max-width" 600)
                                                      ("max-height" 300))
                                            ("side" ("max-width" 300)

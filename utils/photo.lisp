@@ -10,7 +10,7 @@
              (new-path (get-upload-file-path
                         (build-file-name orig-path)
                         (second (split-sequence "/" content-type :test #'string-equal))
-                        "images")))
+                        "photos")))
         (values orig-filename (mv orig-path (ensure-directories-exist new-path)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -3,12 +3,18 @@
 (defclass photo ()
   ((id :initarg :id :initform nil :accessor id)
    (title :initarg  :title :initform nil :accessor title)
-   (typeof :initarg  :typeof :initform nil :accessor typeof) ; article, author, slideshow
+   (typeof :initarg  :typeof :initform nil :accessor typeof) ; :a article, :u author, :s slideshow
    (orig-filename :initarg :orig-filename :initform nil :accessor orig-filename)
    (new-filename :initarg :new-filename :initform nil :accessor new-filename)
    (date :initarg :date :initform nil :accessor date)
    (tags :initarg :tags :initform nil :accessor tags)
    (author :initarg :author :initform nil :accessor author)))
+
+(defclass mini-photo ()
+  ((id :initarg :id :initform nil :accessor id)
+   (title :initarg :title :initform nil :accessor title)
+   (filename :initarg :filename :initform nil :accessor filename))
+  (:documentation "to be used as a foreign key in articles/authors"))
 
 (defclass photo-storage ()
   ((photos :initform nil :accessor photos)
@@ -50,6 +56,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun add-photos ()
-  "add a new photos to the db"
-  )
+(defun get-random-photo (typeof)
+  (let* ((photos (get-photos-by #'(lambda (photo)
+					 (eql typeof (typeof photo)))))
+		 (photo (nth (random (length photos)) photos)))
+	(make-instance 'mini-photo
+				   :id (id photo)
+				   :title (title photo)
+				   :filename (new-filename photo))))
