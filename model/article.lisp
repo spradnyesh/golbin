@@ -49,14 +49,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-all-articles-by-author (author)
+(defun get-active-articles ()
   (get-object-by #'(lambda (article)
-                                (= (id author)
-                                   (id (author article))))
+					   (eql :a (status article)))
                  (get-all-articles)))
 
 (defmacro get-articles-by (cond)
-  `(get-object-by ,cond (get-all-articles)))
+  `(get-object-by ,cond (get-active-articles)))
 
 (defun get-articles-by-author (author)
   (get-articles-by #'(lambda (article)
@@ -92,6 +91,13 @@
 
 (defun most-popular-articles (category)
   (declare (ignore category)))
+
+;; editorial: an author needs to see *all* of his articles
+(defun get-all-articles-by-author (author)
+  (get-object-by #'(lambda (article)
+                                (= (id author)
+                                   (id (author article))))
+                 (get-all-articles)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
