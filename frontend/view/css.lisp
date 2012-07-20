@@ -15,6 +15,9 @@
            (("body") (:color "#000000" :background-color "#CBDDEB"))
            (("a") (:text-decoration "none"))
            ((".yui3-g") (:width "1000px" :margin "0 auto" :background-color "#FFFFFF"))
+		   ((".block") (:display "block"))
+		   ((".left") (:float "left"))
+		   ((".right") (:float "right"))
            ;; hd
            (("#banner") (:height "100px"))
            (("#banner h1") (:height "80px" :width "80px" :border "1px solid"))
@@ -36,6 +39,9 @@
            ;; article
            (("#a-title") (:font-weight "bold" :font-size "120%" :padding-bottom "10px"))
            (("#a-details") (:font-size "80%" :padding-bottom "10px"))
+		   (("#a-body .block") (:padding-bottom "10px"))
+		   (("#a-body .left") (:padding-bottom "10px" :padding-right "10px"))
+		   (("#a-body .right") (:padding-bottom "10px" :padding-left "10px"))
            ;; pagination
            (("#col-2 .pagination") (:text-align "center" :padding "20px 0 30px"))
            (("#col-2 .pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))

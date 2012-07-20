@@ -83,6 +83,30 @@
        (:a :href (genurl 'fe-r-tag :tag (slug tag))
            (str (name tag)))))))
 
+(defun get-article-lead-photo-url (photo photo-direction)
+  (let* ((pd (cond ((eql :l photo-direction) "left")
+				   ((eql :r photo-direction) "right")
+				   ((eql :b photo-direction) "block")))
+		 (photo-size-config-name (format nil "photo.article-lead.~a" pd))
+		 (photo-size (format nil
+							 "~ax~a"
+							 (get-config (format nil
+												 "~a.max-width"
+												 photo-size-config-name))
+							 (get-config (format nil
+												 "~a.max-height"
+												 photo-size-config-name))))
+		 ;; XXX: photo filename should contain *exactly* 1 dot
+		 (name-extn (split-sequence "." (filename photo) :test #'string-equal)))
+	(with-html (:div :class pd
+					 (:img :src (format nil
+										"/static/~a_~a.~a"
+										(first name-extn)
+										photo-size
+										(second name-extn))
+						   :alt (title photo))
+					 (:p (str (title photo)))))))
+
 (defun fe-latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))
   (latest-articles category))

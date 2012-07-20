@@ -12,7 +12,7 @@
    (body :initarg :body :initform nil :accessor body)
    (status :initarg :status :initform nil :accessor status) ; :d draft (for withdrawn by author too), :s submitted, :a approved/active, :w withdrawn (deleted by admin)
    (photo :initarg :photo :initform nil :accessor photo)
-   (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :c center
+   (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
    (cat :initarg :cat :initform nil :accessor cat)
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)

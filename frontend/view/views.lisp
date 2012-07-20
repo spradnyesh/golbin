@@ -27,7 +27,11 @@
                     (str (name (subcat article))))
                 " using tags "
                 (:span :id "a-tags" (str (fe-get-article-tags-markup article))))
-            (:p :id "a-body" (str (body article)))))))
+            (:div :id "a-body"
+				(str (let ((photo (photo article)))
+					   (when photo
+						 (get-article-lead-photo-url photo (photo-direction article)))))
+				(str (body article)))))))
 
 (defun fe-v-home (&optional (page 0))
   (view-index "Home"
