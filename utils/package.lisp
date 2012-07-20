@@ -4,10 +4,11 @@
   (:shadowing-import-from :restas :redirect :start)
   (:export :*home*
            ;; init
-           :*system-status*
-           :start/stop/restart-system
-           :destroy-system
+		   :destroy-system
            :model-init
+		   ;; restas
+           :*system-status*
+		   :start/stop/restart-system
            ;; db
            :*db*
            ;; config
@@ -37,6 +38,7 @@
            ;; list
            :conditionally-accumulate
            :replace-all
+		   :insert-at
            ;; string
            :slugify
            :join-string-list-with-delim

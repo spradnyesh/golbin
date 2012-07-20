@@ -32,7 +32,3 @@
   (dolist (vhost restas::*vhosts*)
       (when (= port (restas::vhost-port vhost))
         (setf restas::*vhosts* (remove vhost restas::*vhosts*)))))
-
-(defun destroy-system ()
-  (stop-all)
-  (db-disconnect))
