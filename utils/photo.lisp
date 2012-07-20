@@ -46,3 +46,23 @@
                                     (directory-namestring (get-photo-upload-path ,name "photo"))
                                     ,name)
                             :image image))))|#
+
+;;; photos is really a list of photo names
+;;; typeof: author, article
+;;; TODO: find a way to get the config names automatically from config-tree instead of hardcoding them below. the drawback w/ the below is that everytime a new photo config gets added to config-tree, it'll have to be added here too.
+(defun scale-photos (photos typeof out-directory)
+  (let ((sizes nil))
+	(cond ((string-equal typeof "author")
+		   (push (list (get-config "photo.author.avatar.max-width")
+					   (get-config "photo.author.avatar.max-height")) sizes)
+		   (push (list (get-config "photo.author.article-logo.max-width")
+					   (get-config "photo.author.article-logo.max-height")) sizes))
+		  ((string-equal typeof "article")
+		   (push (list (get-config "photo.article-lead.left.max-width")
+					   (get-config "photo.article-lead.left.max-height")) sizes)
+		   (push (list (get-config "photo.article-lead.right.max-width")
+					   (get-config "photo.article-lead.right.max-height")) sizes)
+		   (push (list (get-config "photo.article-lead.block.max-width")
+					   (get-config "photo.article-lead.block.max-height")) sizes)))
+	(dolist (photo photos)
+	  )))

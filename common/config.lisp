@@ -14,7 +14,9 @@
                                                    ("max-height" 300))
 										   ("block" ("max-width" 600)
                                                      ("max-height" 300)))
-                           ("author" ("article-logo" ("max-width" 50)
+                           ("author" ("avatar" ("max-width" 100)
+                                                     ("max-height" 100))
+									 ("article-logo" ("max-width" 50)
                                                      ("max-height" 50))))
                   ("categorys" (("Business"
                                  "Companies"
