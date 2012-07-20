@@ -100,7 +100,7 @@
 		 (name-extn (split-sequence "." (filename photo) :test #'string-equal)))
 	(with-html (:div :class pd
 					 (:img :src (format nil
-										"/static/~a_~a.~a"
+										"/static/images/~a_~a.~a"
 										(first name-extn)
 										photo-size
 										(second name-extn))
