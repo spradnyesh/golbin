@@ -4,11 +4,11 @@
   (:shadowing-import-from :restas :redirect :start)
   (:export :*home*
            ;; init
-		   :destroy-system
+           :destroy-system
            :model-init
-		   ;; restas
+           ;; restas
            :*system-status*
-		   :start/stop/restart-system
+           :start/stop/restart-system
            ;; db
            :*db*
            ;; config
@@ -38,7 +38,7 @@
            ;; list
            :conditionally-accumulate
            :replace-all
-		   :insert-at
+           :insert-at
            ;; string
            :slugify
            :join-string-list-with-delim
@@ -46,7 +46,8 @@
            :paginate
            :pagination-markup
            ;; photo
-           :save-photo-to-disk))
+           :save-photo-to-disk
+           :scale-photo))
 
 (in-package :hawksbill.utils)
 

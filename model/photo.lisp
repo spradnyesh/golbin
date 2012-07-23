@@ -54,13 +54,44 @@
                          (return t))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for resize photos cron
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro sp ()
+  `(scale-photo (make-pathname :directory
+                               (append (pathname-directory (get-config "path.uploads")) '("photos")))
+                (get-config "path.photos")
+                (new-filename photo)
+                (first size)
+                (second size)))
+
+;; TODO: find a way to get the config names automatically from config-tree instead of hardcoding them below. the drawback w/ the below is that everytime a new photo config gets added to config-tree, it'll have to be added here too.
+(defun scale-photos ()
+  ;; XXX: need to use `+, below, instead of ' in order for the get-config to execute before getting assigned to *-sizes
+  (let ((article-sizes `((,(get-config "photo.article-lead.block.max-width")
+                           ,(get-config "photo.article-lead.block.max-height"))
+                         (,(get-config "photo.article-lead.left.max-width")
+                           ,(get-config "photo.article-lead.left.max-height"))
+                         (,(get-config "photo.article-lead.right.max-width")
+                           ,(get-config "photo.article-lead.right.max-height"))))
+        (author-sizes `((,(get-config "photo.author.article-logo.max-width")
+                          ,(get-config "photo.author.article-logo.max-height"))
+                        (,(get-config "photo.author.avatar.max-width")
+                          ,(get-config "photo.author.avatar.max-height")))))
+    (dolist (photo (get-all-photos))
+      (let ((typeof (typeof photo)))
+        (cond ((eql :a typeof)
+               (dolist (size article-sizes) (sp)))
+              ((eql :u typeof)
+               (dolist (size author-sizes) (sp))))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-random-photo (typeof)
   (let* ((photos (get-photos-by #'(lambda (photo)
-					 (eql typeof (typeof photo)))))
-		 (photo (nth (random (length photos)) photos)))
-	(make-instance 'mini-photo
-				   :id (id photo)
-				   :title (title photo)
-				   :filename (new-filename photo))))
+                     (eql typeof (typeof photo)))))
+         (photo (nth (random (length photos)) photos)))
+    (make-instance 'mini-photo
+                   :id (id photo)
+                   :title (title photo)
+                   :filename (new-filename photo))))

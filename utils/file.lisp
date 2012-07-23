@@ -34,9 +34,9 @@
                                                   parent-directory
                                                   name
                                                   type))))))
-	(make-pathname :directory parent-directory
-				   :name (format nil "~A-~A" name id)
-				   :type type)))
+    (make-pathname :directory parent-directory
+                   :name (format nil "~A-~A" name id)
+                   :type type)))
 
 (defun mv (src dest)
   (when (probe-file src)

@@ -16,53 +16,47 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; scaling
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro scale-photo-dimensions (dim-1 dim-2 max-1 max-2 orig-dim)
+(defmacro scale-photo-dimensions (dim-1 dim-2 max)
   `(progn
-     (setf ,dim-1 ,max-1)
-     (setf ,dim-2 (ceiling (* (/ ,orig-dim ,max-1) ,max-2)))))
+     (setf ,dim-2 (ceiling (* (/ ,max ,dim-1) ,dim-2)))
+     (setf ,dim-1 ,max)))
 
-(defun get-scaled-dimensions (max-width max-height orig-width orig-height)
-  (let (new-width new-height)
-    (if (> orig-width orig-height)
-        (scale-photo-dimensions new-width new-height max-width max-height orig-width)
-        (scale-photo-dimensions new-height new-width max-height max-width orig-height))
-    (values new-width new-height)))
+;; m- => max-, o- => orig-
+(defun get-scaled-dimensions (m-width m-height width height)
+  (if (> width height)
+      ;; w > h, so w = mw and h < mh
+      (scale-photo-dimensions width height m-width)
+      ;; w <= h, so h = mh and w < mw
+      (scale-photo-dimensions height width m-height))
+  (values width height))
 
-#|(defmacro scale-photo (dimension name)
-  `(multiple-value-bind (new-width new-height)
-       (get-scaled-dimensions ,(if (string-equal large-thumb
-                                                 "large")
-                                   *large-length*
-                                   *thumb-length*) width height)
-     (with-image (image new-width new-height t)
-       (copy-image *default-image*
-                   image 0 0 0 0
-                   width height
-                   :resize t
-                   :dest-width new-width
-                   :dest-height new-height)
-       (write-image-to-file (format nil
-                                    "~A~A"
-                                    (directory-namestring (get-photo-upload-path ,name "photo"))
-                                    ,name)
-                            :image image))))|#
-
-;;; photos is really a list of photo names
-;;; typeof: author, article
-;;; TODO: find a way to get the config names automatically from config-tree instead of hardcoding them below. the drawback w/ the below is that everytime a new photo config gets added to config-tree, it'll have to be added here too.
-(defun scale-photos (photos typeof out-directory)
-  (let ((sizes nil))
-	(cond ((string-equal typeof "author")
-		   (push (list (get-config "photo.author.avatar.max-width")
-					   (get-config "photo.author.avatar.max-height")) sizes)
-		   (push (list (get-config "photo.author.article-logo.max-width")
-					   (get-config "photo.author.article-logo.max-height")) sizes))
-		  ((string-equal typeof "article")
-		   (push (list (get-config "photo.article-lead.left.max-width")
-					   (get-config "photo.article-lead.left.max-height")) sizes)
-		   (push (list (get-config "photo.article-lead.right.max-width")
-					   (get-config "photo.article-lead.right.max-height")) sizes)
-		   (push (list (get-config "photo.article-lead.block.max-width")
-					   (get-config "photo.article-lead.block.max-height")) sizes)))
-	(dolist (photo photos)
-	  )))
+;; m- => max-, n- => new-, o- => orig-
+(defun scale-photo (o-path n-path o-filename m-width m-height)
+  (let* ((name-extn (split-sequence "." o-filename :test #'string-equal))
+         (n-filename (format nil
+                             "~a/~a_~ax~a.~a"
+                             n-path
+                             (first name-extn)
+                             m-width
+                             m-height
+                             (second name-extn))))
+    (unless (probe-file n-filename) ; do-the-do only if the file does not already exist
+      (with-image-from-file (o-photo (merge-pathnames o-filename o-path))
+        (multiple-value-bind (o-width o-height)
+            (image-size o-photo)
+          (multiple-value-bind (n-width n-height)
+              (get-scaled-dimensions m-width
+                                     m-height
+                                     o-width
+                                     o-height)
+            #|(format t "~a x ~a ::: ~a x ~a -> ~a x ~a~%" m-width m-height o-width o-height n-width n-height)|#
+            (with-image (n-photo n-width n-height t)
+              (copy-image o-photo
+                          n-photo
+                          0 0 0 0
+                          o-width o-height
+                          :resize t
+                          :dest-width n-width
+                          :dest-height n-height)
+              (write-image-to-file n-filename
+                                   :image n-photo))))))))
