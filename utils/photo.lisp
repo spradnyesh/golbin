@@ -31,7 +31,7 @@
   (values width height))
 
 ;; m- => max-, n- => new-, o- => orig-
-(defun scale-photo (o-path n-path o-filename m-width m-height)
+(defun scale-and-save-photo (o-path n-path o-filename m-width m-height)
   (let* ((name-extn (split-sequence "." o-filename :test #'string-equal))
          (n-filename (format nil
                              "~a/~a_~ax~a.~a"

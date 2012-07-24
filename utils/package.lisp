@@ -47,7 +47,7 @@
            :pagination-markup
            ;; photo
            :save-photo-to-disk
-           :scale-photo))
+           :scale-and-save-photo))
 
 (in-package :hawksbill.utils)
 
