@@ -27,6 +27,9 @@
                                           :limit *article-pagination-limit*))
                  (htm
                   (:li
+				   (when (photo article)
+					 (htm (:div :class "index-thumb"
+								(str (get-article-lead-photo-url (photo article) "index-thumb")))))
                    (:h3 (:a :class "a-title"
                             :href (genurl 'fe-r-article
                                           :slug-and-id (format nil "~A-~A"
@@ -84,10 +87,7 @@
            (str (name tag)))))))
 
 (defun get-article-lead-photo-url (photo photo-direction)
-  (let* ((pd (cond ((eql :l photo-direction) "left")
-				   ((eql :r photo-direction) "right")
-				   ((eql :b photo-direction) "block")))
-		 (photo-size-config-name (format nil "photo.article-lead.~a" pd))
+  (let* ((photo-size-config-name (format nil "photo.article-lead.~a" photo-direction))
 		 (photo-size (format nil
 							 "~ax~a"
 							 (get-config (format nil
@@ -98,14 +98,12 @@
 												 photo-size-config-name))))
 		 ;; XXX: photo filename should contain *exactly* 1 dot
 		 (name-extn (split-sequence "." (filename photo) :test #'string-equal)))
-	(with-html (:div :class pd
-					 (:img :src (format nil
-										"/static/photos/~a_~a.~a"
-										(first name-extn)
-										photo-size
-										(second name-extn))
-						   :alt (title photo))
-					 (:p (str (title photo)))))))
+	(with-html (:img :src (format nil
+								  "/static/photos/~a_~a.~a"
+								  (first name-extn)
+								  photo-size
+								  (second name-extn))
+					 :alt (title photo)))))
 
 (defun fe-latest-articles-markup (&key (offset 0) (category (most-popular-categories)))
   (declare (ignore offset))

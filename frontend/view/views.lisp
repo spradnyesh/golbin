@@ -28,10 +28,16 @@
                 " using tags "
                 (:span :id "a-tags" (str (fe-get-article-tags-markup article))))
             (:div :id "a-body"
-				(str (let ((photo (photo article)))
-					   (when photo
-						 (get-article-lead-photo-url photo (photo-direction article)))))
-				(str (body article)))))))
+				  (let ((photo (photo article)))
+					(when photo
+					  (let* ((photo-direction (photo-direction article))
+							 (pd (cond ((eql :l photo-direction) "left")
+									   ((eql :r photo-direction) "right")
+									   ((eql :b photo-direction) "block"))))
+						(htm (:div :class pd
+								   (str (get-article-lead-photo-url photo pd))
+								   (:p (str (title photo))))))))
+				  (str (body article)))))))
 
 (defun fe-v-home (&optional (page 0))
   (view-index "Home"

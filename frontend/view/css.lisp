@@ -33,7 +33,8 @@
            ;; index pages
            #|(("#articles") (:padding-top "20px" :border-top "3px solid #B5B5B5"))|#
            (("#articles ul li") (:padding "10px 0" :border-bottom "1px dotted" :border-color "#CCC"))
-           (("#articles .a-title") (:font-weight "bold" :font-size "120%" :color "#21629C"))
+           (("#articles .index-thumb") (:float "left" :padding-right "10px"))
+		   (("#articles .a-title") (:font-weight "bold" :font-size "120%" :color "#21629C"))
            (("#articles .a-cite") (:font-size "80%" :color "#999999" :padding "2px 0" :display "block"))
            (("#articles .a-summary") (:color "#4a4a4a"))
            ;; article

@@ -1,3 +1,4 @@
 *fasl
 data/uploads
-/data/static/photos/*
+data/static/photos/*
+data.tar.bz2
