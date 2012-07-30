@@ -9,8 +9,6 @@
            ;; restas
            :*system-status*
            :start/stop/restart-system
-           ;; db
-           :*db*
            ;; config
            :config-storage              ; class
            :*config*                    ; input to init-config-tree
@@ -28,17 +26,20 @@
            ;; js
            :js-script
            ;; db
+           :*db*
            :get-storage
            :init-db-system
            :get-object-by
            :db-connect
            :db-disconnect
+           :db-reconnect
            ;; memcache
            :with-cache
            ;; list
            :conditionally-accumulate
            :replace-all
            :insert-at
+           :splice
            ;; string
            :slugify
            :join-string-list-with-delim
@@ -60,8 +61,6 @@
 (defvar *system-status* nil)
 ;; db
 (defparameter *db* nil)
-;; pagination
-(defvar *pagination-limit* 10)
 ;; config
 (defvar *dimensions* nil)
 (defvar *config* nil)

@@ -1,6 +1,6 @@
 (in-package :hawksbill.utils)
 
-(defun paginate (list &key (offset 0) (limit *pagination-limit*))
+(defun paginate (list offset limit)
   (let* ((list (if (consp list)
                    list
                    (list list)))

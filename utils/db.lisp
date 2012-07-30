@@ -77,3 +77,6 @@
     (cond ((equal db-type "prevalence")
            (when *db*
              (close-open-streams *db*))))))
+(defun db-reconnect ()
+  (db-disconnect)
+  (db-connect))
