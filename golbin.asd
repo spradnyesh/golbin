@@ -38,7 +38,8 @@
                                               :components ((:file "css")
                                                            (:file "helpers")
                                                            (:file "template" :depends-on ("css" "helpers"))
-                                                           (:file "views" :depends-on ("template"))))
+                                                           (:file "article" :depends-on ("template"))
+                                                           (:file "index" :depends-on ("template"))))
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model"))
                (:module "editorial"
