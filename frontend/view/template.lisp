@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro fe-page-template (title popular-articles &body content)
+(defmacro fe-page-template (title &body content)
   `(with-html
      (:html
       (:head
@@ -18,7 +18,6 @@
             (:div :id "bd"
                   (:div :class "yui3-u-3-4"
                         (:div :id "col-1" :class "yui3-u-1-5"
-                              (str ,popular-articles)
                               (str (fe-ads-1)))
                         (:div :id "col-2" :class "yui3-u-4-5"
                               ,@content))
@@ -75,7 +74,7 @@
           (str (fe-logo))
           (str (fe-site-search)))
           #|(str (trending))|#
-    (str (fe-navigation))))
+    #|(str (fe-navigation))|#))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

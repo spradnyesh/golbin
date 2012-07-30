@@ -53,7 +53,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-active-articles ()
   (get-object-by #'(lambda (article)
-					   (eql :a (status article)))
+                       (eql :a (status article)))
                  (get-all-articles)))
 
 (defmacro get-articles-by (cond)
@@ -84,15 +84,35 @@
           #'(lambda (article)
               (= (id cat)
                  (id (cat article))))
-          (get-all-articles)))
+          (get-active-articles)))
         #'>
         :key #'id))
 
-(defun latest-articles (category)
-  (declare (ignore category)))
-
-(defun most-popular-articles (category)
-  (declare (ignore category)))
+(defun get-related-articles (article)
+  (let ((cat-id (id (cat article)))
+        (subcat-id (id (subcat article)))
+        (author-id (id (author article))))
+    (values
+     ;; only cat-subcat matches
+     (get-articles-by #'(lambda (article)
+                          (and (= (id (cat article)) cat-id)
+                               (= (id (subcat article)) subcat-id)
+                               (/= (id (author article)) author-id))))
+     ;; only author matches
+     (get-articles-by #'(lambda (article)
+                          (and (/= (id (cat article)) cat-id)
+                               (/= (id (subcat article)) subcat-id)
+                               (= (id (author article)) author-id))))
+     ;; atleast 1 tag matches
+     #|(get-articles-by #'(lambda (article)
+                          (and (/= (id (cat article)) cat-id)
+                               (/= (id (subcat article)) subcat-id)
+                               (/= (id (author article)) author-id)
+                               ((lambda ()
+                                  (dolist (tag (tags article))
+                                    (print (slug tag))
+                                    (when (string-equal (slug tag) tag-slug)
+                                      (return t))))))))|#)))
 
 ;; editorial: an author needs to see *all* of his articles
 (defun get-all-articles-by-author (author)
@@ -115,13 +135,13 @@
                                   :body (format nil "~A: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." (1+ i))
-								  :photo (let ((r (random 4)))
-										   (if (zerop r) nil
-											   (get-random-photo :a))) ; put a photo in 75% articles
-								  :photo-direction (let ((r (random 3)))
-													 (cond ((zerop r) :l)
-														   ((= 1 r) :c)
-														   ((= 2 r) :r)))
+                                  :photo (let ((r (random 4)))
+                                           (if (zerop r) nil
+                                               (get-random-photo :a))) ; put a photo in 75% articles
+                                  :photo-direction (let ((r (random 3)))
+                                                     (cond ((zerop r) :l)
+                                                           ((= 1 r) :c)
+                                                           ((= 2 r) :r)))
                                   :cat cat
                                   :subcat subcat
                                   :status (let ((r (random 4)))

@@ -14,20 +14,20 @@
            :fe-r-tag-page
            :fe-r-article
            :fe-r-search
-		   :ed-r-home
+           :ed-r-home
            :ed-r-photos
-		   :ed-r-photo-id
-		   :ed-r-photo-get
-		   :ed-r-photo-post
-		   :ed-r-tmp-photo-get
-		   :ed-r-tmp-photo-post
-		   :ed-r-articles
-		   :ed-r-article-id
-		   :ed-r-article-get
-		   :ed-r-article-post
-		   :ed-r-tag
-		   :ed-r-login-get
-		   :ed-r-login-post))
+           :ed-r-photo-id
+           :ed-r-photo-get
+           :ed-r-photo-post
+           :ed-r-tmp-photo-get
+           :ed-r-tmp-photo-post
+           :ed-r-articles
+           :ed-r-article-id
+           :ed-r-article-get
+           :ed-r-article-post
+           :ed-r-tag
+           :ed-r-login-get
+           :ed-r-login-post))
 
 (in-package :hawksbill.golbin)
 
@@ -35,8 +35,6 @@
 ;; parameters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defparameter *site-name* "Golbin")
-(defparameter *article-pagination-range* 10)
-(defparameter *article-pagination-limit* 10)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; variables
