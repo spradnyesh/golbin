@@ -46,7 +46,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-v-home (&optional (page 0))
   (view-index "Home"
-              (get-all-articles)
+              (get-active-articles)
               'fe-r-home-page))
 
 (defun fe-v-cat (cat-slug &optional (page 0))
