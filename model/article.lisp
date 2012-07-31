@@ -140,7 +140,7 @@ It is a long established fact that a reader will be distracted by the readable c
                                                (get-random-photo :a))) ; put a photo in 75% articles
                                   :photo-direction (let ((r (random 3)))
                                                      (cond ((zerop r) :l)
-                                                           ((= 1 r) :c)
+                                                           ((= 1 r) :b)
                                                            ((= 2 r) :r)))
                                   :cat cat
                                   :subcat subcat
