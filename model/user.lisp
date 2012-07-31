@@ -36,7 +36,7 @@
 (defclass visitor (user)
   ((preference :initarg :preference :initform nil :accessor preference)))
 
-(defclass mini-author (author)
+(defclass mini-author ()
   ((id :initarg :id :initform nil :accessor id)
    (handle :initarg :handle :initform nil :accessor handle)
    (name :initarg :name :initform nil :accessor name))
@@ -51,28 +51,27 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro set-mini-author (object)
-  `(multiple-value-bind (id name handle status) (get-mini-author-details-from-id (get-current-author-id))
+  `(multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
      (setf (author ,object)
            (make-instance 'mini-author
                           :id id
                           :name name
-                          :handle handle
-                          :status status))))
+                          :handle handle))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-author (author)
-  (let ((storage (get-storage :authors)))
-    (setf (id author)
-          (execute *db* (make-transaction 'incf-author-last-id)))
+  (setf (id author)
+        (execute *db* (make-transaction 'incf-author-last-id)))
     ;; save author into storage
-    (execute *db* (make-transaction 'insert-author author))
+
+  (execute *db* (make-transaction 'insert-author author))
 
     ;; TODO: sort authors in storage
     #|(setf (authors storage) (sort (authors storage) #'string< :key #'name))|#
 
-    author))
+  author)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
@@ -82,8 +81,7 @@
                       :key #'id)))
     (values (id author)
             (name author)
-            (handle author)
-            (status author))))
+            (handle author))))
 
 (defun get-author-by-handle (handle)
   (find handle
@@ -113,7 +111,16 @@
                    "Manny Pacquiao"
                    "Tiger Woods"
                    "LeBron James"
-                   "Roger Federer")))
+                   "Roger Federer"
+                   "Rupert Sanders"
+                   "Madonna"
+                   "Sarah Jessica Parker"
+                   "Anjelina Jolie"
+                   "Jennifer Aniston"
+                   "Courtey Cox"
+                   "Tom Cruise"
+                   "Emma Wason"
+                   "Megan Fox")))
         (dolist (author-name authors)
           (add-author (make-instance 'author
                                      :name author-name
