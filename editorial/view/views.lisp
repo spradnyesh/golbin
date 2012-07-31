@@ -110,7 +110,9 @@
 				  (push (add-tag tag) photo-tags))
 				(add-photo (make-instance 'photo
 										  :title orig-filename
-										  :typeof typeof
+										  :typeof (cond ((string-equal typeof "article") :a)
+														((string-equal typeof "author") :u)
+														((string-equal typeof "slideshow") :s))
 										  :orig-filename orig-filename
 										  :new-filename (format nil
 																"~A.~A"
