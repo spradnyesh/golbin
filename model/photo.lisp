@@ -89,6 +89,12 @@
                        (when (equal slug (slug tag))
                          (return t))))))
 
+(defun get-mini-photo (photo)
+  (make-instance 'mini-photo
+                 :id (id photo)
+                 :title (title photo)
+                 :filename (new-filename photo)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for resize photos cron
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

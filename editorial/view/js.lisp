@@ -6,7 +6,6 @@
 
 (defun on-load ()
   (import-macros-from-lisp '$$)
-  (import-macros-from-lisp '@$)
   (ps ($$ (document ready)
         (flet ((article-change-category ()
                  (let ((cat-id (parse-int ((@ ($ "#cat") val))))

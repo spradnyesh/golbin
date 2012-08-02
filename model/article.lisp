@@ -36,6 +36,7 @@
         (now))
   (setf (slug article)
         (slugify (title article)))
+  (setf (status article) :d)
   (set-mini-author article)
 
   ;; save article into storage

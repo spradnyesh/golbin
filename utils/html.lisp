@@ -18,15 +18,16 @@
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun tr-td-input (name &key (value "") (typeof "text"))
-  (with-html
-    (htm
-     (:tr
-      (:td (format t "~A" (string-capitalize name)))
-      (:td (:input :class "td-input"
-                   :type typeof
-                   :name (format nil "~A" name)
-                   :id (format nil "~A" name)
-                   :value value))))))
+  (let ((for (regex-replace-all "-" name " ")))
+    (with-html
+      (htm
+       (:tr
+        (:td (format t "~A" (string-capitalize for)))
+        (:td (:input :class "td-input"
+                     :type typeof
+                     :name (format nil "~A" name)
+                     :id (format nil "~A" name)
+                     :value value)))))))
 
 (defun tr-td-text (name &key (value "") (cols 40) (rows 7))
   (with-html

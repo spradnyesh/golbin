@@ -25,6 +25,14 @@
                                            :class "td-input"
                                            (dolist (subcat (get-subcategorys 1))
                                              (htm (:option :value (id subcat) (str (name subcat))))))))
+                        (str (tr-td-input "lead-photo"))
+                        (:tr (:td "Lead Photo Placement")
+                             (:td (:select :id "pd"
+                                           :name "pd"
+                                           :class "td-input"
+                                           (:option :value "center" "Center")
+                                           (:option :value "left" "Left")
+                                           (:option :value "right" "Right"))))
                         (str (tr-td-input "tags")))
                 (:input :id "save"
                         :name "save"
@@ -33,24 +41,25 @@
 
 (defun ed-v-article-post ()
   (let ((title (post-parameter "title"))
+        (summary (post-parameter "summary"))
+        (body (post-parameter "body"))
+        (cat (post-parameter "cat"))
+        (subcat (post-parameter "subcat"))
+        (photo (post-parameter "photo"))
+        (pd (post-parameter "pd"))
         (tags (split-sequence "," (post-parameter "tags") :test #'string-equal))
-        (photo-tags nil)
-        (typeof (post-parameter "typeof"))
-        (photo (post-parameter "photo")))
-    (when (and photo (listp photo))
-      (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
-        (when new-path
-          (dolist (tag tags)
-            (push (add-tag tag) photo-tags))
-          (add-photo (make-instance 'photo
-                                    :title title
-                                    :typeof (cond ((string-equal typeof "article") :a)
-                                                  ((string-equal typeof "author") :u)
-                                                  ((string-equal typeof "slideshow") :s))
-                                    :orig-filename orig-filename
-                                    :new-filename (format nil
-                                                          "~A.~A"
-                                                          (pathname-name new-path)
-                                                          (pathname-type new-path))
-                                    :tags photo-tags)))))
-    (redirect (genurl 'ed-r-photo-get))))
+        (article-tags nil))
+    (dolist (tag tags)
+            (push (add-tag tag) article-tags))
+    (add-article (make-instance 'article
+                                :title title
+                                :summary summary
+                                :body body
+                                :cat cat
+                                :subcat subcat
+                                :photo (when photo (get-mini-photo (get-photo-by-id photo)))
+                                :photo-direction (cond ((string-equal pd "center") :b)
+                                                       ((string-equal pd "left") :l)
+                                                       ((string-equal pd "right") :r))
+                                :tags article-tags))
+    (redirect (genurl 'ed-r-article-get))))
