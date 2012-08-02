@@ -10,8 +10,8 @@
            :*system-status*
            :start/stop/restart-system
            ;; config
-           :config-storage              ; class
-           :*config*                    ; input to init-config-tree
+           :config-storage
+           :*config*
            :*dimensions*
            :*current-dimensions-string*
            :get-config
@@ -26,6 +26,7 @@
            :hu-init
            ;; js
            :js-script
+           :obfuscate-js
            ;; db
            :*db*
            :get-storage
@@ -67,3 +68,6 @@
 (defvar *config* nil)
 (defvar *config-storage* nil)
 (defvar *current-dimensions-string* nil)
+
+;; http://common-lisp.net/project/parenscript/tutorial.html
+(setf *js-string-delimiter* #\")

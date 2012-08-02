@@ -24,6 +24,7 @@
                                                      ("max-height" 50))))
                   ("pagination" ("article" ("limit" 10)
                                            ("related" 4)))
+                  ("parenscript" ("obfuscation" nil))
                   ("categorys" (("Business"
                                  "Companies"
                                  "Economy"
@@ -83,4 +84,4 @@
                          ("port" 8080)))
          ("hunchentoot" ("debug" ("errors" t)
                                  ("backtraces" t))))
-        ("envt:prod" ("n3" "v3") ("n4" "v4"))))
+        ("envt:prod" ("parenscript" ("obfuscation" t)))))

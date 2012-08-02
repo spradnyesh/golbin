@@ -71,6 +71,10 @@
             rslt))
     (nreverse rslt)))
 
+;; XXX: needs cache
+(defun get-category-tree-json ()
+  (encode-json-to-string (get-category-tree)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

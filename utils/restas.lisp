@@ -15,6 +15,7 @@
          (model-init)
          (db-connect))
        (hu-init)
+       (obfuscate-js)
        (start (get-config ,(format nil "~a.restas.package" `,system))
               :port (get-config ,(format nil "~a.restas.port" `,system))
 			  :acceptor-class ',(intern (string-upcase (format nil "~a-acceptor" `,system)))))

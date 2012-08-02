@@ -22,6 +22,7 @@
                                      (:file "photo" :depends-on ("file" "datetime"))))
                (:module "common"
                         :components ((:file "package")
+                                     (:file "init" :depends-on ("package"))
                                      (:file "config" :depends-on ("package")))
                         :depends-on ("utils"))
                (:module "model"
@@ -45,8 +46,9 @@
                (:module "editorial"
                         :components ((:module "view"
                                               :components ((:file "css")
+                                                           (:file "js")
                                                            (:file "helpers")
-                                                           (:file "template" :depends-on ("css" "helpers"))
+                                                           (:file "template" :depends-on ("css" "js" "helpers"))
                                                            (:file "article" :depends-on ("template"))
 														   (:file "login" :depends-on ("template"))
 														   (:file "photo" :depends-on ("template"))))

@@ -1,13 +1,16 @@
 (in-package :hawksbill.utils)
 
+(defun obfuscate-js ()
+  (setf *ps-print-pretty* (not (get-config "parenscript.obfuscation"))))
+
 (defmacro js-script (&rest body)
   "Utility macro for including ParenScript into the HTML notation.
 Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/parenscript/manual/parenscript-tutorial.pdf)"
   `(with-html
-    (:script :type "text/javascript"
-             (format nil "~%//<![CDATA[~%")
-             (str (ps ,@body))
-             (format nil "~%//]]>~%"))))
+     (:script :type "text/javascript"
+              (format nil "~%//<![CDATA[~%")
+              (str (ps ,@body))
+              (format nil "~%//]]>~%"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
@@ -16,6 +19,7 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
   (append (list (first tag-body))
           '(1)
           (rest tag-body)))
+
 (defun get-elements-by-tag (root tag)
   (let ((rslt nil))
     (defun traverse (root)
