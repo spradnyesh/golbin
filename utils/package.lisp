@@ -22,6 +22,7 @@
            ;; html
            :with-html
            :tr-td-input
+           :tr-td-text
            :hu-init
            ;; js
            :js-script

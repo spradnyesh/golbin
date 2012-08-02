@@ -26,12 +26,18 @@
                    :type typeof
                    :name (format nil "~A" name)
                    :id (format nil "~A" name)
-                   :value value))
-      #|(:td (:textarea :cols 40
-                          :rows 7
-                          :name (format nil "~A" name)
-                          :id (format nil "~A" name)
-                          :value value))|#))))
+                   :value value))))))
+
+(defun tr-td-text (name &key (value "") (cols 40) (rows 7))
+  (with-html
+    (htm
+     (:tr
+      (:td (format t "~A" (string-capitalize name)))
+      (:td (:textarea :cols cols
+					  :rows rows
+					  :name (format nil "~A" name)
+					  :id (format nil "~A" name)
+					  :value value))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions
