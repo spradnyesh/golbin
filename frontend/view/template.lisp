@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro fe-page-template (title &body content)
+(defmacro fe-page-template (title &optional (js nil) &body content)
   `(with-html
      (:html
       (:head
@@ -24,7 +24,11 @@
                   (:div :id "col-3" :class "yui3-u-1-4"
                         (str (fe-ads-2))))
             (:div :id "ft"
-                  (str (fe-footer))))))))
+                  (str (fe-footer))))
+       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
+       (:script :type "text/javascript"
+                  (str (on-load)))
+       ,js))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
@@ -58,15 +62,8 @@
     (:ul :id "nav"
          (:li :id "nav-home"
               (:h2 (:a :href (genurl 'fe-r-home) "Home")))
-         (:li :id "nav-cats"
-              (:h2 (:p "Categories"))
-              (:ul (str (fe-nav-categories-markup))))
-         (:li :id "nav-tags"
-              (:h2 (:p "Tags"))
-              (:ul (str (fe-nav-tags-markup))))
-         (:li :id "nav-authors"
-              (:h2 (:p "Authors"))
-              (:ul (str (fe-nav-authors-markup)))))))
+         (str (fe-nav-categories-markup)))
+    (:ul :id "subnav")))
 
 (defun fe-header ()
   (with-html
@@ -74,7 +71,7 @@
           (str (fe-logo))
           (str (fe-site-search)))
           #|(str (trending))|#
-    #|(str (fe-navigation))|#))
+    (str (fe-navigation))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

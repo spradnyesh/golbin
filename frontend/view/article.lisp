@@ -72,7 +72,7 @@
         (:div
          (:div :id "article"
           (:h2 :id "a-title" (str (title article)))
-          (:p :id "a-details"
+          (:p :id "a-details" :class "small"
               "written by "
               (:a :id "a-author"
                   :href (genurl 'fe-r-author :author (handle (author article)))

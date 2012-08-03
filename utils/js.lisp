@@ -12,6 +12,10 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
               (str (ps ,@body))
               (format nil "~%//]]>~%"))))
 
+;; http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-6
+(defmacro $$ ((selector event-binding) &body body)
+  `((@ ($ ,selector) ,event-binding) (lambda () ,@body)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

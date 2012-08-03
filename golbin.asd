@@ -37,8 +37,9 @@
                (:module "frontend"
                         :components ((:module "view"
                                               :components ((:file "css")
+                                                           (:file "js")
                                                            (:file "helpers")
-                                                           (:file "template" :depends-on ("css" "helpers"))
+                                                           (:file "template" :depends-on ("css" "js" "helpers"))
                                                            (:file "article" :depends-on ("template"))
                                                            (:file "index" :depends-on ("template"))))
                                      (:file "routes" :depends-on ("view")))

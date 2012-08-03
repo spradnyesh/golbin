@@ -1,9 +1,5 @@
 (in-package :hawksbill.golbin)
 
-;; http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-6
-(defmacro $$ ((selector event-binding) &body body)
-  `((@ ($ ,selector) ,event-binding) (lambda () ,@body)))
-
 (defun on-load ()
   (import-macros-from-lisp '$$)
   (ps ($$ (document ready)

@@ -12,6 +12,9 @@
            ;; undo .yui3-g spacing
            ((".yui3-g") (:letter-spacing "normal" :word-spacing "normal"))
            ;; common
+           (("h2") (:font-weight "bold" :font-size "140%"))
+           (("h3") (:font-weight "bold" :font-size "120%"))
+           (("small") (:font-size "80%"))
            (("body") (:color "#000000" :background-color "#CBDDEB"))
            (("a") (:text-decoration "none"))
            ((".yui3-g") (:width "1000px" :margin "0 auto" :background-color "#FFFFFF"))
@@ -21,6 +24,10 @@
            ;; hd
            (("#banner") (:height "100px"))
            (("#banner h1") (:height "80px" :width "80px" :border "1px solid"))
+           (("#nav") (:height "25px"))
+           (("#nav li") (:float "left" :padding "0 5px"))
+           (("#nav .cat ul") (:display "none"))
+           (("#subnav .subcat") (:float "left" :padding "0 5px"))
            ;; bd
            (("#bd") (:min-height "800px"))
            ;; ft
@@ -29,17 +36,17 @@
            #|(("#articles") (:padding-top "20px" :border-top "3px solid #B5B5B5"))|#
            (("#articles ul li") (:padding "10px 0" :border-bottom "1px dotted" :border-color "#CCC"))
            (("#articles .index-thumb") (:float "left" :padding-right "10px"))
-           (("#articles .a-title") (:font-weight "bold" :font-size "120%" :color "#21629C"))
+           (("#articles .a-title") (:color "#21629C"))
            (("#articles .a-cite") (:font-size "80%" :color "#999999" :padding "2px 0" :display "block"))
            (("#articles .a-summary") (:color "#4a4a4a"))
            ;; article
            (("#article") (:margin-bottom "50px"))
-           (("#a-title") (:font-weight "bold" :font-size "140%" :padding-bottom "10px"))
-           (("#a-details") (:font-size "80%" :padding-bottom "10px"))
+           (("#a-title") (:padding-bottom "10px"))
+           (("#a-details") (:padding-bottom "10px"))
            (("#a-body .block") (:padding-bottom "10px"))
            (("#a-body .left") (:padding-bottom "10px" :padding-right "10px"))
            (("#a-body .right") (:padding-bottom "10px" :padding-left "10px"))
-           (("#related div h3") (:font-weight "bold" :font-size "120%" :padding "10px 0"))
+           (("#related div h3") (:padding "10px 0"))
            (("#related .related") (:height "140px"))
            (("#related .related li") (:list-style-type "none" :float "left" :width "120px" :margin "0 10px"))
            ;; pagination

@@ -8,7 +8,8 @@
           (offset (* page pagination-limit)))
      (fe-page-template
          ,title
-       (htm
+         nil
+         (htm
         (:div :id "articles"
               (:ul
                (dolist (article (paginate ,articles-list
@@ -25,7 +26,7 @@
                                                                (slug article)
                                                                (id article)))
                             (str (title article))))
-                   (:cite :class "a-cite" (str (format nil
+                   (:cite :class "a-cite small" (str (format nil
                                                        "~a, ~a - ~a"
                                                        (name (cat article))
                                                        (name (subcat article)) (date article))))

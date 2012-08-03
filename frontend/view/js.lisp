@@ -1,0 +1,13 @@
+(in-package :hawksbill.golbin)
+
+(defun on-load ()
+  (import-macros-from-lisp '$$)
+  (ps ($$ (document ready)
+        (flet ((display-subcategory ()
+                 ((@ ($ "#subnav") append) ((@ ((@ ($ this) children) "ul") children)))
+                 nil)
+               (hide-subcategory ()
+                 ((@ ((@ ($ this) children) "ul") append) ((@ ($ "#subnav") children)))
+                 nil)))
+        ((@ ($ "#nav .cat") hover) display-subcategory hide-subcategory)
+        nil)))
