@@ -63,7 +63,7 @@
 ;; init
 (defvar *system-status* nil)
 ;; db
-(defparameter *db* nil)
+(defvar *db* nil)
 ;; config
 (defvar *dimensions* nil)
 (defvar *config* nil)
