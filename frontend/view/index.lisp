@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
@@ -45,33 +45,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-v-home (&optional (page 0))
+(defun v-home (&optional (page 0))
   (view-index "Home"
               (get-active-articles)
               'fe-r-home-page))
 
-(defun fe-v-cat (cat-slug &optional (page 0))
+(defun v-cat (cat-slug &optional (page 0))
   (let ((cat (get-category-by-slug cat-slug 0)))
     (view-index (name cat)
                 (get-articles-by-cat cat)
                 'fe-r-cat-page :cat (slug cat))))
 
-(defun fe-v-cat-subcat (cat-slug subcat-slug &optional (page 0))
+(defun v-cat-subcat (cat-slug subcat-slug &optional (page 0))
   (let* ((cat (get-category-by-slug cat-slug 0))
          (subcat (get-category-by-slug subcat-slug (id cat))))
     (view-index (format nil "~a, ~a" (name cat) (name subcat))
                 (get-articles-by-cat-subcat cat subcat)
                 'fe-r-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))
 
-(defun fe-v-author (author-handle &optional (page 0))
+(defun v-author (author-handle &optional (page 0))
   (let ((author (get-author-by-handle author-handle)))
     (view-index (name author)
                 (get-articles-by-author author)
                 'fe-r-author-page :author (handle author))))
 
-(defun fe-v-tag (slug &optional (page 0))
+(defun v-tag (slug &optional (page 0))
   (view-index (name (get-tag-by-slug slug))
               (get-articles-by-tag-slug slug)
               'fe-r-tag-page :tag slug))
 
-(defun fe-v-search ())
+(defun v-search ())

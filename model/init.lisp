@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.model)
 
 (defun init-storage ()
   (init-db-system "article" :articles)

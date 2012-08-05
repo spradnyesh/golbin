@@ -1,6 +1,6 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.editorial)
 
-(defun ed-v-login-get ()
+(defun v-login-get ()
   (ed-page-template "Login"
     (:form :action (genurl 'ed-r-login)
            :method "POST"

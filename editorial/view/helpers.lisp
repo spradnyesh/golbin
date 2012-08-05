@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.editorial)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions

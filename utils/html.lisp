@@ -35,10 +35,10 @@
      (:tr
       (:td (format t "~A" (string-capitalize name)))
       (:td (:textarea :cols cols
-					  :rows rows
-					  :name (format nil "~A" name)
-					  :id (format nil "~A" name)
-					  :value value))))))
+                      :rows rows
+                      :name (format nil "~A" name)
+                      :id (format nil "~A" name)
+                      :value value))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions

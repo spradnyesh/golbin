@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.model)
 
 (defclass page-count ()
   ((url :initarg :url :initform nil :accessor url)

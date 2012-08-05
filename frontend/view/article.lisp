@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
@@ -64,7 +64,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-v-article (slug-and-id)
+(defun v-article (slug-and-id)
   (let* ((id (first (split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
          (article (get-article-by-id (parse-integer id))))
     (fe-page-template

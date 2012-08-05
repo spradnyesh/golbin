@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.model)
 
 (defclass photo ()
   ((id :initarg :id :initform nil :accessor id)

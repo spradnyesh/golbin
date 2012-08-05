@@ -1,6 +1,6 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.editorial)
 
-(defun ed-v-article-get (&optional message)
+(defun v-article-get (&optional message)
   (ed-page-template "Add Article"
       (:script :type "text/javascript"
                (str (format nil
@@ -39,7 +39,7 @@
                         :type "submit"
                         :value "Save")))))
 
-(defun ed-v-article-post ()
+(defun v-article-post ()
   (let ((title (post-parameter "title"))
         (summary (post-parameter "summary"))
         (body (post-parameter "body"))

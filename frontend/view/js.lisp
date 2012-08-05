@@ -1,4 +1,4 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.frontend)
 
 (defun on-load ()
   (import-macros-from-lisp '$$)

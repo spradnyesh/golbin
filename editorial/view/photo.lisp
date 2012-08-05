@@ -1,27 +1,27 @@
-(in-package :hawksbill.golbin)
+(in-package :hawksbill.golbin.editorial)
 
-(defun ed-v-photo-get (&optional message)
+(defun v-photo-get (&optional message)
   (ed-page-template "Add Photo"
     (when message (htm (:div :class "error" (str message))))
     (htm (:form :action (genurl 'ed-r-photo-post)
-				:method "POST"
-				:enctype "multipart/form-data"
-				(:table (str (tr-td-input "title"))
-						(:tr
-						 (:td "Type of")
-						 (:td (:select :name "typeof"
-									   :class "td-input"
-									   (:option :value "article" "Article")
-									   (:option :value "author" "Author")
-									   #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
-						(str (tr-td-input "tags"))
-						(str (tr-td-input "photo" :typeof "file")))
-				(:input :id "upload"
-						:name "upload"
-						:type "submit"
-						:value "Upload")))))
+                :method "POST"
+                :enctype "multipart/form-data"
+                (:table (str (tr-td-input "title"))
+                        (:tr
+                         (:td "Type of")
+                         (:td (:select :name "typeof"
+                                       :class "td-input"
+                                       (:option :value "article" "Article")
+                                       (:option :value "author" "Author")
+                                       #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
+                        (str (tr-td-input "tags"))
+                        (str (tr-td-input "photo" :typeof "file")))
+                (:input :id "upload"
+                        :name "upload"
+                        :type "submit"
+                        :value "Upload")))))
 
-(defun ed-v-photo-post ()
+(defun v-photo-post ()
   (let ((title (post-parameter "title"))
         (tags (split-sequence "," (post-parameter "tags") :test #'string-equal))
         (photo-tags nil)
@@ -48,7 +48,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun ed-v-tmp-photo-get (&optional message)
+(defun v-tmp-photo-get (&optional message)
   (ed-page-template "Add Photo"
     (when message (htm (:div :class "error"
                              (str message))))
@@ -75,7 +75,7 @@
                       :type "submit"
                       :value "Upload"))))))
 
-(defun ed-v-tmp-photo-post ()
+(defun v-tmp-photo-post ()
   (let ((count (post-parameter "count"))
         (typeof (post-parameter "typeof")))
     (dotimes (i (parse-integer count))

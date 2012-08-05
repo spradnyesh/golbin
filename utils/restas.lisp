@@ -2,12 +2,12 @@
 
 (defmacro start/stop/restart-system (system)
   `(progn
-	 (ensure-directories-exist ,(format nil "/tmp/hunchentoot/~a/" system))
-	 (defclass ,(intern (string-upcase (format nil "~a-acceptor" `,system))) (restas-acceptor)
-	   ()
-	   (:default-initargs
-		:access-log-destination ,(format nil "/tmp/hunchentoot/~a/access_log" system)
-		 :message-log-destination ,(format nil "/tmp/hunchentoot/~a/error_log" system)))
+     (ensure-directories-exist ,(format nil "/tmp/hunchentoot/~a/" system))
+     (defclass ,(intern (string-upcase (format nil "~a-acceptor" `,system))) (restas-acceptor)
+       ()
+       (:default-initargs
+        :access-log-destination ,(format nil "/tmp/hunchentoot/~a/access_log" system)
+         :message-log-destination ,(format nil "/tmp/hunchentoot/~a/error_log" system)))
      (defun ,(intern (string-upcase (format nil "~a-start" `,system))) ()
        (unless *system-status*
          (setf *system-status* t)
@@ -18,12 +18,12 @@
        (obfuscate-js)
        (start (get-config ,(format nil "~a.restas.package" `,system))
               :port (get-config ,(format nil "~a.restas.port" `,system))
-			  :acceptor-class ',(intern (string-upcase (format nil "~a-acceptor" `,system)))))
+              :acceptor-class ',(intern (string-upcase (format nil "~a-acceptor" `,system)))))
      (defun ,(intern (string-upcase (format nil "~a-stop" `,system))) ()
        (restas-stop (get-config ,(format nil "~a.restas.port" `,system))))
      (defun ,(intern (string-upcase (format nil "~a-restart" `,system))) ()
        (,(intern (string-upcase (format nil "~a-stop" `,system))))
-	   (,(intern (string-upcase (format nil "~a-start" `,system)))))))
+       (,(intern (string-upcase (format nil "~a-start" `,system)))))))
 
 (defun restas-stop (port)
   (dolist (acceptor restas::*acceptors*)
