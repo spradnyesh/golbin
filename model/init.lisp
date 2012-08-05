@@ -4,8 +4,8 @@
   (init-db-system "article" :articles)
   (init-db-system "author" :authors)
   (init-db-system "category" :categorys)
-  (init-db-system "tag" :tags)
-  (init-db-system "photo" :photos))
+  (init-db-system "photo" :photos)
+  (init-db-system "tag" :tags))
 
 (defun model-first-run ()
   (dolist (l '("article" "author" "category" "photo" "tag"))

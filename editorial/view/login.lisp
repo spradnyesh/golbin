@@ -2,7 +2,7 @@
 
 (defun v-login-get ()
   (ed-page-template "Login"
-    (:form :action (genurl 'ed-r-login)
+    (:form :action (genurl 'r-login)
            :method "POST"
            (str (label-input "name" "text"))
            (str (label-input "password" "text"))

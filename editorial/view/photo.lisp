@@ -3,7 +3,7 @@
 (defun v-photo-get (&optional message)
   (ed-page-template "Add Photo"
     (when message (htm (:div :class "error" (str message))))
-    (htm (:form :action (genurl 'ed-r-photo-post)
+    (htm (:form :action (genurl 'r-photo-post)
                 :method "POST"
                 :enctype "multipart/form-data"
                 (:table (str (tr-td-input "title"))
@@ -43,7 +43,7 @@
                                                           (pathname-name new-path)
                                                           (pathname-type new-path))
                                     :tags photo-tags)))))
-    (redirect (genurl 'ed-r-photo-get))))
+    (redirect (genurl 'r-photo-get))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init
@@ -54,7 +54,7 @@
                              (str message))))
     (let ((count 10))
       (htm
-       (:form :action (genurl 'ed-r-tmp-photo-post)
+       (:form :action (genurl 'r-tmp-photo-post)
               :method "POST"
               :enctype "multipart/form-data"
               (:table (:input :class "td-input"
@@ -100,4 +100,4 @@
                                                                 (pathname-name new-path)
                                                                 (pathname-type new-path))
                                           :tags photo-tags)))))))))
-  (redirect (genurl 'ed-r-tmp-photo-get)))
+  (redirect (genurl 'r-tmp-photo-get)))

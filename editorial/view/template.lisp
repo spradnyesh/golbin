@@ -28,7 +28,7 @@
 (defun ed-logo ()
   (with-html
     (:h1
-     (:a :href (genurl 'ed-r-home)
+     (:a :href (genurl 'r-home)
          (:img :id "logo"
                :source ""
                :alt *site-name*)))))
@@ -49,7 +49,7 @@
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
-              (:h2 (:a :href (genurl 'ed-r-home) "Home"))))))
+              (:h2 (:a :href (genurl 'r-home) "Home"))))))
 
 (defun ed-header ()
   (with-html

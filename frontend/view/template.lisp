@@ -36,7 +36,7 @@
 (defun fe-logo ()
   (with-html
     (:h1
-     (:a :href (genurl 'fe-r-home)
+     (:a :href (genurl 'r-home)
          (:img :id "logo"
                :source ""
                :alt *site-name*)))))
@@ -44,7 +44,7 @@
 (defun fe-site-search ()
   #|(with-html
     (:form :method "GET"
-           :action (genurl 'fe-r-search)
+           :action (genurl 'r-search)
            :name "search"
            :id "search"
            (:input :type "input"
@@ -61,7 +61,7 @@
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
-              (:h2 (:a :href (genurl 'fe-r-home) "Home")))
+              (:h2 (:a :href (genurl 'r-home) "Home")))
          (str (fe-nav-categories-markup)))
     (:ul :id "subnav")))
 

@@ -8,7 +8,7 @@
                             (get-category-tree-json)))
                (str (on-load)))
     (when message (htm (:div :class "error" (str message))))
-    (htm (:form :action (genurl 'ed-r-article-post)
+    (htm (:form :action (genurl 'r-article-post)
                 :method "POST"
                 (:table (str (tr-td-input "title"))
                         (str (tr-td-text "summary"))
@@ -62,4 +62,4 @@
                                                        ((string-equal pd "left") :l)
                                                        ((string-equal pd "right") :r))
                                 :tags article-tags))
-    (redirect (genurl 'ed-r-article-get))))
+    (redirect (genurl 'r-article-get))))

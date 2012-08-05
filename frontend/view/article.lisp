@@ -48,7 +48,7 @@
                     (htm (:div :class "related-thumb"
                                (str (article-lead-photo-url (photo article) "related-thumb")))))
                   (:a :class "a-title"
-                      :href (genurl 'fe-r-article
+                      :href (genurl 'r-article
                                     :slug-and-id (format nil "~A-~A"
                                                          (slug article)
                                                          (id article)))
@@ -58,7 +58,7 @@
   (with-html
     (dolist (tag (tags article))
       (htm " "
-       (:a :href (genurl 'fe-r-tag :tag (slug tag))
+       (:a :href (genurl 'r-tag :tag (slug tag))
            (str (name tag)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -69,23 +69,24 @@
          (article (get-article-by-id (parse-integer id))))
     (fe-page-template
         (title article)
+        nil
         (:div
          (:div :id "article"
           (:h2 :id "a-title" (str (title article)))
           (:p :id "a-details" :class "small"
               "written by "
               (:a :id "a-author"
-                  :href (genurl 'fe-r-author :author (handle (author article)))
+                  :href (genurl 'r-author :author (handle (author article)))
                   (str (name (author article))))
               " on "
               (:span :id "a-date" (str (date article)))
               " in category "
               (:a :id "a-cat"
-                  :href (genurl 'fe-r-cat :cat (slug (cat article)))
+                  :href (genurl 'r-cat :cat (slug (cat article)))
                   (str (name (cat article))))
               ", "
               (:a :id "a-cat-subcat"
-                  :href (genurl 'fe-r-cat-subcat :cat (slug (cat article)) :subcat (slug (subcat article)))
+                  :href (genurl 'r-cat-subcat :cat (slug (cat article)) :subcat (slug (subcat article)))
                   (str (name (subcat article))))
               " using tags "
               (:span :id "a-tags" (str (fe-article-tags-markup article))))
@@ -105,11 +106,11 @@
                  (str (article-related "Category/Subcategory"
                                        (format nil "~a/~a" (name (cat article)) (name (subcat article)))
                                        cat-subcat
-                                       'fe-r-cat-subcat
+                                       'r-cat-subcat
                                        :cat (slug (cat article))
                                        :subcat (slug (subcat article))))
                  (str (article-related "Author"
                                        (name (author article))
                                        author
-                                       'fe-r-author
+                                       'r-author
                                        :author (handle (author article))))))))))

@@ -20,9 +20,13 @@
                                      (:file "datetime" :depends-on ("package"))
                                      (:file "file" :depends-on ("config"))
                                      (:file "photo" :depends-on ("file" "datetime"))))
+               (:module "common"
+                        :components ((:file "package")
+                                     (:file "init" :depends-on ("package"))
+                                     (:file "config" :depends-on ("init")))
+                        :depends-on ("utils"))
                (:module "model"
                         :components ((:file "package")
-                                     (:file "config" :depends-on ("package"))
                                      (:file "category" :depends-on ("package"))
                                      (:file "tag" :depends-on ("package"))
                                      (:file "user" :depends-on ("package"))
@@ -30,7 +34,7 @@
                                      (:file "photo" :depends-on ("user"))
                                      (:file "view" :depends-on ("package"))
                                      (:file "init" :depends-on ("article" "category" "user" "photo" "tag" "view")))
-                        :depends-on ("utils"))
+                        :depends-on ("common"))
                (:module "frontend"
                         :components ((:file "package")
                                      (:module "view"

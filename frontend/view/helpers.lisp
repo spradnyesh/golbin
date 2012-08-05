@@ -21,12 +21,12 @@
     (dolist (cat (get-root-categorys))
       (htm
        (:li :class "cat"
-            (:h2 (:a :href (genurl 'fe-r-cat
+            (:h2 (:a :href (genurl 'r-cat
                                    :cat (slug cat))
                      (str (name cat))))
             (:ul
              (dolist (subcat (get-subcategorys (id cat)))
                (htm
                 (:li :class "subcat"
-                     (:h3 (:a :href (genurl 'fe-r-cat-subcat :cat (slug cat) :subcat (slug subcat))
+                     (:h3 (:a :href (genurl 'r-cat-subcat :cat (slug cat) :subcat (slug subcat))
                               (str (name subcat)))))))))))))
