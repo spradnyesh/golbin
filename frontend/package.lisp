@@ -16,11 +16,13 @@
            :r-article
            :r-search))
 
+(in-package :hawksbill.golbin.frontend)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; default routes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; copied from ~/quicklisp/dists/quicklisp/software/restas-20120703-git/example/publish-rst.lisp
-(restas:mount-submodule -static- (#:restas.directory-publisher)
+(mount-submodule -static- (#:restas.directory-publisher)
   (restas.directory-publisher:*baseurl* '("static"))
   (restas.directory-publisher:*directory* (merge-pathnames "../data/static/" *home*))
   (restas.directory-publisher:*autoindex* t))
