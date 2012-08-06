@@ -6,12 +6,12 @@
 (define-route r-cat-page ("/category/:cat/:page" :parse-vars (list :page #'parse-integer)) (v-cat cat page))
 (define-route r-cat-subcat ("/category/:cat/:subcat/") (v-cat-subcat cat subcat))
 (define-route r-cat-subcat-page ("/category/:cat/:subcat/:page" :parse-vars (list :page #'parse-integer)) (v-cat-subcat cat subcat page))
-(define-route r-tag ("tag/:tag/") (v-tag tag))
-(define-route r-tag-page ("tag/:tag/:page" :parse-vars (list :page #'parse-integer)) (v-tag tag page))
-(define-route r-author ("author/:author/") (v-author author))
-(define-route r-author-page ("author/:author/:page" :parse-vars (list :page #'parse-integer)) (v-author author page))
-(define-route r-article (":(slug-and-id).html") (v-article slug-and-id))
-(define-route r-search ("search/") (v-search))
+(define-route r-tag ("/tag/:tag/") (v-tag tag))
+(define-route r-tag-page ("/tag/:tag/:page" :parse-vars (list :page #'parse-integer)) (v-tag tag page))
+(define-route r-author ("/author/:author/") (v-author author))
+(define-route r-author-page ("/author/:author/:page" :parse-vars (list :page #'parse-integer)) (v-author author page))
+(define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
+(define-route r-search ("/search/") (v-search))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; start/stop/restart various servers
