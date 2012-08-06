@@ -32,8 +32,7 @@
                                      (:file "user" :depends-on ("package"))
                                      (:file "article" :depends-on ("user"))
                                      (:file "photo" :depends-on ("user"))
-                                     (:file "view" :depends-on ("package"))
-                                     (:file "init" :depends-on ("article" "category" "user" "photo" "tag" "view")))
+                                     (:file "init" :depends-on ("article" "category" "user" "photo" "tag")))
                         :depends-on ("common"))
                (:module "frontend"
                         :components ((:file "package")
