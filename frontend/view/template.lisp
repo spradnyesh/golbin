@@ -57,13 +57,44 @@
   (with-html
     (:div :id "trending-tags")))
 
+;; XXX: needs cache (key: uri)
 (defun fe-navigation ()
-  (with-html
-    (:ul :id "nav"
-         (:li :id "nav-home"
-              (:h2 (:a :href (genurl 'r-home) "Home")))
-         (str (fe-nav-categories-markup)))
-    (:ul :id "subnav")))
+  (let* ((route (route-symbol *route*))
+         (uri (hunchentoot:request-uri *request*))
+         (cat-subcat (when (nav-cat? route)
+                       (get-nav-cat-subcat-slugs uri)))
+         (subnav-cat-slug nil)
+         (subnav-subcats nil))
+    (with-html
+      (:ul :id "nav"
+           (:li :id "nav-home" :class (nav-selected t "" "selected")
+                (:h2 (:a :href (genurl 'r-home) "Home")))
+           (dolist (cat (get-root-categorys))
+             (let ((cat-slug (slug cat)))
+               (htm (:li :class (nav-selected (string-equal cat-slug (first cat-subcat))
+                                    "cat selected"
+                                    "cat"
+                                  (setf subnav-cat-slug cat-slug)
+                                  (setf subnav-subcats (get-subcategorys (id cat))))
+                         (:h2 (:a :href (genurl 'r-cat
+                                                :cat cat-slug)
+                                  (str (name cat))))
+                         (:ul
+                          (dolist (subcat (get-subcategorys (id cat)))
+                            (let ((subcat-slug (slug subcat)))
+                              (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
+                                                             "subcat selected"
+                                                             "subcat")
+                                        (:h3 (:a :href (genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)
+                                                 (str (name subcat))))))))))))))
+      (:ul :id "subnav"
+           (dolist (subcat subnav-subcats)
+             (let ((subcat-slug (slug subcat)))
+               (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
+                                    "subcat selected"
+                                    "subcat")
+                         (:h3 (:a :href (genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)
+                                  (str (name subcat))))))))))))
 
 (defun fe-header ()
   (with-html

@@ -13,20 +13,42 @@
                             `(genurl ,route))
                  (str (,value-fn l))))))))
 
+(defmacro fe-intern (smbl)
+  `(intern (string-upcase ,smbl) :hawksbill.golbin.frontend))
+
+(defmacro nav-selected (cond if-str else-str &body body)
+  `(if (and (nav-cat? route)
+            ,cond)
+       (progn
+         ,@body
+         (format nil ,if-str))
+       (format nil ,else-str)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-nav-categories-markup ()
-  (with-html
-    (dolist (cat (get-root-categorys))
-      (htm
-       (:li :class "cat"
-            (:h2 (:a :href (genurl 'r-cat
-                                   :cat (slug cat))
-                     (str (name cat))))
-            (:ul
-             (dolist (subcat (get-subcategorys (id cat)))
-               (htm
-                (:li :class "subcat"
-                     (:h3 (:a :href (genurl 'r-cat-subcat :cat (slug cat) :subcat (slug subcat))
-                              (str (name subcat)))))))))))))
+;; should a cat/subcat be 'selected' in the primary/secondary navigation
+;; only applicable for cat/subcat and article pages
+(defun nav-cat? (route)
+  (or (eq route (fe-intern :r-cat))
+      (eq route (fe-intern :r-cat-page))
+      (eq route (fe-intern :r-cat-subcat))
+      (eq route (fe-intern :r-cat-subcat-page))
+      (eq route (fe-intern :r-article))))
+
+(defun get-nav-cat-subcat-slugs (uri)
+  (let ((split (split-sequence "/" uri :test #'string-equal)))
+    (if (string-equal (second split) "category")
+        ;; cat/subcat page
+        (list (third split) (fourth split))
+        ;; article page
+        (let ((article (get-article-by-id (parse-integer (first (split-sequence
+                                                                 "-"
+                                                                 (first (split-sequence
+                                                                         "."
+                                                                         uri
+                                                                         :test #'string-equal))
+                                                                 :from-end t
+                                                                 :test #'string-equal
+                                                                 :count 1))))))
+          (list (slug (cat article)) (slug (subcat article)))))))

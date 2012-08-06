@@ -65,8 +65,7 @@
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-article (slug-and-id)
-  (let* ((id (first (split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1)))
-         (article (get-article-by-id (parse-integer id))))
+  (let ((article (get-article-by-id (parse-integer (first (split-sequence "-" slug-and-id :from-end t :test #'string-equal :count 1))))))
     (fe-page-template
         (title article)
         nil

@@ -71,7 +71,7 @@
             rslt))
     (nreverse rslt)))
 
-;; XXX: needs cache
+;; XXX: needs cache (no key needed)
 (defun get-category-tree-json ()
   (encode-json-to-string (get-category-tree)))
 
