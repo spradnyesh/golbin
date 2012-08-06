@@ -69,7 +69,9 @@
                            :test #'string-equal)))
           (if value
               (value value)
-              (get-config-helper name (reduce-dimensions-map dimensions-map) storage)))
+              (unless (string-equal "master" (dimension config-node))
+                ;; reduce dimension to "master" only if it's not already "master", else it goes into an infinite loop
+                (get-config-helper name (reduce-dimensions-map dimensions-map) storage))))
         (get-config-helper name (reduce-dimensions-map dimensions-map) storage))))
 
 (defun build-config-node (node &optional (namespace nil))
