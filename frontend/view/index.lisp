@@ -4,43 +4,44 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro view-index (title articles-list route &rest route-params)
-  `(let* ((pagination-limit (get-config "pagination.article.limit"))
-          (offset (* page pagination-limit)))
-     (fe-page-template
-         ,title
-         nil
+  `(when ,articles-list
+     (let* ((pagination-limit (get-config "pagination.article.limit"))
+            (offset (* page pagination-limit)))
+       (fe-page-template
+           ,title
+           nil
          (htm
-        (:div :id "articles"
-              (:ul
-               (dolist (article (paginate ,articles-list
-                                          offset
-                                          pagination-limit))
-                 (htm
-                  (:li
-                   (when (photo article)
-                     (htm (:div :class "index-thumb"
-                                (str (article-lead-photo-url (photo article) "index-thumb")))))
-                   (:h3 (:a :class "a-title"
-                            :href (genurl 'r-article
-                                          :slug-and-id (format nil "~A-~A"
-                                                               (slug article)
-                                                               (id article)))
-                            (str (title article))))
-                   (:cite :class "a-cite small" (str (format nil
-                                                       "~a, ~a - ~a"
-                                                       (name (cat article))
-                                                       (name (subcat article)) (date article))))
-                   (:p :class "a-summary" (str (summary article))))))))
-        (str ,(if route-params
-                  `(pagination-markup ,route
-                                      page
-                                      (length ,articles-list)
-                                      pagination-limit
-                                      ,@route-params)
-                  `(pagination-markup ,route
-                                      page
-                                      (length ,articles-list)
-                                      pagination-limit)))))))
+          (:div :id "articles"
+                (:ul
+                 (dolist (article (paginate ,articles-list
+                                            offset
+                                            pagination-limit))
+                   (htm
+                    (:li
+                     (when (photo article)
+                       (htm (:div :class "index-thumb"
+                                  (str (article-lead-photo-url (photo article) "index-thumb")))))
+                     (:h3 (:a :class "a-title"
+                              :href (genurl 'r-article
+                                            :slug-and-id (format nil "~A-~A"
+                                                                 (slug article)
+                                                                 (id article)))
+                              (str (title article))))
+                     (:cite :class "a-cite small" (str (format nil
+                                                               "~a, ~a - ~a"
+                                                               (name (cat article))
+                                                               (name (subcat article)) (date article))))
+                     (:p :class "a-summary" (str (summary article))))))))
+          (str ,(if route-params
+                    `(pagination-markup ,route
+                                        page
+                                        (length ,articles-list)
+                                        pagination-limit
+                                        ,@route-params)
+                    `(pagination-markup ,route
+                                        page
+                                        (length ,articles-list)
+                                        pagination-limit))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
