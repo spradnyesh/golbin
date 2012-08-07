@@ -38,3 +38,6 @@
           (push (nth (+ from i) list) rslt))
         (nreverse rslt))
       list))
+
+(defun get-random-from-list (list)
+  (nth (random (length list)) list))

@@ -43,6 +43,7 @@
            :replace-all
            :insert-at
            :splice
+           :get-random-from-list
            ;; string
            :slugify
            :join-string-list-with-delim
