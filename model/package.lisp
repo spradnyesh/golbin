@@ -1,5 +1,5 @@
 (defpackage :hawksbill.golbin.model
-  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json)
+  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json :split-sequence)
   (:export :db-reconnect
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; slots
@@ -101,6 +101,7 @@
            :get-photos-by-author
            :get-photos-by-tag-slug
            :get-mini-photo
+           :article-lead-photo-url
            ;; tag
            :add-tag
            :get-tag-by-slug
