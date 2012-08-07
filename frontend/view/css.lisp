@@ -24,9 +24,9 @@
            ;; hd
            (("#banner") (:height "100px"))
            (("#banner h1") (:height "80px" :width "80px" :border "1px solid"))
-           (("#nav") (:height "25px"))
-           (("#nav li") (:float "left" :padding "0 5px"))
-           (("#nav .cat ul") (:display "none"))
+           (("#prinav") (:height "25px"))
+           (("#prinav li") (:float "left" :padding "0 5px"))
+           (("#prinav .cat ul") (:display "none"))
            (("#subnav") (:height "25px"))
            (("#subnav .subcat") (:float "left" :padding "0 5px"))
            ;; bd
