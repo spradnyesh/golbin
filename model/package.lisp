@@ -1,5 +1,5 @@
 (defpackage :hawksbill.golbin.model
-  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time)
+  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json)
   (:export :db-reconnect
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; slots
