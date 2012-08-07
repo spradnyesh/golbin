@@ -27,6 +27,7 @@
            (("#nav") (:height "25px"))
            (("#nav li") (:float "left" :padding "0 5px"))
            (("#nav .cat ul") (:display "none"))
+           (("#subnav") (:height "25px"))
            (("#subnav .subcat") (:float "left" :padding "0 5px"))
            ;; bd
            (("#bd") (:min-height "800px"))
