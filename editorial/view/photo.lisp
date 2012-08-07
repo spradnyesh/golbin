@@ -45,6 +45,19 @@
                                     :tags photo-tags)))))
     (redirect (genurl 'r-photo-get))))
 
+;; return a json-encoded list of <img src="" alt="[title]">
+(defun v-photos-get (who start)
+  (let ((photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane")))
+    (encode-json-to-string
+     (loop for photo in (paginate (conditionally-accumulate #'(lambda (photo)
+                                                                (eq (typeof photo) :a))
+                                                            (if (string-equal who "me")
+                                                                (get-photos-by-author (who-am-i))
+                                                                (get-all-photos)))
+                                  (* start photos-per-page)
+                                  photos-per-page)
+        collect ((lambda (p) (article-lead-photo-url p "related-thumb")) photo)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

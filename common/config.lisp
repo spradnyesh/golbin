@@ -23,7 +23,8 @@
                                      ("article-logo" ("max-width" 50)
                                                      ("max-height" 50))))
                   ("pagination" ("article" ("limit" 10)
-                                           ("related" 4)))
+                                           ("related" 4)
+                                           ("editorial" ("lead-photo-select-pane" 16))))
                   ("parenscript" ("obfuscation" nil))
                   ("categorys" (("Business"
                                  "Companies"
