@@ -1,6 +1,7 @@
 (in-package :hawksbill.golbin.frontend)
 
 (import-macros-from-lisp '$$)
+
 (defun on-load ()
   (ps ($$ (document ready)
         (let ((that nil)
