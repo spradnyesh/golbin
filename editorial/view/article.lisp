@@ -4,9 +4,9 @@
   (ed-page-template "Add Article"
       (:script :type "text/javascript"
                (str (format nil
-                            "~%//<![CDATA[~%var categoryTree = ~a;~%//]]>~%"
-                            (get-category-tree-json)))
-               (str (on-load)))
+                            "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
+                            (get-category-tree-json)
+                            (on-load))))
     (when message (htm (:div :class "error" (str message))))
     (htm (:form :action (genurl 'r-article-post)
                 :method "POST"
@@ -26,7 +26,7 @@
                                            (dolist (subcat (get-subcategorys 1))
                                              (htm (:option :value (id subcat) (str (name subcat))))))))
                         (:tr (:td "Lead Photo Placement")
-                             (:td (:a :href "" "Select or Upload photo")))
+                             (:td (:a :id "upload-photo" :href "" "Select or Upload photo")))
                         (:tr (:td "Lead Photo Placement")
                              (:td (:select :id "pd"
                                            :name "pd"

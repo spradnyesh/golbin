@@ -45,18 +45,21 @@
                                     :tags photo-tags)))))
     (redirect (genurl 'r-photo-get))))
 
-;; return a json-encoded list of <img src="" alt="[title]">
+;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-photos-get (who start)
   (let ((photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane")))
-    (encode-json-to-string
-     (loop for photo in (paginate (conditionally-accumulate #'(lambda (photo)
-                                                                (eq (typeof photo) :a))
-                                                            (if (string-equal who "me")
-                                                                (get-photos-by-author (who-am-i))
-                                                                (get-all-photos)))
-                                  (* start photos-per-page)
-                                  photos-per-page)
-        collect ((lambda (p) (article-lead-photo-url p "related-thumb")) photo)))))
+    (regex-replace-all                  ; need to remove the '\\' that
+     "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
+     (encode-json-to-string
+      (loop for photo in (paginate (conditionally-accumulate #'(lambda (photo)
+                                                                 (eq (typeof photo) :a))
+                                                             (if (string-equal who "me")
+                                                                 (get-photos-by-author (who-am-i))
+                                                                 (get-all-photos)))
+                                   (* (parse-integer start) photos-per-page)
+                                   photos-per-page)
+         collect (list (id photo) ((lambda (p) (article-lead-photo-url p "related-thumb")) photo))))
+     "")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init

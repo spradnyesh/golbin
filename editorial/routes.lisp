@@ -1,13 +1,23 @@
 (in-package :hawksbill.golbin.editorial)
 
+;; login
 (define-route r-login-get ("/login/" :method :get) (v-login-get))
-(define-route r-photo-get ("/photo/" :method :get) (v-photo-get))
-(define-route r-photo-post ("/photo/" :method :post) (v-photo-post))
-(define-route r-photos-get ("/ajax/photos/:who/:page/" :method :get) (v-photos-get who page))
-(define-route r-tmp-photo-get ("/tmp-photo/" :method :get) (v-tmp-photo-get))
-(define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
+;; article
 (define-route r-article-get ("/article/" :method :get) (v-article-get))
 (define-route r-article-post ("/article/" :method :post) (v-article-post))
+;; photo
+(define-route r-photo-get ("/photo/" :method :get) (v-photo-get))
+(define-route r-photo-post ("/photo/" :method :post) (v-photo-post))
+(define-route r-tmp-photo-get ("/tmp-photo/" :method :get) (v-tmp-photo-get))
+(define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ajax
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-route r-photos-get ("/ajax/photos/:who/:page/"
+                            :method :get
+                            :content-type "text/json")
+  (v-photos-get who page))
 
 #|(
  ;; only for logged-in users
