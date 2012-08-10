@@ -47,9 +47,12 @@
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-home (&optional (page 0))
-  (view-index "Home"
-              (get-active-articles)
-              'r-home-page))
+  (fe-page-template (get-config "site.name")
+      nil
+    (htm (:ul)
+         (dolist (cat (get-top-categories (get-config "pagination.home.categories")))
+           (htm (:li :class "cat"))
+           ))))
 
 (defun v-cat (cat-slug &optional (page 0))
   (let ((cat (get-category-by-slug cat-slug 0)))

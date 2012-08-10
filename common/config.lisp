@@ -25,7 +25,8 @@
                                                      ("max-height" 50))))
                   ("pagination" ("article" ("limit" 10)
                                            ("related" 4)
-                                           ("editorial" ("lead-photo-select-pane" 16))))
+                                           ("editorial" ("lead-photo-select-pane" 16)))
+                                ("home" ("categories" 5)))
                   ("parenscript" ("obfuscation" nil))
                   ("categorys" (("Business"
                                  "Companies"
