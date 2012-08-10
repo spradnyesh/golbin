@@ -1,9 +1,10 @@
 (in-package :hawksbill.golbin.frontend)
 
-(import-macros-from-lisp '$$)
+(import-macros-from-lisp '$event)
+(import-macros-from-lisp '$apply)
 
 (defun on-load ()
-  (ps ($$ (document ready)
+  (ps ($event (document ready)
         ;; define variables
         (let ((that nil)
               (subnav nil)
@@ -12,16 +13,28 @@
           ;; define functions
           (flet ((display-subcategory ()
                    (unless in-nav
-                     (setf subnav ((@ ($ "#subnav") children)))
-                     ((@ ($ "#subnav") empty))
-                     ((@ ($ "#subnav") append) ((@ ((@ ($ this) children) "ul") children)))
+                     (setf subnav ($apply ($ "#subnav")
+                                      children))
+                     ($apply ($ "#subnav")
+                         empty)
+                     ($apply ($ "#subnav")
+                         append
+                       ($apply ($apply ($ this)
+                                   children
+                                 "ul")
+                           children))
                      (setf in-nav t)
                      (setf that this))
                    nil)
                  (hide-subcategory ()
                    (when in-nav
-                     ((@ ((@ ($ that) children) "ul") append) ((@ ($ "#subnav") children)))
-                     ((@ ($ "#subnav") append) subnav)
+                     ($apply ($apply ($ that)
+                                 children
+                               "ul")
+                         append
+                       ($apply ($ "#subnav")
+                           children))
+                     ($apply ($ "#subnav") append subnav)
                      (setf in-nav nil)
                      (setf that nil))
                    nil)))
