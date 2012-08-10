@@ -27,7 +27,8 @@
            ;; js
            :js-script
            :obfuscate-js
-           :$$
+           :$event
+           :$apply
            ;; db
            :*db*
            :get-storage

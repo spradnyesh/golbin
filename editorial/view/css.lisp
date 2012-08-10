@@ -37,11 +37,12 @@
            (("#a-title") (:font-weight "bold" :font-size "120%" :padding-bottom "10px"))
            (("#a-details") (:font-size "80%" :padding-bottom "10px"))
            ;; upload photo pane
-           (("#photo-pane") (:width "500px" :height "500px" :position "fixed" :top "100px" :left "250px" :border "1px solid red" :background-color "#CCCCCC"))
-           (("#photo-pane p") (:float "right"))
+           (("#photo-pane") (:width "500px" :height "550px" :position "fixed" :top "100px" :left "250px" :border "1px solid red" :background-color "#CCCCCC"))
+           (("#photo-pane p.close") (:float "right"))
            (("#photo-pane ul") (:margin "20px 0 0 10px"))
-           (("#photo-pane ul li") (:float "left" :height "120px" :padding "0 10px"))
+           (("#photo-pane ul li") (:float "left" :height "125px" :margin "0 10px" :width "100px" :overflow "hidden"))
            (("#photo-pane ul li span") (:display "none"))
+           (("#photo-pane ul li a") (:display "block"))
            ;; pagination
            (("#col-2 .pagination") (:text-align "center" :padding "20px 0 30px"))
            (("#col-2 .pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))

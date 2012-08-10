@@ -25,8 +25,12 @@
                                            :class "td-input"
                                            (dolist (subcat (get-subcategorys 1))
                                              (htm (:option :value (id subcat) (str (name subcat))))))))
-                        (:tr (:td "Lead Photo Placement")
-                             (:td (:a :id "upload-photo" :href "" "Select or Upload photo")))
+                        (:tr (:td "Lead Photo")
+                             (:td (:input :class "td-input"
+                                          :type "hidden"
+                                          :name "lead-photo"
+                                          :id "lead-photo")
+                                  (:a :id "select-photo" :href "" "Select") " or " (:a :id "upload-photo" :href "" "Upload") " a photo"))
                         (:tr (:td "Lead Photo Placement")
                              (:td (:select :id "pd"
                                            :name "pd"
