@@ -4,7 +4,8 @@
 (defvar *valid-envts* '("dev" "prod"))
 (setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
 (setf *config*
-      `(("master" ("hunchentoot" ("debug" ("errors" nil)
+      `(("master" ("site" ("name" "Golbin"))
+                  ("hunchentoot" ("debug" ("errors" nil)
                                           ("backtraces" nil)))
                   ("path" ("uploads" ,(merge-pathnames "../data/uploads/" *home*))
                           ("photos" ,(merge-pathnames "../data/static/photos/" *home*)))

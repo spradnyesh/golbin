@@ -7,7 +7,7 @@
   `(with-html
      (:html
       (:head
-       (:title (str (format nil "~A - ~A" *site-name* ,title)))
+       (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
        (:style :type "text/css"
                (str (fe-get-css))))
@@ -39,7 +39,7 @@
      (:a :href (genurl 'r-home)
          (:img :id "logo"
                :source ""
-               :alt *site-name*)))))
+               :alt (get-config "site.name"))))))
 
 (defun fe-site-search ()
   #|(with-html
