@@ -13,8 +13,11 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
               (format nil "~%//]]>~%"))))
 
 ;; http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-6
-(defmacro $$ ((selector event-binding) &body body)
+(defmacro $event ((selector event-binding) &body body)
   `((@ ($ ,selector) ,event-binding) (lambda () ,@body)))
+
+(defmacro $apply ((selector function) &body body)
+  `((@ ($ ,selector) ,function) ,@body))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
