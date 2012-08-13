@@ -65,7 +65,7 @@
                                                  "~a.max-height"
                                                  photo-size-config-name))))
          ;; XXX: photo filename should contain *exactly* 1 dot
-         (name-extn (split-sequence "." (filename photo) :test #'string-equal)))
+         (name-extn (split-sequence "." (new-filename photo) :test #'string-equal)))
     (with-html (:img :src (format nil
                                   "/static/photos/~a_~a.~a"
                                   (first name-extn)
