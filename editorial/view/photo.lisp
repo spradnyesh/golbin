@@ -1,9 +1,13 @@
 (in-package :hawksbill.golbin.editorial)
 
-(defun v-photo-get (&optional message)
-  (ed-page-template "Add Photo"
-    (when message (htm (:div :class "error" (str message))))
-    (htm (:form :action (genurl 'r-photo-post)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helpers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun photo-get-markup (&optional (ajax nil))
+  (with-html
+    (:form :action (if ajax
+                       (genurl 'r-ajax-photo-post)
+                       (genurl 'r-photo-post))
                 :method "POST"
                 :enctype "multipart/form-data"
                 (:table (str (tr-td-input "title"))
@@ -19,9 +23,17 @@
                 (:input :id "upload"
                         :name "upload"
                         :type "submit"
-                        :value "Upload")))))
+                        :value "Upload"))))
 
-(defun v-photo-post ()
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; views
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun v-photo-get (&optional message)
+  (ed-page-template "Add Photo"
+    (when message (htm (:div :class "error" (str message))))
+    (photo-get-markup)))
+
+(defun v-photo-post (&optional (ajax nil))
   (let ((title (post-parameter "title"))
         (tags (split-sequence "," (post-parameter "tags") :test #'string-equal))
         (photo-tags nil)
@@ -32,21 +44,28 @@
         (when new-path
           (dolist (tag tags)
             (push (add-tag tag) photo-tags))
-          (add-photo (make-instance 'photo
-                                    :title title
-                                    :typeof (cond ((string-equal typeof "article") :a)
-                                                  ((string-equal typeof "author") :u)
-                                                  ((string-equal typeof "slideshow") :s))
-                                    :orig-filename orig-filename
-                                    :new-filename (format nil
-                                                          "~A.~A"
-                                                          (pathname-name new-path)
-                                                          (pathname-type new-path))
-                                    :tags photo-tags)))))
-    (redirect (genurl 'r-photo-get))))
+          (setf photo (add-photo (make-instance 'photo
+                                                :title title
+                                                :typeof (cond ((string-equal typeof "article") :a)
+                                                              ((string-equal typeof "author") :u)
+                                                              ((string-equal typeof "slideshow") :s))
+                                                :orig-filename orig-filename
+                                                :new-filename (format nil
+                                                                      "~A.~A"
+                                                                      (pathname-name new-path)
+                                                                      (pathname-type new-path))
+                                                :tags photo-tags)))
+          (if ajax
+              (regex-replace-all        ; need to remove the '\\' that
+               "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
+               (encode-json-to-string
+                `((:status . "success")
+                  (:data . ,(id photo))))
+               "")
+              (redirect (genurl 'r-photo-get))))))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
-(defun v-photos-get (who start)
+(defun v-ajax-photos-select (who start)
   (let ((photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane")))
     (regex-replace-all                  ; need to remove the '\\' that
      "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
@@ -61,6 +80,14 @@
                                                   photos-per-page)
                         collect (list (id photo) ((lambda (p) (article-lead-photo-url p "related-thumb")) photo))))))
      "")))
+
+(defun v-ajax-photo-get ()
+  (regex-replace-all                  ; need to remove the '\\' that
+   "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
+   (encode-json-to-string
+    `((:status . "success")
+      (:data . ,(photo-get-markup t))))
+   ""))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init

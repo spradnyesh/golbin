@@ -29,6 +29,7 @@
            :obfuscate-js
            :$event
            :$apply
+           :$prevent-default
            ;; db
            :*db*
            :get-storage

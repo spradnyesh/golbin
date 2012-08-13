@@ -14,10 +14,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define-route r-photos-get ("/ajax/photos/:who/:page/"
-                            :method :get
-                            :content-type "text/json")
-  (v-photos-get who page))
+(define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "text/json")
+  (v-ajax-photos-select who page))
+(define-route r-ajax-photo-get ("/ajax/photo/" :content-type "text/json")
+  (v-ajax-photo-get))
+(define-route r-ajax-photo-post ("/ajax/photo/" :method :post :content-type "text/json")
+  (v-photo-post t))
+
 
 #|(
  ;; only for logged-in users

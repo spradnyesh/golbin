@@ -19,6 +19,9 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
 (defmacro $apply (selector function &body body)
   `((@ ,selector ,function) ,@body))
 
+(defmacro $prevent-default ()
+  `($apply event prevent-default))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -20,6 +20,7 @@
             (:div :id "ft"
                   (str (ed-footer))))
        (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
+       (:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
        ,js))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
