@@ -60,7 +60,7 @@
                "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
                (encode-json-to-string
                 `((:status . "success")
-                  (:data . ,(id photo))))
+                  (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
                "")
               (redirect (genurl 'r-photo-get))))))))
 

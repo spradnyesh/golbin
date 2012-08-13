@@ -30,6 +30,7 @@
                                           :type "hidden"
                                           :name "lead-photo"
                                           :id "lead-photo")
+                                  (:span)
                                   (:a :id "select-photo" :href "" "Select") " or " (:a :id "upload-photo" :href "" "Upload") " a photo"))
                         (:tr (:td "Lead Photo Placement")
                              (:td (:select :id "pd"

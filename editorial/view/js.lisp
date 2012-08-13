@@ -93,12 +93,14 @@
 
                (select-photo ()
                  ($prevent-default)
+                 (let ((target-img ($ (@ event target)))))
                  ($apply ($ "#lead-photo")
                      val
-                   ($apply ($apply ($apply ($ (@ event target))
+                   ($apply ($apply ($apply target-img
                                        parent)
                                siblings "span")
                        html))
+                 ($apply ($apply ($ "#lead-photo") siblings "span") html target-img)
                  (close-photo-pane))
 
                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -145,7 +147,8 @@
                      (progn
                        ($apply ($ "#lead-photo")
                            val
-                         data.data)
+                         (elt data.data 0))
+                       ($apply ($apply ($ "#lead-photo") siblings "span") html (elt data.data 1))
                        (close-photo-pane))
                      (photo-fail data)))))
 
