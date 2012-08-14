@@ -37,7 +37,7 @@
         (dotimes (i (1+ (- to from)))
           (push (nth (+ from i) list) rslt))
         (nreverse rslt))
-      list))
+      (values nil list)))
 
 (defun get-random-from-list (list)
   (nth (random (length list)) list))
