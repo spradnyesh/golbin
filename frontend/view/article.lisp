@@ -6,23 +6,34 @@
 (defmacro article-related (div-name entity-name list route-name &rest route-params)
   `(with-html
      (when ,list
-       (htm (:div (:h3 (format nil "~a~a~a~a"
-                               (str "Related articles for ")
-                               (str ,div-name)
-                               (str ": ")
-                               (htm (:a :href (genurl ,route-name
-                                                      ,@route-params)
-                                        (str ,entity-name)))))
-                  (str (related-article-markup
-                        (splice ,list :to (min (length ,list)
-                                               (1- (get-config "pagination.article.related")))))))))))
+       (let ((related-length (get-config "pagination.article.related")))
+         (htm (:div (:h3 (format nil "~a~a~a~a"
+                                 (str "Related articles for ")
+                                 (str ,div-name)
+                                 (str ": ")
+                                 (htm (:a :href (genurl ,route-name
+                                                        ,@route-params)
+                                          (str ,entity-name)))))
+                    (:div :class "prev hidden")
+                    (:p :class "prev left" (:a :href "" "prev"))
+                    (:div :class "current"
+                          (str (related-article-markup
+                                (splice ,list :to (min (length ,list)
+                                                       (1- related-length))))))
+                    (:p :class "next right" (:a :href "" "next"))
+                    (:div :class "next hidden"
+                          (str (related-article-markup
+                                (splice ,list
+                                        :from related-length
+                                        :to (min (length ,list)
+                                                 (1- (* 2 related-length)))))))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun related-article-markup (article-list)
   (with-html
-    (:div :class "related"
+    (:ul :class "related"
           (dolist (article article-list)
             (htm (:li
                   (when (photo article)

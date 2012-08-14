@@ -21,6 +21,7 @@
            ((".block") (:display "block"))
            ((".left") (:float "left"))
            ((".right") (:float "right"))
+           ((".hidden") (:display "none"))
            ;; hd
            (("#banner") (:height "100px"))
            (("#banner h1") (:height "80px" :width "80px" :border "1px solid"))
@@ -47,6 +48,9 @@
            (("#a-body .block") (:padding-bottom "10px"))
            (("#a-body .left") (:padding-bottom "10px" :padding-right "10px"))
            (("#a-body .right") (:padding-bottom "10px" :padding-left "10px"))
+           (("#related div h3") (:padding "10px 0"))
+           (("#related div p.prev") (:position "relative" :top "50px"))
+           (("#related div p.next") (:position "relative" :top "-90px"))
            (("#related div h3") (:padding "10px 0"))
            (("#related .related") (:height "140px"))
            (("#related .related li") (:list-style-type "none" :float "left" :width "120px" :margin "0 10px"))
