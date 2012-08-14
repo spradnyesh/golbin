@@ -13,7 +13,7 @@
 (defclass mini-photo ()
   ((id :initarg :id :initform nil :accessor id)
    (title :initarg :title :initform nil :accessor title)
-   (filename :initarg :filename :initform nil :accessor filename))
+   (new-filename :initarg :new-filename :initform nil :accessor new-filename))
   (:documentation "to be used as a foreign key in articles/authors"))
 
 (defclass photo-storage ()
