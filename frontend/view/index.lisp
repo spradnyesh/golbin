@@ -5,8 +5,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro view-index (title articles-list route &rest route-params)
   `(when ,articles-list
-     (let* ((pagination-limit (get-config "pagination.article.limit"))
-            (offset (* page pagination-limit)))
+     (let* ((num-per-page (get-config "pagination.article.limit"))
+            (num-pages (get-config "pagination.article.range"))
+            (offset (* page num-per-page)))
        (fe-page-template
            ,title
            nil
@@ -15,7 +16,7 @@
                 (:ul
                  (dolist (article (paginate ,articles-list
                                             offset
-                                            pagination-limit))
+                                            num-per-page))
                    (htm
                     (:li
                      (when (photo article)
@@ -33,26 +34,28 @@
                                                                (name (subcat article)) (date article))))
                      (:p :class "a-summary" (str (summary article))))))))
           (str ,(if route-params
-                    `(pagination-markup ,route
-                                        page
+                    `(pagination-markup page
                                         (length ,articles-list)
-                                        pagination-limit
+                                        num-per-page
+                                        num-pages
+                                        ,route
                                         ,@route-params)
-                    `(pagination-markup ,route
-                                        page
+                    `(pagination-markup page
                                         (length ,articles-list)
-                                        pagination-limit))))))))
+                                        num-per-page
+                                        num-pages
+                                        ,route))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-home (&optional (page 0))
+#|(defun v-home (&optional (page 0))
   (fe-page-template (get-config "site.name")
       nil
     (htm (:ul)
          (dolist (cat (get-top-categories (get-config "pagination.home.categories")))
            (htm (:li :class "cat"))
-           ))))
+           ))))|#
 
 (defun v-cat (cat-slug &optional (page 0))
   (let ((cat (get-category-by-slug cat-slug 0)))

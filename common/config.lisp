@@ -23,7 +23,8 @@
                                                ("max-height" 100))
                                      ("article-logo" ("max-width" 50)
                                                      ("max-height" 50))))
-                  ("pagination" ("article" ("limit" 10)
+                  ("pagination" ("article" ("limit" 10) ; number of articles per (index) page
+                                           ("range" 10) ; number of entries in pagination markup
                                            ("related" 4)
                                            ("editorial" ("lead-photo-select-pane" 16)))
                                 ("home" ("categories" 5)))
