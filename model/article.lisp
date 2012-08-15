@@ -89,31 +89,20 @@
         #'>
         :key #'id))
 
-(defun get-related-articles (article)
+(defun get-related-articles (typeof article)
   (let ((cat-id (id (cat article)))
         (subcat-id (id (subcat article)))
         (author-id (id (author article))))
-    (values
-     ;; only cat-subcat matches
-     (get-articles-by #'(lambda (article)
+    (cond ((string-equal typeof "cat-subcat")
+           (get-articles-by #'(lambda (article)
                           (and (= (id (cat article)) cat-id)
                                (= (id (subcat article)) subcat-id)
-                               (/= (id (author article)) author-id))))
-     ;; only author matches
-     (get-articles-by #'(lambda (article)
+                               (/= (id (author article)) author-id)))))
+          ((string-equal typeof "author")
+           (get-articles-by #'(lambda (article)
                           (and (/= (id (cat article)) cat-id)
                                (/= (id (subcat article)) subcat-id)
-                               (= (id (author article)) author-id))))
-     ;; atleast 1 tag matches
-     #|(get-articles-by #'(lambda (article)
-                          (and (/= (id (cat article)) cat-id)
-                               (/= (id (subcat article)) subcat-id)
-                               (/= (id (author article)) author-id)
-                               ((lambda ()
-                                  (dolist (tag (tags article))
-                                    (print (slug tag))
-                                    (when (string-equal (slug tag) tag-slug)
-                                      (return t))))))))|#)))
+                               (= (id (author article)) author-id))))))))
 
 ;; editorial: an author needs to see *all* of his articles
 (defun get-all-articles-by-author (author)

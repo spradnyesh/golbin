@@ -68,12 +68,46 @@
                           (prev ($apply parent children "div.prev"))
                           (current ($apply parent children "div.current"))
                           (next ($apply parent children "div.next"))
-                          (next-children ($apply next children)))
-                     (when (> (length next-children) 0)
+                          (next-children ($apply next children))
+                          (len-next (length next-children)))
+                     (when (> len-next 0)
+                       ;; show the current (next) batch
                        ($apply prev append ($apply current children))
-                       ($apply current
-                           append
-                         (elt next-children 0))))
+                       ($apply current append (elt next-children 0))
+                       ;; pre-fetch next (next) batch of related articles
+                       (when (= len-next 1)
+                         (let ((id ($apply ($apply ($apply parent parent)
+                                               children "span")
+                                       html))
+                               (page-typeof ($apply ($apply ($apply parent children "span")
+                                                        html)
+                                                split ", ")))
+                           ($apply ($apply ($apply $
+                                               ajax
+                                             (create :url (+ "/ajax/article-related/"
+                                                             id
+                                                             "/"
+                                                             (elt page-typeof 1)
+                                                             "/"
+                                                             (elt page-typeof 0)
+                                                             "/")
+                                                     :data-type "json"))
+                                       done
+                                     (lambda (data)
+                                       (if (= data.status "success")
+                                           (progn
+                                             ;; update page-number
+                                             ($apply ($apply parent children "span")
+                                                 html (+ (+ 1 (parse-int
+                                                               (elt page-typeof 0)))
+                                                         ", "
+                                                         (elt page-typeof 1)))
+                                             ($apply next append data.data))
+                                           (carousel-fail data)) ))
+                               fail
+                             (carousel-fail data))))))
+                   false)
+                 (carousel-fail (data)
                    false)))
 
           ;; define event handlers
