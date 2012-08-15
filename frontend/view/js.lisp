@@ -2,6 +2,7 @@
 
 (import-macros-from-lisp '$event)
 (import-macros-from-lisp '$apply)
+(import-macros-from-lisp '$prevent-default)
 
 (defun on-load ()
   (ps ($event (document ready)
