@@ -27,7 +27,7 @@
                                            ("range" 10) ; number of entries in pagination markup
                                            ("related" 4)
                                            ("editorial" ("lead-photo-select-pane" 16)))
-                                ("home" ("categories" 5)))
+                                ("home" ("carousel" ("tabs" 5))))
                   ("parenscript" ("obfuscation" nil))
                   ("categorys" (("Business"
                                  "Companies"

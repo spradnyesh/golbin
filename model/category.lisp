@@ -76,13 +76,14 @@
   (encode-json-to-string (get-category-tree)))
 
 (defun get-home-page-categories (number)
-  (do* ((cat-list (get-root-categorys))
-        (len (length cat-list))
-        (cat (nth (random len) cat-list) (nth (random len) cat-list))
-        (rslt nil (if (find cat rslt)
-                      rslt
-                      (push cat rslt))))
-      ((= (length rslt) number) rslt)))
+  (declare (ignore number))
+  (let ((rslt nil))
+    (push (get-category-by-slug "business") rslt)
+    (push (get-category-by-slug "entertainment") rslt)
+    (push (get-category-by-slug "lifestyle") rslt)
+    (push (get-category-by-slug "science") rslt)
+    (push (get-category-by-slug "technology") rslt)
+    rslt))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init

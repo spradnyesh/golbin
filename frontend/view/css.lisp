@@ -48,12 +48,12 @@
            (("#a-body .block") (:padding-bottom "10px"))
            (("#a-body .left") (:padding-bottom "10px" :padding-right "10px"))
            (("#a-body .right") (:padding-bottom "10px" :padding-left "10px"))
-           (("#related div h3") (:padding "10px 0"))
-           (("#related div p.prev") (:position "relative" :top "50px"))
-           (("#related div p.next") (:position "relative" :top "-90px"))
-           (("#related div h3") (:padding "10px 0"))
-           (("#related .related") (:height "140px"))
-           (("#related .related li") (:list-style-type "none" :float "left" :width "120px" :margin "0 10px"))
+           ;; article
+           ((".carousel h3") (:padding "10px 0"))
+           ((".carousel p.prev") (:position "relative" :top "50px"))
+           ((".carousel p.next") (:position "relative" :top "-90px"))
+           ((".carousel .related") (:height "140px"))
+           ((".carousel .related li") (:list-style-type "none" :float "left" :width "120px" :margin "0 10px"))
            ;; pagination
            (("#col-2 .pagination") (:text-align "center" :padding "20px 0 30px"))
            (("#col-2 .pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))

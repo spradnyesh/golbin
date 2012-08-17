@@ -84,13 +84,9 @@
                                                 split ", ")))
                            ($apply ($apply ($apply $
                                                ajax
-                                             (create :url (+ "/ajax/article-related/"
-                                                             id
-                                                             "/"
-                                                             (elt page-typeof 1)
-                                                             "/"
-                                                             (elt page-typeof 0)
-                                                             "/")
+                                             (create :url ((@ (elt page-typeof 1) replace)
+                                                           (regex "/0/")
+                                                           (elt page-typeof 0))
                                                      :data-type "json"))
                                        done
                                      (lambda (data)
@@ -113,5 +109,6 @@
           ;; define event handlers
           ($apply ($ "#prinav .cat") hover display-subcategory (lambda () ()))
           ($apply ($ "#nav") hover (lambda () ()) hide-subcategory)
-          ($apply ($ "#related p.prev a") click carousel-prev)
-          ($apply ($ "#related p.next a") click carousel-next)))))
+          ($apply ($ ".carousel p.prev a") click carousel-prev)
+          ($apply ($ ".carousel p.next a") click carousel-next)
+          false))))

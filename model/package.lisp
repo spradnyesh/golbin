@@ -95,6 +95,7 @@
            :get-root-categorys
            :get-category-tree
            :get-category-tree-json
+           :get-home-page-categories
            ;; photo
            :scale-photo
            :add-photo
