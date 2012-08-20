@@ -58,6 +58,7 @@
                                                            (:file "author" :depends-on ("template"))
                                                            (:file "article" :depends-on ("template"))
                                                            (:file "login" :depends-on ("template"))
+                                                           (:file "home" :depends-on ("template"))
                                                            (:file "photo" :depends-on ("author")))
                                               :depends-on ("package"))
                                      (:file "routes" :depends-on ("view")))

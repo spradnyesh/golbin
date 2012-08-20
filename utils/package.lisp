@@ -9,6 +9,8 @@
            ;; restas
            :*system-status*
            :start/stop/restart-system
+           :with-login
+           :is-logged-in?
            ;; config
            :config-storage
            :*config*

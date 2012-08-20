@@ -1,5 +1,13 @@
 (in-package :hawksbill.utils)
 
+(defmacro with-login (url &body body)
+  `(if *session*
+       (progn ,@body)
+       (redirect ,url)))
+
+(defmacro is-logged-in? ()
+  `*session*)
+
 (defmacro start/stop/restart-system (system)
   `(progn
      (ensure-directories-exist ,(format nil "/tmp/hunchentoot/~a/" system))

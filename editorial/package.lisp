@@ -28,3 +28,11 @@
   (restas.directory-publisher:*baseurl* '("static"))
   (restas.directory-publisher:*directory* (merge-pathnames "../data/static/" *home*))
   (restas.directory-publisher:*autoindex* t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; login
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro with-ed-login (&body body)
+  `(with-login
+       (genurl 'r-login-get)
+     ,@body))

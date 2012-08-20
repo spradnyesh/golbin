@@ -59,6 +59,13 @@
                           :handle handle))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun verify-login (username password)
+  (when (string-equal password (password (get-author-by-username username)))
+    t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-author (author)
@@ -87,6 +94,12 @@
   (find handle
         (get-all-authors)
         :key #'handle
+        :test #'string-equal))
+
+(defun get-author-by-username (username)
+  (find username
+        (get-all-authors)
+        :key #'username
         :test #'string-equal))
 
 (defun get-random-author ()

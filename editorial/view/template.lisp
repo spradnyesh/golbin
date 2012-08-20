@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro ed-page-template (title &optional (js nil) &body body)
+(defmacro ed-page-template (title logged-in js &body body)
   `(with-html
      (:html
       (:head
@@ -14,7 +14,7 @@
       (:body
        (:div :class "yui3-g"
             (:div :id "hd"
-                  (str (ed-header)))
+                  (str (ed-header ,logged-in)))
             (:div :id "bd"
                   (:div ,@body))
             (:div :id "ft"
@@ -46,18 +46,21 @@
            (:input :type "submit"
                    :value "Submit")))|#)
 
-(defun ed-navigation ()
+(defun ed-navigation (logged-in)
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
-              (:h2 (:a :href (genurl 'r-home) "Home"))))))
+              (:h2 (:a :href (genurl 'r-home) "Home")))
+         (when logged-in
+           (htm (:li :id "nav-logout"
+                     (:h2 (:a :href (genurl 'r-logout) "Logout"))))))))
 
-(defun ed-header ()
+(defun ed-header (logged-in)
   (with-html
     (:div :id "banner"
           (str (ed-logo))
           (str (ed-site-search)))
-    (str (ed-navigation))))
+    (str (ed-navigation logged-in))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

@@ -112,5 +112,6 @@
            :get-author-by-handle
            :get-random-author
            :get-current-author-id
+           :verify-login
            ;; init
            :model-init))
