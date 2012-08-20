@@ -44,7 +44,8 @@
 ;;;; standard functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun hu-init ()
-  (setf hunchentoot:*show-lisp-errors-p* (get-config "hunchentoot.debug.errors"))
+  (setf hunchentoot:*catch-errors-p* (get-config "hunchentoot.debug.errors.catch"))
+  (setf hunchentoot:*show-lisp-errors-p* (get-config "hunchentoot.debug.errors.show"))
   (setf hunchentoot:*show-lisp-backtraces-p* (get-config "hunchentoot.debug.backtraces")))
 
 (defun logout ()
