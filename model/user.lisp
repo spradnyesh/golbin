@@ -122,7 +122,9 @@
                    "Emma Wason"
                    "Megan Fox")))
         (dolist (author-name authors)
-          (add-author (make-instance 'author
-                                     :name author-name
-                                     :handle (slugify author-name)
-                                     :status :a)))))
+          (let ((slug (slugify author-name)))
+            (add-author (make-instance 'author
+                                       :name author-name
+                                       :handle slug
+                                       :password slug
+                                       :status :a))))))
