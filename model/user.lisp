@@ -125,6 +125,7 @@
           (let ((slug (slugify author-name)))
             (add-author (make-instance 'author
                                        :name author-name
+                                       :username slug
                                        :handle slug
                                        :password slug
                                        :status :a))))))
