@@ -110,6 +110,7 @@
            :add-author
            :get-mini-author-details-from-id
            :get-author-by-handle
+           :get-author-by-username
            :get-random-author
            :get-current-author-id
            :verify-login
