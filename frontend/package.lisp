@@ -14,7 +14,9 @@
            :r-tag
            :r-tag-page
            :r-article
-           :r-search))
+           :r-search
+           :r-ajax-home-category-articles
+           :r-ajax-article-related))
 
 (in-package :hawksbill.golbin.frontend)
 

@@ -16,7 +16,11 @@
            :r-article-post
            :r-tag
            :r-login-get
-           :r-login-post))
+           :r-login-post
+           :r-ajax-photo-post
+           :r-ajax-photos-select
+           :r-ajax-photo-get
+           :r-logout))
 
 (in-package :hawksbill.golbin.editorial)
 
