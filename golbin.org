@@ -17,7 +17,6 @@
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
 *** [editorial] CRUD articles (including RTE)
-*** [editorial] editorial/view/author.lisp: whoami (currently logged in user)
 *** [editorial] autocomplete tags in add article/photo
 *** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
 *** [fe] header, footer look-n-feel
@@ -267,6 +266,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-08-21 Tue 20:32
+     :END:
+**** DONE [bug][editorial] editorial/view/author.lisp: whoami (currently logged in user)
+     CLOSED: [2012-08-21 Tue 20:47]
+     :CLOCK:
+     CLOCK: [2012-08-21 Tue 20:38]--[2012-08-21 Tue 20:47] =>  0:09
+     CLOCK: [2012-08-21 Tue 20:33]--[2012-08-21 Tue 20:38] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-08-21 Tue 20:47
      :END:
 ** TODO refactor
    :CLOCK:
