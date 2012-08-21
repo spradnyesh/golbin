@@ -17,7 +17,6 @@
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
 *** [editorial] CRUD articles (including RTE)
-*** *[bug] db photos mini-author should not be an author*
 *** [editorial] editorial/view/author.lisp: whoami (currently logged in user)
 *** [editorial] autocomplete tags in add article/photo
 *** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
@@ -260,6 +259,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-08-21 Tue 14:26
+     :END:
+**** DONE *[bug] db photos mini-author should not be an author*
+     CLOSED: [2012-08-21 Tue 20:32]
+     :CLOCK:
+     CLOCK: [2012-08-21 Tue 20:11]--[2012-08-21 Tue 20:32] =>  0:21
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-08-21 Tue 20:32
      :END:
 ** TODO refactor
    :CLOCK:
