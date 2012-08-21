@@ -2,12 +2,13 @@
 
 (defun v-article-get (&optional message)
   (ed-page-template "Add Article"
-      (:script :type "text/javascript"
-               (str (format nil
+      t
+      (htm (:script :type "text/javascript"
+                    (format t
                             "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
                             (get-category-tree-json)
                             (on-load))))
-    (when message (htm (:div :class "error" (str message))))
+      (when message (htm (:div :class "error" (str message))))
     (htm (:form :action (genurl 'r-article-post)
                 :method "POST"
                 (:table (str (tr-td-input "title"))

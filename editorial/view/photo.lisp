@@ -30,6 +30,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-photo-get (&optional message)
   (ed-page-template "Add Photo"
+      t
     (when message (htm (:div :class "error" (str message))))
     (photo-get-markup)))
 
@@ -95,6 +96,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-tmp-photo-get (&optional message)
   (ed-page-template "Add Photo"
+      t
     (when message (htm (:div :class "error"
                              (str message))))
     (let ((count 10))
