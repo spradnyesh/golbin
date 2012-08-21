@@ -71,14 +71,15 @@
      "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
      (encode-json-to-string
       `((:status . "success")
-        (:data . ,(loop for photo in (paginate (conditionally-accumulate #'(lambda (photo)
-                                                                                (eq (typeof photo) :a))
-                                                                            (if (string-equal who "me")
-                                                                                (get-photos-by-author (who-am-i))
-                                                                                (get-all-photos)))
-                                                  (* (parse-integer start) photos-per-page)
-                                                  photos-per-page)
-                        collect (list (id photo) ((lambda (p) (article-lead-photo-url p "related-thumb")) photo))))))
+        (:data . ,(loop for
+                     photo in (paginate (conditionally-accumulate #'(lambda (photo)
+                                                                      (eq (typeof photo) :a))
+                                                                  (if (string-equal who "me")
+                                                                      (get-photos-by-author (who-am-i))
+                                                                      (get-all-photos)))
+                                        (* (parse-integer start) photos-per-page)
+                                        photos-per-page)
+                     collect (list (id photo) ((lambda (p) (article-lead-photo-url p "related-thumb")) photo))))))
      "")))
 
 (defun v-ajax-photo-get ()
