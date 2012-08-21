@@ -2,6 +2,26 @@
 
 * tasks
 ** backlog
+*** [editorial] article page, photo pane: paginate
+*** [editorial] article page, photo pane: search photos by tags, cat/subcat
+*** [editorial] CRUD articles (including RTE)
+*** [editorial] autocomplete tags in add article/photo
+*** [reports] create google analytics account
+*** [fe] integrate google analytics
+*** [reports] article-id: views (day, week, month, year)
+*** [reports] author-id: views for every article, most-viewed in (day, week, month, year)
+*** [reports] time (day, week, month, year): most-viewed article/author
+*** [editorial] home page: dashboard showing graphs for reports for logged-in author
+*** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
+*** [performance] http caching headers
+*** [performance] gzip content served by nginx
+*** [seo] meta-keywords (tags + cat/subcat)
+*** [seo] robots.txt
+*** [seo][performance] favicon
+*** [security] escape input/editorial data
+*** [security] escape printing user-inputted data
+    - search for 'alert ("hi");' should not show alert
+*** [fe] header, footer look-n-feel
 *** TODO [fe] home page to show carousel for categories/authors of articles
     :CLOCK:
     CLOCK: [2012-08-21 Tue 20:02]--[2012-08-21 Tue 20:09] =>  0:07
@@ -16,18 +36,6 @@
       - http://navercast.naver.com/
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
-*** [editorial] CRUD articles (including RTE)
-*** [editorial] autocomplete tags in add article/photo
-*** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
-*** [fe] header, footer look-n-feel
-*** [performance] http caching headers
-*** [performance] gzip content served by nginx
-*** [seo] meta-keywords (tags + cat/subcat)
-*** [seo] robots.txt
-*** [seo][performance] favicon
-*** [security] escape input/editorial data
-*** [security] escape printing user-inputted data
-    - search for 'alert ("hi");' should not show alert
 *** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
 *** populate *current-dimensions-string* for every request and make it thread-safe
 *** tests
@@ -275,6 +283,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-08-21 Tue 20:47
+     :END:
+**** DONE [editorial] article page, photo pane: my photos
+     CLOSED: [2012-08-21 Tue 21:39]
+     :CLOCK:
+     CLOCK: [2012-08-21 Tue 20:57]--[2012-08-21 Tue 21:39] =>  0:42
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-08-21 Tue 21:39
      :END:
 ** TODO refactor
    :CLOCK:

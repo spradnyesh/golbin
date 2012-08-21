@@ -62,8 +62,10 @@
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun verify-login (username password)
-  (when (string-equal password (password (get-author-by-username username)))
-    t))
+  (let ((author (get-author-by-username username)))
+    (when (and author
+               (string-equal password (password author)))
+      (values t author))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters

@@ -37,8 +37,8 @@
                (create-photo-pane ()
                  ($apply ($ "#bd")
                      append
-                   ($ "<div id='photo-pane'><p class='close'><a href=''>Close</a></p></div>"))
-                 ($event ("#photo-pane p a" click) (close-photo-pane)))
+                   ($ "<div id='photo-pane'><p><a class='close' href=''>Close</a></p><ul></ul></div>"))
+                 ($event ("#photo-pane a.close" click) (close-photo-pane)))
 
                (photo-fail (data)
                  ;; TODO: clear loading icon
@@ -53,14 +53,19 @@
                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                ;;; select photo pane
                ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-               (select-photo-init (who page)
-                 ($prevent-default)
+               (select-photo-init ()
                  (create-photo-pane)
                  ;; TODO: show loading icon
-                 (select-photo-call who page)
-                 false)
+                 (select-photo-add-all-my-tabs)
+                 (select-photo-call "all" 0))
+
+               (select-photo-add-all-my-tabs ()
+                 ($apply ($ "#photo-pane p") prepend ($ "<span>Photos<a class='all-photos' href=''> All </a><a class='my-photos' href=''> My </a></span>"))
+                 ($event ("#photo-pane a.all-photos" click) (select-photo-call "all" 0))
+                 ($event ("#photo-pane a.my-photos" click) (select-photo-call "me" 0)))
 
                (select-photo-call (who page)
+                 ($prevent-default)
                  ($apply ($apply ($apply $
                                      ajax
                                    (create :url (+ "/ajax/photos/" who "/" page "/")
@@ -70,13 +75,15 @@
                              done
                            (lambda (data) (select-photo-done data)))
                      fail
-                   (lambda (data) (photo-fail data))))
+                   (lambda (data) (photo-fail data)))
+                 false)
 
                (select-photo-done (data)
                  ;; TODO: clear loading icon
                  (if (= data.status "success")
                      (progn
-                       ($apply ($ "#photo-pane") append ($ "<ul></ul>"))
+                       ($apply ($ "#photo-pane ul") empty)
+                       ;($apply ($ "#photo-pane") append ($ "<ul></ul>"))
                        (dolist (d data.data)
                          (let* ((id ((@ ($ "<span></span>") html) (elt d 0)))
                                 (img ($ (elt d 1)))
@@ -154,7 +161,7 @@
 
         ;; define event handlers
         ($event ("#cat" change) (article-change-category))
-        ($event ("#select-photo" click) (select-photo-init "all" 0))
+        ($event ("#select-photo" click) (select-photo-init))
         ($event ("#upload-photo" click) (upload-photo-init))
 
         ;; call functions on document.ready

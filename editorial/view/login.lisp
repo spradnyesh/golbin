@@ -18,12 +18,13 @@
 (defun v-login-post ()
   (let ((username (post-parameter "username"))
         (password (post-parameter "password")))
-    (if (verify-login username password)
-        (progn
-          (start-session)
-          (setf (session-value :username) username)
-          (redirect (genurl 'r-home))
-          (redirect (genurl 'r-login-get))))))
+    (multiple-value-bind (logged-in author) (verify-login username password)
+      (if logged-in
+       (progn
+         (start-session)
+         (setf (session-value :user) (handle author))
+         (redirect (genurl 'r-home))
+         (redirect (genurl 'r-login-get)))))))
 
 (defun v-logout ()
   (with-ed-login

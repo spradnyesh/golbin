@@ -5,5 +5,5 @@
     (ed-page-template "Home"
         t
         nil
-      (:div (:pre (str (session-value :username)))
+      (:div (:pre (str (session-value :user)))
             (:p "Hello World!")))))
