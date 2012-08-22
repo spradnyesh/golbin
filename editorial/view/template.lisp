@@ -7,6 +7,7 @@
   `(with-html
      (:html
       (:head
+       (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
        (:style :type "text/css"
