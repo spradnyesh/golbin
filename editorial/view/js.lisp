@@ -13,27 +13,36 @@
           ;; define functions
           (flet (
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;;; utility functions
+                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (split (val)
+                   ($apply val split (regex "/,\s*/")))
+
+                 (extract-last (term)
+                   ($apply ((@ split) term) pop))
+
+                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; article page
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                  ;; change sub-category when user changes category
                  (article-change-category ()
                    (let ((cat-id (parse-int ($apply ($ "#cat") val)))
-                         (e nil))
+                         (ele nil))
                      (dolist (ct category-tree)
                        (when (= cat-id (@ (elt ct 0) id))
                          ($apply ($ "#subcat")
                              empty)
                          (when (elt ct 1)
                            (dolist (subcat (elt ct 1))
-                             (setf e ($apply ($apply ($ "<option></option>")
+                             (setf ele ($apply ($apply ($ "<option></option>")
                                                  'val
                                                (+ "" (@ subcat id)))
                                          text
                                        (@ subcat name)))
                              ($apply ($ "#subcat")
                                  append
-                               e)))))))
+                               ele)))))))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; common for select/upload photo pane
@@ -189,5 +198,34 @@
         ($event ("#select-photo" click) (select-photo-init))
         ($event ("#upload-photo" click) (upload-photo-init))
 
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ((@ ($ "input#tags") autocomplete) (create :source tags-autocomplete))
+
+        #|($apply ($apply ($ "#tags")
+                bind "keydown"
+                (lambda (event)
+                  (when (and (eql (@ event key-code)
+                                  (@ (@ (@ $ ui) key-code) tab)) ; make this tab all-caps
+                             (@ (@ ($apply ($ this) data "autocomplete") menu) active))
+                    ($prevent-default))))
+            autocomplete
+          (create :min-length 2
+                 :source (lambda (request response)
+                           ((@ response)
+                            ($apply (@ (@ $ ui) autocomplete)
+                                filter tags-autocomplete ((@ extract-last) (@ request term))))
+                           false)
+                 :focus (lambda () false)
+                 :select (lambda (event ui)
+                           (let ((terms ((@ split) (@ this value))))
+                             ($apply terms pop)
+                             ($apply terms push (@ (@ ui item) value))
+                             ($apply terms push "")
+                             (setf (@ this value) ($apply terms join ", ")))
+                           false)))|#
+
         ;; call functions on document.ready
-        (article-change-category))))
+        (article-change-category)
+        false)))

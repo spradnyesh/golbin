@@ -106,6 +106,7 @@
            ;; tag
            :add-tag
            :get-tag-by-slug
+           :get-tags-for-autocomplete
            ;; user
            :add-author
            :get-mini-author-details-from-id

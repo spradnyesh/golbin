@@ -35,6 +35,12 @@
         :test #'string-equal
         :key #'slug))
 
+(defun get-tags-for-autocomplete ()
+  (let ((rslt nil))
+    (dolist (tag (get-all-tags))
+      (push (acons :label (name tag) (acons :value (slug tag) nil)) rslt))
+    rslt))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

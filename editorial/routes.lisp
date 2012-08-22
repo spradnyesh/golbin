@@ -28,7 +28,6 @@
 (define-route r-ajax-photo-post ("/ajax/photo/" :method :post :content-type "text/json")
   (v-photo-post t))
 
-
 #|(
  (define-route r-articles ("/articles/") (v-articles))
  (define-route r-article-id ("/article/:id/" :method :get) (v-article-get id))

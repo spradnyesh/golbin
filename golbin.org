@@ -2,9 +2,14 @@
 
 * tasks
 ** backlog
-*** [editorial] article page, photo pane: search photos by tags, cat/subcat
+*** TODO [editorial] autocomplete tags in add article/photo
+    :CLOCK:
+    CLOCK: [2012-08-22 Wed 21:37]--[2012-08-22 Wed 22:01] =>  0:24
+    CLOCK: [2012-08-22 Wed 20:30]--[2012-08-22 Wed 21:34] =>  1:04
+    :END:
+    - http://jqueryui.com/demos/autocomplete/
+*** [editorial] article page, select photo pane: search photos by tags, cat/subcat
 *** [editorial] CRUD articles (including RTE)
-*** [editorial] autocomplete tags in add article/photo
 *** [reports] create google analytics account
 *** [fe] integrate google analytics
 *** [reports] article-id: views (day, week, month, year)
