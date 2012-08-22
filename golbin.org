@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [editorial] article page, photo pane: paginate
 *** [editorial] article page, photo pane: search photos by tags, cat/subcat
 *** [editorial] CRUD articles (including RTE)
 *** [editorial] autocomplete tags in add article/photo
@@ -47,7 +46,18 @@
      - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
      - http://www.cliki.net/test%20framework
 **** coverage (sb-cover)
+*** css 2 -> 3
+    - http://css3please.com/ ***
+    - http://perishablepress.com/css3-progressive-enhancement-smart-design/
+    - http://coding.smashingmagazine.com/2011/04/21/css3-vs-css-a-speed-benchmark/
 *** *[bug] route-cat-page not working due to refactor routes*
+*** html 4 -> 5
+    - http://www.w3.org/TR/html5/
+      - http://www.w3.org/TR/html5-diff/
+    - http://diveinto.html5doctor.com/
+    - good samples
+      - http://html5gallery.com/
+        - http://www.lastchart.com/
 *** Archive                                                         :ARCHIVE:
 **** DONE [editorial] session for login
      CLOSED: [2012-08-20 Mon 21:34]
@@ -291,6 +301,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-08-21 Tue 21:39
+     :END:
+**** DONE [editorial] article page, photo pane: paginate
+     CLOSED: [2012-08-22 Wed 20:16]
+     :CLOCK:
+     CLOCK: [2012-08-22 Wed 19:13]--[2012-08-22 Wed 20:16] =>  1:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-08-22 Wed 20:16
      :END:
 ** TODO refactor
    :CLOCK:

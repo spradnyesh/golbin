@@ -67,21 +67,28 @@
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-ajax-photos-select (who start)
-  (let ((photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane")))
-    (regex-replace-all                  ; need to remove the '\\' that
-     "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
-     (encode-json-to-string
-      `((:status . "success")
-        (:data . ,(loop for
-                     photo in (paginate (conditionally-accumulate #'(lambda (photo)
-                                                                      (eq (typeof photo) :a))
-                                                                  (if (string-equal who "me")
-                                                                      (get-photos-by-author (who-am-i))
-                                                                      (get-all-photos)))
-                                        (* (parse-integer start) photos-per-page)
-                                        photos-per-page)
-                     collect (list (id photo) ((lambda (p) (article-lead-photo-url p "related-thumb")) photo))))))
-     "")))
+  (let* ((photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane"))
+         (list (paginate (conditionally-accumulate #'(lambda (photo)
+                                                       (eq (typeof photo) :a))
+                                                   (if (string-equal who "me")
+                                                       (get-photos-by-author (who-am-i))
+                                                       (get-all-photos)))
+                         (* (parse-integer start) photos-per-page)
+                         photos-per-page)))
+    (if list
+        (regex-replace-all              ; need to remove the '\\' that
+         "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
+         (encode-json-to-string
+          `((:status . "success")
+            (:data . ,(loop for
+                         photo in list
+                         collect (list (id photo) ((lambda (p)
+                                                     (article-lead-photo-url p "related-thumb"))
+                                                   photo))))))
+         "")
+        (encode-json-to-string
+         `((:status . "failure")
+           (:data . nil))))))
 
 (defun v-ajax-photo-get ()
   (regex-replace-all                  ; need to remove the '\\' that

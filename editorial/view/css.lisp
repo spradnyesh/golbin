@@ -38,8 +38,8 @@
            (("#a-details") (:font-size "80%" :padding-bottom "10px"))
            ;; upload photo pane
            (("#photo-pane") (:width "500px" :height "550px" :position "fixed" :top "100px" :left "250px" :border "1px solid red" :background-color "#CCCCCC"))
-           (("#photo-pane p.close") (:float "right"))
-           (("#photo-pane ul") (:margin "20px 0 0 10px"))
+           (("#photo-pane p a.close") (:float "right"))
+           (("#photo-pane ul") (:margin "20px 0 0 10px" :height "500px"))
            (("#photo-pane ul li") (:float "left" :height "125px" :margin "0 10px" :width "100px" :overflow "hidden"))
            (("#photo-pane ul li span") (:display "none"))
            (("#photo-pane ul li a") (:display "block"))
