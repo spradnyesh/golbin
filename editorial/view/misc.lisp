@@ -1,4 +1,4 @@
 (in-package :hawksbill.golbin.editorial)
 
-(defun get-tags-json ()
+(defun v-ajax-tags ()
   (encode-json-to-string (get-tags-for-autocomplete)))

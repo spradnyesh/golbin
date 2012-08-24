@@ -201,22 +201,26 @@
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ((@ ($ "input#tags") autocomplete) (create :source tags-autocomplete))
-
-        #|($apply ($apply ($ "#tags")
+        ($apply ($apply ($ "#tags")
                 bind "keydown"
                 (lambda (event)
                   (when (and (eql (@ event key-code)
-                                  (@ (@ (@ $ ui) key-code) tab)) ; make this tab all-caps
+                                  (@ (@ (@ $ ui) key-code) "TAB"))
                              (@ (@ ($apply ($ this) data "autocomplete") menu) active))
                     ($prevent-default))))
             autocomplete
           (create :min-length 2
                  :source (lambda (request response)
-                           ((@ response)
-                            ($apply (@ (@ $ ui) autocomplete)
-                                filter tags-autocomplete ((@ extract-last) (@ request term))))
+                           ($apply $ ajax
+                             (create :url "/ajax/tags/"
+                                     :data (create :term ((@ extract-last) (@ request term)))
+                                     :data-type "json"
+                                     :success response))
                            false)
+                 :search (lambda () (let ((term ((@ extract-last) (@ this value))))
+                                      (if (< (@ term length) 2)
+                                          false
+                                          true)))
                  :focus (lambda () false)
                  :select (lambda (event ui)
                            (let ((terms ((@ split) (@ this value))))
@@ -224,7 +228,7 @@
                              ($apply terms push (@ (@ ui item) value))
                              ($apply terms push "")
                              (setf (@ this value) ($apply terms join ", ")))
-                           false)))|#
+                           false)))
 
         ;; call functions on document.ready
         (article-change-category)

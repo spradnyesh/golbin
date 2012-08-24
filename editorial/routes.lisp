@@ -27,6 +27,8 @@
   (v-ajax-photo-get))
 (define-route r-ajax-photo-post ("/ajax/photo/" :method :post :content-type "text/json")
   (v-photo-post t))
+(define-route r-ajax-tags ("/ajax/tags/" :content-type "text/json")
+  (v-ajax-tags))
 
 #|(
  (define-route r-articles ("/articles/") (v-articles))

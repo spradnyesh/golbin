@@ -20,7 +20,8 @@
            :r-ajax-photo-post
            :r-ajax-photos-select
            :r-ajax-photo-get
-           :r-logout))
+           :r-logout
+           :r-ajax-tags))
 
 (in-package :hawksbill.golbin.editorial)
 

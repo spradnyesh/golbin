@@ -5,9 +5,8 @@
       t
       (htm (:script :type "text/javascript"
                     (format t
-                            "~%//<![CDATA[~%var categoryTree = ~a, tagsAutocomplete = ~a;~%~a~%//]]>~%"
+                            "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
                             (get-category-tree-json)
-                            (get-tags-json)
                             (on-load))))
       (when message (htm (:div :class "error" (str message))))
     (htm (:form :action (genurl 'r-article-post)
