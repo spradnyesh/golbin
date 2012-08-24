@@ -35,9 +35,11 @@
         :test #'string-equal
         :key #'slug))
 
-(defun get-tags-for-autocomplete ()
+(defun get-tags-for-autocomplete (term)
   (let ((rslt nil))
-    (dolist (tag (get-all-tags))
+    (dolist (tag (conditionally-accumulate #'(lambda (tag)
+                                               (search term (name tag) :test #'string-equal))
+                                           (get-all-tags)))
       (push (acons :label (name tag) (acons :value (slug tag) nil)) rslt))
     rslt))
 

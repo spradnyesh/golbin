@@ -2,12 +2,7 @@
 
 * tasks
 ** backlog
-*** TODO [editorial] autocomplete tags in add article/photo
-    :CLOCK:
-    CLOCK: [2012-08-22 Wed 21:37]--[2012-08-22 Wed 22:01] =>  0:24
-    CLOCK: [2012-08-22 Wed 20:30]--[2012-08-22 Wed 21:34] =>  1:04
-    :END:
-    - http://jqueryui.com/demos/autocomplete/
+*** [editorial] add search (using cat/subcat, tags) in select-photo pane
 *** [editorial] article page, select photo pane: search photos by tags, cat/subcat
 *** [editorial] CRUD articles (including RTE)
 *** [reports] create google analytics account
@@ -315,6 +310,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-08-22 Wed 20:16
      :END:
+**** DONE [editorial] autocomplete tags in add article
+     CLOSED: [2012-08-24 Fri 20:17]
+     :CLOCK:
+     CLOCK: [2012-08-24 Fri 19:04]--[2012-08-24 Fri 20:17] =>  1:13
+     CLOCK: [2012-08-22 Wed 21:37]--[2012-08-22 Wed 22:01] =>  0:24
+     CLOCK: [2012-08-22 Wed 20:30]--[2012-08-22 Wed 21:34] =>  1:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-08-24 Fri 20:17
+     :END:
+     - http://jqueryui.com/demos/autocomplete/
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
@@ -634,6 +640,10 @@
        - multiple links to article
      - http://section.blog.naver.com/sub/SearchBlog.nhn?type=post&option.keyword=%EB%8C%80%EA%B5%AC%EB%A0%8C%ED%8A%B8%EC%B9%B4%EC%A2%8B%EC%9D%80%EA%B3%B3
      - light gray border to images: http://shopping.naver.com/
+   - navigation
+     - http://sonamusoop.com/
+       - halo effect
+       - subtle appearance of sub-navigation
 ** restas
    - routes:
      - trailing 'slash' should be put explicitly, to avoid matching to no/multiple rules

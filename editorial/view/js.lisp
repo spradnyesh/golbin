@@ -16,7 +16,7 @@
                  ;;; utility functions
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (split (val)
-                   ($apply val split (regex "/,\s*/")))
+                   ($apply val split (regex "/,\\s*/")))
 
                  (extract-last (term)
                    ($apply ((@ split) term) pop))
