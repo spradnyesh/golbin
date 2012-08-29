@@ -9,6 +9,11 @@
         (concatenate 'string first-element
                      delim
                      (join-string-list-with-delim delim (rest list) :key key)))))
+(defun split-string-by-delim (string delim)
+  (conditionally-accumulate #'(lambda (l) (not (string-equal l "")))
+                            (mapcar #'(lambda (l) (string-trim " " l))
+                                    (split-sequence delim string
+                                                    :test #'string-equal))))
 
 (defun slugify (title)
   "create slug out of title: took help from http://stackoverflow.com/questions/1302022/best-way-to-generate-slugs-human-readable-ids-in-rails"

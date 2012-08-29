@@ -41,3 +41,10 @@
 
 (defun get-random-from-list (list)
   (nth (random (length list)) list))
+
+(defun subset (l1 l2)
+  (when (<= (length l1) (length l2))
+    (dolist (l l1)
+      (unless (member l l2)
+        (return nil)))
+    t))

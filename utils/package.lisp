@@ -48,9 +48,11 @@
            :insert-at
            :splice
            :get-random-from-list
+           :subset
            ;; string
            :slugify
            :join-string-list-with-delim
+           :split-string-by-delim
            ;; pagination
            :paginate
            :pagination-markup
