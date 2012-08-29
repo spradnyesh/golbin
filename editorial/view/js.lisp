@@ -26,12 +26,12 @@
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
                  ;; change sub-category when user changes category
-                 (article-change-category ()
-                   (let ((cat-id (parse-int ($apply ($ "#cat") val)))
+                 (article-change-category (form-prefix)
+                   (let ((cat-id (parse-int ($apply ($ (+ form-prefix ".cat")) val)))
                          (ele nil))
                      (dolist (ct category-tree)
                        (when (= cat-id (@ (elt ct 0) id))
-                         ($apply ($ "#subcat")
+                         ($apply ($ (+ form-prefix ".subcat"))
                              empty)
                          (when (elt ct 1)
                            (dolist (subcat (elt ct 1))
@@ -40,7 +40,7 @@
                                                (+ "" (@ subcat id)))
                                          text
                                        (@ subcat name)))
-                             ($apply ($ "#subcat")
+                             ($apply ($ (+ form-prefix ".subcat"))
                                  append
                                ele)))))))
 
@@ -171,7 +171,9 @@
                          ($apply ($ "#photo-pane")
                              append
                            data.data)
-                         ($event ("#photo-pane form" submit) (upload-photo-submit)))
+                         ($event ("#photo-pane form" submit) (upload-photo-submit))
+                         ($event ("#photo-pane .cat" change) (article-change-category "#photo-pane "))
+                         false)
                        (photo-fail data)))
 
                  (upload-photo-submit ()
@@ -194,7 +196,7 @@
                        (photo-fail data))))))
 
         ;; define event handlers
-        ($event ("#cat" change) (article-change-category))
+        ($event (".cat" change) (article-change-category ""))
         ($event ("#select-photo" click) (select-photo-init))
         ($event ("#upload-photo" click) (upload-photo-init))
 
@@ -231,5 +233,4 @@
                            false)))
 
         ;; call functions on document.ready
-        (article-change-category)
         false)))

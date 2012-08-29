@@ -4,26 +4,42 @@
 ;; helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun photo-get-markup (&optional (ajax nil))
-  (with-html
-    (:form :action (if ajax
-                       (genurl 'r-ajax-photo-post)
-                       (genurl 'r-photo-post))
-                :method "POST"
-                :enctype "multipart/form-data"
-                (:table (str (tr-td-input "title"))
-                        (:tr
-                         (:td "Type of")
-                         (:td (:select :name "typeof"
-                                       :class "td-input"
-                                       (:option :value "article" "Article")
-                                       (:option :value "author" "Author")
-                                       #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
-                        (str (tr-td-input "tags"))
-                        (str (tr-td-input "photo" :typeof "file")))
-                (:input :id "upload"
-                        :name "upload"
-                        :type "submit"
-                        :value "Upload"))))
+  (let ((cats (get-root-categorys))
+        (subcats (get-subcategorys 1)))
+    (with-html
+      (:form :action (if ajax
+                         (genurl 'r-ajax-photo-post)
+                         (genurl 'r-photo-post))
+             :method "POST"
+             :enctype "multipart/form-data"
+             (:table (str (tr-td-input "title"))
+                     (:tr
+                      (:td "Type of")
+                      (:td (:select :name "typeof"
+                                    :class "td-input"
+                                    (:option :value "article" "Article")
+                                    (:option :value "author" "Author")
+                                    #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
+                     (:tr (:td "Category")
+                          (:td (:select :name "cat"
+                                        :class "td-input cat"
+                                        (:option :selected "selected"
+                                                 :value (id (first cats)) (str (name (first cats))))
+                                        (dolist (cat (rest cats))
+                                          (htm (:option :value (id cat) (str (name cat))))))))
+                     (:tr (:td "Sub Category")
+                          (:td (:select :name "subcat"
+                                        :class "td-input subcat"
+                                        (:option :selected "selected"
+                                                 :value (id (first subcats)) (str (name (first subcats))))
+                                        (dolist (subcat (rest subcats))
+                                          (htm (:option :value (id subcat) (str (name subcat))))))))
+                     (str (tr-td-input "tags"))
+                     (str (tr-td-input "photo" :typeof "file")))
+             (:input :id "upload"
+                     :name "upload"
+                     :type "submit"
+                     :value "Upload")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
@@ -31,11 +47,18 @@
 (defun v-photo-get (&optional message)
   (ed-page-template "Add Photo"
       t
+      (htm (:script :type "text/javascript"
+                    (format t
+                            "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
+                            (get-category-tree-json)
+                            (on-load))))
     (when message (htm (:div :class "error" (str message))))
-    (photo-get-markup)))
+    (str (photo-get-markup))))
 
 (defun v-photo-post (&optional (ajax nil))
   (let ((title (post-parameter "title"))
+        (cat (post-parameter "cat"))
+        (subcat (post-parameter "subcat"))
         (tags (split-sequence "," (post-parameter "tags") :test #'string-equal))
         (photo-tags nil)
         (typeof (post-parameter "typeof"))
@@ -55,6 +78,8 @@
                                                                       "~A.~A"
                                                                       (pathname-name new-path)
                                                                       (pathname-type new-path))
+                                                :cat (get-category-by-id cat)
+                                                :subcat (get-category-by-id subcat)
                                                 :tags photo-tags)))
           (if ajax
               (regex-replace-all        ; need to remove the '\\' that
@@ -67,12 +92,27 @@
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-ajax-photos-select (who start)
-  (let* ((photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane"))
-         (list (paginate (conditionally-accumulate #'(lambda (photo)
-                                                       (eq (typeof photo) :a))
-                                                   (if (string-equal who "me")
-                                                       (get-photos-by-author (who-am-i))
-                                                       (get-all-photos)))
+  (let* ((cat (get-parameter "cat"))
+         (subcat (get-parameter "subcat"))
+         (tags (get-parameter "tag"))
+         (photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane"))
+         (list (paginate (conditionally-accumulate
+                          #'(lambda (photo)
+                              (and (eq (typeof photo) :a)
+                                   (if cat
+                                       (string-equal cat (slug (cat photo)))
+                                       t)
+                                   (if subcat
+                                       (string-equal cat (slug (subcat photo)))
+                                       t)
+                                   (if tags
+                                       (when (subset (split-string-by-delim tags ",")
+                                                     (mapcar #'slug (tags photo)))
+                                         t)
+                                       t)))
+                          (if (string-equal who "me")
+                              (get-photos-by-author (who-am-i))
+                              (get-all-photos)))
                          (* (parse-integer start) photos-per-page)
                          photos-per-page)))
     (if list

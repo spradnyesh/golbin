@@ -7,6 +7,8 @@
    (orig-filename :initarg :orig-filename :initform nil :accessor orig-filename)
    (new-filename :initarg :new-filename :initform nil :accessor new-filename)
    (date :initarg :date :initform nil :accessor date)
+   (cat :initarg :cat :initform nil :accessor cat)
+   (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
    (author :initarg :author :initform nil :accessor author)))
 
