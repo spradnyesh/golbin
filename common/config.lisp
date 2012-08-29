@@ -36,7 +36,7 @@
                                  "Industry"
                                  "Markets")
                                 ("Education")
-                                ("Entenrtainment"
+                                ("Entertainment"
                                  "Arts"
                                  "Books"
                                  "Celebrities"
@@ -56,7 +56,7 @@
                                 ("Politics")
                                 ("Religion")
                                 ("Science"
-                                 "Environmenent"
+                                 "Environment"
                                  "Geography"
                                  "Space")
                                 ("Sports"
