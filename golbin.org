@@ -351,6 +351,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-09-03 Mon 15:47
      :END:
+**** DONE [bug] db: cat/subcat of photos don't have an id
+     CLOSED: [2012-09-03 Mon 20:41]
+     :CLOCK:
+     CLOCK: [2012-09-03 Mon 20:25]--[2012-09-03 Mon 20:41] =>  0:16
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-03 Mon 20:41
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
