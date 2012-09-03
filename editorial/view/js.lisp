@@ -24,14 +24,13 @@
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; article page
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
                  ;; change sub-category when user changes category
                  (article-change-category (form-prefix)
-                   (let ((cat-id (parse-int ($apply ($ (+ form-prefix ".cat")) val)))
+                   (let ((cat-id (parse-int ($apply ($ (+ form-prefix " .cat")) val)))
                          (ele nil))
                      (dolist (ct category-tree)
                        (when (= cat-id (@ (elt ct 0) id))
-                         ($apply ($ (+ form-prefix ".subcat"))
+                         ($apply ($ (+ form-prefix " .subcat"))
                              empty)
                          (when (elt ct 1)
                            (dolist (subcat (elt ct 1))
@@ -40,7 +39,7 @@
                                                (+ "" (@ subcat id)))
                                          text
                                        (@ subcat name)))
-                             ($apply ($ (+ form-prefix ".subcat"))
+                             ($apply ($ (+ form-prefix " .subcat"))
                                  append
                                ele)))))))
 
@@ -172,7 +171,8 @@
                              append
                            data.data)
                          ($event ("#photo-pane form" submit) (upload-photo-submit))
-                         ($event ("#photo-pane .cat" change) (article-change-category "#photo-pane "))
+                         ($event ("#photo-pane .cat" change) (article-change-category "#photo-pane"))
+                         (tags-autocomplete ($ "#photo-pane .tags"))
                          false)
                        (photo-fail data)))
 
@@ -193,44 +193,49 @@
                            (elt data.data 0))
                          ($apply ($apply ($ "#lead-photo") siblings "span") html (elt data.data 1))
                          (close-photo-pane))
-                       (photo-fail data))))))
+                       (photo-fail data)))
+
+                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
+                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (tags-autocomplete (tags-input)
+                   ($apply ($apply tags-input
+                               bind "keydown"
+                               (lambda (event)
+                                 (when (and (eql (@ event key-code)
+                                                 (@ (@ (@ $ ui) key-code) "TAB"))
+                                            (@ (@ ($apply ($ this) data "autocomplete") menu) active))
+                                   ($prevent-default))))
+                       autocomplete
+                     (create :min-length 2
+                             :source (lambda (request response)
+                                       ($apply $ ajax
+                                         (create :url "/ajax/tags/"
+                                                 :data (create :term ((@ extract-last) (@ request term)))
+                                                 :data-type "json"
+                                                 :success response))
+                                       false)
+                             :search (lambda () (let ((term ((@ extract-last) (@ this value))))
+                                                  (if (< (@ term length) 2)
+                                                      false
+                                                      true)))
+                             :focus (lambda () false)
+                             :select (lambda (event ui)
+                                       (let ((terms ((@ split) (@ this value))))
+                                         ($apply terms pop)
+                                         ($apply terms push (@ (@ ui item) value))
+                                         ($apply terms push "")
+                                         (setf (@ this value) ($apply terms join ", ")))
+                                       false)))
+                   false))))
 
         ;; define event handlers
         ($event (".cat" change) (article-change-category ""))
         ($event ("#select-photo" click) (select-photo-init))
         ($event ("#upload-photo" click) (upload-photo-init))
+        (tags-autocomplete ($ ".tags"))
 
-        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
-        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ($apply ($apply ($ "#tags")
-                bind "keydown"
-                (lambda (event)
-                  (when (and (eql (@ event key-code)
-                                  (@ (@ (@ $ ui) key-code) "TAB"))
-                             (@ (@ ($apply ($ this) data "autocomplete") menu) active))
-                    ($prevent-default))))
-            autocomplete
-          (create :min-length 2
-                 :source (lambda (request response)
-                           ($apply $ ajax
-                             (create :url "/ajax/tags/"
-                                     :data (create :term ((@ extract-last) (@ request term)))
-                                     :data-type "json"
-                                     :success response))
-                           false)
-                 :search (lambda () (let ((term ((@ extract-last) (@ this value))))
-                                      (if (< (@ term length) 2)
-                                          false
-                                          true)))
-                 :focus (lambda () false)
-                 :select (lambda (event ui)
-                           (let ((terms ((@ split) (@ this value))))
-                             ($apply terms pop)
-                             ($apply terms push (@ (@ ui item) value))
-                             ($apply terms push "")
-                             (setf (@ this value) ($apply terms join ", ")))
-                           false)))
+
 
         ;; call functions on document.ready
         false)))

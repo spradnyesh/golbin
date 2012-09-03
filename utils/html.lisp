@@ -23,10 +23,9 @@
       (htm
        (:tr
         (:td (format t "~A" (string-capitalize for)))
-        (:td (:input :class "td-input"
+        (:td (:input :class (format nil "td-input ~A" name)
                      :type typeof
                      :name (format nil "~A" name)
-                     :id (format nil "~A" name)
                      :value value)))))))
 
 (defun tr-td-text (name &key (value "") (cols 40) (rows 7))
