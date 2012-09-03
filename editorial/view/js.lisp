@@ -9,7 +9,9 @@
         ;; define variables
         (let ((select-photo-who "all")
               (select-photo-next-page (create "all" 0 "me" 0))
-              (select-photo-pagination-direction "next"))
+              (select-photo-pagination-direction "next")
+              ;; flag to decide whether select-photo-next-page should be incremented or not
+              (select-photo-paginate false))
           ;; define functions
           (flet (
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -28,20 +30,26 @@
                  (article-change-category (form-prefix)
                    (let ((cat-id (parse-int ($apply ($ (+ form-prefix " .cat")) val)))
                          (ele nil))
-                     (dolist (ct category-tree)
-                       (when (= cat-id (@ (elt ct 0) id))
-                         ($apply ($ (+ form-prefix " .subcat"))
-                             empty)
-                         (when (elt ct 1)
-                           (dolist (subcat (elt ct 1))
-                             (setf ele ($apply ($apply ($ "<option></option>")
-                                                 'val
-                                               (+ "" (@ subcat id)))
-                                         text
-                                       (@ subcat name)))
+                     (if (eql cat-id 0)
+                         (progn
+                           ($apply ($ (+ form-prefix " .subcat")) empty)
+                           ($apply ($ (+ form-prefix " .subcat"))
+                               append
+                             ($ "<option selected='selected' value='0'>Select</option>")))
+                         (dolist (ct category-tree)
+                           (when (= cat-id (@ (elt ct 0) id))
                              ($apply ($ (+ form-prefix " .subcat"))
-                                 append
-                               ele)))))))
+                                 empty)
+                             (when (elt ct 1)
+                               (dolist (subcat (elt ct 1))
+                                 (setf ele ($apply ($apply ($ "<option></option>")
+                                                       'val
+                                                     (+ "" (@ subcat id)))
+                                               text
+                                             (@ subcat name)))
+                                 ($apply ($ (+ form-prefix " .subcat"))
+                                     append
+                                   ele))))))))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; common for select/upload photo pane
@@ -55,6 +63,7 @@
                  (photo-fail (data)
                    ;; TODO: clear loading icon
                    ;; TODO: show error message
+                   (setf select-photo-paginate false)
                    false)
 
                  (close-photo-pane ()
@@ -68,8 +77,10 @@
                  (select-photo-init ()
                    (create-photo-pane)
                    ($apply ($ "#photo-pane") append ($ "<div class='pagination'><a href='' class='prev'>Previous</a><a href='' class='next'>Next</a></div>"))
+                   ($apply ($ "#photo-pane p") prepend ($ "<div class='search'></div>"))
                    ;; TODO: show loading icon
                    (select-photo-add-all-my-tabs)
+                   (select-search-markup)
                    (select-photo-call "all" 0)
                    ($event ("#photo-pane .pagination a.prev" click) (select-photo-pagination-prev))
                    ($event ("#photo-pane .pagination a.next" click) (select-photo-pagination-next)))
@@ -79,14 +90,51 @@
                    ($event ("#photo-pane a.all-photos" click) (select-photo-call "all" 0))
                    ($event ("#photo-pane a.my-photos" click) (select-photo-call "me" 0)))
 
+                 (select-search-markup ()
+                   (let ((cat ($ "<select name='cat' class='td-input cat'><option selected='selected' value='0'>Select</option></select>"))
+                         (subcat ($ "<select name='subcat' class='td-input subcat'><option selected='selected' value='0'>Select</option></select>"))
+                         (tags ($ "<input class='td-input tags' type='text'>"))
+                         (search ($ "<a href='' class='search-btn'>Search</a>")))
+                     ($apply ($apply ($apply ($apply ($ "#photo-pane .search")
+                                                 append cat)
+                                         append subcat)
+                                 append tags)
+                         append search)
+                     ;; cat-subcat change
+                     (let ((cat nil)
+                           (ele nil))
+                       (dolist (ct category-tree)
+                         (setf cat (elt ct 0))
+                         (setf ele ($apply ($apply ($ "<option></option>")
+                                                     'val
+                                                   (+ "" (@ cat id)))
+                                             text
+                                           (@ cat name)))
+                         ($apply ($ "#photo-pane .search .cat") append ele)))
+                     ($event ("#photo-pane .search .cat" change) (article-change-category "#photo-pane .search"))
+                     ;; tags
+                     (tags-autocomplete ($ "#photo-pane .search .tags"))
+                     ;; search
+                     ($event ("#photo-pane .search a.search-btn" click)
+                       (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))))
+
                  (select-photo-call (who page)
                    (when (< page 0)
                      return)
-                   (setf select-photo-who who)
                    ($prevent-default)
+                   (setf select-photo-who who)
                    ($apply ($apply ($apply $
                                        ajax
-                                     (create :url (+ "/ajax/photos/" who "/" page "/")
+                                     (create :url (+ "/ajax/photos/"
+                                                     who
+                                                     "/"
+                                                     page
+                                                     "/?cat="
+                                                     ($apply ($ "#photo-pane .search .cat") val)
+                                                     "&subcat="
+                                                     ($apply ($ "#photo-pane .search .subcat") val)
+                                                     "&tags="
+                                                     ($apply ($ "#photo-pane .search .tags") val))
                                              :cache false
                                              :data-type "json"
                                              :async false))
@@ -99,12 +147,13 @@
                  (select-photo-done (data)
                    ;; TODO: clear loading icon
                    (if (= data.status "success")
-                       (progn (if (= select-photo-pagination-direction "prev")
-                                  (setf (elt select-photo-next-page select-photo-who)
-                                        (1- (elt select-photo-next-page select-photo-who)))
-                                  (setf (elt select-photo-next-page select-photo-who)
-                                        (1+ (elt select-photo-next-page select-photo-who))))
-
+                       (progn (when select-photo-paginate
+                                (if (= select-photo-pagination-direction "prev")
+                                    (setf (elt select-photo-next-page select-photo-who)
+                                          (1- (elt select-photo-next-page select-photo-who)))
+                                    (setf (elt select-photo-next-page select-photo-who)
+                                          (1+ (elt select-photo-next-page select-photo-who))))
+                                (setf select-photo-paginate false))
                               ($apply ($ "#photo-pane ul") empty)
                               (dolist (d data.data)
                                 (let* ((id ((@ ($ "<span></span>") html) (elt d 0)))
@@ -135,11 +184,13 @@
                  (select-photo-pagination-prev ()
                    ($prevent-default)
                    (setf select-photo-pagination-direction "prev")
+                   (setf select-photo-paginate true)
                    (select-photo-call select-photo-who (- (elt select-photo-next-page select-photo-who) 2)))
 
                  (select-photo-pagination-next ()
                    ($prevent-default)
                    (setf select-photo-pagination-direction "next")
+                   (setf select-photo-paginate true)
                    (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

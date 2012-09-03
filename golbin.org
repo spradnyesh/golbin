@@ -14,6 +14,10 @@
     - [ ] test by uploading a photo
 *** TODO [editorial] add search (using cat/subcat, tags) in select-photo pane
     :CLOCK:
+    CLOCK: [2012-09-03 Mon 21:00]--[2012-09-03 Mon 21:36] =>  0:36
+    CLOCK: [2012-09-03 Mon 20:16]--[2012-09-03 Mon 20:25] =>  0:09
+    CLOCK: [2012-09-03 Mon 16:09]--[2012-09-03 Mon 16:45] =>  0:36
+    CLOCK: [2012-09-03 Mon 15:48]--[2012-09-03 Mon 16:03] =>  0:15
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
 *** [editorial] CRUD articles (including RTE)

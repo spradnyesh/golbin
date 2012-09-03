@@ -92,18 +92,18 @@
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-ajax-photos-select (who start)
-  (let* ((cat (get-parameter "cat"))
-         (subcat (get-parameter "subcat"))
-         (tags (get-parameter "tag"))
+  (let* ((cat (parse-integer (get-parameter "cat")))
+         (subcat (parse-integer (get-parameter "subcat")))
+         (tags (get-parameter "tags"))
          (photos-per-page (get-config "pagination.article.editorial.lead-photo-select-pane"))
          (list (paginate (conditionally-accumulate
                           #'(lambda (photo)
                               (and (eq (typeof photo) :a)
-                                   (if cat
-                                       (string-equal cat (slug (cat photo)))
+                                   (if (and cat (/= cat 0))
+                                       (= cat (id (cat photo)))
                                        t)
-                                   (if subcat
-                                       (string-equal cat (slug (subcat photo)))
+                                   (if (and subcat (/= subcat 0))
+                                       (= subcat (id (subcat photo)))
                                        t)
                                    (if tags
                                        (when (subset (split-string-by-delim tags ",")
