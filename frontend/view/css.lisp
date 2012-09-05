@@ -55,8 +55,8 @@
            ((".carousel .related") (:height "140px"))
            ((".carousel .related li") (:list-style-type "none" :float "left" :width "120px" :margin "0 10px"))
            ;; pagination
-           (("#col-2 .pagination") (:text-align "center" :padding "20px 0 30px"))
-           (("#col-2 .pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))
-           (("#col-2 .pagination li a") (:text-decoration "none" :color "#035583"))
-           (("#col-2 .pagination .disabled") (:border "none"))
+           ((".pagination") (:text-align "center" :padding "20px 0 30px"))
+           ((".pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))
+           ((".pagination li a") (:text-decoration "none" :color "#035583"))
+           ((".pagination .disabled") (:border "none"))
            ))))
