@@ -89,14 +89,15 @@
                                                    :test #'string-equal
                                                    :count 1))))
          (article (get-article-by-id id)))
-    (fe-page-template
-        (title article)
-        nil
-      (:div
-       (:div :id "article"
-             (str (article-preamble-markup article))
-             (str (article-body-markup article)))
-       (str (article-related-markup id article))))))
+    (when (eql :a (status article))
+      (fe-page-template
+          (title article)
+          nil
+        (:div
+         (:div :id "article"
+               (str (article-preamble-markup article))
+               (str (article-body-markup article)))
+         (str (article-related-markup id article)))))))
 
 (defun v-ajax-article-related (id typeof page)
   (let* ((related-length (get-config "pagination.article.related"))
