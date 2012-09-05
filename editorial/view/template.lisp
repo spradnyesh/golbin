@@ -54,7 +54,11 @@
          (:li :id "nav-home"
               (:h2 (:a :href (genurl 'r-home) "Home")))
          (when logged-in
-           (htm (:li :id "nav-logout"
+           (htm (:li :id "nav-article"
+                     (:h2 (:a :href (genurl 'r-article-new-get) "Add Article")))
+                (:li :id "nav-photo"
+                     (:h2 (:a :href (genurl 'r-photo-get) "Add Photo")))
+                (:li :id "nav-logout"
                      (:h2 (:a :href (genurl 'r-logout) "Logout"))))))))
 
 (defun ed-header (logged-in)

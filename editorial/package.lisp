@@ -12,9 +12,10 @@
            :r-tmp-photo-post
            :r-articles
            :r-article-id
-           :r-article-get
-           :r-article-post
-           :r-tag
+           :r-article-new-get
+           :r-article-new-post
+           :r-article-edit-get
+           :r-article-edit-post
            :r-login-get
            :r-login-post
            :r-ajax-photo-post

@@ -99,10 +99,10 @@
          (list (paginate (conditionally-accumulate
                           #'(lambda (photo)
                               (and (eq (typeof photo) :a)
-                                   (if (and cat (/= cat 0))
+                                   (if (/= cat 0)
                                        (= cat (id (cat photo)))
                                        t)
-                                   (if (and subcat (/= subcat 0))
+                                   (if (/= subcat 0)
                                        (= subcat (id (subcat photo)))
                                        t)
                                    (if tags
