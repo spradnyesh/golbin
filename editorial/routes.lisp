@@ -10,6 +10,7 @@
 (define-route r-home ("/") (v-home))
 (define-route r-logout ("/logout/") (v-logout))
 ;; article
+(define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id t))
 (define-route r-article-new-get ("/article/") (v-article-get))
 (define-route r-article-new-post ("/article/" :method :post) (v-article-post))
 (define-route r-article-edit-get ("/article/:id/" :parse-vars (list :id #'parse-integer)) (v-article-get id))

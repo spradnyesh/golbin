@@ -83,13 +83,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-article (slug-and-id)
+(defun v-article (slug-and-id &optional (editorial nil))
   (let* ((id (parse-integer (first (split-sequence "-" slug-and-id
                                                    :from-end t
                                                    :test #'string-equal
                                                    :count 1))))
          (article (get-article-by-id id)))
-    (when (eql :a (status article))
+    (when (or (eql :a (status article))
+              editorial)
       (fe-page-template
           (title article)
           nil

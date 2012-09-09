@@ -16,7 +16,13 @@
            :r-article
            :r-search
            :r-ajax-home-category-articles
-           :r-ajax-article-related))
+           :r-ajax-article-related
+           ;; enable article to be previewed in editorial
+           :v-article
+           :fe-page-template
+           :article-preamble-markup
+           :article-body-markup
+           :article-related-markup))
 
 (in-package :hawksbill.golbin.frontend)
 

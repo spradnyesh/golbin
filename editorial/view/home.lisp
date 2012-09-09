@@ -36,7 +36,12 @@
                                                           (if (string-equal delete "Undelete")
                                                               "deleted"
                                                               ""))
-                                       (str (title article)))
+                                       (:a :href (genurl 'r-article
+                                                         :slug-and-id (format nil
+                                                                              "~a-~a"
+                                                                              (slug article)
+                                                                              (id article)))
+                                           (str (title article))))
                                   (:p :class "a-summary" (str (summary article)))))))))
              (str (pagination-markup page
                                      (length articles-list)
