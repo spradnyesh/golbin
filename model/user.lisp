@@ -110,8 +110,7 @@
     (nth (random (length all-authors)) all-authors)))
 
 (defun get-current-author-id ()
-  "TODO: return the id of the currently logged in author"
-  (id (get-random-author)))
+  (id (get-author-by-handle (session-value :user))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init

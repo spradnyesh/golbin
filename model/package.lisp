@@ -1,5 +1,6 @@
 (defpackage :hawksbill.golbin.model
   (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json :split-sequence)
+  (:import-from :hunchentoot :session-value)
   (:export :db-reconnect
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; slots
