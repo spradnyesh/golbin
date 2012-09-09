@@ -14,7 +14,9 @@
 (define-route r-article-new-get ("/article/") (v-article-get))
 (define-route r-article-new-post ("/article/" :method :post) (v-article-post))
 (define-route r-article-edit-get ("/article/:id/" :parse-vars (list :id #'parse-integer)) (v-article-get id))
-(define-route r-article-edit-post ("/article/:id/" :method :post) (v-article-post id))
+(define-route r-article-edit-post ("/article/:id/" :method :post
+                                                   :parse-vars (list :id #'parse-integer))
+  (v-article-post id))
 ;; photo
 (define-route r-photo-get ("/photo/") (v-photo-get))
 (define-route r-photo-post ("/photo/" :method :post) (v-photo-post))

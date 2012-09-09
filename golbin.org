@@ -3,6 +3,9 @@
 * tasks
 ** backlog
 *** TODO [editorial] CRUD articles
+    :CLOCK:
+    CLOCK: [2012-09-09 Sun 20:18]--[2012-09-09 Sun 21:21] =>  1:03
+    :END:
 *** [editorial] RTE for articles
 *** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
 *** [editorial] registration page

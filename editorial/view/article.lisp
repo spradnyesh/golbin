@@ -49,6 +49,14 @@
                               (genurl 'r-article-new-post))
                   :method "POST"
                   (:table (str (tr-td-input "title" :value (when article (title article))))
+                          (when article (htm
+                                         (:tr
+                                          (:td "URL")
+                                          (:td (:input :class "td-input url"
+                                                       :type "text"
+                                                       :disabled "disabled"
+                                                       :name "url"
+                                                       :value (slug article))))))
                           (str (tr-td-text "summary" :value (when article (summary article))))
                           (str (tr-td-text "body" :value (when article (body article))))
                           (:tr (:td "Category")
@@ -63,7 +71,8 @@
                                (:td (:input :class "td-input"
                                             :type "hidden"
                                             :name "lead-photo"
-                                            :id "lead-photo")
+                                            :id "lead-photo"
+                                            :value (id (photo article)))
                                     (:span (when article
                                              (str (article-lead-photo-url (photo article) "related-thumb"))))
                                     (:a :id "select-photo"
@@ -86,39 +95,57 @@
                                             :name "save"
                                             :type "submit"
                                             :value "Save")
-                                    "*")
+                                    (when article (str " #1")))
                                (when article
                                  (htm (:td (:a :href (genurl 'r-article
                                                              :slug-and-id (format nil
                                                                                   "~a-~a"
                                                                                   (slug article)
                                                                                   (id article)))
-                                               "Preview"))))))
+                                               "Preview")" #2")))))
                   (when article
-                    (htm (:p "*Note: the moment you save, the article will go into the draft mode and will have to be approved before it will be visible on the site again."))))))))
+                    (htm (:div :class "notes"
+                               (:p "#1: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")
+                               (:p "#2: You can only preview after the article has been saved successfully.")))))))))
 
 (defun v-article-post (&optional id)
-  (declare (ignore id))
   (let ((title (post-parameter "title"))
         (summary (post-parameter "summary"))
         (body (post-parameter "body"))
-        (cat (post-parameter "cat"))
-        (subcat (post-parameter "subcat"))
-        (photo (post-parameter "photo"))
+        (cat (parse-integer (post-parameter "cat")))
+        (subcat (parse-integer (post-parameter "subcat")))
+        (photo (post-parameter "lead-photo"))
         (pd (post-parameter "pd"))
         (tags (split-sequence "," (post-parameter "tags") :test #'string-equal))
         (article-tags nil))
     (dolist (tag tags)
-            (push (add-tag tag) article-tags))
-    (add-article (make-instance 'article
-                                :title title
-                                :summary summary
-                                :body body
-                                :cat (get-category-by-id cat)
-                                :subcat (get-category-by-id subcat)
-                                :photo (when photo (get-mini-photo (get-photo-by-id photo)))
-                                :photo-direction (cond ((string-equal pd "center") :b)
-                                                       ((string-equal pd "left") :l)
-                                                       ((string-equal pd "right") :r))
-                                :tags article-tags))
-    (redirect (genurl 'r-article-new-get))))
+      (push (add-tag tag) article-tags))
+    (if id
+        (progn
+          (edit-article (make-instance 'article
+                                       :id id
+                                       :title title
+                                       :slug (slug (get-article-by-id id))
+                                       :summary summary
+                                       :body body
+                                       :cat (get-category-by-id cat)
+                                       :subcat (get-category-by-id subcat)
+                                       :photo (when photo (get-mini-photo (get-photo-by-id (parse-integer photo))))
+                                       :photo-direction (cond ((string-equal pd "center") :b)
+                                                              ((string-equal pd "left") :l)
+                                                              ((string-equal pd "right") :r))
+                                       :tags article-tags))
+          (redirect (genurl 'r-article-edit-get :id (write-to-string id))))
+        (progn
+          (add-article (make-instance 'article
+                                      :title title
+                                      :summary summary
+                                      :body body
+                                      :cat (get-category-by-id cat)
+                                      :subcat (get-category-by-id subcat)
+                                      :photo (when photo (get-mini-photo (get-photo-by-id photo)))
+                                      :photo-direction (cond ((string-equal pd "center") :b)
+                                                             ((string-equal pd "left") :l)
+                                                             ((string-equal pd "right") :r))
+                                      :tags article-tags))
+          (redirect (genurl 'r-article-new-get))))))
