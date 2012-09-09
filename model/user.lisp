@@ -5,8 +5,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass user ()
   ((id :initarg :id :initform nil :accessor id)
-   (username :initarg :username :initform nil :accessor username)
-   (handle :initarg :handle :initform nil :accessor handle) ; name that the user wants others to see
+   (username :initarg :username :initform nil :accessor username) ; used for logging in (can be the same as handle)
+   (alias :initarg :alias :initform nil :accessor alias) ; name that the user wants others to see
+   (handle :initarg :handle :initform nil :accessor handle) ; sanitized alias for use in URLs
    (password :initarg :password :initform nil :accessor password)
    (salt :initarg :salt :initform nil :accessor salt) ; for encryption of password
    (name :initarg :name :initform nil :accessor name)
@@ -39,7 +40,7 @@
 (defclass mini-author ()
   ((id :initarg :id :initform nil :accessor id)
    (handle :initarg :handle :initform nil :accessor handle)
-   (name :initarg :name :initform nil :accessor name))
+   (alias :initarg :alias :initform nil :accessor alias))
   (:documentation "to be used as a foreign key in articles"))
 
 (defclass author-storage ()
@@ -51,11 +52,11 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro set-mini-author (object)
-  `(multiple-value-bind (id name handle) (get-mini-author-details-from-id (get-current-author-id))
+  `(multiple-value-bind (id alias handle) (get-mini-author-details-from-id (get-current-author-id))
      (setf (author ,object)
            (make-instance 'mini-author
                           :id id
-                          :name name
+                          :alias alias
                           :handle handle))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -89,7 +90,7 @@
   (let ((author (find id (get-all-authors)
                       :key #'id)))
     (values (id author)
-            (name author)
+            (alias author)
             (handle author))))
 
 (defun get-author-by-handle (handle)
@@ -140,6 +141,7 @@
           (let ((slug (slugify author-name)))
             (add-author (make-instance 'author
                                        :name author-name
+                                       :alias author-name
                                        :username slug
                                        :handle slug
                                        :password slug

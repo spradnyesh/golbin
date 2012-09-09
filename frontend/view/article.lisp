@@ -10,7 +10,7 @@
         "written by "
         (:a :id "a-author"
             :href (genurl 'r-author :author (handle (author article)))
-            (str (name (author article))))
+            (str (alias (author article))))
         " on "
         (:span :id "a-date" (str (date article)))
         " in category "
@@ -66,7 +66,7 @@
             (str (article-carousel-container "Articles authored by: "
                                              (:span (:a :href (genurl 'r-author
                                                                       :author (handle author))
-                                                        (str (name author))))
+                                                        (str (alias author))))
                                              author-list
                                              (genurl 'r-ajax-article-related
                                                      :id id

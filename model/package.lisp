@@ -39,6 +39,7 @@
            :user
            :username
            :handle
+           :alias
            :password
            :salt
            :gender
