@@ -81,11 +81,21 @@
                                              (str (get-photo-direction-markup :b "center"))
                                              (str (get-photo-direction-markup :l "left"))
                                              (str (get-photo-direction-markup :r "right")))))
-                          (str (tr-td-input "tags" :value (when article (get-tags-markup article)))))
-                  (:input :id "save"
-                          :name "save"
-                          :type "submit"
-                          :value "Save"))))))
+                          (str (tr-td-input "tags" :value (when article (get-tags-markup article))))
+                          (:tr (:td (:input :id "save"
+                                            :name "save"
+                                            :type "submit"
+                                            :value "Save")
+                                    "*")
+                               (when article
+                                 (htm (:td (:a :href (genurl 'r-article
+                                                             :slug-and-id (format nil
+                                                                                  "~a-~a"
+                                                                                  (slug article)
+                                                                                  (id article)))
+                                               "Preview"))))))
+                  (when article
+                    (htm (:p "*Note: the moment you save, the article will go into the draft mode and will have to be approved before it will be visible on the site again."))))))))
 
 (defun v-article-post (&optional id)
   (declare (ignore id))
