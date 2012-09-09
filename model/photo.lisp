@@ -114,7 +114,7 @@
   (make-instance 'mini-photo
                  :id (id photo)
                  :title (title photo)
-                 :filename (new-filename photo)))
+                 :new-filename (new-filename photo)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for resize photos cron
