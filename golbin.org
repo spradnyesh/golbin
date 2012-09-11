@@ -2,10 +2,34 @@
 
 * tasks
 ** backlog
+*** [bug] error500 for http://localhost:8080/article/289/
 *** TODO [editorial] CRUD articles
     :CLOCK:
+    CLOCK: [2012-09-11 Tue 22:15]--[2012-09-11 Tue 22:49] =>  0:34
     CLOCK: [2012-09-09 Sun 20:18]--[2012-09-09 Sun 21:21] =>  1:03
     :END:
+    - [ ] create
+    - [X] read
+    - [X] update
+    - [X] delete
+*** [editorial] home page should show a table of
+    - status icon
+| Color  | Meaning   |
+|--------+-----------|
+| Red    | Withdrawn |
+| Orange | Deleted   |
+| Green  | Approved  |
+| Yellow | Submitted |
+| Blue   | Draft     |
+    - edit/delete
+    - title, summary, preview
+    - #views
+      - today
+      - this week (starting monday)
+      - this month
+      - this quarter
+      - this half-year
+      - this year
 *** [editorial] RTE for articles
 *** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
 *** [editorial] registration page

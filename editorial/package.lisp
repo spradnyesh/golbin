@@ -17,6 +17,7 @@
            :r-article-new-post
            :r-article-edit-get
            :r-article-edit-post
+           :r-article-delete-post
            :r-login-get
            :r-login-post
            :r-ajax-photo-post

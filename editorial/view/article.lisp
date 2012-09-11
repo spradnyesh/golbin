@@ -133,6 +133,7 @@
                                        :slug (slug (get-article-by-id id))
                                        :summary summary
                                        :body body
+                                       :status :draft
                                        :cat (get-category-by-id cat)
                                        :subcat (get-category-by-id subcat)
                                        :photo (when photo (get-mini-photo (get-photo-by-id (parse-integer photo))))
@@ -154,3 +155,10 @@
                                                              ((string-equal pd "right") :r))
                                       :tags article-tags))
           (redirect (genurl 'r-article-new-get))))))
+
+(defun v-article-delete-post (id)
+  (let ((article (get-article-by-id id)))
+    (when article
+      (setf (status article) :deleted)
+      (edit-article article))
+    (redirect (genurl 'r-home :page (parse-integer (post-parameter "page"))))))

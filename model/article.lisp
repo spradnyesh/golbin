@@ -48,7 +48,6 @@
   ;; set some article params
   (setf (date article)
         (now))
-  (setf (status article) :draft)
   (set-mini-author article)
 
   ;; save article into storage

@@ -20,15 +20,19 @@
                     (dolist (article (paginate articles-list
                                                offset
                                                num-per-page))
-                      (let* ((status (status article))
+                      (let* ((id (id article))
+                             (status (status article))
                              (delete (if (can-article-be-deleted?)
                                          "Delete"
                                          "Undelete")))
                         (htm (:li (:div :class "crud"
-                                        (:p (:a :href (format nil "/article/~a/" (id article)) "Edit"))
+                                        (:p (:a :href (genurl 'r-article-edit-get :id id) "Edit"))
                                         (when (can-article-be-deleted?)
                                           (htm (:form :method "POST"
-                                                      :action (format nil "/article/rm/~a/" (id article))
+                                                      :action (genurl 'r-article-delete-post :id id)
+                                                      (:input :name "page"
+                                                              :type "hidden"
+                                                              :value page)
                                                       (:input :id "delete"
                                                               :name "delete"
                                                               :type "submit"
@@ -45,7 +49,7 @@
                                                          :slug-and-id (format nil
                                                                               "~a-~a"
                                                                               (slug article)
-                                                                              (id article)))
+                                                                              id))
                                            (str (title article))))
                                   (:p :class "a-summary" (str (summary article)))))))))
              (str (pagination-markup page
