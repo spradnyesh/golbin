@@ -48,7 +48,8 @@
            (cats (get-root-categorys))
            (subcats (get-subcategorys (if article
                                           (id (cat article))
-                                          1))))
+                                          1)))
+           (photo (when article (photo article))))
       (htm (:form :action (if article
                               (genurl 'r-article-edit-post :id id)
                               (genurl 'r-article-new-post))
@@ -77,8 +78,8 @@
                                             :type "hidden"
                                             :name "lead-photo"
                                             :id "lead-photo"
-                                            :value (id (photo article)))
-                                    (:span (when article
+                                            :value (when photo (id photo)))
+                                    (:span (when photo
                                              (str (article-lead-photo-url (photo article) "related-thumb"))))
                                     (:a :id "select-photo"
                                         :href ""
@@ -106,7 +107,7 @@
                                                              :slug-and-id (format nil
                                                                                   "~a-~a"
                                                                                   (slug article)
-                                                                                  (id article)))
+                                                                                  id))
                                                "Preview")" #2")))))
                   (when article
                     (htm (:div :class "notes"

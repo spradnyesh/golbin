@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug] error500 for http://localhost:8080/article/289/
 *** TODO [editorial] CRUD articles
     :CLOCK:
     CLOCK: [2012-09-11 Tue 22:15]--[2012-09-11 Tue 22:49] =>  0:34
@@ -465,6 +464,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-09-11 Tue 22:14
+     :END:
+**** DONE [bug] error500 for http://localhost:8080/article/289/
+     CLOSED: [2012-09-11 Tue 23:10]
+     :CLOCK:
+     CLOCK: [2012-09-11 Tue 22:50]--[2012-09-11 Tue 23:10] =>  0:20
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-11 Tue 23:10
      :END:
 ** TODO refactor
    :CLOCK:
