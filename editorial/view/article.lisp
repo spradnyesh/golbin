@@ -28,6 +28,11 @@
       (push (name tag) rslt))
     (join-string-list-with-delim ", " rslt)))
 
+(defmacro can-article-be-deleted? ()
+  `(or (eql :draft status)
+       (eql :s status)
+       (eql :a status)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,5 +1,8 @@
 (in-package :hawksbill.golbin.editorial)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; views
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-home ()
   (with-ed-login
     (ed-page-template "Home"
@@ -17,25 +20,27 @@
                     (dolist (article (paginate articles-list
                                                offset
                                                num-per-page))
-                      (let ((delete (if (eql :a (status article))
-                                                        "Delete"
-                                                        "Undelete")))
+                      (let* ((status (status article))
+                             (delete (if (can-article-be-deleted?)
+                                         "Delete"
+                                         "Undelete")))
                         (htm (:li (:div :class "crud"
                                         (:p (:a :href (format nil "/article/~a/" (id article)) "Edit"))
-                                        (:form :method "POST"
-                                               :action (format nil "/article/rm/~a/" (id article))
-                                               (:input :id "delete"
-                                                       :name "delete"
-                                                       :type "submit"
-                                                       :value delete)))
+                                        (when (can-article-be-deleted?)
+                                          (htm (:form :method "POST"
+                                                      :action (format nil "/article/rm/~a/" (id article))
+                                                      (:input :id "delete"
+                                                              :name "delete"
+                                                              :type "submit"
+                                                              :value delete)))))
                                   (when (photo article)
                                     (htm (:div :class "index-thumb"
                                                (str (article-lead-photo-url (photo article) "index-thumb")))))
                                   (:h3 :class (format nil
-                                                          "a-title ~a"
-                                                          (if (string-equal delete "Undelete")
-                                                              "deleted"
-                                                              ""))
+                                                      "a-title ~a"
+                                                      (if (string-equal delete "Undelete")
+                                                          "deleted"
+                                                          ""))
                                        (:a :href (genurl 'r-article
                                                          :slug-and-id (format nil
                                                                               "~a-~a"

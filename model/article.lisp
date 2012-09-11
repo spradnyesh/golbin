@@ -10,7 +10,7 @@
    (summary :initarg :summary :initform nil :accessor summary)
    (date :initarg :date :initform nil :accessor date)
    (body :initarg :body :initform nil :accessor body)
-   (status :initarg :status :initform nil :accessor status) ; :d draft (for 'withdrawn by author' too), :s submitted for approval, :a approved/active, :w withdrawn (deleted by admin)
+   (status :initarg :status :initform nil :accessor status) ; :draft, :deleted, :s submitted for approval, :a approved/active, :w withdrawn (deleted by admin)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
    (cat :initarg :cat :initform nil :accessor cat)
@@ -36,7 +36,7 @@
         (now))
   (setf (slug article)
         (slugify (title article)))
-  (setf (status article) :d)
+  (setf (status article) :draft)
   (set-mini-author article)
 
   ;; save article into storage
@@ -48,7 +48,7 @@
   ;; set some article params
   (setf (date article)
         (now))
-  (setf (status article) :d)
+  (setf (status article) :draft)
   (set-mini-author article)
 
   ;; save article into storage
@@ -142,7 +142,8 @@ It is a long established fact that a reader will be distracted by the readable c
                                   :cat cat
                                   :subcat subcat
                                   :status (let ((r (random 10)))
-                                            (cond ((zerop r) :d)
+                                            (cond ((zerop r) :draft)
                                                   ((= 1 r) :s)
                                                   ((= 2 r) :w)
+                                                  ((= 3 r) :deleted)
                                                   (t :a))))))))

@@ -43,7 +43,7 @@
                                                            (:file "template" :depends-on ("css" "js" "helpers"))
                                                            (:file "common" :depends-on ("template"))
                                                            (:file "article" :depends-on ("common"))
-                                                           (:file "home" :depends-on ("common"))
+                                                           (:file "home" :depends-on ("common" "article"))
                                                            (:file "index" :depends-on ("common")))
                                               :depends-on ("package"))
                                      (:file "routes" :depends-on ("view")))
