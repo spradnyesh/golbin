@@ -19,12 +19,14 @@
          (slug (slugify name))
          (new-tag (make-instance 'tag :name name :slug slug))
          (existing-tag (get-tag-by-slug slug)))
-    ;; save tag into storage only if it does not already exist
-    (if existing-tag
-        existing-tag
-        (progn
-          (execute *db* (make-transaction 'insert-tag new-tag))
-          new-tag))))
+    ;; don't add an empty tag
+    (unless (string-equal slug "")
+      ;; save tag into storage only if it does not already exist
+      (if existing-tag
+          existing-tag
+          (progn
+            (execute *db* (make-transaction 'insert-tag new-tag))
+            new-tag)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters

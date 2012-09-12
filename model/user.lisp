@@ -52,12 +52,13 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro set-mini-author (object)
-  `(multiple-value-bind (id alias handle) (get-mini-author-details-from-id (get-current-author-id))
+  `(multiple-value-bind (author-id author-alias author-handle)
+       (get-mini-author-details-from-id (get-current-author-id))
      (setf (author ,object)
            (make-instance 'mini-author
-                          :id id
-                          :alias alias
-                          :handle handle))))
+                          :id author-id
+                          :alias author-alias
+                          :handle author-handle))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
@@ -110,6 +111,7 @@
     (nth (random (length all-authors)) all-authors)))
 
 (defun get-current-author-id ()
+  (hunchentoot:log-message* nil "@@@@@user: ~a" (session-value :user))
   (id (get-author-by-handle (session-value :user))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

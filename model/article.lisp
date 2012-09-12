@@ -29,31 +29,33 @@
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-article (article)
-  ;; set some article params
-  (setf (id article)
-        (execute *db* (make-transaction 'incf-article-last-id)))
-  (setf (date article)
-        (now))
-  (setf (slug article)
-        (slugify (title article)))
-  (setf (status article) :draft)
-  (set-mini-author article)
+  (when article
+    ;; set some article params
+    (setf (id article)
+          (execute *db* (make-transaction 'incf-article-last-id)))
+    (setf (date article)
+          (now))
+    (setf (slug article)
+          (slugify (title article)))
+    (setf (status article) :draft)
+    (set-mini-author article)
 
-  ;; save article into storage
-  (execute *db* (make-transaction 'insert-article article))
+    ;; save article into storage
+    (execute *db* (make-transaction 'insert-article article))
 
-  article)
+    article))
 
 (defun edit-article (article)
-  ;; set some article params
-  (setf (date article)
-        (now))
-  (set-mini-author article)
+  (when article
+    ;; set some article params
+    (setf (date article)
+          (now))
+    #|(set-mini-author article)|#
 
-  ;; save article into storage
-  (execute *db* (make-transaction 'update-article article))
+    ;; save article into storage
+    (execute *db* (make-transaction 'update-article article))
 
-  article)
+    article))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters

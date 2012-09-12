@@ -1,7 +1,8 @@
 (defpackage :hawksbill.utils
   (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad)
-  (:shadow :acceptor :mime-type :size :null)
+  (:shadow :acceptor :mime-type :size)
   (:shadowing-import-from :restas :redirect :start)
+  (:shadowing-import-from :cl :null)
   (:export :*home*
            ;; init
            :destroy-system
@@ -53,6 +54,7 @@
            :slugify
            :join-string-list-with-delim
            :split-string-by-delim
+           :nil-or-empty
            ;; pagination
            :paginate
            :pagination-markup

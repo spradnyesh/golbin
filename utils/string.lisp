@@ -1,19 +1,26 @@
 (in-package :hawksbill.utils)
 
 (defun join-string-list-with-delim (delim list &key (key nil))
-  (let ((first-element (if key
-                           (funcall key (first list))
-                           (first list))))
-    (if (= 1 (length list))
-        first-element
-        (concatenate 'string first-element
-                     delim
-                     (join-string-list-with-delim delim (rest list) :key key)))))
+  (when list
+    (let ((first-element (if key
+                             (funcall key (first list))
+                             (first list))))
+      (if (= 1 (length list))
+          first-element
+          (concatenate 'string first-element
+                       delim
+                       (join-string-list-with-delim delim (rest list) :key key))))))
+
 (defun split-string-by-delim (string delim)
   (conditionally-accumulate #'(lambda (l) (not (string-equal l "")))
                             (mapcar #'(lambda (l) (string-trim " " l))
                                     (split-sequence delim string
                                                     :test #'string-equal))))
+
+(defun nil-or-empty (string)
+  (when (or (null string)
+            (string-equal "" string))
+    t))
 
 (defun slugify (title)
   "create slug out of title: took help from http://stackoverflow.com/questions/1302022/best-way-to-generate-slugs-human-readable-ids-in-rails"

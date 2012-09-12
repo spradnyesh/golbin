@@ -477,6 +477,20 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-09-11 Tue 23:10
      :END:
+**** DONE [editorial] CRUD articles
+     CLOSED: [2012-09-12 Wed 23:40]
+     :CLOCK:
+     CLOCK: [2012-09-12 Wed 22:27]--[2012-09-12 Wed 23:40] =>  1:13
+     CLOCK: [2012-09-11 Tue 22:15]--[2012-09-11 Tue 22:49] =>  0:34
+     CLOCK: [2012-09-09 Sun 20:18]--[2012-09-09 Sun 21:21] =>  1:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-12 Wed 23:41
+     :END:
+     - [X] create
+     - [X] read
+     - [X] update
+     - [X] delete
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
