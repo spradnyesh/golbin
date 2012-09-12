@@ -17,12 +17,14 @@
         (:a :id "a-cat"
             :href (genurl 'r-cat :cat (slug (cat article)))
             (str (name (cat article))))
-        ", "
-        (:a :id "a-cat-subcat"
-            :href (genurl 'r-cat-subcat
-                          :cat (slug (cat article))
-                          :subcat (slug (subcat article)))
-            (str (name (subcat article))))
+        (when (subcat article)
+          ", "
+          (htm
+           (:a :id "a-cat-subcat"
+               :href (genurl 'r-cat-subcat
+                             :cat (slug (cat article))
+                             :subcat (slug (subcat article)))
+               (str (name (subcat article))))))
         " using tags "
         (:span :id "a-tags" (str (fe-article-tags-markup article))))))
 

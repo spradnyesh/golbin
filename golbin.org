@@ -2,15 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [editorial] CRUD articles
-    :CLOCK:
-    CLOCK: [2012-09-11 Tue 22:15]--[2012-09-11 Tue 22:49] =>  0:34
-    CLOCK: [2012-09-09 Sun 20:18]--[2012-09-09 Sun 21:21] =>  1:03
-    :END:
-    - [ ] create
-    - [X] read
-    - [X] update
-    - [X] delete
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -491,6 +482,14 @@
      - [X] read
      - [X] update
      - [X] delete
+**** DONE [bug] http://localhost:8080/hw-1002.html
+     CLOSED: [2012-09-12 Wed 23:59]
+     :CLOCK:
+     CLOCK: [2012-09-12 Wed 23:45]--[2012-09-12 Wed 23:59] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-12 Wed 23:59
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
