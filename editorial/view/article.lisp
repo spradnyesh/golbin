@@ -152,15 +152,15 @@
                                          :tags article-tags))
             (redirect (genurl 'r-article-edit-get :id (write-to-string id))))
           (let ((article (add-article (make-instance 'article
-                                                                                 :id nil
-                                                                                 :title title
-                                                                                 :summary summary
-                                                                                 :body body
-                                                                                 :cat cat
-                                                                                 :subcat subcat
-                                                                                 :photo photo
-                                                                                 :photo-direction pd
-                                                                                 :tags article-tags))))
+                                                     :id nil
+                                                     :title title
+                                                     :summary summary
+                                                     :body body
+                                                     :cat cat
+                                                     :subcat subcat
+                                                     :photo photo
+                                                     :photo-direction pd
+                                                     :tags article-tags))))
             (redirect (genurl 'r-article-edit-get :id (write-to-string (id article)))))))))
 
 (defun v-article-delete-post (id)
