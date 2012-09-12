@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** [editorial] RTE for articles
+*** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
+*** [reports] create google analytics account
+*** [fe] integrate google analytics
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -20,12 +24,6 @@
       - this quarter
       - this half-year
       - this year
-*** [editorial] RTE for articles
-*** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
-*** [editorial] registration page
-*** 100 2-digit salts for every author for login
-    - [ ] change to db
-    - [ ] change to login get/post
 *** TODO add categories to article photos
     :CLOCK:
     CLOCK: [2012-08-29 Wed 21:07]--[2012-08-29 Wed 21:56] =>  0:49
@@ -36,13 +34,15 @@
     - [X] db
     - [X] photo upload form
     - [ ] test by uploading a photo
-*** [reports] create google analytics account
-*** [fe] integrate google analytics
 *** [fe] enable sharing on SNS
 *** [reports] article-id: views (day, week, month, year)
 *** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
 *** [reports] time (day, week, month, year): most-viewed article/author
-*** [editorial] home page: dashboard showing graphs for reports for logged-in author
+*** [editorial] registration page
+*** 100 2-digit salts for every author for login
+    - [ ] change to db
+    - [ ] change to login get/post
+    - [ ] need to send email of these 100 salts on successful registration
 *** TODO [editorial] add search (using cat/subcat, tags) in select-photo pane
     :CLOCK:
     CLOCK: [2012-09-03 Mon 21:00]--[2012-09-03 Mon 21:36] =>  0:36
@@ -51,16 +51,16 @@
     CLOCK: [2012-09-03 Mon 15:48]--[2012-09-03 Mon 16:03] =>  0:15
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
-*** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
-*** [performance] http caching headers
-*** [performance] gzip content served by nginx
-*** [seo] meta-keywords (tags + cat/subcat)
-*** [seo] robots.txt
-*** [seo][performance] favicon
 *** [security] escape input/editorial data
 *** [security] escape printing user-inputted data
     - search for 'alert ("hi");' should not show alert
+*** [performance] gzip content served by nginx
+*** [performance] http caching headers
+*** [seo] meta-keywords (tags + cat/subcat)
+*** [seo] robots.txt
+*** [seo][performance] favicon
 *** [fe] header, footer look-n-feel
+*** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
 *** TODO [fe] home page to show carousel for categories/authors of articles
     :CLOCK:
     CLOCK: [2012-08-21 Tue 20:02]--[2012-08-21 Tue 20:09] =>  0:07
@@ -90,11 +90,11 @@
      - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
      - http://www.cliki.net/test%20framework
 **** coverage (sb-cover)
+*** *[bug] route-cat-page not working due to refactor routes*
 *** css 2 -> 3
     - http://css3please.com/ ***
     - http://perishablepress.com/css3-progressive-enhancement-smart-design/
     - http://coding.smashingmagazine.com/2011/04/21/css3-vs-css-a-speed-benchmark/
-*** *[bug] route-cat-page not working due to refactor routes*
 *** html 4 -> 5
     - http://www.w3.org/TR/html5/
       - http://www.w3.org/TR/html5-diff/
