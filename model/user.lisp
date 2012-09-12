@@ -111,7 +111,6 @@
     (nth (random (length all-authors)) all-authors)))
 
 (defun get-current-author-id ()
-  (hunchentoot:log-message* nil "@@@@@user: ~a" (session-value :user))
   (id (get-author-by-handle (session-value :user))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
