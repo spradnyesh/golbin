@@ -84,6 +84,10 @@
       - http://navercast.naver.com/
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
+*** [ads] ads
+    - http://trak.in/tags/business/2008/04/03/ten-indian-ad-networks/
+    - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
+    - http://www.freeprivacypolicy.com
 *** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
 *** populate *current-dimensions-string* for every request and make it thread-safe
 *** tests
