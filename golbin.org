@@ -2,8 +2,15 @@
 
 * tasks
 ** backlog
-*** [editorial] RTE for articles
+*** TODO [editorial] RTE for articles
+    :CLOCK:
+    CLOCK: [2012-09-13 Thu 19:51]--[2012-09-13 Thu 20:22] =>  0:31
+    :END:
+    - http://www.jquery4u.com/tools/10-excellent-free-rich-text-editors/
+    - http://www.jquery4u.com/plugins/html5-wysiwyg/#.UFG6LrtMphE
+    - ckeditor.com + spellcheck.net
 *** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
+*** [model] change photo new-filename logic to handle for collision
 *** [reports] create google analytics account
 *** [fe] integrate google analytics
 *** [editorial] home page should show a table of
@@ -24,7 +31,7 @@
       - this quarter
       - this half-year
       - this year
-*** TODO add categories to article photos
+*** TODO [model] add categories to article photos
     :CLOCK:
     CLOCK: [2012-08-29 Wed 21:07]--[2012-08-29 Wed 21:56] =>  0:49
     CLOCK: [2012-08-29 Wed 20:26]--[2012-08-29 Wed 21:04] =>  0:38
@@ -59,7 +66,9 @@
 *** [seo] meta-keywords (tags + cat/subcat)
 *** [seo] robots.txt
 *** [seo][performance] favicon
-*** [fe] header, footer look-n-feel
+*** [fe] theme
+    - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
+      - license: http://www.famfamfam.com/lab/icons/silk/
 *** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
 *** TODO [fe] home page to show carousel for categories/authors of articles
     :CLOCK:
