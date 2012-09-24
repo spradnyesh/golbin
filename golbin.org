@@ -46,10 +46,23 @@
 *** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
 *** [reports] time (day, week, month, year): most-viewed article/author
 *** [editorial] registration page
-*** 100 2-digit salts for every author for login
+*** 50 4-digit numbers for every author for login
     - [ ] change to db
     - [ ] change to login get/post
-    - [ ] need to send email of these 100 salts on successful registration
+      - 2 stages
+        1. partial-login using username/passwd
+        2. if correct
+           1. salt = (salt user)
+           2. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
+           3. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
+           4. ensure "a-b,c-d" hasn't been tampered w/
+           5. check for correctness of a,c digits of b,d numbers
+           6. if correct, complete-login
+      - OR, single stage
+        1. use a common salt (can be changed frequently)
+        2. do step 1 + 2 above
+    - [ ] need to send email of these 50 salts on successful registration
+      - jpeg image (cl-gd)
 *** TODO [editorial] add search (using cat/subcat, tags) in select-photo pane
     :CLOCK:
     CLOCK: [2012-09-03 Mon 21:00]--[2012-09-03 Mon 21:36] =>  0:36
