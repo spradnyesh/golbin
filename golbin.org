@@ -2,7 +2,8 @@
 
 * tasks
 ** backlog
-*** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
+*** [config] change "photo.article-lead.right.max-*" to "photo.article-lead.side.max-*" (right/left -> side)
+*** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [model] change photo new-filename logic to handle for collision
 *** [reports] create google analytics account
 *** [fe] integrate google analytics
@@ -117,6 +118,7 @@
     - good samples
       - http://html5gallery.com/
         - http://www.lastchart.com/
+*** [editorial] theme RTE to not show some manipulations (eg, restrict image urls to only golbin images)
 *** Archive                                                         :ARCHIVE:
 **** DONE [editorial] session for login
      CLOSED: [2012-08-20 Mon 21:34]
@@ -517,6 +519,15 @@
      - http://www.jquery4u.com/tools/10-excellent-free-rich-text-editors/
      - http://www.jquery4u.com/plugins/html5-wysiwyg/#.UFG6LrtMphE
      - http://www.ckeditor.com + http://www.spellcheck.net
+**** DONE [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
+     CLOSED: [2012-09-25 Tue 22:31]
+     :CLOCK:
+     CLOCK: [2012-09-25 Tue 22:11]--[2012-09-25 Tue 22:31] =>  0:20
+     CLOCK: [2012-09-25 Tue 20:53]--[2012-09-25 Tue 22:07] =>  1:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-25 Tue 22:31
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

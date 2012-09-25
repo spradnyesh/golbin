@@ -11,7 +11,9 @@
               (select-photo-next-page (create "all" 0 "me" 0))
               (select-photo-pagination-direction "next")
               ;; flag to decide whether select-photo-next-page should be incremented or not
-              (select-photo-paginate false))
+              (select-photo-paginate false)
+              ;; flag to decide whether we're dealing w/ (non-)lead photo
+              (lead false))
           ;; define functions
           (flet (
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -71,9 +73,23 @@
                    ((@ ($ "#photo-pane") remove))
                    false)
 
+                 (nonlead-photo-url ()
+                   ($prevent-default)
+                   (alert (+ "Please copy this URL and use it for inline images in the article body below: "
+                             ((@ ((@ ($ ($ (@ event target))) attr) "src")
+                                 replace)
+                              (+ "_" (elt image-sizes 0) ".")
+                              (+ "_" (elt image-sizes 1) ".")))))
+
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; select photo pane
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (select-lead-photo-init ()
+                   (setf lead true)
+                   (select-photo-init))
+                 (select-nonlead-photo-init ()
+                   (setf lead false)
+                   (select-photo-init))
                  (select-photo-init ()
                    (create-photo-pane)
                    ($apply ($ "#photo-pane") append ($ "<div class='pagination'><a href='' class='prev'>Previous</a><a href='' class='next'>Next</a></div>"))
@@ -171,14 +187,24 @@
 
                  (select-photo ()
                    ($prevent-default)
-                   (let ((target-img ($ (@ event target)))))
-                   ($apply ($ "#lead-photo")
-                       val
-                     ($apply ($apply ($apply target-img
-                                         parent)
-                                 siblings "span")
-                         html))
-                   ($apply ($apply ($ "#lead-photo") siblings "span") html target-img)
+                   (let ((target-img ($ (@ event target))))
+                     (if lead
+                         (progn
+                           ;; change the photo-id in hidden-field
+                           ($apply ($ "#lead-photo")
+                               val
+                             ($apply ($apply ($apply target-img
+                                                 parent)
+                                         siblings "span")
+                                 html))
+                           ;; change the photo url
+                           ($apply ($apply ($ "#lead-photo") siblings "span") html target-img))
+                         (progn
+                           (let ((a-target ((@ ($ "<a href=''></a>") append) target-img)))
+                             ;; append photo to list of nonlead photos
+                             ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
+                             ;; add-event so that when image is clicked, we show a popoup w/ url for copying
+                             ($event (a-target click) (nonlead-photo-url))))))
                    (close-photo-pane))
 
                  (select-photo-pagination-prev ()
@@ -196,6 +222,12 @@
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; upload photo pane
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (upload-lead-photo-init ()
+                   (setf lead true)
+                   (upload-photo-init))
+                 (upload-nonlead-photo-init ()
+                   (setf lead false)
+                   (upload-photo-init))
                  (upload-photo-init ()
                    ($prevent-default)
                    (create-photo-pane)
@@ -238,13 +270,22 @@
 
                  (upload-photo-submit-done (data)
                    (if (= data.status "success")
-                       (progn
-                         ($apply ($ "#lead-photo")
-                             val
-                           (elt data.data 0))
-                         ($apply ($apply ($ "#lead-photo") siblings "span") html (elt data.data 1))
-                         (close-photo-pane))
-                       (photo-fail data)))
+                       (if lead
+                           (progn
+                             ;; change the photo-id in hidden-field
+                             ($apply ($ "#lead-photo")
+                                 val
+                               (elt data.data 0))
+                             ;; change the photo url
+                             ($apply ($apply ($ "#lead-photo") siblings "span") html (elt data.data 1)))
+                           (progn
+                           (let ((a-target ((@ ($ "<a href=''></a>") append) ($ (elt data.data 1)))))
+                             ;; append photo to list of nonlead photos
+                             ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
+                             ;; add-event so that when image is clicked, we show a popoup w/ url for copying
+                             ($event (a-target click) (nonlead-photo-url)))))
+                       (photo-fail data))
+                   (close-photo-pane))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
@@ -282,11 +323,11 @@
 
         ;; define event handlers
         ($event (".cat" change) (article-change-category ""))
-        ($event ("#select-photo" click) (select-photo-init))
-        ($event ("#upload-photo" click) (upload-photo-init))
+        ($event ("#select-lead-photo" click) (select-lead-photo-init))
+        ($event ("#upload-lead-photo" click) (upload-lead-photo-init))
+        ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init))
+        ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init))
         (tags-autocomplete ($ ".tags"))
-
-
 
         ;; call functions on document.ready
         false)))

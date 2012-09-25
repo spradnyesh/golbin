@@ -33,6 +33,17 @@
        (eql :s status)
        (eql :a status)))
 
+(defun get-thumb-side-photo-sizes-json ()
+  (encode-json-to-string
+   (list (format nil
+                 "~ax~a"
+                 (get-config "photo.article-lead.related-thumb.max-height")
+                 (get-config "photo.article-lead.related-thumb.max-width"))
+         (format nil
+                 "~ax~a"
+                 (get-config "photo.article-lead.right.max-height")
+                 (get-config "photo.article-lead.right.max-width")))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -42,8 +53,9 @@
         t
         (htm (:script :type "text/javascript"
                       (format t
-                              "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
+                              "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%~a~%//]]>~%"
                               (get-category-tree-json)
+                              (get-thumb-side-photo-sizes-json)
                               (on-load)))
              (:script :type "text/javascript"
                       :src "/static/ckeditor/ckeditor.js"))
@@ -67,6 +79,21 @@
                                                          :name "url"
                                                          :value (slug article))))))
                             (str (tr-td-text "summary" :value (when article (summary article))))
+                            (:tr (:td "Non Lead Photos")
+                                 (:td (:input :class "td-input"
+                                              :type "hidden"
+                                              :name "nonlead-photo"
+                                              :id "nonlead-photo"
+                                              :value (when photo (id photo)))
+                                      (:span)
+                                      (:a :id "select-nonlead-photo"
+                                          :href ""
+                                          "Select")
+                                      " or "
+                                      (:a :id "upload-nonlead-photo"
+                                          :href ""
+                                          "Upload")
+                                      " a photo"))
                             (str (tr-td-text "body" :value (when article (body article)) :class "ckeditor"))
                             (:tr (:td "Category")
                                  (:td (:select :name "cat"
@@ -84,11 +111,11 @@
                                               :value (when photo (id photo)))
                                       (:span (when photo
                                                (str (article-lead-photo-url (photo article) "related-thumb"))))
-                                      (:a :id "select-photo"
+                                      (:a :id "select-lead-photo"
                                           :href ""
                                           "Select")
                                       " or "
-                                      (:a :id "upload-photo"
+                                      (:a :id "upload-lead-photo"
                                           :href ""
                                           "Upload")
                                       " a photo"))
