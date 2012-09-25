@@ -2,13 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [editorial] RTE for articles
-    :CLOCK:
-    CLOCK: [2012-09-13 Thu 19:51]--[2012-09-13 Thu 20:22] =>  0:31
-    :END:
-    - http://www.jquery4u.com/tools/10-excellent-free-rich-text-editors/
-    - http://www.jquery4u.com/plugins/html5-wysiwyg/#.UFG6LrtMphE
-    - ckeditor.com + spellcheck.net
 *** [editorial] non-lead photos for article (during new/edit). author should be able to use URL generated after uploading photo
 *** [model] change photo new-filename logic to handle for collision
 *** [reports] create google analytics account
@@ -512,6 +505,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-09-12 Wed 23:59
      :END:
+**** DONE [editorial] RTE for articles
+     CLOSED: [2012-09-25 Tue 20:34]
+     :CLOCK:
+     CLOCK: [2012-09-25 Tue 20:12]--[2012-09-25 Tue 20:34] =>  0:22
+     CLOCK: [2012-09-13 Thu 19:51]--[2012-09-13 Thu 20:22] =>  0:31
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-25 Tue 20:34
+     :END:
+     - http://www.jquery4u.com/tools/10-excellent-free-rich-text-editors/
+     - http://www.jquery4u.com/plugins/html5-wysiwyg/#.UFG6LrtMphE
+     - http://www.ckeditor.com + http://www.spellcheck.net
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

@@ -44,7 +44,9 @@
                       (format t
                               "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
                               (get-category-tree-json)
-                              (on-load))))
+                              (on-load)))
+             (:script :type "text/javascript"
+                      :src "/static/ckeditor/ckeditor.js"))
       (let* ((article (when id (get-article-by-id id)))
              (cats (get-root-categorys))
              (subcats (get-subcategorys (if article
@@ -65,7 +67,7 @@
                                                          :name "url"
                                                          :value (slug article))))))
                             (str (tr-td-text "summary" :value (when article (summary article))))
-                            (str (tr-td-text "body" :value (when article (body article))))
+                            (str (tr-td-text "body" :value (when article (body article)) :class "ckeditor"))
                             (:tr (:td "Category")
                                  (:td (:select :name "cat"
                                                :class "td-input cat"
