@@ -50,7 +50,7 @@
     ;; set some article params
     (setf (date article)
           (now))
-    #|(set-mini-author article)|#
+    (set-mini-author article)
 
     ;; save article into storage
     (execute *db* (make-transaction 'update-article article))
