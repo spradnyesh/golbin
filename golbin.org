@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** *[bug][fe] "Uncaught ReferenceError: ready is not defined" on category/article pages*
 *** [config] change "photo.article-lead.right.max-*" to "photo.article-lead.side.max-*" (right/left -> side)
 *** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [model] change photo new-filename logic to handle for collision
@@ -544,6 +543,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-09-26 Wed 13:53
      :END:
+**** DONE *[bug][fe] "Uncaught ReferenceError: ready is not defined" on category/article pages*
+     CLOSED: [2012-09-26 Wed 14:28]
+     :CLOCK:
+     CLOCK: [2012-09-26 Wed 14:22]--[2012-09-26 Wed 14:28] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-26 Wed 14:29
+     :END:
+     - this happens when /view/js.lisp isn't compiled for some reason. compile it manually
+     - won't happen when js is moved from lisp land to static file
+       - also need to source jquery.min.js locally so that it is available before our script starts loading
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
