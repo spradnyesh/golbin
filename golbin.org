@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** UNDERGOING [reports] ping random article pages every minute
+    :CLOCK:
+    CLOCK: [2012-09-27 Thu 07:26]
+    :END:
 *** [config] change "photo.article-lead.right.max-*" to "photo.article-lead.side.max-*" (right/left -> side)
 *** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [model] change photo new-filename logic to handle for collision
