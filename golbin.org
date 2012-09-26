@@ -2,10 +2,6 @@
 
 * tasks
 ** backlog
-*** UNDERGOING [reports] ping random article pages every minute
-    :CLOCK:
-    CLOCK: [2012-09-27 Thu 07:26]
-    :END:
 *** [config] change "photo.article-lead.right.max-*" to "photo.article-lead.side.max-*" (right/left -> side)
 *** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [model] change photo new-filename logic to handle for collision
@@ -558,6 +554,14 @@
      - this happens when /view/js.lisp isn't compiled for some reason. compile it manually
      - won't happen when js is moved from lisp land to static file
        - also need to source jquery.min.js locally so that it is available before our script starts loading
+**** DONE [reports] ping random article pages every minute
+     CLOSED: [2012-09-27 Thu 07:30]
+     :CLOCK:
+     CLOCK: [2012-09-27 Thu 07:26]--[2012-09-27 Thu 07:30] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-27 Thu 07:30
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
