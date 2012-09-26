@@ -2,11 +2,10 @@
 
 * tasks
 ** backlog
+*** *[bug][fe] "Uncaught ReferenceError: ready is not defined" on category/article pages*
 *** [config] change "photo.article-lead.right.max-*" to "photo.article-lead.side.max-*" (right/left -> side)
 *** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [model] change photo new-filename logic to handle for collision
-*** [reports] create google analytics account
-*** [fe] integrate google analytics
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -527,6 +526,23 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-09-25 Tue 22:31
+     :END:
+**** DONE [reports] create google analytics account
+     CLOSED: [2012-09-26 Wed 13:47]
+     :CLOCK:
+     CLOCK: [2012-09-26 Wed 13:40]--[2012-09-26 Wed 13:47] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-26 Wed 13:53
+     :END:
+     - w/ spradnyesh@gmail.com
+**** DONE [fe] integrate google analytics
+     CLOSED: [2012-09-26 Wed 13:53]
+     :CLOCK:
+     CLOCK: [2012-09-26 Wed 13:48]--[2012-09-26 Wed 13:53] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-09-26 Wed 13:53
      :END:
 ** TODO refactor
    :CLOCK:
