@@ -92,7 +92,16 @@
     - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
     - http://www.freeprivacypolicy.com
 *** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
-*** populate *current-dimensions-string* for every request and make it thread-safe
+*** [lang] populate *current-dimensions-string* for every request and make it thread-safe
+    - dev: url params, w/ fallback on master@config
+    - prod: url
+*** [lang] utf-8 in both fe and ed (including RTE)
+*** [lang] font in RTE
+*** [lang] decide b/n cl-l10n/cl-i18n
+*** [lang] externalize strings from code, add library code
+*** [lang] find string replacements for different languages
+*** [lang] strings passed to JS land
+*** [lang] font in fe
 *** tests
 **** stefil
 **** TODO fiveam
