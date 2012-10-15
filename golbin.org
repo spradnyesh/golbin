@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [model] change photo new-filename logic to handle for collision
 *** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [editorial] home page should show a table of
     - status icon
@@ -570,6 +569,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-10-15 Mon 19:56
+     :END:
+**** DONE [model] change photo new-filename logic to handle for collision
+     CLOSED: [2012-10-15 Mon 20:02]
+     :CLOCK:
+     CLOCK: [2012-10-15 Mon 19:57]--[2012-10-15 Mon 20:02] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-15 Mon 20:02
      :END:
 ** TODO refactor
    :CLOCK:

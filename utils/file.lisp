@@ -35,14 +35,14 @@
                                                   name
                                                   type))))))
     (make-pathname :directory parent-directory
-                   :name (format nil "~A-~A" name id)
+                   :name (format nil "~A~A" name id)
                    :type type)))
 
 (defun mv (src dest)
   (when (probe-file src)
     (with-open-file (fp-in src
                            :element-type '(unsigned-byte 8))
-      (when (probe-file dest) ; if dest exists, then create a new dest-name and return it
+      (when (probe-file dest) ; if dest exists, then create a new dest-name
         (setf dest (get-new-path dest)))
       (with-open-file (fp-out dest
                               :element-type '(unsigned-byte 8)
