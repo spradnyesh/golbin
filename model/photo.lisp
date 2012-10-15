@@ -38,10 +38,8 @@
   ;; XXX: need to use `+, below, instead of ' in order for the get-config to execute before getting assigned to *-sizes
   (let ((article-sizes `((,(get-config "photo.article-lead.block.max-width")
                            ,(get-config "photo.article-lead.block.max-height"))
-                         (,(get-config "photo.article-lead.left.max-width")
-                           ,(get-config "photo.article-lead.left.max-height"))
-                         (,(get-config "photo.article-lead.right.max-width")
-                           ,(get-config "photo.article-lead.right.max-height"))
+                         (,(get-config "photo.article-lead.side.max-width")
+                           ,(get-config "photo.article-lead.side.max-height"))
                          (,(get-config "photo.article-lead.index-thumb.max-width")
                            ,(get-config "photo.article-lead.index-thumb.max-height"))
                          (,(get-config "photo.article-lead.related-thumb.max-width")
@@ -56,9 +54,14 @@
           ((eql :u typeof)
            (dolist (size author-sizes) (sp))))))
 
-(defun article-lead-photo-url (photo photo-direction)
+(defun article-lead-photo-url (photo photo-location)
   (when photo
-    (let* ((photo-size-config-name (format nil "photo.article-lead.~a" photo-direction))
+    (let* ((photo-size-config-name (format nil
+                                           "photo.article-lead.~a"
+                                           (if (or (string-equal photo-location "left")
+                                                   (string-equal photo-location "right"))
+                                               "side"
+                                               photo-location)))
            (photo-size (format nil
                                "~ax~a"
                                (get-config (format nil

@@ -41,8 +41,8 @@
                  (get-config "photo.article-lead.related-thumb.max-width"))
          (format nil
                  "~ax~a"
-                 (get-config "photo.article-lead.right.max-height")
-                 (get-config "photo.article-lead.right.max-width")))))
+                 (get-config "photo.article-lead.side.max-height")
+                 (get-config "photo.article-lead.side.max-width")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; views
