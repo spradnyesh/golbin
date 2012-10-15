@@ -22,6 +22,17 @@
          (htm (:option :selected "selected" :value ,direction (str ,(string-capitalize `,direction))))
          (htm (:option :value ,direction (str ,(string-capitalize `,direction)))))))
 
+(defun get-article-status-markup (article)
+  (if article
+      (case (status article)
+        (:draft "Draft")
+        (:deleted "Deleted")
+        (:s "Submitted")
+        (:a "Approved")
+        (:w "Withdrawn")
+        (otherwise "New"))
+      "New"))
+
 (defun get-tags-markup (article)
   (let ((rslt nil))
     (dolist (tag (tags article))
@@ -130,18 +141,21 @@
                                                (str (get-photo-direction-markup :l "left"))
                                                (str (get-photo-direction-markup :r "right")))))
                             (str (tr-td-input "tags" :value (when article (get-tags-markup article))))
+                            (:tr (:td "Status")
+                                 (let ((status (get-article-status-markup article)))
+                                   (htm (:td :class (string-downcase status) (str status)))))
                             (:tr (:td (:input :id "save"
                                               :name "save"
                                               :type "submit"
                                               :value "Save")
-                                      (when article (str " #1")))
+                                      (when article (htm (:sup "#1"))))
                                  (when article
                                    (htm (:td (:a :href (genurl 'r-article
                                                                :slug-and-id (format nil
                                                                                     "~a-~a"
                                                                                     (slug article)
                                                                                     id))
-                                                 "Preview")" #2")))))
+                                                 "Preview") (:sup "#2"))))))
                     (when article
                       (htm (:div :class "notes"
                                  (:p "#1: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")

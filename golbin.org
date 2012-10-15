@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [editorial] show current status of article in article edit page
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -586,6 +585,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-10-15 Mon 20:50
+     :END:
+**** DONE [editorial] show current status of article in article edit page
+     CLOSED: [2012-10-15 Mon 21:12]
+     :CLOCK:
+     CLOCK: [2012-10-15 Mon 20:52]--[2012-10-15 Mon 21:12] =>  0:20
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-15 Mon 21:12
      :END:
 ** TODO refactor
    :CLOCK:
