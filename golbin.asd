@@ -64,6 +64,5 @@
                                               :depends-on ("package"))
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model" "frontend"))
-               (:module "boomerang")
                (:module "reports"))
   :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence :cl-gd :ironclad))
