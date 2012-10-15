@@ -84,6 +84,14 @@
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; select photo pane
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (unselect-lead-photo ()
+                   ($prevent-default)
+                   ;; change the photo-id in hidden-field
+                   ($apply ($ "#lead-photo") val "")
+                   ;; remove img tag
+                   ($apply ($apply ($apply ($ "#lead-photo") siblings "span") children "img") remove)
+                   ;; remove 'unselect' link
+                   ($apply ($ "#unselect-lead-photo") remove))
                  (select-lead-photo-init ()
                    (setf lead true)
                    (select-photo-init))
@@ -197,8 +205,12 @@
                                                  parent)
                                          siblings "span")
                                  html))
-                           ;; change the photo url
-                           ($apply ($apply ($ "#lead-photo") siblings "span") html target-img))
+                           (let ((span ($apply ($ "#lead-photo") siblings "span")))
+                             ;; add photo thumb in 'span'
+                             ($apply span html target-img)
+                             ;; add 'unselect' link in 'span'
+                             ($apply span append ($ "<a id='unselect-lead-photo' href=''>Unselect photo. </a>"))
+                             ($event ("#unselect-lead-photo" click) (unselect-lead-photo))))
                          (progn
                            (let ((a-target ((@ ($ "<a href=''></a>") append) target-img)))
                              ;; append photo to list of nonlead photos
@@ -324,6 +336,7 @@
         ;; define event handlers
         ($event (".cat" change) (article-change-category ""))
         ($event ("#select-lead-photo" click) (select-lead-photo-init))
+        ($event ("#unselect-lead-photo" click) (unselect-lead-photo))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init))

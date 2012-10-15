@@ -2,7 +2,7 @@
 
 * tasks
 ** backlog
-*** [editorial] author should be able to un-select a selected/uploaded lead photo
+*** [editorial] show current status of article in article edit page
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -104,11 +104,11 @@
      - http://www.cliki.net/test%20framework
 **** coverage (sb-cover)
 *** *[bug] route-cat-page not working due to refactor routes*
-*** css 2 -> 3
+*** [fe] css 2 -> 3
     - http://css3please.com/ ***
     - http://perishablepress.com/css3-progressive-enhancement-smart-design/
     - http://coding.smashingmagazine.com/2011/04/21/css3-vs-css-a-speed-benchmark/
-*** html 4 -> 5
+*** [fe] html 4 -> 5
     - http://www.w3.org/TR/html5/
       - http://www.w3.org/TR/html5-diff/
     - http://diveinto.html5doctor.com/
@@ -577,6 +577,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-10-15 Mon 20:02
+     :END:
+**** DONE [editorial] author should be able to un-select a selected/uploaded lead photo
+     CLOSED: [2012-10-15 Mon 20:50]
+     :CLOCK:
+     CLOCK: [2012-10-15 Mon 20:27]--[2012-10-15 Mon 20:50] =>  0:23
+     CLOCK: [2012-10-15 Mon 20:05]--[2012-10-15 Mon 20:12] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-15 Mon 20:50
      :END:
 ** TODO refactor
    :CLOCK:

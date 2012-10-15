@@ -110,7 +110,10 @@
                                               :id "lead-photo"
                                               :value (when photo (id photo)))
                                       (:span (when photo
-                                               (str (article-lead-photo-url (photo article) "related-thumb"))))
+                                               (str (article-lead-photo-url (photo article) "related-thumb"))
+                                               (htm (:a :id "unselect-lead-photo"
+                                                 :href ""
+                                                 "Unselect photo. "))))
                                       (:a :id "select-lead-photo"
                                           :href ""
                                           "Select")
