@@ -33,8 +33,8 @@
                    (let ((photo (photo article)))
                      (when photo
                        (let* ((photo-direction (photo-direction article))
-                              (pd (cond ((eql :l photo-direction) "side")
-                                        ((eql :r photo-direction) "side")
+                              (pd (cond ((eql :l photo-direction) "left")
+                                        ((eql :r photo-direction) "right")
                                         ((eql :b photo-direction) "block"))))
                          (htm (:div :class pd
                                     (str (article-lead-photo-url photo pd))

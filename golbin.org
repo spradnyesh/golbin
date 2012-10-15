@@ -2,8 +2,8 @@
 
 * tasks
 ** backlog
-*** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [model] change photo new-filename logic to handle for collision
+*** [editorial] author should be able to un-select a selected/uploaded lead photo
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -33,6 +33,7 @@
     - [X] photo upload form
     - [ ] test by uploading a photo
 *** [fe] enable sharing on SNS
+*** [fe] disable prev/next when no longer scrollable in that direction
 *** [reports] article-id: views (day, week, month, year)
 *** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
 *** [reports] time (day, week, month, year): most-viewed article/author
@@ -562,12 +563,13 @@
      :ARCHIVE_TIME: 2012-09-27 Thu 07:30
      :END:
 **** DONE [config] change "photo.article-lead.right.max-*" to "photo.article-lead.side.max-*" (right/left -> side)
-     CLOSED: [2012-10-15 Mon 19:27]
+     CLOSED: [2012-10-15 Mon 19:56]
      :CLOCK:
+     CLOCK: [2012-10-15 Mon 19:45]--[2012-10-15 Mon 19:56] =>  0:11
      CLOCK: [2012-10-15 Mon 19:18]--[2012-10-15 Mon 19:27] =>  0:09
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2012-10-15 Mon 19:27
+     :ARCHIVE_TIME: 2012-10-15 Mon 19:56
      :END:
 ** TODO refactor
    :CLOCK:
