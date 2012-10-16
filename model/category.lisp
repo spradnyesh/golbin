@@ -56,9 +56,11 @@
         :test #'string-equal))
 
 (defun get-subcategorys (cat-id)
-  (conditionally-accumulate (lambda (cat)
-                               (= cat-id (parent cat)))
-                             (get-all-categorys)))
+  (sort (conditionally-accumulate (lambda (cat)
+                                    (= cat-id (parent cat)))
+                                  (get-all-categorys))
+        #'<
+        :key 'id))
 
 (defun get-root-categorys ()
   (get-subcategorys 0))
