@@ -64,9 +64,7 @@
                    object))|#)))))
 
 (defmacro get-object-by (cond list)
-  `(sort (conditionally-accumulate ,cond ,list)
-         #'>
-         :key #'id))
+  `(conditionally-accumulate ,cond ,list))
 
 (defun db-connect ()
   (let ((db-type (get-config "db.type")))
