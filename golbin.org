@@ -22,6 +22,7 @@
       - this year
 *** TODO [model] add categories to article photos
     :CLOCK:
+    CLOCK: [2012-10-16 Tue 19:46]--[2012-10-16 Tue 19:49] =>  0:03
     CLOCK: [2012-08-29 Wed 21:07]--[2012-08-29 Wed 21:56] =>  0:49
     CLOCK: [2012-08-29 Wed 20:26]--[2012-08-29 Wed 21:04] =>  0:38
     CLOCK: [2012-08-29 Wed 19:37]--[2012-08-29 Wed 20:21] =>  0:44
@@ -602,6 +603,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-10-15 Mon 21:12
+     :END:
+**** DONE *[bug][editorial] select photo pane not showing photos*
+     CLOSED: [2012-10-16 Tue 20:32]
+     :CLOCK:
+     CLOCK: [2012-10-16 Tue 19:49]--[2012-10-16 Tue 20:32] =>  0:43
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-16 Tue 20:32
      :END:
 ** TODO refactor
    :CLOCK:

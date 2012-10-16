@@ -55,6 +55,9 @@
     (when message (htm (:div :class "error" (str message))))
     (str (photo-get-markup))))
 
+(defun normalize-photo-tags (tags)
+  (remove-duplicates (remove nil tags)))
+
 (defun v-photo-post (&optional (ajax nil))
   (let ((title (post-parameter "title"))
         (cat (post-parameter "cat"))
@@ -80,10 +83,11 @@
                                                                       (pathname-type new-path))
                                                 :cat (get-category-by-id cat)
                                                 :subcat (get-category-by-id subcat)
-                                                :tags photo-tags)))
+                                                :tags (normalize-photo-tags photo-tags))))
           (if ajax
-              (regex-replace-all        ; need to remove the '\\' that
-               "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
+              ;; need to remove the '\\' that encode-json-to-string adds before every '/' in the photo path :(
+              (regex-replace-all
+               "\\\\"
                (encode-json-to-string
                 `((:status . "success")
                   (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
