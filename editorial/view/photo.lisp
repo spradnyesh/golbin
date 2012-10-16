@@ -41,6 +41,9 @@
                      :type "submit"
                      :value "Upload")))))
 
+(defun normalize-photo-tags (tags)
+  (remove-duplicates (remove nil tags)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -54,9 +57,6 @@
                             (on-load))))
     (when message (htm (:div :class "error" (str message))))
     (str (photo-get-markup))))
-
-(defun normalize-photo-tags (tags)
-  (remove-duplicates (remove nil tags)))
 
 (defun v-photo-post (&optional (ajax nil))
   (let ((title (post-parameter "title"))
@@ -81,8 +81,8 @@
                                                                       "~A.~A"
                                                                       (pathname-name new-path)
                                                                       (pathname-type new-path))
-                                                :cat (get-category-by-id cat)
-                                                :subcat (get-category-by-id subcat)
+                                                :cat (get-category-by-id (when cat (parse-integer cat)))
+                                                :subcat (get-category-by-id (when subcat (parse-integer subcat)))
                                                 :tags (normalize-photo-tags photo-tags))))
           (if ajax
               ;; need to remove the '\\' that encode-json-to-string adds before every '/' in the photo path :(
