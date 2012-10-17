@@ -2,12 +2,25 @@
 
 * tasks
 ** backlog
-*** [lang] externalize strings from code, add library code
-*** [lang] ensure utf-8 in both fe and ed (including RTE)
+*** TODO [lang] externalize strings from code, add library code
+    :CLOCK:
+    CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
+    CLOCK: [2012-10-17 Wed 19:08]--[2012-10-17 Wed 19:49] =>  0:41
+    :END:
+    - notes
+      - (setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))
+      - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
+      - (load-language "en-IN")
+    - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
+    - [ ] fe
+    - [ ] utils
+    - [ ] common
+    - [ ] ed
+*** [lang] font in fe
 *** [lang] font in RTE
+*** [lang] ensure utf-8 in both fe and ed (including RTE)
 *** [lang] find string replacements for different languages
 *** [lang] strings passed to JS land
-*** [lang] font in fe
 *** [lang] populate *current-dimensions-string* for every request and make it thread-safe
     - dev: url params, w/ fallback on master@config
     - prod: url
@@ -625,14 +638,16 @@
      - [X] photo upload form
      - [X] test by uploading a photo
 **** DONE [lang] decide b/n cl-l10n/cl-i18n/cl-locale/etc
-     CLOSED: [2012-10-16 Tue 21:26]
+     CLOSED: [2012-10-17 Wed 20:35]
      :CLOCK:
+     CLOCK: [2012-10-17 Wed 20:25]--[2012-10-17 Wed 20:35] =>  0:10
      CLOCK: [2012-10-16 Tue 21:09]--[2012-10-16 Tue 21:26] =>  0:17
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2012-10-16 Tue 21:26
+     :ARCHIVE_TIME: 2012-10-17 Wed 20:36
      :END:
      - cl-18n
+     - http://www.gnu.org/software/gettext/manual/gettext.html
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

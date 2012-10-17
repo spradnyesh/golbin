@@ -19,3 +19,8 @@
 (defvar *tag-storage* nil)
 #|(defvar *view-storage* nil)|#
 #|(defvar *count-storage* nil)|#
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; i18n
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))

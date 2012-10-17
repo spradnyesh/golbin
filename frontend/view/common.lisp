@@ -12,7 +12,7 @@
                   ,a-href)
              ;; page number, and typeof for the next ajax call
              (:span :class "hidden" (format t "2, ~a" ,url))
-             (:p :class "prev left" (:a :href "" "prev"))
+             (:p :class "prev left" (:a :href "" #!"prev"))
              (:div :class "prev hidden")
              (:div :class "current"
                    (str (article-carousel-markup
@@ -23,7 +23,7 @@
                          (splice ,list
                                  :from related-length
                                  :to (1- (* 2 related-length))))))
-             (:p :class "next right" (:a :href "" "next"))))))
+             (:p :class "next right" (:a :href "" #!"next"))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions

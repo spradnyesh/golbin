@@ -23,7 +23,8 @@
                "/"
                (join-string-list-with-delim
                 "/"
-                (replace-all (rest (pathname-directory path)) :up ".."))))
+                (replace-all (rest (pathname-directory path)) :up ".."))
+               "/"))
 
 (defun get-new-path (path)
   (let* ((parent-directory (get-parent-directory-path-string path))

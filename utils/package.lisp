@@ -60,7 +60,9 @@
            :pagination-markup
            ;; photo
            :save-photo-to-disk
-           :scale-and-save-photo))
+           :scale-and-save-photo
+           ;; file
+           :get-parent-directory-path-string))
 
 (in-package :hawksbill.utils)
 
