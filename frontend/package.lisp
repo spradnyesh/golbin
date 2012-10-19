@@ -1,5 +1,6 @@
 (restas:define-module :hawksbill.golbin.frontend
   (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :cl-who :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :split-sequence :css-lite :hunchentoot)
+  (:decorators #'@init-lang)
   (:shadow :% :prototype :size :acceptor :mime-type)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :hawksbill.golbin.model :typeof)

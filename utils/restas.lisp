@@ -23,6 +23,7 @@
          (model-init)
          (db-connect))
        (hu-init)
+       (load-all-languages)
        (obfuscate-js)
        (start (get-config ,(format nil "~a.restas.package" `,system))
               :port (get-config ,(format nil "~a.restas.port" `,system))

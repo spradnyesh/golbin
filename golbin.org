@@ -2,7 +2,13 @@
 
 * tasks
 ** backlog
-*** [lang] populate *lang* for every request and make it thread-safe
+*** TODO [lang] populate *lang* for every request and make it thread-safe
+    :CLOCK:
+    CLOCK: [2012-10-19 Fri 18:47]--[2012-10-19 Fri 19:42] =>  0:55
+    CLOCK: [2012-10-19 Fri 17:31]--[2012-10-19 Fri 17:44] =>  0:13
+    :END:
+    - possible using module (fe/ed -> pkg.lisp) decorators
+    - as explained in http://restas.lisper.ru/en/manual/decorators.html
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20

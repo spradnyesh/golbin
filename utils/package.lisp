@@ -68,7 +68,8 @@
            :*lang*
            :translate
            :load-all-languages
-           :show-translation-tree))
+           :show-translation-tree
+           :@init-lang))
 
 (in-package :hawksbill.utils)
 

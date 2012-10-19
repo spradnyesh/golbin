@@ -4,7 +4,9 @@
 (defvar *valid-envts* '("dev" "prod"))
 (setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
 (setf *config*
-      `(("master" ("site" ("name" "Golbin"))
+      `(("master" ("site" ("name" "Golbin")
+                          ("url" "golb.in")
+                          ("lang" "en-IN"))
                   ("hunchentoot" ("debug" ("errors" ("catch" nil)
                                            ("show" nil))
                                  ("backtraces" nil)))
