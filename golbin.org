@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [lang] populate *lang* for every request and make it thread-safe
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -638,16 +639,26 @@
      - [X] photo upload form
      - [X] test by uploading a photo
 **** DONE [lang] decide b/n cl-l10n/cl-i18n/cl-locale/etc
-     CLOSED: [2012-10-17 Wed 20:35]
+     CLOSED: [2012-10-19 Fri 15:46]
      :CLOCK:
      CLOCK: [2012-10-17 Wed 20:25]--[2012-10-17 Wed 20:35] =>  0:10
      CLOCK: [2012-10-16 Tue 21:09]--[2012-10-16 Tue 21:26] =>  0:17
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2012-10-17 Wed 20:36
+     :ARCHIVE_TIME: 2012-10-19 Fri 15:46
      :END:
-     - cl-18n
+     - custom solution since cl-18n does not support loading multiple rb files at the same time
      - http://www.gnu.org/software/gettext/manual/gettext.html
+**** DONE [lang] translate custom solution
+     CLOSED: [2012-10-19 Fri 17:31]
+     :CLOCK:
+     CLOCK: [2012-10-19 Fri 17:00]--[2012-10-19 Fri 17:30] =>  0:30
+     CLOCK: [2012-10-19 Fri 16:58]--[2012-10-19 Fri 16:59] =>  0:01
+     CLOCK: [2012-10-19 Fri 15:46]--[2012-10-19 Fri 16:56] =>  1:10
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-19 Fri 17:31
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

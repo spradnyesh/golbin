@@ -19,6 +19,7 @@
                                      (:file "db" :depends-on ("config"))
                                      (:file "datetime" :depends-on ("package"))
                                      (:file "file" :depends-on ("config"))
+                                     (:file "translate" :depends-on ("config" "file" "string"))
                                      (:file "photo" :depends-on ("file" "datetime"))))
                (:module "common"
                         :components ((:file "package")
@@ -65,4 +66,4 @@
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model" "frontend"))
                (:module "reports"))
-  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence :cl-gd :ironclad :cl-i18n))
+  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence :cl-gd :ironclad))

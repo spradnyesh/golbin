@@ -7,25 +7,25 @@
   (with-html
     (:h2 :id "a-title" (str (title article)))
     (:p :id "a-details" :class "small"
-        (str #!"written by ")
+        (str "written by ")
         (:a :id "a-author"
             :href (genurl 'r-author :author (handle (author article)))
             (str (alias (author article))))
-        (str #!" on ")
+        (str " on ")
         (:span :id "a-date" (str (date article)))
-        (str #!" in category ")
+        (str " in category ")
         (:a :id "a-cat"
             :href (genurl 'r-cat :cat (slug (cat article)))
             (str (name (cat article))))
         (when (subcat article)
-          (str #!" / ")
+          (str " / ")
           (htm
            (:a :id "a-cat-subcat"
                :href (genurl 'r-cat-subcat
                              :cat (slug (cat article))
                              :subcat (slug (subcat article)))
                (str (name (subcat article))))))
-        (str #!", using tags ")
+        (str ", using tags ")
         (:span :id "a-tags" (str (fe-article-tags-markup article))))))
 
 (defun article-body-markup (article)
@@ -51,7 +51,7 @@
                 (author (author article))
                 (cat-subcat-list (get-related-articles "cat-subcat" article))
                 (author-list (get-related-articles "author" article)))
-            (str (article-carousel-container #!"Articles in the same Category/Subcategory: "
+            (str (article-carousel-container "Articles in the same Category/Subcategory: "
                                              (:span (:a :href (genurl 'r-cat
                                                                       :cat (slug cat))
                                                         (str (name cat)))
@@ -65,7 +65,7 @@
                                                      :id id
                                                      :typeof "cat-subcat"
                                                      :page 0)))
-            (str (article-carousel-container #!"Articles authored by: "
+            (str (article-carousel-container "Articles authored by: "
                                              (:span (:a :href (genurl 'r-author
                                                                       :author (handle author))
                                                         (str (alias author))))

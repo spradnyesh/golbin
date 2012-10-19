@@ -62,7 +62,13 @@
            :save-photo-to-disk
            :scale-and-save-photo
            ;; file
-           :get-parent-directory-path-string))
+           :get-parent-directory-path-string
+           ;; translate
+           :*translation-table*
+           :*lang*
+           :translate
+           :load-all-languages
+           :show-translation-tree))
 
 (in-package :hawksbill.utils)
 
@@ -80,6 +86,9 @@
 (defvar *config* nil)
 (defvar *config-storage* nil)
 (defvar *current-dimensions-string* nil)
+;; translate
+(defvar *translation-table*)
+(defvar *lang*) ; this needs to be thread safe (http://www.sbcl.org/manual/Special-Variables.html)
 
 ;; http://common-lisp.net/project/parenscript/tutorial.html
 (setf *js-string-delimiter* #\")
