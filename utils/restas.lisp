@@ -1,5 +1,8 @@
 (in-package :hawksbill.utils)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; session handlin
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro with-login (url &body body)
   `(if *session*
        (progn ,@body)
@@ -8,14 +11,17 @@
 (defmacro is-logged-in? ()
   `*session*)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; start/stop/restart
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro start/stop/restart-system (system)
   `(progn
      (ensure-directories-exist ,(format nil "/tmp/hunchentoot/~a/" system))
-     (defclass ,(intern (string-upcase (format nil "~a-acceptor" `,system))) (restas-acceptor)
+     (defclass ,(intern (string-upcase (format nil "~a-acceptor" `,system))) (hawksbill-acceptor)
        ()
        (:default-initargs
         :access-log-destination ,(format nil "/tmp/hunchentoot/~a/access_log" system)
-         :message-log-destination ,(format nil "/tmp/hunchentoot/~a/error_log" system)))
+        :message-log-destination ,(format nil "/tmp/hunchentoot/~a/error_log" system)))
      (defun ,(intern (string-upcase (format nil "~a-start" `,system))) ()
        (unless *system-status*
          (setf *system-status* t)

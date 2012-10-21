@@ -1,6 +1,6 @@
 (defpackage :hawksbill.utils
   (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad)
-  (:shadow :acceptor :mime-type :size)
+  (:shadow :mime-type :size)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
   (:export :*home*
@@ -12,6 +12,10 @@
            :start/stop/restart-system
            :with-login
            :is-logged-in?
+           ;; dimensions
+           :init-dimensions
+           :hawksbill-acceptor
+           ;:hawksbill-request
            ;; config
            :config-storage
            :*config*
@@ -65,11 +69,9 @@
            :get-parent-directory-path-string
            ;; translate
            :*translation-table*
-           :*lang*
            :translate
            :load-all-languages
-           :show-translation-tree
-           :@init-lang))
+           :show-translation-tree))
 
 (in-package :hawksbill.utils)
 
@@ -90,6 +92,7 @@
 ;; translate
 (defvar *translation-table*)
 (defvar *lang*) ; this needs to be thread safe (http://www.sbcl.org/manual/Special-Variables.html)
+(defvar *envt*) ; this needs to be thread safe (http://www.sbcl.org/manual/Special-Variables.html)
 
 ;; http://common-lisp.net/project/parenscript/tutorial.html
 (setf *js-string-delimiter* #\")

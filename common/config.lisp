@@ -81,14 +81,13 @@
                                  "Internet"
                                  "Personal Technology"
                                  "Video Games"))))
-        ("envt:dev"
-         ("db" ("type" "prevalence")
-               ("path" ,(merge-pathnames "../data/db/dev/" *home*)))
-         ("fe" ("restas" ("package" :hawksbill.golbin.frontend)
-                         ("port" 8000)))
-         ("ed" ("restas" ("package" :hawksbill.golbin.editorial)
-                         ("port" 8080)))
-         ("hunchentoot" ("debug" ("errors" ("catch" t)
-                                           ("show" t))
-                                 ("backtraces" t))))
+        ("envt:dev" ("db" ("type" "prevalence")
+                          ("path" ,(merge-pathnames "../data/db/dev/" *home*)))
+                    ("fe" ("restas" ("package" :hawksbill.golbin.frontend)
+                                    ("port" 8000)))
+                    ("ed" ("restas" ("package" :hawksbill.golbin.editorial)
+                                    ("port" 8080)))
+                    ("hunchentoot" ("debug" ("errors" ("catch" t)
+                                                      ("show" t))
+                                            ("backtraces" t))))
         ("envt:prod" ("parenscript" ("obfuscation" t)))))

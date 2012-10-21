@@ -19,32 +19,6 @@
   (gethash key (gethash lang *translation-table*)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; init *lang* for every request (as shown in http://restas.lisper.ru/en/manual/decorators.html)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defclass lang-route (routes:proxy-route) ())
-
-(defmethod process-route :before ((route lang-route) bindings)
-  (let ((host (host))
-        (index nil)
-        (lang nil))
-    (cond
-      ;; localhost/dev
-      ((search "localhost" host)
-       (if (setf lang (get-parameter "lang"))
-           (setf *lang* lang)
-           (setf *lang* (get-config "site.lang"))))
-      ;; TODO: int/qa
-      ;; production
-      ((setf index (search (get-config "site.url") host))
-       (setf host (subseq host 0 index))
-       (cond ((equal host "mr") (setf *lang* "mr-IN"))
-             ((equal host "hi") (setf *lang* "hi-IN"))
-             (t (setf *lang* "en-IN")))))))
-
-(defun @init-lang (route)
-  (make-instance 'lang-route :target route))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; APIs
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun load-all-languages (&optional (locale-path (get-config "path.locale")))
