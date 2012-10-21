@@ -30,24 +30,23 @@
       ((search "localhost" host)
        (progn
          ;; set envt
-         (if (setf envt (get-parameter "envt"))
-             (setf *envt* envt)
-             (setf *envt* "dev"))
+         (unless (setf envt (get-parameter "envt"))
+           (setf envt "dev"))
          ;; set lang
-         (if (setf lang (get-parameter "lang"))
-             (setf *lang* lang)
-             (setf *lang* (get-config "site.lang")))))
+         (unless (setf lang (get-parameter "lang"))
+           (setf lang (get-config "site.lang")))))
       ;; TODO: int/qa
       ;; production
       ((setf index (search (get-config "site.url") host))
        (progn
          ;; set envt
-         (setf *envt* "prod")
+         (setf envt "prod")
          ;; set lang
          (setf host (subseq host 0 index)) ; www/hi/mr
-         (cond ((equal host "mr") (setf *lang* "mr-IN"))
-               ((equal host "hi") (setf *lang* "hi-IN"))
-               (t (setf *lang* "en-IN"))))))))
+         (cond ((equal host "mr") (setf lang "mr-IN"))
+               ((equal host "hi") (setf lang "hi-IN"))
+               (t (setf lang "en-IN"))))))
+    (setf (dimensions *request*) (make-instance 'dimensions :envt envt :lang lang))))
 
 (defun init-dimensions (route)
   (make-instance 'dimensions-route :target route))

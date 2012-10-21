@@ -2,17 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [config][lang] populate *dimensions* for every request and make it thread-safe
-    :CLOCK:
-    CLOCK: [2012-10-21 Sun 14:32]--[2012-10-21 Sun 15:18] =>  0:46
-    CLOCK: [2012-10-21 Sun 13:18]--[2012-10-21 Sun 14:20] =>  1:02
-    CLOCK: [2012-10-19 Fri 18:47]--[2012-10-19 Fri 19:42] =>  0:55
-    CLOCK: [2012-10-19 Fri 17:31]--[2012-10-19 Fri 17:44] =>  0:13
-    :END:
-    - possible using module (fe/ed -> pkg.lisp) decorators
-    - as explained in http://restas.lisper.ru/en/manual/decorators.html
-    - dev: url params, w/ fallback on master@config
-    - prod: url
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -27,6 +16,8 @@
     - [ ] utils
     - [ ] common
     - [ ] ed
+*** [config] improve config to handle 2/multiple dimensions
+*** [lang] separate DBs for envt/lang
 *** [lang] font in fe
 *** [lang] font in RTE
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
@@ -666,6 +657,21 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-10-19 Fri 17:31
      :END:
+**** DONE [config][lang] populate *dimensions* for every request and make it thread-safe
+     CLOSED: [2012-10-21 Sun 15:49]
+     :CLOCK:
+     CLOCK: [2012-10-21 Sun 14:30]--[2012-10-21 Sun 15:50] =>  1:20
+     CLOCK: [2012-10-21 Sun 13:18]--[2012-10-21 Sun 14:20] =>  1:02
+     CLOCK: [2012-10-19 Fri 18:47]--[2012-10-19 Fri 19:42] =>  0:55
+     CLOCK: [2012-10-19 Fri 17:31]--[2012-10-19 Fri 17:44] =>  0:13
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-21 Sun 15:50
+     :END:
+     - possible using module (fe/ed -> pkg.lisp) decorators
+     - as explained in http://restas.lisper.ru/en/manual/decorators.html
+     - dev: url params, w/ fallback on master@config
+     - prod: url
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

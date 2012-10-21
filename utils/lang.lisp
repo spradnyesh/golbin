@@ -15,8 +15,11 @@
               (join-string-list-with-delim "=" (rest rslt)))))
     ht))
 
-(defun get-translation (key &optional (lang *lang*))
-  (gethash key (gethash lang *translation-table*)))
+(defun get-translation (key &optional (lang (lang (dimensions *request*))))
+  (let ((out-hash (gethash lang *translation-table*)))
+    (if out-hash
+        (gethash key out-hash)
+        (gethash key (gethash (get-config "site.lang") *translation-table*)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; APIs
