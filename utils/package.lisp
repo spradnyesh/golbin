@@ -15,17 +15,20 @@
            ;; dimensions
            :init-dimensions
            :hawksbill-acceptor
-           ;:hawksbill-request
+           :*resources*
+           :get-resource
            ;; config
            :config-storage
            :*config*
            :*dimensions*
-           :*current-dimensions-string*
            :get-config
            :add-config
            :show-config-tree
            :init-config-tree
            :init-config
+           :set-default-dimensions
+           :build-dimension-string
+           :*default-dimensions*
            ;; html
            :with-html
            :tr-td-input
@@ -38,8 +41,6 @@
            :$apply
            :$prevent-default
            ;; db
-           :*db*
-           :get-storage
            :init-db-system
            :get-object-by
            :db-connect
@@ -59,6 +60,7 @@
            :join-string-list-with-delim
            :split-string-by-delim
            :nil-or-empty
+           :make-keyword
            ;; pagination
            :paginate
            :pagination-markup
@@ -81,14 +83,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar *home* "")
 ;; init
-(defvar *system-status* nil)
-;; db
-(defvar *db* nil)
+(defvar *system-status* nil) ; whether system has been initialized or not
 ;; config
 (defvar *dimensions* nil)
+(defvar *default-dimensions* nil)
+(defvar *valid-envts* nil)
+(defvar *valid-langs* nil)
 (defvar *config* nil)
 (defvar *config-storage* nil)
-(defvar *current-dimensions-string* nil)
+;; dimensions
+(defvar *resources* (make-hash-table :test 'equal)) ; hashmap of all resources (eg db, etc) initialized during system-start
 ;; lang
 (defvar *translation-table*)
 

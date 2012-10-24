@@ -13,7 +13,7 @@
                                      (:file "photo" :depends-on ("file" "datetime"))
                                      (:file "lang" :depends-on ("config" "file" "string"))
                                      (:file "js" :depends-on ("package"))
-                                     (:file "restas" :depends-on ("dimensions"))
+                                     (:file "restas" :depends-on ("dimensions" "string"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("package"))
                                      (:file "l10n" :depends-on ("package"))

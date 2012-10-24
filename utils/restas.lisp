@@ -26,8 +26,18 @@
        (unless *system-status*
          (setf *system-status* t)
          (init-config)
-         (model-init)
-         (db-connect))
+         ;; XXX: this will make envt-dimen1, envt-dimen2, etc pairs which might not be what is really needed
+         (dolist (envt *valid-envts*) ; for all envts
+           (dolist (dimension (rest *dimensions*)) ; for all dimensions except envt
+             (dolist (dim (symbol-value ; for every dimension value
+                           (intern
+                            (string-upcase
+                             (format nil
+                                     "*valid-~as*"
+                                     dimension)))))
+               (let ((dimension (build-dimension :envt envt (make-keyword dim) dim)))
+                 (model-init dimension)
+                 (db-connect dimension))))))
        (hu-init)
        (load-all-languages)
        (obfuscate-js)

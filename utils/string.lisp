@@ -1,5 +1,9 @@
 (in-package :hawksbill.utils)
 
+;; http://stackoverflow.com/questions/211717/common-lisp-programmatic-keyword
+(defun make-keyword (name)
+  (values (intern (string-upcase name) "KEYWORD")))
+
 (defun join-string-list-with-delim (delim list &key (key nil))
   (when list
     (let ((first-element (if key

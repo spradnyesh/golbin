@@ -1,11 +1,14 @@
 (in-package :hawksbill.utils)
 
-(defmacro get-storage (system)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; macros
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro get-storage (dimension system)
   `(cond ((equal (get-config "db.type") "prevalence")
-          (get-root-object *db* ,system))))
+          (get-root-object (get-db-handle) ,system))))
 
-(defmacro init-db-system (name system)
-  `(let ((db-type (get-config "db.type")))
+(defmacro init-db-system (dimension name system)
+  `(let ((db-type (get-config dimension "db.type")))
      (cond ((equal db-type "prevalence")
             (progn
               ;; make-<name>s-root (system)
@@ -66,15 +69,34 @@
 (defmacro get-object-by (cond list)
   `(conditionally-accumulate ,cond ,list))
 
-(defun db-connect ()
-  (let ((db-type (get-config "db.type")))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; getters/setters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-db-handle (request *request*)
+  (db (resources (dimensions request))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; DB connection
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun db-connect (dimension)
+  (let ((db-type (get-config dimension "db.type")))
     (cond ((equal db-type "prevalence")
-           (setf *db* (make-prevalence-system (get-config "db.path")))))))
-(defun db-disconnect ()
-  (let ((db-type (get-config "db.type")))
+           (let ((resource (get-resource "db" dimension))
+                 (db (make-prevalence-system (get-config dimension "db.path"))))
+             (if resource
+               (set-resource "db" dimension db)
+               (progn
+                 (let ((ht (make-hash-table :test 'equal)))
+                   (setf (gethash dimension ht) db)
+                   (setf (gethash "db" *resources*) ht)))))))))
+
+(defun db-disconnect (dimension)
+  (let ((db-type (get-config dimension "db.type")))
     (cond ((equal db-type "prevalence")
-           (when *db*
-             (close-open-streams *db*))))))
-(defun db-reconnect ()
-  (db-disconnect)
-  (db-connect))
+           (let ((db (get-resource "db" dimension)))
+             (when db
+               (close-open-streams db)))))))
+
+(defun db-reconnect (dimension)
+  (db-disconnect dimension)
+  (db-connect dimension))

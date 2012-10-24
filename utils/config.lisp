@@ -1,5 +1,7 @@
 (in-package :hawksbill.utils)
 
+;;;; this file defines the actual data that needs to be looked up based on *dimensions* stored in *request*
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config classes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -94,10 +96,27 @@
               rslt))
     rslt))
 
+(defun dimensions-tree (dimensions)
+  (let ((rslt nil))
+    ;; '(1 1.1 1.2) => '(1:1.1 1:1.2)
+    (dolist (dimension dimensions)
+      (let ((f (first dimension))
+            (tmp nil))
+        (dolist (dim (rest dimension))
+          (push (concatenate 'string f ":" dim) tmp))
+        (push tmp rslt)))
+    ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-config (name &optional (dimensions-string *current-dimensions-string*) (storage *config-storage*))
+(defun build-dimension-string (&key envt lang)
+  (concatenate 'string "envt:" envt ",lang:" lang))
+
+(defun set-default-dimensions (&key envt lang)
+  (setf *default-dimensions* (build-dimension-string envt lang)))
+
+(defun get-config (name &optional (dimensions-string (build-dimension-string *request*)) (storage *config-storage*))
   (get-config-helper name (get-dimensions-map dimensions-string) storage))
 
 (defun add-config (name value dimensions-string &optional (storage *config-storage*))

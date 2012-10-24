@@ -32,7 +32,7 @@
   (when article
     ;; set some article params
     (setf (id article)
-          (execute *db* (make-transaction 'incf-article-last-id)))
+          (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
     (setf (date article)
           (now))
     (setf (slug article)
@@ -41,7 +41,7 @@
     (set-mini-author article)
 
     ;; save article into storage
-    (execute *db* (make-transaction 'insert-article article))
+    (execute (get-db-handle) (make-transaction 'insert-article article))
 
     article))
 
@@ -53,7 +53,7 @@
     (set-mini-author article)
 
     ;; save article into storage
-    (execute *db* (make-transaction 'update-article article))
+    (execute (get-db-handle) (make-transaction 'update-article article))
 
     article))
 

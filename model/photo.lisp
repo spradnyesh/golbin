@@ -85,13 +85,13 @@
 (defun add-photo (photo)
   ;; set some photo params
   (setf (id photo)
-        (execute *db* (make-transaction 'incf-photo-last-id)))
+        (execute (get-db-handle) (make-transaction 'incf-photo-last-id)))
   (setf (date photo)
         (now))
   (set-mini-author photo)
 
   ;; save photo into storage
-  (execute *db* (make-transaction 'insert-photo photo))
+  (execute (get-db-handle) (make-transaction 'insert-photo photo))
 
   (scale-photo photo)
 

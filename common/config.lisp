@@ -1,15 +1,15 @@
 (in-package :hawksbill.golbin)
 
-(setf *dimensions* '("envt"))
-(defvar *valid-envts* '("dev" "prod"))
-(setf *current-dimensions-string* "envt:dev") ; TODO: need to set this dynamically for every request (thread safe)
+(setf *dimensions* '("envt" "lang"))
+(setf *valid-envts* '("dev" "prod"))
+(setf *valid-langs* '("en-IN" "hi-IN" "mr-IN"))
 (setf *config*
       `(("master" ("site" ("name" "Golbin")
                           ("url" "golb.in")
                           ("lang" "en-IN"))
                   ("hunchentoot" ("debug" ("errors" ("catch" nil)
-                                           ("show" nil))
-                                 ("backtraces" nil)))
+                                                    ("show" nil))
+                                          ("backtraces" nil)))
                   ("path" ("uploads" ,(merge-pathnames "../data/uploads/" *home*))
                           ("photos" ,(merge-pathnames "../data/static/photos/" *home*))
                           ("locale" ,(merge-pathnames "locale/" *home*)))
@@ -30,59 +30,8 @@
                                            ("related" 4)
                                            ("editorial" ("lead-photo-select-pane" 16)))
                                 ("home" ("carousel" ("tabs" 5))))
-                  ("parenscript" ("obfuscation" nil))
-                  ("categorys" (("Business"
-                                 "Companies"
-                                 "Economy"
-                                 "Industry"
-                                 "Markets")
-                                ("Education")
-                                ("Entertainment"
-                                 "Arts"
-                                 "Books"
-                                 "Celebrities"
-                                 "Humor"
-                                 "Movies"
-                                 "Music"
-                                 "TV")
-                                ("Headlines")
-                                ("Lifestyle"
-                                 "Automotive"
-                                 "Culture"
-                                 "Food and Beverage"
-                                 "Home and Garden"
-                                 "Health"
-                                 "Theatre"
-                                 "Travel")
-                                ("Politics")
-                                ("Religion")
-                                ("Science"
-                                 "Environment"
-                                 "Geography"
-                                 "Space")
-                                ("Sports"
-                                 "American Football"
-                                 "Badminton"
-                                 "Baseball"
-                                 "Basketball"
-                                 "Boxing"
-                                 "Cricket"
-                                 "Cycling"
-                                 "Hockey"
-                                 "Golf"
-                                 "Handball"
-                                 "Olympics"
-                                 "Racing"
-                                 "Rugby"
-                                 "Table Tennis"
-                                 "Tennis")
-                                ("Technology"
-                                 "Computing"
-                                 "Internet"
-                                 "Personal Technology"
-                                 "Video Games"))))
-        ("envt:dev" ("db" ("type" "prevalence")
-                          ("path" ,(merge-pathnames "../data/db/dev/" *home*)))
+                  ("parenscript" ("obfuscation" nil)))
+        ("envt:dev" ("db" ("type" "prevalence"))
                     ("fe" ("restas" ("package" :hawksbill.golbin.frontend)
                                     ("port" 8000)))
                     ("ed" ("restas" ("package" :hawksbill.golbin.editorial)
@@ -90,4 +39,11 @@
                     ("hunchentoot" ("debug" ("errors" ("catch" t)
                                                       ("show" t))
                                             ("backtraces" t))))
-        ("envt:prod" ("parenscript" ("obfuscation" t)))))
+        ("envt:prod" ("parenscript" ("obfuscation" t)))
+        ("lang:en-IN" ("categorys" (("Business"
+                                     "Companies"
+                                     "Economy"
+                                     "Industry"
+                                     "Markets")
+                                    )))
+        ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN" *home*))))))

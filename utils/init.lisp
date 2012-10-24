@@ -1,6 +1,6 @@
 (in-package :hawksbill.utils)
 
-(defgeneric model-init ()
+(defgeneric model-init (dimension)
   (:documentation "dummy function so that the below macro will work correctly"))
 
 (defun destroy-system ()
