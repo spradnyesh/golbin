@@ -17,46 +17,29 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun is-valid-dimension-value (dimension value)
-  (not (set-difference (list value)
-                       (handler-case (symbol-value (intern (string-upcase (format nil
-                                                                      "*valid-~as*"
-                                                                      dimension))))
-                         (unbound-variable () (return-from is-valid-dimension-value nil)))
-                       :test #'string-equal)))
-
-(defun is-valid-dimensions-map (dimensions-map)
-  (if (and (= 1 (length dimensions-map))
-           (equal "master" (first (first dimensions-map))))
-      t
-      (dolist (dm dimensions-map)
-        (unless (is-valid-dimension-value (first dm) (second dm))
-          (return-from is-valid-dimensions-map nil))))
-  t)
-
-(defun get-dimensions-string (dimensions-map)
+(defun dimensions-map-to-string (map)
   (join-string-list-with-delim ","
                                (let ((rslt nil))
-                                 (dolist (dm dimensions-map)
+                                 (dolist (dm map)
                                    (push (join-string-list-with-delim ":" dm) rslt))
                                  (nreverse rslt))))
 
-(defun get-dimensions-map (dimensions-string)
+(defun dimensions-string-to-map (string)
   (let ((rslt nil))
-    (dolist (dl (split-sequence "," dimensions-string :test #'string-equal))
+    (dolist (dl (split-sequence "," string :test #'string-equal))
       (let ((d (split-sequence ":" dl :test #'string-equal)))
         (push d rslt)))
     (nreverse rslt)))
 
-(defun reduce-dimensions-map (dimensions-map)
-  (nreverse (rest (nreverse dimensions-map))))
+(defun reduce-dimensions-map (map)
+  (nreverse (rest (nreverse map))))
 
-(defun reduce-dimensions-string (dimensions-string)
-  (get-dimensions-string (reduce-dimensions-map (get-dimensions-map dimensions-string))))
+(defun reduce-dimensions-string (string)
+  (dimensions-map-to-string (reduce-dimensions-map (dimensions-string-to-map string))))
 
-(defun get-config-helper (name dimensions-map storage)
-  (let ((config-node (if dimensions-map
-                         (find (get-dimensions-string dimensions-map)
+(defun get-config-helper (name map storage)
+  (let ((config-node (if map
+                         (find (dimensions-map-to-string map)
                                (configs storage)
                                :key #'dimension
                                :test #'string-equal)
@@ -73,8 +56,8 @@
               (value value)
               (unless (string-equal "master" (dimension config-node))
                 ;; reduce dimension to "master" only if it's not already "master", else it goes into an infinite loop
-                (get-config-helper name (reduce-dimensions-map dimensions-map) storage))))
-        (get-config-helper name (reduce-dimensions-map dimensions-map) storage))))
+                (get-config-helper name (reduce-dimensions-map map) storage))))
+        (get-config-helper name (reduce-dimensions-map map) storage))))
 
 (defun build-config-node (node &optional (namespace nil))
   (let ((rslt nil)
@@ -96,16 +79,18 @@
               rslt))
     rslt))
 
-(defun dimensions-tree (dimensions)
-  (let ((rslt nil))
-    ;; '(1 1.1 1.2) => '(1:1.1 1:1.2)
-    (dolist (dimension dimensions)
-      (let ((f (first dimension))
-            (tmp nil))
-        (dolist (dim (rest dimension))
-          (push (concatenate 'string f ":" dim) tmp))
-        (push tmp rslt)))
-    ))
+(defun build-dimensions-combos ()
+  (let ((list-of-lists nil))
+    (dolist (d *dimensions*)
+      (let ((list nil))
+        (dolist (v (symbol-value (intern (string-upcase (format nil
+                                                                "*valid-~as*"
+                                                                d)))))
+          (push (concatenate 'string d ":" v) list))
+        (push list list-of-lists)))
+    (mapcar #'(lambda (l)
+                (join-string-list-with-delim "," l))
+            (cross-product-i list-of-lists))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
@@ -114,23 +99,22 @@
   (concatenate 'string "envt:" envt ",lang:" lang))
 
 (defun set-default-dimensions (&key envt lang)
-  (setf *default-dimensions* (build-dimension-string envt lang)))
+  (setf *default-dimensions* (build-dimension-string :envt envt :lang lang)))
 
-(defun get-config (name &optional (dimensions-string (build-dimension-string *request*)) (storage *config-storage*))
-  (get-config-helper name (get-dimensions-map dimensions-string) storage))
+(defun get-config (name &optional (dimensions-string *default-dimensions*) (storage *config-storage*))
+  (get-config-helper name (dimensions-string-to-map dimensions-string) storage))
 
 (defun add-config (name value dimensions-string &optional (storage *config-storage*))
   "does _not_ check for duplicates while adding; due to _push_, get-config will always get the latest value => the older values just increase the size, but that's nominal, and hence ok ;)"
-  (when (is-valid-dimensions-map (get-dimensions-map dimensions-string))
-    (let ((config (make-instance 'config :name name :value value))
-          (config-node (find dimensions-string
-                             (configs storage)
-                             :key #'dimension
-                             :test #'string-equal)))
-      (if config-node
-          (push config (config-list config-node))
-          (push (make-instance 'config-node :dimension dimensions-string :config-list (list config))
-                (configs storage))))))
+  (let ((config (make-instance 'config :name name :value value))
+        (config-node (find dimensions-string
+                           (configs storage)
+                           :key #'dimension
+                           :test #'string-equal)))
+    (if config-node
+        (push config (config-list config-node))
+        (push (make-instance 'config-node :dimension dimensions-string :config-list (list config))
+              (configs storage)))))
 
 (defun show-config-tree (&optional (storage *config-storage*))
   (dolist (cn (configs storage))
@@ -146,11 +130,14 @@
     ('envt:prod' ('n3' 'v3') ('n4' 'v4')))"
   (dolist (c config)
     (let ((dimensions-string (first c)))
-      (dolist (config-node (rest c)) ; (rest c) => config-list (list of config nodes)
-        (let ((configs (build-config-node config-node)))
-          (dolist (config configs)
-            (add-config (first config) (second config) dimensions-string storage)))))))
+      (when (or (string-equal dimensions-string "master")
+                (find dimensions-string *dimensions-combos* :test #'equal))
+        (dolist (config-node (rest c)) ; (rest c) => config-list (list of config nodes)
+          (let ((configs (build-config-node config-node)))
+            (dolist (config configs)
+              (add-config (first config) (second config) dimensions-string storage))))))))
 
 (defun init-config ()
   (setf *config-storage* (make-instance 'config-storage))
+  (setf *dimensions-combos* (build-dimensions-combos))
   (init-config-tree *config*))

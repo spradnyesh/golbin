@@ -18,6 +18,9 @@
     - [ ] ed
 *** TODO [config] improve config to handle 2/multiple dimensions
     :CLOCK:
+    CLOCK: [2012-10-25 Thu 16:15]--[2012-10-25 Thu 16:48] =>  0:33
+    CLOCK: [2012-10-25 Thu 15:21]--[2012-10-25 Thu 16:08] =>  0:47
+    CLOCK: [2012-10-25 Thu 12:00]--[2012-10-25 Thu 12:18] =>  0:18
     CLOCK: [2012-10-24 Wed 20:35]--[2012-10-24 Wed 20:45] =>  0:10
     CLOCK: [2012-10-24 Wed 20:28]--[2012-10-24 Wed 20:34] =>  0:06
     CLOCK: [2012-10-24 Wed 20:10]--[2012-10-24 Wed 20:18] =>  0:08
@@ -78,6 +81,7 @@
                                      "Video Games")))
 *** TODO [config] solve fe-start/restart for multiple dimensions
     :CLOCK:
+    CLOCK: [2012-10-25 Thu 16:08]--[2012-10-25 Thu 16:15] =>  0:07
     CLOCK: [2012-10-24 Wed 17:28]--[2012-10-24 Wed 18:04] =>  0:36
     CLOCK: [2012-10-24 Wed 17:00]--[2012-10-24 Wed 17:28] =>  0:28
     :END:

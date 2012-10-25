@@ -13,22 +13,21 @@
            :with-login
            :is-logged-in?
            ;; dimensions
+           :*resources*
            :init-dimensions
            :hawksbill-acceptor
-           :*resources*
            :get-resource
            ;; config
-           :config-storage
            :*config*
            :*dimensions*
+           :*default-dimensions*
+           :*dimensions-combos*
+           :config-storage
            :get-config
            :add-config
            :show-config-tree
-           :init-config-tree
            :init-config
            :set-default-dimensions
-           :build-dimension-string
-           :*default-dimensions*
            ;; html
            :with-html
            :tr-td-input
@@ -86,6 +85,7 @@
 (defvar *system-status* nil) ; whether system has been initialized or not
 ;; config
 (defvar *dimensions* nil)
+(defvar *dimensions-combos* nil)
 (defvar *default-dimensions* nil)
 (defvar *valid-envts* nil)
 (defvar *valid-langs* nil)

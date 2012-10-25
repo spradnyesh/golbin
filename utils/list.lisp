@@ -3,6 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; list manipulation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun conditionally-accumulate (cond list)
   (remove-if #'null (mapcar #'(lambda (l) (when (funcall cond l) l)) list)))
 
@@ -45,8 +46,20 @@
         (return nil)))
     t))
 
+;; '((1.1 1.2) (2.1 2.2)) => '((1.1 1.2 nil) (2.1 2.2 nil))
+(defun append-nil (list-of-lists)
+  (let ((rslt nil))
+    (dolist (list list-of-lists)
+      (push (append list '(nil)) rslt))
+    (reverse rslt)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; permutations, combinations and cross-products
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; '(1 2 3) => '((1) (2) (3) (1 2) (1 3) (2 3) (1 2 3)), but not in that order
-(defun combinations (list)
+;; 1-to-n sized combinations
+(defun combinations-i (list)
   (let ((rslt nil))
     (dolist (l list)
       (dolist (r rslt)
@@ -54,9 +67,38 @@
       (push (list l) rslt))
     rslt))
 
-;; '((1:1.1 1:1.2) (2:2.1 2:2.2) (3:3.1 3:3.2 3:3.3)) => '((1:1.1) (1:1.2) (2:2.1) (2:2.2) (3:3.1) (3:3.2) (3:3.3) (1:1.1 2:2.1) (1:1.1 2:2.2) (1:1.1 3:3.1) (1:1.1 3:3.2) (1:1.1 3:3.3) (1:1.2 2:2.1) (1:1.2 2:2.2) (1:1.2 3:3.1) (1:1.2 3:3.2) (1:1.2 3:3.3) (2:2.1 3:3.1) (2:2.1 3:3.2) (2:2.1 3:3.3) (2:2.2 3:3.1) (2:2.2 3:3.2) (2:2.2 3:3.3) (1:1.1 2:2.1 3:3.1) (1:1.1 2:2.1 3:3.2) (1:1.1 2:2.1 3:3.3) (1:1.1 2:2.2 3:3.1) (1:1.1 2:2.2 3:3.2) (1:1.1 2:2.2 3:3.3) (1:1.2 2:2.1 3:3.1) (1:1.2 2:2.1 3:3.2) (1:1.2 2:2.1 3:3.3) (1:1.2 2:2.2 3:3.1) (1:1.2 2:2.2 3:3.2) (1:1.2 2:2.2 3:3.3)), but not in that order
-(defun cross-product (list-of-lists)
+;; '(1 2 3) => '((1 2 3) (1 3 2) (2 1 3) (2 3 1) (3 1 2) (3 2 1))
+;; (only) n sized permutations
+;; http://forum.codecall.net/topic/46721-lisp-permutations/
+(defun permutations (l)
+  (if (null l) '(())
+  (mapcan #'(lambda (x)
+	(mapcar #'(lambda (y) (cons x y))
+	  (permutations (remove x l :count 1)))) l)))
+
+;; '(1 2 3) => '((1) (2 1) (1 2) (2) (3 2) (2 3) (3 2 1) (3 1 2) (2 3 1) (2 1 3) (1 3 2)
+;; (1 2 3) (3 1) (1 3) (3))
+;; 1-to-n sized permutations
+(defun permutations-i (list)
   (let ((rslt nil))
-    (dolist (list list-of-lists)
-      (dolist (l list)
-        (push l rslt)))))
+    (dolist (l (loop for c in (combinations-i list)
+       collect (permutations c)))
+      (setf rslt (append l rslt)))
+    rslt))
+
+;; '((1.1 1.2) (2.1 2.2) (3.1 3.2 3.3)) => '((1.1) (1.2) (2.1) (2.2) (3.1) (3.2) (3.3) (1.1 2.1) (1.1 2.2) (1.1 3.1) (1.1 3.2) (1.1 3.3) (1.2 2.1) (1.2 2.2) (1.2 3.1) (1.2 3.2) (1.2 3.3) (2.1 3.1) (2.1 3.2) (2.1 3.3) (2.2 3.1) (2.2 3.2) (2.2 3.3) (1.1 2.1 3.1) (1.1 2.1 3.2) (1.1 2.1 3.3) (1.1 2.2 3.1) (1.1 2.2 3.2) (1.1 2.2 3.3) (1.2 2.1 3.1) (1.2 2.1 3.2) (1.2 2.1 3.3) (1.2 2.2 3.1) (1.2 2.2 3.2) (1.2 2.2 3.3)), but not necessarily in that order
+;; 1-n sized cross-products
+(defun cross-product-i (list-of-lists)
+  (let ((rslt nil)
+        (list-of-lists (append-nil list-of-lists)))
+    (dolist (f (first list-of-lists))
+      (push f rslt)) ; rslt => '(1.1 1.2 nil)
+    (dolist (list (rest list-of-lists)) ; list => '(2.1 2.2 nil), etc
+      (dolist (r rslt) ; r => 1.1 1.2 nil
+        (dolist (l list) ; l => 2.1 2.2 nil
+          (push (append (if (atom r) (list r) r)
+                        (if (atom l) (list l) l))
+                rslt)))) ; rslt => '(1.1 1.2 (1.1 2.1) (1.1 2.2) (1.1 nil) ...)
+    ;; remove internal-nil, atoms and duplicates
+    (remove-if #'atom (remove-duplicates (loop for i in (remove-if #'atom rslt)
+                                            collect (remove-if #'null i)) :test #'equal))))

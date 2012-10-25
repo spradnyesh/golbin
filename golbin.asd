@@ -6,7 +6,9 @@
 (defsystem golbin
   :components ((:module "utils"
                         :components ((:file "package")
-                                     (:file "config" :depends-on ("string"))
+                                     (:file "list" :depends-on ("package"))
+                                     (:file "string" :depends-on ("list"))
+                                     (:file "config" :depends-on ("string" "list"))
                                      (:file "init" :depends-on ("config"))
                                      (:file "dimensions" :depends-on ("config"))
                                      (:file "file" :depends-on ("config"))
@@ -17,8 +19,6 @@
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("package"))
                                      (:file "l10n" :depends-on ("package"))
-                                     (:file "list" :depends-on ("package"))
-                                     (:file "string" :depends-on ("list"))
                                      (:file "pagination" :depends-on ("package"))
                                      (:file "db" :depends-on ("config"))
                                      (:file "datetime" :depends-on ("package"))))
