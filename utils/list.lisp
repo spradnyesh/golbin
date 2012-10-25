@@ -46,6 +46,18 @@
         (return nil)))
     t))
 
+(defun group-list (fn list)
+  (let ((ht (make-hash-table :test #'equal))
+        (key nil)
+        (ele nil)
+        (rslt nil))
+    (dolist (l list)
+      (setf key (funcall fn l))
+      (setf ele (push l (gethash key ht)))
+      (setf (gethash key ht) ele))
+    (maphash #'(lambda (k v) (declare (ignore k)) (push v rslt)) ht)
+    (reverse rslt)))
+
 ;; '((1.1 1.2) (2.1 2.2)) => '((1.1 1.2 nil) (2.1 2.2 nil))
 (defun append-nil (list-of-lists)
   (let ((rslt nil))

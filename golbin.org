@@ -18,6 +18,8 @@
     - [ ] ed
 *** TODO [config] improve config to handle 2/multiple dimensions
     :CLOCK:
+    CLOCK: [2012-10-25 Thu 17:43]--[2012-10-25 Thu 18:00] =>  0:17
+    CLOCK: [2012-10-25 Thu 16:49]--[2012-10-25 Thu 17:24] =>  0:35
     CLOCK: [2012-10-25 Thu 16:15]--[2012-10-25 Thu 16:48] =>  0:33
     CLOCK: [2012-10-25 Thu 15:21]--[2012-10-25 Thu 16:08] =>  0:47
     CLOCK: [2012-10-25 Thu 12:00]--[2012-10-25 Thu 12:18] =>  0:18
