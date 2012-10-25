@@ -17,47 +17,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun dimensions-map-to-string (map)
-  (join-string-list-with-delim ","
-                               (let ((rslt nil))
-                                 (dolist (dm map)
-                                   (push (join-string-list-with-delim ":" dm) rslt))
-                                 (nreverse rslt))))
-
-(defun dimensions-string-to-map (string)
-  (let ((rslt nil))
-    (dolist (dl (split-sequence "," string :test #'string-equal))
-      (let ((d (split-sequence ":" dl :test #'string-equal)))
-        (push d rslt)))
-    (nreverse rslt)))
-
-(defun reduce-dimensions-map (map)
-  (nreverse (rest (nreverse map))))
-
-(defun reduce-dimensions-string (string)
-  (dimensions-map-to-string (reduce-dimensions-map (dimensions-string-to-map string))))
-
-(defun get-config-helper (name map storage)
-  (let ((config-node (if map
-                         (find (dimensions-map-to-string map)
+(defun get-config-helper (name dim-map storage)
+  ;; 1st check only same level
+  (let ((permutations (permutations dim-map))
+        (found nil)
+        (multiple nil)
+        (rslt nil))
+    (dolist (dim permutations)
+      (let ((config-node (find dim
                                (configs storage)
                                :key #'dimension
-                               :test #'string-equal)
-                         (find "master"
-                               (configs storage)
-                               :key #'dimension
-                               :test #'string-equal))))
-    (if config-node
-        (let ((value (find name
-                           (config-list config-node)
-                           :key #'name
-                           :test #'string-equal)))
-          (if value
-              (value value)
-              (unless (string-equal "master" (dimension config-node))
-                ;; reduce dimension to "master" only if it's not already "master", else it goes into an infinite loop
-                (get-config-helper name (reduce-dimensions-map map) storage))))
-        (get-config-helper name (reduce-dimensions-map map) storage))))
+                               :test #'string-equal)))
+        (when config-node
+          (let ((config (find name
+                              (config-list config-node)
+                              :key #'name
+                              :test #'string-equal)))
+            (when config
+              (when found         ; finding this config more than once
+                (setf multiple t))
+              (setf found t)
+              (push (value config) rslt))))))
+    ;; if not found, then reduce/generalize dim-str and re-do
+    (unless found
+      (setf permutations (sort (set-difference (permutations-i '(1 2 3))
+                                               permutations
+                                               :test 'equal)
+                               #'> :key #'length)))))
 
 (defun build-config-node (node &optional (namespace nil))
   (let ((rslt nil)
@@ -101,19 +87,19 @@
 (defun set-default-dimensions (&key envt lang)
   (setf *default-dimensions* (build-dimension-string :envt envt :lang lang)))
 
-(defun get-config (name &optional (dimensions-string *default-dimensions*) (storage *config-storage*))
-  (get-config-helper name (dimensions-string-to-map dimensions-string) storage))
+(defun get-config (name &optional (dim-str *default-dimensions*) (storage *config-storage*))
+  (get-config-helper name (split-sequence "," dim-str :test #'string-equal) storage))
 
-(defun add-config (name value dimensions-string &optional (storage *config-storage*))
+(defun add-config (name value dim-str &optional (storage *config-storage*))
   "does _not_ check for duplicates while adding; due to _push_, get-config will always get the latest value => the older values just increase the size, but that's nominal, and hence ok ;)"
   (let ((config (make-instance 'config :name name :value value))
-        (config-node (find dimensions-string
+        (config-node (find dim-str
                            (configs storage)
                            :key #'dimension
                            :test #'string-equal)))
     (if config-node
         (push config (config-list config-node))
-        (push (make-instance 'config-node :dimension dimensions-string :config-list (list config))
+        (push (make-instance 'config-node :dimension dim-str :config-list (list config))
               (configs storage)))))
 
 (defun show-config-tree (&optional (storage *config-storage*))
@@ -129,13 +115,13 @@
                              ('Entenrtainment' 'Arts' 'TV'))))
     ('envt:prod' ('n3' 'v3') ('n4' 'v4')))"
   (dolist (c config)
-    (let ((dimensions-string (first c)))
-      (when (or (string-equal dimensions-string "master")
-                (find dimensions-string *dimensions-combos* :test #'equal))
+    (let ((dim-str (first c)))
+      (when (or (string-equal dim-str "master")
+                (find dim-str *dimensions-combos* :test #'equal))
         (dolist (config-node (rest c)) ; (rest c) => config-list (list of config nodes)
           (let ((configs (build-config-node config-node)))
             (dolist (config configs)
-              (add-config (first config) (second config) dimensions-string storage))))))))
+              (add-config (first config) (second config) dim-str storage))))))))
 
 (defun init-config ()
   (setf *config-storage* (make-instance 'config-storage))
