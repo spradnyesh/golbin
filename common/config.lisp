@@ -45,5 +45,51 @@
                                      "Economy"
                                      "Industry"
                                      "Markets")
-                                    )))
-        ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN" *home*))))))
+                                    ("Education")
+                                    ("Entertainment"
+                                     "Arts"
+                                     "Books"
+                                     "Celebrities"
+                                     "Humor"
+                                     "Movies"
+                                     "Music"
+                                     "TV")
+                                    ("Headlines")
+                                    ("Lifestyle"
+                                     "Automotive"
+                                     "Culture"
+                                     "Food and Beverage"
+                                     "Home and Garden"
+                                     "Health"
+                                     "Theatre"
+                                     "Travel")
+                                    ("Politics")
+                                    ("Religion")
+                                    ("Science"
+                                     "Environment"
+                                     "Geography"
+                                     "Space")
+                                    ("Sports"
+                                     "American Football"
+                                     "Badminton"
+                                     "Baseball"
+                                     "Basketball"
+                                     "Boxing"
+                                     "Cricket"
+                                     "Cycling"
+                                     "Hockey"
+                                     "Golf"
+                                     "Handball"
+                                     "Olympics"
+                                     "Racing"
+                                     "Rugby"
+                                     "Table Tennis"
+                                     "Tennis")
+                                    ("Technology"
+                                     "Computing"
+                                     "Internet"
+                                     "Personal Technology"
+                                     "Video Games"))))
+        ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN" *home*))))
+        ("envt:dev,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/hi-IN" *home*))))
+        ("envt:dev,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/mr-IN" *home*))))))

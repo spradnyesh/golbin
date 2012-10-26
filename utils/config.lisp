@@ -17,33 +17,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-config-helper (name dim-map storage)
-  ;; 1st check only same level
-  (let ((permutations (permutations dim-map))
-        (found nil)
-        (multiple nil)
-        (rslt nil))
-    (dolist (dim permutations)
-      (let ((config-node (find dim
-                               (configs storage)
-                               :key #'dimension
-                               :test #'string-equal)))
-        (when config-node
-          (let ((config (find name
-                              (config-list config-node)
-                              :key #'name
-                              :test #'string-equal)))
-            (when config
-              (when found         ; finding this config more than once
-                (setf multiple t))
-              (setf found t)
-              (push (value config) rslt))))))
-    ;; if not found, then reduce/generalize dim-str and re-do
-    (unless found
-      (setf permutations (sort (set-difference (permutations-i '(1 2 3))
-                                               permutations
-                                               :test 'equal)
-                               #'> :key #'length)))))
+(defun find-config-node-and-value (name node-name storage)
+  (let ((config-node (find node-name
+                           (configs storage)
+                           :key #'dimension
+                           :test #'string-equal)))
+    (when config-node
+      (let ((config (find name
+                          (config-list config-node)
+                          :key #'name
+                          :test #'string-equal)))
+        (when config
+          (return-from find-config-node-and-value (value config)))))))
+
+(defun get-config-helper (name dim-str storage)
+  (dolist (dim-list (reverse (group-list #'length
+                                  (permutations-i (split-sequence ","
+                                                                  dim-str
+                                                                  :test #'string-equal)))))
+    (dolist (dim dim-list)
+      (let ((rslt (find-config-node-and-value name
+                                              (join-string-list-with-delim "," dim)
+                                              storage)))
+        (when rslt (return-from get-config-helper rslt)))))
+
+  ;; we have not found the config-value yet, so look at master
+  (find-config-node-and-value name "master" storage))
+
 
 (defun build-config-node (node &optional (namespace nil))
   (let ((rslt nil)
@@ -74,9 +74,7 @@
                                                                 d)))))
           (push (concatenate 'string d ":" v) list))
         (push list list-of-lists)))
-    (mapcar #'(lambda (l)
-                (join-string-list-with-delim "," l))
-            (cross-product-i list-of-lists))))
+    (mapcar #'(lambda (a) (sort a #'string<)) (cross-product-i list-of-lists))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
@@ -88,7 +86,7 @@
   (setf *default-dimensions* (build-dimension-string :envt envt :lang lang)))
 
 (defun get-config (name &optional (dim-str *default-dimensions*) (storage *config-storage*))
-  (get-config-helper name (split-sequence "," dim-str :test #'string-equal) storage))
+  (get-config-helper name dim-str storage))
 
 (defun add-config (name value dim-str &optional (storage *config-storage*))
   "does _not_ check for duplicates while adding; due to _push_, get-config will always get the latest value => the older values just increase the size, but that's nominal, and hence ok ;)"
@@ -117,7 +115,9 @@
   (dolist (c config)
     (let ((dim-str (first c)))
       (when (or (string-equal dim-str "master")
-                (find dim-str *dimensions-combos* :test #'equal))
+                (find (sort (split-sequence "," dim-str :test #'string-equal) #'string<)
+                      *dimensions-combos*
+                      :test #'equal))
         (dolist (config-node (rest c)) ; (rest c) => config-list (list of config nodes)
           (let ((configs (build-config-node config-node)))
             (dolist (config configs)
