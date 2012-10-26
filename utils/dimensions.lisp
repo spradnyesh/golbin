@@ -24,11 +24,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-resource (type dimension)
-  (gethash dimension (gethash type *resources*)))
+(defun get-resource (name dim-str)
+  (let ((dim (gethash dim-str *resources*)))
+    (when dim
+      (gethash name dim))))
 
-(defun set-resource (type dimension value)
-  (setf (gethash dimension (gethash type *resources*)) value))
+(defun set-resource (name value dim-str)
+  (setf (gethash name (gethash dim-str *resources*)) value))
+
+(defun show-resources ()
+  (maphash #'(lambda (k v)
+               (format t "***** ~a: *****~%" k)
+               (print-map v)) *resources*))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init *dimensions* for every request (as shown in http://restas.lisper.ru/en/manual/decorators.html)

@@ -74,7 +74,8 @@
                                                                 d)))))
           (push (concatenate 'string d ":" v) list))
         (push list list-of-lists)))
-    (mapcar #'(lambda (a) (sort a #'string<)) (cross-product-i list-of-lists))))
+    (mapcar #'(lambda (a) (sort a #'string<))
+            (cross-product-i list-of-lists))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
@@ -82,7 +83,11 @@
 (defun build-dimension-string (&key envt lang)
   (concatenate 'string "envt:" envt ",lang:" lang))
 
-(defun set-default-dimensions (&key envt lang)
+(defun set-default-dimensions (&optional envt lang)
+  (unless envt
+    (setf envt (get-config "site.envt")))
+  (unless lang
+    (setf lang (get-config "site.lang")))
   (setf *default-dimensions* (build-dimension-string :envt envt :lang lang)))
 
 (defun get-config (name &optional (dim-str *default-dimensions*) (storage *config-storage*))

@@ -3,7 +3,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; list manipulation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun conditionally-accumulate (cond list)
   (remove-if #'null (mapcar #'(lambda (l) (when (funcall cond l) l)) list)))
 
@@ -114,3 +113,9 @@
     ;; remove internal-nil, atoms and duplicates
     (remove-if #'atom (remove-duplicates (loop for i in (remove-if #'atom rslt)
                                             collect (remove-if #'null i)) :test #'equal))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; hashmap manipulation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun print-map (hm)
+  (maphash #'(lambda (k v) (format t "~a: ~a~%" k v)) hm))

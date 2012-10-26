@@ -26,20 +26,15 @@
        (unless *system-status*
          (setf *system-status* t)
          (init-config)
-         ;; XXX: this will make envt-dimen1, envt-dimen2, etc pairs which might not be what is really needed
-         (dolist (envt *valid-envts*) ; for all envts
-           (dolist (dimension (rest *dimensions*)) ; for all dimensions except envt
-             (dolist (dim (symbol-value ; for every dimension value
-                           (intern
-                            (string-upcase
-                             (format nil
-                                     "*valid-~as*"
-                                     dimension)))))
-               (let ((dimension (build-dimension :envt envt (make-keyword dim) dim)))
-                 (model-init dimension)
-                 (db-connect dimension))))))
-       (hu-init)
+         ;; init-model & db-connect only for the longest dim-str
+         ;; ensure that the "db.path" config is present in longest dim-str
+         (dolist (dim (first (reverse (group-list #'length *dimensions-combos*))))
+           (let ((dim-str (join-string-list-with-delim "," dim)))
+             (setf (gethash dim-str *resources*) (make-hash-table :test 'equal))
+             (model-init dim-str)
+             (db-connect dim-str))))
        (load-all-languages)
+       (hu-init)
        (obfuscate-js)
        (start (get-config ,(format nil "~a.restas.package" `,system))
               :port (get-config ,(format nil "~a.restas.port" `,system))

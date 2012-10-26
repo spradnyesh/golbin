@@ -16,13 +16,6 @@
     - [ ] utils
     - [ ] common
     - [ ] ed
-*** TODO [config] solve fe-start/restart for multiple dimensions
-    :CLOCK:
-    CLOCK: [2012-10-25 Thu 16:08]--[2012-10-25 Thu 16:15] =>  0:07
-    CLOCK: [2012-10-24 Wed 17:28]--[2012-10-24 Wed 18:04] =>  0:36
-    CLOCK: [2012-10-24 Wed 17:00]--[2012-10-24 Wed 17:28] =>  0:28
-    :END:
-    - this includes all resources (eg *db* which are different across different dimensions)
 *** [lang] separate DBs for envt/lang
 *** [lang] font in fe
 *** [lang] font in RTE
@@ -698,6 +691,20 @@
      :ARCHIVE_TIME: 2012-10-26 Fri 14:13
      :END:
      - correct golbin/utils/config.lisp: (dimensions-string *current-dimensions-string*) in get-config
+**** DONE [config] solve fe-start/restart for multiple dimensions
+     CLOSED: [2012-10-26 Fri 20:08]
+     :CLOCK:
+     CLOCK: [2012-10-26 Fri 19:05]--[2012-10-26 Fri 20:08] =>  1:03
+     CLOCK: [2012-10-26 Fri 15:03]--[2012-10-26 Fri 16:21] =>  1:18
+     CLOCK: [2012-10-26 Fri 14:22]--[2012-10-26 Fri 14:45] =>  0:23
+     CLOCK: [2012-10-25 Thu 16:08]--[2012-10-25 Thu 16:15] =>  0:07
+     CLOCK: [2012-10-24 Wed 17:28]--[2012-10-24 Wed 18:04] =>  0:36
+     CLOCK: [2012-10-24 Wed 17:00]--[2012-10-24 Wed 17:28] =>  0:28
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-26 Fri 20:08
+     :END:
+     - this includes all resources (eg *db* which are different across different dimensions)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

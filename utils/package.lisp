@@ -16,7 +16,7 @@
            :*resources*
            :init-dimensions
            :hawksbill-acceptor
-           :get-resource
+           :show-resources
            ;; config
            :*config*
            :*dimensions*
@@ -45,6 +45,7 @@
            :db-connect
            :db-disconnect
            :db-reconnect
+           :get-db-handle
            ;; memcache
            :with-cache
            ;; list
@@ -54,6 +55,7 @@
            :splice
            :get-random-from-list
            :subset
+           :print-map
            ;; string
            :slugify
            :join-string-list-with-delim
@@ -87,8 +89,6 @@
 (defvar *dimensions* nil)
 (defvar *dimensions-combos* nil)
 (defvar *default-dimensions* nil)
-(defvar *valid-envts* nil)
-(defvar *valid-langs* nil)
 (defvar *config* nil)
 (defvar *config-storage* nil)
 ;; dimensions

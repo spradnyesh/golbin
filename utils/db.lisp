@@ -3,12 +3,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro get-storage (dimension system)
-  `(cond ((equal (get-config "db.type") "prevalence")
-          (get-root-object (get-db-handle) ,system))))
+(defmacro get-storage (system dim-str)
+  `(cond ((equal (get-config "db.type" ,dim-str) "prevalence")
+          (get-root-object system ,system))))
 
-(defmacro init-db-system (dimension name system)
-  `(let ((db-type (get-config dimension "db.type")))
+(defmacro init-db-system (name system dim-str)
+  `(let ((db-type (get-config "db.type" ,dim-str)))
      (cond ((equal db-type "prevalence")
             (progn
               ;; make-<name>s-root (system)
@@ -18,22 +18,22 @@
 
               ;; get-all-<name>s ()
               (defun ,(intern (string-upcase (format nil "get-all-~as" `,name))) ()
-                (let ((storage (get-storage ,system)))
-                  (,(intern (string-upcase (format nil "~as" `,name))) storage)))
+                (,(intern (string-upcase (format nil "~as" `,name)))
+                  (get-root-object (get-db-handle) ,system)))
 
               ;; incf-<name>-last-id (system)
               (defun ,(intern (string-upcase (format nil "incf-~a-last-id" `,name))) (system)
-                (let ((storage (get-root-object system ,system)))
+                (let ((storage (get-storage ,system ,dim-str)))
                   (incf (,(intern (string-upcase (format nil "last-id"))) storage))))
 
               ;; insert-<name> (system object)
               (defun ,(intern (string-upcase (format nil "insert-~a" `,name))) (system object)
-                (let ((storage (get-root-object system ,system)))
+                (let ((storage (get-storage ,system ,dim-str)))
                   (push object (,(intern (string-upcase (format nil "~as" `,name))) storage))))
 
               ;; update-<name> (system object)
               (defun ,(intern (string-upcase (format nil "update-~a" `,name))) (system object)
-                (let* ((storage (get-root-object system ,system))
+                (let* ((storage (get-storage ,system ,dim-str))
                        (list (,(intern (string-upcase (format nil "~as" `,name))) storage)))
                   (setf (nth (position (id object) list :key #'id)
                              list)
@@ -72,31 +72,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters/setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-db-handle (request *request*)
-  (db (resources (dimensions request))))
+(defun get-db-handle ()
+  (if (boundp '*request*)
+      (db (resources (dimensions *request*)))
+      (get-resource "db" *default-dimensions*)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DB connection
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun db-connect (dimension)
-  (let ((db-type (get-config dimension "db.type")))
+(defun db-connect (dim-str)
+  (let ((db-type (get-config "db.type" dim-str)))
     (cond ((equal db-type "prevalence")
-           (let ((resource (get-resource "db" dimension))
-                 (db (make-prevalence-system (get-config dimension "db.path"))))
-             (if resource
-               (set-resource "db" dimension db)
-               (progn
-                 (let ((ht (make-hash-table :test 'equal)))
-                   (setf (gethash dimension ht) db)
-                   (setf (gethash "db" *resources*) ht)))))))))
+           (set-resource "db" (make-prevalence-system (get-config "db.path" dim-str)) dim-str)))))
 
-(defun db-disconnect (dimension)
-  (let ((db-type (get-config dimension "db.type")))
+(defun db-disconnect (dim-str)
+  (let ((db-type (get-config "db.type" dim-str)))
     (cond ((equal db-type "prevalence")
-           (let ((db (get-resource "db" dimension)))
+           (let ((db (get-resource "db" dim-str)))
              (when db
                (close-open-streams db)))))))
 
-(defun db-reconnect (dimension)
-  (db-disconnect dimension)
-  (db-connect dimension))
+(defun db-reconnect (dim-str)
+  (db-disconnect dim-str)
+  (db-connect dim-str))
