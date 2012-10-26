@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** *[bug][editorial] 404 http://localhost:8080/article/953/delete/*
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -17,11 +18,14 @@
     - [ ] common
     - [ ] ed
 *** [lang] separate DBs for envt/lang
-*** [lang] font in fe
-*** [lang] font in RTE
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
+*** [lang] mr/hi font in fe
+*** [lang] mr/hi font in RTE
 *** [lang] find string replacements for different languages
 *** [lang] strings passed to JS land
+*** [admin] login
+*** [admin] homepage/dashboard
+*** [admin] should approve/delete articles
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -76,7 +80,7 @@
     - search for 'alert ("hi");' should not show alert
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
-*** [seo] meta-keywords (tags + cat/subcat)
+*** [seo] keywords (tags + cat/subcat)
 *** [seo] robots.txt
 *** [seo][performance] favicon
 *** [fe] theme
