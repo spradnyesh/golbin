@@ -69,7 +69,7 @@
            :save-photo-to-disk
            :scale-and-save-photo
            ;; file
-           :get-parent-directory-path-string
+           :get-directory-path-string
            ;; lang
            :*translation-table*
            :translate

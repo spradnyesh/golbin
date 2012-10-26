@@ -27,7 +27,7 @@
 (defun load-all-languages (&optional (locale-path (get-config "path.locale")))
   (setf *translation-table* (make-hash-table :test 'equal))
   (dolist (f (directory (concatenate 'string
-                                     (get-parent-directory-path-string locale-path) "??-??.lisp")))
+                                     (get-directory-path-string locale-path) "??-??.lisp")))
     (setf (gethash (pathname-name f) *translation-table*) (load-language f))))
 
 (defun show-translation-tree ()

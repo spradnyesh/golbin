@@ -23,4 +23,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; i18n
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))
+(setf *translation-file-root* (get-directory-path-string (merge-pathnames "locale/" *home*)))

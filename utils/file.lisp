@@ -18,7 +18,7 @@
      do (write-sequence buffer output)
      finally (write-sequence buffer output :end bytes-read)))
 
-(defun get-parent-directory-path-string (path)
+(defun get-directory-path-string (path)
   (concatenate 'string
                "/"
                (join-string-list-with-delim
@@ -27,7 +27,7 @@
                "/"))
 
 (defun get-new-path (path)
-  (let* ((parent-directory (get-parent-directory-path-string path))
+  (let* ((parent-directory (get-directory-path-string path))
          (name (pathname-name path))
          (type (pathname-type path))
          (id (length (directory (pathname (format nil
