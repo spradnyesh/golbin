@@ -1,6 +1,6 @@
 (in-package :hawksbill.utils)
 
-;;;; this file defines the data and the thread-safe process of storing the *dimensions* into the *request*
+;;;; this file defines the data and the thread-safe process of storing the dimensions into the *request*
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; make provision to store *dimensions* in *request* so that it will be thread safe
@@ -74,8 +74,8 @@
                          :lang lang
                          :resources (make-instance 'resources
                                                    :db (get-resource "db" (build-dimension-string
-                                                                           :envt envt
-                                                                           :lang lang)))))))
+                                                                           (concatenate 'string "envt:" envt)
+                                                                           (concatenate 'string "lang:" lang))))))))
 
 (defun init-dimensions (route)
   (make-instance 'dimensions-route :target route))

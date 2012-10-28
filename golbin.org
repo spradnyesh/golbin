@@ -709,6 +709,16 @@
      :ARCHIVE_TIME: 2012-10-26 Fri 20:08
      :END:
      - this includes all resources (eg *db* which are different across different dimensions)
+**** DONE *[bug][config] remove envt/lang from utils/config*
+     CLOSED: [2012-10-28 Sun 21:34]
+     :CLOCK:
+     CLOCK: [2012-10-28 Sun 21:32]--[2012-10-28 Sun 21:34] =>  0:02
+     CLOCK: [2012-10-28 Sun 20:59]--[2012-10-28 Sun 21:32] =>  0:33
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-28 Sun 21:34
+     :END:
+     - it should be generic and not assume any dimensions
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

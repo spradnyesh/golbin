@@ -1,6 +1,6 @@
 (in-package :hawksbill.utils)
 
-;;;; this file defines the actual data that needs to be looked up based on *dimensions* stored in *request*
+;;;; this file defines the actual config data that needs to be looked up based on dimensions stored in *request*
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; config classes
@@ -80,15 +80,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; get/add/show/init functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun build-dimension-string (&key envt lang)
-  (concatenate 'string "envt:" envt ",lang:" lang))
+(defun build-dimension-string (&rest dims)
+  (join-string-list-with-delim "," (sort dims #'string<)))
 
-(defun set-default-dimensions (&optional envt lang)
-  (unless envt
-    (setf envt (get-config "site.envt")))
-  (unless lang
-    (setf lang (get-config "site.lang")))
-  (setf *default-dimensions* (build-dimension-string :envt envt :lang lang)))
+(defun set-default-dimensions (&rest dims)
+  (let ((given-dims nil)
+        (not-given-dims nil))
+    (if (atom dims)
+        (push (split-sequence ":" dims :test #'string-equal) given-dims)
+        (dolist (d dims)
+          (push (first (split-sequence ":" d :test #'string-equal)) given-dims)))
+    (dolist (nd (set-difference *dimensions* given-dims :test #'string-equal))
+      (push (concatenate 'string
+                         nd
+                         ":"
+                         (get-config (concatenate 'string "site." nd) "master")) not-given-dims))
+    (setf *default-dimensions* (apply #'build-dimension-string (append dims not-given-dims)))))
 
 (defun get-config (name &optional (dim-str *default-dimensions*) (storage *config-storage*))
   (get-config-helper name dim-str storage))
