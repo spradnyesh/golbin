@@ -29,6 +29,7 @@
     (when dim
       (gethash name dim))))
 
+;; this is called at system init (eg db-connect) and not for every request
 (defun set-resource (name value dim-str)
   (setf (gethash name (gethash dim-str *resources*)) value))
 

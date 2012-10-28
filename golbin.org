@@ -2,6 +2,9 @@
 
 * tasks
 ** backlog
+*** TODO *[bug][config] mr/hi showing english content*
+    :CLOCK:
+    :END:
 *** *[bug][editorial] 404 http://localhost:8080/article/953/delete/*
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
@@ -719,6 +722,23 @@
      :ARCHIVE_TIME: 2012-10-28 Sun 21:34
      :END:
      - it should be generic and not assume any dimensions
+**** DONE [refactor] dimensions: permutations-i -> combinations-i
+     CLOSED: [2012-10-28 Sun 21:50]
+     :CLOCK:
+     CLOCK: [2012-10-28 Sun 21:35]--[2012-10-28 Sun 21:50] =>  0:15
+     CLOCK: [2012-10-28 Sun 20:50]--[2012-10-28 Sun 20:58] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-10-28 Sun 21:50
+     :END:
+     - permutations-i isn't used in dimensions, since both writing and reading happen in a lexically sorted way
+       - write:
+         - a-start @ utils/restas
+       - read:
+         - build-dimension-string @ utils/config used by
+           - process-route @ utils/dimensions
+           - set-default-dimensions @ utils/config
+     - however permutations-i is used in config since we don't want to force engg to define dimensions in config (eg common/config.lisp) in a dimension sorted manner
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

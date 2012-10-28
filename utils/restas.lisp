@@ -29,7 +29,9 @@
          ;; init-model & db-connect only for the longest dim-str
          ;; ensure that the "db.path" config is present in longest dim-str
          (dolist (dim (first (reverse (group-list #'length *dimensions-combos*))))
-           (let ((dim-str (join-string-list-with-delim "," dim)))
+           ;; the below 'sort' ensures that the dim-str is lexically sorted based on the dimension
+           ;; this reduces permutations-i -> combinations-i
+           (let ((dim-str (join-string-list-with-delim "," (sort dim #'string<))))
              (setf (gethash dim-str *resources*) (make-hash-table :test 'equal))
              (model-init dim-str)
              (db-connect dim-str))))
