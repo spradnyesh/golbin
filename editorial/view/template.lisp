@@ -28,6 +28,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun ed-header (logged-in)
+  (with-html
+    (:div :id "banner"
+          (str (ed-logo))
+          (str (ed-site-search)))
+    (str (ed-navigation logged-in))))
+
 (defun ed-logo ()
   (with-html
     (:h1
@@ -48,25 +55,41 @@
            (:input :type "submit"
                    :value "Submit")))|#)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; navigations for different author types
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun author-nav ()
+  (with-html (:li :id "nav-article"
+                  (:h2 (:a :href (genurl 'r-article-new-get) "Add Article")))
+             (:li :id "nav-photo"
+                  (:h2 (:a :href (genurl 'r-photo-get) "Add Photo")))))
+(defun editor-nav ()
+  (with-html (:li :id "nav-approve"
+                  (:h2 (:a :href (genurl 'r-approve-articles) "Approve Articles")))))
+(defun admin-nav ()
+  (with-html (:li :id "nav-catsubcat"
+                  (:h2 (:a :href (genurl 'r-cat-get) "Add Cat/Subcat")))))
+(defun logout-nav ()
+  (with-html (:li :id "nav-logout"
+                  (:h2 (:a :href (genurl 'r-logout) "Logout")))))
+
 (defun ed-navigation (logged-in)
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
               (:h2 (:a :href (genurl 'r-home) "Home")))
          (when logged-in
-           (htm (:li :id "nav-article"
-                     (:h2 (:a :href (genurl 'r-article-new-get) "Add Article")))
-                (:li :id "nav-photo"
-                     (:h2 (:a :href (genurl 'r-photo-get) "Add Photo")))
-                (:li :id "nav-logout"
-                     (:h2 (:a :href (genurl 'r-logout) "Logout"))))))))
-
-(defun ed-header (logged-in)
-  (with-html
-    (:div :id "banner"
-          (str (ed-logo))
-          (str (ed-site-search)))
-    (str (ed-navigation logged-in))))
+           (let ((author-type (session-value :author-type)))
+             (cond ((eq author-type :u) ; author
+                    (str (author-nav)))
+                   ((eq author-type :e) ; editor
+                    (str (author-nav))
+                    (str (editor-nav)))
+                   ((eq author-type :d) ; admin
+                    (str (author-nav))
+                    (str (editor-nav))
+                    (str (admin-nav)))))
+           (str (logout-nav))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

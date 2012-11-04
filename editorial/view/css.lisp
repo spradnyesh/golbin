@@ -26,7 +26,7 @@
            (("#ft") (:height "100px"))
            ;; nav
            (("#nav") (:height "50px"))
-           (("#nav li") (:float "left" :width "250px" :text-align "center" :padding "10px 0"))
+           (("#nav li") (:float "left" :margin "0 25px" :text-align "center" :padding "10px 0"))
            (("#nav li ul") (:display "none"))
            ;; home
            (("#articles ul li") (:height "70px"))
