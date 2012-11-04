@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** *[bug][editorial] 404 http://localhost:8080/article/953/delete/*
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -751,6 +750,18 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-04 Sun 11:06
+     :END:
+**** CANCELLED *[bug][editorial] 404 http://localhost:8080/article/953/delete/*
+     CLOSED: [2012-11-04 Sun 11:08]
+     :LOGBOOK:
+     - State "CANCELLED"  from "DONE"       [2012-11-04 Sun 11:09] \\
+       not able to reproduce
+     :END:
+     :CLOCK:
+     CLOCK: [2012-11-04 Sun 11:06]--[2012-11-04 Sun 11:08] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-04 Sun 11:09
      :END:
 ** TODO refactor
    :CLOCK:
