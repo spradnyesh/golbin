@@ -43,10 +43,14 @@
 *** [lang] strings passed to JS land
 *** [fe] remove unnecessary id/class from page elements
 *** [ed] remove unnecessary id/class from page elements
-*** [ed] editor should be able to approve/reject articles
-*** [ed] admin should be able to change author-type
-    - promote author to editor
+*** TODO [ed] editor should be able to approve/reject articles
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
+    :END:
 *** [ed] admin should be able to add cat/subcat
+*** [ed] admin should be able to change author-type
+    - promote author to editor (or viceversa)
+*** [ed] an editor should not be able to approve his own articles
 *** [config] remove cat/subcat from common/config
     - it's there in DB, not needed in config
 *** [ed] articles should have field for 'reason of rejection by editor'

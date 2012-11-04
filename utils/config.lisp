@@ -95,7 +95,9 @@
                          nd
                          ":"
                          (get-config (concatenate 'string "site." nd) "master")) not-given-dims))
-    (setf *default-dimensions* (apply #'build-dimension-string (append dims not-given-dims)))))
+    (setf *default-dimensions* (apply #'build-dimension-string (if (first dims) ; dims can be null
+                                                                   (append dims not-given-dims)
+                                                                   not-given-dims)))))
 
 (defun get-config (name &optional (dim-str *default-dimensions*) (storage *config-storage*))
   (get-config-helper name dim-str storage))

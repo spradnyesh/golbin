@@ -92,6 +92,6 @@
              (when db
                (close-open-streams db)))))))
 
-(defun db-reconnect (dim-str)
+(defun db-reconnect (&optional (dim-str *default-dimensions*))
   (db-disconnect dim-str)
   (db-connect dim-str))

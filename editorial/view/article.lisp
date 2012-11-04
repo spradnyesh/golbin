@@ -25,8 +25,8 @@
 (defun get-article-status-markup (article)
   (if article
       (case (status article)
-        (:draft "Draft")
-        (:deleted "Deleted")
+        (:r "Draft")
+        (:e "Deleted")
         (:s "Submitted")
         (:a "Approved")
         (:w "Withdrawn")
@@ -40,7 +40,7 @@
     (join-string-list-with-delim ", " rslt)))
 
 (defmacro can-article-be-deleted? ()
-  `(or (eql :draft status)
+  `(or (eql :r status)
        (eql :s status)
        (eql :a status)))
 
@@ -190,7 +190,7 @@
                                          :slug (slug (get-article-by-id id))
                                          :summary summary
                                          :body body
-                                         :status :draft
+                                         :status :r
                                          :cat cat
                                          :subcat subcat
                                          :photo photo
