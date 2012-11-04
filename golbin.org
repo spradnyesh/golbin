@@ -2,6 +2,13 @@
 
 * tasks
 ** backlog
+*** TODO [lang] add categories
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 11:26]--[2012-11-04 Sun 11:27] =>  0:01
+    CLOCK: [2012-11-04 Sun 11:09]--[2012-11-04 Sun 11:16] =>  0:07
+    :END:
+    - [ ] mr
+    - [ ] hi
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -16,22 +23,32 @@
       - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
       - (load-language "en-IN")
       - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
-*** [lang] add categories
-    - [ ] mr
-    - [ ] hi
+*** [lang][ed] add links to google transliteration from mr/hi editorial pages
+    - [ ] http://www.google.co.in/transliterate
+    - [ ] http://www.google.com/inputtools/windows/index.html
 *** [lang] init db
     - [ ] mr
     - [ ] hi
 *** [fe] empty cat/subcat pages should not be 404, but should show error msg instead
-*** [lang] separate DBs for envt/lang
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
-*** [lang] mr/hi font in fe
-*** [lang] mr/hi font in RTE
+*** TODO [lang] mr/hi font in fe and RTE
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 11:30]--[2012-11-04 Sun 12:20] =>  0:50
+    :END:
+    - http://salrc.uchicago.edu/resources/fonts/available/hindi/
+    - http://tdil.mit.gov.in/
+    - http://www.walia.com/fonts/index.shtml
+    - http://www.indlinux.org/wiki/index.php/IndicFontsList#Devanagari
 *** [lang] find string replacements for different languages
 *** [lang] strings passed to JS land
-*** [admin] login
-*** [admin] homepage/dashboard
-*** [admin] should approve/delete articles
+*** [ed] different homepage/dashboard for every author-type
+*** [ed] editor should be able to approve/reject articles
+*** [ed] admin should be able to change author-type
+    - promote author to editor
+*** [ed] admin should be able to add cat/subcat
+*** [config] remove cat/subcat from common/config
+    - it's there in DB, not needed in config
+*** [ed] articles should have field for 'reason of rejection by editor'
 *** [editorial] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -52,6 +69,10 @@
       - this year
 *** [fe] enable sharing on SNS
 *** [fe] disable prev/next when no longer scrollable in that direction
+*** TODO [reports] check GA data
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
+    :END:
 *** [reports] article-id: views (day, week, month, year)
 *** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
 *** [reports] time (day, week, month, year): most-viewed article/author
@@ -763,6 +784,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-04 Sun 11:09
      :END:
+**** DONE [ed] login differentiates author types
+     CLOSED: [2012-11-04 Sun 16:24]
+     :CLOCK:
+     CLOCK: [2012-11-04 Sun 16:08]--[2012-11-04 Sun 16:24] =>  0:16
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-04 Sun 16:24
+     :END:
+     - [X] author
+     - [X] editor (can approve articles, etc)
+     - [X] admin (add cat/subcat, etc)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

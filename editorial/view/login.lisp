@@ -22,7 +22,8 @@
       (if logged-in
        (progn
          (start-session)
-         (setf (session-value :user) (handle author))
+         (setf (session-value :author) (handle author))
+         (setf (session-value :author-type) (author-type author))
          (redirect (genurl 'r-home))
          (redirect (genurl 'r-login-get)))))))
 

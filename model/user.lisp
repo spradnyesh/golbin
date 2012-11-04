@@ -31,7 +31,7 @@
    (bank-name :initarg :bank-name :initform nil :accessor bank-name)
    (bank-account-no :initarg :account :initform nil :accessor bank-account-no)
    (bank-ifsc :initarg :ifsc :initform nil :accessor bank-ifsc)
-   (author-type :initarg :author-type :initform nil :accessor author-type)
+   (author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
    (education :initarg :education :initform nil :accessor education)))
 
 (defclass visitor (user)
@@ -111,7 +111,7 @@
     (nth (random (length all-authors)) all-authors)))
 
 (defun get-current-author-id ()
-  (id (get-author-by-handle (session-value :user))))
+  (id (get-author-by-handle (session-value :author))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init

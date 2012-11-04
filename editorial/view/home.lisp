@@ -8,7 +8,7 @@
     (ed-page-template "Home"
         t
         nil
-      (let* ((author (get-author-by-handle (session-value :user)))
+      (let* ((author (get-author-by-handle (session-value :author)))
              (articles-list (get-all-articles-by-author author))
              (page (get-parameter "page"))
              (page (if page (parse-integer page) 0))
