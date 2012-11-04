@@ -2,24 +2,28 @@
 
 * tasks
 ** backlog
-*** TODO *[bug][config] mr/hi showing english content*
-    :CLOCK:
-    :END:
 *** *[bug][editorial] 404 http://localhost:8080/article/953/delete/*
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
     CLOCK: [2012-10-17 Wed 19:08]--[2012-10-17 Wed 19:49] =>  0:41
     :END:
-    - notes
-      - (setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))
-      - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
-      - (load-language "en-IN")
-    - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
     - [ ] fe
     - [ ] utils
     - [ ] common
     - [ ] ed
+    - notes
+      - (setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))
+      - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
+      - (load-language "en-IN")
+      - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
+*** [lang] add categories
+    - [ ] mr
+    - [ ] hi
+*** [lang] init db
+    - [ ] mr
+    - [ ] hi
+*** [fe] empty cat/subcat pages should not be 404, but should show error msg instead
 *** [lang] separate DBs for envt/lang
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
 *** [lang] mr/hi font in fe
@@ -739,6 +743,15 @@
            - process-route @ utils/dimensions
            - set-default-dimensions @ utils/config
      - however permutations-i is used in config since we don't want to force engg to define dimensions in config (eg common/config.lisp) in a dimension sorted manner
+**** CANCELLED *[bug][config] mr/hi showing english content*
+     CLOSED: [2012-11-04 Sun 11:05]
+     :LOGBOOK:
+     - State "CANCELLED"  from "TODO"       [2012-11-04 Sun 11:05] \\
+       not able to reproduce
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-04 Sun 11:06
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
