@@ -51,8 +51,6 @@
 *** [ed] admin should be able to change author-type
     - promote author to editor (or viceversa)
 *** [ed] an editor should not be able to approve his own articles
-*** [config] remove cat/subcat from common/config
-    - it's there in DB, not needed in config
 *** [ed] articles should have field for 'reason of rejection by editor'
 *** [editorial] home page should show a table of
     - status icon
@@ -808,6 +806,19 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-04 Sun 16:49
      :END:
+**** CANCELLED [config] remove cat/subcat from common/config
+     CLOSED: [2012-11-09 Fri 18:40]
+     :LOGBOOK:
+     - State "CANCELLED"  from "UNDERGOING" [2012-11-09 Fri 18:40] \\
+       it's easier to init that way. can remove, or let be (no harm done), after all languages are init-ed
+     :END:
+     :CLOCK:
+     CLOCK: [2012-11-09 Fri 18:37]--[2012-11-09 Fri 18:40] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-09 Fri 18:40
+     :END:
+     - it's there in DB, not needed in config
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
