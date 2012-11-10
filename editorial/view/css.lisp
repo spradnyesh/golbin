@@ -39,6 +39,9 @@
            ;; article
            (("#a-title") (:font-weight "bold" :font-size "120%" :padding-bottom "10px"))
            (("#a-details") (:font-size "80%" :padding-bottom "10px"))
+           ;; category
+           (("#sort-catsubcat .cat") (:padding-left "20px"))
+           (("#sort-catsubcat .subcat") (:padding-left "40px"))
            ;; upload photo pane
            (("#photo-pane") (:width "500px" :height "550px" :position "fixed" :top "100px" :left "250px" :border "1px solid red" :background-color "#CCCCCC"))
            (("#photo-pane p a.close") (:position "absolute" :top "0" :right "0"))

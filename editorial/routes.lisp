@@ -18,7 +18,7 @@
   (v-article-post id))
 (define-route r-article-delete-post ("/article/:id/delete/" :method :post :parse-vars (list :id #'parse-integer))
   (v-article-delete-post id))
-(define-route r-approve-articles ("/article/approve/") (v-articles-approve))
+#|(define-route r-approve-articles ("/article/approve/") (v-articles-approve))|#
 ;; photo
 (define-route r-photo-get ("/photo/") (v-photo-get))
 (define-route r-photo-post ("/photo/" :method :post) (v-photo-post))
@@ -26,6 +26,7 @@
 (define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
 ;; cat/subcat
 (define-route r-cat-get ("/cat/") (v-cat-get))
+(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax

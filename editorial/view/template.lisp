@@ -20,9 +20,10 @@
                   (:div ,@body))
             (:div :id "ft"
                   (str (ed-footer))))
-       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
+       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+       (:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
        (:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-       (:script :type  "text/javascript" :src "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js")
+       (:script :type  "text/javascript" :src "https://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
        ,js))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,7 +69,7 @@
                   (:h2 (:a :href (genurl 'r-approve-articles) "Approve Articles")))))
 (defun admin-nav ()
   (with-html (:li :id "nav-catsubcat"
-                  (:h2 (:a :href (genurl 'r-cat-get) "Add Cat/Subcat")))))
+                  (:h2 (:a :href (genurl 'r-cat-get) "Cat/Subcat")))))
 (defun logout-nav ()
   (with-html (:li :id "nav-logout"
                   (:h2 (:a :href (genurl 'r-logout) "Logout")))))

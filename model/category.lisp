@@ -7,7 +7,9 @@
   ((id :initarg :id :initform nil :accessor id)
    (name :initarg :name :initform nil :accessor name)
    (parent :initarg :parent :initform nil :accessor parent)
-   (slug :initarg :slug :initform nil :accessor slug)))
+   (slug :initarg :slug :initform nil :accessor slug)
+   (rank :initarg :rank :initform nil :accessor rank)
+   (active :initarg :active :initform nil :accessor active))) ; y/n
 
 (defclass category-storage ()
   ((categorys :initform nil :accessor categorys)
@@ -28,21 +30,6 @@
   (execute (get-db-handle) (make-transaction 'insert-category category))
 
   category)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; needed for init
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun add-cat/subcat ()
-  (dolist (cs (get-config "categorys" "master"))
-    (let* ((cat-name (first cs))
-           (subcats (rest cs))
-           (cat (add-category (make-instance 'category
-                                             :name cat-name
-                                             :parent 0))))
-      (dolist (sc-name subcats)
-        (add-category (make-instance 'category
-                                     :name sc-name
-                                     :parent (id cat)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
@@ -86,14 +73,3 @@
     (push (get-category-by-slug "science") rslt)
     (push (get-category-by-slug "technology") rslt)
     rslt))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; needed for tmp-init
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-random-cat-subcat ()
-  (let* ((all-categories (get-root-categorys))
-         (random-category (nth (random (length all-categories)) all-categories))
-         (all-subcategories (get-subcategorys (id random-category))))
-    (if all-subcategories
-        (values random-category (nth (random (length all-subcategories)) all-subcategories))
-        (get-random-cat-subcat))))

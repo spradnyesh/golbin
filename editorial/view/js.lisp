@@ -26,10 +26,42 @@
                    ($apply ((@ split) term) pop))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; article page
+                 ;;; common to article/photo pages
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
+                 (tags-autocomplete (tags-input)
+                   ($apply ($apply tags-input
+                               bind "keydown"
+                               (lambda (event)
+                                 (when (and (eql (@ event key-code)
+                                                 (@ (@ (@ $ ui) key-code) "TAB"))
+                                            (@ (@ ($apply ($ this) data "autocomplete") menu) active))
+                                   ($prevent-default))))
+                       autocomplete
+                     (create :min-length 2
+                             :source (lambda (request response)
+                                       ($apply $ ajax
+                                         (create :url "/ajax/tags/"
+                                                 :data (create :term ((@ extract-last) (@ request term)))
+                                                 :data-type "json"
+                                                 :success response))
+                                       false)
+                             :search (lambda () (let ((term ((@ extract-last) (@ this value))))
+                                                  (if (< (@ term length) 2)
+                                                      false
+                                                      true)))
+                             :focus (lambda () false)
+                             :select (lambda (event ui)
+                                       (let ((terms ((@ split) (@ this value))))
+                                         ($apply terms pop)
+                                         ($apply terms push (@ (@ ui item) value))
+                                         ($apply terms push "")
+                                         (setf (@ this value) ($apply terms join ", ")))
+                                       false)))
+                   false)
+
                  ;; change sub-category when user changes category
-                 (article-change-category (form-prefix)
+                 (change-category (form-prefix)
                    (let ((cat-id (parse-int ($apply ($ (+ form-prefix " .cat")) val)))
                          (ele nil))
                      (if (eql cat-id 0)
@@ -54,8 +86,9 @@
                                    ele))))))))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; common for select/upload photo pane
+                 ;;; article page
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")
                        append
@@ -81,9 +114,7 @@
                               (+ "_" (elt image-sizes 0) ".")
                               (+ "_" (elt image-sizes 1) ".")))))
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; select photo pane
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (unselect-lead-photo ()
                    ($prevent-default)
                    ;; change the photo-id in hidden-field
@@ -135,7 +166,7 @@
                                              text
                                            (@ cat name)))
                          ($apply ($ "#photo-pane .search .cat") append ele)))
-                     ($event ("#photo-pane .search .cat" change) (article-change-category "#photo-pane .search"))
+                     ($event ("#photo-pane .search .cat" change) (change-category "#photo-pane .search"))
                      ;; tags
                      (tags-autocomplete ($ "#photo-pane .search .tags"))
                      ;; search
@@ -231,9 +262,7 @@
                    (setf select-photo-paginate true)
                    (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; upload photo pane
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (upload-lead-photo-init ()
                    (setf lead true)
                    (upload-photo-init))
@@ -266,7 +295,7 @@
                              append
                            data.data)
                          ($event ("#photo-pane form" submit) (upload-photo-submit))
-                         ($event ("#photo-pane .cat" change) (article-change-category "#photo-pane"))
+                         ($event ("#photo-pane .cat" change) (change-category "#photo-pane"))
                          (tags-autocomplete ($ "#photo-pane .tags"))
                          false)
                        (photo-fail data)))
@@ -300,47 +329,23 @@
                    (close-photo-pane))
 
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
+                 ;;; category page
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 (tags-autocomplete (tags-input)
-                   ($apply ($apply tags-input
-                               bind "keydown"
-                               (lambda (event)
-                                 (when (and (eql (@ event key-code)
-                                                 (@ (@ (@ $ ui) key-code) "TAB"))
-                                            (@ (@ ($apply ($ this) data "autocomplete") menu) active))
-                                   ($prevent-default))))
-                       autocomplete
-                     (create :min-length 2
-                             :source (lambda (request response)
-                                       ($apply $ ajax
-                                         (create :url "/ajax/tags/"
-                                                 :data (create :term ((@ extract-last) (@ request term)))
-                                                 :data-type "json"
-                                                 :success response))
-                                       false)
-                             :search (lambda () (let ((term ((@ extract-last) (@ this value))))
-                                                  (if (< (@ term length) 2)
-                                                      false
-                                                      true)))
-                             :focus (lambda () false)
-                             :select (lambda (event ui)
-                                       (let ((terms ((@ split) (@ this value))))
-                                         ($apply terms pop)
-                                         ($apply terms push (@ (@ ui item) value))
-                                         ($apply terms push "")
-                                         (setf (@ this value) ($apply terms join ", ")))
-                                       false)))
-                   false))))
+                 (sort-categories (ele)
+                   ($apply ele nested-sortable (create :handle "div"
+                                                                   :items "li"
+                                                                   :toleranceElement "> div"
+                                                                   :maxLevels 1
+                                                                   :protectRoot t))))))
 
         ;; define event handlers
-        ($event (".cat" change) (article-change-category ""))
+        ($event (".cat" change) (change-category ""))
         ($event ("#select-lead-photo" click) (select-lead-photo-init))
         ($event ("#unselect-lead-photo" click) (unselect-lead-photo))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init))
         (tags-autocomplete ($ ".tags"))
+        (sort-categories ($ "#sort-catsubcat"))
 
-        ;; call functions on document.ready
         false)))

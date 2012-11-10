@@ -91,6 +91,24 @@
                                      "Internet"
                                      "Personal Technology"
                                      "Video Games"))))
+        ("lang:mr-IN" ("categorys" (("व्यापार")
+                                    ("िशक्षण") ; 'n' is wrong at the end
+                                    ("देश-िवदेश")
+                                    ("िवज्ान"
+                                     "वातावरण")
+                                    ("िक्रडा"
+                                     "िक्रकेट")
+                                    ("मौजमजा"
+                                     "कला"
+                                     "वाचन"
+                                     "नट-नटी"
+                                     "िसने-नाट्य"
+                                     "संगीत"
+                                     "टीवी")
+                                    ("लाइफस्टाइल")
+                                    ("तेक्नौलोगी"
+                                     "कॉम्पुटर"
+                                     "इंटरनेट"))))
         ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN/" *home*))))
         ("envt:dev,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/hi-IN/" *home*))))
         ("envt:dev,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/mr-IN/" *home*))))))
