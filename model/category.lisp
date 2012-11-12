@@ -8,8 +8,7 @@
    (name :initarg :name :initform nil :accessor name)
    (parent :initarg :parent :initform nil :accessor parent)
    (slug :initarg :slug :initform nil :accessor slug)
-   (rank :initarg :rank :initform nil :accessor rank)
-   (active :initarg :active :initform nil :accessor active))) ; y/n
+   (rank :initarg :rank :initform nil :accessor rank))) ; order of placement in nav/subnav
 
 (defclass category-storage ()
   ((categorys :initform nil :accessor categorys)
@@ -73,3 +72,35 @@
     (push (get-category-by-slug "science") rslt)
     (push (get-category-by-slug "technology") rslt)
     rslt))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun add-cat/subcat ()
+  (let ((i 1))
+    (dolist (cs (get-config "categorys"))
+      (let* ((cat-name (first cs))
+             (subcats (rest cs))
+             (cat (add-category (make-instance 'category
+                                               :name cat-name
+                                               :parent 0
+                                               :rank i))))
+        (let ((j 1))
+          (dolist (sc-name subcats)
+            (add-category (make-instance 'category
+                                         :name sc-name
+                                         :parent (id cat)
+                                         :rank (+ i (/ j 10.0))))
+            (incf j)))
+        (incf i)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; needed for tmp-init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-random-cat-subcat ()
+  (let* ((all-categories (get-root-categorys))
+         (random-category (nth (random (length all-categories)) all-categories))
+         (all-subcategories (get-subcategorys (id random-category))))
+    (if all-subcategories
+        (values random-category (nth (random (length all-subcategories)) all-subcategories))
+        (get-random-cat-subcat))))

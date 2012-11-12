@@ -67,9 +67,7 @@
 (defun editor-nav ()
   (with-html (:li :id "nav-approve"
                   (:h2 (:a :href (genurl 'r-approve-articles) "Approve Articles")))))
-(defun admin-nav ()
-  (with-html (:li :id "nav-catsubcat"
-                  (:h2 (:a :href (genurl 'r-cat-get) "Cat/Subcat")))))
+(defun admin-nav ())
 (defun logout-nav ()
   (with-html (:li :id "nav-logout"
                   (:h2 (:a :href (genurl 'r-logout) "Logout")))))

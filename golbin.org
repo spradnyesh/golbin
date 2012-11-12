@@ -2,14 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [lang] add categories
-    :CLOCK:
-    CLOCK: [2012-11-09 Fri 19:04]--[2012-11-09 Fri 19:44] =>  0:40
-    CLOCK: [2012-11-04 Sun 11:26]--[2012-11-04 Sun 11:27] =>  0:01
-    CLOCK: [2012-11-04 Sun 11:09]--[2012-11-04 Sun 11:16] =>  0:07
-    :END:
-    - [ ] mr
-    - [ ] hi
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -24,6 +16,9 @@
       - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
       - (load-language "en-IN")
       - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
+*** [config] passing dimensions
+    - let dimension be passed from URL as "?d1m=lang:en-IN,envt:dev", instead of "?lang=en-IN&envt=dev"
+    - in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
 *** [lang][ed] add links to google transliteration from mr/hi editorial pages
     - [ ] http://www.google.co.in/transliterate
     - [ ] http://www.google.com/inputtools/windows/index.html
@@ -47,10 +42,6 @@
 *** TODO [ed] editor should be able to approve/reject articles
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
-    :END:
-*** TODO [ed] admin should be able to add/edit/sort cat/subcat
-    :CLOCK:
-    CLOCK: [2012-11-10 Sat 15:03]--[2012-11-10 Sat 16:14] =>  1:11
     :END:
 *** [ed] admin should be able to change author-type
     - promote author to editor (or viceversa)
@@ -823,6 +814,31 @@
      :ARCHIVE_TIME: 2012-11-09 Fri 18:40
      :END:
      - it's there in DB, not needed in config
+**** DONE [lang] add categories
+     CLOSED: [2012-11-12 Mon 21:35]
+     :CLOCK:
+     CLOCK: [2012-11-12 Mon 21:00]--[2012-11-12 Mon 21:35] =>  0:35
+     CLOCK: [2012-11-09 Fri 19:04]--[2012-11-09 Fri 19:44] =>  0:40
+     CLOCK: [2012-11-04 Sun 11:26]--[2012-11-04 Sun 11:27] =>  0:01
+     CLOCK: [2012-11-04 Sun 11:09]--[2012-11-04 Sun 11:16] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-12 Mon 21:35
+     :END:
+     - [X] mr
+     - [X] hi
+**** CANCELLED [ed] admin should be able to add/edit/sort cat/subcat
+     CLOSED: [2012-11-12 Mon 21:02]
+     :LOGBOOK:
+     - State "CANCELLED"  from "TODO"       [2012-11-12 Mon 21:02] \\
+       too less ROI, will do manually in code/db
+     :END:
+     :CLOCK:
+     CLOCK: [2012-11-10 Sat 15:03]--[2012-11-10 Sat 16:14] =>  1:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-12 Mon 21:35
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
