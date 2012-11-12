@@ -16,12 +16,7 @@
       - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
       - (load-language "en-IN")
       - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
-*** [config] passing dimensions
-    - let dimension be passed from URL as "?d1m=lang:en-IN,envt:dev", instead of "?lang=en-IN&envt=dev"
-    - in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
-*** [lang] init db
-    - [ ] mr
-    - [ ] hi
+*** [route] in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
 *** [fe] empty cat/subcat pages should not be 404, but should show error msg instead
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
 *** TODO [lang] mr/hi font in fe and RTE
@@ -97,6 +92,7 @@
     CLOCK: [2012-09-03 Mon 15:48]--[2012-09-03 Mon 16:03] =>  0:15
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
+*** [config] utils/dimensions should not presume dimensions like envt or lang
 *** [security] escape input/editorial data
 *** [security] escape printing user-inputted data
     - search for 'alert ("hi");' should not show alert
@@ -846,6 +842,15 @@
      :END:
      - [X] http://www.google.co.in/transliterate
      - [X] http://www.google.com/inputtools/windows/index.html
+**** DONE [config] let dimension be passed from URL as "?d1m=lang:en-IN,envt:dev", instead of "?lang=en-IN&envt=dev"
+     CLOSED: [2012-11-12 Mon 22:38]
+     :CLOCK:
+     CLOCK: [2012-11-12 Mon 22:16]--[2012-11-12 Mon 22:38] =>  0:22
+     CLOCK: [2012-11-12 Mon 22:10]--[2012-11-12 Mon 22:16] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-12 Mon 22:38
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

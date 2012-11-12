@@ -22,6 +22,13 @@
    :request-class 'hawksbill-request))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper macros
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro unless-setf-setf (var if-val else-val)
+  `(unless (setf ,var ,if-val)
+     (setf ,var ,else-val)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-resource (name dim-str)
@@ -38,13 +45,17 @@
                (format t "***** ~a: *****~%" k)
                (print-map v)) *resources*))
 
+(defun find-dimension-value (dim-name &optional dim-str)
+  (dolist (dim (split-sequence "," dim-str :test #'string-equal))
+    (let ((name-value (split-sequence ":" dim :test #'string-equal)))
+      (when (string-equal dim-name (first name-value))
+        (return-from find-dimension-value (second name-value)))))
+  (find-dimension-value dim-name *default-dimensions*))
+
 (defun get-dimension-value (dim-name)
   (if (boundp '*request*)
       (funcall (intern (string-upcase dim-name) :hawksbill.utils) (dimensions *request*))
-      (dolist (dim (split-sequence "," *default-dimensions* :test #'string-equal))
-        (let ((name-value (split-sequence ":" dim :test #'string-equal)))
-          (when (string-equal dim-name (first name-value))
-            (return-from get-dimension-value (second name-value)))))))
+      (find-dimension-value dim-name)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init *dimensions* for every request (as shown in http://restas.lisper.ru/en/manual/decorators.html)
@@ -57,15 +68,10 @@
         (envt nil)
         (lang nil))
     (cond
-      ;; localhost/dev
-      ((search "localhost" host)
-       (progn
-         ;; set envt
-         (unless (setf envt (get-parameter "envt"))
-           (setf envt "dev"))
-         ;; set lang
-         (unless (setf lang (get-parameter "lang"))
-           (setf lang (get-config "site.lang")))))
+      ;; "d1m" param takes highest priority
+      ((or (get-parameter "d1m") (search "localhost" host))
+       (setf lang (find-dimension-value "lang" (get-parameter "d1m")))
+       (setf envt (find-dimension-value "envt" (get-parameter "d1m"))))
       ;; TODO: int/qa
       ;; production
       ((setf index (search (get-config "site.url") host))
