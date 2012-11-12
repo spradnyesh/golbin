@@ -106,6 +106,17 @@
                                           "Upload")
                                       " a photo"))
                             (str (tr-td-text "body" :value (when article (body article)) :class "ckeditor"))
+                            (unless (string-equal (get-dimension-value "lang") "en-IN")
+                              (htm (:tr (:td (str (get-dimension-value "lang")))
+                                        (:td "Click " ; XXX: translate
+                                             (:a :href "http://www.google.co.in/transliterate"
+                                                 :target "_blank"
+                                                 "here")
+                                             " to use Google Transliterate or "
+                                             (:a :href "http://www.google.com/inputtools/windows/index.html"
+                                                 :target "_blank"
+                                                 "here")
+                                             " to download Google Transliterate software on your PC."))))
                             (:tr (:td "Category")
                                  (:td (:select :name "cat"
                                                :class "td-input cat"

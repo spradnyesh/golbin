@@ -19,9 +19,6 @@
 *** [config] passing dimensions
     - let dimension be passed from URL as "?d1m=lang:en-IN,envt:dev", instead of "?lang=en-IN&envt=dev"
     - in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
-*** [lang][ed] add links to google transliteration from mr/hi editorial pages
-    - [ ] http://www.google.co.in/transliterate
-    - [ ] http://www.google.com/inputtools/windows/index.html
 *** [lang] init db
     - [ ] mr
     - [ ] hi
@@ -839,6 +836,16 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-12 Mon 21:35
      :END:
+**** DONE [lang][ed] add links to google transliteration from mr/hi editorial pages
+     CLOSED: [2012-11-12 Mon 22:05]
+     :CLOCK:
+     CLOCK: [2012-11-12 Mon 21:38]--[2012-11-12 Mon 22:05] =>  0:27
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-12 Mon 22:07
+     :END:
+     - [X] http://www.google.co.in/transliterate
+     - [X] http://www.google.com/inputtools/windows/index.html
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

@@ -17,6 +17,7 @@
            :init-dimensions
            :hawksbill-acceptor
            :show-resources
+           :get-dimension-value
            ;; config
            :*config*
            :*dimensions*

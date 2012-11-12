@@ -38,6 +38,14 @@
                (format t "***** ~a: *****~%" k)
                (print-map v)) *resources*))
 
+(defun get-dimension-value (dim-name)
+  (if (boundp '*request*)
+      (funcall (intern (string-upcase dim-name) :hawksbill.utils) (dimensions *request*))
+      (dolist (dim (split-sequence "," *default-dimensions* :test #'string-equal))
+        (let ((name-value (split-sequence ":" dim :test #'string-equal)))
+          (when (string-equal dim-name (first name-value))
+            (return-from get-dimension-value (second name-value)))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init *dimensions* for every request (as shown in http://restas.lisper.ru/en/manual/decorators.html)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
