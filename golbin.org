@@ -2,6 +2,9 @@
 
 * tasks
 ** backlog
+*** TODO [fe] make nav items based on rank
+    :CLOCK:
+    :END:
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -850,6 +853,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-12 Mon 22:38
+     :END:
+**** DONE *[bug][fe] / is making an infinite loop, taking 100% CPU*
+     CLOSED: [2012-11-18 Sun 18:03]
+     :CLOCK:
+     CLOCK: [2012-11-18 Sun 17:51]--[2012-11-18 Sun 18:03] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-18 Sun 18:03
      :END:
 ** TODO refactor
    :CLOCK:

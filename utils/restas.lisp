@@ -26,6 +26,7 @@
        (unless *system-status*
          (setf *system-status* t)
          (init-config)
+         (set-default-dimensions nil)
          ;; init-model & db-connect only for the longest dim-str
          ;; ensure that the "db.path" config is present in longest dim-str
          (dolist (dim (first (reverse (group-list #'length *dimensions-combos*))))
