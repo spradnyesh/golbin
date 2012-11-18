@@ -26,6 +26,7 @@
            :category
            :name
            :parent
+           :rank
            :category-storage
            :categorys
            :typeof

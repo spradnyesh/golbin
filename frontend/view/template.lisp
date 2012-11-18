@@ -71,6 +71,16 @@
   (with-html
     (:div :id "trending-tags")))
 
+(defmacro fe-subnav (url)
+  `(with-html
+    (when (plusp (rank subcat))
+      (let ((subcat-slug (slug subcat)))
+        (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
+                             "subcat selected"
+                             "subcat")
+                  (:h3 (:a :href ,url
+                           (str (name subcat))))))))))
+
 ;; XXX: needs cache (key: uri)
 (defun fe-navigation ()
   (let* ((route (route-symbol *route*))
@@ -85,31 +95,22 @@
                  (:li :id "nav-home" :class (nav-selected t "cat" "cat selected")
                       (:h2 (:a :href (genurl 'r-home) "Home")))
                  (dolist (cat (get-root-categorys))
-                   (let ((cat-slug (slug cat)))
-                     (htm (:li :class (nav-selected (string-equal cat-slug (first cat-subcat))
-                                          "cat selected"
-                                          "cat"
-                                        (setf subnav-cat-slug cat-slug)
-                                        (setf subnav-subcats (get-subcategorys (id cat))))
-                               (:h2 (:a :href (genurl 'r-cat
-                                                      :cat cat-slug)
-                                        (str (name cat))))
-                               (:ul
-                                (dolist (subcat (get-subcategorys (id cat)))
-                                  (let ((subcat-slug (slug subcat)))
-                                    (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
-                                                         "subcat selected"
-                                                         "subcat")
-                                              (:h3 (:a :href (genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)
-                                                       (str (name subcat))))))))))))))
+                   (when (plusp (rank cat))
+                     (let ((cat-slug (slug cat)))
+                       (htm (:li :class (nav-selected (string-equal cat-slug (first cat-subcat))
+                                            "cat selected"
+                                            "cat"
+                                          (setf subnav-cat-slug cat-slug)
+                                          (setf subnav-subcats (get-subcategorys (id cat))))
+                                 (:h2 (:a :href (genurl 'r-cat
+                                                        :cat cat-slug)
+                                          (str (name cat))))
+                                 (:ul
+                                  (dolist (subcat (get-subcategorys (id cat)))
+                                    (htm (fe-subnav (genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))))
             (:ul :id "subnav"
                  (dolist (subcat subnav-subcats)
-                   (let ((subcat-slug (slug subcat)))
-                     (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
-                                          "subcat selected"
-                                          "subcat")
-                               (:h3 (:a :href (genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)
-                                        (str (name subcat)))))))))))))
+                   (htm (fe-subnav (genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))))
 
 (defun fe-header ()
   (with-html

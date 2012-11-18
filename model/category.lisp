@@ -46,7 +46,8 @@
                                     (= cat-id (parent cat)))
                                   (get-all-categorys))
         #'<
-        :key 'id))
+        :key #'(lambda (cat)
+                 (abs (rank cat)))))
 
 (defun get-root-categorys ()
   (get-subcategorys 0))
