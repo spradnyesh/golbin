@@ -11,6 +11,7 @@
        (fe-page-template
            ,title
            nil
+           (list ,title)
          (htm
           (:div :id "articles"
                 (:ul
@@ -46,12 +47,13 @@
                                         num-pages
                                         ,route))))))
      (fe-page-template
-           ,title
-           nil
-         (htm
-          (:div :id "error" "Sorry! We were unable to find the content that you are looking for. Please click "
-                (:a :href "javascript:history.go(-1)" "here")
-                " to go back."))))) ; XXX: translate
+         ,title
+         nil
+       nil
+       (htm
+        (:div :id "error" "Sorry! We were unable to find the content that you are looking for. Please click "
+              (:a :href "javascript:history.go(-1)" "here")
+              " to go back.")))))       ; XXX: translate
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; view functions

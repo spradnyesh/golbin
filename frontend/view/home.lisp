@@ -20,8 +20,10 @@
             (:data . nil))))))
 
 (defun v-home ()
-  (fe-page-template (get-config "site.name")
+  (fe-page-template
+      (get-config "site.name")
       nil
+    nil
     (let ((carousel-tabs (get-config "pagination.home.carousel.tabs"))
           (related-length (get-config "pagination.article.related")))
       (htm (:div :id "jumbotron")

@@ -3,15 +3,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro fe-page-template (title &optional (js nil) &body content)
+(defmacro fe-page-template (title js tags &body content)
   `(with-html
      (:html
       (:head
        (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+       (:meta :name "application-name" :content "Golb.in")
+       (:meta :name "author" :content "golbin@rocketmail.com")
+       (:meta :name "copyright" :content "Golb.in 2012")
+
+       (:meta :name "keywords" :content (join-string-list-with-delim ", " (append ,tags (list (get-config "site.name")))))
+       (:meta :name "google" :content "notranslate")
+
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
        (:style :type "text/css"
                (str (fe-get-css)))
+
        ;; google-analytics
        (:script :type "text/javascript"
                       (format t "

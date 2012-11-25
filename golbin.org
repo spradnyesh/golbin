@@ -29,8 +29,6 @@
     - http://www.indlinux.org/wiki/index.php/IndicFontsList#Devanagari
 *** [lang] find string replacements for different languages
 *** [lang] strings passed to JS land
-*** [fe] remove unnecessary id/class from page elements
-*** [ed] remove unnecessary id/class from page elements
 *** TODO [ed] editor should be able to approve/reject articles
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
@@ -96,9 +94,11 @@
 *** [security] escape input/editorial data
 *** [security] escape printing user-inputted data
     - search for 'alert ("hi");' should not show alert
+*** [performance] remove unnecessary id/class from page elements
+    - [ ] fe
+    - [ ] ed
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
-*** [seo] keywords (tags + cat/subcat)
 *** [seo] robots.txt
 *** [seo][performance] favicon
 *** [fe] theme
@@ -884,6 +884,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-25 Sun 14:51
+     :END:
+**** DONE [seo] keywords (tags + cat/subcat)
+     CLOSED: [2012-11-25 Sun 15:47]
+     :CLOCK:
+     CLOCK: [2012-11-25 Sun 14:53]--[2012-11-25 Sun 15:47] =>  0:54
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-25 Sun 15:47
      :END:
 ** TODO refactor
    :CLOCK:

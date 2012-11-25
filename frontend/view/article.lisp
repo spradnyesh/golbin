@@ -90,12 +90,17 @@
                                                    :from-end t
                                                    :test #'string-equal
                                                    :count 1))))
-         (article (get-article-by-id id)))
+         (article (get-article-by-id id))
+         (tags (append (loop for tag in (tags article)
+                          collect (name tag))
+                       (list (name (cat article))
+                             (name (subcat article))))))
     (when (or (eql :a (status article))
               editorial)
       (fe-page-template
           (title article)
           nil
+          tags
         (:div
          (:div :id "article"
                (str (article-preamble-markup article))
