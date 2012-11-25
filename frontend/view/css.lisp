@@ -59,4 +59,16 @@
            ((".pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))
            ((".pagination li a") (:text-decoration "none" :color "#035583"))
            ((".pagination .disabled") (:border "none"))
-           ))))
+
+           ;; sharethis.com
+           ((".stpulldown-gradient") (:background "#E1E1E1"
+                                                  :background "-moz-linear-gradient(top, '#E1E1E1' 0%, '#A7A7A7' 100%)" ; /* firefox */
+                                                  :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%, '#E1E1E1'), color-stop(100%, '#A7A7A7'))" ; /* webkit */
+                                                  :filter "progid:DXImageTransform.Microsoft.gradient( startColorstr='#E1E1E1', endColorstr='#A7A7A7',GradientType=0 )" ; /* ie */
+                                                  :background "-o-linear-gradient(top, '#E1E1E1' 0%, '#A7A7A7' 100%)" ; /* opera */
+                                                  :color "#636363"))
+           (("#stpulldown .stpulldown-logo") (:height "40px"
+                                                      :width "300px"
+                                                      :margin-left "20px"
+                                                      :margin-top "5px"
+                                                      :background "url('http://sd.sharethis.com/disc/images/Logo_Area.png') no-repeat"))))))

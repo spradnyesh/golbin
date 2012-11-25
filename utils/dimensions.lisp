@@ -69,7 +69,7 @@
         (lang nil))
     (cond
       ;; "d1m" param takes highest priority
-      ((or (get-parameter "d1m") (search "localhost" host))
+      ((or (get-parameter "d1m") (search "localhost" host) (search "127.0.0.1" host))
        (setf lang (find-dimension-value "lang" (get-parameter "d1m")))
        (setf envt (find-dimension-value "envt" (get-parameter "d1m"))))
       ;; TODO: int/qa

@@ -2,6 +2,13 @@
 
 * tasks
 ** backlog
+*** TODO [reports] check GA data
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
+    :END:
+*** [fe] theme
+    - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
+      - license: http://www.famfamfam.com/lab/icons/silk/
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -55,12 +62,7 @@
       - this quarter
       - this half-year
       - this year
-*** [fe] enable sharing on SNS
-*** [fe] disable prev/next when no longer scrollable in that direction
-*** TODO [reports] check GA data
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
-    :END:
+*** [fe] disable prev/next when carousel is no longer scrollable in that direction
 *** [reports] article-id: views (day, week, month, year)
 *** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
 *** [reports] time (day, week, month, year): most-viewed article/author
@@ -101,9 +103,6 @@
 *** [performance] http caching headers
 *** [seo] robots.txt
 *** [seo][performance] favicon
-*** [fe] theme
-    - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
-      - license: http://www.famfamfam.com/lab/icons/silk/
 *** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
 *** TODO [fe] home page to show carousel for categories/authors of articles
     :CLOCK:
@@ -892,6 +891,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-25 Sun 15:47
+     :END:
+**** DONE [fe] enable sharing on SNS
+     CLOSED: [2012-11-25 Sun 16:56]
+     :CLOCK:
+     CLOCK: [2012-11-25 Sun 15:54]--[2012-11-25 Sun 16:56] =>  1:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-25 Sun 16:56
      :END:
 ** TODO refactor
    :CLOCK:
