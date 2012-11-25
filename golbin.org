@@ -865,6 +865,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-18 Sun 18:03
      :END:
+**** DONE [bug] subnav not showing
+     CLOSED: [2012-11-25 Sun 14:37]
+     :CLOCK:
+     CLOCK: [2012-11-25 Sun 14:34]--[2012-11-25 Sun 14:37] =>  0:03
+     CLOCK: [2012-11-25 Sun 14:06]--[2012-11-25 Sun 14:34] =>  0:28
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-25 Sun 14:37
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

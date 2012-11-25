@@ -73,13 +73,13 @@
 
 (defmacro fe-subnav (url)
   `(with-html
-    (when (plusp (rank subcat))
-      (let ((subcat-slug (slug subcat)))
-        (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
-                             "subcat selected"
-                             "subcat")
-                  (:h3 (:a :href ,url
-                           (str (name subcat))))))))))
+     (when (plusp (rank subcat))
+       (let ((subcat-slug (slug subcat)))
+         (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
+                              "subcat selected"
+                              "subcat")
+                   (:h3 (:a :href ,url
+                            (str (name subcat))))))))))
 
 ;; XXX: needs cache (key: uri)
 (defun fe-navigation ()
@@ -107,10 +107,10 @@
                                           (str (name cat))))
                                  (:ul
                                   (dolist (subcat (get-subcategorys (id cat)))
-                                    (htm (fe-subnav (genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))))
+                                    (str (fe-subnav (genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))))
             (:ul :id "subnav"
                  (dolist (subcat subnav-subcats)
-                   (htm (fe-subnav (genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))))
+                   (str (fe-subnav (genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))))
 
 (defun fe-header ()
   (with-html
