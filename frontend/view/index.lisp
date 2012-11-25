@@ -4,7 +4,7 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro view-index (title articles-list route &rest route-params)
-  `(when ,articles-list
+  `(if ,articles-list
      (let* ((num-per-page (get-config "pagination.article.limit"))
             (num-pages (get-config "pagination.article.range"))
             (offset (* page num-per-page)))
@@ -44,7 +44,14 @@
                                         (length ,articles-list)
                                         num-per-page
                                         num-pages
-                                        ,route))))))))
+                                        ,route))))))
+     (fe-page-template
+           ,title
+           nil
+         (htm
+          (:div :id "error" "Sorry! We were unable to find the content that you are looking for. Please click "
+                (:a :href "javascript:history.go(-1)" "here")
+                " to go back."))))) ; XXX: translate
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; view functions

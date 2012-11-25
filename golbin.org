@@ -8,6 +8,7 @@
     CLOCK: [2012-10-17 Wed 19:08]--[2012-10-17 Wed 19:49] =>  0:41
     :END:
     - [ ] fe
+      - [ ] 'home' in primary nav
     - [ ] utils
     - [ ] common
     - [ ] ed
@@ -17,7 +18,6 @@
       - (load-language "en-IN")
       - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
 *** [route] in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
-*** [fe] empty cat/subcat pages should not be 404, but should show error msg instead
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
 *** TODO [lang] mr/hi font in fe and RTE
     :CLOCK:
@@ -877,6 +877,14 @@
      :ARCHIVE_TIME: 2012-11-25 Sun 14:41
      :END:
      - sorted nav/subnav, but subnav not showing (only -ve should be invisible)
+**** DONE [fe] empty cat/subcat pages should not be 404, but should show error msg instead
+     CLOSED: [2012-11-25 Sun 14:51]
+     :CLOCK:
+     CLOCK: [2012-11-25 Sun 14:44]--[2012-11-25 Sun 14:51] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-25 Sun 14:51
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
