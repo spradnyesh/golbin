@@ -2,12 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug] subnav hover not working
-*** TODO [fe] make nav items based on rank
-    :CLOCK:
-    CLOCK: [2012-11-18 Sun 17:21]--[2012-11-18 Sun 19:21] =>  2:00
-    :END:
-    - sorted nav/subnav, but subnav not showing (only -ve should be invisible)
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -874,6 +868,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-25 Sun 14:37
      :END:
+**** DONE [fe] make nav items based on rank
+     CLOSED: [2012-11-25 Sun 14:39]
+     :CLOCK:
+     CLOCK: [2012-11-18 Sun 17:21]--[2012-11-18 Sun 19:21] =>  2:00
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-11-25 Sun 14:41
+     :END:
+     - sorted nav/subnav, but subnav not showing (only -ve should be invisible)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
