@@ -10,12 +10,14 @@
    (cat :initarg :cat :initform nil :accessor cat)
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
-   (author :initarg :author :initform nil :accessor author)))
+   (author :initarg :author :initform nil :accessor author)
+   (attribution :initarg :attribution :initform nil :accessor attribution)))
 
 (defclass mini-photo ()
   ((id :initarg :id :initform nil :accessor id)
    (title :initarg :title :initform nil :accessor title)
-   (new-filename :initarg :new-filename :initform nil :accessor new-filename))
+   (new-filename :initarg :new-filename :initform nil :accessor new-filename)
+   (attribution :initarg :attribution :initform nil :accessor attribution))
   (:documentation "to be used as a foreign key in articles/authors"))
 
 (defclass photo-storage ()
@@ -118,7 +120,8 @@
   (make-instance 'mini-photo
                  :id (id photo)
                  :title (title photo)
-                 :new-filename (new-filename photo)))
+                 :new-filename (new-filename photo)
+                 :attribution (attribution photo)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for resize photos cron

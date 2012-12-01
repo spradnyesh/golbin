@@ -38,7 +38,10 @@
                                         ((eql :b photo-direction) "block"))))
                          (htm (:div :class pd
                                     (str (article-lead-photo-url photo pd))
-                                    (:p (str (title photo))))))))
+                                    (:p :class "title" (str (title photo)))
+                                    (let ((attr (attribution photo)))
+                                      (when attr
+                                        (htm (:a :class "attribution" :href attr "photo attribution")))))))))
                    (str (body article)))))
 
 (defun article-related-markup (id article)

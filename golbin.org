@@ -900,6 +900,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-11-25 Sun 16:56
      :END:
+**** DONE [fe] attribution for images
+     CLOSED: [2012-12-01 Sat 16:26]
+     :CLOCK:
+     CLOCK: [2012-12-01 Sat 16:02]--[2012-12-01 Sat 16:26] =>  0:24
+     CLOCK: [2012-12-01 Sat 15:25]--[2012-12-01 Sat 15:50] =>  0:25
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-01 Sat 16:27
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
@@ -1209,6 +1218,8 @@
     - [X] git
     - [X] nginx
 * notes
+** misc
+   - http://www.html-ipsum.com/
 ** ideas
    - 'close sidebar' as in http://www.securitytube.net/video/1319
    - [[http://gravatar.com/][gravatar]] for author logo
@@ -1240,6 +1251,51 @@
    - routes:
      - trailing 'slash' should be put explicitly, to avoid matching to no/multiple rules
      - *submodule* and *route* special variables are populated during request, and aren't available from slime
+* articles
+  - http://www.mastersofseo.com/how-get-inspiration-to-writ/
+  - tags should be nouns
+  - search images on flickr. use advanced search and select 'only search within creative commons licensed content'
+    - images should have 'some rights reserved' link pointing to http://creativecommons.org/licenses/by/2.0/deed.en or http://creativecommons.org/licenses/by-sa/2.0/deed.en
+    - give attribution (compulsory)
+** My first article
+   - cat/subcat:
+   - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
+   - lead image:
+     - http://ktliterary.com/wp/wp-content/uploads/2010/03/inspiration.jpg (http://ktliterary.com/2010/03/guest-blog-by-intern-jenny-inspiration/)
+     - http://www.mastersofseo.com/wp-content/uploads/2009/01/inspiration-300x225.jpg (http://www.mastersofseo.com/how-get-inspiration-to-writ/)
+     - http://www.flickr.com/photos/ecokaren/5596869512/
+     - http://www.flickr.com/photos/freeflyer09/4448061188/
+     - http://www.flickr.com/photos/erikogan/4892456507/
+   - summary: This article is about how I overcame my fear and found my own eureka moment, how i found the initial inspiration and found the joy of writing.
+Getting a [[www.golb.in][website]] built was a difficult but manageable task. But where do I get the content from? I am no writer myself. I have written a few blog [[blog.spradnyesh.org][posts]], but those were long ago and there was definitely no discipline there. Those were some random, and more importantly, sporadic thoughts that I penned down. However what I am trying to do now is a totally different beast. Of course, the idea is to attract people to write on this website, but before that there needs to be atleast some initial content. It is easier to add content and ideas to an existing work, but very difficult to start something oneself. So that is the responsibility I must take onto myself, to initiate and to lay down some basic foundation.
+
+Ok, so now I have got myself a goal and some determination too. But that does not solve the problem of skill. Having a goal and determination does not make me a writer. So I do the only thing that makes sense, procrastinate! After having delayed the task for a few weeks, I decided to do the inevitable:
+
+<quote>
+The best way to get started is to get started. --Anonymous
+</quote>
+
+The first thing that I needed to do was get over [[http://en.wikipedia.org/wiki/Inertia][inertia]]; I needed to get rid of the [[http://en.wikipedia.org/wiki/A_rolling_stone_gathers_no_moss][moss]], get the stone rolling. I started to think about what I should write. That's when I remembered a sentence from one of [[http://en.wikipedia.org/wiki/Purushottam_Laxman_Deshpande][P. L. Deshpande]]'s essays 'Majhe Poshtk Jeevan':
+
+<quote>
+Shevati kaay ho, apan sagle jana aahot na, te pattyatlya navache dhani. Majkuracha maalak niralach asto.
+</quote>
+
+Literally translated, it means "Finally, we all are just the owners of the name on the address. The owner of the content is someone completely different."
+
+I have always been fascinated with quotations. I have a collection of quotations and phrases, not only from great people, but also anonymous, and even short sentences that I have found very interesting; anything that I have read or heard from anywhere. The most interesting thing that i find about quotations or phrases is that they are open to interpretations. The same sentence can mean different things to different people. Actually, it can mean different things to the same person when read at different times, in different moods, in different circumstances. I think that more important than the sentence is its interpretation; what one gets or understands, what one perceives from it.
+
+For me, in the context of writing my first article on [[www.golb.in][Golbin]], the above sentence meant a lot:
+1. I am the author, but what i write is consciously or sub-consciously told to me by _the_ author himself
+2. This takes away some pressure from my mind about how will the article be received by the audience
+3. I realize that this is only my first attempt; with practice and perseverance I am only going to improve
+
+This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now understand what is actually meant by inspiration and it culminates in the following [[http://en.wikiquote.org/wiki/Thomas_Edison][quote]]:
+
+<quote>
+Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
+</quote>
+
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993

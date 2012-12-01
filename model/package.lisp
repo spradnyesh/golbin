@@ -106,6 +106,7 @@
            :get-photos-by-tag-slug
            :get-mini-photo
            :article-lead-photo-url
+           :attribution
            ;; tag
            :add-tag
            :get-tag-by-slug

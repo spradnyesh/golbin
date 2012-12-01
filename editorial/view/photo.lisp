@@ -35,6 +35,7 @@
                                         (dolist (subcat (rest subcats))
                                           (htm (:option :value (id subcat) (str (name subcat))))))))
                      (str (tr-td-input "tags"))
+                     (str (tr-td-input "attribution"))
                      (str (tr-td-input "photo" :typeof "file")))
              (:input :id "upload"
                      :name "upload"
@@ -65,6 +66,7 @@
         (tags (split-sequence "," (post-parameter "tags") :test #'string-equal))
         (photo-tags nil)
         (typeof (post-parameter "typeof"))
+        (attribution (post-parameter "attribution"))
         (photo (post-parameter "photo")))
     (when (and photo (listp photo))
       (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
@@ -83,7 +85,8 @@
                                                                       (pathname-type new-path))
                                                 :cat (get-category-by-id (when cat (parse-integer cat)))
                                                 :subcat (get-category-by-id (when subcat (parse-integer subcat)))
-                                                :tags (normalize-photo-tags photo-tags))))
+                                                :tags (normalize-photo-tags photo-tags)
+                                                :attribution attribution)))
           (if ajax
               ;; need to remove the '\\' that encode-json-to-string adds before every '/' in the photo path :(
               (regex-replace-all
