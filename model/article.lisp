@@ -17,7 +17,8 @@
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
    (location :initarg :location :initform nil :accessor location)
-   (author :initarg :author :initform nil :accessor author))
+   (author :initarg :author :initform nil :accessor author)
+   (comments :initarg :comments :initform nil :accessor comments))
   (:documentation "Article Class"))
 
 (defclass article-storage ()
@@ -54,6 +55,31 @@
 
     ;; save article into storage
     (execute (get-db-handle) (make-transaction 'update-article article))
+
+    article))
+
+(defun add-article-comment (article parent-id comment)
+  (when article
+    (let ((save-flag t))
+      (if (null (comments article))
+          ;; this is the 1st comment for the article
+          (let ((comments nil))
+            (push comment comments)
+            (setf (comments article) comments))
+          ;; article already has comments
+          (let* ((comments (comments article))
+                 (parent comments))
+            (dolist (s (split-sequence "." parent-id :test #'string=))
+              (setf parent (nth (parse-integer s) parent)))
+            (if parent
+                (push comment (children parent))
+                ;; when parent is nil, it means someone has tampered w/ the parent-id attribute
+                ;; lets ignore that comment
+                (setf save-flag nil))))
+
+      (when save-flag
+        ;; save article into storage
+        (execute (get-db-handle) (make-transaction 'update-article article))))
 
     article))
 

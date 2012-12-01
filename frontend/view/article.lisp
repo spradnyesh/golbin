@@ -28,6 +28,31 @@
         (str ", using tags ")
         (:span :id "a-tags" (str (fe-article-tags-markup article))))))
 
+(defmacro do-child-comments (parent-id)
+  `(with-html (:ul :class "comment"
+                   (dolist (child children)
+                     (str (get-comment-markup child (incf ,parent-id)))))))
+
+(defun get-comment-markup (comment parent-id)
+  (with-html (:li (:p :class "c-name" (username comment))
+                  (let ((url (user-url comment)))
+                    (when url
+                      (htm (:p :class "c-url" url))))
+                  (:p :class "c-body" (body comment))
+                  (:p :class "c-reply" (:a :id (write-to-string parent-id) :href "" "Reply")) ; XXX: translate
+                  (let ((children (children comment)))
+                    (when children
+                      (htm (do-child-comments parent-id)))))))
+
+(defun article-comments-markup (article)
+  (with-html (:form :id "a-comments"
+                    :method "POST"
+                    :action (genurl 'r-article-comment)
+                   (let ((children (comments article)))
+                     (when children
+                       (str (do-child-comments -1))))
+                   (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment"))))) ; XXX: translate
+
 (defun article-body-markup (article)
   (with-html (:div :id "a-body"
                    (let ((photo (photo article)))
@@ -107,7 +132,8 @@
         (:div
          (:div :id "article"
                (str (article-preamble-markup article))
-               (str (article-body-markup article)))
+               (str (article-body-markup article))
+               (str (article-comments-markup article)))
          (str (article-related-markup id article)))))))
 
 (defun v-ajax-article-related (id typeof page)
@@ -125,3 +151,8 @@
         (encode-json-to-string
           `((:status . "failure")
             (:data . nil))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; comments
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun v-comment ())

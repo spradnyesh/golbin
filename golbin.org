@@ -2,6 +2,17 @@
 
 * tasks
 ** backlog
+*** TODO comments
+    :CLOCK:
+    CLOCK: [2012-12-01 Sat 18:45]--[2012-12-01 Sat 19:20] =>  0:35
+    CLOCK: [2012-12-01 Sat 17:27]--[2012-12-01 Sat 18:10] =>  0:43
+    CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
+    :END:
+    - captcha
+      - http://www.google.com/recaptcha
+      - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
+    - spam
+      - http://akismet.com/
 *** TODO [reports] check GA data
     :CLOCK:
     CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
@@ -93,9 +104,11 @@
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
 *** [config] utils/dimensions should not presume dimensions like envt or lang
-*** [security] escape input/editorial data
-*** [security] escape printing user-inputted data
-    - search for 'alert ("hi");' should not show alert
+*** TODO [security] escape input/output data
+    :CLOCK:
+    CLOCK: [2012-12-01 Sat 17:10]--[2012-12-01 Sat 17:26] =>  0:16
+    :END:
+    - (ql:quickload "do-urlencode")
 *** [performance] remove unnecessary id/class from page elements
     - [ ] fe
     - [ ] ed
@@ -1242,7 +1255,11 @@
      - http://trac-hacks.org/wiki/AccountManagerPlugin
      - http://trac-hacks.org/wiki/TagsPlugin
      - http://trac-hacks.org/wiki/DownloadsPlugin
-   - http://www.google.com/recaptcha
+   - captcha
+     - http://www.google.com/recaptcha
+     - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
+   - comment spam
+     - http://akismet.com/
    - http://www.opencalais.com/ (entity recognition like CAP)
    - http://chartbeat.com
    - http://www.campusbookrentals.com/

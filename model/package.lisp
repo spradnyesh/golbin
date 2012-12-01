@@ -91,6 +91,7 @@
            :get-articles-by-cat-subcat
            :get-related-articles
            :get-all-articles-by-author
+           :comments
            ;; category
            :add-category
            :get-category-by-slug
@@ -118,5 +119,10 @@
            :get-random-author
            :get-current-author-id
            :verify-login
+           ;; comment
+           :children
+           :user-url
+           :user-ip
+           :user-agent
            ;; init
            :model-init))
