@@ -30,9 +30,10 @@
                (:module "model"
                         :components ((:file "package")
                                      (:file "category" :depends-on ("package"))
+                                     (:file "comments" :depends-on ("package"))
                                      (:file "tag" :depends-on ("package"))
                                      (:file "user" :depends-on ("package"))
-                                     (:file "article" :depends-on ("user"))
+                                     (:file "article" :depends-on ("user" "comments"))
                                      (:file "photo" :depends-on ("user"))
                                      (:file "init" :depends-on ("article" "category" "user" "photo" "tag")))
                         :depends-on ("common"))

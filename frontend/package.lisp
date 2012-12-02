@@ -3,7 +3,7 @@
   (:decorators #'hawksbill.utils:init-dimensions)
   (:shadow :% :prototype :size :acceptor :mime-type)
   (:shadowing-import-from :restas :redirect :start)
-  (:shadowing-import-from :hawksbill.golbin.model :typeof)
+  (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home
            :r-home-page
            :r-cat
@@ -15,6 +15,7 @@
            :r-tag
            :r-tag-page
            :r-article
+           :r-article-comment
            :r-search
            :r-ajax-home-category-articles
            :r-ajax-article-related

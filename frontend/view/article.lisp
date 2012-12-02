@@ -28,30 +28,45 @@
         (str ", using tags ")
         (:span :id "a-tags" (str (fe-article-tags-markup article))))))
 
-(defmacro do-child-comments (parent-id)
-  `(with-html (:ul :class "comment"
-                   (dolist (child children)
-                     (str (get-comment-markup child (incf ,parent-id)))))))
+(defun do-child-comments (parent-id children)
+  (with-html (:ul :class "comment"
+                  (let ((i 0)
+                        (str-i nil))
+                    (dolist (child children)
+                      (setf str-i (write-to-string i))
+                      (str (get-comment-markup child
+                                               (if (string= "-1" parent-id)
+                                                   str-i
+                                                   (join-string-list-with-delim "." (list parent-id str-i)))))
+                      (incf i))))))
 
 (defun get-comment-markup (comment parent-id)
-  (with-html (:li (:p :class "c-name" (username comment))
-                  (let ((url (user-url comment)))
+  (with-html (:li (:p :class "c-name" (str (username comment)))
+                  (let ((url (userurl comment)))
                     (when url
-                      (htm (:p :class "c-url" url))))
-                  (:p :class "c-body" (body comment))
-                  (:p :class "c-reply" (:a :id (write-to-string parent-id) :href "" "Reply")) ; XXX: translate
+                      (htm (:p :class "c-url" (str url)))))
+                  (:p :class "c-body" (str (body comment)))
+                  (:p :class "c-reply" (:a :id parent-id :href "" "Reply")) ; XXX: translate
                   (let ((children (children comment)))
                     (when children
-                      (htm (do-child-comments parent-id)))))))
+                      (str (do-child-comments parent-id children)))))))
 
-(defun article-comments-markup (article)
+(defun article-comments-markup (article slug-and-id)
   (with-html (:form :id "a-comments"
                     :method "POST"
-                    :action (genurl 'r-article-comment)
+                    :action (genurl 'r-article-comment :slug-and-id slug-and-id)
                    (let ((children (comments article)))
                      (when children
-                       (str (do-child-comments -1))))
-                   (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment"))))) ; XXX: translate
+                       (str (do-child-comments "-1" children))))
+                   (:input :class "td-input parent"
+                                             :type "hidden"
+                                             :name "parent")
+                   (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment") ; XXX: translate
+                       (:table :id "c-table"
+                               (str (tr-td-input "name"))
+                               (str (tr-td-input "email/url"))
+                               (str (tr-td-text "comment"))
+                               (str (tr-td-input "submit" :value "Submit" :typeof "submit"))))))) ; XXX: translate
 
 (defun article-body-markup (article)
   (with-html (:div :id "a-body"
@@ -110,14 +125,17 @@
        (:a :href (genurl 'r-tag :tag (slug tag))
            (str (name tag)))))))
 
+(defun get-id-from-slug-and-id (slug-and-id)
+  (parse-integer (first (split-sequence "-" slug-and-id
+                                        :from-end t
+                                        :test #'string-equal
+                                        :count 1))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-article (slug-and-id &optional (editorial nil))
-  (let* ((id (parse-integer (first (split-sequence "-" slug-and-id
-                                                   :from-end t
-                                                   :test #'string-equal
-                                                   :count 1))))
+  (let* ((id (get-id-from-slug-and-id slug-and-id))
          (article (get-article-by-id id))
          (tags (append (loop for tag in (tags article)
                           collect (name tag))
@@ -133,7 +151,7 @@
          (:div :id "article"
                (str (article-preamble-markup article))
                (str (article-body-markup article))
-               (str (article-comments-markup article)))
+               (str (article-comments-markup article slug-and-id)))
          (str (article-related-markup id article)))))))
 
 (defun v-ajax-article-related (id typeof page)
@@ -155,4 +173,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; comments
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-comment ())
+(defun v-comment (slug-and-id)
+  (let ((parent (post-parameter "parent"))
+        (name (post-parameter "name"))
+        (email/url (post-parameter "email/url"))
+        (body (post-parameter "comment")))
+    (add-article-comment (get-article-by-id (get-id-from-slug-and-id slug-and-id))
+                         parent
+                         (make-instance 'comment
+                                        :body body
+                                        :status :a
+                                        :username name
+                                        :userurl email/url
+                                        :userip (remote-addr *request*)
+                                        :useragent (user-agent)))
+    (redirect (genurl 'r-article :slug-and-id slug-and-id))))

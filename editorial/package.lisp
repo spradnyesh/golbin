@@ -4,7 +4,7 @@
   (:import-from :hawksbill.golbin.frontend :v-article :fe-page-template :article-preamble-markup :article-body-markup :article-related-markup)
   (:shadow :% :prototype :size :acceptor :mime-type)
   (:shadowing-import-from :restas :redirect :start)
-  (:shadowing-import-from :hawksbill.golbin.model :typeof)
+  (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home
            :r-photos
            :r-photo-id

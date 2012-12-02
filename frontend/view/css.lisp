@@ -48,7 +48,10 @@
            (("#a-body .block") (:padding-bottom "10px"))
            (("#a-body .left") (:padding-bottom "10px" :padding-right "10px"))
            (("#a-body .right") (:padding-bottom "10px" :padding-left "10px"))
-           ;; article
+           (("#a-comments") (:margin-top "25px"))
+           (("#a-comments .comment") (:padding-left "10px"))
+           (("#c-table") (:display "none"))
+           ;; carousel
            ((".carousel h3") (:padding "10px 0"))
            ((".carousel p.prev") (:position "relative" :top "50px"))
            ((".carousel p.next") (:position "relative" :top "-90px"))

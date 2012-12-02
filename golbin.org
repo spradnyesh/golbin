@@ -2,16 +2,30 @@
 
 * tasks
 ** backlog
-*** TODO comments
+*** [fe] footer
+    - [ ] copyright mark
+    - [ ] copyright page
+    - [ ] contact us page => email address (golbin@rocketmail.com)
+*** TODO [fe] comments
     :CLOCK:
+    CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
+    CLOCK: [2012-12-02 Sun 19:42]--[2012-12-02 Sun 20:14] =>  0:32
+    CLOCK: [2012-12-02 Sun 18:35]--[2012-12-02 Sun 18:38] =>  0:03
+    CLOCK: [2012-12-02 Sun 17:05]--[2012-12-02 Sun 18:30] =>  1:25
+    CLOCK: [2012-12-02 Sun 16:24]--[2012-12-02 Sun 16:48] =>  0:24
     CLOCK: [2012-12-01 Sat 18:45]--[2012-12-01 Sat 19:20] =>  0:35
     CLOCK: [2012-12-01 Sat 17:27]--[2012-12-01 Sat 18:10] =>  0:43
     CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
     :END:
-    - captcha
+    - [X] model
+    - [X] fe
+      - [X] get
+      - [X] post
+    - [X] js
+    - [ ] captcha
       - http://www.google.com/recaptcha
       - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
-    - spam
+    - [ ] spam
       - http://akismet.com/
 *** TODO [reports] check GA data
     :CLOCK:

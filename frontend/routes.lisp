@@ -16,7 +16,7 @@
 (define-route r-author-page ("/author/:author/:page" :parse-vars (list :page #'parse-integer)) (v-author author page))
 ;; article
 (define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
-(define-route r-article-comment ("/article/comment/") (v-comment))
+(define-route r-article-comment ("/comment/:(slug-and-id)/" :method :post) (v-comment slug-and-id))
 
 ;; search
 (define-route r-search ("/search/") (v-search))

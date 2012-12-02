@@ -83,6 +83,7 @@
            :get-tag-by-id
            ;; article
            :add-article
+           :add-article-comment
            :edit-article
            :get-active-articles
            :get-articles-by-author
@@ -120,9 +121,10 @@
            :get-current-author-id
            :verify-login
            ;; comment
+           :comment
            :children
-           :user-url
-           :user-ip
-           :user-agent
+           :userurl
+           :userip
+           :useragent
            ;; init
            :model-init))

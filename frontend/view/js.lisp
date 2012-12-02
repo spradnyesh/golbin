@@ -104,6 +104,16 @@
                              (carousel-fail data))))))
                    false)
                  (carousel-fail (data)
+                   false)
+
+                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;;; comment
+                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (comment-reply ()
+                   ($prevent-default)
+                   ($apply ($ "#a-comments .parent") val ($apply ($ this) attr "id"))
+                   ($apply ($apply ($ this) parent) append ($apply ($ "#c-table") remove))
+                   ($apply ($ "#c-table") show)
                    false)))
 
           ;; define event handlers
@@ -111,4 +121,5 @@
           ($apply ($ "#nav") hover (lambda () ()) hide-subcategory)
           ($apply ($ ".carousel p.prev a") click carousel-prev)
           ($apply ($ ".carousel p.next a") click carousel-next)
+          ($apply ($ "#a-comments .c-reply a") click comment-reply)
           false))))

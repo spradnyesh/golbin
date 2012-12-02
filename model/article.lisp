@@ -60,26 +60,24 @@
 
 (defun add-article-comment (article parent-id comment)
   (when article
-    (let ((save-flag t))
-      (if (null (comments article))
-          ;; this is the 1st comment for the article
-          (let ((comments nil))
-            (push comment comments)
-            (setf (comments article) comments))
-          ;; article already has comments
-          (let* ((comments (comments article))
-                 (parent comments))
-            (dolist (s (split-sequence "." parent-id :test #'string=))
-              (setf parent (nth (parse-integer s) parent)))
-            (if parent
-                (push comment (children parent))
-                ;; when parent is nil, it means someone has tampered w/ the parent-id attribute
-                ;; lets ignore that comment
-                (setf save-flag nil))))
+    (if (or (null (comments article))
+            (string= "-1" parent-id))
+        ;; this is the 1st comment for the article
+        ;; or this is a top level comment
+        (let ((comments (comments article)))
+          (push comment comments)
+          (setf (comments article) comments))
+        ;; article already has comments
+        (let ((parent (comments article))
+              (p-id (split-sequence "." parent-id :test #'string=)))
+          (dotimes (i (1- (length p-id)))
+            (setf parent (children (nth (parse-integer (nth i p-id)) parent))))
+          ;; take special care since the last node can be nil
+          (setf parent (nth (parse-integer (first (last p-id))) parent))
+          (push comment (children parent))))
 
-      (when save-flag
-        ;; save article into storage
-        (execute (get-db-handle) (make-transaction 'update-article article))))
+    ;; save article into storage
+    (execute (get-db-handle) (make-transaction 'update-article article))
 
     article))
 
