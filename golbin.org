@@ -22,7 +22,7 @@
       - [X] get
       - [X] post
     - [X] js
-    - [ ] captcha
+    - [X] captcha: not needed since spam blocking will block bots as well
       - http://www.google.com/recaptcha
       - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
     - [ ] spam
