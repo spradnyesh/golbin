@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fe][ed] every category should have an empty sub-category
 *** [fe] footer
     - [ ] copyright mark
     - [ ] copyright page
@@ -18,9 +19,11 @@
     CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
     :END:
     - [X] model
-    - [X] fe
+    - [-] fe
       - [X] get
       - [X] post
+      - [ ] check for empty name/email/url/body
+      - [ ] add separate mail/url and style as in http://blog.spathare.com/2010/02/mozillas-interest-in-open-standards/#comments
     - [X] js
     - [X] captcha: not needed since spam blocking will block bots as well
       - http://www.google.com/recaptcha
@@ -31,6 +34,8 @@
     :CLOCK:
     CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
     :END:
+*** [fe][ed] gravatar for author images
+    - http://en.gravatar.com/site/implement/images/
 *** [fe] theme
     - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
       - license: http://www.famfamfam.com/lab/icons/silk/
@@ -1288,9 +1293,18 @@
   - search images on flickr. use advanced search and select 'only search within creative commons licensed content'
     - images should have 'some rights reserved' link pointing to http://creativecommons.org/licenses/by/2.0/deed.en or http://creativecommons.org/licenses/by-sa/2.0/deed.en
     - give attribution (compulsory)
-** My first article
+** template
+   - notes:
    - cat/subcat:
+   - tags:
+   - author:
+   - lead image:
+   - summary:
+   - body:
+** Discovering the joy of writing
+   - cat/subcat: editorial/--
    - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
+   - author: Pradnyesh Sawant
    - lead image:
      - http://ktliterary.com/wp/wp-content/uploads/2010/03/inspiration.jpg (http://ktliterary.com/2010/03/guest-blog-by-intern-jenny-inspiration/)
      - http://www.mastersofseo.com/wp-content/uploads/2009/01/inspiration-300x225.jpg (http://www.mastersofseo.com/how-get-inspiration-to-writ/)
@@ -1298,6 +1312,7 @@
      - http://www.flickr.com/photos/freeflyer09/4448061188/
      - http://www.flickr.com/photos/erikogan/4892456507/
    - summary: This article is about how I overcame my fear and found my own eureka moment, how i found the initial inspiration and found the joy of writing.
+   - body
 Getting a [[www.golb.in][website]] built was a difficult but manageable task. But where do I get the content from? I am no writer myself. I have written a few blog [[blog.spradnyesh.org][posts]], but those were long ago and there was definitely no discipline there. Those were some random, and more importantly, sporadic thoughts that I penned down. However what I am trying to do now is a totally different beast. Of course, the idea is to attract people to write on this website, but before that there needs to be atleast some initial content. It is easier to add content and ideas to an existing work, but very difficult to start something oneself. So that is the responsibility I must take onto myself, to initiate and to lay down some basic foundation.
 
 Ok, so now I have got myself a goal and some determination too. But that does not solve the problem of skill. Having a goal and determination does not make me a writer. So I do the only thing that makes sense, procrastinate! After having delayed the task for a few weeks, I decided to do the inevitable:
@@ -1326,7 +1341,43 @@ This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now 
 <quote>
 Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
 </quote>
-
+** going mouseless
+   - notes:
+   - cat/subcat:
+   - tags:
+   - author:
+   - lead image:
+   - summary:
+   - body:
+** i wrote Golbin in common-lisp. why?
+   - notes:
+     - http://www.paulgraham.com/avg.html
+   - cat/subcat:
+   - tags:
+   - author:
+   - lead image:
+   - summary:
+   - body:
+** democracy versus dictatorship in organizations
+   - notes:
+   - cat/subcat:
+   - tags:
+   - author:
+   - lead image:
+   - summary:
+   - body:
+** LOCNW: lines of code not written
+   - notes:
+     - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
+     - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
+     - http://www.folklore.org/StoryView.py?story=Negative_2000_Lines_Of_Code.txt
+     - I didn't have time to write a short letter, so I wrote a long one instead. --Mark Twain
+   - cat/subcat:
+   - tags:
+   - author:
+   - lead image:
+   - summary:
+   - body:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
