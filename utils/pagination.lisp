@@ -1,17 +1,18 @@
 (in-package :hawksbill.utils)
 
 (defun paginate (list offset limit)
-  (let* ((list (if (consp list)
-                   list
-                   (list list)))
-         (len (length list))
-         (end (+ limit offset)))
-    (if (and (not (minusp offset))
-             (> len offset))
-        (subseq list
-                offset
-                (if (and list (< end len))
-                    end)))))
+  (when list
+    (let* ((list (if (consp list)
+                     list
+                     (list list)))
+           (len (length list))
+           (end (+ limit offset)))
+      (if (and (not (minusp offset))
+               (> len offset))
+          (subseq list
+                  offset
+                  (if (and list (< end len))
+                      end))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; pagination markup
