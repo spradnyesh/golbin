@@ -7,7 +7,7 @@
   (with-html
     (:h2 :id "a-title" (str (title article)))
     (:p :id "a-details" :class "small"
-        (str "written by ")
+        (str "written by ") ; XXX: translate
         (:a :id "a-author"
             :href (genurl 'r-author :author (handle (author article)))
             (str (alias (author article))))
@@ -17,7 +17,7 @@
         (:a :id "a-cat"
             :href (genurl 'r-cat :cat (slug (cat article)))
             (str (name (cat article))))
-        (when (subcat article)
+        (when (not (string= "--" (name (subcat article))))
           (str " / ")
           (htm
            (:a :id "a-cat-subcat"

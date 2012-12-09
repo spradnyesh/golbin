@@ -86,6 +86,10 @@
                                                :name cat-name
                                                :parent 0
                                                :rank i))))
+        (add-category (make-instance 'category
+                                         :name "--" ; empty sub-category
+                                         :parent (id cat)
+                                         :rank (+ i (/ 1 10.0))))
         (let ((j 1))
           (dolist (sc-name subcats)
             (add-category (make-instance 'category

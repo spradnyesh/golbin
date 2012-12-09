@@ -90,7 +90,8 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 
 (defmacro fe-subnav (url)
   `(with-html
-     (when (plusp (rank subcat))
+     (when (and (not (string= "--" (name subcat)))
+                (plusp (rank subcat)))
        (let ((subcat-slug (slug subcat)))
          (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
                               "subcat selected"
