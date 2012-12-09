@@ -8,7 +8,7 @@
    (username :initarg :username :initform nil :accessor username) ; used for logging in (can be the same as handle)
    (alias :initarg :alias :initform nil :accessor alias) ; name that the user wants others to see
    (handle :initarg :handle :initform nil :accessor handle) ; sanitized alias for use in URLs
-   (password :initarg :password :initform nil :accessor password)
+   (password :initarg :password :initform nil :accessor password) ; encrypted
    (salt :initarg :salt :initform nil :accessor salt) ; for encryption of password
    (name :initarg :name :initform nil :accessor name)
    (status :initarg :status :initform nil :accessor status) ; :d draft, :a active, :b blocked
@@ -137,12 +137,12 @@
                    "Tom Cruise"
                    "Emma Wason"
                    "Megan Fox")))
-        (dolist (author-name authors)
-          (let ((slug (slugify author-name)))
-            (add-author (make-instance 'author
-                                       :name author-name
-                                       :alias author-name
-                                       :username slug
-                                       :handle slug
-                                       :password slug
-                                       :status :a))))))
+    (dolist (author-name authors)
+      (let ((slug (slugify author-name)))
+        (add-author (make-instance 'author
+                                   :name author-name
+                                   :alias author-name
+                                   :username slug
+                                   :handle slug
+                                   :password slug
+                                   :status :a))))))

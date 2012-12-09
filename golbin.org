@@ -2,7 +2,21 @@
 
 * tasks
 ** backlog
-*** [fe][ed] every category should have an empty sub-category
+*** TODO [fe] init prod sites
+    :CLOCK:
+    CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
+    :END:
+    - sites
+      - [X] www
+      - [ ] mr
+    - [ ] remove 'these are ads-?', 'this is the footer'
+    - [ ] add articles
+*** [reports] accounts for authors
+    - monthly
+      - views
+      - rate per view
+      - paid X INR
+      - paid on date
 *** [fe] footer
     - [ ] copyright mark
     - [ ] copyright page

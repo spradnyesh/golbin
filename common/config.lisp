@@ -8,6 +8,7 @@
                           ("url" "golb.in")
                           ("lang" "en-IN")
                           ("envt" "dev"))
+                  ("db" ("type" "prevalence"))
                   ("hunchentoot" ("debug" ("errors" ("catch" nil)
                                                     ("show" nil))
                                           ("backtraces" nil)))
@@ -36,12 +37,14 @@
                                            ("editorial" ("lead-photo-select-pane" 16)))
                                 ("home" ("carousel" ("tabs" 5))))
                   ("parenscript" ("obfuscation" nil)))
-        ("envt:dev" ("db" ("type" "prevalence"))
-                    ("hunchentoot" ("debug" ("errors" ("catch" t)
+        ("envt:dev" ("hunchentoot" ("debug" ("errors" ("catch" t)
                                                       ("show" t))
                                             ("backtraces" t))))
         ("envt:prod" ("parenscript" ("obfuscation" t)))
-        ("lang:en-IN" ("categorys" (("Business"
+        ("lang:en-IN" ("categorys" (("Headlines"
+                                     "Politics")
+                                    ("Editorial")
+                                    ("Business"
                                      "Companies"
                                      "Economy"
                                      "Industry"
@@ -55,7 +58,6 @@
                                      "Movies"
                                      "Music"
                                      "TV")
-                                    ("Headlines")
                                     ("Lifestyle"
                                      "Automotive"
                                      "Culture"
@@ -64,7 +66,6 @@
                                      "Health"
                                      "Theatre"
                                      "Travel")
-                                    ("Politics")
                                     ("Religion")
                                     ("Science"
                                      "Environment"
@@ -111,4 +112,7 @@
                                      "इंटरनेट"))))
         ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN/" *home*))))
         ("envt:dev,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/hi-IN/" *home*))))
-        ("envt:dev,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/mr-IN/" *home*))))))
+        ("envt:dev,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/mr-IN/" *home*))))
+        ("envt:prod,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/en-IN/" *home*))))
+        ("envt:prod,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/hi-IN/" *home*))))
+        ("envt:prod,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/mr-IN/" *home*))))))

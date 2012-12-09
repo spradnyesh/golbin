@@ -67,6 +67,7 @@
 (defun get-home-page-categories (number)
   (declare (ignore number))
   (let ((rslt nil))
+    (push (get-category-by-slug "editorial") rslt)
     (push (get-category-by-slug "business") rslt)
     (push (get-category-by-slug "entertainment") rslt)
     (push (get-category-by-slug "lifestyle") rslt)
