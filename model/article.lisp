@@ -18,7 +18,8 @@
    (tags :initarg :tags :initform nil :accessor tags)
    (location :initarg :location :initform nil :accessor location)
    (author :initarg :author :initform nil :accessor author)
-   (comments :initarg :comments :initform nil :accessor comments))
+   (comments :initarg :comments :initform nil :accessor comments)
+   (comments-count :initarg :comments-count :initform 0 :accessor comments-count))
   (:documentation "Article Class"))
 
 (defclass article-storage ()
@@ -75,6 +76,7 @@
           ;; take special care since the last node can be nil
           (setf parent (nth (parse-integer (first (last p-id))) parent))
           (push comment (children parent))))
+    (incf (comments-count article))
 
     ;; save article into storage
     (execute (get-db-handle) (make-transaction 'update-article article))

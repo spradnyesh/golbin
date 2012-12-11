@@ -2,6 +2,13 @@
 
 * tasks
 ** backlog
+*** [bug][fe] home page giving a 500
+*** [bug][fe] article page giving a 404
+*** TODO [fe][ed] article should have comment count
+    :CLOCK:
+    CLOCK: [2012-12-11 Tue 19:17]--[2012-12-11 Tue 19:27] =>  0:10
+    :END:
+    - can be used later for popular
 *** TODO [fe] init prod sites
     :CLOCK:
     CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
@@ -1463,8 +1470,13 @@ Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Al
          - also, he can sing and conduct an opera
      - examples
        - most severe amnesia ever documented: Clive Wearing (http://en.wikipedia.org/wiki/Clive_Wearing http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/ http://www.human-memory.net/disorders_retrograde.html http://www.youtube.com/watch?v=WmzU47i2xgw)
+     - (legal) issues due to not being able to depend on memory
+       - “All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards.”
+       - “The brain abhors a vacuum. [It] fills in information that was not there.”
+       - “There's a long history of antipathy between science and the law in American jurisprudence.”
      - references
        - Memory and Forgetting http://www.radiolab.org/2007/jun/07/
+       - Scott Fraser: Why eyewitnesses get it wrong http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html
        - movies
          - eternal sunshine of the spotless mind http://www.imdb.com/title/tt0338013/
          - inception http://www.imdb.com/title/tt1375666/
