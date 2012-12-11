@@ -1313,13 +1313,16 @@
     - images should have 'some rights reserved' link pointing to http://creativecommons.org/licenses/by/2.0/deed.en or http://creativecommons.org/licenses/by-sa/2.0/deed.en
     - give attribution (compulsory)
 ** template
-   - notes:
    - cat/subcat:
    - tags:
    - author:
    - lead image:
    - summary:
    - body:
+   - date:
+   - notes:
+** music
+   - Maybe its something about music itself, that it is so richly organized, that every time you're in a song you can feel what has been and what is about to be --Memory and Forgetting, Radiolab, http://www.radiolab.org/2007/jun/07/
 ** Discovering the joy of writing
    - cat/subcat: editorial/--
    - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
@@ -1397,6 +1400,89 @@ Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Al
    - lead image:
    - summary:
    - body:
+** TODO forget "forget and forgive"
+   :CLOCK:
+   CLOCK: [2012-12-11 Tue 16:00]--[2012-12-11 Tue 17:21] =>  1:21
+   :END:
+   - cat/subcat:
+   - tags: radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics
+   - author:
+   - lead image:
+   - summary:
+   - body:
+   - notes:
+     - remembering process
+       - filing cabinet/hdd
+         - file it away
+         - pick it up
+         - sometimes you forget where you file it
+         - input == output
+         - http://www.ehow.com/about_5371562_computer-vs-human-memory-comparison.html
+         - _wrong_
+       - more creative
+         - creation
+         - reconstruction process
+         - somethings get chopped, somethings get leveled
+     - where in brain? physical location?
+       - physical protein link
+       - build bunch of neurons
+       - associative memory
+         - connect 2 brain cells
+         - tone + shock (rat story)
+     - drug to prohibit new memory creation
+       - => anisomycin
+       - done first in goldfish
+       - prevents formation of protein
+       - can also be used to erase a particular memory
+       - treatment for PTSD
+     - ethical Q: is deleting/adding memory ethical?
+       - No:
+         - man is + of all memories/experiences
+         - eternal sunshine of the spotless mind
+       - Yes:
+         - remembering => recreating => brand new memory every time you remember
+         - every time remember => change slightly (re-creating in context/light of now)
+           - memory => recent recollection of what is true
+           - more you remember a memory, the less accurate it becomes
+           - it becomes more about you (your perception/interpretation of the event) than about the event itself
+         - memory cannot be proven to be true
+         - safest memory is that of an amnesia patient
+           - against intuition (more you remember, more you change it, more false it is)
+     - adding a memory
+       - memory is malleable
+       - plant false memories in peoples minds
+       - take related images (location, people, etc) and reconstruct this new memory => build neuron bridges
+       - when remembering, memory is unstable, and can be modified unconsciously
+       - cannot be differentiated from a real memory
+     - misc
+       - memories of pain and joy are in a safe and are primordial
+       - for clive,
+         - he might not remember her if she passes him by in a populated place or even her name
+         - he might not be able to describe her
+         - but he remembers the memory of his wife's love and warmth
+         - also, he can sing and conduct an opera
+     - examples
+       - most severe amnesia ever documented: Clive Wearing (http://en.wikipedia.org/wiki/Clive_Wearing http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/ http://www.human-memory.net/disorders_retrograde.html http://www.youtube.com/watch?v=WmzU47i2xgw)
+     - references
+       - Memory and Forgetting http://www.radiolab.org/2007/jun/07/
+       - movies
+         - eternal sunshine of the spotless mind http://www.imdb.com/title/tt0338013/
+         - inception http://www.imdb.com/title/tt1375666/
+         - memento http://www.imdb.com/title/tt0209144/
+       - 101 Damnations --Andrei Codrescu (http://wordsarefornerds.tumblr.com/post/11567335015 http://en.wikipedia.org/wiki/101_Damnations_(book) http://en.wikipedia.org/wiki/Andrei_Codrescu)
+       - http://en.wikipedia.org/wiki/Elizabeth_Loftus
+       - http://www.oliversacks.com/ http://en.wikipedia.org/wiki/Oliver_Sacks
+       - http://en.wikipedia.org/wiki/Anisomycin
+       - post traumatic stress disorder
+         - http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml
+         - http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder)
+       - Post-Traumatic Pleasure Syndrome http://www.scma.org/magazine/articles/?articleid=107
+       - http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/
+       - http://www.scientificamerican.com/article.cfm?id=totaling-recall
+       - http://www.dailymail.co.uk/sciencetech/article-2206291/The-fear-factor-Researchers-discovery-technique-erase-short-newly-formed-memories.html
+       - http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/
+       - http://www.livescience.com/15621-memory-altering-drugs-debate.html
+       - http://www.salon.com/2011/12/31/should_we_erase_painful_memories/
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
