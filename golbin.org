@@ -2,8 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][fe] home page giving a 500
-*** [bug][fe] article page giving a 404
 *** TODO [fe][ed] article should have comment count
     :CLOCK:
     CLOCK: [2012-12-11 Tue 19:17]--[2012-12-11 Tue 19:27] =>  0:10
@@ -966,6 +964,20 @@
      CLOSED: [2012-12-09 Sun 21:35]
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-12-09 Sun 21:35
+     :END:
+**** DONE [bug][fe] article page giving a 404
+     CLOSED: [2012-12-12 Wed 09:27]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-12 Wed 09:27
+     :END:
+**** DONE [bug][fe] home page giving a 500
+     CLOSED: [2012-12-12 Wed 09:35]
+     :CLOCK:
+     CLOCK: [2012-12-12 Wed 09:15]--[2012-12-12 Wed 09:35] =>  0:20
+     CLOCK: [2012-12-12 Wed 08:56]--[2012-12-12 Wed 09:02] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-12 Wed 09:27
      :END:
 ** TODO refactor
    :CLOCK:

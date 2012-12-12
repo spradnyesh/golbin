@@ -35,15 +35,15 @@
                                            ("range" 10) ; number of entries in pagination markup
                                            ("related" 4)
                                            ("editorial" ("lead-photo-select-pane" 16)))
-                                ("home" ("carousel" ("tabs" 5))))
+                                ("home" ("carousel" ("tabs" 10))))
                   ("parenscript" ("obfuscation" nil)))
         ("envt:dev" ("hunchentoot" ("debug" ("errors" ("catch" t)
                                                       ("show" t))
                                             ("backtraces" t))))
         ("envt:prod" ("parenscript" ("obfuscation" t)))
-        ("lang:en-IN" ("categorys" (("Headlines"
-                                     "Politics")
-                                    ("Editorial")
+        ("lang:en-IN" ("categorys" (("Editorial"
+                                     "Politics"
+                                     "Religion")
                                     ("Business"
                                      "Companies"
                                      "Economy"
@@ -66,7 +66,6 @@
                                      "Health"
                                      "Theatre"
                                      "Travel")
-                                    ("Religion")
                                     ("Science"
                                      "Environment"
                                      "Geography"
