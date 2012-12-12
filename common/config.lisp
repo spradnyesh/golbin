@@ -41,7 +41,15 @@
                                                       ("show" t))
                                             ("backtraces" t))))
         ("envt:prod" ("parenscript" ("obfuscation" t)))
-        ("lang:en-IN" ("categorys" (("Editorial"
+        ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN/" *home*))))
+        ("envt:dev,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/hi-IN/" *home*))))
+        ("envt:dev,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/mr-IN/" *home*))))
+        ("envt:prod,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/en-IN/" *home*))))
+        ("envt:prod,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/hi-IN/" *home*))))
+        ("envt:prod,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/mr-IN/" *home*))))
+
+        ;; Categories (not needed in config; given here just for reference)
+        #|("lang:en-IN" ("categorys" (("Editorial"
                                      "Politics"
                                      "Religion")
                                     ("Business"
@@ -90,8 +98,8 @@
                                      "Computing"
                                      "Internet"
                                      "Personal Technology"
-                                     "Video Games"))))
-        ("lang:mr-IN" ("categorys" (("व्यापार")
+                                     "Video Games"))))|#
+        #|("lang:mr-IN" ("categorys" (("व्यापार")
                                     ("िशक्षण") ; 'n' is wrong at the end
                                     ("देश-िवदेश")
                                     ("िवज्ान"
@@ -108,10 +116,4 @@
                                     ("लाइफस्टाइल")
                                     ("तेक्नौलोगी"
                                      "कॉम्पुटर"
-                                     "इंटरनेट"))))
-        ("envt:dev,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/en-IN/" *home*))))
-        ("envt:dev,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/hi-IN/" *home*))))
-        ("envt:dev,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/dev/mr-IN/" *home*))))
-        ("envt:prod,lang:en-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/en-IN/" *home*))))
-        ("envt:prod,lang:hi-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/hi-IN/" *home*))))
-        ("envt:prod,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/mr-IN/" *home*))))))
+                                     "इंटरनेट"))))|#))

@@ -1424,16 +1424,57 @@ Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Al
    - lead image:
    - summary:
    - body:
-** TODO forget "forget and forgive"
+** TODO forget "forgive and forget"
    :CLOCK:
+   CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
+   CLOCK: [2012-12-12 Wed 14:32]--[2012-12-12 Wed 14:56] =>  0:24
    CLOCK: [2012-12-11 Tue 16:00]--[2012-12-11 Tue 17:21] =>  1:21
    :END:
-   - cat/subcat:
-   - tags: radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics
-   - author:
-   - lead image:
-   - summary:
+   - cat/subcat: science/--
+   - tags: forgive and forget, radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics, memento, Albert Einstein, Einstein, Studs Terkel, Anisomycin, ptsd, amnesia, clive wearing, oliver sacks, elizabeth loftus, scott fraser, andrei codrescu, 101 damnations
+   - lead image: http://www.thesupersistah.com/wp-content/uploads/2011/08/Forgive-and-forget.jpg @ http://www.thesupersistah.com/2011/08/forgive-or-forget-you/
+   - summary: It seems like God intended us to (forgive and )forget. And, for atheists, science seems to say the same thing!
    - body:
+[[http://en.wikipedia.org/wiki/Albert_Einstein][Albert Einstein]] once said <quote>Use the brain to process (think), not to store (remember).</quote> Frankly, I don't know if [[http://en.wikipedia.org/wiki/Albert_Einstein][Einstein]] really said that, but I know that [[http://en.wikipedia.org/wiki/Studs_Terkel][Studs Terkel]] said <quote>I like quoting Einstein. Know why? Because nobody dares contradict you.</quote> ;) Anyways, the point I am trying to make is about forgetting. I think "forget" is a very important part in the preaching "forgive and forget" because forgiveness, although ideal and saintly, is extremely hard to practice, especially equally and towards all. But it is easy to forget. Actually, it is difficult, nay, impossible, to remember. Now that seems like a bold, very bold, claim. But hang on, and I will explain it shortly.
+
+http://img.diytrade.com/cdimg/845903/7734917/0/1230259307.jpg @ http://xingfei169.diytrade.com/sdp/845903/4/pd-4400116/4969664.html
+Lets start by understanding what our memory is like, and how does the process of remembering really work. For a long time it was believed that the memory is like a file cabinet, or a computer hard disk (for the geeks among you). When a memory is created, it is like a file is written and stored in a drawer or a folder. Later, when you remember the memory, it is like retrieving the file and reading the contents off of it. There is absolutely no difference between what is written in the file and what is later read from it, no matter how many times. Of course, one might forget which drawer or folder the file was kept in, and he won't be able to remember that memory; but the memory itself is very much still there.
+
+However, studies have found that the above analogy is wrong, very wrong! The brain does not function this way. To understand memory, we have to understand the structure of the brain. The brain is made up of a lot of cells called [[http://en.wikipedia.org/wiki/Neuron/][neuron]]s which are connected to each other via protein chains or links. It is these neurons and the links that make up memories. Let us map this understanding of the brain structure to a memory. A memory is really an event in our past that consists of items (for lack of a better word) like:
+1. living things like people, animals, plants, etc
+2. inanimate objects like buildings, cars, lamp posts, furniture, etc
+3. location, weather, etc
+4. conversations, emotions, etc
+http://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Neuron_Hand-tuned.svg/400px-Neuron_Hand-tuned.svg.png @ http://en.wikipedia.org/wiki/Neuron
+Each of these items are stored in neurons and creation of a memory is like creating links or bridges between these neuron cells. Thus memory is inherently associative in nature, and the act of creating a memory is actually creating these associations.
+
+Remembering is the process of scanning these neurons and associations between them. It is a highly imperfect process. It is very much possible that during remembering some of the neurons might not fire, that is, we might miss out on some associations. It is also possible, that some other neurons might fire, which means that we may remember (actually, imagine) something that never happened, or wasn't present, in the particular memory that we're remembering. Thus remembering is a highly creative process; we are, astonishingly, (re-)creating the memory!
+
+Now we know that a memory has a physical presence in the brain; in the form of protein bridges between neurons. We also know that the process of creation and retrieval of a memory is not static, like that of a file cabinet or a computer hard drive, but a very dynamic one. Good! But what are it's implications? That is the next question that naturally comes to mind. Lets find out.
+
+http://ia.media-imdb.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1._SY317_.jpg @ http://www.imdb.com/title/tt0338013/
+Selective deletion [[http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/][{1}]] [[http://www.scientificamerican.com/article.cfm?id%3Dtotaling-recall][{2}]] [[http://www.dailymail.co.uk/sciencetech/article-2206291/The-fear-factor-Researchers-discovery-technique-erase-short-newly-formed-memories.html][{3}]] [[http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/][{4}]]: There is a drug called [[http://en.wikipedia.org/wiki/Anisomycin][Anisomycin]] that prevents the creation of the linkage protein. This drug can be used to prevent a memory from being created if administered at the moment when the memory is being formed. However, it can also be used to delete a memory when it is being remembered. This is used clinically to treat [[http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder][post traumatic stress disorder]] or [[http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml][PTSD]]. A very good movie [[http://www.imdb.com/title/tt0338013/][Eternal sunshine of the spotless mind]] was made using this concept. It also gives us some clues about why [[http://en.wikipedia.org/wiki/Amnesia][amnesia]] happens. And of course who would not remember about the movie [[http://www.imdb.com/title/tt0209144/][Memento]] when we talk about amnesia? The scariest and most mysterious case about amnesia is about [[http://en.wikipedia.org/wiki/Clive_Wearing][Clive Wearing]] [[http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/][{1}]] [[http://www.human-memory.net/disorders_retrograde.html][{2}]] [[http://www.youtube.com/watch?v%3DWmzU47i2xgw][{3}]] who cannot remember anything for more than a few moments. Every moment for him is as if he has woken up from a long night's sleep, except that this night has been going on for every moment of more than the last 2 decades.
+
+Of course, "selective deletion" of memory screams for ethics [[http://www.livescience.com/15621-memory-altering-drugs-debate.html][{1}]] [[http://www.salon.com/2011/12/31/should_we_erase_painful_memories/][{2}]]. Is it ethical to delete a memory from a person's brain? As always, this coin has 2 sides too:
+1. No
+   1. A memory is a very private and personal part of who one is. It is like stealing, forever, a part of your body!
+   2. Every person is a sum total of his experiences, his memories. Without memories, he is not what he is!
+   3. It can be used for criminal activities.
+2. Yes
+   1. A memory is not static thing that is stored (created) and retrieved (remembered) with the exact same content every time. It is a process of re-creation; it is the most recent recollection of what is true. This means that it changes slightly every time you remember it; it becomes more about you (your perception/interpretation of the event) than about the event itself.
+   2. It can be used for treatment and giving a new life to patients.
+
+http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1._SY317_.jpg @ http://www.imdb.com/title/tt1375666/
+The fact that memory is not static, but gets re-created anew, modified slightly, each time, has huge implications.
+1. Implanting false memories: I know you are thinking about the movie [[http://www.imdb.com/title/tt1375666/][Inception]]. And thinking that this guy is surely kidding. But believe me, I am not. It is not only possible, but relatively easy to do. [[http://en.wikipedia.org/wiki/Elizabeth_Loftus][Dr. Elizabeth Loftus]] and [[http://en.wikipedia.org/wiki/Oliver_Sacks][Dr. Oliver Sacks]] have done a lot of ground breaking research on this subject. The reason it is easy to achieve is because of the fact that it is very much possible for some unrelated neurons to fire, just as it is possible for some related neurons to not fire.
+2. This also means that nothing you remember, or worse still, know, is provably true. Watch the excellent [[http://www.ted.com][Ted talk]] [[http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html]["Scott Fraser: Why eyewitnesses get it wrong"]] on this subject to know how this can have huge, even legal, implications: <quote>All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards. --[[http://www.ted.com/speakers/scott_fraser.html][Scott Fraser]]</quote>.
+
+Finally I would like to end with an awesome short essay by the Romanian essayist [[http://en.wikipedia.org/wiki/Andrei_Codrescu][Andrei Codrescu]] from the book [[http://en.wikipedia.org/wiki/101_Damnations_(book)][101 Damnations]]
+
+<quote>The other day a friend of mine was explaining how she had to move these pixels around her computer and had to add 20 megabytes of memory to handle the operation. I had the disquieting thought that all this memory she was adding had to come from somewhere. Maybe it was coming from me because I couldn’t remember a thing that day. And then it became blindingly obvious: All the memory that everybody keeps adding comes from people. Nobody can remember a damn thing. Every time someone adds memory to their machine, thousands of people forget everything they knew. Americans are singularly devoid of memory these days. We don’t remember where we came from, who raised us, when our wars use to be, what happened last year, last month, or even last week. School children remember practically nothing. I take the greyhound bus every week, and I swear people on there don’t know where they got on or where they’re supposed to get off. They explanation is simple: computer companies are stealing human memory to stuff their hard drives. Greyhound I believe has some kind of contract with IBM to steal the memory of everybody riding the bus. They’re probably connected by a cable or something. Every hundred miles, poof! Another 500 megabytes get sucked out of the passengers’ brains. The computer’s thirst for memory is bottomless: the more they suck, the more they need. Eventually, we’ll be walking around with a glazed look in our eyes, trying to figure out who it is we live with. And then we’ll forget our names and addresses and we’ll just be milling around trying to remember them. The only thing visible about us will be these cables sticking out of our behinds, feeding the scraps of our memory to computer central, somewhere in Oblivion, USA. I think it’s time for all these memory sucking companies to start some kind of system to feel and shelter us when we forget how to eat, walk, and sleep.</quote>
+
+ps: Listen to more interesting details and stories about [[http://www.radiolab.org/2007/jun/07/][Memory and Forgetting]] at [[http://www.radiolab.org/][RadioLab]].
+
    - notes:
      - remembering process
        - filing cabinet/hdd
@@ -1488,9 +1529,9 @@ Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Al
      - examples
        - most severe amnesia ever documented: Clive Wearing (http://en.wikipedia.org/wiki/Clive_Wearing http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/ http://www.human-memory.net/disorders_retrograde.html http://www.youtube.com/watch?v=WmzU47i2xgw)
      - (legal) issues due to not being able to depend on memory
-       - “All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards.”
-       - “The brain abhors a vacuum. [It] fills in information that was not there.”
-       - “There's a long history of antipathy between science and the law in American jurisprudence.”
+       - All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards.
+       - The brain abhors a vacuum. [It] fills in information that was not there.
+       - There's a long history of antipathy between science and the law in American jurisprudence.
      - references
        - Memory and Forgetting http://www.radiolab.org/2007/jun/07/
        - Scott Fraser: Why eyewitnesses get it wrong http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html
@@ -1504,7 +1545,7 @@ Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Al
        - http://en.wikipedia.org/wiki/Anisomycin
        - post traumatic stress disorder
          - http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml
-         - http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder)
+         - http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder
        - Post-Traumatic Pleasure Syndrome http://www.scma.org/magazine/articles/?articleid=107
        - http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/
        - http://www.scientificamerican.com/article.cfm?id=totaling-recall
