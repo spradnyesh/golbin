@@ -142,15 +142,15 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-footer ()
-  (with-html "This is the footer"))
+  (with-html ""))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-ads-1 ()
   (with-html
-    (:div :id "ads-1" "These are ads-1")))
+    (:div :id "ads-1" "")))
 
 (defun fe-ads-2 ()
   (with-html
-    (:div :id "ads-2""These are ads-2")))
+    (:div :id "ads-2" "")))

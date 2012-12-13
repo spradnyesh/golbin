@@ -1,15 +1,24 @@
-#+FILETAGS: :Golbin:
+#+FILETAGS: :Globing:
 
 * tasks
 ** backlog
+*** TODO [fe] add footer content
+    :CLOCK:
+    CLOCK: [2012-12-12 Wed 19:06]--[2012-12-12 Wed 19:14] =>  0:08
+    :END:
+    - [ ] contact email
+    - [ ] tos
+    - [ ] privacy
+    - [ ] copyright (page + mark)
 *** TODO [fe] init prod sites
     :CLOCK:
+    CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
     CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
     :END:
     - sites
       - [X] www
       - [ ] mr
-    - [ ] remove 'these are ads-?', 'this is the footer'
+    - [X] remove 'these are ads-?', 'this is the footer'
     - [ ] add articles
 *** [reports] accounts for authors
     - monthly
@@ -17,10 +26,6 @@
       - rate per view
       - paid X INR
       - paid on date
-*** [fe] footer
-    - [ ] copyright mark
-    - [ ] copyright page
-    - [ ] contact us page => email address (golbin@rocketmail.com)
 *** TODO [fe] comments
     :CLOCK:
     CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
@@ -1339,11 +1344,9 @@
 ** template
    - cat/subcat:
    - tags:
-   - author:
    - lead image:
    - summary:
    - body:
-   - date:
    - notes:
 ** music
    - Maybe its something about music itself, that it is so richly organized, that every time you're in a song you can feel what has been and what is about to be --Memory and Forgetting, Radiolab, http://www.radiolab.org/2007/jun/07/
@@ -1388,42 +1391,16 @@ This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now 
 Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
 </quote>
 ** going mouseless
-   - notes:
-   - cat/subcat:
-   - tags:
-   - author:
-   - lead image:
-   - summary:
-   - body:
 ** i wrote Golbin in common-lisp. why?
    - notes:
      - http://www.paulgraham.com/avg.html
-   - cat/subcat:
-   - tags:
-   - author:
-   - lead image:
-   - summary:
-   - body:
 ** democracy versus dictatorship in organizations
-   - notes:
-   - cat/subcat:
-   - tags:
-   - author:
-   - lead image:
-   - summary:
-   - body:
 ** LOCNW: lines of code not written
    - notes:
      - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
      - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
      - http://www.folklore.org/StoryView.py?story=Negative_2000_Lines_Of_Code.txt
      - I didn't have time to write a short letter, so I wrote a long one instead. --Mark Twain
-   - cat/subcat:
-   - tags:
-   - author:
-   - lead image:
-   - summary:
-   - body:
 ** TODO forget "forgive and forget"
    :CLOCK:
    CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
