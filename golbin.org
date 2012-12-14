@@ -26,6 +26,13 @@
       - rate per view
       - paid X INR
       - paid on date
+*** email server
+    - for
+      - golb.in email addresses
+      - get (and forward) every comment as an email
+    - servers
+      - mail-mta/exim
+      - mail-mta/courier
 *** TODO [fe] comments
     :CLOCK:
     CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
@@ -1314,6 +1321,7 @@
      - http://sonamusoop.com/
        - halo effect
        - subtle appearance of sub-navigation
+   - snow flakes falling on page like in http://soundstudiesblog.com/tag/dr-v-s-ramachandran/ on [2012-12-14 Fri]
 ** features
    - (google) site search
    - bucketization to test out features
@@ -1530,6 +1538,54 @@ ps: Listen to more interesting details and stories about [[http://www.radiolab.o
        - http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/
        - http://www.livescience.com/15621-memory-altering-drugs-debate.html
        - http://www.salon.com/2011/12/31/should_we_erase_painful_memories/
+** TODO you are plural/what makes you, you?
+   :CLOCK:
+   CLOCK: [2012-12-14 Fri 18:41]--[2012-12-14 Fri 19:56] =>  1:15
+   :END:
+   - notes
+     - brain scanning tests on nuns as they meditate, sleepers as they dream
+     - it's a new world
+     - fmri (functional MRI): real time feedback based on blood flow increase/decrease to certain parts of brain
+     - that's me in the mirror. what does it mean to say "that's me", or "i'm me"
+       - it's like repeating a word over and over; the meaning of the word gets disassociated from the sound
+       - just like the image of you becomes disconnected from the real you, inner you -> self/soul
+     - every person changes over life; there's continuous change; our bodies change, selves change, moods change, everything about a normal healthy person is flux, it's change. yet somehow there is a oneness, a through-line continuous sense of self. you wonder, how the heck does that happen? where is this self thing?
+     - where?
+       - ancients thought it was in the heart. found that that was a pump, and disappointed
+       - [[http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran][V. S. Ramachandran]], great neurologist -> activities of neurons
+         - greatest realization in the last 100 years
+     - chimpanzees have a sense of self
+       - http://www.sciencemag.org/content/167/3914/86
+       - http://en.wikipedia.org/wiki/Mirror_test
+       - creating a representation of itself that floats free of its body; it's intellectual (you can't touch it, can't smell it, but just by seeing it you know that it's "you")
+       - ethical Qs raised: should they be in zoo, should they be charged for murder, should they have equal rights?
+     - julian keenan
+       - http://ttbook.org/book/transcript/transcript-you-your-brain
+       - http://ttbook.org/book/neuroscience-self
+       - Press your thumb to the bridge of your nose. Now draw it slowly over the crown of your head to about where you might have a ponytail. That area under your skull is where "you" are.
+       - bill clinton experiment
+         - morphed design
+         - self photo + bill clinton photo morph, 50-50%
+       - right brain
+     - cerebral [[http://en.wikipedia.org/wiki/Aneurysm][aneurysm]]
+       - [[http://www.transom.org/shows/2004/200403_head_explode.html][The day my mother's head exploded]] --Hannah Palin
+       - But then those moments pass and you're consumed by the trivia of daily life once again. Sometimes, when i'm overwhelmed by making my way through the world, i try to focus on the fact that the electric bill does not matter. The idiot driver glued to his cellphone, does not matter. The mind numbing day job, truly, does not matter. But welcoming the strange and the different, being open and available for my husband, my friends, my family, experiencing love and laughter as often as possible -- that's what matters. Because it can all be taken away in one brilliant flash.
+     - Paul Broks
+       - [[http://www.amazon.com/Into-Silent-Land-Travels-Neuropsychology/dp/0802141285][into the silent land]]
+       - a patient got very angry, but was calmed by the wife. on asking the wife she said, "well, when it happens, i think it's not really him. it's not really Jeff." But paradoxically, what kept her with him, kept her supporting him the belief that at some level it really was him
+       - the extended self, which is what we normally think when we think about ourselves, is really a story. It's the story of what's happened to that body over time --Paul Broks
+     - V. S. Ramachandran
+       - what is peculiarly human about us is our ability to construct stories.
+       - about 200k-500k yrs ago, "evolution of introspective awareness" took place
+         - how does human brain differ from other animals' brain
+           - worm: doesn't have brain big enough to make pictures
+           - monkey: has pictures and can make associations, but no manipulation
+           - human: imagination
+             - only humans can take images from the real world, pull them into their heads, divide them into parts and then start turning those parts into abstractions
+             - he now has what are called tokens. he has created disembodied tokens. adjectives are tokens. and then, he can manipulate these tokens, juxtapose them in counterintuitive ways. he can create even outlandish scenarios. what we call imagination
+         - we are not different from other creatures, we're only _more_ than other creatures. and when we have these brains that have these extras, like a layer on layer cake, we can manipulate any idea at all. and we are constantly doing that, we're constantly abstracting, we are imagining so often, so thoroughly, and so well, that we eventually can imagine ourselves
+         - the idea of the self, if you think about it this way, is that you take all the things that have ever happened to you. pluck from your life; if you're sad you might pluck the sad things, if you're happy, you might pluck the happy things. and you stitch them together into a general abstract idea. and me then, an idea of self, is really a story that we tell ourselves. it can change from day to day. and it allows the human being to excercise that peculiarly human muscle, to experience stuff, and then to abstract it into a story. that's self. --Robert Krulwich, Jad Abumrad
+     - little people story
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
