@@ -9,19 +9,19 @@
     (:p :id "a-details" :class "small"
         (str "written by ") ; XXX: translate
         (:a :id "a-author"
-            :href (genurl 'r-author :author (handle (author article)))
+            :href (h-genurl 'r-author :author (handle (author article)))
             (str (alias (author article))))
         (str " on ")
         (:span :id "a-date" (str (date article)))
         (str " in category ")
         (:a :id "a-cat"
-            :href (genurl 'r-cat :cat (slug (cat article)))
+            :href (h-genurl 'r-cat :cat (slug (cat article)))
             (str (name (cat article))))
         (when (not (string= "--" (name (subcat article))))
           (str " / ")
           (htm
            (:a :id "a-cat-subcat"
-               :href (genurl 'r-cat-subcat
+               :href (h-genurl 'r-cat-subcat
                              :cat (slug (cat article))
                              :subcat (slug (subcat article)))
                (str (name (subcat article))))))
@@ -54,7 +54,7 @@
 (defun article-comments-markup (article slug-and-id)
   (with-html (:form :id "a-comments"
                     :method "POST"
-                    :action (genurl 'r-article-comment :slug-and-id slug-and-id)
+                    :action (h-genurl 'r-article-comment :slug-and-id slug-and-id)
                    (let ((children (comments article)))
                      (when children
                        (str (do-child-comments "-1" children))))
@@ -95,25 +95,25 @@
                 (cat-subcat-list (get-related-articles "cat-subcat" article))
                 (author-list (get-related-articles "author" article)))
             (str (article-carousel-container "Articles in the same Category/Subcategory: "
-                                             (:span (:a :href (genurl 'r-cat
+                                             (:span (:a :href (h-genurl 'r-cat
                                                                       :cat (slug cat))
                                                         (str (name cat)))
                                                     " / "
-                                                    (:a :href (genurl 'r-cat-subcat
+                                                    (:a :href (h-genurl 'r-cat-subcat
                                                                       :cat (slug cat)
                                                                       :subcat (slug subcat))
                                                         (str (name subcat))))
                                              cat-subcat-list
-                                             (genurl 'r-ajax-article-related
+                                             (h-genurl 'r-ajax-article-related
                                                      :id id
                                                      :typeof "cat-subcat"
                                                      :page 0)))
             (str (article-carousel-container "Articles authored by: "
-                                             (:span (:a :href (genurl 'r-author
+                                             (:span (:a :href (h-genurl 'r-author
                                                                       :author (handle author))
                                                         (str (alias author))))
                                              author-list
-                                             (genurl 'r-ajax-article-related
+                                             (h-genurl 'r-ajax-article-related
                                                      :id id
                                                      :typeof "author"
                                                      :page 0)))))))
@@ -122,7 +122,7 @@
   (with-html
     (dolist (tag (tags article))
       (htm " "
-       (:a :href (genurl 'r-tag :tag (slug tag))
+       (:a :href (h-genurl 'r-tag :tag (slug tag))
            (str (name tag)))))))
 
 (defun get-id-from-slug-and-id (slug-and-id)
@@ -147,7 +147,7 @@
           (title article)
           nil
           tags
-        (summary article)
+          (summary article)
         (:div
          (:div :id "article"
                (str (article-preamble-markup article))
@@ -188,4 +188,4 @@
                                         :userurl email/url
                                         :userip (remote-addr *request*)
                                         :useragent (user-agent)))
-    (redirect (genurl 'r-article :slug-and-id slug-and-id))))
+    (redirect (h-genurl 'r-article :slug-and-id slug-and-id))))

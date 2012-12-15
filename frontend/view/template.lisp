@@ -23,7 +23,7 @@
 
        ;; google-analytics
        (:script :type "text/javascript"
-                      (str "
+                (str "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_trackPageview']);
@@ -35,23 +35,23 @@
   })();
 "))
 
-      (:body
-       (:div :class "yui3-g"
-            (:div :id "hd"
-                  (str (fe-header)))
-            (:div :id "bd"
-                  (:div :class "yui3-u-3-4"
-                        (:div :id "col-1" :class "yui3-u-1-5"
-                              (str (fe-ads-1)))
-                        (:div :id "col-2" :class "yui3-u-4-5"
-                              ,@content))
-                  (:div :id "col-3" :class "yui3-u-1-4"
-                        (str (fe-ads-2))))
-            (:div :id "ft"
-                  (str (fe-footer))))
-       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
-       (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
-       (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js"))
+       (:body
+        (:div :class "yui3-g"
+              (:div :id "hd"
+                    (str (fe-header)))
+              (:div :id "bd"
+                    (:div :class "yui3-u-3-4"
+                          (:div :id "col-1" :class "yui3-u-1-5"
+                                (str (fe-ads-1)))
+                          (:div :id "col-2" :class "yui3-u-4-5"
+                                ,@content))
+                    (:div :id "col-3" :class "yui3-u-1-4"
+                          (str (fe-ads-2))))
+              (:div :id "ft"
+                    (str (fe-footer))))
+        (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
+        (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
+        (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js"))
        (:script :type "text/javascript"
                 (str (on-load))
                 (str "
@@ -68,7 +68,7 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 (defun fe-logo ()
   (with-html
     (:h1
-     (:a :href (genurl 'r-home)
+     (:a :href (h-genurl 'r-home)
          (:img :id "logo"
                :source ""
                :alt (get-config "site.name"))))))
@@ -76,7 +76,7 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 (defun fe-site-search ()
   #|(with-html
     (:form :method "GET"
-           :action (genurl 'r-search)
+           :action (h-genurl 'r-search)
            :name "search"
            :id "search"
            (:input :type "input"
@@ -102,8 +102,12 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 
 ;; XXX: needs cache (key: uri)
 (defun fe-navigation ()
-  (let* ((route (route-symbol *route*))
-         (uri (hunchentoot:request-uri *request*))
+  (let* ((route (if (boundp '*request*)
+                    (route-symbol *route*)
+                    :r-home))
+         (uri (if (boundp '*request*)
+                    (hunchentoot:request-uri *request*)
+                    "/"))
          (cat-subcat (when (nav-cat? route)
                        (get-nav-cat-subcat-slugs uri)))
          (subnav-cat-slug nil)
@@ -112,7 +116,7 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
       (:div :id "nav"
             (:ul :id "prinav"
                  (:li :id "nav-home" :class (nav-selected t "cat" "cat selected")
-                      (:h2 (:a :href (genurl 'r-home) "Home")))
+                      (:h2 (:a :href (h-genurl 'r-home) "Home")))
                  (dolist (cat (get-root-categorys))
                    (when (plusp (rank cat))
                      (let ((cat-slug (slug cat)))
@@ -121,15 +125,15 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
                                             "cat"
                                           (setf subnav-cat-slug cat-slug)
                                           (setf subnav-subcats (get-subcategorys (id cat))))
-                                 (:h2 (:a :href (genurl 'r-cat
+                                 (:h2 (:a :href (h-genurl 'r-cat
                                                         :cat cat-slug)
                                           (str (name cat))))
                                  (:ul
                                   (dolist (subcat (get-subcategorys (id cat)))
-                                    (str (fe-subnav (genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))))
+                                    (str (fe-subnav (h-genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))))
             (:ul :id "subnav"
                  (dolist (subcat subnav-subcats)
-                   (str (fe-subnav (genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))))
+                   (str (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))))
 
 (defun fe-header ()
   (with-html

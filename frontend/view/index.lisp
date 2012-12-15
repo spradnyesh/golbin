@@ -12,7 +12,7 @@
            ,title
            nil
            (list ,title)
-         nil
+           nil
          (htm
           (:div :id "articles"
                 (:ul
@@ -25,7 +25,7 @@
                        (htm (:div :class "index-thumb"
                                   (str (article-lead-photo-url (photo article) "index-thumb")))))
                      (:h3 (:a :class "a-title"
-                              :href (genurl 'r-article
+                              :href (h-genurl 'r-article
                                             :slug-and-id (format nil "~A-~A"
                                                                  (slug article)
                                                                  (id article)))
@@ -50,8 +50,8 @@
      (fe-page-template
          ,title
          nil
-       nil
-       nil
+         nil
+         nil
        (htm
         (:div :id "error" "Sorry! We were unable to find the content that you are looking for. Please click "
               (:a :href "javascript:history.go(-1)" "here")

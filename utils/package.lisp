@@ -12,6 +12,7 @@
            :start/stop/restart-system
            :with-login
            :is-logged-in?
+           :h-genurl
            ;; dimensions
            :*resources*
            :init-dimensions

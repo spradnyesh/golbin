@@ -5,8 +5,8 @@
       nil
       nil
     (if (is-logged-in?)
-        (redirect (genurl 'r-home))
-        (htm (:form :action (genurl 'r-login-post)
+        (redirect (h-genurl 'r-home))
+        (htm (:form :action (h-genurl 'r-login-post)
                     :method "POST"
                     (str (label-input "username" "text"))
                     (str (label-input "password" "password"))
@@ -24,10 +24,10 @@
          (start-session)
          (setf (session-value :author) (handle author))
          (setf (session-value :author-type) (author-type author))
-         (redirect (genurl 'r-home))
-         (redirect (genurl 'r-login-get)))))))
+         (redirect (h-genurl 'r-home))
+         (redirect (h-genurl 'r-login-get)))))))
 
 (defun v-logout ()
   (with-ed-login
     (remove-session *session*)
-    (redirect (genurl 'r-login-get))))
+    (redirect (h-genurl 'r-login-get))))

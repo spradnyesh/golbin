@@ -14,7 +14,7 @@
         (htm (:script :type "text/javascript"
                       (str (on-load))))
       (let ()
-        (htm (:form :action (genurl 'r-cat-post)
+        (htm (:form :action (h-genurl 'r-cat-post)
                     :method "POST"
                     (:ol :id "sort-catsubcat"
                          (dolist (cats (get-category-tree))

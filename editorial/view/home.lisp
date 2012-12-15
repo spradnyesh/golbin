@@ -26,10 +26,10 @@
                                          "Delete"
                                          "Undelete")))
                         (htm (:li (:div :class "crud"
-                                        (:p (:a :href (genurl 'r-article-edit-get :id id) "Edit"))
+                                        (:p (:a :href (h-genurl 'r-article-edit-get :id id) "Edit"))
                                         (when (can-article-be-deleted?)
                                           (htm (:form :method "POST"
-                                                      :action (genurl 'r-article-delete-post :id id)
+                                                      :action (h-genurl 'r-article-delete-post :id id)
                                                       (:input :name "page"
                                                               :type "hidden"
                                                               :value page)
@@ -45,7 +45,7 @@
                                                       (if (string-equal delete "Undelete")
                                                           "deleted"
                                                           ""))
-                                       (:a :href (genurl 'r-article
+                                       (:a :href (h-genurl 'r-article
                                                          :slug-and-id (format nil
                                                                               "~a-~a"
                                                                               (slug article)

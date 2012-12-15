@@ -8,8 +8,8 @@
         (subcats (get-subcategorys 1)))
     (with-html
       (:form :action (if ajax
-                         (genurl 'r-ajax-photo-post)
-                         (genurl 'r-photo-post))
+                         (h-genurl 'r-ajax-photo-post)
+                         (h-genurl 'r-photo-post))
              :method "POST"
              :enctype "multipart/form-data"
              (:table (str (tr-td-input "title"))
@@ -95,7 +95,7 @@
                 `((:status . "success")
                   (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
                "")
-              (redirect (genurl 'r-photo-get))))))))
+              (redirect (h-genurl 'r-photo-get))))))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-ajax-photos-select (who start)
@@ -155,7 +155,7 @@
                              (str message))))
     (let ((count 10))
       (htm
-       (:form :action (genurl 'r-tmp-photo-post)
+       (:form :action (h-genurl 'r-tmp-photo-post)
               :method "POST"
               :enctype "multipart/form-data"
               (:table (:input :class "td-input"
@@ -201,4 +201,4 @@
                                                                 (pathname-name new-path)
                                                                 (pathname-type new-path))
                                           :tags photo-tags)))))))))
-  (redirect (genurl 'r-tmp-photo-get)))
+  (redirect (h-genurl 'r-tmp-photo-get)))

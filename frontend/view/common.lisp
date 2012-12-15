@@ -37,7 +37,7 @@
                     (htm (:div :class "related-thumb"
                                (str (article-lead-photo-url (photo article) "related-thumb")))))
                   (:a :class "a-title"
-                      :href (genurl 'r-article
+                      :href (h-genurl 'r-article
                                     :slug-and-id (format nil "~A-~A"
                                                          (slug article)
                                                          (id article)))

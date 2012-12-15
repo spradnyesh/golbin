@@ -56,3 +56,9 @@
   (dolist (vhost restas::*vhosts*)
       (when (= port (restas::vhost-port vhost))
         (setf restas::*vhosts* (remove vhost restas::*vhosts*)))))
+
+
+(defun h-genurl (&rest args)
+  (if (boundp '*request*)
+      (apply #'genurl args)
+      "/abc/"))

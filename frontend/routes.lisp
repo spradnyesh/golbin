@@ -2,6 +2,7 @@
 
 ;; home
 (define-route r-home ("/") (v-home))
+(define-route r-home-page ("/:page" :parse-vars (list :page #'parse-integer)) (v-home page))
 ;; category
 (define-route r-cat ("/category/:cat/") (v-cat cat))
 (define-route r-cat-page ("/category/:cat/:page" :parse-vars (list :page #'parse-integer)) (v-cat cat page))

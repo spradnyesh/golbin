@@ -9,8 +9,8 @@
        (htm
         (:li :class ,class
              (:a :href ,(if route-params
-                            `(genurl ,route ,@route-params)
-                            `(genurl ,route))
+                            `(h-genurl ,route ,@route-params)
+                            `(h-genurl ,route))
                  (str (,value-fn l))))))))
 
 (defmacro fe-intern (smbl)

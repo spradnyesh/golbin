@@ -39,7 +39,7 @@
 (defun ed-logo ()
   (with-html
     (:h1
-     (:a :href (genurl 'r-home)
+     (:a :href (h-genurl 'r-home)
          (:img :id "logo"
                :source ""
                :alt (get-config "site.name"))))))
@@ -47,7 +47,7 @@
 (defun ed-site-search ()
   #|(with-html
     (:form :method "GET"
-           :action (genurl 'route-search)
+           :action (h-genurl 'route-search)
            :name "search"
            :id "search"
            (:input :type "input"
@@ -61,22 +61,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun author-nav ()
   (with-html (:li :id "nav-article"
-                  (:h2 (:a :href (genurl 'r-article-new-get) "Add Article")))
+                  (:h2 (:a :href (h-genurl 'r-article-new-get) "Add Article")))
              (:li :id "nav-photo"
-                  (:h2 (:a :href (genurl 'r-photo-get) "Add Photo")))))
+                  (:h2 (:a :href (h-genurl 'r-photo-get) "Add Photo")))))
 (defun editor-nav ()
   (with-html (:li :id "nav-approve"
-                  (:h2 (:a :href (genurl 'r-approve-articles) "Approve Articles")))))
+                  (:h2 (:a :href (h-genurl 'r-approve-articles) "Approve Articles")))))
 (defun admin-nav ())
 (defun logout-nav ()
   (with-html (:li :id "nav-logout"
-                  (:h2 (:a :href (genurl 'r-logout) "Logout")))))
+                  (:h2 (:a :href (h-genurl 'r-logout) "Logout")))))
 
 (defun ed-navigation (logged-in)
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
-              (:h2 (:a :href (genurl 'r-home) "Home")))
+              (:h2 (:a :href (h-genurl 'r-home) "Home")))
          (when logged-in
            (let ((author-type (session-value :author-type)))
              (cond ((eq author-type :u) ; author

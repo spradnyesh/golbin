@@ -77,8 +77,8 @@
                                             1)))
              (photo (when article (photo article))))
         (htm (:form :action (if article
-                                (genurl 'r-article-edit-post :id id)
-                                (genurl 'r-article-new-post))
+                                (h-genurl 'r-article-edit-post :id id)
+                                (h-genurl 'r-article-new-post))
                     :method "POST"
                     (:table (str (tr-td-input "title" :value (when article (title article))))
                             (when article (htm
@@ -161,7 +161,7 @@
                                               :value "Save")
                                       (when article (htm (:sup "#1"))))
                                  (when article
-                                   (htm (:td (:a :href (genurl 'r-article
+                                   (htm (:td (:a :href (h-genurl 'r-article
                                                                :slug-and-id (format nil
                                                                                     "~a-~a"
                                                                                     (slug article)
@@ -207,7 +207,7 @@
                                          :photo photo
                                          :photo-direction pd
                                          :tags article-tags))
-            (redirect (genurl 'r-article-edit-get :id (write-to-string id))))
+            (redirect (h-genurl 'r-article-edit-get :id (write-to-string id))))
           (let ((article (add-article (make-instance 'article
                                                      :id nil
                                                      :title title
@@ -218,7 +218,7 @@
                                                      :photo photo
                                                      :photo-direction pd
                                                      :tags article-tags))))
-            (redirect (genurl 'r-article-edit-get :id (write-to-string (id article)))))))))
+            (redirect (h-genurl 'r-article-edit-get :id (write-to-string (id article)))))))))
 
 (defun v-article-delete-post (id)
   (with-ed-login
@@ -226,4 +226,4 @@
       (when article
         (setf (status article) :deleted)
         (edit-article article))
-      (redirect (genurl 'r-home :page (parse-integer (post-parameter "page")))))))
+      (redirect (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))

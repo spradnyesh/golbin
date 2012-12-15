@@ -43,5 +43,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro with-ed-login (&body body)
   `(with-login
-       (genurl 'r-login-get)
+       (h-genurl 'r-login-get)
      ,@body))

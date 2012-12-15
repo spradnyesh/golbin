@@ -31,10 +31,10 @@
            (:div :id "categories-carousel"
                  (dolist (cat (get-home-page-categories carousel-tabs))
                    (str (article-carousel-container ""
-                                                    (:span (:a :href (genurl 'r-cat :cat (slug cat))
+                                                    (:span (:a :href (h-genurl 'r-cat :cat (slug cat))
                                                                (str (name cat))))
                                                     (get-articles-by-cat cat)
-                                                    (genurl 'r-ajax-home-category-articles
+                                                    (h-genurl 'r-ajax-home-category-articles
                                                             :cat-slug (slug cat)
                                                             :page 0)))))
            (:div :id "authors")))))
