@@ -2,43 +2,6 @@
 
 * tasks
 ** backlog
-*** [fed] slide articles
-*** [ed] inline images
-    - [ ] should be of golb.in/static/*.jpeg
-    - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
-      - conversion during write (ed), not read (fe)
-*** TODO [fe] add footer content
-    :CLOCK:
-    CLOCK: [2012-12-15 Sat 18:50]--[2012-12-15 Sat 19:03] =>  0:13
-    CLOCK: [2012-12-12 Wed 19:06]--[2012-12-12 Wed 19:14] =>  0:08
-    :END:
-    - [X] contact email (webmaster@golb.in)
-    - [X] copyright mark
-    - [ ] tos
-    - [ ] privacy
-*** TODO [fe] init prod sites
-    :CLOCK:
-    CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
-    CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
-    :END:
-    - sites
-      - [X] www
-      - [ ] mr
-    - [X] remove 'these are ads-?', 'this is the footer'
-    - [ ] add articles
-*** [reports] accounts for authors
-    - monthly
-      - views
-      - rate per view
-      - paid X INR
-      - paid on date
-*** email server
-    - for
-      - golb.in email addresses
-      - get (and forward) every comment as an email
-    - servers
-      - mail-mta/exim
-      - mail-mta/courier
 *** TODO [fe] comments
     :CLOCK:
     CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
@@ -63,15 +26,74 @@
       - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
     - [ ] spam
       - http://akismet.com/
+*** TODO [fe] init prod sites
+    :CLOCK:
+    CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
+    CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
+    :END:
+    - sites
+      - [X] www
+      - [ ] mr
+    - [X] remove 'these are ads-?', 'this is the footer'
+    - [ ] add articles
+*** [ed] inline images
+    - [ ] should be of golb.in/static/*.jpeg
+    - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
+      - conversion during write (ed), not read (fe)
 *** TODO [reports] check GA data
     :CLOCK:
     CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
     :END:
-*** [fed] gravatar for author images
-    - http://en.gravatar.com/site/implement/images/
 *** [fe] theme
     - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
       - license: http://www.famfamfam.com/lab/icons/silk/
+*** TODO [ed] editor should be able to approve/reject articles
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
+    :END:
+*** [fed] slide articles
+*** [fed] gravatar for author images
+    - http://en.gravatar.com/site/implement/images/
+*** TODO [fe] add footer content
+    :CLOCK:
+    CLOCK: [2012-12-15 Sat 18:50]--[2012-12-15 Sat 19:03] =>  0:13
+    CLOCK: [2012-12-12 Wed 19:06]--[2012-12-12 Wed 19:14] =>  0:08
+    :END:
+    - [X] contact email (webmaster@golb.in)
+    - [X] copyright mark
+    - [ ] tos
+    - [ ] privacy
+*** 50 4-digit numbers for every author for login
+    - [ ] change to db
+    - [ ] change to login get/post
+      - 2 stages
+        1. partial-login using username/passwd
+        2. if correct
+           1. salt = (salt user)
+           2. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
+           3. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
+           4. ensure "a-b,c-d" hasn't been tampered w/
+           5. check for correctness of a,c digits of b,d numbers
+           6. if correct, complete-login
+      - OR, single stage
+        1. use a common salt (can be changed frequently)
+        2. do step 1 + 2 above
+    - [ ] need to send email of these 50 salts on successful registration
+      - jpeg image (cl-gd)
+*** [ed] registration page
+*** [reports] accounts table/storage for authors
+    - monthly
+      - views
+      - rate per view
+      - paid X INR
+      - paid on date
+*** email server
+    - for
+      - golb.in email addresses
+      - get (and forward) every comment as an email
+    - servers
+      - mail-mta/exim
+      - mail-mta/courier
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -99,10 +121,6 @@
     - http://www.indlinux.org/wiki/index.php/IndicFontsList#Devanagari
 *** [lang] find string replacements for different languages
 *** [lang] strings passed to JS land
-*** TODO [ed] editor should be able to approve/reject articles
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
-    :END:
 *** [ed] admin should be able to change author-type
     - promote author to editor (or viceversa)
 *** [ed] an editor should not be able to approve his own articles
@@ -129,24 +147,6 @@
 *** [reports] article-id: views (day, week, month, year)
 *** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
 *** [reports] time (day, week, month, year): most-viewed article/author
-*** [ed] registration page
-*** 50 4-digit numbers for every author for login
-    - [ ] change to db
-    - [ ] change to login get/post
-      - 2 stages
-        1. partial-login using username/passwd
-        2. if correct
-           1. salt = (salt user)
-           2. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
-           3. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
-           4. ensure "a-b,c-d" hasn't been tampered w/
-           5. check for correctness of a,c digits of b,d numbers
-           6. if correct, complete-login
-      - OR, single stage
-        1. use a common salt (can be changed frequently)
-        2. do step 1 + 2 above
-    - [ ] need to send email of these 50 salts on successful registration
-      - jpeg image (cl-gd)
 *** TODO [ed] add search (using cat/subcat, tags) in select-photo pane
     :CLOCK:
     CLOCK: [2012-09-03 Mon 21:00]--[2012-09-03 Mon 21:36] =>  0:36
