@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro fe-page-template (title js tags &body content)
+(defmacro fe-page-template (title js tags description &body content)
   `(with-html
      (:html
       (:head
@@ -13,6 +13,7 @@
        (:meta :name "copyright" :content "Golb.in 2012")
 
        (:meta :name "keywords" :content (join-string-list-with-delim ", " (append ,tags (list (get-config "site.name")))))
+       (:meta :name "description" :content ,description)
        (:meta :name "google" :content "notranslate")
 
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))

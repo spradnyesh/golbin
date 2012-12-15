@@ -24,6 +24,7 @@
       (get-config "site.name")
       nil
     nil
+    nil
     (let ((carousel-tabs (get-config "pagination.home.carousel.tabs"))
           (related-length (get-config "pagination.article.related")))
       (htm (:div :id "jumbotron")

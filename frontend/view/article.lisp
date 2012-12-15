@@ -147,6 +147,7 @@
           (title article)
           nil
           tags
+        (summary article)
         (:div
          (:div :id "article"
                (str (article-preamble-markup article))
