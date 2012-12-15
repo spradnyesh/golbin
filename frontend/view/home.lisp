@@ -19,8 +19,12 @@
           `((:status . "failure")
             (:data . nil))))))
 
-(defun v-home ()
-  (fe-page-template
+(defun v-home (&optional (page 0))
+  (view-index "Home" ; XXX: translate
+                (get-active-articles)
+                'r-home-page)
+  ;; TODO till we get more articles
+  #|(fe-page-template
       (get-config "site.name")
       nil
     nil
@@ -37,4 +41,4 @@
                                                     (h-genurl 'r-ajax-home-category-articles
                                                             :cat-slug (slug cat)
                                                             :page 0)))))
-           (:div :id "authors")))))
+           (:div :id "authors"))))|#)
