@@ -33,7 +33,8 @@
            ;; bd
            (("#bd") (:min-height "800px"))
            ;; ft
-           (("#ft") (:height "100px"))
+           (("#ft") (:height "100px" :padding "50px 150px" :color "#999"))
+           (("#ft p") (:float "left" :padding-right "10px"))
            ;; index pages
            #|(("#articles") (:padding-top "20px" :border-top "3px solid #B5B5B5"))|#
            (("#articles ul li") (:padding "10px 0" :border-bottom "1px dotted" :border-color "#CCC"))

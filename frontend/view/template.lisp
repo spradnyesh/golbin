@@ -47,7 +47,7 @@
                                 ,@content))
                     (:div :id "col-3" :class "yui3-u-1-4"
                           (str (fe-ads-2))))
-              (:div :id "ft"
+              (:div :id "ft" :class "small"
                     (str (fe-footer))))
         (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
         (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
@@ -147,7 +147,9 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-footer ()
-  (with-html ""))
+  (with-html
+    (:p "Copyright © 2012 Golbin Inc. All rights reserved.")
+    (:p (:a :href "mailto:webmaster@golb.in" "Contact us")))) ; XXX: translate
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads
