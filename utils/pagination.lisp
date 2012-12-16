@@ -82,6 +82,6 @@
                 (if (= ,page-number max-pages)
                          (htm (:li :class "disabled" "last"))
                          (htm (:li (:a :href (h-genurl ,route ,@route-params :page max-pages) "last")))))
-           (:p (str (format nil "~a results" ,max-results))))
+           (:p :class "pagination-results" (str (format nil "~a results" ,max-results))))
          ;; don't return nil
          "")))

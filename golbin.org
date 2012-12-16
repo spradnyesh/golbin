@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [bug] dev articles giving a 500
 *** TODO [fe] comments
     :CLOCK:
     CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
@@ -44,7 +45,11 @@
     :CLOCK:
     CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
     :END:
-*** [fe] theme
+*** TODO [fe] theme
+    :CLOCK:
+    CLOCK: [2012-12-16 Sun 19:49]--[2012-12-16 Sun 21:11] =>  1:22
+    CLOCK: [2012-12-16 Sun 19:22]--[2012-12-16 Sun 19:25] =>  0:03
+    :END:
     - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
       - license: http://www.famfamfam.com/lab/icons/silk/
 *** TODO [ed] editor should be able to approve/reject articles

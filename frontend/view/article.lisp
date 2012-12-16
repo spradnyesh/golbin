@@ -148,7 +148,7 @@
           nil
           tags
           (summary article)
-        (:div
+        (:div :id "articles" ; HACK: needed for css
          (:div :id "article"
                (str (article-preamble-markup article))
                (str (article-body-markup article))

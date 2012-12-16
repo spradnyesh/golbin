@@ -52,10 +52,10 @@
          nil
          nil
          nil
-       (htm
-        (:div :id "error" "Sorry! We were unable to find the content that you are looking for. Please click "
-              (:a :href "javascript:history.go(-1)" "here")
-              " to go back.")))))       ; XXX: translate
+       (htm (:div :id "articles"
+                  (:div :id "error" "Sorry! We were unable to find the content that you are looking for. Please click "
+                        (:a :href "javascript:history.go(-1)" "here")
+                        " to go back.")))))) ; XXX: translate
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; view functions
