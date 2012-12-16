@@ -1044,6 +1044,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-12-16 Sun 19:21
      :END:
+**** DONE [bug] correct the ranks of all the "--" subcategories
+     CLOSED: [2012-12-16 Sun 19:46]
+     :CLOCK:
+     CLOCK: [2012-12-16 Sun 19:35]--[2012-12-16 Sun 19:46] =>  0:11
+     CLOCK: [2012-12-16 Sun 19:27]--[2012-12-16 Sun 19:30] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-16 Sun 19:46
+     :END:
+     - also corrected the ranks of many sub-categories, especially those of sports
+     - also, hid all sports other than cricket, badminton and chess
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
