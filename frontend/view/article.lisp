@@ -17,7 +17,7 @@
         (:a :id "a-cat"
             :href (h-genurl 'r-cat :cat (slug (cat article)))
             (str (name (cat article))))
-        (when (not (string= "--" (name (subcat article))))
+        (unless (string= "--" (name (subcat article)))
           (str " / ")
           (htm
            (:a :id "a-cat-subcat"

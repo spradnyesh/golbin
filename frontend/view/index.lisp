@@ -31,9 +31,13 @@
                                                                  (id article)))
                               (str (title article))))
                      (:cite :class "a-cite small" (str (format nil
-                                                               "~a, ~a - ~a"
+                                                               "~a ~a- ~a"
                                                                (name (cat article))
-                                                               (name (subcat article)) (date article))))
+                                                               (let ((subcat-name (name (subcat article))))
+                                                                 (if (not (string= "--" subcat-name))
+                                                                     (format nil ", ~a " subcat-name)
+                                                                     ""))
+                                                               (date article))))
                      (:p :class "a-summary" (str (summary article))))))))
           (str ,(if route-params
                     `(pagination-markup page
