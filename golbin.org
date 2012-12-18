@@ -1421,6 +1421,27 @@
   - search images on flickr. use advanced search and select 'only search within creative commons licensed content'
     - images should have 'some rights reserved' link pointing to http://creativecommons.org/licenses/by/2.0/deed.en or http://creativecommons.org/licenses/by-sa/2.0/deed.en
     - give attribution (compulsory)
+** TODO search for topic
+   :CLOCK:
+   CLOCK: [2012-12-17 Mon 14:50]--[2012-12-17 Mon 15:04] =>  0:14
+   CLOCK: [2012-12-17 Mon 13:44]--[2012-12-17 Mon 14:44] =>  1:00
+   :END:
+   - music
+     - Maybe its something about music itself, that it is so richly organized, that every time you're in a song you can feel what has been and what is about to be --Memory and Forgetting, Radiolab, http://www.radiolab.org/2007/jun/07/
+   - going mouseless
+   - i wrote Golbin in common-lisp. why?
+     - http://www.paulgraham.com/avg.html
+   - *** democracy versus dictatorship in organizations
+   - LOCNW: lines of code not written
+     - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
+     - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
+     - http://www.folklore.org/StoryView.py?story=Negative_2000_Lines_Of_Code.txt
+     - I didn't have time to write a short letter, so I wrote a long one instead. --Mark Twain
+   - stress@radiolab
+     - t: heart diseases don't happen due to thinner blood vessels
+     - t: the affect of stress on chairs (and on us)
+     - t: usually you and your body are on the same side
+     - t: nice guys do not end up last
 ** template
    - cat/subcat:
    - tags:
@@ -1428,9 +1449,7 @@
    - summary:
    - body:
    - notes:
-** music
-   - Maybe its something about music itself, that it is so richly organized, that every time you're in a song you can feel what has been and what is about to be --Memory and Forgetting, Radiolab, http://www.radiolab.org/2007/jun/07/
-** Discovering the joy of writing
+** TODO Discovering the joy of writing
    - cat/subcat: editorial/--
    - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
    - author: Pradnyesh Sawant
@@ -1470,17 +1489,6 @@ This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now 
 <quote>
 Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
 </quote>
-** going mouseless
-** i wrote Golbin in common-lisp. why?
-   - notes:
-     - http://www.paulgraham.com/avg.html
-** democracy versus dictatorship in organizations
-** LOCNW: lines of code not written
-   - notes:
-     - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
-     - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
-     - http://www.folklore.org/StoryView.py?story=Negative_2000_Lines_Of_Code.txt
-     - I didn't have time to write a short letter, so I wrote a long one instead. --Mark Twain
 ** TODO forgetting "forgive and forget"
    :CLOCK:
    CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
