@@ -2,9 +2,9 @@
 
 * tasks
 ** backlog
-*** [bug] dev articles giving a 500
 *** TODO [fe] comments
     :CLOCK:
+    CLOCK: [2012-12-21 Fri 08:07]--[2012-12-21 Fri 08:08] =>  0:01
     CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
     CLOCK: [2012-12-02 Sun 19:42]--[2012-12-02 Sun 20:14] =>  0:32
     CLOCK: [2012-12-02 Sun 18:35]--[2012-12-02 Sun 18:38] =>  0:03
@@ -14,6 +14,7 @@
     CLOCK: [2012-12-01 Sat 17:27]--[2012-12-01 Sat 18:10] =>  0:43
     CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
     :END:
+    - [X] disable until integrated w/ akismet
     - [ ] model
       - [ ] separate email and url
     - [-] fe

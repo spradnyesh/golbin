@@ -152,7 +152,7 @@
          (:div :id "article"
                (str (article-preamble-markup article))
                (str (article-body-markup article))
-               (str (article-comments-markup article slug-and-id)))
+               #|(str (article-comments-markup article slug-and-id))|#)
          (str (article-related-markup id article)))))))
 
 (defun v-ajax-article-related (id typeof page)
