@@ -6,6 +6,8 @@
   (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home
            :r-home-page
+           :r-tos
+           :r-privacy
            :r-cat
            :r-cat-page
            :r-cat-subcat

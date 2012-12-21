@@ -149,6 +149,8 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 (defun fe-footer ()
   (with-html
     (:p "Copyright © 2012 Golbin Inc. All rights reserved.")
+    (:p (:a :href (h-genurl 'r-tos) "Terms of Service"))
+    (:p (:a :href (h-genurl 'r-privacy) "Privacy"))
     (:p (:a :href "mailto:webmaster@golb.in" "Contact us")))) ; XXX: translate
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
