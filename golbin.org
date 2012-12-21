@@ -41,24 +41,6 @@
     - [ ] should be of golb.in/static/*.jpeg
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
       - conversion during write (ed), not read (fe)
-*** TODO [reports] check GA data
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
-    :END:
-*** TODO [fe] theme
-    :CLOCK:
-    CLOCK: [2012-12-16 Sun 19:49]--[2012-12-16 Sun 21:11] =>  1:22
-    CLOCK: [2012-12-16 Sun 19:22]--[2012-12-16 Sun 19:25] =>  0:03
-    :END:
-    - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
-      - license: http://www.famfamfam.com/lab/icons/silk/
-*** TODO [ed] editor should be able to approve/reject articles
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
-    :END:
-*** [fed] slide articles
-*** [fed] gravatar for author images
-    - http://en.gravatar.com/site/implement/images/
 *** TODO [fe] add footer content
     :CLOCK:
     CLOCK: [2012-12-15 Sat 18:50]--[2012-12-15 Sat 19:03] =>  0:13
@@ -66,8 +48,34 @@
     :END:
     - [X] contact email (webmaster@golb.in)
     - [X] copyright mark
-    - [ ] tos
-    - [ ] privacy
+    - [ ] tos http://www.websitetemplatesonline.com/terms.html
+    - [ ] privacy http://www.websitetemplatesonline.com/policy.html
+*** TODO [fe] theme
+    :CLOCK:
+    CLOCK: [2012-12-20 Thu 13:40]--[2012-12-20 Thu 14:11] =>  0:31
+    CLOCK: [2012-12-16 Sun 19:49]--[2012-12-16 Sun 21:11] =>  1:22
+    CLOCK: [2012-12-16 Sun 19:22]--[2012-12-16 Sun 19:25] =>  0:03
+    :END:
+    - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
+      - license: http://www.famfamfam.com/lab/icons/silk/
+    - templates
+      - http://www.websitetemplatesonline.com/free-template/Red-Bridge.html
+      - http://www.websitetemplatesonline.com/free-template/Naturefield.html (*** clouds background)
+        - http://templates.websitetemplatesonline.com/Naturefield/images/back_all.jpg
+        - background: #75DAFF url(images/back_all.jpg) repeat-x
+      - http://www.websitetemplatesonline.com/free-template/Border-Swirls.html *
+      - http://www.oswd.org/ ***
+*** TODO [reports] check GA data
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
+    :END:
+*** TODO [ed] editor should be able to approve/reject articles
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
+    :END:
+*** [fed] slide articles
+*** [fed] gravatar for author images
+    - http://en.gravatar.com/site/implement/images/
 *** 50 4-digit numbers for every author for login
     - [ ] change to db
     - [ ] change to login get/post
