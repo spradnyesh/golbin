@@ -16,8 +16,8 @@
              (:div :class "prev hidden")
              (:div :class "current"
                    (str (article-carousel-markup
-                         (splice ,list :to (min (length ,list)
-                                                (1- related-length))))))
+                         (splice ,list :to (1- (min (length ,list)
+                                                    related-length))))))
              (:div :class "next hidden"
                    (str (article-carousel-markup
                          (splice ,list

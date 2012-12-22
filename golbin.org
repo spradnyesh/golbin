@@ -14,7 +14,6 @@
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
       - conversion during write (ed), not read (fe)
 *** [bug][fe] correct timezone in articles listings in home/index pages
-*** [bug][fe] related articles not showing up in prod
 *** [ed] do while saving article
     - [ ] remove all the '<p> +&nbsp +</p>' and '<div> +&nbsp +</div>'
     - [ ] convert all <div> into <p>???
@@ -1119,6 +1118,14 @@
          - http://wordpress.org/extend/themes/twentyten
          - http://wordpress.org/extend/themes/twentyeleven *
          - http://wordpress.org/extend/themes/picolight *****
+**** DONE [bug][fe] related articles not showing up in prod
+     CLOSED: [2012-12-23 Sun 00:12]
+     :CLOCK:
+     CLOCK: [2012-12-23 Sun 00:05]--[2012-12-23 Sun 00:12] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-23 Sun 00:12
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
