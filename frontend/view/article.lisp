@@ -94,7 +94,7 @@
                 (author (author article))
                 (cat-subcat-list (get-related-articles "cat-subcat" article))
                 (author-list (get-related-articles "author" article)))
-            (str (article-carousel-container "Articles in the same Category/Subcategory: "
+            (str (article-carousel-container "Articles in the same Category / Subcategory:- "
                                              (:span (:a :href (h-genurl 'r-cat
                                                                       :cat (slug cat))
                                                         (str (name cat)))
@@ -108,7 +108,7 @@
                                                      :id id
                                                      :typeof "cat-subcat"
                                                      :page 0)))
-            (str (article-carousel-container "Articles authored by: "
+            (str (article-carousel-container "Articles authored by:- "
                                              (:span (:a :href (h-genurl 'r-author
                                                                       :author (handle author))
                                                         (str (alias author))))

@@ -16,12 +16,12 @@
 (defmacro fe-intern (smbl)
   `(intern (string-upcase ,smbl) :hawksbill.golbin.frontend))
 
-(defmacro nav-selected (cond if-str else-str &body body)
+(defmacro nav-selected (cond then-str else-str &body body)
   `(if (and (nav-cat? route)
             ,cond)
        (progn
          ,@body
-         (format nil ,if-str))
+         (format nil ,then-str))
        (format nil ,else-str)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -42,13 +42,7 @@
         ;; cat/subcat page
         (list (third split) (fourth split))
         ;; article page
-        (let ((article (get-article-by-id (parse-integer (first (split-sequence
-                                                                 "-"
-                                                                 (first (split-sequence
-                                                                         "."
-                                                                         uri
-                                                                         :test #'string-equal))
-                                                                 :from-end t
-                                                                 :test #'string-equal
-                                                                 :count 1))))))
+        (let ((article (get-article-by-id (get-id-from-slug-and-id (first (split-sequence "."
+                                                                                          uri
+                                                                                          :test #'string-equal))))))
           (list (slug (cat article)) (slug (subcat article)))))))

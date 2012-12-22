@@ -18,8 +18,15 @@
 
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
-       (:style :type "text/css"
-               (str (fe-get-css)))
+       (:link :rel "stylesheet" :type "text/css" :href "/static/css/fe-style.css"
+              ;; TODO: replace hardcoded css location w/ following logic
+              #|(format nil
+                      "/static/css/fe-style-1~a.css"
+                      (if (string-equal (get-dimension-value "envt") "prod")
+                          "-min"
+                          ""))|#)
+       #|(:style :type "text/css"
+               (str (fe-get-css)))|#
 
        ;; google-analytics
        (:script :type "text/javascript"
@@ -41,14 +48,13 @@
                     (str (fe-header)))
               (:div :id "bd"
                     (:div :class "yui3-u-3-4"
-                          (:div :id "col-1" :class "yui3-u-1-5"
+                          (:div :id "col-1" :class "yui3-u-1-4"
                                 (str (fe-ads-1)))
-                          (:div :id "col-2" :class "yui3-u-4-5"
-                                (:div :id "container" ,@content)))
+                          (:div :id "col-2" :class "yui3-u-3-4"
+                                (:div :id "wrapper" ,@content)))
                     (:div :id "col-3" :class "yui3-u-1-4"
                           (str (fe-ads-2))))
-              (:div :id "ft" :class "small"
-                    (str (fe-footer))))
+              (:div :id "ft" (str (fe-footer))))
         (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
         (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
         (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js"))
