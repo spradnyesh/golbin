@@ -37,7 +37,7 @@
            (("#subnav li:last-child") (:border-right "1px solid white"))
            ;; bd
            (("#bd") (:background-color "#FFF"))
-           (("#articles") (:padding "20px" :min-height "800px"))
+           (("#container") (:padding "20px" :min-height "800px" :border "1px solid red"))
            ;; ft
            (("#ft") (:margin "50px 0 0 250px" :color "#999"))
            (("#ft p") (:float "left" :padding-right "10px"))

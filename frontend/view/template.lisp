@@ -44,7 +44,7 @@
                           (:div :id "col-1" :class "yui3-u-1-5"
                                 (str (fe-ads-1)))
                           (:div :id "col-2" :class "yui3-u-4-5"
-                                ,@content))
+                                (:div :id "container" ,@content)))
                     (:div :id "col-3" :class "yui3-u-1-4"
                           (str (fe-ads-2))))
               (:div :id "ft" :class "small"
