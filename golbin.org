@@ -13,8 +13,13 @@
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
       - conversion during write (ed), not read (fe)
 *** [bug][fe] correct timezone in articles listings in home/index pages
+*** [bug][fe] related articles not showing up in prod
+*** [ed] do while saving article
+    - [ ] remove all the '<p> +&nbsp +</p>' and '<div> +&nbsp +</div>'
+    - [ ] convert all <div> into <p>???
 *** TODO [fe] init prod sites
     :CLOCK:
+    CLOCK: [2012-12-22 Sat 17:21]--[2012-12-22 Sat 17:52] =>  0:31
     CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
     CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
     :END:
@@ -1535,14 +1540,14 @@ This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now 
 <quote>
 Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
 </quote>
-** TODO forgetting "forgive and forget"
+** TODO Forgetting "forgive and forget"
    :CLOCK:
    CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
    CLOCK: [2012-12-12 Wed 14:32]--[2012-12-12 Wed 14:56] =>  0:24
    CLOCK: [2012-12-11 Tue 16:00]--[2012-12-11 Tue 17:21] =>  1:21
    :END:
    - cat/subcat: science/--
-   - tags: forgive and forget, radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics, memento, Albert Einstein, Einstein, Studs Terkel, Anisomycin, ptsd, amnesia, clive wearing, oliver sacks, elizabeth loftus, scott fraser, andrei codrescu, 101 damnations, science
+   - tags: forgive and forget, radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics, memento, albert einstein, einstein, studs terkel, anisomycin, ptsd, amnesia, clive wearing, oliver sacks, elizabeth loftus, scott fraser, andrei codrescu, 101 damnations, science
    - lead image: http://www.thesupersistah.com/wp-content/uploads/2011/08/Forgive-and-forget.jpg @ http://www.thesupersistah.com/2011/08/forgive-or-forget-you/
    - summary: It seems like God intended us to (forgive and )forget. And, for atheists, science seems to say the same thing!
    - body:
@@ -1556,7 +1561,7 @@ However, studies have found that the above analogy is wrong, very wrong! The bra
 2. inanimate objects like buildings, cars, lamp posts, furniture, etc
 3. location, weather, etc
 4. conversations, emotions, etc
-http://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Neuron_Hand-tuned.svg/400px-Neuron_Hand-tuned.svg.png @ http://en.wikipedia.org/wiki/Neuron
+http://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Neuron_Hand-tuned.svg/400px-Neuron_Hand-tuned.svg.png @ http://en.wikipedia.org/wiki/Neuron/
 Each of these items are stored in neurons and creation of a memory is like creating links or bridges between these neuron cells. Thus memory is inherently associative in nature, and the act of creating a memory is actually creating these associations.
 
 Remembering is the process of scanning these neurons and associations between them. It is a highly imperfect process. It is very much possible that during remembering some of the neurons might not fire, that is, we might miss out on some associations. It is also possible, that some other neurons might fire, which means that we may remember (actually, imagine) something that never happened, or wasn't present, in the particular memory that we're remembering. Thus remembering is a highly creative process; we are, astonishingly, (re-)creating the memory!
@@ -1582,7 +1587,7 @@ The fact that memory is not static, but gets re-created anew, modified slightly,
 
 Finally I would like to end with an awesome short essay by the Romanian essayist [[http://en.wikipedia.org/wiki/Andrei_Codrescu][Andrei Codrescu]] from the book [[http://en.wikipedia.org/wiki/101_Damnations_(book)][101 Damnations]]
 
-<quote>The other day a friend of mine was explaining how she had to move these pixels around her computer and had to add 20 megabytes of memory to handle the operation. I had the disquieting thought that all this memory she was adding had to come from somewhere. Maybe it was coming from me because I couldn’t remember a thing that day. And then it became blindingly obvious: All the memory that everybody keeps adding comes from people. Nobody can remember a damn thing. Every time someone adds memory to their machine, thousands of people forget everything they knew. Americans are singularly devoid of memory these days. We don’t remember where we came from, who raised us, when our wars use to be, what happened last year, last month, or even last week. School children remember practically nothing. I take the greyhound bus every week, and I swear people on there don’t know where they got on or where they’re supposed to get off. They explanation is simple: computer companies are stealing human memory to stuff their hard drives. Greyhound I believe has some kind of contract with IBM to steal the memory of everybody riding the bus. They’re probably connected by a cable or something. Every hundred miles, poof! Another 500 megabytes get sucked out of the passengers’ brains. The computer’s thirst for memory is bottomless: the more they suck, the more they need. Eventually, we’ll be walking around with a glazed look in our eyes, trying to figure out who it is we live with. And then we’ll forget our names and addresses and we’ll just be milling around trying to remember them. The only thing visible about us will be these cables sticking out of our behinds, feeding the scraps of our memory to computer central, somewhere in Oblivion, USA. I think it’s time for all these memory sucking companies to start some kind of system to feel and shelter us when we forget how to eat, walk, and sleep.</quote>
+<quote>The other day a friend of mine was explaining how she had to move these pixels around her computer and had to add 20 megabytes of memory to handle the operation. I had the disquieting thought that all this memory she was adding had to come from somewhere. Maybe it was coming from me because I couldn't remember a thing that day. And then it became blindingly obvious: All the memory that everybody keeps adding comes from people. Nobody can remember a damn thing. Every time someone adds memory to their machine, thousands of people forget everything they knew. Americans are singularly devoid of memory these days. We don't remember where we came from, who raised us, when our wars use to be, what happened last year, last month, or even last week. School children remember practically nothing. I take the greyhound bus every week, and I swear people on there don't know where they got on or where they're supposed to get off. They explanation is simple: computer companies are stealing human memory to stuff their hard drives. Greyhound I believe has some kind of contract with IBM to steal the memory of everybody riding the bus. They're probably connected by a cable or something. Every hundred miles, poof! Another 500 megabytes get sucked out of the passengers' brains. The computer's thirst for memory is bottomless: the more they suck, the more they need. Eventually, we'll be walking around with a glazed look in our eyes, trying to figure out who it is we live with. And then we'll forget our names and addresses and we'll just be milling around trying to remember them. The only thing visible about us will be these cables sticking out of our behinds, feeding the scraps of our memory to computer central, somewhere in Oblivion, USA. I think it's time for all these memory sucking companies to start some kind of system to feel and shelter us when we forget how to eat, walk, and sleep.</quote>
 
 ps: Listen to more interesting details and stories about [[http://www.radiolab.org/2007/jun/07/][Memory and Forgetting]] at [[http://www.radiolab.org/][RadioLab]].
    - notes:

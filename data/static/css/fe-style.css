@@ -32,7 +32,7 @@ body {
 }
 
 p {
-    margin: 5px 0;
+    margin: 15px 0;
 }
 
 a:link ,a:active ,a:visited, a:hover {
@@ -234,6 +234,15 @@ h4 {
 
 #a-body blockquote {
     background-color: #F0F0F0;
+    padding: 10px;
+}
+
+#a-body li {
+    background: url('/static/css/images/icon_bullet.png') 5px 2px no-repeat;
+    padding-left: 25px;
+}
+
+#a-body img {
     padding: 10px;
 }
 
