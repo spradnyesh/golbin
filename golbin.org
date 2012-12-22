@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [bug][fed] correct the dates of the 2 new articles uploaded
 *** TODO [reports] check GA data
     :CLOCK:
     CLOCK: [2012-12-21 Fri 08:09]--[2012-12-21 Fri 08:35] =>  0:26
@@ -19,7 +20,6 @@
     - [ ] convert all <div> into <p>???
 *** TODO [fe] init prod sites
     :CLOCK:
-    CLOCK: [2012-12-22 Sat 17:21]--[2012-12-22 Sat 17:52] =>  0:31
     CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
     CLOCK: [2012-12-09 Sun 21:10]--[2012-12-09 Sun 22:15] =>  1:05
     :END:
@@ -27,7 +27,7 @@
       - [X] www
       - [ ] mr
     - [X] remove 'these are ads-?', 'this is the footer'
-    - [ ] add articles
+    - [X] add articles
 *** TODO [fed] comments
     :CLOCK:
     CLOCK: [2012-12-21 Fri 08:07]--[2012-12-21 Fri 08:08] =>  0:01
@@ -1500,7 +1500,8 @@
    - summary:
    - body:
    - notes:
-** TODO Discovering the joy of writing
+** DONE Discovering the joy of writing
+   CLOSED: [2012-12-22 Sat 18:41]
    - cat/subcat: editorial/--
    - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
    - author: Pradnyesh Sawant
@@ -1540,8 +1541,10 @@ This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now 
 <quote>
 Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
 </quote>
-** TODO Forgetting "forgive and forget"
+** DONE Forgetting "forgive and forget"
+   CLOSED: [2012-12-22 Sat 18:17]
    :CLOCK:
+   CLOCK: [2012-12-22 Sat 17:21]--[2012-12-22 Sat 17:52] =>  0:31
    CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
    CLOCK: [2012-12-12 Wed 14:32]--[2012-12-12 Wed 14:56] =>  0:24
    CLOCK: [2012-12-11 Tue 16:00]--[2012-12-11 Tue 17:21] =>  1:21
@@ -1668,14 +1671,18 @@ ps: Listen to more interesting details and stories about [[http://www.radiolab.o
        - http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/
        - http://www.livescience.com/15621-memory-altering-drugs-debate.html
        - http://www.salon.com/2011/12/31/should_we_erase_painful_memories/
-** TODO what makes you, you?
+** DONE What makes you, you?
+   CLOSED: [2012-12-22 Sat 18:41]
    :CLOCK:
+   CLOCK: [2012-12-22 Sat 18:20]--[2012-12-22 Sat 18:41] =>  0:21
+   CLOCK: [2012-12-22 Sat 18:17]--[2012-12-22 Sat 18:20] =>  0:03
    CLOCK: [2012-12-15 Sat 16:56]--[2012-12-15 Sat 17:12] =>  0:16
    CLOCK: [2012-12-15 Sat 15:20]--[2012-12-15 Sat 16:49] =>  1:29
    CLOCK: [2012-12-15 Sat 14:25]--[2012-12-15 Sat 15:08] =>  0:43
    CLOCK: [2012-12-14 Fri 18:41]--[2012-12-14 Fri 19:56] =>  1:15
    :END:
    - tags: radiolab, science, mirror test, gordon gallup, robert louis stevenson, julian keenan, indian culture, v s ramachandran, dr jekyll and mr hyde, cerebral aneurysm, aneurysm
+   - summary:
    - body
 I'm sure you have wondered, at some time or the other, "who am i?" Probably, you are the kind of person who has meditated over it, or you might be the kind who does not give it a second thought. Probably you were born in a culture, like the [[http://en.wikipedia.org/wiki/Culture_of_India][Indian culture]], where you have heard this question from your elders, or from stories in your childhood. Probably you have gone one step further and wondered or heard questions like "[[http://www.gocomics.com/calvinandhobbes/1988/04/01][why am i here?]]" or "what am i here for?"
 
