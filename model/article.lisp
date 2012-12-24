@@ -8,8 +8,8 @@
    (title :initarg :title :initform nil :accessor title)
    (slug :initarg :slug :initform nil :accessor slug)
    (summary :initarg :summary :initform nil :accessor summary)
-   (date :initarg :date :initform nil :accessor date)
    (body :initarg :body :initform nil :accessor body)
+   (date :initarg :date :initform nil :accessor date) ; actually datetime
    (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :s submitted for approval, :a approved/active, :w rejected/withdrawn (deleted by admin)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
@@ -35,11 +35,8 @@
     ;; set some article params
     (setf (id article)
           (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
-    (setf (date article)
-          (prettyprint-datetime))
     (setf (slug article)
           (slugify (title article)))
-    (setf (status article) :r)
     (set-mini-author article)
 
     ;; save article into storage
@@ -50,8 +47,6 @@
 (defun edit-article (article)
   (when article
     ;; set some article params
-    (setf (date article)
-          (prettyprint-datetime))
     (set-mini-author article)
 
     ;; save article into storage

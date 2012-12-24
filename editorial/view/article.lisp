@@ -194,13 +194,14 @@
           (when tag-added
             (push tag-added article-tags))))
       (if id
-          (progn
+          (let ((article (get-article-by-id id)))
             (edit-article (make-instance 'article
                                          :id id
                                          :title title
-                                         :slug (slug (get-article-by-id id))
+                                         :slug (slug article)
                                          :summary summary
                                          :body body
+                                         :date (date article)
                                          :status :r
                                          :cat cat
                                          :subcat subcat
@@ -209,10 +210,11 @@
                                          :tags article-tags))
             (redirect (h-genurl 'r-article-edit-get :id (write-to-string id))))
           (let ((article (add-article (make-instance 'article
-                                                     :id nil
                                                      :title title
                                                      :summary summary
                                                      :body body
+                                                     :status :r
+                                                     :date (prettyprint-datetime)
                                                      :cat cat
                                                      :subcat subcat
                                                      :photo photo

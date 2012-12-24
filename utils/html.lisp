@@ -23,20 +23,25 @@
       (htm
        (:tr
         (:td (format t "~A" (string-capitalize for)))
-        (:td (:input :class (format nil "td-input ~A" name)
+        (:td (let ((trimmed-name (trim-name name)))
+                     (htm (:input :class (format nil "td-input ~A" trimmed-name)
                      :type typeof
-                     :name (format nil "~A" name)
-                     :value value)))))))
+                     :name (format nil "~A" trimmed-name)
+                     :value value)))))))))
+
+(defun trim-name (name)
+  (first (split-sequence " " name :test #'string-equal)))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
   (with-html
     (htm (:tr (:td (format t "~A" (string-capitalize name)))
-              (:td (:textarea :cols cols
-                              :rows rows
-                              :name (format nil "~A" name)
-                              :id (format nil "~A" name)
-                              :class class
-                              (str value)))))))
+              (:td (let ((trimmed-name (trim-name name)))
+                     (htm (:textarea :cols cols
+                                     :rows rows
+                                     :name (format nil "~A" trimmed-name)
+                                     :id (format nil "~A" trimmed-name)
+                                     :class class
+                                     (str value)))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions
