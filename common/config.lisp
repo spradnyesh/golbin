@@ -15,7 +15,7 @@
                   ("fe" ("restas" ("package" :hawksbill.golbin.frontend)
                                   ("port" 8000)))
                   ("ed" ("restas" ("package" :hawksbill.golbin.editorial)
-                                  ("port" 8080)))
+                                  ("port" 8888)))
                   ("path" ("uploads" ,(merge-pathnames "../data/uploads/" *home*))
                           ("photos" ,(merge-pathnames "../data/static/photos/" *home*))
                           ("locale" ,(merge-pathnames "locale/" *home*)))
