@@ -12,7 +12,7 @@
                                      (:file "init" :depends-on ("config"))
                                      (:file "dimensions" :depends-on ("config"))
                                      (:file "file" :depends-on ("config"))
-                                     (:file "photo" :depends-on ("file" "datetime"))
+                                     (:file "photo" :depends-on ("file"))
                                      (:file "lang" :depends-on ("config" "file" "string"))
                                      (:file "js" :depends-on ("package"))
                                      (:file "restas" :depends-on ("dimensions" "string"))

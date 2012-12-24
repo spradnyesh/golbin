@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad)
+  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time)
   (:shadow :mime-type :size)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
@@ -72,6 +72,8 @@
            :scale-and-save-photo
            ;; file
            :get-directory-path-string
+           ;; datetime
+           :prettyprint-datetime
            ;; lang
            :*translation-table*
            :translate

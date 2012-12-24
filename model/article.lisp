@@ -36,7 +36,7 @@
     (setf (id article)
           (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
     (setf (date article)
-          (now))
+          (prettyprint-datetime))
     (setf (slug article)
           (slugify (title article)))
     (setf (status article) :r)
@@ -51,7 +51,7 @@
   (when article
     ;; set some article params
     (setf (date article)
-          (now))
+          (prettyprint-datetime))
     (set-mini-author article)
 
     ;; save article into storage

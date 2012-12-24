@@ -2,7 +2,14 @@
 
 * tasks
 ** backlog
-*** [bug][fed] correct the dates of the 2 new articles uploaded
+*** TODO [fed] datetime
+    :CLOCK:
+    CLOCK: [2012-12-24 Mon 18:12]--[2012-12-24 Mon 18:13] =>  0:01
+    CLOCK: [2012-12-24 Mon 17:34]--[2012-12-24 Mon 18:12] =>  0:38
+    :END:
+    - [ ] datetime for comments
+    - [X] datetime -> string while write
+*** [bug][fed] correct the dates of the 3 new articles uploaded
 *** TODO [reports] check GA data
     :CLOCK:
     CLOCK: [2012-12-21 Fri 08:09]--[2012-12-21 Fri 08:35] =>  0:26
@@ -53,6 +60,17 @@
       - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
     - [ ] spam
       - http://akismet.com/
+*** TODO [security] escape input/output data
+    :CLOCK:
+    CLOCK: [2012-12-01 Sat 17:10]--[2012-12-01 Sat 17:26] =>  0:16
+    :END:
+    - (ql:quickload "do-urlencode")
+*** [security] server scans
+    - [ ] http://www.cirt.net/nikto2
+    - [ ] http://code.google.com/p/skipfish/
+*** [performance] gzip content served by nginx
+*** [performance] http caching headers
+*** [seo][performance] favicon
 *** TODO [ed] editor should be able to approve/reject articles
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
@@ -155,18 +173,10 @@
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
 *** [config] utils/dimensions should not presume dimensions like envt or lang
-*** TODO [security] escape input/output data
-    :CLOCK:
-    CLOCK: [2012-12-01 Sat 17:10]--[2012-12-01 Sat 17:26] =>  0:16
-    :END:
-    - (ql:quickload "do-urlencode")
+*** [seo] robots.txt
 *** [performance] remove unnecessary id/class from page elements
     - [ ] fe
     - [ ] ed
-*** [performance] gzip content served by nginx
-*** [performance] http caching headers
-*** [seo] robots.txt
-*** [seo][performance] favicon
 *** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
 *** TODO [fe] home page to show carousel for categories/authors of articles
     :CLOCK:
