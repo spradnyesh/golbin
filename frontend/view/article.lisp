@@ -11,7 +11,6 @@
         (:a :id "a-author"
             :href (h-genurl 'r-author :author (handle (author article)))
             (str (alias (author article))))
-        (str " on ")
         (:span :id "a-date" (str (date article)))
         (str " in category ")
         (:a :id "a-cat"
