@@ -64,6 +64,7 @@
            :split-string-by-delim
            :nil-or-empty
            :make-keyword
+           :string-pad
            ;; pagination
            :paginate
            :pagination-markup

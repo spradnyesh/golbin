@@ -4,6 +4,16 @@
 (defun make-keyword (name)
   (values (intern (string-upcase name) "KEYWORD")))
 
+;; prepend/append (based on 'direction) string of 'character
+;; of length (- 'length (length 'string)) to given 'string
+(defun string-pad (string character length direction)
+  (let ((str-len (length string)))
+    (when (> length str-len)
+      (let ((padder (make-string (- length str-len) :initial-element character)))
+        (case direction
+          (:l (stringify padder string))
+          (:r (stringify string padder)))))))
+
 (defun join-string-list-with-delim (delim list &key (key nil))
   (when list
     (let ((first-element (if key
