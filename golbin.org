@@ -2,11 +2,8 @@
 
 * tasks
 ** backlog
-*** [bug][fe] show 'using tags' in article cite only if tags != null
+*** TODO [bug][fe] show 'using tags' in article cite only if tags != null
 *** [refactor] concatenate 'string -> stringify
-*** TODO [bug][fed] correct the dates of the 3 new articles uploaded
-    :CLOCK:
-    :END:
 *** TODO [reports] check GA data
     :CLOCK:
     CLOCK: [2012-12-21 Fri 08:09]--[2012-12-21 Fri 08:35] =>  0:26
@@ -1146,6 +1143,14 @@
      :END:
      - [X] datetime for comments
      - [X] datetime -> string while write
+**** DONE [bug][fed] correct the dates of the 3 new articles uploaded
+     CLOSED: [2012-12-26 Wed 21:02]
+     :CLOCK:
+     CLOCK: [2012-12-26 Wed 20:26]--[2012-12-26 Wed 20:58] =>  0:32
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-26 Wed 21:02
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
@@ -1527,267 +1532,6 @@
    - summary:
    - body:
    - notes:
-** DONE Discovering the joy of writing
-   CLOSED: [2012-12-22 Sat 18:41]
-   - cat/subcat: editorial/--
-   - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
-   - author: Pradnyesh Sawant
-   - lead image:
-     - http://ktliterary.com/wp/wp-content/uploads/2010/03/inspiration.jpg (http://ktliterary.com/2010/03/guest-blog-by-intern-jenny-inspiration/)
-     - http://www.mastersofseo.com/wp-content/uploads/2009/01/inspiration-300x225.jpg (http://www.mastersofseo.com/how-get-inspiration-to-writ/)
-     - http://www.flickr.com/photos/ecokaren/5596869512/
-     - http://www.flickr.com/photos/freeflyer09/4448061188/
-     - http://www.flickr.com/photos/erikogan/4892456507/
-   - summary: This article is about how I overcame my fear and found my own eureka moment, how i found the initial inspiration and found the joy of writing.
-   - body
-Getting a [[www.golb.in][website]] built was a difficult but manageable task. But where do I get the content from? I am no writer myself. I have written a few blog [[blog.spradnyesh.org][posts]], but those were long ago and there was definitely no discipline there. Those were some random, and more importantly, sporadic thoughts that I penned down. However what I am trying to do now is a totally different beast. Of course, the idea is to attract people to write on this website, but before that there needs to be atleast some initial content. It is easier to add content and ideas to an existing work, but very difficult to start something oneself. So that is the responsibility I must take onto myself, to initiate and to lay down some basic foundation.
-
-Ok, so now I have got myself a goal and some determination too. But that does not solve the problem of skill. Having a goal and determination does not make me a writer. So I do the only thing that makes sense, procrastinate! After having delayed the task for a few weeks, I decided to do the inevitable:
-
-<quote>
-The best way to get started is to get started. --Anonymous
-</quote>
-
-The first thing that I needed to do was get over [[http://en.wikipedia.org/wiki/Inertia][inertia]]; I needed to get rid of the [[http://en.wikipedia.org/wiki/A_rolling_stone_gathers_no_moss][moss]], get the stone rolling. I started to think about what I should write. That's when I remembered a sentence from one of [[http://en.wikipedia.org/wiki/Purushottam_Laxman_Deshpande][P. L. Deshpande]]'s essays 'Majhe Poshtk Jeevan':
-
-<quote>
-Shevati kaay ho, apan sagle jana aahot na, te pattyatlya navache dhani. Majkuracha maalak niralach asto.
-</quote>
-
-Literally translated, it means "Finally, we all are just the owners of the name on the address. The owner of the content is someone completely different."
-
-I have always been fascinated with quotations. I have a collection of quotations and phrases, not only from great people, but also anonymous, and even short sentences that I have found very interesting; anything that I have read or heard from anywhere. The most interesting thing that i find about quotations or phrases is that they are open to interpretations. The same sentence can mean different things to different people. Actually, it can mean different things to the same person when read at different times, in different moods, in different circumstances. I think that more important than the sentence is its interpretation; what one gets or understands, what one perceives from it.
-
-For me, in the context of writing my first article on [[www.golb.in][Golbin]], the above sentence meant a lot:
-1. I am the author, but what i write is consciously or sub-consciously told to me by _the_ author himself
-2. This takes away some pressure from my mind about how will the article be received by the audience
-3. I realize that this is only my first attempt; with practice and perseverance I am only going to improve
-
-This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now understand what is actually meant by inspiration and it culminates in the following [[http://en.wikiquote.org/wiki/Thomas_Edison][quote]]:
-
-<quote>
-Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
-</quote>
-** DONE Forgetting "forgive and forget"
-   CLOSED: [2012-12-22 Sat 18:17]
-   :CLOCK:
-   CLOCK: [2012-12-22 Sat 17:21]--[2012-12-22 Sat 17:52] =>  0:31
-   CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
-   CLOCK: [2012-12-12 Wed 14:32]--[2012-12-12 Wed 14:56] =>  0:24
-   CLOCK: [2012-12-11 Tue 16:00]--[2012-12-11 Tue 17:21] =>  1:21
-   :END:
-   - cat/subcat: science/--
-   - tags: forgive and forget, radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics, memento, albert einstein, einstein, studs terkel, anisomycin, ptsd, amnesia, clive wearing, oliver sacks, elizabeth loftus, scott fraser, andrei codrescu, 101 damnations, science
-   - lead image: http://www.thesupersistah.com/wp-content/uploads/2011/08/Forgive-and-forget.jpg @ http://www.thesupersistah.com/2011/08/forgive-or-forget-you/
-   - summary: It seems like God intended us to (forgive and )forget. And, for atheists, science seems to say the same thing!
-   - body:
-[[http://en.wikipedia.org/wiki/Albert_Einstein][Albert Einstein]] once said <quote>Use the brain to process (think), not to store (remember).</quote> Frankly, I don't know if [[http://en.wikipedia.org/wiki/Albert_Einstein][Einstein]] really said that, but I know that [[http://en.wikipedia.org/wiki/Studs_Terkel][Studs Terkel]] said <quote>I like quoting Einstein. Know why? Because nobody dares contradict you.</quote> ;) Anyways, the point I am trying to make is about forgetting. I think "forget" is a very important part in the preaching "forgive and forget" because forgiveness, although ideal and saintly, is extremely hard to practice, especially equally and towards all. But it is easy to forget. Actually, it is difficult, nay, impossible, to remember. Now that seems like a bold, very bold, claim. But hang on, and I will explain it shortly.
-
-http://img.diytrade.com/cdimg/845903/7734917/0/1230259307.jpg @ http://xingfei169.diytrade.com/sdp/845903/4/pd-4400116/4969664.html
-Lets start by understanding what our memory is like, and how does the process of remembering really work. For a long time it was believed that the memory is like a file cabinet, or a computer hard disk (for the geeks among you). When a memory is created, it is like a file is written and stored in a drawer or a folder. Later, when you remember the memory, it is like retrieving the file and reading the contents off of it. There is absolutely no difference between what is written in the file and what is later read from it, no matter how many times. Of course, one might forget which drawer or folder the file was kept in, and he won't be able to remember that memory; but the memory itself is very much still there.
-
-However, studies have found that the above analogy is wrong, very wrong! The brain does not function this way. To understand memory, we have to understand the structure of the brain. The brain is made up of a lot of cells called [[http://en.wikipedia.org/wiki/Neuron/][neuron]]s which are connected to each other via protein chains or links. It is these neurons and the links that make up memories. Let us map this understanding of the brain structure to a memory. A memory is really an event in our past that consists of items (for lack of a better word) like:
-1. living things like people, animals, plants, etc
-2. inanimate objects like buildings, cars, lamp posts, furniture, etc
-3. location, weather, etc
-4. conversations, emotions, etc
-http://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Neuron_Hand-tuned.svg/400px-Neuron_Hand-tuned.svg.png @ http://en.wikipedia.org/wiki/Neuron/
-Each of these items are stored in neurons and creation of a memory is like creating links or bridges between these neuron cells. Thus memory is inherently associative in nature, and the act of creating a memory is actually creating these associations.
-
-Remembering is the process of scanning these neurons and associations between them. It is a highly imperfect process. It is very much possible that during remembering some of the neurons might not fire, that is, we might miss out on some associations. It is also possible, that some other neurons might fire, which means that we may remember (actually, imagine) something that never happened, or wasn't present, in the particular memory that we're remembering. Thus remembering is a highly creative process; we are, astonishingly, (re-)creating the memory!
-
-Now we know that a memory has a physical presence in the brain; in the form of protein bridges between neurons. We also know that the process of creation and retrieval of a memory is not static, like that of a file cabinet or a computer hard drive, but a very dynamic one. Good! But what are it's implications? That is the next question that naturally comes to mind. Lets find out.
-
-http://ia.media-imdb.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1._SY317_.jpg @ http://www.imdb.com/title/tt0338013/
-Selective deletion [[http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/][{1}]] [[http://www.scientificamerican.com/article.cfm?id%3Dtotaling-recall][{2}]] [[http://www.dailymail.co.uk/sciencetech/article-2206291/The-fear-factor-Researchers-discovery-technique-erase-short-newly-formed-memories.html][{3}]] [[http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/][{4}]]: There is a drug called [[http://en.wikipedia.org/wiki/Anisomycin][Anisomycin]] that prevents the creation of the linkage protein. This drug can be used to prevent a memory from being created if administered at the moment when the memory is being formed. However, it can also be used to delete a memory when it is being remembered. This is used clinically to treat [[http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder][post traumatic stress disorder]] or [[http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml][PTSD]]. A very good movie [[http://www.imdb.com/title/tt0338013/][Eternal sunshine of the spotless mind]] was made using this concept. It also gives us some clues about why [[http://en.wikipedia.org/wiki/Amnesia][amnesia]] happens. And of course who would not remember about the movie [[http://www.imdb.com/title/tt0209144/][Memento]] when we talk about amnesia? The scariest and most mysterious case about amnesia is about [[http://en.wikipedia.org/wiki/Clive_Wearing][Clive Wearing]] [[http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/][{1}]] [[http://www.human-memory.net/disorders_retrograde.html][{2}]] [[http://www.youtube.com/watch?v%3DWmzU47i2xgw][{3}]] who cannot remember anything for more than a few moments. Every moment for him is as if he has woken up from a long night's sleep, except that this night has been going on for every moment of more than the last 2 decades.
-
-Of course, "selective deletion" of memory screams for ethics [[http://www.livescience.com/15621-memory-altering-drugs-debate.html][{1}]] [[http://www.salon.com/2011/12/31/should_we_erase_painful_memories/][{2}]]. Is it ethical to delete a memory from a person's brain? As always, this coin has 2 sides too:
-1. No
-   1. A memory is a very private and personal part of who one is. It is like stealing, forever, a part of your body!
-   2. Every person is a sum total of his experiences, his memories. Without memories, he is not what he is!
-   3. It can be used for criminal activities.
-2. Yes
-   1. A memory is not static thing that is stored (created) and retrieved (remembered) with the exact same content every time. It is a process of re-creation; it is the most recent recollection of what is true. This means that it changes slightly every time you remember it; it becomes more about you (your perception/interpretation of the event) than about the event itself.
-   2. It can be used for treatment and giving a new life to patients.
-
-http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1._SY317_.jpg @ http://www.imdb.com/title/tt1375666/
-The fact that memory is not static, but gets re-created anew, modified slightly, each time, has huge implications.
-1. Implanting false memories: I know you are thinking about the movie [[http://www.imdb.com/title/tt1375666/][Inception]]. And thinking that this guy is surely kidding. But believe me, I am not. It is not only possible, but relatively easy to do. [[http://en.wikipedia.org/wiki/Elizabeth_Loftus][Dr. Elizabeth Loftus]] and [[http://en.wikipedia.org/wiki/Oliver_Sacks][Dr. Oliver Sacks]] have done a lot of ground breaking research on this subject. The reason it is easy to achieve is because of the fact that it is very much possible for some unrelated neurons to fire, just as it is possible for some related neurons to not fire.
-2. This also means that nothing you remember, or worse still, know, is provably true. Watch the excellent [[http://www.ted.com][Ted talk]] [[http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html]["Scott Fraser: Why eyewitnesses get it wrong"]] on this subject to know how this can have huge, even legal, implications: <quote>All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards. --[[http://www.ted.com/speakers/scott_fraser.html][Scott Fraser]]</quote>.
-
-Finally I would like to end with an awesome short essay by the Romanian essayist [[http://en.wikipedia.org/wiki/Andrei_Codrescu][Andrei Codrescu]] from the book [[http://en.wikipedia.org/wiki/101_Damnations_(book)][101 Damnations]]
-
-<quote>The other day a friend of mine was explaining how she had to move these pixels around her computer and had to add 20 megabytes of memory to handle the operation. I had the disquieting thought that all this memory she was adding had to come from somewhere. Maybe it was coming from me because I couldn't remember a thing that day. And then it became blindingly obvious: All the memory that everybody keeps adding comes from people. Nobody can remember a damn thing. Every time someone adds memory to their machine, thousands of people forget everything they knew. Americans are singularly devoid of memory these days. We don't remember where we came from, who raised us, when our wars use to be, what happened last year, last month, or even last week. School children remember practically nothing. I take the greyhound bus every week, and I swear people on there don't know where they got on or where they're supposed to get off. They explanation is simple: computer companies are stealing human memory to stuff their hard drives. Greyhound I believe has some kind of contract with IBM to steal the memory of everybody riding the bus. They're probably connected by a cable or something. Every hundred miles, poof! Another 500 megabytes get sucked out of the passengers' brains. The computer's thirst for memory is bottomless: the more they suck, the more they need. Eventually, we'll be walking around with a glazed look in our eyes, trying to figure out who it is we live with. And then we'll forget our names and addresses and we'll just be milling around trying to remember them. The only thing visible about us will be these cables sticking out of our behinds, feeding the scraps of our memory to computer central, somewhere in Oblivion, USA. I think it's time for all these memory sucking companies to start some kind of system to feel and shelter us when we forget how to eat, walk, and sleep.</quote>
-
-ps: Listen to more interesting details and stories about [[http://www.radiolab.org/2007/jun/07/][Memory and Forgetting]] at [[http://www.radiolab.org/][RadioLab]].
-   - notes:
-     - remembering process
-       - filing cabinet/hdd
-         - file it away
-         - pick it up
-         - sometimes you forget where you file it
-         - input == output
-         - http://www.ehow.com/about_5371562_computer-vs-human-memory-comparison.html
-         - _wrong_
-       - more creative
-         - creation
-         - reconstruction process
-         - somethings get chopped, somethings get leveled
-     - where in brain? physical location?
-       - physical protein link
-       - build bunch of neurons
-       - associative memory
-         - connect 2 brain cells
-         - tone + shock (rat story)
-     - drug to prohibit new memory creation
-       - => anisomycin
-       - done first in goldfish
-       - prevents formation of protein
-       - can also be used to erase a particular memory
-       - treatment for PTSD
-     - ethical Q: is deleting/adding memory ethical?
-       - No:
-         - man is + of all memories/experiences
-         - eternal sunshine of the spotless mind
-       - Yes:
-         - remembering => recreating => brand new memory every time you remember
-         - every time remember => change slightly (re-creating in context/light of now)
-           - memory => recent recollection of what is true
-           - more you remember a memory, the less accurate it becomes
-           - it becomes more about you (your perception/interpretation of the event) than about the event itself
-         - memory cannot be proven to be true
-         - safest memory is that of an amnesia patient
-           - against intuition (more you remember, more you change it, more false it is)
-     - adding a memory
-       - memory is malleable
-       - plant false memories in peoples minds
-       - take related images (location, people, etc) and reconstruct this new memory => build neuron bridges
-       - when remembering, memory is unstable, and can be modified unconsciously
-       - cannot be differentiated from a real memory
-     - misc
-       - memories of pain and joy are in a safe and are primordial
-       - for clive,
-         - he might not remember her if she passes him by in a populated place or even her name
-         - he might not be able to describe her
-         - but he remembers the memory of his wife's love and warmth
-         - also, he can sing and conduct an opera
-     - examples
-       - most severe amnesia ever documented: Clive Wearing (http://en.wikipedia.org/wiki/Clive_Wearing http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/ http://www.human-memory.net/disorders_retrograde.html http://www.youtube.com/watch?v=WmzU47i2xgw)
-     - (legal) issues due to not being able to depend on memory
-       - All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards.
-       - The brain abhors a vacuum. [It] fills in information that was not there.
-       - There's a long history of antipathy between science and the law in American jurisprudence.
-     - references
-       - Memory and Forgetting http://www.radiolab.org/2007/jun/07/
-       - Scott Fraser: Why eyewitnesses get it wrong http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html
-       - movies
-         - eternal sunshine of the spotless mind http://www.imdb.com/title/tt0338013/
-         - inception http://www.imdb.com/title/tt1375666/
-         - memento http://www.imdb.com/title/tt0209144/
-       - 101 Damnations --Andrei Codrescu (http://wordsarefornerds.tumblr.com/post/11567335015 http://en.wikipedia.org/wiki/101_Damnations_(book) http://en.wikipedia.org/wiki/Andrei_Codrescu)
-       - http://en.wikipedia.org/wiki/Elizabeth_Loftus
-       - http://www.oliversacks.com/ http://en.wikipedia.org/wiki/Oliver_Sacks
-       - http://en.wikipedia.org/wiki/Anisomycin
-       - post traumatic stress disorder
-         - http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml
-         - http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder
-       - Post-Traumatic Pleasure Syndrome http://www.scma.org/magazine/articles/?articleid=107
-       - http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/
-       - http://www.scientificamerican.com/article.cfm?id=totaling-recall
-       - http://www.dailymail.co.uk/sciencetech/article-2206291/The-fear-factor-Researchers-discovery-technique-erase-short-newly-formed-memories.html
-       - http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/
-       - http://www.livescience.com/15621-memory-altering-drugs-debate.html
-       - http://www.salon.com/2011/12/31/should_we_erase_painful_memories/
-** DONE What makes you, you?
-   CLOSED: [2012-12-22 Sat 18:41]
-   :CLOCK:
-   CLOCK: [2012-12-22 Sat 18:20]--[2012-12-22 Sat 18:41] =>  0:21
-   CLOCK: [2012-12-22 Sat 18:17]--[2012-12-22 Sat 18:20] =>  0:03
-   CLOCK: [2012-12-15 Sat 16:56]--[2012-12-15 Sat 17:12] =>  0:16
-   CLOCK: [2012-12-15 Sat 15:20]--[2012-12-15 Sat 16:49] =>  1:29
-   CLOCK: [2012-12-15 Sat 14:25]--[2012-12-15 Sat 15:08] =>  0:43
-   CLOCK: [2012-12-14 Fri 18:41]--[2012-12-14 Fri 19:56] =>  1:15
-   :END:
-   - tags: radiolab, science, mirror test, gordon gallup, robert louis stevenson, julian keenan, indian culture, v s ramachandran, dr jekyll and mr hyde, cerebral aneurysm, aneurysm
-   - summary:
-   - body
-I'm sure you have wondered, at some time or the other, "who am i?" Probably, you are the kind of person who has meditated over it, or you might be the kind who does not give it a second thought. Probably you were born in a culture, like the [[http://en.wikipedia.org/wiki/Culture_of_India][Indian culture]], where you have heard this question from your elders, or from stories in your childhood. Probably you have gone one step further and wondered or heard questions like "[[http://www.gocomics.com/calvinandhobbes/1988/04/01][why am i here?]]" or "what am i here for?"
-
-But have you ever wondered what does it mean to "be me"? XXX Over any period of time, be it short or long, we are continuously changing. Changing physically - children grow up, adults grow old; emotionally - our moods keep changing constantly; and in many other ways - life is change! But there is one thing that never changes, the feeling of "me". No matter where we are, in what place, in what situation, we always know our "selves". How does this happen? In fact, what is this self?
-
-These questions can be looked at from both a philosophical as well as a scientific point of view. Today we are going to look at it from the scientific angle and delve further into questions like "what is consciousness?", "what does it mean to say 'i am me'?", "where does this consciousness come from?", "can we point to a point or location in the brain which generates consciousness?", and the like.
-
-http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/NICO_looks_at_himself.jpg/640px-NICO_looks_at_himself.jpg @ http://en.wikipedia.org/wiki/Mirror_test
-Lets start with the question of "Do other creatures, have a sense of self?" It appears that there are a few animals and birds that do have a recognition of self. It has been found that they can identify themselves and know the self from the others. It is very interesting to know how scientists figure out whether animals, or birds, can identify themselves. In fact, it's a simple but very clever trick; it's called the "[[http://en.wikipedia.org/wiki/Mirror_test][mirror test]]" developed by [[http://en.wikipedia.org/wiki/Gordon_G._Gallup][Dr. Gordon Gallup]] while doing some [[http://www.sciencemag.org/content/167/3914/86][studies]]. XXX Consciousness, or self, is a very intellectual thing. In the mirror test, the animal is able to create a representation of itself that floats free of its body. It can't touch it or smell it, but just by seeing it, it knows that "that's me". This is very fascinating!
-
-http://www.montclair.edu/academy/images/juliankeenan82911.jpg @ http://www.montclair.edu/academy/fellows/fellowsmentors20112012.html
-[[http://www.montclair.edu/profilepages/view_profile.php?username%3Dkeenanj][Professor Julian Keenan]] has been able to pinpoint the location of where the idea of the self is generated in our brains. He created an [[http://mentalhealth.about.com/library/sci/0201/blbeth0201.htm][experiment]] using some morphing software and images of famous people like Albert Einstein and Bill Clinton to [[http://ttbook.org/book/transcript/transcript-you-your-brain][find]] out that if you <quote> press your thumb to the bridge of your nose. Now draw it slowly over the crown of your head to about where you might have a ponytail. That area under your skull is where 'you' are.</quote>
-
-http://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Vilayanur_S_Ramachandran_2011_Shankbone.JPG/420px-Vilayanur_S_Ramachandran_2011_Shankbone.JPG @ http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran
-[[http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran][Professor V. S. Ramachandran]], a world renowned neurologist, says that "self is the activities of the neurons." Although, simple when stated that way, it is, he says, one of the greatest realization in the last 100 years. He explains how the human brain is different from that of other animals. A worm, for example, does not have a brain big enough to form any sort of images in its mind. A monkey, on the other hand, although able to form images, cannot manipulate them in his mind. A human being, however, has a much more powerful brain. Only man can take images from the real world, pull them into his head, divide them into parts and then start turning those parts into abstractions, or tokens. He can manipulate these tokens and juxtapose them in counterintuitive ways; he can create even outlandish scenarios - what we call imagination. We are not different from other animals, we are only more than them. XXX We are imagining so often and so thoroughly, that we can eventually imagine ourselves! He says, self is the ability of humans to spin a story around themselves. We can take experiences, memories of good and bad events, and abstract a story out of it - that is self!
-
-http://ecx.images-amazon.com/images/I/510V0PB8wiL._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg @ http://www.amazon.com/Strange-Jekyll-Dover-Thrift-Editions/dp/0486266885
-Readers of classic novels are not unaware of "[[http://www.amazon.com/Strange-Jekyll-Dover-Thrift-Editions/dp/0486266885][The strange case of Dr. Jekyll and Mr. Hyde]]" by [[http://en.wikipedia.org/wiki/Robert_Louis_Stevenson][Robert Louis Stevenson]]. He said that he used to dream of "[[http://blog.beliefnet.com/dreamgates/2011/07/robert-louis-stevenson-and-his-dream-helpers.html][little people]]" who helped him write his stories. He trained himself to remember his dreams and to dream plots for his books. Dreams bring us to a very interesting question about consciousness. If we think about this in modern terms, like when you see a movie, you, the viewer, has no idea what is going to happen next. You scream at the scary parts, laugh at the jokes, and cry during the sad scenes. But in order for you to have that experience, someone needed to write the movie, someone needed to direct it, someone other than you. How is it, when we dream, that we do all 3 at the same time? We write, direct and watch the film as if we've never seen it before.
-
-This is how [[http://www.wnyc.org/people/jad-abumrad/][Jad Abumrad]] and [[http://www.wnyc.org/people/robert-krulwich/][Robert Krulwich]] of [[http://www.radiolab.org/][Radiolab]], in their episode "[[http://www.radiolab.org/2007/may/07/][Who Am I?]]" find it:
-<quote>
-If you look scientifically into a brain, what you encounter is hundreds of thousands of players, not just little people, but teeny teeny teeny teeny brain cells which do others fashion back and forth. If you would go to any one of the cells and say, "so, are you the author of 'Jackyl and Hyde'?", the cell would just go on or off. It is only in the group that you can see the electrical outline of a thought, or ultimately of a self. While you think of yourself as a 'one', even the thought, 'I am a one', springs from a 100 million cells connecting through a trillion synapses and that all of this multiple activities, paradoxically, creates the you of this moment. You are always plural!
-</quote>
-
-There is also a medical side to our consciousness. There is a condition of the brain called [[http://en.wikipedia.org/wiki/Aneurysm][cerebral aneurysm]] in which the person loses his sense of self; he becomes a completely different person. Writer and producer Hannah Palin writes about her experience when her mother suffered from aneurysm in "[[http://www.transom.org/shows/2004/200403_head_explode.html][The day my mother's head exploded]]". I like the following paragraph from the passage a lot:
-<quote>
-But then those moments pass and you're consumed by the trivia of daily life once again. Sometimes, when i'm overwhelmed by making my way through the world, i try to focus on the fact that the electric bill does not matter. The idiot driver glued to his cellphone, does not matter. The mind numbing day job, truly, does not matter. But welcoming the strange and the different, being open and available for my husband, my friends, my family, experiencing love and laughter as often as possible -- that's what matters. Because it can all be taken away in one brilliant flash.
-</quote>
-   - notes
-     - [[http://www.radiolab.org/2007/may/07/][Who Am I? --Radiolab]]
-     - brain scanning tests on nuns as they meditate, sleepers as they dream
-     - it's a new world
-     - fmri (functional MRI): real time feedback based on blood flow increase/decrease to certain parts of brain
-     - that's me in the mirror. what does it mean to say "that's me", or "i'm me"
-       - it's like repeating a word over and over; the meaning of the word gets disassociated from the sound
-       - just like the image of you becomes disconnected from the real you, inner you -> self/soul
-     - every person changes over life; there's continuous change; our bodies change, selves change, moods change, everything about a normal healthy person is flux, it's change. yet somehow there is a oneness, a through-line continuous sense of self. you wonder, how the heck does that happen? where is this self thing?
-     - where?
-       - ancients thought it was in the heart. found that that was a pump, and disappointed
-       - [[http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran][V. S. Ramachandran]], great neurologist -> activities of neurons
-         - greatest realization in the last 100 years
-     - chimpanzees have a sense of self
-       - http://www.sciencemag.org/content/167/3914/86
-       - http://en.wikipedia.org/wiki/Mirror_test
-       - creating a representation of itself that floats free of its body; it's intellectual (you can't touch it, can't smell it, but just by seeing it you know that it's "you")
-       - ethical Qs raised: should they be in zoo, should they be charged for murder, should they have equal rights?
-     - julian keenan
-       - http://ttbook.org/book/transcript/transcript-you-your-brain
-       - http://ttbook.org/book/neuroscience-self
-       - Press your thumb to the bridge of your nose. Now draw it slowly over the crown of your head to about where you might have a ponytail. That area under your skull is where "you" are.
-       - bill clinton experiment
-         - http://mentalhealth.about.com/library/sci/0201/blbeth0201.htm
-         - morphed design
-         - self photo + bill clinton photo morph, 50-50%
-       - right brain
-     - cerebral [[http://en.wikipedia.org/wiki/Aneurysm][aneurysm]]
-       - [[http://www.transom.org/shows/2004/200403_head_explode.html][The day my mother's head exploded]] --Hannah Palin
-       - But then those moments pass and you're consumed by the trivia of daily life once again. Sometimes, when i'm overwhelmed by making my way through the world, i try to focus on the fact that the electric bill does not matter. The idiot driver glued to his cellphone, does not matter. The mind numbing day job, truly, does not matter. But welcoming the strange and the different, being open and available for my husband, my friends, my family, experiencing love and laughter as often as possible -- that's what matters. Because it can all be taken away in one brilliant flash.
-     - Paul Broks
-       - [[http://www.amazon.com/Into-Silent-Land-Travels-Neuropsychology/dp/0802141285][into the silent land]]
-       - a patient got very angry, but was calmed by the wife. on asking the wife she said, "well, when it happens, i think it's not really him. it's not really Jeff." But paradoxically, what kept her with him, kept her supporting him the belief that at some level it really was him
-       - the extended self, which is what we normally think when we think about ourselves, is really a story. It's the story of what's happened to that body over time --Paul Broks
-     - V. S. Ramachandran
-       - what is peculiarly human about us is our ability to construct stories.
-       - about 200k-500k yrs ago, "evolution of introspective awareness" took place
-         - how does human brain differ from other animals' brain
-           - worm: doesn't have brain big enough to make pictures
-           - monkey: has pictures and can make associations, but no manipulation
-           - human: imagination
-             - only humans can take images from the real world, pull them into their heads, divide them into parts and then start turning those parts into abstractions
-             - he now has what are called tokens. he has created disembodied tokens. adjectives are tokens. and then, he can manipulate these tokens, juxtapose them in counterintuitive ways. he can create even outlandish scenarios. what we call imagination
-         - we are not different from other creatures, we're only _more_ than other creatures. and when we have these brains that have these extras, like a layer on layer cake, we can manipulate any idea at all. and we are constantly doing that, we're constantly abstracting, we are imagining so often, so thoroughly, and so well, that we eventually can imagine ourselves
-         - the idea of the self, if you think about it this way, is that you take all the things that have ever happened to you. pluck, from your life; if you're sad you might pluck the sad things, if you're happy, you might pluck the happy things. and you stitch them together into a general abstract idea. and me then, an idea of self, is really a story that we tell ourselves. it can change from day to day. and it allows the human being to excercise that peculiarly human muscle, to experience stuff, and then to abstract it into a story. that's self. --Robert Krulwich, Jad Abumrad
-     - who are the little people? --The dreams of 'Robert Louis Stevenson'
-       - Dr. Jackyl and Mr. Hyde - The classic tale of divided self (1886)
-       - but there's a deeper Q here, the Q of authorship. lets think about it in more modern terms. when you see a movie and the lights go down, then from one moment to the next, you, the viewer, has no idea what's gonna happen. you scream at the scary parts, laugh at the jokes, cry during the sad scenes. you're taken on a ride. but in order for you to have that experience, someone needed to write the movie, someone needed to direct it, someone other than you. how is it, when we dream, that we do all 3 at the same time. we write, direct and watch the film as if we've never seen it before.
-       - it was not his tale, it was the little people's
-     - if you look scientifically into a brain, what you encounter is 100s of 1000s of players, not just little people, but teeny teeny teeny teeny brain cells which do others fashion back and forth. if you would go to any one of the cells and say, "so, are you the author of 'Jackyl and Hyde'?", the cell would just go on or off. it is only in the group that you can see the electrical outline of a thought, or ultimately of a self. while you think of yourself as a 'one', even the thought, 'i am a one', springs from a 100 million cells connecting through a trillion synapses and that all of this multiple activities, paradoxically, creates the you of this moment. you are always plural!
 ** git push
 18:21:42 vc $ git push origin master
 error: --mirror can't be combined with refspecs
@@ -2029,6 +1773,277 @@ usage: git push [<options>] [<repository> [<refspec>...]]
     --prune               prune locally removed refs
 
 
+** Archive                                                          :ARCHIVE:
+*** DONE Discovering the joy of writing
+   CLOSED: [2012-12-22 Sat 18:41]
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2012-12-26 Wed 20:58
+    :END:
+   - cat/subcat: editorial/--
+   - tags: inspiration, p l deshpande, leadership, initiative, eureka, inertia
+   - author: Pradnyesh Sawant
+   - lead image:
+     - http://ktliterary.com/wp/wp-content/uploads/2010/03/inspiration.jpg (http://ktliterary.com/2010/03/guest-blog-by-intern-jenny-inspiration/)
+     - http://www.mastersofseo.com/wp-content/uploads/2009/01/inspiration-300x225.jpg (http://www.mastersofseo.com/how-get-inspiration-to-writ/)
+     - http://www.flickr.com/photos/ecokaren/5596869512/
+     - http://www.flickr.com/photos/freeflyer09/4448061188/
+     - http://www.flickr.com/photos/erikogan/4892456507/
+   - summary: This article is about how I overcame my fear and found my own eureka moment, how i found the initial inspiration and found the joy of writing.
+   - body
+Getting a [[www.golb.in][website]] built was a difficult but manageable task. But where do I get the content from? I am no writer myself. I have written a few blog [[blog.spradnyesh.org][posts]], but those were long ago and there was definitely no discipline there. Those were some random, and more importantly, sporadic thoughts that I penned down. However what I am trying to do now is a totally different beast. Of course, the idea is to attract people to write on this website, but before that there needs to be atleast some initial content. It is easier to add content and ideas to an existing work, but very difficult to start something oneself. So that is the responsibility I must take onto myself, to initiate and to lay down some basic foundation.
+
+Ok, so now I have got myself a goal and some determination too. But that does not solve the problem of skill. Having a goal and determination does not make me a writer. So I do the only thing that makes sense, procrastinate! After having delayed the task for a few weeks, I decided to do the inevitable:
+
+<quote>
+The best way to get started is to get started. --Anonymous
+</quote>
+
+The first thing that I needed to do was get over [[http://en.wikipedia.org/wiki/Inertia][inertia]]; I needed to get rid of the [[http://en.wikipedia.org/wiki/A_rolling_stone_gathers_no_moss][moss]], get the stone rolling. I started to think about what I should write. That's when I remembered a sentence from one of [[http://en.wikipedia.org/wiki/Purushottam_Laxman_Deshpande][P. L. Deshpande]]'s essays 'Majhe Poshtk Jeevan':
+
+<quote>
+Shevati kaay ho, apan sagle jana aahot na, te pattyatlya navache dhani. Majkuracha maalak niralach asto.
+</quote>
+
+Literally translated, it means "Finally, we all are just the owners of the name on the address. The owner of the content is someone completely different."
+
+I have always been fascinated with quotations. I have a collection of quotations and phrases, not only from great people, but also anonymous, and even short sentences that I have found very interesting; anything that I have read or heard from anywhere. The most interesting thing that i find about quotations or phrases is that they are open to interpretations. The same sentence can mean different things to different people. Actually, it can mean different things to the same person when read at different times, in different moods, in different circumstances. I think that more important than the sentence is its interpretation; what one gets or understands, what one perceives from it.
+
+For me, in the context of writing my first article on [[www.golb.in][Golbin]], the above sentence meant a lot:
+1. I am the author, but what i write is consciously or sub-consciously told to me by _the_ author himself
+2. This takes away some pressure from my mind about how will the article be received by the audience
+3. I realize that this is only my first attempt; with practice and perseverance I am only going to improve
+
+This is my [[http://en.wikipedia.org/wiki/Eureka_effect][eureka]] moment! I now understand what is actually meant by inspiration and it culminates in the following [[http://en.wikiquote.org/wiki/Thomas_Edison][quote]]:
+
+<quote>
+Genius is one percent inspiration, ninety nine percent perspiration. --Thomas Alva Edison
+</quote>
+*** DONE Forgetting "forgive and forget"
+   CLOSED: [2012-12-22 Sat 18:17]
+   :CLOCK:
+   CLOCK: [2012-12-22 Sat 17:21]--[2012-12-22 Sat 17:52] =>  0:31
+   CLOCK: [2012-12-12 Wed 15:40]--[2012-12-12 Wed 17:13] =>  1:33
+   CLOCK: [2012-12-12 Wed 14:32]--[2012-12-12 Wed 14:56] =>  0:24
+   CLOCK: [2012-12-11 Tue 16:00]--[2012-12-11 Tue 17:21] =>  1:21
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2012-12-26 Wed 20:58
+    :END:
+   - cat/subcat: science/--
+   - tags: forgive and forget, radiolab, ted, ted talks, eternal sunshine of the spotless mind, memory, erase memory, inception, anisomycin, ethics, memento, albert einstein, einstein, studs terkel, anisomycin, ptsd, amnesia, clive wearing, oliver sacks, elizabeth loftus, scott fraser, andrei codrescu, 101 damnations, science
+   - lead image: http://www.thesupersistah.com/wp-content/uploads/2011/08/Forgive-and-forget.jpg @ http://www.thesupersistah.com/2011/08/forgive-or-forget-you/
+   - summary: It seems like God intended us to (forgive and )forget. And, for atheists, science seems to say the same thing!
+   - body:
+[[http://en.wikipedia.org/wiki/Albert_Einstein][Albert Einstein]] once said <quote>Use the brain to process (think), not to store (remember).</quote> Frankly, I don't know if [[http://en.wikipedia.org/wiki/Albert_Einstein][Einstein]] really said that, but I know that [[http://en.wikipedia.org/wiki/Studs_Terkel][Studs Terkel]] said <quote>I like quoting Einstein. Know why? Because nobody dares contradict you.</quote> ;) Anyways, the point I am trying to make is about forgetting. I think "forget" is a very important part in the preaching "forgive and forget" because forgiveness, although ideal and saintly, is extremely hard to practice, especially equally and towards all. But it is easy to forget. Actually, it is difficult, nay, impossible, to remember. Now that seems like a bold, very bold, claim. But hang on, and I will explain it shortly.
+
+http://img.diytrade.com/cdimg/845903/7734917/0/1230259307.jpg @ http://xingfei169.diytrade.com/sdp/845903/4/pd-4400116/4969664.html
+Lets start by understanding what our memory is like, and how does the process of remembering really work. For a long time it was believed that the memory is like a file cabinet, or a computer hard disk (for the geeks among you). When a memory is created, it is like a file is written and stored in a drawer or a folder. Later, when you remember the memory, it is like retrieving the file and reading the contents off of it. There is absolutely no difference between what is written in the file and what is later read from it, no matter how many times. Of course, one might forget which drawer or folder the file was kept in, and he won't be able to remember that memory; but the memory itself is very much still there.
+
+However, studies have found that the above analogy is wrong, very wrong! The brain does not function this way. To understand memory, we have to understand the structure of the brain. The brain is made up of a lot of cells called [[http://en.wikipedia.org/wiki/Neuron/][neuron]]s which are connected to each other via protein chains or links. It is these neurons and the links that make up memories. Let us map this understanding of the brain structure to a memory. A memory is really an event in our past that consists of items (for lack of a better word) like:
+1. living things like people, animals, plants, etc
+2. inanimate objects like buildings, cars, lamp posts, furniture, etc
+3. location, weather, etc
+4. conversations, emotions, etc
+http://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Neuron_Hand-tuned.svg/400px-Neuron_Hand-tuned.svg.png @ http://en.wikipedia.org/wiki/Neuron/
+Each of these items are stored in neurons and creation of a memory is like creating links or bridges between these neuron cells. Thus memory is inherently associative in nature, and the act of creating a memory is actually creating these associations.
+
+Remembering is the process of scanning these neurons and associations between them. It is a highly imperfect process. It is very much possible that during remembering some of the neurons might not fire, that is, we might miss out on some associations. It is also possible, that some other neurons might fire, which means that we may remember (actually, imagine) something that never happened, or wasn't present, in the particular memory that we're remembering. Thus remembering is a highly creative process; we are, astonishingly, (re-)creating the memory!
+
+Now we know that a memory has a physical presence in the brain; in the form of protein bridges between neurons. We also know that the process of creation and retrieval of a memory is not static, like that of a file cabinet or a computer hard drive, but a very dynamic one. Good! But what are it's implications? That is the next question that naturally comes to mind. Lets find out.
+
+http://ia.media-imdb.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1._SY317_.jpg @ http://www.imdb.com/title/tt0338013/
+Selective deletion [[http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/][{1}]] [[http://www.scientificamerican.com/article.cfm?id%3Dtotaling-recall][{2}]] [[http://www.dailymail.co.uk/sciencetech/article-2206291/The-fear-factor-Researchers-discovery-technique-erase-short-newly-formed-memories.html][{3}]] [[http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/][{4}]]: There is a drug called [[http://en.wikipedia.org/wiki/Anisomycin][Anisomycin]] that prevents the creation of the linkage protein. This drug can be used to prevent a memory from being created if administered at the moment when the memory is being formed. However, it can also be used to delete a memory when it is being remembered. This is used clinically to treat [[http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder][post traumatic stress disorder]] or [[http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml][PTSD]]. A very good movie [[http://www.imdb.com/title/tt0338013/][Eternal sunshine of the spotless mind]] was made using this concept. It also gives us some clues about why [[http://en.wikipedia.org/wiki/Amnesia][amnesia]] happens. And of course who would not remember about the movie [[http://www.imdb.com/title/tt0209144/][Memento]] when we talk about amnesia? The scariest and most mysterious case about amnesia is about [[http://en.wikipedia.org/wiki/Clive_Wearing][Clive Wearing]] [[http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/][{1}]] [[http://www.human-memory.net/disorders_retrograde.html][{2}]] [[http://www.youtube.com/watch?v%3DWmzU47i2xgw][{3}]] who cannot remember anything for more than a few moments. Every moment for him is as if he has woken up from a long night's sleep, except that this night has been going on for every moment of more than the last 2 decades.
+
+Of course, "selective deletion" of memory screams for ethics [[http://www.livescience.com/15621-memory-altering-drugs-debate.html][{1}]] [[http://www.salon.com/2011/12/31/should_we_erase_painful_memories/][{2}]]. Is it ethical to delete a memory from a person's brain? As always, this coin has 2 sides too:
+1. No
+   1. A memory is a very private and personal part of who one is. It is like stealing, forever, a part of your body!
+   2. Every person is a sum total of his experiences, his memories. Without memories, he is not what he is!
+   3. It can be used for criminal activities.
+2. Yes
+   1. A memory is not static thing that is stored (created) and retrieved (remembered) with the exact same content every time. It is a process of re-creation; it is the most recent recollection of what is true. This means that it changes slightly every time you remember it; it becomes more about you (your perception/interpretation of the event) than about the event itself.
+   2. It can be used for treatment and giving a new life to patients.
+
+http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1._SY317_.jpg @ http://www.imdb.com/title/tt1375666/
+The fact that memory is not static, but gets re-created anew, modified slightly, each time, has huge implications.
+1. Implanting false memories: I know you are thinking about the movie [[http://www.imdb.com/title/tt1375666/][Inception]]. And thinking that this guy is surely kidding. But believe me, I am not. It is not only possible, but relatively easy to do. [[http://en.wikipedia.org/wiki/Elizabeth_Loftus][Dr. Elizabeth Loftus]] and [[http://en.wikipedia.org/wiki/Oliver_Sacks][Dr. Oliver Sacks]] have done a lot of ground breaking research on this subject. The reason it is easy to achieve is because of the fact that it is very much possible for some unrelated neurons to fire, just as it is possible for some related neurons to not fire.
+2. This also means that nothing you remember, or worse still, know, is provably true. Watch the excellent [[http://www.ted.com][Ted talk]] [[http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html]["Scott Fraser: Why eyewitnesses get it wrong"]] on this subject to know how this can have huge, even legal, implications: <quote>All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards. --[[http://www.ted.com/speakers/scott_fraser.html][Scott Fraser]]</quote>.
+
+Finally I would like to end with an awesome short essay by the Romanian essayist [[http://en.wikipedia.org/wiki/Andrei_Codrescu][Andrei Codrescu]] from the book [[http://en.wikipedia.org/wiki/101_Damnations_(book)][101 Damnations]]
+
+<quote>The other day a friend of mine was explaining how she had to move these pixels around her computer and had to add 20 megabytes of memory to handle the operation. I had the disquieting thought that all this memory she was adding had to come from somewhere. Maybe it was coming from me because I couldn't remember a thing that day. And then it became blindingly obvious: All the memory that everybody keeps adding comes from people. Nobody can remember a damn thing. Every time someone adds memory to their machine, thousands of people forget everything they knew. Americans are singularly devoid of memory these days. We don't remember where we came from, who raised us, when our wars use to be, what happened last year, last month, or even last week. School children remember practically nothing. I take the greyhound bus every week, and I swear people on there don't know where they got on or where they're supposed to get off. They explanation is simple: computer companies are stealing human memory to stuff their hard drives. Greyhound I believe has some kind of contract with IBM to steal the memory of everybody riding the bus. They're probably connected by a cable or something. Every hundred miles, poof! Another 500 megabytes get sucked out of the passengers' brains. The computer's thirst for memory is bottomless: the more they suck, the more they need. Eventually, we'll be walking around with a glazed look in our eyes, trying to figure out who it is we live with. And then we'll forget our names and addresses and we'll just be milling around trying to remember them. The only thing visible about us will be these cables sticking out of our behinds, feeding the scraps of our memory to computer central, somewhere in Oblivion, USA. I think it's time for all these memory sucking companies to start some kind of system to feel and shelter us when we forget how to eat, walk, and sleep.</quote>
+
+ps: Listen to more interesting details and stories about [[http://www.radiolab.org/2007/jun/07/][Memory and Forgetting]] at [[http://www.radiolab.org/][RadioLab]].
+   - notes:
+     - remembering process
+       - filing cabinet/hdd
+         - file it away
+         - pick it up
+         - sometimes you forget where you file it
+         - input == output
+         - http://www.ehow.com/about_5371562_computer-vs-human-memory-comparison.html
+         - _wrong_
+       - more creative
+         - creation
+         - reconstruction process
+         - somethings get chopped, somethings get leveled
+     - where in brain? physical location?
+       - physical protein link
+       - build bunch of neurons
+       - associative memory
+         - connect 2 brain cells
+         - tone + shock (rat story)
+     - drug to prohibit new memory creation
+       - => anisomycin
+       - done first in goldfish
+       - prevents formation of protein
+       - can also be used to erase a particular memory
+       - treatment for PTSD
+     - ethical Q: is deleting/adding memory ethical?
+       - No:
+         - man is + of all memories/experiences
+         - eternal sunshine of the spotless mind
+       - Yes:
+         - remembering => recreating => brand new memory every time you remember
+         - every time remember => change slightly (re-creating in context/light of now)
+           - memory => recent recollection of what is true
+           - more you remember a memory, the less accurate it becomes
+           - it becomes more about you (your perception/interpretation of the event) than about the event itself
+         - memory cannot be proven to be true
+         - safest memory is that of an amnesia patient
+           - against intuition (more you remember, more you change it, more false it is)
+     - adding a memory
+       - memory is malleable
+       - plant false memories in peoples minds
+       - take related images (location, people, etc) and reconstruct this new memory => build neuron bridges
+       - when remembering, memory is unstable, and can be modified unconsciously
+       - cannot be differentiated from a real memory
+     - misc
+       - memories of pain and joy are in a safe and are primordial
+       - for clive,
+         - he might not remember her if she passes him by in a populated place or even her name
+         - he might not be able to describe her
+         - but he remembers the memory of his wife's love and warmth
+         - also, he can sing and conduct an opera
+     - examples
+       - most severe amnesia ever documented: Clive Wearing (http://en.wikipedia.org/wiki/Clive_Wearing http://www.brainathlete.com/cold-sore-virus-led-severe-amnesia/ http://www.human-memory.net/disorders_retrograde.html http://www.youtube.com/watch?v=WmzU47i2xgw)
+     - (legal) issues due to not being able to depend on memory
+       - All our memories are reconstructed memories. They are the product of what we originally experienced and everything that's happened afterwards.
+       - The brain abhors a vacuum. [It] fills in information that was not there.
+       - There's a long history of antipathy between science and the law in American jurisprudence.
+     - references
+       - Memory and Forgetting http://www.radiolab.org/2007/jun/07/
+       - Scott Fraser: Why eyewitnesses get it wrong http://www.ted.com/talks/scott_fraser_the_problem_with_eyewitness_testimony.html
+       - movies
+         - eternal sunshine of the spotless mind http://www.imdb.com/title/tt0338013/
+         - inception http://www.imdb.com/title/tt1375666/
+         - memento http://www.imdb.com/title/tt0209144/
+       - 101 Damnations --Andrei Codrescu (http://wordsarefornerds.tumblr.com/post/11567335015 http://en.wikipedia.org/wiki/101_Damnations_(book) http://en.wikipedia.org/wiki/Andrei_Codrescu)
+       - http://en.wikipedia.org/wiki/Elizabeth_Loftus
+       - http://www.oliversacks.com/ http://en.wikipedia.org/wiki/Oliver_Sacks
+       - http://en.wikipedia.org/wiki/Anisomycin
+       - post traumatic stress disorder
+         - http://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd/index.shtml
+         - http://en.wikipedia.org/wiki/Posttraumatic_stress_disorder
+       - Post-Traumatic Pleasure Syndrome http://www.scma.org/magazine/articles/?articleid=107
+       - http://www.wired.com/magazine/2012/02/ff_forgettingpill/all/
+       - http://www.scientificamerican.com/article.cfm?id=totaling-recall
+       - http://www.dailymail.co.uk/sciencetech/article-2206291/The-fear-factor-Researchers-discovery-technique-erase-short-newly-formed-memories.html
+       - http://discovermagazine.com/2008/jan/how-to-erase-a-single-memory/
+       - http://www.livescience.com/15621-memory-altering-drugs-debate.html
+       - http://www.salon.com/2011/12/31/should_we_erase_painful_memories/
+*** DONE What makes you, you?
+   CLOSED: [2012-12-22 Sat 18:41]
+   :CLOCK:
+   CLOCK: [2012-12-22 Sat 18:20]--[2012-12-22 Sat 18:41] =>  0:21
+   CLOCK: [2012-12-22 Sat 18:17]--[2012-12-22 Sat 18:20] =>  0:03
+   CLOCK: [2012-12-15 Sat 16:56]--[2012-12-15 Sat 17:12] =>  0:16
+   CLOCK: [2012-12-15 Sat 15:20]--[2012-12-15 Sat 16:49] =>  1:29
+   CLOCK: [2012-12-15 Sat 14:25]--[2012-12-15 Sat 15:08] =>  0:43
+   CLOCK: [2012-12-14 Fri 18:41]--[2012-12-14 Fri 19:56] =>  1:15
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2012-12-26 Wed 20:58
+    :END:
+   - tags: radiolab, science, mirror test, gordon gallup, robert louis stevenson, julian keenan, indian culture, v s ramachandran, dr jekyll and mr hyde, cerebral aneurysm, aneurysm
+   - summary:
+   - body
+I'm sure you have wondered, at some time or the other, "who am i?" Probably, you are the kind of person who has meditated over it, or you might be the kind who does not give it a second thought. Probably you were born in a culture, like the [[http://en.wikipedia.org/wiki/Culture_of_India][Indian culture]], where you have heard this question from your elders, or from stories in your childhood. Probably you have gone one step further and wondered or heard questions like "[[http://www.gocomics.com/calvinandhobbes/1988/04/01][why am i here?]]" or "what am i here for?"
+
+But have you ever wondered what does it mean to "be me"? XXX Over any period of time, be it short or long, we are continuously changing. Changing physically - children grow up, adults grow old; emotionally - our moods keep changing constantly; and in many other ways - life is change! But there is one thing that never changes, the feeling of "me". No matter where we are, in what place, in what situation, we always know our "selves". How does this happen? In fact, what is this self?
+
+These questions can be looked at from both a philosophical as well as a scientific point of view. Today we are going to look at it from the scientific angle and delve further into questions like "what is consciousness?", "what does it mean to say 'i am me'?", "where does this consciousness come from?", "can we point to a point or location in the brain which generates consciousness?", and the like.
+
+http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/NICO_looks_at_himself.jpg/640px-NICO_looks_at_himself.jpg @ http://en.wikipedia.org/wiki/Mirror_test
+Lets start with the question of "Do other creatures, have a sense of self?" It appears that there are a few animals and birds that do have a recognition of self. It has been found that they can identify themselves and know the self from the others. It is very interesting to know how scientists figure out whether animals, or birds, can identify themselves. In fact, it's a simple but very clever trick; it's called the "[[http://en.wikipedia.org/wiki/Mirror_test][mirror test]]" developed by [[http://en.wikipedia.org/wiki/Gordon_G._Gallup][Dr. Gordon Gallup]] while doing some [[http://www.sciencemag.org/content/167/3914/86][studies]]. XXX Consciousness, or self, is a very intellectual thing. In the mirror test, the animal is able to create a representation of itself that floats free of its body. It can't touch it or smell it, but just by seeing it, it knows that "that's me". This is very fascinating!
+
+http://www.montclair.edu/academy/images/juliankeenan82911.jpg @ http://www.montclair.edu/academy/fellows/fellowsmentors20112012.html
+[[http://www.montclair.edu/profilepages/view_profile.php?username%3Dkeenanj][Professor Julian Keenan]] has been able to pinpoint the location of where the idea of the self is generated in our brains. He created an [[http://mentalhealth.about.com/library/sci/0201/blbeth0201.htm][experiment]] using some morphing software and images of famous people like Albert Einstein and Bill Clinton to [[http://ttbook.org/book/transcript/transcript-you-your-brain][find]] out that if you <quote> press your thumb to the bridge of your nose. Now draw it slowly over the crown of your head to about where you might have a ponytail. That area under your skull is where 'you' are.</quote>
+
+http://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Vilayanur_S_Ramachandran_2011_Shankbone.JPG/420px-Vilayanur_S_Ramachandran_2011_Shankbone.JPG @ http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran
+[[http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran][Professor V. S. Ramachandran]], a world renowned neurologist, says that "self is the activities of the neurons." Although, simple when stated that way, it is, he says, one of the greatest realization in the last 100 years. He explains how the human brain is different from that of other animals. A worm, for example, does not have a brain big enough to form any sort of images in its mind. A monkey, on the other hand, although able to form images, cannot manipulate them in his mind. A human being, however, has a much more powerful brain. Only man can take images from the real world, pull them into his head, divide them into parts and then start turning those parts into abstractions, or tokens. He can manipulate these tokens and juxtapose them in counterintuitive ways; he can create even outlandish scenarios - what we call imagination. We are not different from other animals, we are only more than them. XXX We are imagining so often and so thoroughly, that we can eventually imagine ourselves! He says, self is the ability of humans to spin a story around themselves. We can take experiences, memories of good and bad events, and abstract a story out of it - that is self!
+
+http://ecx.images-amazon.com/images/I/510V0PB8wiL._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg @ http://www.amazon.com/Strange-Jekyll-Dover-Thrift-Editions/dp/0486266885
+Readers of classic novels are not unaware of "[[http://www.amazon.com/Strange-Jekyll-Dover-Thrift-Editions/dp/0486266885][The strange case of Dr. Jekyll and Mr. Hyde]]" by [[http://en.wikipedia.org/wiki/Robert_Louis_Stevenson][Robert Louis Stevenson]]. He said that he used to dream of "[[http://blog.beliefnet.com/dreamgates/2011/07/robert-louis-stevenson-and-his-dream-helpers.html][little people]]" who helped him write his stories. He trained himself to remember his dreams and to dream plots for his books. Dreams bring us to a very interesting question about consciousness. If we think about this in modern terms, like when you see a movie, you, the viewer, has no idea what is going to happen next. You scream at the scary parts, laugh at the jokes, and cry during the sad scenes. But in order for you to have that experience, someone needed to write the movie, someone needed to direct it, someone other than you. How is it, when we dream, that we do all 3 at the same time? We write, direct and watch the film as if we've never seen it before.
+
+This is how [[http://www.wnyc.org/people/jad-abumrad/][Jad Abumrad]] and [[http://www.wnyc.org/people/robert-krulwich/][Robert Krulwich]] of [[http://www.radiolab.org/][Radiolab]], in their episode "[[http://www.radiolab.org/2007/may/07/][Who Am I?]]" find it:
+<quote>
+If you look scientifically into a brain, what you encounter is hundreds of thousands of players, not just little people, but teeny teeny teeny teeny brain cells which do others fashion back and forth. If you would go to any one of the cells and say, "so, are you the author of 'Jackyl and Hyde'?", the cell would just go on or off. It is only in the group that you can see the electrical outline of a thought, or ultimately of a self. While you think of yourself as a 'one', even the thought, 'I am a one', springs from a 100 million cells connecting through a trillion synapses and that all of this multiple activities, paradoxically, creates the you of this moment. You are always plural!
+</quote>
+
+There is also a medical side to our consciousness. There is a condition of the brain called [[http://en.wikipedia.org/wiki/Aneurysm][cerebral aneurysm]] in which the person loses his sense of self; he becomes a completely different person. Writer and producer Hannah Palin writes about her experience when her mother suffered from aneurysm in "[[http://www.transom.org/shows/2004/200403_head_explode.html][The day my mother's head exploded]]". I like the following paragraph from the passage a lot:
+<quote>
+But then those moments pass and you're consumed by the trivia of daily life once again. Sometimes, when i'm overwhelmed by making my way through the world, i try to focus on the fact that the electric bill does not matter. The idiot driver glued to his cellphone, does not matter. The mind numbing day job, truly, does not matter. But welcoming the strange and the different, being open and available for my husband, my friends, my family, experiencing love and laughter as often as possible -- that's what matters. Because it can all be taken away in one brilliant flash.
+</quote>
+   - notes
+     - [[http://www.radiolab.org/2007/may/07/][Who Am I? --Radiolab]]
+     - brain scanning tests on nuns as they meditate, sleepers as they dream
+     - it's a new world
+     - fmri (functional MRI): real time feedback based on blood flow increase/decrease to certain parts of brain
+     - that's me in the mirror. what does it mean to say "that's me", or "i'm me"
+       - it's like repeating a word over and over; the meaning of the word gets disassociated from the sound
+       - just like the image of you becomes disconnected from the real you, inner you -> self/soul
+     - every person changes over life; there's continuous change; our bodies change, selves change, moods change, everything about a normal healthy person is flux, it's change. yet somehow there is a oneness, a through-line continuous sense of self. you wonder, how the heck does that happen? where is this self thing?
+     - where?
+       - ancients thought it was in the heart. found that that was a pump, and disappointed
+       - [[http://en.wikipedia.org/wiki/Vilayanur_S._Ramachandran][V. S. Ramachandran]], great neurologist -> activities of neurons
+         - greatest realization in the last 100 years
+     - chimpanzees have a sense of self
+       - http://www.sciencemag.org/content/167/3914/86
+       - http://en.wikipedia.org/wiki/Mirror_test
+       - creating a representation of itself that floats free of its body; it's intellectual (you can't touch it, can't smell it, but just by seeing it you know that it's "you")
+       - ethical Qs raised: should they be in zoo, should they be charged for murder, should they have equal rights?
+     - julian keenan
+       - http://ttbook.org/book/transcript/transcript-you-your-brain
+       - http://ttbook.org/book/neuroscience-self
+       - Press your thumb to the bridge of your nose. Now draw it slowly over the crown of your head to about where you might have a ponytail. That area under your skull is where "you" are.
+       - bill clinton experiment
+         - http://mentalhealth.about.com/library/sci/0201/blbeth0201.htm
+         - morphed design
+         - self photo + bill clinton photo morph, 50-50%
+       - right brain
+     - cerebral [[http://en.wikipedia.org/wiki/Aneurysm][aneurysm]]
+       - [[http://www.transom.org/shows/2004/200403_head_explode.html][The day my mother's head exploded]] --Hannah Palin
+       - But then those moments pass and you're consumed by the trivia of daily life once again. Sometimes, when i'm overwhelmed by making my way through the world, i try to focus on the fact that the electric bill does not matter. The idiot driver glued to his cellphone, does not matter. The mind numbing day job, truly, does not matter. But welcoming the strange and the different, being open and available for my husband, my friends, my family, experiencing love and laughter as often as possible -- that's what matters. Because it can all be taken away in one brilliant flash.
+     - Paul Broks
+       - [[http://www.amazon.com/Into-Silent-Land-Travels-Neuropsychology/dp/0802141285][into the silent land]]
+       - a patient got very angry, but was calmed by the wife. on asking the wife she said, "well, when it happens, i think it's not really him. it's not really Jeff." But paradoxically, what kept her with him, kept her supporting him the belief that at some level it really was him
+       - the extended self, which is what we normally think when we think about ourselves, is really a story. It's the story of what's happened to that body over time --Paul Broks
+     - V. S. Ramachandran
+       - what is peculiarly human about us is our ability to construct stories.
+       - about 200k-500k yrs ago, "evolution of introspective awareness" took place
+         - how does human brain differ from other animals' brain
+           - worm: doesn't have brain big enough to make pictures
+           - monkey: has pictures and can make associations, but no manipulation
+           - human: imagination
+             - only humans can take images from the real world, pull them into their heads, divide them into parts and then start turning those parts into abstractions
+             - he now has what are called tokens. he has created disembodied tokens. adjectives are tokens. and then, he can manipulate these tokens, juxtapose them in counterintuitive ways. he can create even outlandish scenarios. what we call imagination
+         - we are not different from other creatures, we're only _more_ than other creatures. and when we have these brains that have these extras, like a layer on layer cake, we can manipulate any idea at all. and we are constantly doing that, we're constantly abstracting, we are imagining so often, so thoroughly, and so well, that we eventually can imagine ourselves
+         - the idea of the self, if you think about it this way, is that you take all the things that have ever happened to you. pluck, from your life; if you're sad you might pluck the sad things, if you're happy, you might pluck the happy things. and you stitch them together into a general abstract idea. and me then, an idea of self, is really a story that we tell ourselves. it can change from day to day. and it allows the human being to excercise that peculiarly human muscle, to experience stuff, and then to abstract it into a story. that's self. --Robert Krulwich, Jad Abumrad
+     - who are the little people? --The dreams of 'Robert Louis Stevenson'
+       - Dr. Jackyl and Mr. Hyde - The classic tale of divided self (1886)
+       - but there's a deeper Q here, the Q of authorship. lets think about it in more modern terms. when you see a movie and the lights go down, then from one moment to the next, you, the viewer, has no idea what's gonna happen. you scream at the scary parts, laugh at the jokes, cry during the sad scenes. you're taken on a ride. but in order for you to have that experience, someone needed to write the movie, someone needed to direct it, someone other than you. how is it, when we dream, that we do all 3 at the same time. we write, direct and watch the film as if we've never seen it before.
+       - it was not his tale, it was the little people's
+     - if you look scientifically into a brain, what you encounter is 100s of 1000s of players, not just little people, but teeny teeny teeny teeny brain cells which do others fashion back and forth. if you would go to any one of the cells and say, "so, are you the author of 'Jackyl and Hyde'?", the cell would just go on or off. it is only in the group that you can see the electrical outline of a thought, or ultimately of a self. while you think of yourself as a 'one', even the thought, 'i am a one', springs from a 100 million cells connecting through a trillion synapses and that all of this multiple activities, paradoxically, creates the you of this moment. you are always plural!
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
