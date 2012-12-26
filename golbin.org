@@ -2,7 +2,11 @@
 
 * tasks
 ** backlog
-*** [bug][fed] correct the dates of the 3 new articles uploaded
+*** [bug][fe] show 'using tags' in article cite only if tags != null
+*** [refactor] concatenate 'string -> stringify
+*** TODO [bug][fed] correct the dates of the 3 new articles uploaded
+    :CLOCK:
+    :END:
 *** TODO [reports] check GA data
     :CLOCK:
     CLOCK: [2012-12-21 Fri 08:09]--[2012-12-21 Fri 08:35] =>  0:26
@@ -13,7 +17,6 @@
     - [ ] should be of golb.in/static/*.jpeg
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
       - conversion during write (ed), not read (fe)
-*** [bug][fe] correct timezone in articles listings in home/index pages
 *** [ed] do while saving article
     - [ ] remove all the '<p> +&nbsp +</p>' and '<div> +&nbsp +</div>'
     - [ ] convert all <div> into <p>???
@@ -1130,14 +1133,16 @@
      :ARCHIVE_TIME: 2012-12-23 Sun 00:12
      :END:
 **** DONE [fed] datetime
-     CLOSED: [2012-12-24 Mon 18:42]
+     CLOSED: [2012-12-26 Wed 20:23]
      :CLOCK:
+     CLOCK: [2012-12-26 Wed 19:54]--[2012-12-26 Wed 20:23] =>  0:29
+     CLOCK: [2012-12-26 Wed 19:43]--[2012-12-26 Wed 19:54] =>  0:11
      CLOCK: [2012-12-24 Mon 18:14]--[2012-12-24 Mon 18:42] =>  0:28
      CLOCK: [2012-12-24 Mon 18:12]--[2012-12-24 Mon 18:13] =>  0:01
      CLOCK: [2012-12-24 Mon 17:34]--[2012-12-24 Mon 18:12] =>  0:38
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2012-12-24 Mon 18:42
+     :ARCHIVE_TIME: 2012-12-26 Wed 20:23
      :END:
      - [X] datetime for comments
      - [X] datetime -> string while write
@@ -1783,6 +1788,247 @@ But then those moments pass and you're consumed by the trivia of daily life once
        - but there's a deeper Q here, the Q of authorship. lets think about it in more modern terms. when you see a movie and the lights go down, then from one moment to the next, you, the viewer, has no idea what's gonna happen. you scream at the scary parts, laugh at the jokes, cry during the sad scenes. you're taken on a ride. but in order for you to have that experience, someone needed to write the movie, someone needed to direct it, someone other than you. how is it, when we dream, that we do all 3 at the same time. we write, direct and watch the film as if we've never seen it before.
        - it was not his tale, it was the little people's
      - if you look scientifically into a brain, what you encounter is 100s of 1000s of players, not just little people, but teeny teeny teeny teeny brain cells which do others fashion back and forth. if you would go to any one of the cells and say, "so, are you the author of 'Jackyl and Hyde'?", the cell would just go on or off. it is only in the group that you can see the electrical outline of a thought, or ultimately of a self. while you think of yourself as a 'one', even the thought, 'i am a one', springs from a 100 million cells connecting through a trillion synapses and that all of this multiple activities, paradoxically, creates the you of this moment. you are always plural!
+** git push
+18:21:42 vc $ git push origin master
+error: --mirror can't be combined with refspecs
+usage: git push [<options>] [<repository> [<refspec>...]]
+
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --repo <repository>   repository
+    --all                 push all refs
+    --mirror              mirror all refs
+    --delete              delete refs
+    --tags                push tags (can't be used with --all or --mirror)
+    -n, --dry-run         dry run
+    --porcelain           machine-readable output
+    -f, --force           force updates
+    --recurse-submodules[=<check>]
+                          control recursive pushing of submodules
+    --thin                use thin pack
+    --receive-pack <receive-pack>
+                          receive pack program
+    --exec <receive-pack>
+                          receive pack program
+    -u, --set-upstream    set upstream for git pull/status
+    --progress            force progress reporting
+    --prune               prune locally removed refs
+
+18:22:31 vc $ git config
+usage: git config [options]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    -f, --file <file>     use given config file
+
+Action
+    --get                 get value: name [value-regex]
+    --get-all             get all values: key [value-regex]
+    --get-regexp          get values for regexp: name-regex [value-regex]
+    --replace-all         replace all matching variables: name value [value_regex]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-regex]
+    --unset-all           remove all matches: name [value-regex]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    -e, --edit            open an editor
+    --get-color <slot>    find the color configured: [default]
+    --get-colorbool <slot>
+                          find the color setting: [stdout-is-tty]
+
+Type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --path                value is a path (file or directory name)
+
+Other
+    -z, --null            terminate values with NUL byte
+    --includes            respect include directives on lookup
+
+18:22:49 vc $ git config --local --get-all
+error: wrong number of arguments
+usage: git config [options]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    -f, --file <file>     use given config file
+
+Action
+    --get                 get value: name [value-regex]
+    --get-all             get all values: key [value-regex]
+    --get-regexp          get values for regexp: name-regex [value-regex]
+    --replace-all         replace all matching variables: name value [value_regex]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-regex]
+    --unset-all           remove all matches: name [value-regex]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    -e, --edit            open an editor
+    --get-color <slot>    find the color configured: [default]
+    --get-colorbool <slot>
+                          find the color setting: [stdout-is-tty]
+
+Type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --path                value is a path (file or directory name)
+
+Other
+    -z, --null            terminate values with NUL byte
+    --includes            respect include directives on lookup
+
+18:22:56 vc $ git --local config --get-all
+Unknown option: --local
+usage: git [--version] [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p|--paginate|--no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           [-c name=value] [--help]
+           <command> [<args>]
+18:23:14 vc $ git config --get-all
+error: wrong number of arguments
+usage: git config [options]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    -f, --file <file>     use given config file
+
+Action
+    --get                 get value: name [value-regex]
+    --get-all             get all values: key [value-regex]
+    --get-regexp          get values for regexp: name-regex [value-regex]
+    --replace-all         replace all matching variables: name value [value_regex]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-regex]
+    --unset-all           remove all matches: name [value-regex]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    -e, --edit            open an editor
+    --get-color <slot>    find the color configured: [default]
+    --get-colorbool <slot>
+                          find the color setting: [stdout-is-tty]
+
+Type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --path                value is a path (file or directory name)
+
+Other
+    -z, --null            terminate values with NUL byte
+    --includes            respect include directives on lookup
+
+18:23:45 vc $ git config
+usage: git config [options]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    -f, --file <file>     use given config file
+
+Action
+    --get                 get value: name [value-regex]
+    --get-all             get all values: key [value-regex]
+    --get-regexp          get values for regexp: name-regex [value-regex]
+    --replace-all         replace all matching variables: name value [value_regex]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-regex]
+    --unset-all           remove all matches: name [value-regex]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    -e, --edit            open an editor
+    --get-color <slot>    find the color configured: [default]
+    --get-colorbool <slot>
+                          find the color setting: [stdout-is-tty]
+
+Type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --path                value is a path (file or directory name)
+
+Other
+    -z, --null            terminate values with NUL byte
+    --includes            respect include directives on lookup
+
+18:23:56 vc $ git config -l
+push.default=simple
+user.name=Pradnyesh Sawant
+user.email=me@spradnyesh.org
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=git@bitbucket.org:hawksbill/pers.git
+remote.origin.mirror=true
+18:24:08 vc $ git config --unset remote.origin.mirror
+18:24:36 vc $ git config -l
+push.default=simple
+user.name=Pradnyesh Sawant
+user.email=me@spradnyesh.org
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=git@bitbucket.org:hawksbill/pers.git
+18:24:38 vc $ gpho
+fatal: You are not currently on a branch.
+To push the history leading to the current (detached HEAD)
+state now, use
+
+    git push origin HEAD:<name-of-remote-branch>
+
+18:24:41 vc $ gpho HEAD:master
+Counting objects: 179, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (98/98), done.
+Writing objects: 100% (173/173), 165.64 KiB, done.
+Total 173 (delta 114), reused 112 (delta 75)
+remote: bb/acl: hawksbill is allowed. accepted payload.
+To git@bitbucket.org:hawksbill/pers.git
+   a278a10..64b916e  HEAD -> master
+18:24:57 vc $ cd ~/golbin/
+18:25:01 golbin $ gpho HEAD:master
+Everything up-to-date
+18:25:06 golbin $ cd ~/home/
+18:25:08 home $ gpho HEAD:master
+error: --mirror can't be combined with refspecs
+usage: git push [<options>] [<repository> [<refspec>...]]
+
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --repo <repository>   repository
+    --all                 push all refs
+    --mirror              mirror all refs
+    --delete              delete refs
+    --tags                push tags (can't be used with --all or --mirror)
+    -n, --dry-run         dry run
+    --porcelain           machine-readable output
+    -f, --force           force updates
+    --recurse-submodules[=<check>]
+                          control recursive pushing of submodules
+    --thin                use thin pack
+    --receive-pack <receive-pack>
+                          receive pack program
+    --exec <receive-pack>
+                          receive pack program
+    -u, --set-upstream    set upstream for git pull/status
+    --progress            force progress reporting
+    --prune               prune locally removed refs
+
+
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
