@@ -25,8 +25,10 @@
                              :cat (slug (cat article))
                              :subcat (slug (subcat article)))
                (str (name (subcat article))))))
-        (str ", using tags ")
-        (:span :id "a-tags" (str (fe-article-tags-markup article))))))
+        (let ((tags (tags article)))
+          (when tags
+            (str ", using tags ")
+            (htm (:span :id "a-tags" (str (fe-article-tags-markup tags)))))))))
 
 (defun do-child-comments (parent-id children)
   (with-html (:ul :class "comment"
@@ -122,9 +124,9 @@
                                                      :typeof "author"
                                                      :page 0)))))))
 
-(defun fe-article-tags-markup (article)
+(defun fe-article-tags-markup (tags)
   (with-html
-    (dolist (tag (tags article))
+    (dolist (tag tags)
       (htm " "
        (:a :href (h-genurl 'r-tag :tag (slug tag))
            (str (name tag)))))))

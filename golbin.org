@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [bug][fe] show 'using tags' in article cite only if tags != null
 *** [refactor] concatenate 'string -> stringify
 *** TODO [reports] check GA data
     :CLOCK:
@@ -1150,6 +1149,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-12-26 Wed 21:02
+     :END:
+**** DONE [bug][fe] show 'using tags' in article cite only if tags != null
+     CLOSED: [2012-12-26 Wed 21:07]
+     :CLOCK:
+     CLOCK: [2012-12-26 Wed 21:04]--[2012-12-26 Wed 21:07] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-26 Wed 21:08
      :END:
 ** TODO refactor
    :CLOCK:
