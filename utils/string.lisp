@@ -11,8 +11,8 @@
     (when (> length str-len)
       (let ((padder (make-string (- length str-len) :initial-element character)))
         (case direction
-          (:l (stringify padder string))
-          (:r (stringify string padder)))))))
+          (:l (concatenate 'string padder string))
+          (:r (concatenate 'string string padder)))))))
 
 (defun join-string-list-with-delim (delim list &key (key nil))
   (when list
