@@ -75,8 +75,7 @@
                                (str (tr-td-input "submit" :value "Submit" :typeof "submit"))))))) ; XXX: translate
 
 (defun article-body-markup (article)
-  (with-html (:div :id "a-body"
-                   (let ((photo (photo article)))
+  (with-html (let ((photo (photo article)))
                      (when photo
                        (let* ((photo-direction (photo-direction article))
                               (pd (cond ((eql :l photo-direction) "left")
@@ -84,10 +83,11 @@
                                         ((eql :b photo-direction) "block"))))
                          (htm (:div :class pd
                                     (str (article-lead-photo-url photo pd))
-                                    (:p :class "title" (str (title photo)))
                                     (let ((attr (attribution photo)))
-                                      (when attr
-                                        (htm (:a :class "attribution" :href attr "photo attribution")))))))))
+                                      (unless (nil-or-empty attr)
+                                        (htm (:a :class "p-attribution small" :href attr "photo attribution"))))
+                                    (:p :class "p-title" (str (title photo))))))))
+             (:div :id "a-body"
                    (str (body article)))))
 
 (defun article-related-markup (id article)

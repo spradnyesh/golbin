@@ -183,6 +183,7 @@ h4 {
     padding-right: 25px;
 }
 
+/* articles */
 #articles ul li {
     padding: 10px 0;
     border-bottom: 1px dotted;
@@ -204,8 +205,27 @@ h4 {
     color: #4a4a4a;
 }
 
+/* article */
 #article {
     margin-bottom: 50px;
+}
+
+#article img {
+    padding: 10px;
+}
+
+#article div.a-photo {
+    float: right;
+}
+
+#article a.p-attribution {
+    float: right;
+    padding-right: 10px;
+}
+
+#article p.p-title {
+    text-align: center;
+    margin: 0;
 }
 
 #a-title {
@@ -219,16 +239,6 @@ h4 {
 #a-body .block {
     padding-bottom: 10px;
     text-align: center;
-}
-
-#a-body .left {
-    padding-bottom: 10px;
-    padding-right: 10px;
-}
-
-#a-body .right {
-    padding-bottom: 10px;
-    padding-left: 10px;
 }
 
 #a-body blockquote {
@@ -356,5 +366,6 @@ h4 {
     width: 300px;
     margin-left: 20px;
     margin-top: 5px;
-    background: url('http://sd.sharethis.com/disc/images/Logo_Area.png') no-repeat;
+    background: url('http: //sd.sharethis.com/disc/images/Logo_Area.png') no-repeat;
+    /* put the :space in the above url purposefully; till Golbin logo comes up */
 }

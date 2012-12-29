@@ -55,6 +55,21 @@
                  (get-config "photo.article-lead.side.max-height")
                  (get-config "photo.article-lead.side.max-width")))))
 
+(defun make-photo-attribution-div (img-tag photo)
+  (with-html (:div :class "a-photo"
+                   (str img-tag)
+                   (let ((attr (attribution photo)))
+                     (unless (nil-or-empty attr)
+                       (htm (:a :class "p-attribution small"
+                                :href attr "photo attribution"))))
+                   (:p :class "p-title" (str (title photo))))))
+
+(defun add-photo-attribution (body)
+  (dolist (img-tag (all-matches-as-strings "<img (.*?)\/>" body))
+    (let ((photo-div (make-photo-attribution-div img-tag (find-photo-by-img-tag img-tag))))
+      (setf body (regex-replace img-tag body photo-div))))
+  body)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -194,7 +209,7 @@
       (if (and t
                ;; all photos should be golbin hosted (^/static/photos/...) only
                (not (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>" body)))
-          (let ((body (cleanup-ckeditor-text (remove-all-style body))))
+          (let ((body (add-photo-attribution (cleanup-ckeditor-text (remove-all-style body)))))
             (dolist (tag tags)
               (let ((tag-added (add-tag tag)))
                 (when tag-added

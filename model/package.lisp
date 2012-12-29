@@ -1,5 +1,5 @@
 (defpackage :hawksbill.golbin.model
-  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json :split-sequence)
+  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json :split-sequence :cl-ppcre)
   (:import-from :hunchentoot :session-value)
   (:export :db-reconnect
            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -109,6 +109,7 @@
            :get-mini-photo
            :article-lead-photo-url
            :attribution
+           :find-photo-by-img-tag
            ;; tag
            :add-tag
            :get-tag-by-slug

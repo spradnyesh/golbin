@@ -2,6 +2,9 @@
 
 * tasks
 ** backlog
+*** [fe][theme] photo title and attribution
+*** [bug][fe] move related articles carousels outside of a-body
+    - so that lots of inline images in a-body will not interfere visually w/ them
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
 *** TODO [db] correct the inline images of prod articles
@@ -11,21 +14,6 @@
 *** [ed] error messages
     - inline photos in articles should be of /static/photos/*.jpeg
     - spam comment
-*** TODO [ed] inline images
-    :CLOCK:
-    CLOCK: [2012-12-29 Sat 17:58]--[2012-12-29 Sat 17:59] =>  0:01
-    CLOCK: [2012-12-29 Sat 17:44]--[2012-12-29 Sat 17:55] =>  0:11
-    CLOCK: [2012-12-29 Sat 17:32]--[2012-12-29 Sat 17:43] =>  0:11
-    CLOCK: [2012-12-29 Sat 16:41]--[2012-12-29 Sat 17:05] =>  0:24
-    CLOCK: [2012-12-29 Sat 16:03]--[2012-12-29 Sat 16:14] =>  0:11
-    CLOCK: [2012-12-29 Sat 15:35]--[2012-12-29 Sat 15:58] =>  0:23
-    CLOCK: [2012-12-29 Sat 15:34]--[2012-12-29 Sat 15:35] =>  0:01
-    :END:
-    - [X] inline photos in articles should be of /static/photos/*.jpeg
-    - [X] remove style=".*"
-    - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
-      - conversion during write (ed), not read (fe)
-    - [ ] float right
 *** [fe] pull js out into a static file like css
 *** TODO [fe] init prod sites
     :CLOCK:
@@ -1244,6 +1232,27 @@
      - [X] remove all the '<p> +&nbsp +</p>' and '<div> +&nbsp +</div>'
      - [X] convert all <div> into <p>???
        - not done due to http://www.sightspecific.com/~mosh/www_faq/nbsp.html
+**** DONE [ed] inline images
+     CLOSED: [2012-12-29 Sat 20:15]
+     :CLOCK:
+     CLOCK: [2012-12-29 Sat 19:21]--[2012-12-29 Sat 20:15] =>  0:54
+     CLOCK: [2012-12-29 Sat 18:16]--[2012-12-29 Sat 19:03] =>  0:47
+     CLOCK: [2012-12-29 Sat 17:58]--[2012-12-29 Sat 17:59] =>  0:01
+     CLOCK: [2012-12-29 Sat 17:44]--[2012-12-29 Sat 17:55] =>  0:11
+     CLOCK: [2012-12-29 Sat 17:32]--[2012-12-29 Sat 17:43] =>  0:11
+     CLOCK: [2012-12-29 Sat 16:41]--[2012-12-29 Sat 17:05] =>  0:24
+     CLOCK: [2012-12-29 Sat 16:03]--[2012-12-29 Sat 16:14] =>  0:11
+     CLOCK: [2012-12-29 Sat 15:35]--[2012-12-29 Sat 15:58] =>  0:23
+     CLOCK: [2012-12-29 Sat 15:34]--[2012-12-29 Sat 15:35] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-29 Sat 20:15
+     :END:
+     - [X] inline photos in articles should be of /static/photos/*.jpeg
+     - [X] remove style=".*"
+     - [X] float right
+     - [X] <img/> -> <div><img/><p><a href="">photo credits</a></p></div>
+       - conversion during write (ed), not read (fe)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
