@@ -189,38 +189,47 @@
            (tags (post-parameter "tags"))
            (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
            (article-tags nil))
-      (dolist (tag tags)
-        (let ((tag-added (add-tag tag)))
-          (when tag-added
-            (push tag-added article-tags))))
-      (if id
-          (let ((article (get-article-by-id id)))
-            (edit-article (make-instance 'article
-                                         :id id
-                                         :title title
-                                         :slug (slug article)
-                                         :summary summary
-                                         :body body
-                                         :date (date article)
-                                         :status :r
-                                         :cat cat
-                                         :subcat subcat
-                                         :photo photo
-                                         :photo-direction pd
-                                         :tags article-tags))
-            (redirect (h-genurl 'r-article-edit-get :id (write-to-string id))))
-          (let ((article (add-article (make-instance 'article
-                                                     :title title
-                                                     :summary summary
-                                                     :body body
-                                                     :status :r
-                                                     :date (prettyprint-datetime)
-                                                     :cat cat
-                                                     :subcat subcat
-                                                     :photo photo
-                                                     :photo-direction pd
-                                                     :tags article-tags))))
-            (redirect (h-genurl 'r-article-edit-get :id (write-to-string (id article)))))))))
+      ;; some validations
+      ;; TODO: replace this if-then-else w/ exception handling so that we can show different error messages
+      (if (and t
+               ;; all photos should be golbin hosted (^/static/photos/...) only
+               (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>" body))
+          (progn
+            (dolist (tag tags)
+              (let ((tag-added (add-tag tag)))
+                (when tag-added
+                  (push tag-added article-tags))))
+            (if id
+                (let ((article (get-article-by-id id)))
+                  (edit-article (make-instance 'article
+                                               :id id
+                                               :title title
+                                               :slug (slug article)
+                                               :summary summary
+                                               :body body
+                                               :date (date article)
+                                               :status :r
+                                               :cat cat
+                                               :subcat subcat
+                                               :photo photo
+                                               :photo-direction pd
+                                               :tags article-tags))
+                  (redirect (h-genurl 'r-article-edit-get :id (write-to-string id))))
+                (redirect (h-genurl 'r-article-edit-get
+                                    :id (write-to-string (id (add-article (make-instance 'article
+                                                                                         :title title
+                                                                                         :summary summary
+                                                                                         :body body
+                                                                                         :status :r
+                                                                                         :date (prettyprint-datetime)
+                                                                                         :cat cat
+                                                                                         :subcat subcat
+                                                                                         :photo photo
+                                                                                         :photo-direction pd
+                                                                                         :tags article-tags))))))))
+          ;; validation failed
+          ;; TODO: show error message and repopulate w/ submitted data
+          ))))
 
 (defun v-article-delete-post (id)
   (with-ed-login
