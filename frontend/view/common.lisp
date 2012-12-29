@@ -33,9 +33,10 @@
     (:ul :class "related"
           (dolist (article article-list)
             (htm (:li
-                  (when (photo article)
-                    (htm (:div :class "related-thumb"
-                               (str (article-lead-photo-url (photo article) "related-thumb")))))
+                  (if (photo article)
+                      (htm (:div :class "related-thumb"
+                                 (str (article-lead-photo-url (photo article) "related-thumb"))))
+                      (htm (:div :class "related-thumb no-photo")))
                   (:a :class "a-title"
                       :href (h-genurl 'r-article
                                     :slug-and-id (format nil "~A-~A"

@@ -2,10 +2,7 @@
 
 * tasks
 ** backlog
-*** [fe] theme
-    - [ ] carousel prev/next leveling
-    - [ ] subnav background when subnav is absent
-    - [ ] comma between tags
+*** [fe] pull js out into a static file like css
 *** [fed] inline images
     - [ ] should be of /static/photos/*.jpeg
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
@@ -1199,6 +1196,19 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-12-29 Sat 13:29
      :END:
+**** DONE [fe] theme
+     CLOSED: [2012-12-29 Sat 13:59]
+     :CLOCK:
+     CLOCK: [2012-12-29 Sat 13:32]--[2012-12-29 Sat 13:59] =>  0:27
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-29 Sat 13:59
+     :END:
+     - [X] carousel: prev/next leveling in ff/chrome
+     - [X] carousel: gray background in place of lead-image for articles w/o lead-image
+     - [X] subnav background when subnav is absent
+       - canceled, coz causes some weird css issues that i'm not able to fix
+     - [X] comma between tags
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

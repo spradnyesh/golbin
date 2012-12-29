@@ -68,7 +68,6 @@ acronym, abbr {
 	cursor: help;
 }
 
-
 .clearfix:before, .clearfix:after {
     clear: both;
     content: .;
@@ -290,15 +289,24 @@ h4 {
     top: -90px;
 }
 
-.carousel .related {
+.carousel ul {
     height: 140px;
 }
 
-.carousel .related li {
+.carousel ul li {
     list-style-type: none;
     float: left;
     width: 120px;
     margin: 0 15px;
+}
+
+.carousel ul li div {
+    width: 100px;
+    height: 100px;
+}
+
+.carousel ul li div.no-photo {
+    background-color: #F0F0F0;
 }
 
 /* pagination */
@@ -348,5 +356,5 @@ h4 {
     width: 300px;
     margin-left: 20px;
     margin-top: 5px;
-    background: url('http: //sd.sharethis.com/disc/images/Logo_Area.png') no-repeat;
+    background: url('http://sd.sharethis.com/disc/images/Logo_Area.png') no-repeat;
 }

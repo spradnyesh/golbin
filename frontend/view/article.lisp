@@ -28,7 +28,7 @@
         (let ((tags (tags article)))
           (when tags
             (str ", using tags ")
-            (htm (:span :id "a-tags" (str (fe-article-tags-markup tags)))))))))
+            (htm (:span :id "a-tags" (str (string-right-trim '(#\, #\space) (fe-article-tags-markup tags))))))))))
 
 (defun do-child-comments (parent-id children)
   (with-html (:ul :class "comment"
@@ -127,9 +127,9 @@
 (defun fe-article-tags-markup (tags)
   (with-html
     (dolist (tag tags)
-      (htm " "
-       (:a :href (h-genurl 'r-tag :tag (slug tag))
-           (str (name tag)))))))
+      (htm (:a :href (h-genurl 'r-tag :tag (slug tag))
+               (str (name tag)))
+           ", "))))
 
 (defun get-id-from-slug-and-id (slug-and-id)
   (parse-integer (first (split-sequence "-" slug-and-id

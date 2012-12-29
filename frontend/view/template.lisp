@@ -20,7 +20,7 @@
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
        (:link :rel "stylesheet" :type "text/css"
               :href (format nil
-                            "/static/css/fe-style-1~a.css"
+                            "/static/css/fe-style-2~a.css"
                             (if (string-equal (get-dimension-value "envt") "prod")
                                 "-min"
                                 "")))
