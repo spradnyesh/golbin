@@ -46,8 +46,12 @@
 (defun remove-all-style (body)
   (regex-replace-all "style=\\\"(.*?)\\\"" body ""))
 
-(defun replace-div-with-p (body)
-  body)
+;; remove empty :p and :div tags
+;; remove ""
+(defun cleanup-ckeditor-text (body)
+  (regex-replace-all "<p>
+	&nbsp;</p>" (regex-replace-all "<div>
+	&nbsp;</div>" (regex-replace-all "" body "") "") ""))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions

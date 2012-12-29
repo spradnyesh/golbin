@@ -35,7 +35,7 @@
            :tr-td-input
            :tr-td-text
            :remove-all-style
-           :replace-div-with-p
+           :cleanup-ckeditor-text
            :hu-init
            ;; js
            :js-script
