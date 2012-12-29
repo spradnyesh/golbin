@@ -17,6 +17,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun trim-name (name)
+  (first (split-sequence " " name :test #'string-equal)))
+
 (defun tr-td-input (name &key (value "") (typeof "text"))
   (let ((for (regex-replace-all "-" name " ")))
     (with-html
@@ -29,9 +32,6 @@
                      :name (format nil "~A" trimmed-name)
                      :value value)))))))))
 
-(defun trim-name (name)
-  (first (split-sequence " " name :test #'string-equal)))
-
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
   (with-html
     (htm (:tr (:td (format t "~A" (string-capitalize name)))
@@ -42,6 +42,12 @@
                                      :id (format nil "~A" trimmed-name)
                                      :class class
                                      (str value)))))))))
+
+(defun remove-all-style (body)
+  (regex-replace-all "style=\\\"(.*?)\\\"" body ""))
+
+(defun replace-div-with-p (body)
+  body)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; standard functions

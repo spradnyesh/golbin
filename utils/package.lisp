@@ -34,6 +34,8 @@
            :with-html
            :tr-td-input
            :tr-td-text
+           :remove-all-style
+           :replace-div-with-p
            :hu-init
            ;; js
            :js-script

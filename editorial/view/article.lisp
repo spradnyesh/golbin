@@ -194,7 +194,7 @@
       (if (and t
                ;; all photos should be golbin hosted (^/static/photos/...) only
                (not (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>" body)))
-          (progn
+          (let ((body (replace-div-with-p (remove-all-style body))))
             (dolist (tag tags)
               (let ((tag-added (add-tag tag)))
                 (when tag-added

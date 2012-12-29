@@ -11,6 +11,7 @@
     - spam comment
 *** TODO [ed] inline images
     :CLOCK:
+    CLOCK: [2012-12-29 Sat 17:44]--[2012-12-29 Sat 17:55] =>  0:11
     CLOCK: [2012-12-29 Sat 17:32]--[2012-12-29 Sat 17:43] =>  0:11
     CLOCK: [2012-12-29 Sat 16:41]--[2012-12-29 Sat 17:05] =>  0:24
     CLOCK: [2012-12-29 Sat 16:03]--[2012-12-29 Sat 16:14] =>  0:11
@@ -18,6 +19,7 @@
     CLOCK: [2012-12-29 Sat 15:34]--[2012-12-29 Sat 15:35] =>  0:01
     :END:
     - [X] inline photos in articles should be of /static/photos/*.jpeg
+    - [X] remove style=".*"
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
       - conversion during write (ed), not read (fe)
 *** [ed] do while saving article
