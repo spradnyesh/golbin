@@ -70,8 +70,8 @@
     (cond
       ;; "d1m" param takes highest priority
       ((or (get-parameter "d1m") (search "localhost" host) (search "127.0.0.1" host))
-       (setf lang (find-dimension-value "lang" (get-parameter "d1m")))
-       (setf envt (find-dimension-value "envt" (get-parameter "d1m"))))
+       (setf lang (find-dimension-value "lang" (parameter "d1m")))
+       (setf envt (find-dimension-value "envt" (parameter "d1m"))))
       ;; TODO: int/qa
       ;; production
       ((setf index (search (get-config "site.url") host))

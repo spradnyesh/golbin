@@ -2,14 +2,16 @@
 
 * tasks
 ** backlog
-*** TODO [reports] check GA data
+*** TODO [fe] prod should use minified and versioned css
     :CLOCK:
-    CLOCK: [2012-12-21 Fri 08:09]--[2012-12-21 Fri 08:35] =>  0:26
-    CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
+    CLOCK: [2012-12-29 Sat 13:11]--[2012-12-29 Sat 13:12] =>  0:01
     :END:
-*** [fe] prod should use minified and versioned css
+*** [fe] theme
+    - [ ] carousel prev/next leveling
+    - [ ] subnav background when subnav is absent
+    - [ ] comma between tags
 *** [fed] inline images
-    - [ ] should be of golb.in/static/*.jpeg
+    - [ ] should be of /static/photos/*.jpeg
     - [ ] <img/> -> <div float="left"><img/><p><a href="">photo credits</a></p></div>
       - conversion during write (ed), not read (fe)
 *** [ed] do while saving article
@@ -117,7 +119,6 @@
       - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
       - (load-language "en-IN")
       - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
-*** [route] in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
 *** [lang] ensure utf-8 in both fe and ed (including RTE)
 *** TODO [lang] mr/hi font in fe and RTE
     :CLOCK:
@@ -1174,6 +1175,24 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-12-26 Wed 21:25
+     :END:
+**** DONE [reports] check GA data
+     CLOSED: [2012-12-29 Sat 13:11]
+     :CLOCK:
+     CLOCK: [2012-12-21 Fri 08:09]--[2012-12-21 Fri 08:35] =>  0:26
+     CLOCK: [2012-11-04 Sun 11:18]--[2012-11-04 Sun 11:26] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-29 Sat 13:11
+     :END:
+**** DONE [route] in restas/routes, if param contains d1m, then it should be passed on as it is in build-url
+     CLOSED: [2012-12-29 Sat 13:23]
+     :CLOCK:
+     CLOCK: [2012-12-29 Sat 13:21]--[2012-12-29 Sat 13:23] =>  0:02
+     CLOCK: [2012-12-29 Sat 13:12]--[2012-12-29 Sat 13:20] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2012-12-29 Sat 13:23
      :END:
 ** TODO refactor
    :CLOCK:

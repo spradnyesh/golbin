@@ -60,5 +60,7 @@
 
 (defun h-genurl (&rest args)
   (if (boundp '*request*)
-      (apply #'genurl args)
-      "/abc/"))
+      (apply #'genurl (if (parameter "d1m")
+                          (append args (list :d1m (parameter "d1m")))
+                          args))
+      "/"))
