@@ -18,13 +18,12 @@
 
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
-       (:link :rel "stylesheet" :type "text/css" :href "/static/css/fe-style.css"
-              ;; TODO: replace hardcoded css location w/ following logic
-              #|(format nil
-                      "/static/css/fe-style-1~a.css"
-                      (if (string-equal (get-dimension-value "envt") "prod")
-                          "-min"
-                          ""))|#)
+       (:link :rel "stylesheet" :type "text/css"
+              :href (format nil
+                            "/static/css/fe-style-1~a.css"
+                            (if (string-equal (get-dimension-value "envt") "prod")
+                                "-min"
+                                "")))
        #|(:style :type "text/css"
                (str (fe-get-css)))|#
 
