@@ -24,8 +24,6 @@
                             (if (string-equal (get-dimension-value "envt") "prod")
                                 "-min"
                                 "")))
-       #|(:style :type "text/css"
-               (str (fe-get-css)))|#
 
        ;; google-analytics
        (:script :type "text/javascript"
@@ -120,7 +118,9 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
     (with-html
       (:div :id "nav"
             (:ul :id "prinav"
-                 (:li :id "nav-home" :class (nav-selected t "cat" "cat selected")
+                 (:li :id "nav-home" :class (if (eq route (fe-intern :r-home))
+                                                "cat selected"
+                                                "cat")
                       (:h2 (:a :href (h-genurl 'r-home) "Home")))
                  (dolist (cat (get-root-categorys))
                    (when (plusp (rank cat))
