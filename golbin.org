@@ -1,18 +1,21 @@
-#+FILETAGS: :Globing:
+#+FILETAGS: :Globin:
 
 * tasks
 ** backlog
-*** [fe][theme] photo title and attribution
+*** [db] correct the inline images of prod articles
+*** TODO [ed] re-populate form on error after POST->GET
+    :CLOCK:
+    CLOCK: [2013-01-03 Thu 15:00]--[2013-01-03 Thu 15:06] =>  0:06
+    :END:
+    - change post->get to ajax-post (http://stackoverflow.com/a/6842674)
+      - solves problem of both post->get, also re-populate data
 *** [bug][fe] move related articles carousels outside of a-body
     - so that lots of inline images in a-body will not interfere visually w/ them
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
-*** TODO [db] correct the inline images of prod articles
-    :CLOCK:
-    :END:
-*** [ed] redirect after post
 *** [ed] error messages
     - inline photos in articles should be of /static/photos/*.jpeg
+*** [fe] error messages
     - spam comment
 *** [fe] pull js out into a static file like css
 *** TODO [fe] init prod sites
@@ -66,9 +69,6 @@
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
     :END:
-*** [fed] slide articles
-*** [fed] gravatar for author images
-    - http://en.gravatar.com/site/implement/images/
 *** 50 4-digit numbers for every author for login
     - [ ] change to db
     - [ ] change to login get/post
@@ -86,6 +86,9 @@
         2. do step 1 + 2 above
     - [ ] need to send email of these 50 salts on successful registration
       - jpeg image (cl-gd)
+*** [fed] photo slideshow articles
+*** [fed] gravatar for author images
+    - http://en.gravatar.com/site/implement/images/
 *** [ed] registration page
 *** [reports] accounts table/storage for authors
     - monthly
@@ -1608,9 +1611,11 @@
     - give attribution (compulsory)
 ** TODO search for topic
    :CLOCK:
+   CLOCK: [2013-01-03 Thu 19:27]--[2013-01-03 Thu 19:33] =>  0:06
    CLOCK: [2012-12-17 Mon 14:50]--[2012-12-17 Mon 15:04] =>  0:14
    CLOCK: [2012-12-17 Mon 13:44]--[2012-12-17 Mon 14:44] =>  1:00
    :END:
+   - lucid dreaming ***
    - music
      - Maybe its something about music itself, that it is so richly organized, that every time you're in a song you can feel what has been and what is about to be --Memory and Forgetting, Radiolab, http://www.radiolab.org/2007/jun/07/
    - going mouseless
@@ -1629,13 +1634,7 @@
      - t: nice guys do not end up last
    - hindi, national language of India?
    - writing styles
-** template
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-   - notes:
+   - curiosity
 ** git push
 18:21:42 vc $ git push origin master
 error: --mirror can't be combined with refspecs
@@ -1877,6 +1876,58 @@ usage: git push [<options>] [<repository> [<refspec>...]]
     --prune               prune locally removed refs
 
 
+** template
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - notes:
+** TODO writing flavors
+   :CLOCK:
+   CLOCK: [2013-01-03 Thu 20:09]--[2013-01-03 Thu 20:24] =>  0:15
+   CLOCK: [2013-01-03 Thu 19:37]--[2013-01-03 Thu 19:55] =>  0:18
+   CLOCK: [2013-01-03 Thu 19:02]--[2013-01-03 Thu 19:27] =>  0:25
+   CLOCK: [2013-01-03 Thu 16:45]--[2013-01-03 Thu 16:58] =>  0:13
+   :END:
+   - cat/subcat: editorial/--
+   - tags:
+   - lead image:
+   - summary: Feedback from my wife takes me onto a journey that helps me discover the different styles of writing.
+   - body:
+As a birthday gift to my wife, I released this [[www.golb.in][website]] on 23rd Dec and uploaded the articles that I had written already. I asked my wife to read them and give me feedback. Personally, I would've rated them in the order of:
+     1. What makes you, you?
+     2. Forgetting "forgive and forget"
+     3. Discovering the joy of writing
+But to my utter surprise, she rated them as:
+     1. Discovering the joy of writing
+     2. Forgetting "forgive and forget"
+     3. What makes you, you?
+[[Discovering%20the%20joy%20of%20writing][Discovering the joy of writing]] was my first article and I had written it without a very clear mind and without much purpose. For the other 2 articles, on the other hand, I had done quite some research and had taken sufficient time to write and rewrite them. How was it then, that my wife liked [[Discovering%20the%20joy%20of%20writing][Discovering the joy of writing]] the most? I asked her and she told me that she liked writings (articles, novels, etc) that talk to her. [[Discovering%20the%20joy%20of%20writing][Discovering the joy of writing]] was just like that. [[Forgetting%20"forgive%20and%20forget"][Forgetting "forgive and forget"]] and [[What%20makes%20you,%20you?][What makes you, you?]] however are, what she calls, gyaan sessions, i.e. "boring".
+
+I thought, if I am to write, I should understand the different styles of writing. And I am not talking here about grammar, but the different genres, if you will, of writing. I thought about it a lot and the following are the different styles that I could recognize:
+     - Imagination: Story telling, novels, poems fall into this category.
+     - Reporting: This is mostly laying down the facts about an event or incident.
+     - Contemplation: In this style, the writer has thought over and pondered about something and is writing his learnings about that topic.
+     - Blog: Sometimes you find out something interesting or clever, most probably in your domain of work, and you want to share it with your friends and/or the community at large. You also want to note it down somewhere where it is easy to find it later if you need. Many people use personal blogs to accomplish this.
+
+I am sure there will be many more styles. But these are the ones that I could think of. While enumerating them, I realized that
+
+
+I also thought of doing an experiment. I decided to write this article in the "talk" style that my wife had told me earlier. Through this experiment, I wanted to check whether I have the ability or knack of writing in this style and also check what are the views and opinions of my readers. It is for this reason that you will find no links pointing out to [[wikipedia.com][wikipedia]] or other sites from this article. It is all my thoughts, and my thoughts only :) So what do you think?
+   - notes:
+     - styles
+       - share a eureka moment (discovery/invention)
+       - imagination (story telling)
+       - reporting (event, news, etc)
+       - contemplation (thoughts)
+     - wife's feedback: talking v/s gyaan (so many people saying so many things)
+     - success factor
+       - different people like to read different flavors
+       - different people have different writing styles; one can't write all
+       - but try to be catchy => something that makes curious (curiosity is common to all humans)
+         - eg: kinds of writing -> writing kinds -> writing flavors
+       - "best selling author" not "best read author"
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
