@@ -1883,6 +1883,13 @@ usage: git push [<options>] [<repository> [<refspec>...]]
    - summary:
    - body:
    - notes:
+** to b(log) or not to b(log)
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - notes:
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
