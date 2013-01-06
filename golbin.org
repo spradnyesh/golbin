@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [db] correct the inline images of prod articles
 *** TODO [ed] re-populate form on error after POST->GET
     :CLOCK:
     CLOCK: [2013-01-03 Thu 15:00]--[2013-01-03 Thu 15:06] =>  0:06
@@ -1256,6 +1255,25 @@
      - [X] float right
      - [X] <img/> -> <div><img/><p><a href="">photo credits</a></p></div>
        - conversion during write (ed), not read (fe)
+**** DONE [db] correct the inline images of prod articles
+     CLOSED: [2013-01-06 Sun 12:59]
+     :CLOCK:
+     CLOCK: [2013-01-06 Sun 11:48]--[2013-01-06 Sun 12:59] =>  1:11
+     CLOCK: [2013-01-06 Sun 11:38]--[2013-01-06 Sun 11:41] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-06 Sun 12:59
+     :END:
+**** DONE [bug][ed] login page not showing up for prod
+     CLOSED: [2013-01-06 Sun 11:47]
+     :CLOCK:
+     CLOCK: [2013-01-06 Sun 11:42]--[2013-01-06 Sun 11:47] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-06 Sun 12:59
+     :END:
+     - why: changed envt from dev to prod, and user was already logged-in to dev, so *session* was still there, and it was not working in the new prod
+     - soln: prod->dev; logout; dev->prod
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

@@ -211,21 +211,23 @@ h4 {
 }
 
 #article img {
-    padding: 10px;
+    display: block;
+    padding-bottom: 5px;
 }
 
 #article div.a-photo {
-    float: right;
+    padding: 10px;
+    position: relative;
 }
 
 #article a.p-attribution {
-    float: right;
-    padding-right: 10px;
+    position: absolute;
+    right: 30px;
 }
 
 #article p.p-title {
     text-align: center;
-    margin: 0;
+    margin: 15px 0 0 0;
 }
 
 #a-title {
@@ -234,6 +236,10 @@ h4 {
 
 #a-body {
     text-align: justify;
+}
+
+#a-body div.a-photo {
+    float: right;
 }
 
 #a-body .block {

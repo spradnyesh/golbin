@@ -80,8 +80,11 @@
                        (let* ((photo-direction (photo-direction article))
                               (pd (cond ((eql :l photo-direction) "left")
                                         ((eql :r photo-direction) "right")
-                                        ((eql :b photo-direction) "block"))))
-                         (htm (:div :class pd
+                                        ((eql :b photo-direction) "block")))
+                              (a-photo-pd (join-string-list-with-delim " "
+                                                                         (list "a-photo"
+                                                                               pd))))
+                         (htm (:div :class a-photo-pd
                                     (str (article-lead-photo-url photo pd))
                                     (let ((attr (attribution photo)))
                                       (unless (nil-or-empty attr)
