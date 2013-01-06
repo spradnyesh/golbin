@@ -15,7 +15,7 @@
 (define-route r-article-new-post ("/article/" :method :post) (v-article-post))
 (define-route r-article-edit-get ("/article/:id/" :parse-vars (list :id #'parse-integer)) (v-article-get id))
 (define-route r-article-edit-post ("/article/:id/" :method :post :parse-vars (list :id #'parse-integer))
-  (v-article-post id))
+  (v-article-post :id id))
 (define-route r-article-delete-post ("/article/:id/delete/" :method :post :parse-vars (list :id #'parse-integer))
   (v-article-delete-post id))
 #|(define-route r-approve-articles ("/article/approve/") (v-articles-approve))|#
@@ -25,17 +25,24 @@
 (define-route r-tmp-photo-get ("/tmp-photo/") (v-tmp-photo-get))
 (define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
 ;; cat/subcat
-(define-route r-cat-get ("/cat/") (v-cat-get))
-(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))
+;(define-route r-cat-get ("/cat/") (v-cat-get))
+;(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-route r-ajax-article-new-post ("/ajax/article/" :method :post
+                                                        :content-type "text/json") (v-article-post :ajax t))
+(define-route r-ajax-article-edit-post ("/ajax/article/:id/" :method :post
+                                                             :parse-vars (list :id #'parse-integer)
+                                                             :content-type "text/json")
+  (v-article-post :id id :ajax t))
 (define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "text/json")
   (v-ajax-photos-select who page))
 (define-route r-ajax-photo-get ("/ajax/photo/" :content-type "text/json")
   (v-ajax-photo-get))
-(define-route r-ajax-photo-post ("/ajax/photo/" :method :post :content-type "text/json")
+(define-route r-ajax-photo-post ("/ajax/photo/" :method :post
+                                                :content-type "text/json")
   (v-photo-post t))
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "text/json")
   (v-ajax-tags))

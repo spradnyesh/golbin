@@ -21,9 +21,11 @@
            :r-article-delete-post
            :r-login-get
            :r-login-post
+           :r-ajax-photo-get
            :r-ajax-photo-post
            :r-ajax-photos-select
-           :r-ajax-photo-get
+           :r-ajax-article-new-post
+           :r-ajax-article-edit-post
            :r-logout
            :r-ajax-tags))
 

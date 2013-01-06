@@ -88,6 +88,29 @@
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; article page
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;;; submit form using ajax
+                 (submit-article-ajax ()
+                   ($apply ($ "#article form")
+                       attr
+                     "action"
+                     (+ "/ajax" ($apply ($ "#article form") attr "action"))))
+                 ;;; article submit
+                 (article-submit ()
+                   ($prevent-default)
+                   ;; TODO: client side error handling
+                   ($apply ($ "#article form") ajax-submit
+                     (create :data-type "json"
+                             :async false
+                             :success (lambda (data) (article-submit-done data))
+                             :error (lambda (data) (article-fail data))))
+                   false)
+                 (article-submit-done (data)
+                   (if (= data.status "success")
+                       (setf window.location data.data)
+                       (article-fail data))
+                   false)
+                 (article-fail (data)
+                   false)
                  ;;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")
@@ -302,6 +325,7 @@
 
                  (upload-photo-submit ()
                    ($prevent-default)
+                   ;; TODO: client side error handling
                    ($apply ($ "#photo-pane form") ajax-submit
                      (create :data-type "json"
                              :async false
@@ -340,11 +364,15 @@
 
         ;; define event handlers
         ($event (".cat" change) (change-category ""))
+        ($event ("#article form" submit) (article-submit))
         ($event ("#select-lead-photo" click) (select-lead-photo-init))
         ($event ("#unselect-lead-photo" click) (unselect-lead-photo))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init))
+
+        ;; some init functions
+        #|(submit-article-ajax)|#
         (tags-autocomplete ($ ".tags"))
         (sort-categories ($ "#sort-catsubcat"))
 

@@ -88,13 +88,12 @@
                                                 :tags (normalize-photo-tags photo-tags)
                                                 :attribution attribution)))
           (if ajax
-              ;; need to remove the '\\' that encode-json-to-string adds before every '/' in the photo path :(
-              (regex-replace-all
-               "\\\\"
-               (encode-json-to-string
-                `((:status . "success")
-                  (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
-               "")
+              ;; need to remove the '\\' that encode-json-to-string adds before every '/'
+              (regex-replace-all "\\\\"
+                                 (encode-json-to-string
+                                  `((:status . "success")
+                                    (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
+                                 "")
               (redirect (h-genurl 'r-photo-get))))))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
