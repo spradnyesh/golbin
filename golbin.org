@@ -4,6 +4,8 @@
 ** backlog
 *** TODO [ed] re-populate form on error after POST->GET
     :CLOCK:
+    CLOCK: [2013-01-06 Sun 19:56]--[2013-01-06 Sun 20:26] =>  0:30
+    CLOCK: [2013-01-06 Sun 18:50]--[2013-01-06 Sun 19:54] =>  1:04
     CLOCK: [2013-01-06 Sun 14:35]--[2013-01-06 Sun 17:08] =>  2:33
     CLOCK: [2013-01-03 Thu 15:00]--[2013-01-03 Thu 15:06] =>  0:06
     :END:

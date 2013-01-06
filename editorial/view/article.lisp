@@ -92,7 +92,9 @@
                               (get-thumb-side-photo-sizes-json)
                               (on-load)))
              (:script :type "text/javascript"
-                      :src "/static/ckeditor/ckeditor.js"))
+                      :src "/static/ckeditor/ckeditor.js")
+             #|(:script :type "text/javascript"
+                      :src "/static/ckeditor/adapters/jquery.js")|#)
       (let* ((article (when id (get-article-by-id id)))
              (cats (get-root-categorys))
              (subcats (get-subcategorys (if article

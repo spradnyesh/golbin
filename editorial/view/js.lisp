@@ -97,6 +97,13 @@
                  ;;; article submit
                  (article-submit ()
                    ($prevent-default)
+                   ;; http://stackoverflow.com/a/2007427
+                   ($apply console log -C-k-e-d-i-t-o-r.instances)
+                   ($apply console log -C-k-e-d-i-t-o-r.instances.body)
+                   (dolist (instance -C-k-e-d-i-t-o-r.instances)
+                     ($apply -C-k-e-d-i-t-o-r.instances.instance update-element))
+                   ;; value is in CKEDITOR.instances.body.element.$.value
+                   ;; i will have to use ckeditor + jquery.form + jquery.validate
                    ;; TODO: client side error handling
                    ($apply ($ "#article form") ajax-submit
                      (create :data-type "json"
@@ -105,9 +112,9 @@
                              :error (lambda (data) (article-fail data))))
                    false)
                  (article-submit-done (data)
-                   (if (= data.status "success")
+                   #|(if (= data.status "success")
                        (setf window.location data.data)
-                       (article-fail data))
+                       (article-fail data))|#
                    false)
                  (article-fail (data)
                    false)
@@ -372,7 +379,7 @@
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init))
 
         ;; some init functions
-        #|(submit-article-ajax)|#
+        (submit-article-ajax)
         (tags-autocomplete ($ ".tags"))
         (sort-categories ($ "#sort-catsubcat"))
 
