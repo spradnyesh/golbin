@@ -25,6 +25,13 @@
                  (extract-last (term)
                    ($apply ((@ split) term) pop))
 
+                 (ajax-fail (jq-x-h-r text-status error-thrown)
+                   ;; ajax call itself failed
+                   (if (string-equal text-status "parseerror")
+                       (alert "Received an invalid response from server. Please try again after some time.") ; TODO: translate
+                       (alert "Network error"))
+                   false)
+
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; common to article/photo pages
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -94,30 +101,39 @@
                        attr
                      "action"
                      (+ "/ajax" ($apply ($ "#article form") attr "action"))))
+
                  ;;; article submit
                  (article-submit ()
                    ($prevent-default)
-                   ;; http://stackoverflow.com/a/2007427
-                   ($apply console log -C-k-e-d-i-t-o-r.instances)
-                   ($apply console log -C-k-e-d-i-t-o-r.instances.body)
-                   (dolist (instance -C-k-e-d-i-t-o-r.instances)
-                     ($apply -C-k-e-d-i-t-o-r.instances.instance update-element))
-                   ;; value is in CKEDITOR.instances.body.element.$.value
-                   ;; i will have to use ckeditor + jquery.form + jquery.validate
+                   ;; http://stackoverflow.com/a/1903820
+                   ($apply -C-k-e-d-i-t-o-r.instances.body update-element)
                    ;; TODO: client side error handling
                    ($apply ($ "#article form") ajax-submit
+                     ;; http://api.jquery.com/jQuery.ajax/
                      (create :data-type "json"
+                             :cache false
                              :async false
-                             :success (lambda (data) (article-submit-done data))
-                             :error (lambda (data) (article-fail data))))
+                             :success (lambda (data text-status jq-x-h-r)
+                                        (article-submit-done data text-status jq-x-h-r))
+                             :error (lambda (jq-x-h-r text-status error-thrown)
+                                      (ajax-fail jq-x-h-r text-status error-thrown))))
                    false)
-                 (article-submit-done (data)
-                   #|(if (= data.status "success")
+
+                 (article-submit-done (data text-status jq-x-h-r)
+                   (if (= data.status "success")
+                       ;; this is the redirect after POST
                        (setf window.location data.data)
-                       (article-fail data))|#
+                       (article-fail data))
                    false)
+
                  (article-fail (data)
+                   (when (/= nil data.errors.non-golbin-images)
+                     ($apply ($apply ($ "#body") parent)
+                       append
+                     ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))
+                   (alert "There are errors in the submitted article. Please correct them and submit again.") ; TODO: translate
                    false)
+
                  ;;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")
@@ -336,11 +352,13 @@
                    ($apply ($ "#photo-pane form") ajax-submit
                      (create :data-type "json"
                              :async false
-                             :success (lambda (data) (upload-photo-submit-done data))
-                             :error (lambda (data) (photo-fail data))))
+                             :success (lambda (data text-status jq-x-h-r)
+                                        (upload-photo-submit-done data text-status jq-x-h-r))
+                             :error (lambda (jq-x-h-r text-status error-thrown)
+                                      (ajax-fail jq-x-h-r text-status error-thrown))))
                    false)
 
-                 (upload-photo-submit-done (data)
+                 (upload-photo-submit-done (data text-status jq-x-h-r)
                    (if (= data.status "success")
                        (if lead
                            (progn
@@ -351,11 +369,11 @@
                              ;; change the photo url
                              ($apply ($apply ($ "#lead-photo") siblings "span") html (elt data.data 1)))
                            (progn
-                           (let ((a-target ((@ ($ "<a href=''></a>") append) ($ (elt data.data 1)))))
-                             ;; append photo to list of nonlead photos
-                             ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
-                             ;; add-event so that when image is clicked, we show a popoup w/ url for copying
-                             ($event (a-target click) (nonlead-photo-url)))))
+                             (let ((a-target ((@ ($ "<a href=''></a>") append) ($ (elt data.data 1)))))
+                               ;; append photo to list of nonlead photos
+                               ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
+                               ;; add-event so that when image is clicked, we show a popoup w/ url for copying
+                               ($event (a-target click) (nonlead-photo-url)))))
                        (photo-fail data))
                    (close-photo-pane))
 

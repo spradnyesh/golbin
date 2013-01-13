@@ -2,15 +2,8 @@
 
 * tasks
 ** backlog
-*** TODO [ed] re-populate form on error after POST->GET
-    :CLOCK:
-    CLOCK: [2013-01-06 Sun 19:56]--[2013-01-06 Sun 20:26] =>  0:30
-    CLOCK: [2013-01-06 Sun 18:50]--[2013-01-06 Sun 19:54] =>  1:04
-    CLOCK: [2013-01-06 Sun 14:35]--[2013-01-06 Sun 17:08] =>  2:33
-    CLOCK: [2013-01-03 Thu 15:00]--[2013-01-03 Thu 15:06] =>  0:06
-    :END:
-    - change post->get to ajax-post (http://stackoverflow.com/a/6842674)
-      - solves problem of both post->get, also re-populate data
+*** [ed] cookie based login
+    - all 3 langs point to ed.golb.in so login/lang based on cookie
 *** [bug][fe] move related articles carousels outside of a-body
     - so that lots of inline images in a-body will not interfere visually w/ them
 *** [bug][ed] photo-pane not working in ff
@@ -1277,6 +1270,20 @@
      :END:
      - why: changed envt from dev to prod, and user was already logged-in to dev, so *session* was still there, and it was not working in the new prod
      - soln: prod->dev; logout; dev->prod
+**** DONE [ed] re-populate form on error after POST->GET
+     CLOSED: [2013-01-13 Sun 16:35]
+     :CLOCK:
+     CLOCK: [2013-01-13 Sun 14:49]--[2013-01-13 Sun 16:35] =>  1:46
+     CLOCK: [2013-01-06 Sun 19:56]--[2013-01-06 Sun 20:26] =>  0:30
+     CLOCK: [2013-01-06 Sun 18:50]--[2013-01-06 Sun 19:54] =>  1:04
+     CLOCK: [2013-01-06 Sun 14:35]--[2013-01-06 Sun 17:08] =>  2:33
+     CLOCK: [2013-01-03 Thu 15:00]--[2013-01-03 Thu 15:06] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-13 Sun 16:35
+     :END:
+     - change post->get to ajax-post (http://stackoverflow.com/a/6842674)
+       - solves problem of both post->get, also re-populate data
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

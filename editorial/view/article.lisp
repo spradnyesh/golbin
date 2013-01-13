@@ -71,11 +71,13 @@
   body)
 
 (defun validate (data)
-  (let ((err0r nil))
-    (let ((matches (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
-                                           (cdr (assoc :body data)))))
-      (when matches
-        (push (cons :non-golbin-images matches) err0r)))
+  (let ((err0r nil)
+        (non-golbin-images (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
+                                                   (cdr (assoc :body data)))))
+    (when (or nil
+              non-golbin-images)
+      (setf err0r (make-hash-table))
+      (setf (gethash 'non-golbin-images err0r) non-golbin-images))
     err0r))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -254,22 +256,13 @@
                                                            :photo-direction pd
                                                            :tags article-tags)))))
               (if ajax
-                  ;; need to remove the '\\' that encode-json-to-string adds before every '/'
-                  (regex-replace-all "\\\\"
-                                     (encode-json-to-string
-                                      `((:status . "success")
-                                        (:data . ,(h-genurl 'r-article-edit-get :id (write-to-string id)))))
-                                     "")
-
+                  (encode-json-to-string `((:status . "success")
+                                           (:data . ,(h-genurl 'r-article-edit-get :id (write-to-string id)))))
                   (redirect (h-genurl 'r-article-edit-get :id (write-to-string id)))))
             ;; validation failed
             (if ajax
-                ;; need to remove the '\\' that encode-json-to-string adds before every '/'
-                (regex-replace-all "\\\\"
-                                   (encode-json-to-string
-                                    `((:status . "failure")
-                                      (:errors . ,err0r)))
-                                   "")
+                (encode-json-to-string `((:status . "error")
+                                         (:errors . ,err0r)))
                 ;; no-ajax => we lose all changes here
                 (if id
                     (redirect (h-genurl 'r-article-edit-get :id (write-to-string id)))
