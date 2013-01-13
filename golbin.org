@@ -2,13 +2,14 @@
 
 * tasks
 ** backlog
+*** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
 *** [ed] error messages
     - [X] inline photos in articles should be of /static/photos/*.jpeg
 *** [fe] error messages
     - spam comment
-*** [fe] pull js out into a static file
+*** [util] script to incf version for css/js files
 *** TODO [fe] init prod sites
     :CLOCK:
     CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
@@ -1307,6 +1308,14 @@
      :ARCHIVE_TIME: 2013-01-13 Sun 20:22
      :END:
      - all 3 langs point to ed.golb.in so login/lang based on cookie
+**** DONE [fe] pull js out into a static file
+     CLOSED: [2013-01-13 Sun 21:06]
+     :CLOCK:
+     CLOCK: [2013-01-13 Sun 20:25]--[2013-01-13 Sun 20:44] =>  0:19
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-13 Sun 21:06
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

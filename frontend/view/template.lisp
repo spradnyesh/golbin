@@ -23,7 +23,7 @@
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:link :rel "stylesheet" :type "text/css"
               :href (format nil
-                            "/static/css/fe-style-5~a.css"
+                            "/static/css/fe-6~a.css"
                             (if (string-equal (get-dimension-value "envt") "prod")
                                 "-min"
                                 "")))
@@ -54,10 +54,15 @@
                                 (:div :id "wrapper" ,@content)))
                     (:div :id "col-3" :class "yui3-u-1-4"
                           (str (fe-ads-2))))
-              (:div :id "ft" (str (fe-footer))))
-        (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.7.2.min.js")
-        (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
-        (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js"))
+              (:div :id "ft" (str (fe-footer)))))
+       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+       (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
+       (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js")
+       (:script :type  "text/javascript" :src (format nil
+                                                       "/static/js/fe-1~a.js"
+                                                       (if (string-equal (get-dimension-value "envt") "prod")
+                                                           "-min"
+                                                           "")))
        (:script :type "text/javascript"
                 (str (on-load))
                 (str "

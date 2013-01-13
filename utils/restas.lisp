@@ -20,8 +20,8 @@
      (defclass ,(intern (string-upcase (format nil "~a-acceptor" `,system))) (hawksbill-acceptor)
        ()
        (:default-initargs
-        :access-log-destination ,(format nil "/tmp/hunchentoot/~a/access_log" system)
-        :message-log-destination ,(format nil "/tmp/hunchentoot/~a/error_log" system)))
+        :access-log-destination ,(format nil "/tmp/hunchentoot/~a/access.log" system)
+        :message-log-destination ,(format nil "/tmp/hunchentoot/~a/error.log" system)))
      (defun ,(intern (string-upcase (format nil "~a-start" `,system))) ()
        (unless *system-status*
          (setf *system-status* t)
