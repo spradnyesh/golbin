@@ -18,9 +18,12 @@
 
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
+       ;; http://www.faqoverflow.com/askubuntu/16556.html
+       (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
+       (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:link :rel "stylesheet" :type "text/css"
               :href (format nil
-                            "/static/css/fe-style-4~a.css"
+                            "/static/css/fe-style-5~a.css"
                             (if (string-equal (get-dimension-value "envt") "prod")
                                 "-min"
                                 "")))

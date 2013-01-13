@@ -12,15 +12,6 @@ License URI: http://www.gnu.org/licenses/gpl.html
 */
 
 
-/* ubuntu fonts */
-@font-face {
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: normal;
-    src: url('/static/css/ubuntu-r.woff') format('woff');
-}
-
-
 /* elements */
 body {
     background: #75DAFF url('/static/css/images/cloud-background.jpg') repeat-x;

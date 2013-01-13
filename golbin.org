@@ -1610,13 +1610,12 @@
     - [X] git
     - [X] nginx
 * notes
-** devanagari
-   - http://google.com/transliterate
-     - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
-       - font-family: "lohit hindi"
 ** misc
    - http://www.html-ipsum.com/
    - http://refresh-sf.com/yui/
+   - http://google.com/transliterate
+     - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
+       - font-family: "lohit hindi"
 ** ideas
    - 'close sidebar' as in http://www.securitytube.net/video/1319
    - [[http://gravatar.com/][gravatar]] for author logo

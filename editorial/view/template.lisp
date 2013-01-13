@@ -10,6 +10,9 @@
        (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
        (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
        (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
+       ;; http://www.faqoverflow.com/askubuntu/16556.html
+       (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
+       (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:style :type "text/css"
                (str (ed-get-css))))
       (:body

@@ -18,6 +18,7 @@
            (("a") (:text-decoration "none"))
            ((".yui3-g") (:width "1000px" :margin "0 auto" :background-color "#FFFFFF"))
            ((".error") (:color "red" :font-size "90%" :padding "5px 0"))
+           ((".dvngr") (:font-family "Lohit Devanagari"))
            ;; hd
            (("#banner") (:height "100px"))
            (("#banner h1") (:height "80px" :width "80px" :border "1px solid"))
