@@ -2,11 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [ed] cookie based login
-    :CLOCK:
-    CLOCK: [2013-01-13 Sun 17:28]--[2013-01-13 Sun 17:35] =>  0:07
-    :END:
-    - all 3 langs point to ed.golb.in so login/lang based on cookie
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
 *** [ed] error messages
@@ -59,6 +54,7 @@
 *** [security] server scans
     - [ ] http://www.cirt.net/nikto2
     - [ ] http://code.google.com/p/skipfish/
+    - [ ] http://zaries.wordpress.com/2010/12/22/hunchentoot-webserver-and-application-security/
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
 *** [seo][performance] favicon
@@ -1301,6 +1297,16 @@
      - http://google.com/transliterate
        - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
          - font-family: "lohit hindi"
+**** DONE [ed] cookie based login
+     CLOSED: [2013-01-13 Sun 20:22]
+     :CLOCK:
+     CLOCK: [2013-01-13 Sun 19:01]--[2013-01-13 Sun 20:22] =>  1:21
+     CLOCK: [2013-01-13 Sun 17:28]--[2013-01-13 Sun 17:35] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-13 Sun 20:22
+     :END:
+     - all 3 langs point to ed.golb.in so login/lang based on cookie
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
