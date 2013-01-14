@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [ed] check (dis)advantages of self-signed certificate for https
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
@@ -9,7 +10,7 @@
     - [X] inline photos in articles should be of /static/photos/*.jpeg
 *** [fe] error messages
     - spam comment
-*** [util] script to incf version for css/js files
+*** TODO [util] script to incf version for css/js files
 *** TODO [fe] init prod sites
     :CLOCK:
     CLOCK: [2012-12-12 Wed 19:05]--[2012-12-12 Wed 19:06] =>  0:01
