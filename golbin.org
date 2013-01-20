@@ -2,13 +2,13 @@
 
 * tasks
 ** backlog
-*** DONE [ed] check (dis)advantages of self-signed certificate for https
-    CLOSED: [2013-01-16 Wed 13:24]
-    :CLOCK:
-    CLOCK: [2013-01-16 Wed 13:20]--[2013-01-16 Wed 13:24] =>  0:04
-    :END:
-    - http://blogs.microsoft.co.il/blogs/yuval14/archive/2011/09/23/the-advantages-and-disadvantages-of-using-self-signed-certificates.aspx
-    - https://commons.lbl.gov/display/itfaq/SSL+Certificates
+*** [bug][fe] nav hover not working for prod
+*** git cherrypick for merge from dev to master
+*** dvngr inside ckeditor iframe
+*** [ads] ads
+    - http://trak.in/tags/business/2008/04/03/ten-indian-ad-networks/
+    - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
+    - http://www.freeprivacypolicy.com
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
@@ -174,10 +174,6 @@
       - http://navercast.naver.com/
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
-*** [ads] ads
-    - http://trak.in/tags/business/2008/04/03/ten-indian-ad-networks/
-    - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
-    - http://www.freeprivacypolicy.com
 *** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
 *** tests
 **** stefil
@@ -1370,6 +1366,15 @@
        - [X] mr
      - [X] remove 'these are ads-?', 'this is the footer'
      - [X] add articles
+**** DONE [bug][fe] author/cat/subcat/tags links not working for mr-IN
+     CLOSED: [2013-01-20 Sun 17:35]
+     :CLOCK:
+     CLOCK: [2013-01-20 Sun 16:46]--[2013-01-20 Sun 17:35] =>  0:49
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-20 Sun 17:35
+     :END:
+     - à¤à¤°à¥à¤à¤¨à¤¾-à¤¶à¥à¤à¥à¤²
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

@@ -69,4 +69,4 @@
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model" "frontend"))
                (:module "reports"))
-  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :restas-directory-publisher :cl-prevalence :cl-gd :ironclad))
+  :depends-on (:restas :cl-who :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :hunchentoot :restas :restas-directory-publisher :cl-prevalence :cl-gd :ironclad :trivial-utf-8 :flexi-streams))

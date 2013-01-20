@@ -64,26 +64,26 @@
 ;; view functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-cat (cat-slug &optional (page 0))
-  (let ((cat (get-category-by-slug cat-slug 0)))
+  (let ((cat (get-category-by-slug (utf-8-bytes-to-string (string-to-octets cat-slug)) 0)))
     (view-index (name cat)
                 (get-articles-by-cat cat)
                 'r-cat-page :cat (slug cat))))
 
 (defun v-cat-subcat (cat-slug subcat-slug &optional (page 0))
-  (let* ((cat (get-category-by-slug cat-slug 0))
-         (subcat (get-category-by-slug subcat-slug (id cat))))
+  (let* ((cat (get-category-by-slug (utf-8-bytes-to-string (string-to-octets cat-slug)) 0))
+         (subcat (get-category-by-slug (utf-8-bytes-to-string (string-to-octets subcat-slug)) (id cat))))
     (view-index (format nil "~a, ~a" (name cat) (name subcat))
                 (get-articles-by-cat-subcat cat subcat)
                 'r-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))
 
 (defun v-author (author-handle &optional (page 0))
-  (let ((author (get-author-by-handle author-handle)))
+  (let ((author (get-author-by-handle (utf-8-bytes-to-string (string-to-octets author-handle)))))
     (view-index (name author)
                 (get-articles-by-author author)
                 'r-author-page :author (handle author))))
 
 (defun v-tag (slug &optional (page 0))
-  (view-index (name (get-tag-by-slug slug))
+  (view-index (name (get-tag-by-slug (utf-8-bytes-to-string (string-to-octets slug))))
               (get-articles-by-tag-slug slug)
               'r-tag-page :tag slug))
 
