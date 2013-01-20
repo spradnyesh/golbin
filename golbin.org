@@ -1323,6 +1323,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-01-13 Sun 21:06
      :END:
+**** DONE [bug][utils] slugify is not non-english compliant
+     CLOSED: [2013-01-20 Sun 14:17]
+     :CLOCK:
+     CLOCK: [2013-01-20 Sun 14:05]--[2013-01-20 Sun 14:17] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-20 Sun 14:18
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
