@@ -1331,6 +1331,26 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-01-20 Sun 14:18
      :END:
+**** DONE [bug] prod login not working
+     CLOSED: [2013-01-20 Sun 15:10]
+     :CLOCK:
+     CLOCK: [2013-01-20 Sun 14:38]--[2013-01-20 Sun 15:10] =>  0:32
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-20 Sun 15:11
+     :END:
+     - not a bug
+       - need to explicitly give ?d1m=envt:prod,lang=mr-IN when testing from localhost
+**** DONE [ed] check (dis)advantages of self-signed certificate for https
+     CLOSED: [2013-01-16 Wed 13:24]
+     :CLOCK:
+     CLOCK: [2013-01-16 Wed 13:20]--[2013-01-16 Wed 13:24] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-20 Sun 15:11
+     :END:
+     - http://blogs.microsoft.co.il/blogs/yuval14/archive/2011/09/23/the-advantages-and-disadvantages-of-using-self-signed-certificates.aspx
+     - https://commons.lbl.gov/display/itfaq/SSL+Certificates
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
