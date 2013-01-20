@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** enable mr.golb.in in GA
 *** [bug][fe] nav hover not working for prod
 *** git cherrypick for merge from dev to master
 *** dvngr inside ckeditor iframe
@@ -12,7 +13,6 @@
     - [X] inline photos in articles should be of /static/photos/*.jpeg
 *** [fe] error messages
     - spam comment
-*** TODO [util] script to incf version for css/js files
 *** TODO [fed] comments
     :CLOCK:
     CLOCK: [2012-12-21 Fri 08:07]--[2012-12-21 Fri 08:08] =>  0:01
@@ -1382,6 +1382,15 @@
      - http://trak.in/tags/business/2008/04/03/ten-indian-ad-networks/
      - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
      - http://www.freeprivacypolicy.com
+**** DONE [util] script to incf version for css/js files
+     CLOSED: [2013-01-20 Sun 20:47]
+     :CLOCK:
+     CLOCK: [2013-01-20 Sun 19:26]--[2013-01-20 Sun 20:47] =>  1:21
+     CLOCK: [2013-01-20 Sun 18:41]--[2013-01-20 Sun 19:10] =>  0:29
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-20 Sun 20:47
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
