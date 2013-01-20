@@ -5,10 +5,6 @@
 *** [bug][fe] nav hover not working for prod
 *** git cherrypick for merge from dev to master
 *** dvngr inside ckeditor iframe
-*** [ads] ads
-    - http://trak.in/tags/business/2008/04/03/ten-indian-ad-networks/
-    - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
-    - http://www.freeprivacypolicy.com
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
@@ -1375,6 +1371,17 @@
      :ARCHIVE_TIME: 2013-01-20 Sun 17:35
      :END:
      - à¤à¤°à¥à¤à¤¨à¤¾-à¤¶à¥à¤à¥à¤²
+**** DONE [ads] ads
+     CLOSED: [2013-01-20 Sun 18:33]
+     :CLOCK:
+     CLOCK: [2013-01-20 Sun 17:50]--[2013-01-20 Sun 18:33] =>  0:43
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-20 Sun 18:33
+     :END:
+     - http://trak.in/tags/business/2008/04/03/ten-indian-ad-networks/
+     - http://www.netchunks.com/google-adsense-requirements-and-tips-for-quick-and-fast-approval/
+     - http://www.freeprivacypolicy.com
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

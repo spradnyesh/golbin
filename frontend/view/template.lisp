@@ -173,8 +173,33 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-ads-1 ()
   (with-html
-    (:div :id "ads-1" "")))
+    (:div :class "ads"
+          (:script :type "text/javascript"
+                   (str "<!--
+                 google_ad_client = 'ca-pub-7627106577670276';
+                 google_ad_slot = '1936097987';
+                 google_ad_width = 160;
+                 google_ad_height = 600;
+                 //-->"))
+          (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
 
 (defun fe-ads-2 ()
   (with-html
-    (:div :id "ads-2" "")))
+    (:div :class "ads"
+          (:script :type "text/javascript"
+                   (str "<!--
+                          google_ad_client = 'ca-pub-7627106577670276';
+                          google_ad_slot = '5029165182';
+                          google_ad_width = 300;
+                          google_ad_height = 250;
+                          //-->"))
+          (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
+    (:div :class "ads"
+          (:script :type "text/javascript"
+                   (str "<!--
+                          google_ad_client = 'ca-pub-7627106577670276';
+                          google_ad_slot = '9459364786';
+                          google_ad_width = 300;
+                          google_ad_height = 600;
+                          //-->"))
+          (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
