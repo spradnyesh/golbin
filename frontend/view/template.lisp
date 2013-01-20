@@ -23,7 +23,7 @@
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:link :rel "stylesheet" :type "text/css"
               :href (format nil
-                            "/static/css/fe-6~a.css"
+                            "/static/css/fe-7~a.css"
                             (if (string-equal (get-dimension-value "envt") "prod")
                                 "-min"
                                 "")))
@@ -42,19 +42,21 @@
   })();
 "))
 
-       (:body
-        (:div :class "yui3-g"
-              (:div :id "hd"
-                    (str (fe-header)))
-              (:div :id "bd"
-                    (:div :class "yui3-u-3-4"
-                          (:div :id "col-1" :class "yui3-u-1-4"
-                                (str (fe-ads-1)))
-                          (:div :id "col-2" :class "yui3-u-3-4"
-                                (:div :id "wrapper" ,@content)))
-                    (:div :id "col-3" :class "yui3-u-1-4"
-                          (str (fe-ads-2))))
-              (:div :id "ft" (str (fe-footer)))))
+       (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
+                                          ""
+                                          "dvngr"))
+              (:div :class "yui3-g"
+                    (:div :id "hd"
+                          (str (fe-header)))
+                    (:div :id "bd"
+                          (:div :class "yui3-u-3-4"
+                                (:div :id "col-1" :class "yui3-u-1-4"
+                                      (str (fe-ads-1)))
+                                (:div :id "col-2" :class "yui3-u-3-4"
+                                      (:div :id "wrapper" ,@content)))
+                          (:div :id "col-3" :class "yui3-u-1-4"
+                                (str (fe-ads-2))))
+                    (:div :id "ft" (str (fe-footer)))))
        (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
        (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
        (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js")
@@ -129,7 +131,7 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
                  (:li :id "nav-home" :class (if (eq route (fe-intern :r-home))
                                                 "cat selected"
                                                 "cat")
-                      (:h2 (:a :href (h-genurl 'r-home) "Home")))
+                      (:h2 (:a :href (h-genurl 'r-home) (str (translate "home")))))
                  (dolist (cat (get-root-categorys))
                    (when (plusp (rank cat))
                      (let ((cat-slug (slug cat)))

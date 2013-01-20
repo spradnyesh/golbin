@@ -83,6 +83,8 @@
 (defun build-dimension-string (&rest dims)
   (join-string-list-with-delim "," (sort dims #'string<)))
 
+;; picks values of not given dimensions from config
+;; so overwrites dims for which values aren't explicitly given and are different than that in config
 (defun set-default-dimensions (&rest dims)
   (let ((given-dims nil)
         (not-given-dims nil))

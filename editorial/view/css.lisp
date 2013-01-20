@@ -9,8 +9,10 @@
            ;; necessary
            ((".clearfix:before, .clearfix:after")
             (:content "." :display "block" :font-size 0 :height 0 :line-height 0 :visibility "hidden" :clear "both"))
-           ;; undo .yui3-g spacing
+           ;; undo .yui3-g css
            ((".yui3-g") (:letter-spacing "normal" :word-spacing "normal"))
+           (("input") (:font "inherit"))
+           (("textarea") (:font "inherit"))
            ;; common
            (("body") (:color "#000000" :background-color "#CBDDEB"))
            (("h2") (:font-weight "bold" :font-size "140%"))

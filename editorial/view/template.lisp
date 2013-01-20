@@ -15,19 +15,21 @@
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:style :type "text/css"
                (str (ed-get-css))))
-      (:body
-       (:div :class "yui3-g"
-            (:div :id "hd"
-                  (str (ed-header ,logged-in)))
-            (:div :id "bd"
-                  ,@body)
-            (:div :id "ft"
-                  (str (ed-footer))))
-       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-       (:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
-       (:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-       (:script :type  "text/javascript" :src "https://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
-       ,js))))
+      (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
+                                         ""
+                                         "dvngr"))
+             (:div :class "yui3-g"
+                   (:div :id "hd"
+                         (str (ed-header ,logged-in)))
+                   (:div :id "bd"
+                         ,@body)
+                   (:div :id "ft"
+                         (str (ed-footer))))
+             (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+             (:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
+             (:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
+             (:script :type  "text/javascript" :src "https://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
+             ,js))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
@@ -79,7 +81,7 @@
   (with-html
     (:ul :id "nav"
          (:li :id "nav-home"
-              (:h2 (:a :href (h-genurl 'r-home) "Home")))
+              (:h2 (:a :href (h-genurl 'r-home) (translate "home"))))
          (when logged-in
            (let ((author-type (session-value :author-type)))
              (cond ((eq author-type :u) ; author

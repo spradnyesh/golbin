@@ -76,6 +76,10 @@ acronym, abbr {
     margin: 0 auto;
 }
 
+.dvngr {
+    font-family: "Lohit Devanagari";
+}
+
 h2 {
     font-size: 140%;
 }

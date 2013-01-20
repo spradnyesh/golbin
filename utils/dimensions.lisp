@@ -66,7 +66,7 @@
   (let* ((host (host))
          (index (search (get-config "site.url") host))
          (envt (get-config "site.envt"))
-         (lang (get-config "sitelang")))
+         (lang (get-config "site.lang")))
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; *fallback* logic
     ;; envt: config-default -> host -> d1m
