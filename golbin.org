@@ -2,7 +2,8 @@
 
 * tasks
 ** backlog
-*** enable mr.golb.in in GA
+*** DONE enable mr.golb.in in GA
+    CLOSED: [2013-01-21 Mon 07:33]
 *** [bug][fe] nav hover not working for prod
 *** git cherrypick for merge from dev to master
 *** dvngr inside ckeditor iframe
