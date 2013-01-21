@@ -2,8 +2,6 @@
 
 * tasks
 ** backlog
-*** DONE enable mr.golb.in in GA
-    CLOSED: [2013-01-21 Mon 07:33]
 *** [bug][fe] nav hover not working for prod
 *** git cherrypick for merge from dev to master
 *** dvngr inside ckeditor iframe
@@ -1391,6 +1389,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-01-20 Sun 20:47
+     :END:
+**** DONE enable mr.golb.in in GA
+     CLOSED: [2013-01-21 Mon 20:50]
+     :CLOCK:
+     CLOCK: [2013-01-21 Mon 20:38]--[2013-01-21 Mon 20:50] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-01-21 Mon 20:50
      :END:
 ** TODO refactor
    :CLOCK:
