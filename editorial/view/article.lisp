@@ -89,10 +89,9 @@
         t
         (htm (:script :type "text/javascript"
                       (format t
-                              "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%~a~%//]]>~%"
+                              "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"
                               (get-category-tree-json)
-                              (get-thumb-side-photo-sizes-json)
-                              (on-load)))
+                              (get-thumb-side-photo-sizes-json)))
              (:script :type "text/javascript"
                       :src "/static/ckeditor/ckeditor.js")
              #|(:script :type "text/javascript"

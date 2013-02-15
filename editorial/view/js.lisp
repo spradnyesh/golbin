@@ -32,6 +32,10 @@
                        (alert "Network error"))
                    false)
 
+                 (get-url-parameter (name)
+                   (decode-u-r-i-component
+                    (or ((@ (@ ((@ (new (-reg-exp (+ name "=" "[?|&](.+?)(&|$)"))) exec) (@ location search)) 1) replace) (regex "/\\+/g") "%20") null)))
+
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;;; common to article/photo pages
                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -48,7 +52,7 @@
                      (create :min-length 2
                              :source (lambda (request response)
                                        ($apply $ ajax
-                                         (create :url "/ajax/tags/"
+                                         (create :url (+ "/ajax/tags/?d1m=" (get-url-parameter "d1m"))
                                                  :data (create :term ((@ extract-last) (@ request term)))
                                                  :data-type "json"
                                                  :success response))
@@ -235,7 +239,8 @@
                                                      "&subcat="
                                                      ($apply ($ "#photo-pane .search .subcat") val)
                                                      "&tags="
-                                                     ($apply ($ "#photo-pane .search .tags") val))
+                                                     ($apply ($ "#photo-pane .search .tags") val)
+                                                     "&d1m=" (get-url-parameter "d1m"))
                                              :cache false
                                              :data-type "json"
                                              :async false))
@@ -326,7 +331,7 @@
                  (upload-photo-call ()
                    ($apply ($apply ($apply $
                                        ajax
-                                     (create :url (+ "/ajax/photo/")
+                                     (create :url (+ "/ajax/photo/?d1m=" (get-url-parameter "d1m"))
                                              :data-type "json"
                                              :async false))
                                done

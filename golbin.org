@@ -3,7 +3,6 @@
 * tasks
 ** backlog
 *** [bug][fe] nav hover not working for prod
-*** git cherrypick for merge from dev to master
 *** dvngr inside ckeditor iframe
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
@@ -1398,6 +1397,25 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-01-21 Mon 20:50
      :END:
+**** DONE [bug] dev data being shown in photo (both upload and select) pane
+     CLOSED: [2013-02-15 Fri 21:18]
+     :CLOCK:
+     CLOCK: [2013-02-15 Fri 20:58]--[2013-02-15 Fri 21:18] =>  0:20
+     CLOCK: [2013-02-15 Fri 20:15]--[2013-02-15 Fri 20:53] =>  0:38
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-02-15 Fri 21:19
+     :END:
+**** DONE [bug] cat/subcat dropdown JS not working in photo upload pane
+     CLOSED: [2013-02-15 Fri 21:18]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-02-15 Fri 21:19
+     :END:
+**** DONE [bug] cat/subcat dropdown in photo upload pane showing wrong content
+     CLOSED: [2013-02-15 Fri 21:18]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-02-15 Fri 21:19
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
@@ -1714,6 +1732,7 @@
      - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
        - font-family: "lohit hindi"
 ** ideas
+   - http://www.seomoz.org/blog/tips-to-use-google-for-seo
    - 'close sidebar' as in http://www.securitytube.net/video/1319
    - [[http://gravatar.com/][gravatar]] for author logo
    - 'related articles' as in http://grokcode.com/58 (scroll to the bottom of the page)
@@ -1755,6 +1774,8 @@
   - search images on flickr. use advanced search and select 'only search within creative commons licensed content'
     - images should have 'some rights reserved' link pointing to http://creativecommons.org/licenses/by/2.0/deed.en or http://creativecommons.org/licenses/by-sa/2.0/deed.en
     - give attribution (compulsory)
+    - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
+    - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** TODO search for topic
    :CLOCK:
    CLOCK: [2013-01-03 Thu 19:27]--[2013-01-03 Thu 19:33] =>  0:06
@@ -2029,13 +2050,68 @@ usage: git push [<options>] [<repository> [<refspec>...]]
    - summary:
    - body:
    - notes:
-** to b(log) or not to b(log)
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
+** TODO to b(log), or not to b(log)
+   :CLOCK:
+   CLOCK: [2013-02-15 Fri 18:59]--[2013-02-15 Fri 19:10] =>  0:11
+   CLOCK: [2013-02-15 Fri 18:30]--[2013-02-15 Fri 18:45] =>  0:15
+   CLOCK: [2013-02-15 Fri 17:25]--[2013-02-15 Fri 17:46] =>  0:21
+   CLOCK: [2013-02-15 Fri 15:11]--[2013-02-15 Fri 17:04] =>  1:53
+   CLOCK: [2013-02-12 Tue 16:16]--[2013-02-12 Tue 16:36] =>  0:20
+   :END:
+   - cat/subcat: editorial
+   - tags: blog, entrepreneur, read, write
+   - lead image: http://www.cgu.edu/pages/792.asp
+   - summary: Writing about writing!
    - body:
+<blockquote>
+"[[http://en.wikipedia.org/wiki/To_be,_or_not_to_be][To be, or not to be, that is the question:]]"
+</blockquote>
+That is the opening phrase of a soliloquy in [[http://en.wikipedia.org/wiki/William_Shakespeare][William Shakespeare]]'s play [[http://en.wikipedia.org/wiki/Hamlet][Hamlet]]. Of course, that is a very serious question, and believe me we are not going to discuss something that important. But what we are going to discuss is an interesting, if not important, question: to blog, or not to blog.
+
+As you must have noticed, I am a [[http://en.wikipedia.org/wiki/Rookie][rookie]] blogger. So what I am going to enumerate here are my thoughts about why one should start to blog, or not; I am not going to mention benefits or drawbacks of professional blogging (like making money, etc).
+
+If you have ever blogged, or if you think about it deeply for just a short time, you will immediately realize the following benefits:
+1. Clear thinking: as a [[http://www.thefreedictionary.com/wannabe][wannabe]] blogger, you have a lot of things in your mind that you want to pen down. The problem, nay challenge, is which of those things should be before others? In fact, which ones are suitable (good topics, not unnecessarily common/general, etc) to be blogged about in the first place. Also, once you have chosen the thing that you want to start writing, you might realize that the topic wasn't big enough to make a decent blog post. Or worse still, you might find that the thing in your mind was a very vague concept and you really don't know how to put it in words. Obviously you will have to think in detail about it and from various viewpoints. As you write more and more posts, you will do this exercise repeatedly and will get a hang of thinking more and more clearly.
+Starting to blog is like trying to clean up a wardrobe into which you have been dumping clothes your whole life. It's a mess. But slowly, you will remove the mess, throw away the old, torn, unnecessary clothes, clean the good ones, iron them and arrange them back neatly in the wardrobe. Needless to say, as you clear up your brain, other aspects of your life will start getting affected too.
+I think this one reason itself is enough to start blogging!
+
+2. Ideas: Once you have written a few posts, you will start looking for new ideas. Not that you have exhausted all of yours already, but because you are searching for that domain in which you are the most comfortable. You have ideas from all fields of life based on the experiences that you have had during your lifetime. But you want to write about things that are more relevant to your readers, probably related to what is happening in your society at this time, or probably about a certain technology that they are using, etc.
+What is important to note here is that a lot of ideas are flowing your way, and then who knows, probably you will yourself convert some idea into something more tangible and move from being a blogger to an [[http://en.wikipedia.org/wiki/Entrepreneur][entrepreneur]].
+<blockquote>
+[[http://www.quotedb.com/quotes/147][There is nothing more powerful than an idea whose time has come. --Victor Hugo]]
+</blockquote>
+
+3. Reading and writing skills: Obviously to gather ideas you will have to become a voracious reader. But at the same time, as your experience grows, you will also become a smart reader -- you will learn to differentiate between good content and bad. You will make for yourself a repository of places that you will visit frequently to hunt for ideas.
+Similarly, as you write more and more posts, your writing skills will improve too. You will learn to be able to break ideas into smaller digestible chunks and arrange them in a meaningful order. Also, you might already be good at writing, but might find out, like me, that what you wrote earlier is vastly different than blogging and will need to improve at it.
+
+4. Discipline: As with anything worth doing, blogging takes a lot of discipline. It is very easy to write a few posts in the excitement of starting something new and then getting bogged down with routine tasks and not finding time to blog. This is especially true at the beginning where it is easy to convince yourself that "you were just trying it out", or "you were never serious about it anyways", or "i am not getting any benefit out of it", etc. But this is where you have to persist just long enough for it to become a [[http://www.npr.org/2012/03/05/147192599/habits-how-they-form-and-how-to-break-them][habit]] and you will feel natural about it.
+
+5. Reach a wide audience: The Internet has literally made the world a small place; you can reach a multitude of people from different countries, cultures, races and with different thinking. If you have "comments" feature on your blog, you will be surprised, sometimes, to find comments from varied people. I was pleasantly surprised to find out that there is someone on the other side of the earth who is interested in reading what i write; believe me, it was a very motivating moment.
+
+Of course, like other things, blogging is a 2 sided coins and has drawbacks too.
+1. Raw: As a newbie, you will make a lot of mistakes. One of them is that you will either open up your heart too much or too little. In the former case you might get backlashed by your visitors (which is good for your blog ;), but not for you), whereas in the latter case your users might not connect to you and will become disinterested soon.
+
+2. [[http://en.wikipedia.org/wiki/Analysis_paralysis][Analysis paralysis]]: You might spend too much time reading other content to find ideas and analyzing what to write than actually writing something. This is actually not that bad; atleast you are increasing the horizon of your knowledge. It will surely come in handy at some point in your life.
+
+3. Frustration: This can be especially true with newbie bloggers like me, where we see no user comments for a long time and it might feel like speaking to an empty auditorium. Don't worry, try to figure out if you are doing something wrong and correct it. More importantly, be patient. Probably, the clock gears are already working in the background, but it will take some time for the hand to visibly move :)
+
+For me, the pros outweigh the cons by a huge margin. I have started blogging and am not looking back now. I hope you will too!
+
    - notes:
+     - references
+       - http://www.dollarshower.com/advantages-of-blogging/
+       - http://www.dollarshower.com/blogger-blog-reader-engagment-models/
+     - benefits
+       1. ideas; widening of horizon (http://fun-artistic.blogspot.kr/2012/07/creativity-has-no-limit.html (last image), http://artstuff.net.au/?cat=79 (almost bottom of page), http://blog.lib.umn.edu/knowl124/jour3251/2012/12/creativity-research.html, http://bacreativity.files.wordpress.com/2011/08/creativity_is_boundless_by_pixelnase1.jpg, http://www.ideachampions.com/weblogs/archives/2011/11/creativity_1_le.shtml, )
+       2. reading habits (http://nuclearpoweryesplease.org/blog/2012/02/17/weekend-reading/)
+       3. writing skills (http://www.cgu.edu/pages/792.asp)
+       4. clear thinking (http://www.thebusinessexperience.co.uk/think-clearly/index.htm)
+       5. discipline (http://fittwincities.com/2013/01/04/resolutions-and-discipline-a-shift-in-focus-for-2013/)
+       6. reach to a wider audience (http://playingwiththeuniverse.blogspot.kr/2011/11/angel-wisdom-with-sharon-taphorn_10.html)
+     - drawbacks
+       1. honest/vulnerable
+       2. frustration, thoughts of giving up (http://isaacgallegos.blogspot.kr/2012/02/frustration.html)
+       3. [[http://en.wikipedia.org/wiki/Analysis_paralysis][analysis paralysis]]
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]

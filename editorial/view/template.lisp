@@ -24,12 +24,17 @@
                    (:div :id "bd"
                          ,@body)
                    (:div :id "ft"
-                         (str (ed-footer))))
-             (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-             (:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
-             (:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-             (:script :type  "text/javascript" :src "https://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
-             ,js))))
+                         (str (ed-footer)))))
+      (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+      (:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
+      (:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
+      (:script :type  "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
+      (:script :type  "text/javascript" :src (format nil
+                                                     "/static/js/ed-1~a.js"
+                                                     (if (string-equal (get-dimension-value "envt") "prod")
+                                                         "-min"
+                                                         "")))
+      ,js)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
