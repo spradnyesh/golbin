@@ -54,8 +54,13 @@
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
     :END:
-*** 50 4-digit numbers for every author for login
+*** TODO 50 4-digit numbers for every author for login
+    :CLOCK:
+    CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
+    CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
+    :END:
     - [ ] change to db
+    - [ ] add register get/post
     - [ ] change to login get/post
       - 2 stages
         1. partial-login using username/passwd
