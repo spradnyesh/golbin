@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** [fe][ed][util] lisp style error handling
+    - http://psg.com/~dlamkins/sl/chapter23.html
+    - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
+    - http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** [bug][fe] nav hover not working for prod
 *** dvngr inside ckeditor iframe
 *** [bug][fe] carousel working even on data.status="failure"
