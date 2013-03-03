@@ -6,13 +6,14 @@
 
 ;; prepend/append (based on 'direction) string of 'character
 ;; of length (- 'length (length 'string)) to given 'string
-(defun string-pad (string character length direction)
+(defun string-pad (string character length &optional (direction :l))
   (let ((str-len (length string)))
-    (when (> length str-len)
+    (if (> length str-len)
       (let ((padder (make-string (- length str-len) :initial-element character)))
         (case direction
           (:l (concatenate 'string padder string))
-          (:r (concatenate 'string string padder)))))))
+          (:r (concatenate 'string string padder))))
+      string)))
 
 (defun join-string-list-with-delim (delim list &key (key nil))
   (when list

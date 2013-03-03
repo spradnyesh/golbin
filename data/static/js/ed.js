@@ -22,7 +22,7 @@ $(document).ready(function () {
         return false;
     };
     var getUrlParameter = function (name) {
-        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [,""])[1].replace(/\+/g, '%20')) || null;
+        return decodeURIComponent(((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)')).exec(location.search) || [,""])[1].replace(/\+/g, '%20')) || null;
     };
     var tagsAutocomplete = function (tagsInput) {
         tagsInput.bind("keydown", function (event) {

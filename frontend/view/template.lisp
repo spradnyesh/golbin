@@ -21,12 +21,10 @@
        ;; http://www.faqoverflow.com/askubuntu/16556.html
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
-       (:link :rel "stylesheet" :type "text/css"
-              :href (format nil
-                            "/static/css/fe-7~a.css"
-                            (if (string-equal (get-dimension-value "envt") "prod")
-                                "-min"
-                                "")))
+       (if (string-equal (get-dimension-value "envt") "prod")
+           (htm (:link :rel "stylesheet" :type "text/css"
+                       :href "/static/css/fe-8-min.css"))
+           (htm (:style (str (fe-get-css)))))
 
        ;; google-analytics
        (:script :type "text/javascript"
@@ -40,40 +38,38 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-"))
+")))
 
-       (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
-                                          ""
-                                          "dvngr"))
-              (:div :class "yui3-g"
-                    (:div :id "hd"
-                          (str (fe-header)))
-                    (:div :id "bd"
-                          (:div :class "yui3-u-3-4"
-                                (:div :id "col-1" :class "yui3-u-1-4"
-                                      (str (fe-ads-1)))
-                                (:div :id "col-2" :class "yui3-u-3-4"
-                                      (:div :id "wrapper" ,@content)))
-                          (:div :id "col-3" :class "yui3-u-1-4"
-                                (str (fe-ads-2))))
-                    (:div :id "ft" (str (fe-footer)))))
-       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-       (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
-       (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js")
-       (:script :type  "text/javascript" :src (format nil
-                                                       "/static/js/fe-1~a.js"
-                                                       (if (string-equal (get-dimension-value "envt") "prod")
-                                                           "-min"
-                                                           "")))
-       (:script :type "text/javascript"
-                (str (on-load))
-                (str "
+      (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
+                                         ""
+                                         "dvngr"))
+             (:div :class "yui3-g"
+                   (:div :id "hd"
+                         (str (fe-header)))
+                   (:div :id "bd"
+                         (:div :class "yui3-u-3-4"
+                               (:div :id "col-1" :class "yui3-u-1-4"
+                                     (str (fe-ads-1)))
+                               (:div :id "col-2" :class "yui3-u-3-4"
+                                     (:div :id "wrapper" ,@content)))
+                         (:div :id "col-3" :class "yui3-u-1-4"
+                               (str (fe-ads-2))))
+                   (:div :id "ft" (str (fe-footer)))))
+      (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+      (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
+      (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js")
+      (if (string-equal (get-dimension-value "envt") "prod")
+          (htm (:script :type "text/javascript"
+                        :src "/static/js/fe-1-min.js"))
+          (htm (:script :type "text/javascript" (str (on-load)))))
+      (:script :type "text/javascript"
+               (str "
 var switchTo5x=true;
 stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399'});
 var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'email']}};
 var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 "))
-       ,js))))
+      ,js)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header

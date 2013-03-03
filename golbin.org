@@ -13,6 +13,45 @@
     - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** [bug][fe] nav hover not working for prod
 *** dvngr inside ckeditor iframe
+*** TODO [fe] theme
+    :CLOCK:
+    CLOCK: [2013-03-03 Sun 14:49]--[2013-03-03 Sun 15:10] =>  0:21
+    CLOCK: [2012-12-22 Sat 17:01]--[2012-12-22 Sat 17:03] =>  0:02
+    CLOCK: [2012-12-22 Sat 16:35]--[2012-12-22 Sat 17:00] =>  0:25
+    CLOCK: [2012-12-22 Sat 15:58]--[2012-12-22 Sat 16:34] =>  0:36
+    CLOCK: [2012-12-22 Sat 14:13]--[2012-12-22 Sat 15:53] =>  1:40
+    CLOCK: [2012-12-22 Sat 13:57]--[2012-12-22 Sat 14:13] =>  0:16
+    CLOCK: [2012-12-22 Sat 13:35]--[2012-12-22 Sat 13:50] =>  0:15
+    CLOCK: [2012-12-22 Sat 13:21]--[2012-12-22 Sat 13:27] =>  0:06
+    CLOCK: [2012-12-22 Sat 12:18]--[2012-12-22 Sat 12:46] =>  0:28
+    CLOCK: [2012-12-20 Thu 13:40]--[2012-12-20 Thu 14:11] =>  0:31
+    CLOCK: [2012-12-16 Sun 19:49]--[2012-12-16 Sun 21:11] =>  1:22
+    CLOCK: [2012-12-16 Sun 19:22]--[2012-12-16 Sun 19:25] =>  0:03
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2012-12-22 Sat 17:03
+    :END:
+    - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
+      - license: http://www.famfamfam.com/lab/icons/silk/
+    - templates
+      - http://www.websitetemplatesonline.com/free-template/Red-Bridge.html
+      - http://www.websitetemplatesonline.com/free-template/Naturefield.html (* clouds background)
+        - http://templates.websitetemplatesonline.com/Naturefield/images/back_all.jpg
+        - background: #75DAFF url(images/back_all.jpg) repeat-x
+      - http://www.websitetemplatesonline.com/free-template/Border-Swirls.html *
+      - http://www.oswd.org/ ***
+        - http://www.oswd.org/design/preview/id/3459
+        - http://www.oswd.org/design/preview/id/3200
+      - http://wordpress.org/extend/themes/
+        - http://wordpress.org/extend/themes/twentytwelve
+        - http://wordpress.org/extend/themes/twentyten
+        - http://wordpress.org/extend/themes/twentyeleven *
+        - http://wordpress.org/extend/themes/picolight *****
+*** [bug][ed] select/upload photo not working for prod
+*** [fe][ed][util] lisp style error handling
+    - http://psg.com/~dlamkins/sl/chapter23.html
+    - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
+    - http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
@@ -63,8 +102,13 @@
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
     :END:
-*** 50 4-digit numbers for every author for login
+*** TODO 50 4-digit numbers for every author for login
+    :CLOCK:
+    CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
+    CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
+    :END:
     - [ ] change to db
+    - [ ] add register get/post
     - [ ] change to login get/post
       - 2 stages
         1. partial-login using username/passwd
@@ -1075,40 +1119,6 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2012-12-22 Sat 13:34
      :END:
-**** DONE [fe] theme
-     CLOSED: [2012-12-22 Sat 17:03]
-     :CLOCK:
-     CLOCK: [2012-12-22 Sat 17:01]--[2012-12-22 Sat 17:03] =>  0:02
-     CLOCK: [2012-12-22 Sat 16:35]--[2012-12-22 Sat 17:00] =>  0:25
-     CLOCK: [2012-12-22 Sat 15:58]--[2012-12-22 Sat 16:34] =>  0:36
-     CLOCK: [2012-12-22 Sat 14:13]--[2012-12-22 Sat 15:53] =>  1:40
-     CLOCK: [2012-12-22 Sat 13:57]--[2012-12-22 Sat 14:13] =>  0:16
-     CLOCK: [2012-12-22 Sat 13:35]--[2012-12-22 Sat 13:50] =>  0:15
-     CLOCK: [2012-12-22 Sat 13:21]--[2012-12-22 Sat 13:27] =>  0:06
-     CLOCK: [2012-12-22 Sat 12:18]--[2012-12-22 Sat 12:46] =>  0:28
-     CLOCK: [2012-12-20 Thu 13:40]--[2012-12-20 Thu 14:11] =>  0:31
-     CLOCK: [2012-12-16 Sun 19:49]--[2012-12-16 Sun 21:11] =>  1:22
-     CLOCK: [2012-12-16 Sun 19:22]--[2012-12-16 Sun 19:25] =>  0:03
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2012-12-22 Sat 17:03
-     :END:
-     - http://www.famfamfam.com/lab/icons/silk/previews/index_abc.png
-       - license: http://www.famfamfam.com/lab/icons/silk/
-     - templates
-       - http://www.websitetemplatesonline.com/free-template/Red-Bridge.html
-       - http://www.websitetemplatesonline.com/free-template/Naturefield.html (* clouds background)
-         - http://templates.websitetemplatesonline.com/Naturefield/images/back_all.jpg
-         - background: #75DAFF url(images/back_all.jpg) repeat-x
-       - http://www.websitetemplatesonline.com/free-template/Border-Swirls.html *
-       - http://www.oswd.org/ ***
-         - http://www.oswd.org/design/preview/id/3459
-         - http://www.oswd.org/design/preview/id/3200
-       - http://wordpress.org/extend/themes/
-         - http://wordpress.org/extend/themes/twentytwelve
-         - http://wordpress.org/extend/themes/twentyten
-         - http://wordpress.org/extend/themes/twentyeleven *
-         - http://wordpress.org/extend/themes/picolight *****
 **** DONE [bug][fe] related articles not showing up in prod
      CLOSED: [2012-12-23 Sun 00:12]
      :CLOCK:
@@ -1424,6 +1434,43 @@
      CLOSED: [2013-02-15 Fri 21:18]
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-02-15 Fri 21:19
+     :END:
+**** CANCELLED dvngr inside ckeditor iframe
+     CLOSED: [2013-03-03 Sun 17:54]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-03-03 Sun 17:54] \\
+       ckeditor iframe does not d'load woff file :(
+     CLOCK: [2013-03-03 Sun 17:46]--[2013-03-03 Sun 17:54] =>  0:08
+     CLOCK: [2013-03-03 Sun 16:03]--[2013-03-03 Sun 17:45] =>  1:42
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-03 Sun 17:55
+     :END:
+     - http://www.bhashaindia.com/ilit/WebEmbed.aspx?language=Hindi
+**** DONE [fe][ed] get back to lisp style css and js
+     CLOSED: [2013-03-03 Sun 21:02]
+     :CLOCK:
+     CLOCK: [2013-03-03 Sun 20:18]--[2013-03-03 Sun 20:37] =>  0:19
+     CLOCK: [2013-03-03 Sun 19:45]--[2013-03-03 Sun 20:12] =>  0:27
+     CLOCK: [2013-03-03 Sun 18:17]--[2013-03-03 Sun 19:10] =>  0:53
+     CLOCK: [2013-03-03 Sun 18:09]--[2013-03-03 Sun 18:16] =>  0:07
+     CLOCK: [2013-03-03 Sun 17:57]--[2013-03-03 Sun 18:02] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-03 Sun 21:02
+     :END:
+     - [X] fe-css
+     - [X] fe-js
+     - [X] ed-css
+     - [X] ed-js
+     - they are easier to maintain
+     - [X] need to figure out a solution for ed issue of getUrlParameter
+**** DONE [bug][fe] nav hover not working for prod
+     CLOSED: [2013-03-03 Sun 21:02]
+     :CLOCK:
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-03 Sun 21:02
      :END:
 ** TODO refactor
    :CLOCK:

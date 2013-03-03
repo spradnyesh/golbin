@@ -145,4 +145,5 @@
                                    :username slug
                                    :handle slug
                                    :password slug
+                                   :salt (generate-user-salt)
                                    :status :a))))))
