@@ -93,9 +93,13 @@
                               (get-category-tree-json)
                               (get-thumb-side-photo-sizes-json)))
              (:script :type "text/javascript"
-                      :src "/static/ckeditor/ckeditor.js")
-             #|(:script :type "text/javascript"
-                      :src "/static/ckeditor/adapters/jquery.js")|#)
+                               :src "/static/ckeditor/ckeditor.js")
+             #|(if (string-equal "en-IN" (get-dimension-value "lang"))
+                 (htm (:script :type "text/javascript"
+                               :src "/static/ckeditor/ckeditor.js")
+                      (:script :type "text/javascript"
+                               :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
+                               :defer "defer")))|#)
       (let* ((article (when id (get-article-by-id id)))
              (cats (get-root-categorys))
              (subcats (get-subcategorys (if article
@@ -158,7 +162,29 @@
                                                 :href ""
                                                 "Upload")
                                             " a photo"))
-                                  (str (tr-td-text "body" :value (when article (body article)) :class "ckeditor"))
+                                  (str (tr-td-text "body"
+                                                       :value (when article (body article))
+                                                       :class "ckeditor"))
+                                  #|(if (string-equal "en-IN" (get-dimension-value "lang"))
+                                      (str (tr-td-text "body"
+                                                       :value (when article (body article))
+                                                       :class "ckeditor"))
+                                      (htm (:tr (:td "Body")
+                                                (:td (let ((trimmed-name "body")
+                                                           (value (when article (body article))))
+                                                       (htm (:textarea :cols 40
+                                                                       :rows 7
+                                                                       :name (format nil "~A" trimmed-name)
+                                                                       :id (format nil "~A" trimmed-name)
+                                                                       (str value)
+                                                                       :MicrosoftILITWebAttach "true")))))
+                                           (:input :type "hidden"
+                                                   :id "MicrosoftILITWebEmbedInfo"
+                                                   :attachMode "optin"
+                                                   :value "")
+                                           (:script :type "text/javascript"
+                                                    :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
+                                                    :defer "defer")))|#
                                   (unless (string-equal (get-dimension-value "lang") "en-IN")
                                     (htm (:tr (:td (str (get-dimension-value "lang")))
                                               (:td "Click " ; XXX: translate

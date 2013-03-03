@@ -41,7 +41,6 @@
     - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
     - http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** [bug][fe] nav hover not working for prod
-*** dvngr inside ckeditor iframe
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
@@ -1425,6 +1424,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-02-15 Fri 21:19
      :END:
+**** CANCELLED dvngr inside ckeditor iframe
+     CLOSED: [2013-03-03 Sun 17:54]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-03-03 Sun 17:54] \\
+       ckeditor iframe does not d'load woff file :(
+     CLOCK: [2013-03-03 Sun 17:46]--[2013-03-03 Sun 17:54] =>  0:08
+     CLOCK: [2013-03-03 Sun 16:03]--[2013-03-03 Sun 17:45] =>  1:42
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-03 Sun 17:55
+     :END:
+     - http://www.bhashaindia.com/ilit/WebEmbed.aspx?language=Hindi
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
