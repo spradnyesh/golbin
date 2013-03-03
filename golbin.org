@@ -2,6 +2,15 @@
 
 * tasks
 ** backlog
+*** TODO [fe][ed][util] lisp style error handling
+    :CLOCK:
+    CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
+    CLOCK: [2013-02-28 Thu 13:30]--[2013-02-28 Thu 14:45] =>  1:15
+    CLOCK: [2013-02-27 Wed 17:00]--[2013-02-27 Wed 18:35] =>  1:35
+    :END:
+    - [X] http://psg.com/~dlamkins/sl/chapter23.html
+    - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
+    - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** [bug][fe] nav hover not working for prod
 *** dvngr inside ckeditor iframe
 *** [bug][fe] carousel working even on data.status="failure"
@@ -1768,7 +1777,10 @@
    - routes:
      - trailing 'slash' should be put explicitly, to avoid matching to no/multiple rules
      - *submodule* and *route* special variables are populated during request, and aren't available from slime
-* articles
+* TODO articles
+  :CLOCK:
+  CLOCK: [2013-03-03 Sun 13:50]--[2013-03-03 Sun 13:57] =>  0:07
+  :END:
   - http://www.mastersofseo.com/how-get-inspiration-to-writ/
   - tags should be nouns
   - search images on flickr. use advanced search and select 'only search within creative commons licensed content'
@@ -2050,9 +2062,12 @@ usage: git push [<options>] [<repository> [<refspec>...]]
    - summary:
    - body:
    - notes:
-** TODO to b(log), or not to b(log)
+** DONE To b(log), or not to b(log)
+   CLOSED: [2013-03-03 Sun 14:47]
    :CLOCK:
+   CLOCK: [2013-03-03 Sun 14:11]--[2013-03-03 Sun 14:47] =>  0:36
    CLOCK: [2013-02-15 Fri 21:21]--[2013-02-15 Fri 21:38] =>  0:17
+   CLOCK: [2013-03-03 Sun 13:57]--[2013-03-03 Sun 14:09] =>  0:12
    CLOCK: [2013-02-15 Fri 18:59]--[2013-02-15 Fri 19:10] =>  0:11
    CLOCK: [2013-02-15 Fri 18:30]--[2013-02-15 Fri 18:45] =>  0:15
    CLOCK: [2013-02-15 Fri 17:25]--[2013-02-15 Fri 17:46] =>  0:21
