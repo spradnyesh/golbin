@@ -1779,6 +1779,7 @@
      - *submodule* and *route* special variables are populated during request, and aren't available from slime
 * TODO articles
   :CLOCK:
+  CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
   CLOCK: [2013-03-03 Sun 13:50]--[2013-03-03 Sun 13:57] =>  0:07
   :END:
   - http://www.mastersofseo.com/how-get-inspiration-to-writ/
