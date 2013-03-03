@@ -40,7 +40,22 @@
     - http://psg.com/~dlamkins/sl/chapter23.html
     - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
     - http://video.google.com/videoplay?docid=448441135356213813&q=lisp
-*** [bug][fe] nav hover not working for prod
+*** TODO [fe][ed] get back to lisp style css and js
+    :CLOCK:
+    CLOCK: [2013-03-03 Sun 19:45]--[2013-03-03 Sun 20:12] =>  0:27
+    CLOCK: [2013-03-03 Sun 18:17]--[2013-03-03 Sun 19:10] =>  0:53
+    CLOCK: [2013-03-03 Sun 18:09]--[2013-03-03 Sun 18:16] =>  0:07
+    CLOCK: [2013-03-03 Sun 17:57]--[2013-03-03 Sun 18:02] =>  0:05
+    :END:
+    - [X] fe-css
+    - [X] fe-js
+    - [X] ed-css
+    - [ ] ed-js
+    - they are easier to maintain
+    - [ ] need to figure out a solution for ed issue of getUrlParameter
+*** TODO [bug][fe] nav hover not working for prod
+    :CLOCK:
+    :END:
 *** [bug][fe] carousel working even on data.status="failure"
 *** [bug][ed] photo-pane not working in ff
     - test in other browsers too
