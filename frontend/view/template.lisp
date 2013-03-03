@@ -23,7 +23,7 @@
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:link :rel "stylesheet" :type "text/css"
               :href (format nil
-                            "/static/css/fe-7~a.css"
+                            "/static/css/fe-8~a.css"
                             (if (string-equal (get-dimension-value "envt") "prod")
                                 "-min"
                                 "")))

@@ -22,8 +22,24 @@ body {
 	margin: 0 auto;
 }
 
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+u {
+    text-decoration: underline;
+}
+
 p {
     margin: 15px 0;
+}
+
+li {
+    margin-bottom: 15px;
 }
 
 a:link ,a:active ,a:visited, a:hover {
