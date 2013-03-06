@@ -45,26 +45,28 @@
                       (,(intern (string-upcase (format nil "get-all-~as" `,name))))
                       :key #'id))
 
-              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-              ;; macros (won't work coz the macros are created only when this function is called,
-              ;; and other functions depending on these macros won't be created or will fail)
-              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; macros (won't work coz the macros are created only when this function is called,
+;;; and other functions depending on these macros won't be created or will fail)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
               ;; get-<name>s-by (cond)
-              #|(defmacro ,(intern (string-upcase (format nil "get-~as-by" `,name))) (cond)
+              #- (and)
+              (defmacro ,(intern (string-upcase (format nil "get-~as-by" `,name))) (cond)
                 `(sort (conditionally-accumulate ,cond
                                                  (,',(intern (string-upcase (format nil "get-all-~as" `,name)))))
                        #'>
-                       :key #'id))|#
+                       :key #'id))
 
               ;; add-<name>-helper (object &key prefix suffix):- ; internally calls insert-<name>
-              #|(defmacro ,(intern (string-upcase (format nil "add-~a-helper" `,name)))
+              #- (and)
+              (defmacro ,(intern (string-upcase (format nil "add-~a-helper" `,name)))
                   ((object ,(intern (string-upcase (format nil "~a" `,name)))) add-system &key prefix suffix)
                 `(let ((storage (get-storage ,add-system)))
                    ,@prefix
                    (execute *db* (make-transaction ',(intern (string-upcase (format nil "insert-~a" `,name))) object))
                    ,@suffix
-                   object))|#)))))
+                   object)))))))
 
 (defmacro get-object-by (cond list)
   `(conditionally-accumulate ,cond ,list))

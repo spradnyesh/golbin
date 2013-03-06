@@ -7,7 +7,7 @@
   (with-html
     (:h2 :id "a-title" (str (title article)))
     (:p :id "a-details" :class "small"
-        (str "written by ") ; XXX: translate
+        (str "written by ")             ; XXX: translate
         (:a :id "a-author"
             :href (h-genurl 'r-author :author (handle (author article)))
             (str (alias (author article))))
@@ -22,8 +22,8 @@
           (htm
            (:a :id "a-cat-subcat"
                :href (h-genurl 'r-cat-subcat
-                             :cat (slug (cat article))
-                             :subcat (slug (subcat article)))
+                               :cat (slug (cat article))
+                               :subcat (slug (subcat article)))
                (str (name (subcat article))))))
         (let ((tags (tags article)))
           (when tags
@@ -60,36 +60,36 @@
   (with-html (:form :id "a-comments"
                     :method "POST"
                     :action (h-genurl 'r-article-comment :slug-and-id slug-and-id)
-                   (let ((children (comments article)))
-                     (when children
-                       (str (do-child-comments "-1" children))))
-                   (:input :class "td-input parent"
-                                             :type "hidden"
-                                             :name "parent")
-                   (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment") ; XXX: translate
-                       (:table :id "c-table"
-                               (str (tr-td-input "name *"))
-                               (str (tr-td-input "email *"))
-                               (str (tr-td-input "url"))
-                               (str (tr-td-text "comment *"))
-                               (str (tr-td-input "submit" :value "Submit" :typeof "submit"))))))) ; XXX: translate
+                    (let ((children (comments article)))
+                      (when children
+                        (str (do-child-comments "-1" children))))
+                    (:input :class "td-input parent"
+                            :type "hidden"
+                            :name "parent")
+                    (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment") ; XXX: translate
+                        (:table :id "c-table"
+                                (str (tr-td-input "name *"))
+                                (str (tr-td-input "email *"))
+                                (str (tr-td-input "url"))
+                                (str (tr-td-text "comment *"))
+                                (str (tr-td-input "submit" :value "Submit" :typeof "submit"))))))) ; XXX: translate
 
 (defun article-body-markup (article)
   (with-html (let ((photo (photo article)))
-                     (when photo
-                       (let* ((photo-direction (photo-direction article))
-                              (pd (cond ((eql :l photo-direction) "left")
-                                        ((eql :r photo-direction) "right")
-                                        ((eql :b photo-direction) "block")))
-                              (a-photo-pd (join-string-list-with-delim " "
-                                                                         (list "a-photo"
-                                                                               pd))))
-                         (htm (:div :class a-photo-pd
-                                    (str (article-lead-photo-url photo pd))
-                                    (let ((attr (attribution photo)))
-                                      (unless (nil-or-empty attr)
-                                        (htm (:a :class "p-attribution small" :href attr "photo attribution"))))
-                                    (:p :class "p-title" (str (title photo))))))))
+               (when photo
+                 (let* ((photo-direction (photo-direction article))
+                        (pd (cond ((eql :l photo-direction) "left")
+                                  ((eql :r photo-direction) "right")
+                                  ((eql :b photo-direction) "block")))
+                        (a-photo-pd (join-string-list-with-delim " "
+                                                                 (list "a-photo"
+                                                                       pd))))
+                   (htm (:div :class a-photo-pd
+                              (str (article-lead-photo-url photo pd))
+                              (let ((attr (attribution photo)))
+                                (unless (nil-or-empty attr)
+                                  (htm (:a :class "p-attribution small" :href attr "photo attribution"))))
+                              (:p :class "p-title" (str (title photo))))))))
              (:div :id "a-body"
                    (str (body article)))))
 
@@ -105,27 +105,27 @@
                 (author-list (get-related-articles "author" article)))
             (str (article-carousel-container "Articles in the same Category / Subcategory:- "
                                              (:span (:a :href (h-genurl 'r-cat
-                                                                      :cat (slug cat))
+                                                                        :cat (slug cat))
                                                         (str (name cat)))
                                                     " / "
                                                     (:a :href (h-genurl 'r-cat-subcat
-                                                                      :cat (slug cat)
-                                                                      :subcat (slug subcat))
+                                                                        :cat (slug cat)
+                                                                        :subcat (slug subcat))
                                                         (str (name subcat))))
                                              cat-subcat-list
                                              (h-genurl 'r-ajax-article-related
-                                                     :id id
-                                                     :typeof "cat-subcat"
-                                                     :page 0)))
+                                                       :id id
+                                                       :typeof "cat-subcat"
+                                                       :page 0)))
             (str (article-carousel-container "Articles authored by:- "
                                              (:span (:a :href (h-genurl 'r-author
-                                                                      :author (handle author))
+                                                                        :author (handle author))
                                                         (str (alias author))))
                                              author-list
                                              (h-genurl 'r-ajax-article-related
-                                                     :id id
-                                                     :typeof "author"
-                                                     :page 0)))))))
+                                                       :id id
+                                                       :typeof "author"
+                                                       :page 0)))))))
 
 (defun fe-article-tags-markup (tags)
   (with-html
@@ -167,8 +167,8 @@
 (defun v-ajax-article-related (id typeof page)
   (let* ((related-length (get-config "pagination.article.related"))
          (list (splice (get-related-articles typeof (get-article-by-id id))
-                        :from (* page related-length)
-                        :to (1- (* (1+ page) related-length)))))
+                       :from (* page related-length)
+                       :to (1- (* (1+ page) related-length)))))
     (if list
         (regex-replace-all              ; need to remove the '\\' that
          "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
@@ -177,8 +177,8 @@
             (:data . ,(article-carousel-markup list))))
          "")
         (encode-json-to-string
-          `((:status . "failure")
-            (:data . nil))))))
+         `((:status . "failure")
+           (:data . nil))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; comments

@@ -16,9 +16,9 @@
               (lead false))
           ;; define functions
           (flet (
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; utility functions
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; utility functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (split (val)
                    ($apply val split (regex "/,\\s*/")))
 
@@ -36,10 +36,11 @@
                  (get-url-parameter (name)
                    (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|#|;|$)"))) exec) (@ location search)) ([] null "")) 1) replace) (regex "/\\+/g") "%20")) null))
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; common to article/photo pages
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; tags autocomplete ; http://jqueryui.com/demos/autocomplete/#multiple-remote
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; common to article/photo pages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;; tags autocomplete
+                 ;; http://jqueryui.com/demos/autocomplete/#multiple-remote
                  (tags-autocomplete (tags-input)
                    ($apply ($apply tags-input
                                bind "keydown"
@@ -96,17 +97,17 @@
                                      append
                                    ele))))))))
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; article page
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; submit form using ajax
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; article page
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; submit form using ajax
                  (submit-article-ajax ()
                    ($apply ($ "#article form")
                        attr
                      "action"
                      (+ "/ajax" ($apply ($ "#article form") attr "action"))))
 
-                 ;;; article submit
+;;; article submit
                  (article-submit ()
                    ($prevent-default)
                    ;; http://stackoverflow.com/a/1903820
@@ -133,12 +134,12 @@
                  (article-fail (data)
                    (when (/= nil data.errors.non-golbin-images)
                      ($apply ($apply ($ "#body") parent)
-                       append
-                     ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))
+                         append
+                       ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))
                    (alert "There are errors in the submitted article. Please correct them and submit again.") ; TODO: translate
                    false)
 
-                 ;;; common for select/upload photo pane
+;;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")
                        append
@@ -164,7 +165,7 @@
                               (+ "_" (elt image-sizes 0) ".")
                               (+ "_" (elt image-sizes 1) ".")))))
 
-                 ;;; select photo pane
+;;; select photo pane
                  (unselect-lead-photo ()
                    ($prevent-default)
                    ;; change the photo-id in hidden-field
@@ -211,10 +212,10 @@
                        (dolist (ct category-tree)
                          (setf cat (elt ct 0))
                          (setf ele ($apply ($apply ($ "<option></option>")
-                                                     'val
-                                                   (+ "" (@ cat id)))
-                                             text
-                                           (@ cat name)))
+                                               'val
+                                             (+ "" (@ cat id)))
+                                       text
+                                     (@ cat name)))
                          ($apply ($ "#photo-pane .search .cat") append ele)))
                      ($event ("#photo-pane .search .cat" change) (change-category "#photo-pane .search"))
                      ;; tags
@@ -313,7 +314,7 @@
                    (setf select-photo-paginate true)
                    (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))
 
-                 ;;; upload photo pane
+;;; upload photo pane
                  (upload-lead-photo-init ()
                    (setf lead true)
                    (upload-photo-init))
@@ -382,15 +383,15 @@
                        (photo-fail data))
                    (close-photo-pane))
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; category page
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; category page
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (sort-categories (ele)
                    ($apply ele nested-sortable (create :handle "div"
-                                                                   :items "li"
-                                                                   :toleranceElement "> div"
-                                                                   :maxLevels 1
-                                                                   :protectRoot t))))))
+                                                       :items "li"
+                                                       :toleranceElement "> div"
+                                                       :maxLevels 1
+                                                       :protectRoot t))))))
 
         ;; define event handlers
         ($event (".cat" change) (change-category ""))

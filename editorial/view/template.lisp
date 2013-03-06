@@ -54,7 +54,8 @@
                :alt (get-config "site.name"))))))
 
 (defun ed-site-search ()
-  #|(with-html
+  #- (and)
+  (with-html
     (:form :method "GET"
            :action (h-genurl 'route-search)
            :name "search"
@@ -63,7 +64,7 @@
                    :name "q"
                    :value "Search")
            (:input :type "submit"
-                   :value "Submit")))|#)
+                   :value "Submit"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; navigations for different author types

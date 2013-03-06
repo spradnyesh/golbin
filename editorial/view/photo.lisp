@@ -137,7 +137,7 @@
            (:data . nil))))))
 
 (defun v-ajax-photo-get ()
-  (regex-replace-all                  ; need to remove the '\\' that
+  (regex-replace-all                    ; need to remove the '\\' that
    "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
    (encode-json-to-string
     `((:status . "success")
@@ -150,8 +150,8 @@
 (defun v-tmp-photo-get (&optional message)
   (ed-page-template "Add Photo"
       t
-    (when message (htm (:div :class "error"
-                             (str message))))
+      (when message (htm (:div :class "error"
+                               (str message))))
     (let ((count 10))
       (htm
        (:form :action (h-genurl 'r-tmp-photo-post)

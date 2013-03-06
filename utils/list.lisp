@@ -8,9 +8,9 @@
 
 (defun replace-all (list item replacement &key (test #'eql))
   (loop for l in list
-       collect (if (funcall test item l)
-                   replacement
-                   l)))
+     collect (if (funcall test item l)
+                 replacement
+                 l)))
 
 (defun insert-at (list item position)
   (let ((len (length list)))
@@ -83,9 +83,9 @@
 ;; http://forum.codecall.net/topic/46721-lisp-permutations/
 (defun permutations (l)
   (if (null l) '(())
-  (mapcan #'(lambda (x)
-	(mapcar #'(lambda (y) (cons x y))
-	  (permutations (remove x l :count 1)))) l)))
+      (mapcan #'(lambda (x)
+                  (mapcar #'(lambda (y) (cons x y))
+                          (permutations (remove x l :count 1)))) l)))
 
 ;; '(1 2 3) => '((1) (2 1) (1 2) (2) (3 2) (2 3) (3 2 1) (3 1 2) (2 3 1) (2 1 3) (1 3 2)
 ;; (1 2 3) (3 1) (1 3) (3))
@@ -93,7 +93,7 @@
 (defun permutations-i (list)
   (let ((rslt nil))
     (dolist (l (loop for c in (combinations-i list)
-       collect (permutations c)))
+                  collect (permutations c)))
       (setf rslt (append l rslt)))
     rslt))
 
@@ -103,10 +103,10 @@
   (let ((rslt nil)
         (list-of-lists (append-nil list-of-lists)))
     (dolist (f (first list-of-lists))
-      (push f rslt)) ; rslt => '(1.1 1.2 nil)
+      (push f rslt))                    ; rslt => '(1.1 1.2 nil)
     (dolist (list (rest list-of-lists)) ; list => '(2.1 2.2 nil), etc
-      (dolist (r rslt) ; r => 1.1 1.2 nil
-        (dolist (l list) ; l => 2.1 2.2 nil
+      (dolist (r rslt)                  ; r => 1.1 1.2 nil
+        (dolist (l list)                ; l => 2.1 2.2 nil
           (push (append (if (atom r) (list r) r)
                         (if (atom l) (list l) l))
                 rslt)))) ; rslt => '(1.1 1.2 (1.1 2.1) (1.1 2.2) (1.1 nil) ...)

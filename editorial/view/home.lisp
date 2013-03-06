@@ -46,10 +46,10 @@
                                                           "deleted"
                                                           ""))
                                        (:a :href (h-genurl 'r-article
-                                                         :slug-and-id (format nil
-                                                                              "~a-~a"
-                                                                              (slug article)
-                                                                              id))
+                                                           :slug-and-id (format nil
+                                                                                "~a-~a"
+                                                                                (slug article)
+                                                                                id))
                                            (str (title article))))
                                   (:p :class "a-summary" (str (summary article)))))))))
              (str (pagination-markup page

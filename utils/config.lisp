@@ -32,9 +32,9 @@
 
 (defun get-config-helper (name dim-str storage)
   (dolist (dim-list (reverse (group-list #'length
-                                  (permutations-i (split-sequence ","
-                                                                  dim-str
-                                                                  :test #'string-equal)))))
+                                         (permutations-i (split-sequence ","
+                                                                         dim-str
+                                                                         :test #'string-equal)))))
     (dolist (dim dim-list)
       (let ((rslt (find-config-node-and-value name
                                               (join-string-list-with-delim "," dim)

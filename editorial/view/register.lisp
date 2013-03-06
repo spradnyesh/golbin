@@ -15,7 +15,7 @@
 
 (defun create-code-map-image (code-map)
   (with-image* (400 235)
-    (allocate-color 255 255 255) ; background: white
+    (allocate-color 255 255 255)                 ; background: white
     (with-default-color ((allocate-color 0 0 0)) ; font: black
       (with-default-font (:medium)
         (let ((row 0)

@@ -29,11 +29,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro sp ()
   `(scale-and-save-photo (make-pathname :directory
-                               (append (pathname-directory (get-config "path.uploads")) '("photos")))
-                (get-config "path.photos")
-                (new-filename photo)
-                (first size)
-                (second size)))
+                                        (append (pathname-directory (get-config "path.uploads")) '("photos")))
+                         (get-config "path.photos")
+                         (new-filename photo)
+                         (first size)
+                         (second size)))
 
 ;; TODO: find a way to get the config names automatically from config-tree instead of hardcoding them below. the drawback w/ the below is that everytime a new photo config gets added to config-tree, it'll have to be added here too.
 (defun scale-photo (photo)
@@ -140,14 +140,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun scale-photos ()
   (dolist (photo (get-all-photos))
-      (scale-photo photo)))
+    (scale-photo photo)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-random-photo (typeof)
   (let* ((photos (get-photos-by #'(lambda (photo)
-                     (eql typeof (typeof photo)))))
+                                    (eql typeof (typeof photo)))))
          (photo (nth (random (length photos)) photos)))
     (make-instance 'mini-photo
                    :id (id photo)

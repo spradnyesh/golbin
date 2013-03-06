@@ -9,11 +9,11 @@
 (defun string-pad (string character length &optional (direction :l))
   (let ((str-len (length string)))
     (if (> length str-len)
-      (let ((padder (make-string (- length str-len) :initial-element character)))
-        (case direction
-          (:l (concatenate 'string padder string))
-          (:r (concatenate 'string string padder))))
-      string)))
+        (let ((padder (make-string (- length str-len) :initial-element character)))
+          (case direction
+            (:l (concatenate 'string padder string))
+            (:r (concatenate 'string string padder))))
+        string)))
 
 (defun join-string-list-with-delim (delim list &key (key nil))
   (when list

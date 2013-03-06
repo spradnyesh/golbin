@@ -24,9 +24,9 @@
                    (:a :id "english" :href (h-genurl 'r-login-get
                                                      :lang "en-IN") "English")
                    (:a :id "hindi" :class "dvngr" :href (h-genurl 'r-login-get
-                                                                       :lang "hi-IN") "हिन्दी")
+                                                                  :lang "hi-IN") "हिन्दी")
                    (:a :id "marathi" :class "dvngr" :href (h-genurl 'r-login-get
-                                                                         :lang "mr-IN") "मराठी")))))))
+                                                                    :lang "mr-IN") "मराठी")))))))
 
 (defun v-login-post ()
   (let ((username (post-parameter "username"))

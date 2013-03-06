@@ -14,9 +14,9 @@
 
           ;; define functions
           (flet (
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; navigation
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; navigation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (display-subcategory ()
                    (unless in-nav
                      (setf subnav ($apply ($ "#subnav")
@@ -45,9 +45,9 @@
                      (setf that nil))
                    false)
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; carousel
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; carousel
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (carousel-prev ()
                    ($prevent-default)
                    (let* ((parent ($apply ($apply ($ this) parent) parent))
@@ -106,9 +106,9 @@
                  (carousel-fail (data)
                    false)
 
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;;; comment
-                 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; comment
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (comment-reply ()
                    ($prevent-default)
                    ($apply ($ "#a-comments .parent") val ($apply ($ this) attr "id"))

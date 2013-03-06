@@ -5,30 +5,37 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro fe-page-template (title js tags description &body content)
   `(with-html
-     (:html
-      (:head
-       (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
-       (:meta :name "application-name" :content "Golb.in")
-       (:meta :name "author" :content "golbin@rocketmail.com")
-       (:meta :name "copyright" :content "Golb.in 2012")
+     (:html (:head (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+                   (:meta :name "application-name" :content "Golb.in")
+                   (:meta :name "author" :content "golbin@rocketmail.com")
+                   (:meta :name "copyright" :content "Golb.in 2012")
 
-       (:meta :name "keywords" :content (join-string-list-with-delim ", " (append ,tags (list (get-config "site.name")))))
-       (:meta :name "description" :content ,description)
-       (:meta :name "google" :content "notranslate")
+                   (:meta :name "keywords"
+                          :content (join-string-list-with-delim ", "
+                                                                (append ,tags
+                                                                        (list (get-config "site.name")))))
+                   (:meta :name "description" :content ,description)
+                   (:meta :name "google" :content "notranslate")
 
-       (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
-       (:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
-       ;; http://www.faqoverflow.com/askubuntu/16556.html
-       (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
-       (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
-       (if (string-equal (get-dimension-value "envt") "prod")
-           (htm (:link :rel "stylesheet" :type "text/css"
-                       :href "/static/css/fe-8-min.css"))
-           (htm (:style (str (fe-get-css)))))
+                   (:title (str (format nil "~A - ~A" (get-config "site.name") ,title)))
+                   (:link :rel "stylesheet"
+                          :type "text/css"
+                          :href "/static/css/yui3-reset-fonts-grids-min.css")
+                   ;; http://www.faqoverflow.com/askubuntu/16556.html
+                   (:link :rel "stylesheet"
+                          :type "text/css"
+                          :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
+                   (:link :rel "stylesheet"
+                          :type "text/css"
+                          :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
+                   (if (string-equal (get-dimension-value "envt") "prod")
+                       (htm (:link :rel "stylesheet" :type "text/css"
+                                   :href "/static/css/fe-8-min.css"))
+                       (htm (:style (str (fe-get-css)))))
 
-       ;; google-analytics
-       (:script :type "text/javascript"
-                (str "
+                   ;; google-analytics
+                   (:script :type "text/javascript"
+                            (str "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_trackPageview']);
@@ -40,59 +47,56 @@
   })();
 ")))
 
-      (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
-                                         ""
-                                         "dvngr"))
-             (:div :class "yui3-g"
-                   (:div :id "hd"
-                         (str (fe-header)))
-                   (:div :id "bd"
-                         (:div :class "yui3-u-3-4"
-                               (:div :id "col-1" :class "yui3-u-1-4"
-                                     (str (fe-ads-1)))
-                               (:div :id "col-2" :class "yui3-u-3-4"
-                                     (:div :id "wrapper" ,@content)))
-                         (:div :id "col-3" :class "yui3-u-1-4"
-                               (str (fe-ads-2))))
-                   (:div :id "ft" (str (fe-footer)))))
-      (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-      (:script :type  "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
-      (:script :type  "text/javascript" :src "http://s.sharethis.com/loader.js")
-      (if (string-equal (get-dimension-value "envt") "prod")
-          (htm (:script :type "text/javascript"
-                        :src "/static/js/fe-1-min.js"))
-          (htm (:script :type "text/javascript" (str (on-load)))))
-      (:script :type "text/javascript"
-               (str "
+            (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
+                                               ""
+                                               "dvngr"))
+                   (:div :class "yui3-g"
+                         (:div :id "hd"
+                               (str (fe-header)))
+                         (:div :id "bd"
+                               (:div :class "yui3-u-3-4"
+                                     (:div :id "col-1" :class "yui3-u-1-4"
+                                           (str (fe-ads-1)))
+                                     (:div :id "col-2" :class "yui3-u-3-4"
+                                           (:div :id "wrapper" ,@content)))
+                               (:div :id "col-3" :class "yui3-u-1-4"
+                                     (str (fe-ads-2))))
+                         (:div :id "ft" (str (fe-footer)))))
+            (:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+            (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
+            (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
+            (if (string-equal (get-dimension-value "envt") "prod")
+                (htm (:script :type "text/javascript" :src "/static/js/fe-1-min.js"))
+                (htm (:script :type "text/javascript" (str (on-load)))))
+            (:script :type "text/javascript"
+                     (str "
 var switchTo5x=true;
 stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399'});
 var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'email']}};
 var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 "))
-      ,js)))
+            ,js)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-logo ()
-  (with-html
-    (:h1
-     (:a :href (h-genurl 'r-home)
-         (:img :id "logo"
-               :source ""
-               :alt (get-config "site.name"))))))
+  (with-html (:h1 (:a :href (h-genurl 'r-home)
+                      (:img :id "logo"
+                            :source ""
+                            :alt (get-config "site.name"))))))
 
 (defun fe-site-search ()
-  #|(with-html
-    (:form :method "GET"
-           :action (h-genurl 'r-search)
-           :name "search"
-           :id "search"
-           (:input :type "input"
-                   :name "q"
-                   :value "Search")
-           (:input :type "submit"
-                   :value "Submit")))|#)
+  #- (and)
+  (with-html (:form :method "GET"
+                    :action (h-genurl 'r-search)
+                    :name "search"
+                    :id "search"
+                    (:input :type "input"
+                            :name "q"
+                            :value "Search")
+                    (:input :type "submit"
+                            :value "Submit"))))
 
 (defun fe-trending ()
   (with-html
@@ -115,8 +119,8 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
                     (route-symbol *route*)
                     :r-home))
          (uri (if (boundp '*request*)
-                    (hunchentoot:request-uri *request*)
-                    "/"))
+                  (hunchentoot:request-uri *request*)
+                  "/"))
          (cat-subcat (when (nav-cat? route)
                        (get-nav-cat-subcat-slugs uri)))
          (subnav-cat-slug nil)
@@ -137,7 +141,7 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
                                           (setf subnav-cat-slug cat-slug)
                                           (setf subnav-subcats (get-subcategorys (id cat))))
                                  (:h2 (:a :href (h-genurl 'r-cat
-                                                        :cat cat-slug)
+                                                          :cat cat-slug)
                                           (str (name cat))))
                                  (:ul
                                   (dolist (subcat (get-subcategorys (id cat)))

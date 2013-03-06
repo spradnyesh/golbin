@@ -1,10 +1,6 @@
 (in-package :hawksbill.golbin.editorial)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; helper functions and macros
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-cat-get ()

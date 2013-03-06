@@ -18,9 +18,10 @@
 (defun model-tmp-init ()
   (add-tags)
   (add-authors)
-  #|(
-   ;; XXX: need to do these step manually. also, authors need to be added _before_ photos, since a photo can only be uploaded by an existing author. this means that the (gr)avtar of an author can only be added _after_ the author has been created. add photos for both authors and articles
-   (clean-photos-dir uploads static)
-   (add-photos))|#
-  #|(assign-photos-to-authors)|#
+  ;; XXX: need to do these step manually. also, authors need to be added _before_ photos, since a photo can only be uploaded by an existing author. this means that the (gr)avtar of an author can only be added _after_ the author has been created. add photos for both authors and articles
+  #- (and)
+  ((clean-photos-dir uploads static)
+   (add-photos))
+  #- (and)
+  (assign-photos-to-authors)
   (add-articles))

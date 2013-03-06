@@ -2,6 +2,8 @@
 
 * tasks
 ** backlog
+*** [bug][fe] cloud background clipping in some browsers sometimes
+*** [ed] db-reconnect should reconnect all db's (all langs, in same envt???)
 *** TODO [fe][ed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -12,7 +14,6 @@
     - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
     - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** [bug][fe] nav hover not working for prod
-*** dvngr inside ckeditor iframe
 *** TODO [fe] theme
     :CLOCK:
     CLOCK: [2013-03-03 Sun 14:49]--[2013-03-03 Sun 15:10] =>  0:21

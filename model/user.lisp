@@ -75,12 +75,13 @@
 (defun add-author (author)
   (setf (id author)
         (execute (get-db-handle) (make-transaction 'incf-author-last-id)))
-    ;; save author into storage
+  ;; save author into storage
 
   (execute (get-db-handle) (make-transaction 'insert-author author))
 
-    ;; TODO: sort authors in storage
-    #|(setf (authors storage) (sort (authors storage) #'string< :key #'name))|#
+  ;; TODO: sort authors in storage
+  #- (and)
+  (setf (authors storage) (sort (authors storage) #'string< :key #'name))
 
   author)
 

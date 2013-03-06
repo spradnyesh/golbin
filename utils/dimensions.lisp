@@ -67,11 +67,9 @@
          (index (search (get-config "site.url") host))
          (envt (get-config "site.envt"))
          (lang (get-config "site.lang")))
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; *fallback* logic
     ;; envt: config-default -> host -> d1m
     ;; lang: config-default -> host -> cookie -> d1m
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; host (works only in prod)
     (when index
       (setf envt "prod")
@@ -85,8 +83,8 @@
     ;; d1m (works only in dev)
     (when (and (get-parameter "d1m")
                (or (search "localhost" host) (search "127.0.0.1" host)))
-       (setf lang (find-dimension-value "lang" (parameter "d1m")))
-       (setf envt (find-dimension-value "envt" (parameter "d1m"))))
+      (setf lang (find-dimension-value "lang" (parameter "d1m")))
+      (setf envt (find-dimension-value "envt" (parameter "d1m"))))
     (log-message* :error lang)
     (setf (dimensions *request*)
           (make-instance 'dimensions

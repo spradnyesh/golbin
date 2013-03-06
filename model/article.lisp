@@ -83,7 +83,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-active-articles ()
   (get-object-by #'(lambda (article)
-                       (eql :a (status article)))
+                     (eql :a (status article)))
                  (get-all-articles)))
 
 (defmacro get-articles-by (cond)
@@ -91,19 +91,19 @@
 
 (defun get-articles-by-author (author)
   (get-articles-by #'(lambda (article)
-                                (= (id author)
-                                   (id (author article))))))
+                       (= (id author)
+                          (id (author article))))))
 
 (defun get-articles-by-tag-slug (slug)
   (get-articles-by #'(lambda (article)
-                                (dolist (tag (tags article))
-                                  (when (equal slug (slug tag))
-                                    (return t))))))
+                       (dolist (tag (tags article))
+                         (when (equal slug (slug tag))
+                           (return t))))))
 
 (defun get-articles-by-cat (cat)
   (get-articles-by #'(lambda (article)
-                                 (= (id cat)
-                                    (id (cat article))))))
+                       (= (id cat)
+                          (id (cat article))))))
 
 (defun get-articles-by-cat-subcat (cat subcat)
   (sort (conditionally-accumulate
@@ -137,8 +137,8 @@
 ;; editorial: an author needs to see *all* of his articles
 (defun get-all-articles-by-author (author)
   (get-object-by #'(lambda (article)
-                                (= (id author)
-                                   (id (author article))))
+                     (= (id author)
+                        (id (author article))))
                  (get-all-articles)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,7 +1,7 @@
 (in-package :hawksbill.utils)
 
-#|(
- (defun memcache-connect ()
+#- (and)
+((defun memcache-connect ()
    (setf *use-pool* ((get-config "memcache.use-pool"))
          (setf *memcache*
                (mc-make-memcache-instance
@@ -16,4 +16,4 @@
           (progn
             (setf data ,@body)
             (mc-store key data)
-            data)))))|#
+            data)))))

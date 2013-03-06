@@ -1,7 +1,7 @@
 (in-package :hawksbill.utils)
 
-#|(
- (let ((*my-bundle* (make-instance 'bundle)))
+#- (and)
+((let ((*my-bundle* (make-instance 'bundle)))
    (defun init-l10n-repo ()
      (declare (optimize (safety 3)))
      (let ((locale (scwe ".locale")))
@@ -29,4 +29,4 @@
                       ((get-config "i18n.trans-root")))
          (let ((locale ((get-config "i18n.l10n.locale")))
                (when locale
-                 (load-language locale)))))))|#
+                 (load-language locale)))))))
