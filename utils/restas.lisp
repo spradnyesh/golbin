@@ -32,7 +32,7 @@
          (dolist (dim (first (reverse (group-list #'length *dimensions-combos*))))
            ;; the below 'sort' ensures that the dim-str is lexically sorted based on the dimension
            ;; this reduces permutations-i -> combinations-i
-           (let ((dim-str (join-string-list-with-delim "," (sort dim #'string<))))
+           (let ((dim-str (dim-to-dim-str dim)))
              (setf (gethash dim-str *resources*) (make-hash-table :test 'equal))
              (model-init dim-str)
              (db-connect dim-str))))

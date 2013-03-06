@@ -94,6 +94,8 @@
              (when db
                (close-open-streams db)))))))
 
-(defun db-reconnect (&optional (dim-str *default-dimensions*))
-  (db-disconnect dim-str)
-  (db-connect dim-str))
+(defun db-reconnect ()
+  (dolist (dim (first (reverse (hawksbill.utils::group-list #'length *dimensions-combos*))))
+    (let ((dim-str (dim-to-dim-str dim)))
+      (db-disconnect dim-str)
+      (db-connect dim-str))))

@@ -57,6 +57,9 @@
       (funcall (intern (string-upcase dim-name) :hawksbill.utils) (dimensions *request*))
       (find-dimension-value dim-name)))
 
+(defun dim-to-dim-str (dim)
+  (join-string-list-with-delim "," (sort dim #'string<)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init *dimensions* for every request (as shown in http://restas.lisper.ru/en/manual/decorators.html)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

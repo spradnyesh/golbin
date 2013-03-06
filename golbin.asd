@@ -20,7 +20,7 @@
                                      (:file "html" :depends-on ("package"))
                                      (:file "l10n" :depends-on ("package"))
                                      (:file "pagination" :depends-on ("restas"))
-                                     (:file "db" :depends-on ("config"))
+                                     (:file "db" :depends-on ("config" "dimensions"))
                                      (:file "datetime" :depends-on ("lang" "string"))))
                (:module "common"
                         :components ((:file "package")

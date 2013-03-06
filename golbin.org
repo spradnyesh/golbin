@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [ed] db-reconnect should reconnect all db's (all langs, in same envt???)
 *** TODO [fe][ed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -1488,6 +1487,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-06 Wed 20:52
+     :END:
+**** DONE [db] db-reconnect should reconnect all db's (all langs, in same envt???)
+     CLOSED: [2013-03-06 Wed 21:03]
+     :CLOCK:
+     CLOCK: [2013-03-06 Wed 20:56]--[2013-03-06 Wed 21:03] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-06 Wed 21:03
      :END:
 ** TODO refactor
    :CLOCK:
