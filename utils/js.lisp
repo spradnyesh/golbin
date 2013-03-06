@@ -16,8 +16,8 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
 (defmacro $event ((selector event-binding) &body body)
   `((@ ($ ,selector) ,event-binding) (lambda () ,@body)))
 
-(defmacro $apply (selector function &body body)
-  `((@ ,selector ,function) ,@body))
+(defmacro $apply (selector function &params params)
+  `((@ ,selector ,function) ,@params))
 
 (defmacro $prevent-default ()
   `($apply event prevent-default))

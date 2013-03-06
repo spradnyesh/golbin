@@ -84,9 +84,10 @@
                                                 split ", ")))
                            ($apply ($apply ($apply $
                                                ajax
-                                             (create :url ((@ (elt page-typeof 1) replace)
-                                                           (regex "/0/")
-                                                           (elt page-typeof 0))
+                                             (create :url ($apply (elt page-typeof 1)
+                                                              replace
+                                                            (regex "/0\\\/$/")
+                                                            (+ (elt page-typeof 0) "/"))
                                                      :data-type "json"))
                                        done
                                      (lambda (data)
@@ -94,10 +95,11 @@
                                            (progn
                                              ;; update page-number
                                              ($apply ($apply parent children "span")
-                                                 html (+ (+ 1 (parse-int
-                                                               (elt page-typeof 0)))
-                                                         ", "
-                                                         (elt page-typeof 1)))
+                                                 html
+                                               (+ (+ 1 (parse-int
+                                                        (elt page-typeof 0)))
+                                                  ", "
+                                                  (elt page-typeof 1)))
                                              ($apply next append data.data))
                                            (carousel-fail data)) ))
                                fail
