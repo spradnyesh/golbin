@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][fe] cloud background clipping in some browsers sometimes
 *** [ed] db-reconnect should reconnect all db's (all langs, in same envt???)
 *** TODO [fe][ed][util] lisp style error handling
     :CLOCK:
@@ -1473,6 +1472,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-03 Sun 21:02
      :END:
+**** DONE [bug][fe] cloud background clipping in some browsers sometimes
+     CLOSED: [2013-03-06 Wed 17:41]
+     :CLOCK:
+     CLOCK: [2013-03-06 Wed 17:30]--[2013-03-06 Wed 17:41] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-06 Wed 17:41
+     :END:
+     - http://stackoverflow.com/questions/3821407/browser-does-not-fill-the-background-properly-with-repeat-x
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

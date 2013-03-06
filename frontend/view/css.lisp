@@ -12,7 +12,8 @@
                          :font-family "'Ubuntu', Arial,sans-serif"
                          :font-size "14px"
                          :line-height "21px"
-                         :margin "0 auto"))
+                         :margin "0 auto"
+                         :min-width "1200px"))
 
            (("strong")
             (:font-weight "bold"))
