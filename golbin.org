@@ -1496,6 +1496,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-06 Wed 21:03
      :END:
+**** DONE [bug][fed] js compilation errors
+     CLOSED: [2013-03-07 Thu 16:03]
+     :CLOCK:
+     CLOCK: [2013-03-07 Thu 15:58]--[2013-03-07 Thu 16:03] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-07 Thu 16:03
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
