@@ -34,7 +34,7 @@
 
                  ;; http://stackoverflow.com/a/8764051
                  (get-url-parameter (name)
-                   (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|#|;|$)"))) exec) (@ location search)) ([] null "")) 1) replace) (regex "/\\+/g") "%20")) null))
+                   (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|#|;|$)"))) exec) (@ location search)) (array null "")) 1) replace) (regex "/\\+/g") "%20")) null))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; common to article/photo pages
