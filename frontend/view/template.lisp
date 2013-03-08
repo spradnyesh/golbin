@@ -30,7 +30,7 @@
                           :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
                    (if (string-equal (get-dimension-value "envt") "prod")
                        (htm (:link :rel "stylesheet" :type "text/css"
-                                   :href "/static/css/fe-8-min.css"))
+                                   :href "/static/css/fe-9-min.css"))
                        (htm (:style (str (fe-get-css)))))
 
                    ;; google-analytics
