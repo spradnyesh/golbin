@@ -1504,6 +1504,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-07 Thu 16:03
      :END:
+**** DONE [bug][util] version-increment not working
+     CLOSED: [2013-03-08 Fri 14:05]
+     :CLOCK:
+     CLOCK: [2013-03-08 Fri 13:51]--[2013-03-08 Fri 14:05] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-08 Fri 14:10
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
