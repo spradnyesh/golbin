@@ -2,7 +2,7 @@
 
 * tasks
 ** backlog
-*** TODO [fe][ed][util] lisp style error handling
+*** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
     CLOCK: [2013-02-28 Thu 13:30]--[2013-02-28 Thu 14:45] =>  1:15
@@ -45,7 +45,6 @@
         - http://wordpress.org/extend/themes/twentyten
         - http://wordpress.org/extend/themes/twentyeleven *
         - http://wordpress.org/extend/themes/picolight *****
-*** [bug][ed] select/upload photo not working for prod
 *** [fe][ed][util] lisp style error handling
     - http://psg.com/~dlamkins/sl/chapter23.html
     - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
@@ -1520,6 +1519,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-10 Sun 15:10
+     :END:
+**** DONE [bug][ed] select/upload photo not working for prod
+     CLOSED: [2013-03-10 Sun 15:39]
+     :CLOCK:
+     CLOCK: [2013-03-10 Sun 15:10]--[2013-03-10 Sun 15:39] =>  0:29
+     CLOCK: [2013-03-10 Sun 15:05]--[2013-03-10 Sun 15:08] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-10 Sun 15:39
      :END:
 ** TODO refactor
    :CLOCK:
