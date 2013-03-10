@@ -20,7 +20,10 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
   `((@ ,selector ,function) ,@params))
 
 (defmacro $prevent-default ()
-  `($apply event prevent-default))
+  `false
+  #|(if event
+       ($apply event prevent-default)
+       false)|#)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id

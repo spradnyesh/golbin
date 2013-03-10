@@ -47,8 +47,7 @@
                                (lambda (event)
                                  (when (and (eql (@ event key-code)
                                                  (@ (@ (@ $ ui) key-code) "TAB"))
-                                            (@ (@ ($apply ($ this) data "autocomplete") menu) active))
-                                   ($prevent-default))))
+                                            (@ (@ ($apply ($ this) data "autocomplete") menu) active)))))
                        autocomplete
                      (create :min-length 2
                              :source (lambda (request response)
@@ -100,14 +99,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; article page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; submit form using ajax
+                 ;; submit form using ajax
                  (submit-article-ajax ()
                    ($apply ($ "#article form")
                        attr
                      "action"
                      (+ "/ajax" ($apply ($ "#article form") attr "action"))))
 
-;;; article submit
+                 ;; article submit
                  (article-submit ()
                    ($prevent-default)
                    ;; http://stackoverflow.com/a/1903820
@@ -121,8 +120,7 @@
                              :success (lambda (data text-status jq-x-h-r)
                                         (article-submit-done data text-status jq-x-h-r))
                              :error (lambda (jq-x-h-r text-status error-thrown)
-                                      (ajax-fail jq-x-h-r text-status error-thrown))))
-                   false)
+                                      (ajax-fail jq-x-h-r text-status error-thrown)))))
 
                  (article-submit-done (data text-status jq-x-h-r)
                    (if (= data.status "success")
@@ -139,7 +137,7 @@
                    (alert "There are errors in the submitted article. Please correct them and submit again.") ; TODO: translate
                    false)
 
-;;; common for select/upload photo pane
+                 ;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")
                        append
@@ -154,8 +152,7 @@
 
                  (close-photo-pane ()
                    ($prevent-default)
-                   ((@ ($ "#photo-pane") remove))
-                   false)
+                   ((@ ($ "#photo-pane") remove)))
 
                  (nonlead-photo-url ()
                    ($prevent-default)
@@ -165,22 +162,22 @@
                               (+ "_" (elt image-sizes 0) ".")
                               (+ "_" (elt image-sizes 1) ".")))))
 
-;;; select photo pane
+                 ;; select photo pane
                  (unselect-lead-photo ()
-                   ($prevent-default)
                    ;; change the photo-id in hidden-field
                    ($apply ($ "#lead-photo") val "")
                    ;; remove img tag
                    ($apply ($apply ($apply ($ "#lead-photo") siblings "span") children "img") remove)
                    ;; remove 'unselect' link
-                   ($apply ($ "#unselect-lead-photo") remove))
-                 (select-lead-photo-init ()
+                   ($apply ($ "#unselect-lead-photo") remove)
+                   ($prevent-default))
+                 (select-lead-photo-init (event)
                    (setf lead true)
-                   (select-photo-init))
-                 (select-nonlead-photo-init ()
+                   (select-photo-init event))
+                 (select-nonlead-photo-init (event)
                    (setf lead false)
                    (select-photo-init))
-                 (select-photo-init ()
+                 (select-photo-init (event)
                    (create-photo-pane)
                    ($apply ($ "#photo-pane") append ($ "<div class='pagination'><a href='' class='prev'>Previous</a><a href='' class='next'>Next</a></div>"))
                    ($apply ($ "#photo-pane p") prepend ($ "<div class='search'></div>"))
@@ -219,15 +216,14 @@
                          ($apply ($ "#photo-pane .search .cat") append ele)))
                      ($event ("#photo-pane .search .cat" change) (change-category "#photo-pane .search"))
                      ;; tags
-                     (tags-autocomplete ($ "#photo-pane .search .tags"))
+                     #|(tags-autocomplete ($ "#photo-pane .search .tags"))|#
                      ;; search
                      ($event ("#photo-pane .search a.search-btn" click)
                        (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))))
 
                  (select-photo-call (who page)
                    (when (< page 0)
-                     return)
-                   ($prevent-default)
+                     (return false))
                    (setf select-photo-who who)
                    ($apply ($apply ($apply $
                                        ajax
@@ -249,7 +245,7 @@
                              (lambda (data) (select-photo-done data)))
                        fail
                      (lambda (data) (photo-fail data)))
-                   false)
+                   ($prevent-default))
 
                  (select-photo-done (data)
                    ;; TODO: clear loading icon
@@ -273,11 +269,12 @@
                                     ($apply ($apply ($apply ($ "<li></li>")
                                                         append id)
                                                 append a)
-                                        append title)))))
-                       (photo-fail data)))
+                                        append title))))
+                              false)
+                       (photo-fail data))
+                   false)
 
                  (select-photo ()
-                   ($prevent-default)
                    (let ((target-img ($ (@ event target))))
                      (if lead
                          (progn
@@ -300,21 +297,22 @@
                              ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
                              ;; add-event so that when image is clicked, we show a popoup w/ url for copying
                              ($event (a-target click) (nonlead-photo-url))))))
-                   (close-photo-pane))
+                   (close-photo-pane)
+                   ($prevent-default))
 
                  (select-photo-pagination-prev ()
-                   ($prevent-default)
                    (setf select-photo-pagination-direction "prev")
                    (setf select-photo-paginate true)
-                   (select-photo-call select-photo-who (- (elt select-photo-next-page select-photo-who) 2)))
+                   (select-photo-call select-photo-who (- (elt select-photo-next-page select-photo-who) 2))
+                   ($prevent-default))
 
                  (select-photo-pagination-next ()
-                   ($prevent-default)
                    (setf select-photo-pagination-direction "next")
                    (setf select-photo-paginate true)
-                   (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))
+                   (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who))
+                   ($prevent-default))
 
-;;; upload photo pane
+                 ;; upload photo pane
                  (upload-lead-photo-init ()
                    (setf lead true)
                    (upload-photo-init))
@@ -322,12 +320,11 @@
                    (setf lead false)
                    (upload-photo-init))
                  (upload-photo-init ()
-                   ($prevent-default)
                    (create-photo-pane)
                    ($apply ($ "#photo-pane ul") remove)
                    ;; TODO: show loading icon
                    (upload-photo-call)
-                   false)
+                   ($prevent-default))
 
                  (upload-photo-call ()
                    ($apply ($apply ($apply $
@@ -348,12 +345,11 @@
                            data.data)
                          ($event ("#photo-pane form" submit) (upload-photo-submit))
                          ($event ("#photo-pane .cat" change) (change-category "#photo-pane"))
-                         (tags-autocomplete ($ "#photo-pane .tags"))
+                         #|(tags-autocomplete ($ "#photo-pane .tags"))|#
                          false)
                        (photo-fail data)))
 
                  (upload-photo-submit ()
-                   ($prevent-default)
                    ;; TODO: client side error handling
                    ($apply ($ "#photo-pane form") ajax-submit
                      (create :data-type "json"
@@ -362,7 +358,7 @@
                                         (upload-photo-submit-done data text-status jq-x-h-r))
                              :error (lambda (jq-x-h-r text-status error-thrown)
                                       (ajax-fail jq-x-h-r text-status error-thrown))))
-                   false)
+                   ($prevent-default))
 
                  (upload-photo-submit-done (data text-status jq-x-h-r)
                    (if (= data.status "success")
@@ -404,7 +400,7 @@
 
         ;; some init functions
         (submit-article-ajax)
-        (tags-autocomplete ($ ".tags"))
+        #|(tags-autocomplete ($ ".tags"))|#
         (sort-categories ($ "#sort-catsubcat"))
 
         false)))
