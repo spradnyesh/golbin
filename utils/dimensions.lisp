@@ -22,13 +22,6 @@
    :request-class 'hawksbill-request))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; helper macros
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro unless-setf-setf (var if-val else-val)
-  `(unless (setf ,var ,if-val)
-     (setf ,var ,else-val)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-resource (name dim-str)
@@ -68,11 +61,12 @@
 (defmethod process-route :before ((route dimensions-route) bindings)
   (let* ((host (host))
          (index (search (get-config "site.url") host))
-         (envt (get-config "site.envt"))
-         (lang (get-config "site.lang")))
+         (envt nil)
+         (lang nil))
     ;; *fallback* logic
-    ;; envt: config-default -> host -> d1m
-    ;; lang: config-default -> host -> cookie -> d1m
+    ;; envt: default (fallback on config at init) -> host -> d1m
+    ;; lang: default (fallback on config at init) -> host -> cookie -> d1m
+
     ;; host (works only in prod)
     (when index
       (setf envt "prod")
@@ -82,13 +76,13 @@
               (t (setf lang "en-IN")))))
     ;; cookie (works only for ed)
     (let ((ed-lang (cookie-in "ed-lang")))
-      (when ed-lang (setf lang ed-lang)))
+      (when ed-lang (setf lang ed-lang))
+      (setf envt (find-dimension-value "envt")))
     ;; d1m (works only in dev)
-    (when (and (get-parameter "d1m")
-               (or (search "localhost" host) (search "127.0.0.1" host)))
+    (when (and (or (search "localhost" host) (search "127.0.0.1" host))
+               (get-parameter "d1m"))
       (setf lang (find-dimension-value "lang" (parameter "d1m")))
       (setf envt (find-dimension-value "envt" (parameter "d1m"))))
-    (log-message* :error lang)
     (setf (dimensions *request*)
           (make-instance 'dimensions
                          :envt envt
