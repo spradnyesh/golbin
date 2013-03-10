@@ -111,7 +111,7 @@
                  (article-submit ()
                    ($prevent-default)
                    ;; http://stackoverflow.com/a/1903820
-                   ($apply -C-k-e-d-i-t-o-r.instances.body update-element)
+                   ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
                    ;; TODO: client side error handling
                    ($apply ($ "#article form") ajax-submit
                      ;; http://api.jquery.com/jQuery.ajax/
@@ -132,7 +132,7 @@
                    false)
 
                  (article-fail (data)
-                   (when (/= nil data.errors.non-golbin-images)
+                   (when (/= nil (@ data errors non-golbin-images))
                      ($apply ($apply ($ "#body") parent)
                          append
                        ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))

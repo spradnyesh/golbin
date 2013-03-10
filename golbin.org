@@ -1513,6 +1513,14 @@
      :ARCHIVE_TIME: 2013-03-08 Fri 14:12
      :END:
      - http://stackoverflow.com/questions/3821407/browser-does-not-fill-the-background-properly-with-repeat-x
+**** DONE [bug][ed] remove parenscript warnings
+     CLOSED: [2013-03-10 Sun 15:10]
+     :CLOCK:
+     CLOCK: [2013-03-10 Sun 15:08]--[2013-03-10 Sun 15:10] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-10 Sun 15:10
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
