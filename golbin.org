@@ -2,9 +2,10 @@
 
 * tasks
 ** backlog
-*** TODO [bug][ed] photo-pane not working in ff
+*** TODO [bug][fed] js not working in ff
     :CLOCK:
-    CLOCK: [2013-03-10 Sun 17:50]--[2013-03-10 Sun 19:04] =>  1:14
+    CLOCK: [2013-03-10 Sun 20:30]--[2013-03-10 Sun 21:11] =>  0:41
+    CLOCK: [2013-03-10 Sun 17:50]--[2013-03-10 Sun 19:05] =>  1:15
     :END:
     - test in other browsers too
 *** TODO [fed][util] lisp style error handling

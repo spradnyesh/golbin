@@ -14,16 +14,13 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
 
 ;; http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-6
 (defmacro $event ((selector event-binding) &body body)
-  `((@ ($ ,selector) ,event-binding) (lambda () ,@body)))
+  `((@ ($ ,selector) ,event-binding) (lambda (event) ,@body)))
 
 (defmacro $apply (selector function &body params)
   `((@ ,selector ,function) ,@params))
 
 (defmacro $prevent-default ()
-  `false
-  #|(if event
-       ($apply event prevent-default)
-       false)|#)
+  `(when event ($apply event prevent-default)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id

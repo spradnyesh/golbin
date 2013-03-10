@@ -67,12 +67,11 @@
                                          ($apply terms pop)
                                          ($apply terms push (@ (@ ui item) value))
                                          ($apply terms push "")
-                                         (setf (@ this value) ($apply terms join ", ")))
-                                       false)))
-                   false)
+                                         (setf (@ this value) ($apply terms join ", ")))))))
 
                  ;; change sub-category when user changes category
-                 (change-category (form-prefix)
+                 (change-category (event form-prefix)
+                   ($prevent-default)
                    (let ((cat-id (parse-int ($apply ($ (+ form-prefix " .cat")) val)))
                          (ele nil))
                      (if (eql cat-id 0)
@@ -107,7 +106,7 @@
                      (+ "/ajax" ($apply ($ "#article form") attr "action"))))
 
                  ;; article submit
-                 (article-submit ()
+                 (article-submit (event)
                    ($prevent-default)
                    ;; http://stackoverflow.com/a/1903820
                    ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
@@ -126,23 +125,22 @@
                    (if (= data.status "success")
                        ;; this is the redirect after POST
                        (setf window.location data.data)
-                       (article-fail data))
-                   false)
+                       (article-fail data)))
 
                  (article-fail (data)
                    (when (/= nil (@ data errors non-golbin-images))
                      ($apply ($apply ($ "#body") parent)
                          append
                        ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))
-                   (alert "There are errors in the submitted article. Please correct them and submit again.") ; TODO: translate
-                   false)
+                   ;; TODO: translate
+                   (alert "There are errors in the submitted article. Please correct them and submit again."))
 
                  ;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")
                        append
                      ($ "<div id='photo-pane'><p><a class='close' href=''>Close</a></p><ul></ul></div>"))
-                   ($event ("#photo-pane a.close" click) (close-photo-pane)))
+                   ($event ("#photo-pane a.close" click) (close-photo-pane event)))
 
                  (photo-fail (data)
                    ;; TODO: clear loading icon
@@ -150,11 +148,11 @@
                    (setf select-photo-paginate false)
                    false)
 
-                 (close-photo-pane ()
+                 (close-photo-pane (event)
                    ($prevent-default)
                    ((@ ($ "#photo-pane") remove)))
 
-                 (nonlead-photo-url ()
+                 (nonlead-photo-url (event)
                    ($prevent-default)
                    (alert (+ "Please copy this URL and use it for inline images in the article body below: "
                              ((@ ((@ ($ ($ (@ event target))) attr) "src")
@@ -163,35 +161,36 @@
                               (+ "_" (elt image-sizes 1) ".")))))
 
                  ;; select photo pane
-                 (unselect-lead-photo ()
+                 (unselect-lead-photo (event)
+                   ($prevent-default)
                    ;; change the photo-id in hidden-field
                    ($apply ($ "#lead-photo") val "")
                    ;; remove img tag
                    ($apply ($apply ($apply ($ "#lead-photo") siblings "span") children "img") remove)
                    ;; remove 'unselect' link
-                   ($apply ($ "#unselect-lead-photo") remove)
-                   ($prevent-default))
+                   ($apply ($ "#unselect-lead-photo") remove))
                  (select-lead-photo-init (event)
                    (setf lead true)
                    (select-photo-init event))
                  (select-nonlead-photo-init (event)
                    (setf lead false)
-                   (select-photo-init))
+                   (select-photo-init event))
                  (select-photo-init (event)
+                   ($prevent-default)
                    (create-photo-pane)
                    ($apply ($ "#photo-pane") append ($ "<div class='pagination'><a href='' class='prev'>Previous</a><a href='' class='next'>Next</a></div>"))
                    ($apply ($ "#photo-pane p") prepend ($ "<div class='search'></div>"))
                    ;; TODO: show loading icon
                    (select-photo-add-all-my-tabs)
                    (select-search-markup)
-                   (select-photo-call "all" 0)
-                   ($event ("#photo-pane .pagination a.prev" click) (select-photo-pagination-prev))
-                   ($event ("#photo-pane .pagination a.next" click) (select-photo-pagination-next)))
+                   (select-photo-call event "all" 0)
+                   ($event ("#photo-pane .pagination a.prev" click) (select-photo-pagination-prev event))
+                   ($event ("#photo-pane .pagination a.next" click) (select-photo-pagination-next event)))
 
                  (select-photo-add-all-my-tabs ()
                    ($apply ($ "#photo-pane p") prepend ($ "<span>Photos<a class='all-photos' href=''> All </a><a class='my-photos' href=''> My </a></span>"))
-                   ($event ("#photo-pane a.all-photos" click) (select-photo-call "all" 0))
-                   ($event ("#photo-pane a.my-photos" click) (select-photo-call "me" 0)))
+                   ($event ("#photo-pane a.all-photos" click) (select-photo-call event "all" 0))
+                   ($event ("#photo-pane a.my-photos" click) (select-photo-call event "me" 0)))
 
                  (select-search-markup ()
                    (let ((cat ($ "<select name='cat' class='td-input cat'><option selected='selected' value='0'>Select</option></select>"))
@@ -219,11 +218,12 @@
                      #|(tags-autocomplete ($ "#photo-pane .search .tags"))|#
                      ;; search
                      ($event ("#photo-pane .search a.search-btn" click)
-                       (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))))
+                       (select-photo-call event select-photo-who (elt select-photo-next-page select-photo-who)))))
 
-                 (select-photo-call (who page)
+                 (select-photo-call (event who page)
+                   ($prevent-default)
                    (when (< page 0)
-                     (return false))
+                     (return-from select-photo-call false))
                    (setf select-photo-who who)
                    ($apply ($apply ($apply $
                                        ajax
@@ -244,8 +244,7 @@
                                done
                              (lambda (data) (select-photo-done data)))
                        fail
-                     (lambda (data) (photo-fail data)))
-                   ($prevent-default))
+                     (lambda (data) (photo-fail data))))
 
                  (select-photo-done (data)
                    ;; TODO: clear loading icon
@@ -263,18 +262,17 @@
                                        (img ($ (elt d 1)))
                                        (title ((@ ($ "<p></p>") append) ((@ ($ img) attr) "alt")))
                                        (a ($apply ($ "<a href=''></a>") append img)))
-                                  ($event (a click) (select-photo))
+                                  ($event (a click) (select-photo event))
                                   ($apply ($ "#photo-pane ul")
                                       append
                                     ($apply ($apply ($apply ($ "<li></li>")
                                                         append id)
                                                 append a)
-                                        append title))))
-                              false)
-                       (photo-fail data))
-                   false)
+                                        append title)))))
+                       (photo-fail data)))
 
-                 (select-photo ()
+                 (select-photo (event)
+                   ($prevent-default)
                    (let ((target-img ($ (@ event target))))
                      (if lead
                          (progn
@@ -290,41 +288,40 @@
                              ($apply span html target-img)
                              ;; add 'unselect' link in 'span'
                              ($apply span append ($ "<a id='unselect-lead-photo' href=''>Unselect photo. </a>"))
-                             ($event ("#unselect-lead-photo" click) (unselect-lead-photo))))
+                             ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))))
                          (progn
                            (let ((a-target ((@ ($ "<a href=''></a>") append) target-img)))
                              ;; append photo to list of nonlead photos
                              ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
                              ;; add-event so that when image is clicked, we show a popoup w/ url for copying
-                             ($event (a-target click) (nonlead-photo-url))))))
-                   (close-photo-pane)
-                   ($prevent-default))
+                             ($event (a-target click) (nonlead-photo-url event))))))
+                   (close-photo-pane nil))
 
-                 (select-photo-pagination-prev ()
+                 (select-photo-pagination-prev (event)
+                   ($prevent-default)
                    (setf select-photo-pagination-direction "prev")
                    (setf select-photo-paginate true)
-                   (select-photo-call select-photo-who (- (elt select-photo-next-page select-photo-who) 2))
-                   ($prevent-default))
+                   (select-photo-call select-photo-who (- (elt select-photo-next-page select-photo-who) 2)))
 
-                 (select-photo-pagination-next ()
+                 (select-photo-pagination-next (event)
+                   ($prevent-default)
                    (setf select-photo-pagination-direction "next")
                    (setf select-photo-paginate true)
-                   (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who))
-                   ($prevent-default))
+                   (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))
 
                  ;; upload photo pane
-                 (upload-lead-photo-init ()
+                 (upload-lead-photo-init (event)
                    (setf lead true)
-                   (upload-photo-init))
-                 (upload-nonlead-photo-init ()
+                   (upload-photo-init event))
+                 (upload-nonlead-photo-init (event)
                    (setf lead false)
-                   (upload-photo-init))
-                 (upload-photo-init ()
+                   (upload-photo-init event))
+                 (upload-photo-init (event)
+                   ($prevent-default)
                    (create-photo-pane)
                    ($apply ($ "#photo-pane ul") remove)
                    ;; TODO: show loading icon
-                   (upload-photo-call)
-                   ($prevent-default))
+                   (upload-photo-call))
 
                  (upload-photo-call ()
                    ($apply ($apply ($apply $
@@ -343,13 +340,14 @@
                          ($apply ($ "#photo-pane")
                              append
                            data.data)
-                         ($event ("#photo-pane form" submit) (upload-photo-submit))
-                         ($event ("#photo-pane .cat" change) (change-category "#photo-pane"))
-                         #|(tags-autocomplete ($ "#photo-pane .tags"))|#
-                         false)
+                         ($event ("#photo-pane form" submit) (upload-photo-submit event))
+                         ($event ("#photo-pane .cat" change) (change-category event "#photo-pane"))
+                         #- (and)
+                         (tags-autocomplete ($ "#photo-pane .tags")))
                        (photo-fail data)))
 
-                 (upload-photo-submit ()
+                 (upload-photo-submit (event)
+                   ($prevent-default)
                    ;; TODO: client side error handling
                    ($apply ($ "#photo-pane form") ajax-submit
                      (create :data-type "json"
@@ -357,8 +355,7 @@
                              :success (lambda (data text-status jq-x-h-r)
                                         (upload-photo-submit-done data text-status jq-x-h-r))
                              :error (lambda (jq-x-h-r text-status error-thrown)
-                                      (ajax-fail jq-x-h-r text-status error-thrown))))
-                   ($prevent-default))
+                                      (ajax-fail jq-x-h-r text-status error-thrown)))))
 
                  (upload-photo-submit-done (data text-status jq-x-h-r)
                    (if (= data.status "success")
@@ -375,9 +372,9 @@
                                ;; append photo to list of nonlead photos
                                ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
                                ;; add-event so that when image is clicked, we show a popoup w/ url for copying
-                               ($event (a-target click) (nonlead-photo-url)))))
+                               ($event (a-target click) (nonlead-photo-url event)))))
                        (photo-fail data))
-                   (close-photo-pane))
+                   (close-photo-pane nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; category page
@@ -390,17 +387,15 @@
                                                        :protectRoot t))))))
 
         ;; define event handlers
-        ($event (".cat" change) (change-category ""))
-        ($event ("#article form" submit) (article-submit))
-        ($event ("#select-lead-photo" click) (select-lead-photo-init))
-        ($event ("#unselect-lead-photo" click) (unselect-lead-photo))
-        ($event ("#upload-lead-photo" click) (upload-lead-photo-init))
-        ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init))
-        ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init))
+        ($event (".cat" change) (change-category event ""))
+        ($event ("#article form" submit) (article-submit event))
+        ($event ("#select-lead-photo" click) (select-lead-photo-init event))
+        ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))
+        ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
+        ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
+        ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
 
         ;; some init functions
         (submit-article-ajax)
         #|(tags-autocomplete ($ ".tags"))|#
-        (sort-categories ($ "#sort-catsubcat"))
-
-        false)))
+        (sort-categories ($ "#sort-catsubcat")))))

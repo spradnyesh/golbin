@@ -17,7 +17,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; navigation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 (display-subcategory ()
+                 (display-subcategory (event)
+                   ($prevent-default)
                    (unless in-nav
                      (setf subnav ($apply ($ "#subnav")
                                       children))
@@ -30,9 +31,9 @@
                                  "ul")
                            children))
                      (setf in-nav t)
-                     (setf that this))
-                   false)
-                 (hide-subcategory ()
+                     (setf that this)))
+                 (hide-subcategory (event)
+                   ($prevent-default)
                    (when in-nav
                      ($apply ($apply ($ that)
                                  children
@@ -42,16 +43,15 @@
                            children))
                      ($apply ($ "#subnav") append subnav)
                      (setf in-nav nil)
-                     (setf that nil))
-                   false)
+                     (setf that nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; carousel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 (carousel-prev ()
+                 (carousel-prev (event)
                    ($prevent-default)
-                   (let* ((parent ($apply ($apply ($ this) parent) parent))
-                          (prev ($apply parent children "div.prev"))
+                   (let* ((parent (@ event target parent-node parent-node parent-node))
+                          (prev (@ parent children "div.prev"))
                           (current ($apply parent children "div.current"))
                           (next ($apply parent children "div.next"))
                           (prev-children ($apply prev children)))
@@ -60,16 +60,16 @@
                            append ($apply current children))
                        ($apply current
                            append (elt ($apply prev children)
-                                       (1- (length prev-children))))))
-                   false)
-                 (carousel-next ()
+                                       (1- (length prev-children)))))))
+                 (carousel-next (event)
                    ($prevent-default)
-                   (let* ((parent ($apply ($apply ($ this) parent) parent))
+                   (let* ((parent (@ event target parent-node parent-node parent-node))
                           (prev ($apply parent children "div.prev"))
                           (current ($apply parent children "div.current"))
                           (next ($apply parent children "div.next"))
                           (next-children ($apply next children))
                           (len-next (length next-children)))
+                     (alert (@ parent tag-name))
                      (when (> len-next 0)
                        ;; show the current (next) batch
                        ($apply prev append ($apply current children))
@@ -103,25 +103,21 @@
                                              ($apply next append data.data))
                                            (carousel-fail data)) ))
                                fail
-                             (carousel-fail data))))))
-                   false)
-                 (carousel-fail (data)
-                   false)
+                             (carousel-fail data)))))))
+                 (carousel-fail (data))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; comment
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 (comment-reply ()
+                 (comment-reply (event)
                    ($prevent-default)
                    ($apply ($ "#a-comments .parent") val ($apply ($ this) attr "id"))
                    ($apply ($apply ($ this) parent) append ($apply ($ "#c-table") remove))
-                   ($apply ($ "#c-table") show)
-                   false)))
+                   ($apply ($ "#c-table") show))))
 
           ;; define event handlers
-          ($apply ($ "#prinav .cat") hover display-subcategory (lambda () ()))
-          ($apply ($ "#nav") hover (lambda () ()) hide-subcategory)
-          ($apply ($ ".carousel p.prev a") click carousel-prev)
-          ($apply ($ ".carousel p.next a") click carousel-next)
-          ($apply ($ "#a-comments .c-reply a") click comment-reply)
-          false))))
+          ($event ("#prinav .cat" hover) (display-subcategory event))
+          ($event ("#nav" hover) (hide-subcategory event))
+          ($event (".carousel p.prev a" click) (carousel-prev event))
+          ($event (".carousel p.next a" click) (carousel-next event))
+          ($event ("#a-comments .c-reply a" click) (comment-reply event))))))
