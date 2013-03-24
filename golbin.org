@@ -1544,14 +1544,15 @@
      :ARCHIVE_TIME: 2013-03-24 Sun 13:25
      :END:
 **** DONE [bug][fed] js not working in ff
-     CLOSED: [2013-03-24 Sun 18:10]
+     CLOSED: [2013-03-24 Sun 18:23]
      :CLOCK:
+     CLOCK: [2013-03-24 Sun 18:10]--[2013-03-24 Sun 18:23] =>  0:13
      CLOCK: [2013-03-24 Sun 16:02]--[2013-03-24 Sun 18:10] =>  2:08
      CLOCK: [2013-03-10 Sun 20:30]--[2013-03-10 Sun 21:11] =>  0:41
      CLOCK: [2013-03-10 Sun 17:50]--[2013-03-10 Sun 19:05] =>  1:15
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-03-24 Sun 18:11
+     :ARCHIVE_TIME: 2013-03-24 Sun 18:23
      :END:
      - test in other browsers too
 ** TODO refactor

@@ -30,7 +30,7 @@
                           :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
                    (if (string-equal (get-dimension-value "envt") "prod")
                        (htm (:link :rel "stylesheet" :type "text/css"
-                                   :href "/static/css/fe-9-min.css")
+                                   :href "/static/css/fe-10-min.css")
                             ;; google analytics and adsense
                             (htm (:script :type "text/javascript"
                             (str "
@@ -65,7 +65,7 @@
             (if (string-equal (get-dimension-value "envt") "prod")
                 (htm (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
                      (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
-                     (:script :type "text/javascript" :src "/static/js/fe-1-min.js")
+                     (:script :type "text/javascript" :src "/static/js/fe-2-min.js")
                      (:script :type "text/javascript"
                               (str "
 var switchTo5x=true;
