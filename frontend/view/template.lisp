@@ -65,7 +65,8 @@
             (if (string-equal (get-dimension-value "envt") "prod")
                 (htm (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
                      (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
-                     (:script :type "text/javascript" :src "/static/js/fe-2-min.js")
+                     (:script :type "text/javascript"
+                              :src "/static/js/fe-2-min.js")
                      (:script :type "text/javascript"
                               (str "
 var switchTo5x=true;

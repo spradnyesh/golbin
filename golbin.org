@@ -1555,6 +1555,14 @@
      :ARCHIVE_TIME: 2013-03-24 Sun 18:23
      :END:
      - test in other browsers too
+**** DONE [bug][utils] minification script not working
+     CLOSED: [2013-03-24 Sun 18:29]
+     :CLOCK:
+     CLOCK: [2013-03-24 Sun 18:24]--[2013-03-24 Sun 18:29] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-24 Sun 18:29
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
