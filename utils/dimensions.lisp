@@ -61,8 +61,8 @@
 (defmethod process-route :before ((route dimensions-route) bindings)
   (let* ((host (host))
          (index (search (get-config "site.url") host))
-         (envt nil)
-         (lang nil))
+         (envt (find-dimension-value "envt"))
+         (lang (find-dimension-value "lang")))
     ;; *fallback* logic
     ;; envt: default (fallback on config at init) -> host -> d1m
     ;; lang: default (fallback on config at init) -> host -> cookie -> d1m
@@ -76,8 +76,7 @@
               (t (setf lang "en-IN")))))
     ;; cookie (works only for ed)
     (let ((ed-lang (cookie-in "ed-lang")))
-      (when ed-lang (setf lang ed-lang))
-      (setf envt (find-dimension-value "envt")))
+      (when ed-lang (setf lang ed-lang)))
     ;; d1m (works only in dev)
     (when (and (or (search "localhost" host) (search "127.0.0.1" host))
                (get-parameter "d1m"))

@@ -1541,6 +1541,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-10 Sun 16:07
      :END:
+**** DONE [bug][fe] load + fe-start => 500 error
+     CLOSED: [2013-03-24 Sun 13:25]
+     :CLOCK:
+     CLOCK: [2013-03-24 Sun 13:11]--[2013-03-24 Sun 13:25] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-24 Sun 13:25
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
