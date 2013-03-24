@@ -3,13 +3,12 @@
 (import-macros-from-lisp '$event)
 (import-macros-from-lisp '$apply)
 (import-macros-from-lisp '$prevent-default)
+(import-macros-from-lisp '$log)
 
 (defun on-load ()
   (ps ($event (document ready)
         ;; define variables
-        (let ((that nil)
-              (subnav nil)
-              (in-nav nil)
+        (let ((subnav nil)
               (carousel-move 4))
 
           ;; define functions
@@ -17,41 +16,36 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; navigation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 (display-subcategory (event)
+                 (update-subcategory (event)
+                   ;; subnav <- #subnav, #subnav <- empty, #subnav <- @target
                    ($prevent-default)
-                   (unless in-nav
-                     (setf subnav ($apply ($ "#subnav")
-                                      children))
-                     ($apply ($ "#subnav")
-                         empty)
-                     ($apply ($ "#subnav")
-                         append
-                       ($apply ($apply ($ this)
-                                   children
-                                 "ul")
-                           children))
-                     (setf in-nav t)
-                     (setf that this)))
-                 (hide-subcategory (event)
-                   ($prevent-default)
-                   (when in-nav
-                     ($apply ($apply ($ that)
-                                 children
-                               "ul")
-                         append
+                   (let ((node (@ event target parent-node parent-node)))
+                     (when (= (@ node node-name) "LI")
+                       (setf subnav ($apply ($ "#subnav") children))
+                       ($apply ($ "#subnav") empty)
                        ($apply ($ "#subnav")
-                           children))
-                     ($apply ($ "#subnav") append subnav)
-                     (setf in-nav nil)
-                     (setf that nil)))
+                           append
+                         ($apply ($apply ($ (@ event target parent-node parent-node))
+                                     children
+                                   "ul")
+                             children)))))
+                 (restore-subcategory (event)
+                   ;; @target <- #subnav, #subnav <- empty, #subnav <- subnav
+                   ($prevent-default)
+                   (let ((node (@ event target parent-node parent-node)))
+                     (when (= (@ node node-name) "LI")
+                       ($apply ($apply ($ node) children "ul")
+                           append ($apply ($ "#subnav") children))
+                       ($apply ($ "#subnav") empty)
+                       ($apply ($ "#subnav") append subnav))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; carousel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (carousel-prev (event)
                    ($prevent-default)
-                   (let* ((parent (@ event target parent-node parent-node parent-node))
-                          (prev (@ parent children "div.prev"))
+                   (let* ((parent ($ (@ event target parent-node parent-node)))
+                          (prev ($apply parent children "div.prev"))
                           (current ($apply parent children "div.current"))
                           (next ($apply parent children "div.next"))
                           (prev-children ($apply prev children)))
@@ -63,13 +57,12 @@
                                        (1- (length prev-children)))))))
                  (carousel-next (event)
                    ($prevent-default)
-                   (let* ((parent (@ event target parent-node parent-node parent-node))
+                   (let* ((parent ($ (@ event target parent-node parent-node)))
                           (prev ($apply parent children "div.prev"))
                           (current ($apply parent children "div.current"))
                           (next ($apply parent children "div.next"))
                           (next-children ($apply next children))
                           (len-next (length next-children)))
-                     (alert (@ parent tag-name))
                      (when (> len-next 0)
                        ;; show the current (next) batch
                        ($apply prev append ($apply current children))
@@ -88,6 +81,8 @@
                                                               replace
                                                             (regex "/0\\\/$/")
                                                             (+ (elt page-typeof 0) "/"))
+                                                     :cache false
+                                                     :async false
                                                      :data-type "json"))
                                        done
                                      (lambda (data)
@@ -103,7 +98,8 @@
                                              ($apply next append data.data))
                                            (carousel-fail data)) ))
                                fail
-                             (carousel-fail data)))))))
+                             (lambda (data)
+                               (carousel-fail data))))))))
                  (carousel-fail (data))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -116,8 +112,9 @@
                    ($apply ($ "#c-table") show))))
 
           ;; define event handlers
-          ($event ("#prinav .cat" hover) (display-subcategory event))
-          ($event ("#nav" hover) (hide-subcategory event))
+          ((@ ($ "#prinav .cat h2 a" ) hover)
+           (lambda (event) (update-subcategory event))
+           (lambda (event) (restore-subcategory event)))
           ($event (".carousel p.prev a" click) (carousel-prev event))
           ($event (".carousel p.next a" click) (carousel-next event))
           ($event ("#a-comments .c-reply a" click) (comment-reply event))))))

@@ -2,12 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [bug][fed] js not working in ff
-    :CLOCK:
-    CLOCK: [2013-03-10 Sun 20:30]--[2013-03-10 Sun 21:11] =>  0:41
-    CLOCK: [2013-03-10 Sun 17:50]--[2013-03-10 Sun 19:05] =>  1:15
-    :END:
-    - test in other browsers too
 *** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -98,10 +92,6 @@
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
 *** [seo][performance] favicon
-*** TODO [ed] editor should be able to approve/reject articles
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
-    :END:
 *** TODO 50 4-digit numbers for every author for login
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
@@ -124,6 +114,10 @@
         2. do step 1 + 2 above
     - [ ] need to send email of these 50 salts on successful registration
       - jpeg image (cl-gd)
+*** TODO [ed] editor should be able to approve/reject articles
+    :CLOCK:
+    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
+    :END:
 *** [fed] photo slideshow articles
 *** [fed] gravatar for author images
     - http://en.gravatar.com/site/implement/images/
@@ -1549,6 +1543,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-24 Sun 13:25
      :END:
+**** DONE [bug][fed] js not working in ff
+     CLOSED: [2013-03-24 Sun 18:10]
+     :CLOCK:
+     CLOCK: [2013-03-24 Sun 16:02]--[2013-03-24 Sun 18:10] =>  2:08
+     CLOCK: [2013-03-10 Sun 20:30]--[2013-03-10 Sun 21:11] =>  0:41
+     CLOCK: [2013-03-10 Sun 17:50]--[2013-03-10 Sun 19:05] =>  1:15
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-24 Sun 18:11
+     :END:
+     - test in other browsers too
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

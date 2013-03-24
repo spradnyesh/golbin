@@ -30,11 +30,9 @@
                           :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
                    (if (string-equal (get-dimension-value "envt") "prod")
                        (htm (:link :rel "stylesheet" :type "text/css"
-                                   :href "/static/css/fe-9-min.css"))
-                       (htm (:style (str (fe-get-css)))))
-
-                   ;; google-analytics
-                   (:script :type "text/javascript"
+                                   :href "/static/css/fe-9-min.css")
+                            ;; google analytics and adsense
+                            (htm (:script :type "text/javascript"
                             (str "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
@@ -45,7 +43,8 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-")))
+"))))
+                       (htm (:style (str (fe-get-css))))))
 
             (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
                                                ""
@@ -63,18 +62,19 @@
                                      (str (fe-ads-2))))
                          (:div :id "ft" (str (fe-footer)))))
             (:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-            (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
-            (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
             (if (string-equal (get-dimension-value "envt") "prod")
-                (htm (:script :type "text/javascript" :src "/static/js/fe-1-min.js"))
-                (htm (:script :type "text/javascript" (str (on-load)))))
-            (:script :type "text/javascript"
-                     (str "
+                (htm (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
+                     (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
+                     (:script :type "text/javascript" :src "/static/js/fe-1-min.js")
+                     (:script :type "text/javascript"
+                              (str "
 var switchTo5x=true;
 stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399'});
 var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'email']}};
 var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 "))
+                     )
+                (htm (:script :type "text/javascript" (str (on-load)))))
             ,js)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -172,34 +172,36 @@ var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
 ;; ads
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-ads-1 ()
-  (with-html
-    (:div :class "ads"
-          (:script :type "text/javascript"
-                   (str "<!--
+  (when (string-equal (get-dimension-value "envt") "prod")
+    (with-html
+      (:div :class "ads"
+            (:script :type "text/javascript"
+                     (str "<!--
                  google_ad_client = 'ca-pub-7627106577670276';
                  google_ad_slot = '1936097987';
                  google_ad_width = 160;
                  google_ad_height = 600;
                  //-->"))
-          (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
+            (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")))))
 
 (defun fe-ads-2 ()
-  (with-html
-    (:div :class "ads"
-          (:script :type "text/javascript"
-                   (str "<!--
+  (when (string-equal (get-dimension-value "envt") "prod")
+    (with-html
+      (:div :class "ads"
+            (:script :type "text/javascript"
+                     (str "<!--
                           google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '5029165182';
                           google_ad_width = 300;
                           google_ad_height = 250;
                           //-->"))
-          (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
-    (:div :class "ads"
-          (:script :type "text/javascript"
-                   (str "<!--
+            (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
+      (:div :class "ads"
+            (:script :type "text/javascript"
+                     (str "<!--
                           google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '9459364786';
                           google_ad_width = 300;
                           google_ad_height = 600;
                           //-->"))
-          (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
+            (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")))))

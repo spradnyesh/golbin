@@ -22,6 +22,9 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
 (defmacro $prevent-default ()
   `(when event ($apply event prevent-default)))
 
+(defmacro $log (message)
+  `((@ console log) ,message))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; JavaScript like functions to get elements of an HTML DOM by tag/class/id
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

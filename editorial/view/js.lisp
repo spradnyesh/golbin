@@ -239,8 +239,8 @@
                                                      ($apply ($ "#photo-pane .search .tags") val)
                                                      "&d1m=" (get-url-parameter "d1m"))
                                              :cache false
-                                             :data-type "json"
-                                             :async false))
+                                             :async false
+                                             :data-type "json"))
                                done
                              (lambda (data) (select-photo-done data)))
                        fail

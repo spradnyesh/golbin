@@ -43,6 +43,7 @@
            :$event
            :$apply
            :$prevent-default
+           :$log
            ;; db
            :init-db-system
            :get-object-by

@@ -127,9 +127,9 @@
 
            (("#nav li")
             (:float "left"
-                    :padding "0 20px"
                     :margin "5px 0"))
-
+           (("#nav li h2 a, #nav li h3 a")
+            (:padding "0 20px"))
            (("#nav .selected")
             (:background-color "#FFF"))
 
