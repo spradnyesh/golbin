@@ -2,6 +2,16 @@
 
 * tasks
 ** backlog
+*** TODO [bug][utils] prod server showing dev data on deploy
+    :CLOCK:
+    CLOCK: [2013-03-29 Fri 19:26]--[2013-03-29 Fri 19:27] =>  0:01
+    CLOCK: [2013-03-29 Fri 19:22]--[2013-03-29 Fri 19:23] =>  0:01
+    :END:
+    - <2013-03-29 Fri> can't reproduce in dev box; need to check production deployment
+*** TODO [bug][fe] sharethis banner not showing in prod
+    :CLOCK:
+    CLOCK: [2013-03-24 Sun 18:34]--[2013-03-24 Sun 18:40] =>  0:06
+    :END:
 *** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -87,8 +97,10 @@
     - (ql:quickload "do-urlencode")
 *** [security] server scans
     - [ ] http://www.cirt.net/nikto2
+      - http://www.cirt.net/nikto2-docs/
     - [ ] http://code.google.com/p/skipfish/
     - [ ] http://zaries.wordpress.com/2010/12/22/hunchentoot-webserver-and-application-security/
+*** [security] http://en.wikipedia.org/wiki/Cross-site_scripting
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
 *** [seo][performance] favicon
@@ -121,7 +133,7 @@
 *** [fed] photo slideshow articles
 *** [fed] gravatar for author images
     - http://en.gravatar.com/site/implement/images/
-*** [ed] registration page
+*** [ed] author registration page
 *** [reports] accounts table/storage for authors
     - monthly
       - views
