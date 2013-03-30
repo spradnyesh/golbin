@@ -4,8 +4,14 @@
 ** backlog
 *** TODO [bug][fe] sharethis banner not showing in prod
     :CLOCK:
+    CLOCK: [2013-03-30 Sat 19:31]--[2013-03-30 Sat 19:37] =>  0:06
+    CLOCK: [2013-03-30 Sat 19:21]--[2013-03-30 Sat 19:28] =>  0:07
     CLOCK: [2013-03-24 Sun 18:34]--[2013-03-24 Sun 18:40] =>  0:06
     :END:
+    - cannot find any difference b/n dev and prod code, except
+      - order of fe-?-min.js and sharethis.js is different
+      - works on prod but not on dev
+    - need to test on prod after changing order in code
 *** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13

@@ -66,14 +66,14 @@
                 (htm (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
                      (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
                      (:script :type "text/javascript"
+                              :src "/static/js/fe-2-min.js")
+                     (:script :type "text/javascript"
                               (str "
 var switchTo5x=true;
 stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399'});
 var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'email']}};
 var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
-"))
-                     (:script :type "text/javascript"
-                              :src "/static/js/fe-2-min.js"))
+")))
                 (htm (:script :type "text/javascript" (str (on-load)))))
             ,js)))
 
