@@ -25,21 +25,21 @@
               'r-home-page)
   ;; TODO till we get more articles
   #- (and)
-  (fe-page-template
-      (get-config "site.name")
-      nil
-      nil
-      nil
-    (let ((carousel-tabs (get-config "pagination.home.carousel.tabs"))
-          (related-length (get-config "pagination.article.related")))
-      (htm (:div :id "jumbotron")
-           (:div :id "categories-carousel"
-                 (dolist (cat (get-home-page-categories carousel-tabs))
-                   (str (article-carousel-container ""
-                                                    (:span (:a :href (h-genurl 'r-cat :cat (slug cat))
-                                                               (str (name cat))))
-                                                    (get-articles-by-cat cat)
-                                                    (h-genurl 'r-ajax-home-category-articles
-                                                              :cat-slug (slug cat)
-                                                              :page 0)))))
-           (:div :id "authors")))))
+  (template
+   :title (get-config "site.name")
+   :js nil
+   :tags nil
+   :description nil
+   :body (let ((carousel-tabs (get-config "pagination.home.carousel.tabs"))
+               (related-length (get-config "pagination.article.related")))
+           (htm (:div :id "jumbotron")
+                (:div :id "categories-carousel"
+                      (dolist (cat (get-home-page-categories carousel-tabs))
+                        (str (article-carousel-container ""
+                                                         (:span (:a :href (h-genurl 'r-cat :cat (slug cat))
+                                                                    (str (name cat))))
+                                                         (get-articles-by-cat cat)
+                                                         (h-genurl 'r-ajax-home-category-articles
+                                                                   :cat-slug (slug cat)
+                                                                   :page 0)))))
+                (:div :id "authors")))))

@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro ed-page-template (title logged-in js &body body)
+(defmacro template (&key title logged-in js body)
   `(with-html
      (:html
       (:head
@@ -22,7 +22,7 @@
                    (:div :id "hd"
                          (str (ed-header ,logged-in)))
                    (:div :id "bd"
-                         ,@body)
+                         ,body)
                    (:div :id "ft"
                          (str (ed-footer)))))
       (:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")

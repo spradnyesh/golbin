@@ -8,25 +8,26 @@
                       :path "/"
                       :value lang)
           (redirect (h-genurl 'r-login-get)))
-        (ed-page-template "Login"
-            nil
-            nil
-          (if (is-logged-in?)
-              (redirect (h-genurl 'r-home))
-              (htm (:form :action (h-genurl 'r-login-post)
-                          :method "POST"
-                          (str (label-input "username" "text"))
-                          (str (label-input "password" "password"))
-                          (:input :type "submit"
-                                  :name "submit"
-                                  :id "submit"
-                                  :value "Login"))
-                   (:a :id "english" :href (h-genurl 'r-login-get
-                                                     :lang "en-IN") "English")
-                   (:a :id "hindi" :class "dvngr" :href (h-genurl 'r-login-get
-                                                                  :lang "hi-IN") "हिन्दी")
-                   (:a :id "marathi" :class "dvngr" :href (h-genurl 'r-login-get
-                                                                    :lang "mr-IN") "मराठी")))))))
+        (template
+         :title "Login"
+         :logged-in nil
+         :js nil
+         :body (if (is-logged-in?)
+                   (redirect (h-genurl 'r-home))
+                   (htm (:form :action (h-genurl 'r-login-post)
+                               :method "POST"
+                               (str (label-input "username" "text"))
+                               (str (label-input "password" "password"))
+                               (:input :type "submit"
+                                       :name "submit"
+                                       :id "submit"
+                                       :value "Login"))
+                        (:a :id "english" :href (h-genurl 'r-login-get
+                                                          :lang "en-IN") "English")
+                        (:a :id "hindi" :class "dvngr" :href (h-genurl 'r-login-get
+                                                                       :lang "hi-IN") "हिन्दी")
+                        (:a :id "marathi" :class "dvngr" :href (h-genurl 'r-login-get
+                                                                         :lang "mr-IN") "मराठी")))))))
 
 (defun v-login-post ()
   (let ((username (post-parameter "username"))

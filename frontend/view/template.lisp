@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro fe-page-template (title js tags description &body content)
+(defmacro template (&key title js tags description body)
   `(with-html
      (:html (:head (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
                    (:meta :name "application-name" :content "Golb.in")
@@ -57,7 +57,7 @@
                                      (:div :id "col-1" :class "yui3-u-1-4"
                                            (str (fe-ads-1)))
                                      (:div :id "col-2" :class "yui3-u-3-4"
-                                           (:div :id "wrapper" ,@content)))
+                                           (:div :id "wrapper" ,body)))
                                (:div :id "col-3" :class "yui3-u-1-4"
                                      (str (fe-ads-2))))
                          (:div :id "ft" (str (fe-footer)))))

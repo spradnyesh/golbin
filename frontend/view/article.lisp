@@ -152,17 +152,18 @@
                              (name (subcat article))))))
     (when (or (eql :a (status article))
               editorial)
-      (fe-page-template
-          (title article)
-          nil
-          tags
-          (summary article)
-        (:div
-         (:div :id "article"
-               (str (article-preamble-markup article))
-               (str (article-body-markup article))
-               #|(str (article-comments-markup article slug-and-id))|#)
-         (str (article-related-markup id article)))))))
+      (template
+       :title (title article)
+       :js nil
+       :tags tags
+       :description (summary article)
+       :body (:div
+              (:div :id "article"
+                    (str (article-preamble-markup article))
+                    (str (article-body-markup article))
+                    #- (and)
+                    (str (article-comments-markup article slug-and-id)))
+              (str (article-related-markup id article)))))))
 
 (defun v-ajax-article-related (id typeof page)
   (let* ((related-length (get-config "pagination.article.related"))

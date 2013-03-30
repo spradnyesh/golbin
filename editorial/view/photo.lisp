@@ -48,16 +48,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-photo-get (&optional message)
-  (ed-page-template "Add Photo"
-      t
-      (htm (:script :type "text/javascript"
-                    (format t
-                            "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
-                            (get-category-tree-json)
-                            (on-load))))
-    (when message (htm (:div :class "error" (str message))))
-    (str (photo-get-markup))))
+(defun v-photo-get ()
+  (template
+   :title "Add Photo"
+   :logged-in t
+   :js (htm (:script :type "text/javascript"
+                       (format t
+                               "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
+                               (get-category-tree-json)
+                               (on-load))))
+   :body (str (photo-get-markup))))
 
 (defun v-photo-post (&optional (ajax nil))
   (let ((title (post-parameter "title"))
@@ -119,7 +119,7 @@
                           (if (string-equal who "me")
                               (get-photos-by-author (who-am-i))
                               (get-all-photos)))
-                         (* (parse-integer start) photos-per-page)
+                         (* start photos-per-page)
                          photos-per-page)))
     (if list
         (regex-replace-all              ; need to remove the '\\' that
@@ -147,12 +147,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-tmp-photo-get (&optional message)
-  (ed-page-template "Add Photo"
-      t
-      (when message (htm (:div :class "error"
-                               (str message))))
-    (let ((count 10))
+(defun v-tmp-photo-get ()
+  (template
+   :title "Add Photo"
+   :logged-in t
+   :js nil
+   :body (let ((count 10))
       (htm
        (:form :action (h-genurl 'r-tmp-photo-post)
               :method "POST"

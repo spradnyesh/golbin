@@ -85,106 +85,108 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-article-get (&optional id)
   (with-ed-login
-    (ed-page-template "Add Article"
-        t
-        (htm (:script :type "text/javascript"
+    (template
+     :title "Add Article"
+     :logged-in t
+     :js (htm (:script :type "text/javascript"
                       (format t
                               "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"
                               (get-category-tree-json)
                               (get-thumb-side-photo-sizes-json)))
              (:script :type "text/javascript"
                       :src "/static/ckeditor/ckeditor.js")
-             #|(if (string-equal "en-IN" (get-dimension-value "lang"))
-             (htm (:script :type "text/javascript"
-             :src "/static/ckeditor/ckeditor.js")
-             (:script :type "text/javascript"
-             :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
-             :defer "defer")))|#)
-      (let* ((article (when id (get-article-by-id id)))
-             (cats (get-root-categorys))
-             (subcats (get-subcategorys (if article
-                                            (id (cat article))
-                                            1)))
-             (photo (when article (photo article))))
-        (htm (:div :id "article"
-                   (:form :action (if article
-                                      (h-genurl 'r-article-edit-post :id id)
-                                      (h-genurl 'r-article-new-post))
-                          :method "POST"
-                          (:table (str (tr-td-input "title" :value (when article (title article))))
-                                  (when article (htm
-                                                 (:tr
-                                                  (:td "URL")
-                                                  (:td (:input :class "td-input url"
-                                                               :type "text"
-                                                               :disabled "disabled"
-                                                               :name "url"
-                                                               :value (slug article))))))
-                                  (str (tr-td-text "summary" :value (when article (summary article))))
-                                  (:tr (:td "Lead Photo")
-                                       (:td (:input :class "td-input"
-                                                    :type "hidden"
-                                                    :name "lead-photo"
-                                                    :id "lead-photo"
-                                                    :value (when photo (id photo)))
-                                            (:span (when photo
-                                                     (str (article-lead-photo-url (photo article) "related-thumb"))
-                                                     (htm (:a :id "unselect-lead-photo"
-                                                              :href ""
-                                                              "Unselect photo. "))))
-                                            (:a :id "select-lead-photo"
-                                                :href ""
-                                                "Select")
-                                            " or "
-                                            (:a :id "upload-lead-photo"
-                                                :href ""
-                                                "Upload")
-                                            " a photo"))
-                                  (:tr (:td "Lead Photo Placement")
-                                       (:td (:select :id "pd"
-                                                     :name "pd"
-                                                     :class "td-input"
-                                                     (str (get-photo-direction-markup :b "center"))
-                                                     (str (get-photo-direction-markup :l "left"))
-                                                     (str (get-photo-direction-markup :r "right")))))
-                                  (:tr (:td "Non Lead Photos")
-                                       (:td (:input :class "td-input"
-                                                    :type "hidden"
-                                                    :name "nonlead-photo"
-                                                    :id "nonlead-photo"
-                                                    :value (when photo (id photo)))
-                                            (:span)
-                                            (:a :id "select-nonlead-photo"
-                                                :href ""
-                                                "Select")
-                                            " or "
-                                            (:a :id "upload-nonlead-photo"
-                                                :href ""
-                                                "Upload")
-                                            " a photo"))
-                                  (str (tr-td-text "body"
-                                                       :value (when article (body article))
-                                                       :class "ckeditor"))
-                                  #|(if (string-equal "en-IN" (get-dimension-value "lang"))
-             (str (tr-td-text "body"
-                                  :value (when article (body article))
-                                  :class "ckeditor"))
-             (htm (:tr (:td "Body")
-                                  (:td (let ((trimmed-name "body")
-                                  (value (when article (body article))))
-                                  (htm (:textarea :cols 40
-                                  :rows 7
-                                  :name (format nil "~A" trimmed-name)
-                                  :id (format nil "~A" trimmed-name)
-                                  (str value)
-                                  :MicrosoftILITWebAttach "true")))))
-                                  (:input :type "hidden"
-                                  :id "MicrosoftILITWebEmbedInfo"
-                                  :attachMode "optin"
-                                  :value "")
-                                  (:script :type "text/javascript"
-                                  :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
-                                  :defer "defer")))|#
+             #- (and)
+             (if (string-equal "en-IN" (get-dimension-value "lang"))
+                 (htm (:script :type "text/javascript"
+                               :src "/static/ckeditor/ckeditor.js")
+                      (:script :type "text/javascript"
+                               :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
+                               :defer "defer"))))
+     :body (let* ((article (when id (get-article-by-id id)))
+                  (cats (get-root-categorys))
+                  (subcats (get-subcategorys (if article
+                                                 (id (cat article))
+                                                 1)))
+                  (photo (when article (photo article))))
+             (htm (:div :id "article"
+                        (:form :action (if article
+                                           (h-genurl 'r-article-edit-post :id id)
+                                           (h-genurl 'r-article-new-post))
+                               :method "POST"
+                               (:table (str (tr-td-input "title" :value (when article (title article))))
+                                       (when article (htm
+                                                      (:tr
+                                                       (:td "URL")
+                                                       (:td (:input :class "td-input url"
+                                                                    :type "text"
+                                                                    :disabled "disabled"
+                                                                    :name "url"
+                                                                    :value (slug article))))))
+                                       (str (tr-td-text "summary" :value (when article (summary article))))
+                                       (:tr (:td "Lead Photo")
+                                            (:td (:input :class "td-input"
+                                                         :type "hidden"
+                                                         :name "lead-photo"
+                                                         :id "lead-photo"
+                                                         :value (when photo (id photo)))
+                                                 (:span (when photo
+                                                          (str (article-lead-photo-url (photo article) "related-thumb"))
+                                                          (htm (:a :id "unselect-lead-photo"
+                                                                   :href ""
+                                                                   "Unselect photo. "))))
+                                                 (:a :id "select-lead-photo"
+                                                     :href ""
+                                                     "Select")
+                                                 " or "
+                                                 (:a :id "upload-lead-photo"
+                                                     :href ""
+                                                     "Upload")
+                                                 " a photo"))
+                                       (:tr (:td "Lead Photo Placement")
+                                            (:td (:select :id "pd"
+                                                          :name "pd"
+                                                          :class "td-input"
+                                                          (str (get-photo-direction-markup :b "center"))
+                                                          (str (get-photo-direction-markup :l "left"))
+                                                          (str (get-photo-direction-markup :r "right")))))
+                                       (:tr (:td "Non Lead Photos")
+                                            (:td (:input :class "td-input"
+                                                         :type "hidden"
+                                                         :name "nonlead-photo"
+                                                         :id "nonlead-photo"
+                                                         :value (when photo (id photo)))
+                                                 (:span)
+                                                 (:a :id "select-nonlead-photo"
+                                                     :href ""
+                                                     "Select")
+                                                 " or "
+                                                 (:a :id "upload-nonlead-photo"
+                                                     :href ""
+                                                     "Upload")
+                                                 " a photo"))
+                                       (str (tr-td-text "body"
+                                                        :value (when article (body article))
+                                                        :class "ckeditor"))
+                                       #|(if (string-equal "en-IN" (get-dimension-value "lang"))
+                                       (str (tr-td-text "body"
+                                       :value (when article (body article))
+                                       :class "ckeditor"))
+                                       (htm (:tr (:td "Body")
+                                       (:td (let ((trimmed-name "body")
+                                       (value (when article (body article))))
+                                       (htm (:textarea :cols 40
+                                       :rows 7
+                                       :name (format nil "~A" trimmed-name)
+                                       :id (format nil "~A" trimmed-name)
+                                       (str value)
+                                       :MicrosoftILITWebAttach "true")))))
+                                       (:input :type "hidden"
+                                       :id "MicrosoftILITWebEmbedInfo"
+                                       :attachMode "optin"
+                                       :value "")
+                                       (:script :type "text/javascript"
+                                       :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
+                                       :defer "defer")))|#
                                   (unless (string-equal (get-dimension-value "lang") "en-IN")
                                     (htm (:tr (:td (str (get-dimension-value "lang")))
                                               (:td "Click " ; XXX: translate
