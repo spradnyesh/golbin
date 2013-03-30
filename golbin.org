@@ -2,12 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [bug][utils] prod server showing dev data on deploy
-    :CLOCK:
-    CLOCK: [2013-03-29 Fri 19:26]--[2013-03-29 Fri 19:27] =>  0:01
-    CLOCK: [2013-03-29 Fri 19:22]--[2013-03-29 Fri 19:23] =>  0:01
-    :END:
-    - <2013-03-29 Fri> can't reproduce in dev box; need to check production deployment
 *** TODO [bug][fe] sharethis banner not showing in prod
     :CLOCK:
     CLOCK: [2013-03-24 Sun 18:34]--[2013-03-24 Sun 18:40] =>  0:06
@@ -1575,6 +1569,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-24 Sun 18:29
      :END:
+**** DONE [bug][utils] prod server showing dev data on deploy
+     CLOSED: [2013-03-30 Sat 19:21]
+     :CLOCK:
+     CLOCK: [2013-03-30 Sat 19:18]--[2013-03-30 Sat 19:21] =>  0:03
+     CLOCK: [2013-03-29 Fri 19:26]--[2013-03-29 Fri 19:27] =>  0:01
+     CLOCK: [2013-03-29 Fri 19:22]--[2013-03-29 Fri 19:23] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-30 Sat 19:21
+     :END:
+     - <2013-03-29 Fri> can't reproduce in dev box; need to check production deployment
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

@@ -7,7 +7,7 @@
       `(("master" ("site" ("name" "Golbin")
                           ("url" "golb.in")
                           ("lang" "en-IN")
-                          ("envt" "dev"))
+                          ("envt" "prod"))
                   ("db" ("type" "prevalence"))
                   ("hunchentoot" ("debug" ("errors" ("catch" nil)
                                                     ("show" nil))
