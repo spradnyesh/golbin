@@ -39,6 +39,11 @@
                                              :content-type "text/json")
   (v-ajax-home-category-articles cat-slug page))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 404, define this as the last route
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(m-404)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; start/stop/restart various servers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

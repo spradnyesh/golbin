@@ -27,7 +27,8 @@
            :r-ajax-article-new-post
            :r-ajax-article-edit-post
            :r-logout
-           :r-ajax-tags))
+           :r-ajax-tags
+           :r-404))
 
 (in-package :hawksbill.golbin.editorial)
 

@@ -37,7 +37,8 @@
                                                              :parse-vars (list :id #'parse-integer)
                                                              :content-type "text/json")
   (v-article-post :id id :ajax t))
-(define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "text/json")
+(define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "text/json"
+                                                               :parse-vars (list :page #'parse-integer))
   (v-ajax-photos-select who page))
 (define-route r-ajax-photo-get ("/ajax/photo/" :content-type "text/json")
   (v-ajax-photo-get))
@@ -55,6 +56,11 @@
  ;; only for admin
  (define-route r-author ("/author/") (v-author-get))
  (define-route r-author ("/author/" :method :post) (v-author-post)))|#
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 404, define this as the last route
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(m-404)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; start/stop/restart various servers

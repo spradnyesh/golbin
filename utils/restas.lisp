@@ -1,7 +1,7 @@
 (in-package :hawksbill.utils)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; session handlin
+;; session handling
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro with-login (url &body body)
   `(if *session*
@@ -64,3 +64,19 @@
                           (append args (list :d1m (parameter "d1m")))
                           args))
       "/"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 404
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro m-404 ()
+  `(progn
+     (define-route r-404 ("*any")
+       (v-404))
+     (defun v-404 ()
+       (template
+        :title (translate "page-not-found")
+        :body (htm (:div :class "error"
+                                    "Sorry! We were unable to find the content that you are looking for. Please click "
+                                    (:a :href "javascript:history.go(-1)" "here")
+                                    " to go back."))))))

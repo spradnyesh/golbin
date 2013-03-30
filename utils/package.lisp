@@ -13,6 +13,7 @@
            :with-login
            :is-logged-in?
            :h-genurl
+           :m-404
            ;; dimensions
            :*resources*
            :init-dimensions

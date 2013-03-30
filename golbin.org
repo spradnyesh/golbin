@@ -2,8 +2,14 @@
 
 * tasks
 ** backlog
-*** [bug][fed] invalid url accesses should lead to 404
+*** [bug][fed] invalid DB requests should not go to debugger, but fail
+*** TODO [bug][fed] invalid url requests should lead to 404
+    :CLOCK:
+    CLOCK: [2013-03-31 Sun 02:45]--[2013-03-31 Sun 03:30] =>  0:45
+    CLOCK: [2013-03-31 Sun 01:35]--[2013-03-31 Sun 02:13] =>  0:38
+    :END:
     - instead of dropping in debugger
+    - eg: http://localhost:8888/ajax/article/abc/
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50

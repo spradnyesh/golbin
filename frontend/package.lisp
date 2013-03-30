@@ -26,7 +26,8 @@
            :fe-page-template
            :article-preamble-markup
            :article-body-markup
-           :article-related-markup))
+           :article-related-markup
+           :r-404))
 
 (in-package :hawksbill.golbin.frontend)
 
