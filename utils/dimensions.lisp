@@ -77,11 +77,13 @@
     ;; cookie (works only for ed)
     (let ((ed-lang (cookie-in "ed-lang")))
       (when ed-lang (setf lang ed-lang)))
-    ;; d1m (works only in dev)
-    (when (and (or (search "localhost" host) (search "127.0.0.1" host))
-               (get-parameter "d1m"))
-      (setf lang (find-dimension-value "lang" (parameter "d1m")))
-      (setf envt (find-dimension-value "envt" (parameter "d1m"))))
+    (when (or (search "localhost" host) (search "127.0.0.1" host))
+      ;; d1m (works only in dev)
+      (if (get-parameter "d1m")
+          (progn
+            (setf lang (find-dimension-value "lang" (parameter "d1m")))
+            (setf envt (find-dimension-value "envt" (parameter "d1m"))))
+          (setf envt "dev")))
     (setf (dimensions *request*)
           (make-instance 'dimensions
                          :envt envt

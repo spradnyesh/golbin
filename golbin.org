@@ -2,6 +2,22 @@
 
 * tasks
 ** backlog
+*** [bug][fed] invalid url accesses should lead to 404
+    - instead of dropping in debugger
+*** TODO 50 4-digit numbers for every author for all forms
+    :CLOCK:
+    CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
+    CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
+    :END:
+**** change to all forms get/post pages
+     - steps
+       1. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
+       2. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
+       3. ensure "a-b,c-d" hasn't been tampered w/ (using encrypted string)
+       4. check for correctness of a,c digits of b,d numbers
+       5. if correct, process form
+**** registration
+     - send email w/ 50 numbers to all authors (after successful registration)
 *** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -94,28 +110,6 @@
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
 *** [seo][performance] favicon
-*** TODO 50 4-digit numbers for every author for login
-    :CLOCK:
-    CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
-    CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
-    :END:
-    - [ ] change to db
-    - [ ] add register get/post
-    - [ ] change to login get/post
-      - 2 stages
-        1. partial-login using username/passwd
-        2. if correct
-           1. salt = (salt user)
-           2. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
-           3. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
-           4. ensure "a-b,c-d" hasn't been tampered w/
-           5. check for correctness of a,c digits of b,d numbers
-           6. if correct, complete-login
-      - OR, single stage
-        1. use a common salt (can be changed frequently)
-        2. do step 1 + 2 above
-    - [ ] need to send email of these 50 salts on successful registration
-      - jpeg image (cl-gd)
 *** TODO [ed] editor should be able to approve/reject articles
     :CLOCK:
     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
@@ -1590,6 +1584,14 @@
        - order of fe-?-min.js and sharethis.js is different
        - works on prod but not on dev
      - need to test on prod after changing order in code
+**** DONE [bug][utils] correct dimension should be picked up based on URL
+     CLOSED: [2013-03-31 Sun 01:22]
+     :CLOCK:
+     CLOCK: [2013-03-31 Sun 01:13]--[2013-03-31 Sun 01:22] =>  0:09
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-03-31 Sun 01:22
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
