@@ -60,7 +60,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 404, define this as the last route
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(m-404)
+(m-404 hawksbill.golbin.editorial)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; start/stop/restart various servers

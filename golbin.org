@@ -3,13 +3,8 @@
 * tasks
 ** backlog
 *** [bug][fed] invalid DB requests should not go to debugger, but fail
-*** TODO [bug][fed] invalid url requests should lead to 404
-    :CLOCK:
-    CLOCK: [2013-03-31 Sun 02:45]--[2013-03-31 Sun 03:30] =>  0:45
-    CLOCK: [2013-03-31 Sun 01:35]--[2013-03-31 Sun 02:13] =>  0:38
-    :END:
-    - instead of dropping in debugger
-    - eg: http://localhost:8888/ajax/article/abc/
+*** [ed] change hunchentoot session secret, etc
+    - http://weitz.de/hunchentoot/#sessions
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
@@ -24,6 +19,8 @@
        5. if correct, process form
 **** registration
      - send email w/ 50 numbers to all authors (after successful registration)
+*** [fed] analyze http://common-lisp.net/project/ht-ajax/ht-ajax.html and/or http://martin-loetzsch.de/ht-simple-ajax/
+*** [ed] use https://github.com/Inaimathi/formlets for ed forms
 *** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -240,6 +237,11 @@
       - http://html5gallery.com/
         - http://www.lastchart.com/
 *** [ed] theme RTE to not show some manipulations (eg, restrict image urls to only golbin images)
+*** TODO investigate heroku
+    :CLOCK:
+    CLOCK: [2013-04-01 Mon 01:00]--[2013-04-01 Mon 01:37] =>  0:37
+    :END:
+    - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
 *** Archive                                                         :ARCHIVE:
 **** DONE [editorial] session for login
      CLOSED: [2012-08-20 Mon 21:34]
@@ -1598,6 +1600,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-03-31 Sun 01:22
      :END:
+**** DONE [bug][fed] invalid url requests should lead to 404
+     CLOSED: [2013-04-01 Mon 03:04]
+     :CLOCK:
+     CLOCK: [2013-04-01 Mon 02:05]--[2013-04-01 Mon 03:04] =>  0:59
+     CLOCK: [2013-03-31 Sun 02:45]--[2013-03-31 Sun 03:30] =>  0:45
+     CLOCK: [2013-03-31 Sun 01:35]--[2013-03-31 Sun 02:13] =>  0:38
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-04-01 Mon 03:04
+     :END:
+     - instead of dropping in debugger
+     - eg: http://localhost:8888/ajax/article/abc/
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
@@ -1914,6 +1928,7 @@
      - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
        - font-family: "lohit hindi"
 ** ideas
+   - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
    - http://www.seomoz.org/blog/tips-to-use-google-for-seo
    - 'close sidebar' as in http://www.securitytube.net/video/1319
    - [[http://gravatar.com/][gravatar]] for author logo
