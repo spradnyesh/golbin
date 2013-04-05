@@ -51,7 +51,7 @@
                                                num-per-page
                                                num-pages
                                                ,route))))))
-       (redirect (h-genurl 'r-404))))
+       (v-404)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; view functions

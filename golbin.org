@@ -1612,13 +1612,15 @@
      :END:
      - instead of dropping in debugger
      - eg: http://localhost:8888/ajax/article/abc/
-**** DONE [bug][fe] mr production is down!!!
-     CLOSED: [2013-04-06 Sat 10:52]
+**** DONE [bug][utils] redirect to r-404 not working
+     CLOSED: [2013-04-06 Sat 03:45]
      :CLOCK:
+     CLOCK: [2013-04-06 Sat 03:40]--[2013-04-06 Sat 03:45] =>  0:05
+     CLOCK: [2013-04-06 Sat 01:59]--[2013-04-06 Sat 02:14] =>  0:15
      CLOCK: [2013-04-06 Sat 10:43]--[2013-04-06 Sat 10:52] =>  0:09
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-04-06 Sat 10:52
+     :ARCHIVE_TIME: 2013-04-06 Sat 03:45
      :END:
 ** TODO refactor
    :CLOCK:
