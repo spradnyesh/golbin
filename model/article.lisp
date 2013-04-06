@@ -108,20 +108,19 @@
                             (id (cat article)))))))
 
 (defun get-articles-by-cat-subcat (cat subcat)
-  (if subcat
-      (sort (conditionally-accumulate
-             #'(lambda (article)
-                 (= (id subcat)
-                    (id (subcat article))))
-             (when cat
-               (conditionally-accumulate ; not putting the get-articles-by macro here, since i don't want the unnecessary sorting (it'll be done anyways at the end)
-                #'(lambda (article)
-                    (= (id cat)
-                       (id (cat article))))
-                (get-active-articles))))
-            #'>
-            :key #'id)
-      (get-articles-by-cat cat)))
+  (when subcat
+    (sort (conditionally-accumulate
+           #'(lambda (article)
+               (= (id subcat)
+                  (id (subcat article))))
+           (when cat
+             (conditionally-accumulate ; not putting the get-articles-by macro here, since i don't want the unnecessary sorting (it'll be done anyways at the end)
+              #'(lambda (article)
+                  (= (id cat)
+                     (id (cat article))))
+              (get-active-articles))))
+          #'>
+          :key #'id)))
 
 (defun get-related-articles (typeof article)
   (let* ((cat-id (id (cat article)))
