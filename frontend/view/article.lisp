@@ -145,25 +145,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-article (slug-and-id &optional (editorial nil))
   (let* ((id (get-id-from-slug-and-id slug-and-id))
-         (article (get-article-by-id id))
-         (tags (append (loop for tag in (tags article)
+         (article (get-article-by-id id)))
+    (if (and article
+             (or editorial
+                 (eql :a (status article))))
+        (template
+         :title (title article)
+         :js nil
+         :tags (append (loop for tag in (tags article)
                           collect (name tag))
                        (list (name (cat article))
-                             (name (subcat article))))))
-    (when (or (eql :a (status article))
-              editorial)
-      (template
-       :title (title article)
-       :js nil
-       :tags tags
-       :description (summary article)
-       :body (:div
-              (:div :id "article"
-                    (str (article-preamble-markup article))
-                    (str (article-body-markup article))
-                    #- (and)
-                    (str (article-comments-markup article slug-and-id)))
-              (str (article-related-markup id article)))))))
+                             (name (subcat article))))
+         :description (summary article)
+         :body (:div
+                (:div :id "article"
+                      (str (article-preamble-markup article))
+                      (str (article-body-markup article))
+                      #- (and)
+                      (str (article-comments-markup article slug-and-id)))
+                (str (article-related-markup id article))))
+        (v-404))))
 
 (defun v-ajax-article-related (id typeof page)
   (let* ((related-length (get-config "pagination.article.related"))

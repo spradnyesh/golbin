@@ -2,6 +2,17 @@
 
 * tasks
 ** backlog
+*** TODO [fe] google/bing/yahoo cache URL
+    :CLOCK:
+    CLOCK: [2013-04-06 Sat 04:17]--[2013-04-06 Sat 04:39] =>  0:22
+    :END:
+    - google
+      - *** in chrome add "cache:" before the website address in the address bar ***
+      - *** in chrome add "site:" before the website address in the address bar ***
+      - http://stackoverflow.com/a/4560541
+        - http://webcache.googleusercontent.com/search?q=cache:<your url without "http://">
+    - bing
+    - yahoo
 *** [bug][fed] invalid DB requests should not go to debugger, but fail
 *** [ed] change hunchentoot session secret, etc
     - http://weitz.de/hunchentoot/#sessions
@@ -1621,6 +1632,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-04-06 Sat 03:45
+     :END:
+**** DONE [bug][fe] 404 pages dropping to debugger
+     CLOSED: [2013-04-07 Sun 02:50]
+     :CLOCK:
+     CLOCK: [2013-04-07 Sun 02:25]--[2013-04-07 Sun 02:50] =>  0:25
+     CLOCK: [2013-04-07 Sun 01:51]--[2013-04-07 Sun 01:58] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-04-07 Sun 02:50
      :END:
 ** TODO refactor
    :CLOCK:

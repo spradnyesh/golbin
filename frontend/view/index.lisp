@@ -64,7 +64,8 @@
 
 (defun v-cat-subcat (cat-slug subcat-slug &optional (page 0))
   (let* ((cat (get-category-by-slug (utf-8-bytes-to-string (string-to-octets cat-slug)) 0))
-         (subcat (get-category-by-slug (utf-8-bytes-to-string (string-to-octets subcat-slug)) (id cat))))
+         (subcat (when cat
+                   (get-category-by-slug (utf-8-bytes-to-string (string-to-octets subcat-slug)) (id cat)))))
     (view-index (format nil "~a, ~a" (name cat) (name subcat))
                 (get-articles-by-cat-subcat cat subcat)
                 'r-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))

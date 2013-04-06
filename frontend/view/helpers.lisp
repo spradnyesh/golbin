@@ -45,4 +45,4 @@
         (let ((article (get-article-by-id (get-id-from-slug-and-id (first (split-sequence "."
                                                                                           uri
                                                                                           :test #'string-equal))))))
-          (list (slug (cat article)) (slug (subcat article)))))))
+          (when article (list (slug (cat article)) (slug (subcat article))))))))

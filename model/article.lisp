@@ -90,9 +90,10 @@
   `(get-object-by ,cond (get-active-articles)))
 
 (defun get-articles-by-author (author)
-  (get-articles-by #'(lambda (article)
-                       (= (id author)
-                          (id (author article))))))
+  (when author
+    (get-articles-by #'(lambda (article)
+                         (= (id author)
+                            (id (author article)))))))
 
 (defun get-articles-by-tag-slug (slug)
   (get-articles-by #'(lambda (article)
@@ -101,22 +102,26 @@
                            (return t))))))
 
 (defun get-articles-by-cat (cat)
-  (get-articles-by #'(lambda (article)
-                       (= (id cat)
-                          (id (cat article))))))
+  (when cat
+    (get-articles-by #'(lambda (article)
+                         (= (id cat)
+                            (id (cat article)))))))
 
 (defun get-articles-by-cat-subcat (cat subcat)
-  (sort (conditionally-accumulate
-         #'(lambda (article)
-             (= (id subcat)
-                (id (subcat article))))
-         (conditionally-accumulate ; not putting the get-articles-by macro here, since i don't want the unnecessary sorting (it'll be done anyways at the end)
-          #'(lambda (article)
-              (= (id cat)
-                 (id (cat article))))
-          (get-active-articles)))
-        #'>
-        :key #'id))
+  (if subcat
+      (sort (conditionally-accumulate
+             #'(lambda (article)
+                 (= (id subcat)
+                    (id (subcat article))))
+             (when cat
+               (conditionally-accumulate ; not putting the get-articles-by macro here, since i don't want the unnecessary sorting (it'll be done anyways at the end)
+                #'(lambda (article)
+                    (= (id cat)
+                       (id (cat article))))
+                (get-active-articles))))
+            #'>
+            :key #'id)
+      (get-articles-by-cat cat)))
 
 (defun get-related-articles (typeof article)
   (let* ((cat-id (id (cat article)))
