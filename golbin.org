@@ -2,6 +2,15 @@
 
 * tasks
 ** backlog
+*** [performance] partial responses for requests
+    - send back the following as soon as we get the request
+      - http header
+      - page header (logo, navigation)
+      - css
+*** [performance] js
+    - put js inside anonymous functions
+      - so that browser does not block on it's download
+    - pull ads/other js dynamically _after_ page load
 *** TODO [fe] google/bing/yahoo cache URL
     :CLOCK:
     CLOCK: [2013-04-06 Sat 04:17]--[2013-04-06 Sat 04:39] =>  0:22
