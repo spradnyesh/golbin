@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** TODO [bug][ed] ckeditor not working in chrome
+    :CLOCK:
+    CLOCK: [2013-05-04 Sat 23:22]--[2013-05-04 Sat 23:47] =>  0:25
+    :END:
 *** [performance] partial responses for requests
     - send back the following as soon as we get the request
       - http header
