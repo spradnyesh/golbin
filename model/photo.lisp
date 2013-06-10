@@ -89,7 +89,7 @@
   (setf (id photo)
         (execute (get-db-handle) (make-transaction 'incf-photo-last-id)))
   (setf (date photo)
-        (prettyprint-datetime))
+        (get-universal-time))
   (set-mini-author photo)
 
   ;; save photo into storage

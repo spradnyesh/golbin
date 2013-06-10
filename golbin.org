@@ -3,7 +3,6 @@
 * tasks
 ** backlog
 *** [bug] remove subcat=NIL from 'forgetting "forgive and forget"'
-*** [bug] correct date in photo@model (insert, read) (universal timestamp, not string/object)
 *** TODO [bug] "written by..." should come in local language
     :CLOCK:
     CLOCK: [2013-06-10 Mon 12:52]--[2013-06-10 Mon 13:04] =>  0:12
@@ -1678,6 +1677,13 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-06-10 Mon 17:06
+     :END:
+**** DONE [bug] correct date in photo@model (insert, read) (universal timestamp, not string/object)
+     CLOSED: [2013-06-10 Mon 17:07]
+     :CLOCK:
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-10 Mon 17:07
      :END:
 ** TODO refactor
    :CLOCK:
