@@ -2,15 +2,23 @@
 
 * tasks
 ** backlog
-*** TODO [bug][ed] ckeditor not working in chrome
+*** [bug] remove subcat=NIL from 'forgetting "forgive and forget"'
+*** [bug] correct date in photo@model (insert, read) (universal timestamp, not string/object)
+*** TODO [bug] "written by..." should come in local language
     :CLOCK:
-    CLOCK: [2013-05-04 Sat 23:22]--[2013-05-04 Sat 23:47] =>  0:25
+    CLOCK: [2013-06-10 Mon 12:52]--[2013-06-10 Mon 13:04] =>  0:12
     :END:
-*** [performance] partial responses for requests
-    - send back the following as soon as we get the request
-      - http header
-      - page header (logo, navigation)
-      - css
+*** TODO [fed][util] lisp style error handling
+    :CLOCK:
+    CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
+    CLOCK: [2013-02-28 Thu 13:30]--[2013-02-28 Thu 14:45] =>  1:15
+    CLOCK: [2013-02-27 Wed 17:00]--[2013-02-27 Wed 18:35] =>  1:35
+    :END:
+    - [X] http://psg.com/~dlamkins/sl/chapter23.html
+    - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
+    - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
+*** [bug][fed] invalid DB requests should not go to debugger, but fail
+*** [seo] robots.txt
 *** TODO [performance] js
     :CLOCK:
     :END:
@@ -18,20 +26,6 @@
       - so that browser does not block on it's download
     - pull ads/other js dynamically _after_ page load
     - https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS
-*** TODO [fe] google/bing/yahoo cache URL
-    :CLOCK:
-    CLOCK: [2013-04-06 Sat 04:17]--[2013-04-06 Sat 04:39] =>  0:22
-    :END:
-    - google
-      - *** in chrome add "cache:" before the website address in the address bar ***
-      - *** in chrome add "site:" before the website address in the address bar ***
-      - http://stackoverflow.com/a/4560541
-        - http://webcache.googleusercontent.com/search?q=cache:<your url without "http://">
-    - bing
-    - yahoo
-*** [bug][fed] invalid DB requests should not go to debugger, but fail
-*** [ed] change hunchentoot session secret, etc
-    - http://weitz.de/hunchentoot/#sessions
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
@@ -46,17 +40,27 @@
        5. if correct, process form
 **** registration
      - send email w/ 50 numbers to all authors (after successful registration)
+*** [bug][seo] clear GA confusion b/n www. and mr.
+*** [performance] partial responses for requests
+    - send back the following as soon as we get the request
+      - http header
+      - page header (logo, navigation)
+      - css
+*** TODO [fe] google/bing/yahoo cache URL
+    :CLOCK:
+    CLOCK: [2013-04-06 Sat 04:17]--[2013-04-06 Sat 04:39] =>  0:22
+    :END:
+    - google
+      - *** in chrome add "cache:" before the website address in the address bar ***
+      - *** in chrome add "site:" before the website address in the address bar ***
+      - http://stackoverflow.com/a/4560541
+        - http://webcache.googleusercontent.com/search?q=cache:<your url without "http://">
+    - bing
+    - yahoo
+*** [ed] change hunchentoot session secret, etc
+    - http://weitz.de/hunchentoot/#sessions
 *** [fed] analyze http://common-lisp.net/project/ht-ajax/ht-ajax.html and/or http://martin-loetzsch.de/ht-simple-ajax/
 *** [ed] use https://github.com/Inaimathi/formlets for ed forms
-*** TODO [fed][util] lisp style error handling
-    :CLOCK:
-    CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
-    CLOCK: [2013-02-28 Thu 13:30]--[2013-02-28 Thu 14:45] =>  1:15
-    CLOCK: [2013-02-27 Wed 17:00]--[2013-02-27 Wed 18:35] =>  1:35
-    :END:
-    - [X] http://psg.com/~dlamkins/sl/chapter23.html
-    - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
-    - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
 *** TODO [ed] theme
     :CLOCK:
     CLOCK: [2013-03-10 Sun 16:23]--[2013-03-10 Sun 16:35] =>  0:12
@@ -222,7 +226,6 @@
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
 *** [config] utils/dimensions should not presume dimensions like envt or lang
-*** [seo] robots.txt
 *** [performance] remove unnecessary id/class from page elements
     - [ ] fe
     - [ ] ed
@@ -1657,6 +1660,24 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-04-07 Sun 02:50
+     :END:
+**** DONE [bug][ed] ckeditor not working in chrome
+     CLOSED: [2013-06-10 Mon 12:51]
+     :CLOCK:
+     CLOCK: [2013-06-10 Mon 12:48]--[2013-06-10 Mon 12:51] =>  0:03
+     CLOCK: [2013-05-04 Sat 23:22]--[2013-05-04 Sat 23:47] =>  0:25
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-10 Mon 17:06
+     :END:
+**** DONE [bug] (date article) should be universal timestamp, not custom string
+     CLOSED: [2013-06-10 Mon 17:06]
+     :CLOCK:
+     CLOCK: [2013-06-10 Mon 17:05]--[2013-06-10 Mon 17:06] =>  0:01
+     CLOCK: [2013-06-10 Mon 14:21]--[2013-06-10 Mon 15:15] =>  0:54
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-10 Mon 17:06
      :END:
 ** TODO refactor
    :CLOCK:

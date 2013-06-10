@@ -280,7 +280,7 @@
                                                            :summary summary
                                                            :body body
                                                            :status :r
-                                                           :date (prettyprint-datetime)
+                                                           :date (get-universal-time)
                                                            :cat cat
                                                            :subcat subcat
                                                            :photo photo
