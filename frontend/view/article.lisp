@@ -4,31 +4,36 @@
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun article-preamble-markup (article)
-  (with-html
-    (:h2 :id "a-title" (str (title article)))
-    (:p :id "a-details" :class "small"
-        (str "written by ")             ; XXX: translate
-        (:a :id "a-author"
-            :href (h-genurl 'r-author :author (handle (author article)))
-            (str (alias (author article))))
-        (str " ")
-        (:span :id "a-date" (str (date article)))
-        (str " in category ")
-        (:a :id "a-cat"
-            :href (h-genurl 'r-cat :cat (slug (cat article)))
-            (str (name (cat article))))
-        (unless (string= "--" (name (subcat article)))
-          (str " / ")
-          (htm
-           (:a :id "a-cat-subcat"
-               :href (h-genurl 'r-cat-subcat
-                               :cat (slug (cat article))
-                               :subcat (slug (subcat article)))
-               (str (name (subcat article))))))
-        (let ((tags (tags article)))
-          (when tags
-            (str ", using tags ")
-            (htm (:span :id "a-tags" (str (string-right-trim '(#\, #\space) (fe-article-tags-markup tags))))))))))
+  (let ((datetime (universal-to-timestamp (parse-integer (date article)))))
+    (with-html
+      (:h2 :id "a-title" (str (title article)))
+      (:p :id "a-details" :class "small"
+          (format t "~a" (translate "written-by"
+                                    (htm (:a :id "a-author"
+                                             :href (h-genurl 'r-author
+                                                             :author (handle (author article)))
+                                             (str (alias (author article)))))
+                                    (prettyprint-date datetime)
+                                    (prettyprint-time datetime)
+                                    (htm (:a :id "a-cat"
+                                             :href (h-genurl 'r-cat
+                                                             :cat (slug (cat article)))
+                                             (name (cat article))))
+                                    (if (string= "--" (name (subcat article)))
+                                        ""
+                                        (progn
+                                          " / "
+                                          (htm (:a :id "a-cat-subcat"
+                                                   :href (h-genurl 'r-cat-subcat
+                                                                   :cat (slug (cat article))
+                                                                   :subcat (slug (subcat article)))
+                                                   (name (subcat article))))))
+                                    (let ((tags (tags article)))
+                                      (if tags
+                                          (htm (:span :id "a-tags"
+                                                      (str (string-right-trim '(#\, #\space)
+                                                                              (fe-article-tags-markup tags)))))
+                                          ""))))))))
 
 (defun do-child-comments (parent-id children)
   (with-html (:ul :class "comment"
@@ -195,7 +200,7 @@
                          parent
                          (make-instance 'comment
                                         :body body
-                                        :date (prettyprint-datetime)
+                                        :date (get-universal-time)
                                         :status :a
                                         :username name
                                         :useremail email

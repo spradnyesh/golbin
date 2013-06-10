@@ -1,10 +1,7 @@
 (in-package :hawksbill.utils)
 
-(defun ppr-date (timestamp)
+(defun prettyprint-date (&optional (timestamp (now)))
   (format-timestring nil timestamp :format '(:short-weekday ", " :short-month " " :day ", " :year)))
 
-(defun ppr-time (timestamp)
+(defun prettyprint-time (&optional (timestamp (now)))
   (format-timestring nil timestamp :format '(:hour12 ":" :min " " :ampm)))
-
-(defun prettyprint-datetime (&optional (timestamp (now)))
-  (translate "datetime" (ppr-date timestamp) (ppr-time timestamp)))

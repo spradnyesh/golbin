@@ -78,7 +78,8 @@
            ;; file
            :get-directory-path-string
            ;; datetime
-           :prettyprint-datetime
+           :prettyprint-date
+           :prettyprint-time
            ;; lang
            :*translation-table*
            :translate
