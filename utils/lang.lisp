@@ -45,5 +45,12 @@
 ;; if #params are less than #~a in translated format-string
 ;; then die silently and return nil instead of an error
 (defun translate (key &rest params)
-  (handler-case (apply #'format nil (get-translation key) params)
-    (sb-format:format-error () nil)))
+  (log-message* :error "translated-0")
+  (log-message* :error key)
+  (mapc #'(lambda (x) (log-message* :error x)) params)
+  (let ((a
+         (handler-case (apply #'format nil (get-translation key) params)
+           (sb-format:format-error () nil))))
+    (log-message* :error "translated-1")
+      (log-message* :error a)
+    a))

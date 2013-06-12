@@ -3,37 +3,39 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro article-preamble-markup-common (key &body tags)
+  `(translate ,key
+             (htm (:a :id "a-author"
+                      :href (h-genurl 'r-author
+                                      :author (handle (author article)))
+                      (alias (author article))))
+             (prettyprint-date datetime)
+             (prettyprint-time datetime)
+             (htm (:a :id "a-cat"
+                      :href (h-genurl 'r-cat
+                                      :cat (slug (cat article)))
+                      (name (cat article))))
+             (if (string= "--" (name (subcat article)))
+                 ""
+                 (htm (:a :id "a-cat-subcat"
+                          :href (h-genurl 'r-cat-subcat
+                                          :cat (slug (cat article))
+                                          :subcat (slug (subcat article)))
+                          (name (subcat article)))))
+             ,@tags))
+
 (defun article-preamble-markup (article)
-  (let ((datetime (universal-to-timestamp (parse-integer (date article)))))
+  (let ((datetime (universal-to-timestamp (parse-integer (date article))))
+        (tags (tags article)))
     (with-html
       (:h2 :id "a-title" (str (title article)))
       (:p :id "a-details" :class "small"
-          (format t "~a" (translate "written-by"
-                                    (htm (:a :id "a-author"
-                                             :href (h-genurl 'r-author
-                                                             :author (handle (author article)))
-                                             (str (alias (author article)))))
-                                    (prettyprint-date datetime)
-                                    (prettyprint-time datetime)
-                                    (htm (:a :id "a-cat"
-                                             :href (h-genurl 'r-cat
-                                                             :cat (slug (cat article)))
-                                             (name (cat article))))
-                                    (if (string= "--" (name (subcat article)))
-                                        ""
-                                        (progn
-                                          " / "
-                                          (htm (:a :id "a-cat-subcat"
-                                                   :href (h-genurl 'r-cat-subcat
-                                                                   :cat (slug (cat article))
-                                                                   :subcat (slug (subcat article)))
-                                                   (name (subcat article))))))
-                                    (let ((tags (tags article)))
-                                      (if tags
-                                          (htm (:span :id "a-tags"
-                                                      (str (string-right-trim '(#\, #\space)
-                                                                              (fe-article-tags-markup tags)))))
-                                          ""))))))))
+          (if tags
+              (str (article-preamble-markup-common "written-by-with-tags"
+                     (htm (:span :id "a-tags"
+                                 (string-right-trim '(#\, #\space)
+                                                    (fe-article-tags-markup tags))))))
+              (str (article-preamble-markup-common "written-by-without-tags")))))))
 
 (defun do-child-comments (parent-id children)
   (with-html (:ul :class "comment"

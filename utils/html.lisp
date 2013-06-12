@@ -17,9 +17,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun trim-name (name)
-  (first (split-sequence " " name :test #'string-equal)))
-
 (defun tr-td-input (name &key (value "") (typeof "text"))
   (let ((for (regex-replace-all "-" name " ")))
     (with-html

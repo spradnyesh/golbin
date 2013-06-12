@@ -3,8 +3,12 @@
 * tasks
 ** backlog
 *** [bug] remove subcat=NIL from 'forgetting "forgive and forget"'
+*** [lang] make translate accept positional/named params
 *** TODO [bug] "written by..." should come in local language
     :CLOCK:
+    CLOCK: [2013-06-12 Wed 17:14]--[2013-06-12 Wed 17:37] =>  0:23
+    CLOCK: [2013-06-12 Wed 16:30]--[2013-06-12 Wed 16:57] =>  0:27
+    CLOCK: [2013-06-12 Wed 15:48]--[2013-06-12 Wed 16:15] =>  0:27
     CLOCK: [2013-06-10 Mon 18:29]--[2013-06-10 Mon 18:36] =>  0:07
     CLOCK: [2013-06-10 Mon 18:15]--[2013-06-10 Mon 18:25] =>  0:10
     CLOCK: [2013-06-10 Mon 17:27]--[2013-06-10 Mon 18:05] =>  0:38
