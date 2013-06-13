@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug] remove subcat=NIL from 'forgetting "forgive and forget"'
 *** [lang] make translate accept positional/named params
 *** TODO [bug] "written by..." should come in local language
     :CLOCK:
@@ -1694,6 +1693,22 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-06-10 Mon 17:07
+     :END:
+**** DONE [#B] [bug][fe] http://www.golb.in:8000/ goes into debugger
+     CLOSED: [2013-06-13 Thu 14:53]
+     :CLOCK:
+     CLOCK: [2013-06-13 Thu 13:43]--[2013-06-13 Thu 13:56] =>  0:13
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-13 Thu 14:53
+     :END:
+**** DONE [bug] remove subcat=NIL from 'forgetting "forgive and forget"'
+     CLOSED: [2013-06-13 Thu 14:53]
+     :CLOCK:
+     CLOCK: [2013-06-13 Thu 13:33]--[2013-06-13 Thu 13:42] =>  0:09
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-13 Thu 14:53
      :END:
 ** TODO refactor
    :CLOCK:
