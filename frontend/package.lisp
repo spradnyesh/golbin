@@ -27,6 +27,7 @@
            :article-preamble-markup
            :article-body-markup
            :article-related-markup
+           :r-robots
            :r-404))
 
 (in-package :hawksbill.golbin.frontend)

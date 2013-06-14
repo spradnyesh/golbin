@@ -25,6 +25,9 @@
 ;; search
 (define-route r-search ("/search/") (v-search))
 
+;; robots
+(define-route r-robots ("/robots.txt") (handle-static-file (merge-pathnames "../data/static/fe-robots.txt" *home*) "text/plain"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

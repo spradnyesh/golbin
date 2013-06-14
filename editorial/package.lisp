@@ -28,6 +28,7 @@
            :r-ajax-article-edit-post
            :r-logout
            :r-ajax-tags
+           :r-robots
            :r-404))
 
 (in-package :hawksbill.golbin.editorial)

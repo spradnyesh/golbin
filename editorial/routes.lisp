@@ -28,6 +28,10 @@
 ;(define-route r-cat-get ("/cat/") (v-cat-get))
 ;(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))
 
+;; robots
+(define-route r-robots ("/robots.txt") (handle-static-file (merge-pathnames "../data/static/ed-robots.txt" *home*) "text/plain"))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
