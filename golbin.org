@@ -2,20 +2,6 @@
 
 * tasks
 ** backlog
-*** [lang] make translate accept positional/named params
-*** TODO [bug] "written by..." should come in local language
-    :CLOCK:
-    CLOCK: [2013-06-13 Thu 12:58]--[2013-06-13 Thu 13:29] =>  0:31
-    CLOCK: [2013-06-13 Thu 10:52]--[2013-06-13 Thu 11:02] =>  0:10
-    CLOCK: [2013-06-12 Wed 17:14]--[2013-06-12 Wed 17:37] =>  0:23
-    CLOCK: [2013-06-12 Wed 16:30]--[2013-06-12 Wed 16:57] =>  0:27
-    CLOCK: [2013-06-12 Wed 15:48]--[2013-06-12 Wed 16:15] =>  0:27
-    CLOCK: [2013-06-10 Mon 18:29]--[2013-06-10 Mon 18:36] =>  0:07
-    CLOCK: [2013-06-10 Mon 18:15]--[2013-06-10 Mon 18:25] =>  0:10
-    CLOCK: [2013-06-10 Mon 17:27]--[2013-06-10 Mon 18:05] =>  0:38
-    CLOCK: [2013-06-10 Mon 17:10]--[2013-06-10 Mon 17:26] =>  0:16
-    CLOCK: [2013-06-10 Mon 12:52]--[2013-06-10 Mon 13:04] =>  0:12
-    :END:
 *** TODO [fed][util] lisp style error handling
     :CLOCK:
     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
@@ -25,7 +11,7 @@
     - [X] http://psg.com/~dlamkins/sl/chapter23.html
     - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
     - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
-*** [bug][fed] invalid DB requests should not go to debugger, but fail
+*** [lang] make translate accept positional/named params
 *** TODO [performance] js
     :CLOCK:
     :END:
@@ -33,6 +19,7 @@
       - so that browser does not block on it's download
     - pull ads/other js dynamically _after_ page load
     - https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS
+*** [bug][seo] clear GA confusion b/n www. and mr.
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
@@ -47,7 +34,19 @@
        5. if correct, process form
 **** registration
      - send email w/ 50 numbers to all authors (after successful registration)
-*** [bug][seo] clear GA confusion b/n www. and mr.
+*** TODO [bug] "written by..." should come in local language
+    :CLOCK:
+    CLOCK: [2013-06-13 Thu 12:58]--[2013-06-13 Thu 13:29] =>  0:31
+    CLOCK: [2013-06-13 Thu 10:52]--[2013-06-13 Thu 11:02] =>  0:10
+    CLOCK: [2013-06-12 Wed 17:14]--[2013-06-12 Wed 17:37] =>  0:23
+    CLOCK: [2013-06-12 Wed 16:30]--[2013-06-12 Wed 16:57] =>  0:27
+    CLOCK: [2013-06-12 Wed 15:48]--[2013-06-12 Wed 16:15] =>  0:27
+    CLOCK: [2013-06-10 Mon 18:29]--[2013-06-10 Mon 18:36] =>  0:07
+    CLOCK: [2013-06-10 Mon 18:15]--[2013-06-10 Mon 18:25] =>  0:10
+    CLOCK: [2013-06-10 Mon 17:27]--[2013-06-10 Mon 18:05] =>  0:38
+    CLOCK: [2013-06-10 Mon 17:10]--[2013-06-10 Mon 17:26] =>  0:16
+    CLOCK: [2013-06-10 Mon 12:52]--[2013-06-10 Mon 13:04] =>  0:12
+    :END:
 *** [performance] partial responses for requests
     - send back the following as soon as we get the request
       - http header
@@ -1718,6 +1717,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-06-14 Fri 18:39
      :END:
+**** DONE [bug][fed] invalid requests should not go to debugger, but fail
+     CLOSED: [2013-06-17 Mon 11:48]
+     :CLOCK:
+     CLOCK: [2013-06-17 Mon 09:49]--[2013-06-17 Mon 10:16] =>  0:27
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-17 Mon 11:48
+     :END:
+     - /2b2ozQBa.bat|dir
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
