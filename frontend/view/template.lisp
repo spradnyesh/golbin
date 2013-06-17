@@ -63,16 +63,35 @@
                          (:div :id "ft" (str (fe-footer)))))
             (:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
             (if (string-equal (get-dimension-value "envt") "prod")
-                (htm (:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
-                     (:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
-                     (:script :type "text/javascript"
-                              :src "/static/js/fe-2-min.js")
-                     (:script :type "text/javascript"
+                (htm (:script :type "text/javascript"
                               (str "
 var switchTo5x=true;
 stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399'});
 var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'email']}};
 var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
+
+/** https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS */
+// Add a script element as a child of the body
+function downloadJSAtOnload() {
+var element = document.createElement('script');
+element.src = 'http://w.sharethis.com/button/buttons.js';
+document.body.appendChild(element);
+
+element = document.createElement('script');
+element.src = 'http://s.sharethis.com/loader.js';
+document.body.appendChild(element);
+
+element = document.createElement('script');
+element.src = '/static/js/fe-2-min.js';
+document.body.appendChild(element);
+}
+
+// Check for browser support of event handling capability
+if (window.addEventListener)
+window.addEventListener('load', downloadJSAtOnload, false);
+else if (window.attachEvent)
+window.attachEvent('onload', downloadJSAtOnload);
+else window.onload = downloadJSAtOnload;
 ")))
                 (htm (:script :type "text/javascript" (str (on-load)))))
             ,js)))
