@@ -2,14 +2,7 @@
 
 * tasks
 ** backlog
-*** TODO [performance] js
-    :CLOCK:
-    CLOCK: [2013-06-17 Mon 11:50]--[2013-06-17 Mon 11:57] =>  0:07
-    :END:
-    - put js inside anonymous functions
-      - so that browser does not block on it's download
-    - pull ads/other js dynamically _after_ page load
-    - https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS
+*** [performance] http://www.appelsiini.net/projects/lazyload
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
@@ -1727,6 +1720,23 @@
      :ARCHIVE_TIME: 2013-06-17 Mon 11:48
      :END:
      - /2b2ozQBa.bat|dir
+**** DONE [performance] js
+     CLOSED: [2013-06-19 Wed 17:48]
+     :CLOCK:
+     CLOCK: [2013-06-19 Wed 17:25]--[2013-06-19 Wed 17:48] =>  0:23
+     CLOCK: [2013-06-19 Wed 16:55]--[2013-06-19 Wed 17:05] =>  0:10
+     CLOCK: [2013-06-19 Wed 15:57]--[2013-06-19 Wed 16:48] =>  0:51
+     CLOCK: [2013-06-19 Wed 15:50]--[2013-06-19 Wed 15:56] =>  0:06
+     CLOCK: [2013-06-19 Wed 14:50]--[2013-06-19 Wed 15:10] =>  0:20
+     CLOCK: [2013-06-17 Mon 11:50]--[2013-06-17 Mon 11:57] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-06-19 Wed 17:48
+     :END:
+     - put js inside anonymous functions
+       - so that browser does not block on it's download
+     - pull ads/other js dynamically _after_ page load
+     - https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

@@ -102,7 +102,7 @@
            ((".hidden")
             (:display "none"))
 
-           ((".ads")
+           ((".lazyload_ad")
             (:text-align "center"
                          :padding "20px 0"))
 

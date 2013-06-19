@@ -30,10 +30,10 @@
                           :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
                    (if (string-equal (get-dimension-value "envt") "prod")
                        (htm (:link :rel "stylesheet" :type "text/css"
-                                   :href "/static/css/fe-10-min.css")
+                                   :href "/static/css/fe-11-min.css")
                             ;; google analytics and adsense
                             (htm (:script :type "text/javascript"
-                            (str "
+                                          (str "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_trackPageview']);
@@ -65,35 +65,21 @@
             (if (string-equal (get-dimension-value "envt") "prod")
                 (htm (:script :type "text/javascript"
                               (str "
-var switchTo5x=true;
-stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399'});
-var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'email']}};
-var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
-
-/** https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS */
-// Add a script element as a child of the body
-function downloadJSAtOnload() {
-var element = document.createElement('script');
-element.src = 'http://w.sharethis.com/button/buttons.js';
-document.body.appendChild(element);
-
-element = document.createElement('script');
-element.src = 'http://s.sharethis.com/loader.js';
-document.body.appendChild(element);
-
-element = document.createElement('script');
-element.src = '/static/js/fe-2-min.js';
-document.body.appendChild(element);
-}
-
-// Check for browser support of event handling capability
-if (window.addEventListener)
-window.addEventListener('load', downloadJSAtOnload, false);
-else if (window.attachEvent)
-window.attachEvent('onload', downloadJSAtOnload);
-else window.onload = downloadJSAtOnload;
+    var switchTo5x=true;
+    $.getScript('/static/js/fe-2-min.js');
+    $.getScript('/static/js/jquery.lazyload-ad-1.4.2-min.js', function(data, textStatus, jqxhr) {
+        $('div.lazyload_ad').lazyLoadAd();
+    });
+    $.getScript('http://s.sharethis.com/loader.js', function(data, textStatus, jqxhr) {
+        $.getScript('http://w.sharethis.com/button/buttons.js', function(data, textStatus, jqxhr) {
+            stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399', doNotHash: false, doNotCopy: false, hashAddressBar: false});
+            var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'googleplus', 'email']}};
+            var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
+        });
+    });
 ")))
-                (htm (:script :type "text/javascript" (str (on-load)))))
+                (htm (:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+                     (:script :type "text/javascript" (str (on-load)))))
             ,js)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -193,34 +179,34 @@ else window.onload = downloadJSAtOnload;
 (defun fe-ads-1 ()
   (when (string-equal (get-dimension-value "envt") "prod")
     (with-html
-      (:div :class "ads"
-            (:script :type "text/javascript"
+      (:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
+            (:code :type "text/javascript"
                      (str "<!--
                  google_ad_client = 'ca-pub-7627106577670276';
                  google_ad_slot = '1936097987';
                  google_ad_width = 160;
                  google_ad_height = 600;
                  //-->"))
-            (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")))))
+            #|(:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")|#))))
 
 (defun fe-ads-2 ()
   (when (string-equal (get-dimension-value "envt") "prod")
     (with-html
-      (:div :class "ads"
-            (:script :type "text/javascript"
+      (:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
+            (:code :type "text/javascript"
                      (str "<!--
                           google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '5029165182';
                           google_ad_width = 300;
                           google_ad_height = 250;
                           //-->"))
-            (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
-      (:div :class "ads"
-            (:script :type "text/javascript"
+            #|(:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")|#)
+      (:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
+            (:code :type "text/javascript"
                      (str "<!--
                           google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '9459364786';
                           google_ad_width = 300;
                           google_ad_height = 600;
                           //-->"))
-            (:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")))))
+            #|(:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")|#))))
