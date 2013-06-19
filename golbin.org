@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [bug][fe] ads not showing up in google chrome (work in firefox though)
 *** [performance] http://www.appelsiini.net/projects/lazyload
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
