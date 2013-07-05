@@ -49,73 +49,76 @@
         ("envt:prod,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/mr-IN/" *home*))))
 
         ;; Categories (not needed in config; given here just for reference)
-        #|("lang:en-IN" ("categorys" (("Editorial"
-                                     "Politics"
-                                     "Religion")
-                                    ("Business"
-                                     "Companies"
-                                     "Economy"
-                                     "Industry"
-                                     "Markets")
-                                    ("Education")
-                                    ("Entertainment"
-                                     "Arts"
-                                     "Books"
-                                     "Celebrities"
-                                     "Humor"
-                                     "Movies"
-                                     "Music"
-                                     "TV")
-                                    ("Lifestyle"
-                                     "Automotive"
-                                     "Culture"
-                                     "Food and Beverage"
-                                     "Home and Garden"
-                                     "Health"
-                                     "Theatre"
-                                     "Travel")
-                                    ("Science"
-                                     "Environment"
-                                     "Geography"
-                                     "Space")
-                                    ("Sports"
-                                     "American Football"
-                                     "Badminton"
-                                     "Baseball"
-                                     "Basketball"
-                                     "Boxing"
-                                     "Cricket"
-                                     "Cycling"
-                                     "Hockey"
-                                     "Golf"
-                                     "Handball"
-                                     "Olympics"
-                                     "Racing"
-                                     "Rugby"
-                                     "Table Tennis"
-                                     "Tennis")
-                                    ("Technology"
-                                     "Computing"
-                                     "Internet"
-                                     "Personal Technology"
-                                     "Video Games"))))|#
-        #|("lang:mr-IN" ("categorys" (("लेख"
-                                     "अग्रलेख")
-                                    ("व्यापार")
-                                    ("शिक्षण")
-                                    ("देश-विदेश")
-                                    ("विज्ञान"
-                                     "वातावरण")
-                                    ("क्रीडा"
-                                     "क्रिकेट")
-                                    ("मौजमजा"
-                                     "कला"
-                                     "वाचन"
-                                     "नट-नटी"
-                                     "िसने-नाट्य"
-                                     "संगीत"
-                                     "टीवी")
-                                    ("लाइफस्टाइल")
-                                    ("टेक्नोलॉजी"
-                                     "कॉम्प्युटर"
-                                     "इंटरनेट"))))|#))
+        #-(and)
+        (progn
+          ("lang:en-IN" ("categorys" (("Editorial"
+                                       "Politics"
+                                       "Religion")
+                                      ("Business"
+                                       "Companies"
+                                       "Economy"
+                                       "Industry"
+                                       "Markets")
+                                      ("Education")
+                                      ("Entertainment"
+                                       "Arts"
+                                       "Books"
+                                       "Celebrities"
+                                       "Humor"
+                                       "Movies"
+                                       "Music"
+                                       "TV")
+                                      ("Lifestyle"
+                                       "Automotive"
+                                       "Culture"
+                                       "Food and Beverage"
+                                       "Home and Garden"
+                                       "Health"
+                                       "Theatre"
+                                       "Travel")
+                                      ("Science"
+                                       "Environment"
+                                       "Geography"
+                                       "Space")
+                                      ("Sports"
+                                       "American Football"
+                                       "Badminton"
+                                       "Baseball"
+                                       "Basketball"
+                                       "Boxing"
+                                       "Cricket"
+                                       "Cycling"
+                                       "Hockey"
+                                       "Golf"
+                                       "Handball"
+                                       "Olympics"
+                                       "Racing"
+                                       "Rugby"
+                                       "Table Tennis"
+                                       "Tennis")
+                                      ("Technology"
+                                       "Computing"
+                                       "Internet"
+                                       "Personal Technology"
+                                       "Video Games"))))
+          ("lang:mr-IN" ("categorys" (("लेख"
+                                       "अग्रलेख"
+                                       "कविता")
+                                      ("व्यापार")
+                                      ("शिक्षण")
+                                      ("देश-विदेश")
+                                      ("विज्ञान"
+                                       "वातावरण")
+                                      ("क्रीडा"
+                                       "क्रिकेट")
+                                      ("मौजमजा"
+                                       "कला"
+                                       "वाचन"
+                                       "नट-नटी"
+                                       "िसने-नाट्य"
+                                       "संगीत"
+                                       "टीवी")
+                                      ("लाइफस्टाइल")
+                                      ("टेक्नोलॉजी"
+                                       "कॉम्प्युटर"
+                                       "इंटरनेट")))))))
