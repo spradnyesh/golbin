@@ -25,7 +25,7 @@
                          ,@tags)))
 
 (defun article-preamble-markup (article)
-  (let ((datetime (universal-to-timestamp (parse-integer (date article))))
+  (let ((datetime (universal-to-timestamp (date article)))
         (tags (tags article)))
     (with-html
       (:h2 :id "a-title" (str (title article)))

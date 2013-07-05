@@ -37,7 +37,7 @@
                                                                         (if (not (string= "--" subcat-name))
                                                                             (format nil ", ~a " subcat-name)
                                                                             ""))
-                                                                      (prettyprint-date (universal-to-timestamp (parse-integer (date article)))))))
+                                                                      (prettyprint-date (universal-to-timestamp (date article))))))
                             (:p :class "a-summary" (str (summary article))))))))
                  (str ,(if route-params
                            `(pagination-markup page
