@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][fe] ads not showing up in google chrome (work in firefox though)
 *** [performance] http://www.appelsiini.net/projects/lazyload
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
@@ -1738,6 +1737,14 @@
        - so that browser does not block on it's download
      - pull ads/other js dynamically _after_ page load
      - https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS
+**** DONE [bug][fe] ads not showing up in google chrome (work in firefox though)
+     CLOSED: [2013-07-06 Sat 02:34]
+     :CLOCK:
+     CLOCK: [2013-07-06 Sat 02:20]--[2013-07-06 Sat 02:34] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-06 Sat 02:34
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

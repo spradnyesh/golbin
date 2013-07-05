@@ -67,7 +67,7 @@
                               (str "
     var switchTo5x=true;
     $.getScript('/static/js/fe-2-min.js');
-    $.getScript('/static/js/jquery.lazyload-ad-1.4.2-min.js', function(data, textStatus, jqxhr) {
+    $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
         $('div.lazyload_ad').lazyLoadAd();
     });
     $.getScript('http://s.sharethis.com/loader.js', function(data, textStatus, jqxhr) {
