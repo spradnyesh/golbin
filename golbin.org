@@ -4,6 +4,7 @@
 ** backlog
 *** TODO [articles] add aai kavita
     :CLOCK:
+    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
 *** [performance] http://www.appelsiini.net/projects/lazyload
