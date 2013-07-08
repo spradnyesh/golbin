@@ -3,39 +3,57 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro article-preamble-markup-common (key &body tags)
+(defmacro article-preamble-markup-common (key &optional tags)
   `(with-html (translate ,key
+                         #- (and)
                          (htm (:a :id "a-author"
                                   :href (h-genurl 'r-author
                                                   :author (handle (author article)))
                                   (alias (author article))))
-                         (prettyprint-date datetime)
-                         (prettyprint-time datetime)
+                         (alias (author article))
+                         (prettyprint-date timestamp)
+                         (prettyprint-time timestamp)
+                         (name (cat article))
+                         (let ((subcat-name (name (subcat article))))
+                           (if (not (string= "--" subcat-name))
+                               (format nil ", ~a " subcat-name)
+                               ""))
+                         #- (and)
                          (htm (:a :id "a-cat"
                                   :href (h-genurl 'r-cat
                                                   :cat (slug (cat article)))
-                                  (name (cat article))))
+                                  (str (name (cat article)))))
+                         #- (and)
                          (if (string= "--" (name (subcat article)))
                              ""
                              (htm (:a :id "a-cat-subcat"
                                       :href (h-genurl 'r-cat-subcat
                                                       :cat (slug (cat article))
                                                       :subcat (slug (subcat article)))
-                                      (name (subcat article)))))
-                         ,@tags)))
+                                      (str (name (subcat article))))))
+                         ,tags)))
 
 (defun article-preamble-markup (article)
-  (let ((datetime (universal-to-timestamp (date article)))
+  (let ((timestamp (universal-to-timestamp (date article)))
         (tags (tags article)))
     (with-html
       (:h2 :id "a-title" (str (title article)))
-      (:p :id "a-details" :class "small"
-          (if tags
-              (article-preamble-markup-common "written-by-with-tags"
-                (htm (:span :id "a-tags"
-                            (string-right-trim '(#\, #\space)
-                                               (fe-article-tags-markup tags)))))
-              (article-preamble-markup-common "written-by-without-tags"))))))
+      (:cite :id "a-cite" :class "small"
+          (str (format nil ;; TODO: same as "a-cite" of index; need to converge both. also, translate
+                       "~a - ~a ~a- ~a"
+                       (alias (author article))
+                       (name (cat article))
+                       (let ((subcat-name (name (subcat article))))
+                         (if (not (string= "--" subcat-name))
+                             (format nil ", ~a " subcat-name)
+                             ""))
+                       (prettyprint-date (universal-to-timestamp (date article)))))
+          #|(str (if tags
+                   (article-preamble-markup-common
+                    "written-by-with-tags"
+                    (htm (:span :id "a-tags"
+                                (str (fe-article-tags-markup tags)))))
+                   (article-preamble-markup-common "written-by-without-tags")))|#))))
 
 (defun do-child-comments (parent-id children)
   (with-html (:ul :class "comment"
@@ -136,10 +154,11 @@
 
 (defun fe-article-tags-markup (tags)
   (with-html
-    (dolist (tag tags)
-      (htm (:a :href (h-genurl 'r-tag :tag (slug tag))
-               (str (name tag)))
-           ", "))))
+    (string-right-trim '(#\, #\space)
+                       (dolist (tag tags)
+                         (htm (:a :href (h-genurl 'r-tag :tag (slug tag))
+                                  (str (name tag)))
+                              ", ")))))
 
 (defun get-id-from-slug-and-id (slug-and-id)
   (parse-integer (first (split-sequence "-" slug-and-id

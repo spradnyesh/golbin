@@ -2,11 +2,7 @@
 
 * tasks
 ** backlog
-*** TODO [fe] add author name in article
-    :CLOCK:
-    CLOCK: [2013-07-08 Mon 13:36]--[2013-07-08 Mon 13:39] =>  0:03
-    CLOCK: [2013-07-08 Mon 13:21]--[2013-07-08 Mon 13:34] =>  0:13
-    :END:
+*** [fe] a-cite should have hyperlinks
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
@@ -1762,6 +1758,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-06 Sat 02:34
+     :END:
+**** DONE [fe] add author name in article and list
+     CLOSED: [2013-07-08 Mon 17:53]
+     :CLOCK:
+     CLOCK: [2013-07-08 Mon 17:48]--[2013-07-08 Mon 17:53] =>  0:05
+     CLOCK: [2013-07-08 Mon 17:28]--[2013-07-08 Mon 17:43] =>  0:15
+     CLOCK: [2013-07-08 Mon 16:45]--[2013-07-08 Mon 17:22] =>  0:37
+     CLOCK: [2013-07-08 Mon 13:36]--[2013-07-08 Mon 13:39] =>  0:03
+     CLOCK: [2013-07-08 Mon 13:21]--[2013-07-08 Mon 13:34] =>  0:13
      :END:
 ** TODO refactor
    :CLOCK:

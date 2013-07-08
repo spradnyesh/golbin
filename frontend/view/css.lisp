@@ -84,8 +84,7 @@
             (:font-weight "bold"))
 
            ((".small")
-            (:font-size "80%"
-                        :line-height "14px"))
+            (:font-size "80%"))
 
            ((".disabled")
             (:color "#999"))
@@ -156,12 +155,11 @@
                     :padding-right "25px"))
 
            (("#articles ul li")
-            (:padding "10px 0"
-                      :border-bottom "1px dotted"
+            (:border-bottom "1px dotted"
                       :border-color "#CCC"))
 
            (("#articles ul li p")
-            (:margin "0"))
+            (:margin "0 0 10px 0"))
 
            (("#articles .index-thumb")
             (:float "left"
@@ -196,10 +194,16 @@
                          :margin "15px 0 0 0"))
 
            (("#a-title")
-            (:margin-bottom "10px"))
+            (:font-size "160%"))
+
+           (("#a-cite")
+            (:color "#999999"
+                    :padding "2px 0"
+                    :display "block"))
 
            (("#a-body")
-            (:text-align "justify"))
+            (:text-align "justify"
+                         :padding-top "10px"))
 
            (("#a-body div.a-photo")
             (:float "right"))

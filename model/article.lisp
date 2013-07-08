@@ -9,7 +9,7 @@
    (slug :initarg :slug :initform nil :accessor slug)
    (summary :initarg :summary :initform nil :accessor summary)
    (body :initarg :body :initform nil :accessor body)
-   (date :initarg :date :initform nil :accessor date) ; actually datetime
+   (date :initarg :date :initform nil :accessor date) ; actually timestamp
    (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :s submitted for approval, :a approved/active, :w rejected/withdrawn (deleted by admin)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
