@@ -2,6 +2,11 @@
 
 * tasks
 ** backlog
+*** TODO [fe] add author name in article
+    :CLOCK:
+    CLOCK: [2013-07-08 Mon 13:36]--[2013-07-08 Mon 13:39] =>  0:03
+    CLOCK: [2013-07-08 Mon 13:21]--[2013-07-08 Mon 13:34] =>  0:13
+    :END:
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
@@ -1749,6 +1754,7 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-05 Fri 11:48
+     :END:
 **** DONE [bug][fe] ads not showing up in google chrome (work in firefox though)
      CLOSED: [2013-07-06 Sat 02:34]
      :CLOCK:
@@ -1756,6 +1762,626 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-06 Sat 02:34
+     :END:
+** TODO refactor
+   :CLOCK:
+   CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
+   CLOCK: [2012-07-05 Thu 16:12]--[2012-07-05 Thu 18:35] =>  2:23
+   CLOCK: [2012-07-04 Wed 11:16]--[2012-07-04 Wed 11:48] =>  0:32
+   CLOCK: [2012-07-04 Wed 09:30]--[2012-07-04 Wed 11:15] =>  1:45
+   CLOCK: [2012-06-21 Thu 13:19]--[2012-06-21 Thu 13:47] =>  0:28
+   CLOCK: [2012-06-21 Thu 11:59]--[2012-06-21 Thu 12:06] =>  0:07
+   CLOCK: [2012-06-21 Thu 11:15]--[2012-06-21 Thu 11:46] =>  0:31
+   :END:
+** frontend
+*** misc
+**** DONE undo *active*
+     CLOSED: [2012-07-10 Tue 12:52]
+     :CLOCK:
+     CLOCK: [2012-07-10 Tue 12:41]--[2012-07-10 Tue 12:52] =>  0:11
+     :END:
+**** DONE show only active (ones that have some articles in them) authors, categories and tags in navigation
+     CLOSED: [2012-07-04 Wed 09:24]
+     :CLOCK:
+     CLOCK: [2012-07-04 Wed 08:50]--[2012-07-04 Wed 09:24] =>  0:34
+     CLOCK: [2012-07-03 Tue 17:40]--[2012-07-03 Tue 18:14] =>  0:34
+     :END:
+**** DONE static files
+     CLOSED: [2012-06-21 Thu 15:13]
+       :CLOCK:
+     CLOCK: [2012-06-21 Thu 14:27]--[2012-06-21 Thu 15:00] =>  0:33
+     CLOCK: [2012-06-21 Thu 13:50]--[2012-06-21 Thu 14:10] =>  0:20
+       :END:
+**** DONE db
+     CLOSED: [2012-07-03 Tue 16:17]
+     :CLOCK:
+     CLOCK: [2012-07-03 Tue 15:21]--[2012-07-03 Tue 16:17] =>  0:56
+     CLOCK: [2012-07-03 Tue 14:49]--[2012-07-03 Tue 15:10] =>  0:21
+     CLOCK: [2012-06-26 Tue 19:30]--[2012-06-26 Tue 20:00] =>  0:30
+     CLOCK: [2012-06-26 Tue 17:30]--[2012-06-26 Tue 19:02] =>  1:32
+     CLOCK: [2012-06-26 Tue 12:19]--[2012-06-26 Tue 12:35] =>  0:16
+     CLOCK: [2012-06-21 Thu 19:00]--[2012-06-21 Thu 19:51] =>  0:51
+     CLOCK: [2012-06-21 Thu 15:00]--[2012-06-21 Thu 17:40] =>  2:40
+     :END:
+     - this completes the CRU (D isn't needed) of DB using cl-prevalence
+**** TODO navigation
+*** TODO views
+    :CLOCK:
+    CLOCK: [2012-08-03 Fri 19:06]--[2012-08-03 Fri 20:13] =>  1:07
+    CLOCK: [2012-06-20 Wed 18:50]--[2012-06-20 Wed 20:11] =>  1:21
+    :END:
+**** common
+***** TODO layout
+      :CLOCK:
+      CLOCK: [2012-06-29 Fri 17:52]--[2012-06-29 Fri 18:01] =>  0:09
+      CLOCK: [2012-06-20 Wed 17:55]--[2012-06-20 Wed 18:48] =>  0:53
+      CLOCK: [2012-06-20 Wed 14:12]--[2012-06-20 Wed 17:15] =>  3:03
+      :END:
+      - http://travel.yahoo.com/ideas/
+      - http://travel.yahoo.com/ideas/five-miles-up-with-----christopher-gorham.html
+***** TODO navigation
+      :CLOCK:
+      CLOCK: [2012-08-06 Mon 20:34]--[2012-08-06 Mon 22:08] =>  1:34
+      CLOCK: [2012-08-06 Mon 19:48]--[2012-08-06 Mon 20:15] =>  0:27
+      CLOCK: [2012-06-20 Wed 13:19]--[2012-06-20 Wed 14:12] =>  0:53
+      CLOCK: [2012-06-19 Tue 19:00]--[2012-06-19 Tue 19:26] =>  0:26
+      CLOCK: [2012-06-19 Tue 17:36]--[2012-06-19 Tue 18:11] =>  0:35
+      CLOCK: [2012-06-19 Tue 16:35]--[2012-06-19 Tue 17:35] =>  1:00
+      CLOCK: [2012-06-14 Thu 13:46]--[2012-06-14 Thu 15:15] =>  1:29
+      CLOCK: [2012-06-13 Wed 11:41]--[2012-06-13 Wed 12:02] =>  0:21
+      CLOCK: [2012-06-13 Wed 08:40]--[2012-06-13 Wed 10:40] =>  2:00
+      CLOCK: [2012-06-12 Tue 19:26]--[2012-06-12 Tue 20:26] =>  1:00
+      :END:
+***** header
+****** logo
+****** trending
+****** TODO navigation
+       :CLOCK:
+       CLOCK: [2012-06-08 Fri 16:44]--[2012-06-08 Fri 16:45] =>  0:01
+       :END:
+***** footer
+***** ads
+***** TODO #views
+      :CLOCK:
+      CLOCK: [2012-06-13 Wed 11:14]--[2012-06-13 Wed 11:35] =>  0:21
+      CLOCK: [2012-06-13 Wed 10:55]--[2012-06-13 Wed 11:14] =>  0:19
+      :END:
+***** TODO pagination
+**** TODO home
+     :CLOCK:
+     CLOCK: [2012-07-24 Tue 19:20]--[2012-07-24 Tue 19:55] =>  0:35
+     :END:
+***** latest
+***** most-popular
+**** TODO article
+     :CLOCK:
+     CLOCK: [2012-07-30 Mon 18:47]--[2012-07-30 Mon 19:02] =>  0:15
+     CLOCK: [2012-07-30 Mon 16:07]--[2012-07-30 Mon 16:36] =>  0:29
+     CLOCK: [2012-07-30 Mon 14:26]--[2012-07-30 Mon 15:36] =>  1:10
+     CLOCK: [2012-07-20 Fri 19:13]--[2012-07-20 Fri 19:35] =>  0:22
+     CLOCK: [2012-07-20 Fri 16:42]--[2012-07-20 Fri 17:22] =>  0:40
+     CLOCK: [2012-06-19 Tue 14:48]--[2012-06-19 Tue 15:40] =>  0:52
+     :END:
+***** related-carousel
+**** TODO cat/subcat
+***** list of other cat/subcat
+**** TODO author
+     :CLOCK:
+     CLOCK: [2012-06-20 Wed 17:34]--[2012-06-20 Wed 17:54] =>  0:20
+     :END:
+***** list of other authors
+**** TODO tags
+***** list of other tags
+*** TODO wireframes
+    :CLOCK:
+    CLOCK: [2012-06-13 Wed 10:40]--[2012-06-13 Wed 10:54] =>  0:14
+    :END:
+*** DONE routes
+    CLOSED: [2012-07-10 Tue 12:53]
+    :CLOCK:
+    CLOCK: [2012-07-04 Wed 11:48]--[2012-07-04 Wed 12:21] =>  0:33
+    CLOCK: [2012-06-08 Fri 15:11]--[2012-06-08 Fri 16:00] =>  0:49
+    CLOCK: [2012-06-08 Fri 13:02]--[2012-06-08 Fri 13:06] =>  0:04
+    :END:
+    - [X] home
+    - [X] home-page
+    - [X] cat
+    - [X] cat-subcat
+    - [X] tag
+    - [X] author
+    - [X] article
+    - [X] static-files
+    - [X] search
+*** DONE template@pencil
+     CLOSED: [2012-06-08 Fri 14:35]
+    :CLOCK:
+    CLOCK: [2012-06-08 Fri 13:59]--[2012-06-08 Fri 14:35] =>  0:36
+    :END:
+    - [X] template
+    - [X] navigation
+*** nginx
+    - [ ] proxy
+    - [ ] static files
+    - [ ] caching
+*** future requirements/improvements
+    - extra (empty), user-settable, primary-navigation fields
+      - html5
+      - html4 + cookie
+    - related articles
+      - users who viewed this also viewed
+        - http://coding.smashingmagazine.com/2011/03/23/speeding-up-your-websites-database/
+          - How Can A Database Slow Down A Website?
+          - …Or Just Cheat
+** utils
+*** DONE config
+    CLOSED: [2012-06-30 Sat 00:32]
+    :CLOCK:
+    CLOCK: [2012-06-29 Fri 23:32]--[2012-06-30 Sat 00:32] =>  1:00
+    CLOCK: [2012-06-29 Fri 18:52]--[2012-06-29 Fri 20:16] =>  1:24
+    CLOCK: [2012-06-19 Tue 16:22]--[2012-06-19 Tue 16:35] =>  0:13
+    CLOCK: [2012-06-19 Tue 15:42]--[2012-06-19 Tue 16:10] =>  0:28
+    CLOCK: [2012-06-19 Tue 14:27]--[2012-06-19 Tue 14:47] =>  0:20
+    CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
+    CLOCK: [2012-06-18 Mon 13:33]--[2012-06-18 Mon 15:06] =>  1:33
+    CLOCK: [2012-06-18 Mon 13:07]--[2012-06-18 Mon 13:21] =>  0:14
+    CLOCK: [2012-06-18 Mon 11:07]--[2012-06-18 Mon 12:07] =>  1:00
+    CLOCK: [2012-06-15 Fri 16:32]--[2012-06-15 Fri 20:04] =>  3:32
+    :END:
+*** cache
+    - w/ time for each with-cache call
+    - cache BE calls (especially DB reads)
+    - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
+*** html
+*** db
+*** init
+*** l10n
+** TODO models
+   :CLOCK:
+   CLOCK: [2012-07-18 Wed 20:51]--[2012-07-18 Wed 20:58] =>  0:07
+   CLOCK: [2012-07-18 Wed 19:10]--[2012-07-18 Wed 20:16] =>  1:06
+   CLOCK: [2012-07-05 Thu 12:56]--[2012-07-05 Thu 13:48] =>  0:52
+   CLOCK: [2012-07-05 Thu 11:46]--[2012-07-05 Thu 12:00] =>  0:14
+   CLOCK: [2012-06-08 Fri 19:07]--[2012-06-08 Fri 20:15] =>  1:08
+   CLOCK: [2012-06-08 Fri 17:20]--[2012-06-08 Fri 18:20] =>  1:00
+   CLOCK: [2012-06-08 Fri 16:45]--[2012-06-08 Fri 17:11] =>  0:26
+   :END:
+   - [ ] user
+   - [X] author(user)
+   - [X] category
+   - [X] tag
+   - [X] view
+   - [X] article
+   - [X] photos
+** editorial
+*** TODO initial content
+    :CLOCK:
+    CLOCK: [2012-07-10 Tue 17:23]--[2012-07-10 Tue 17:42] =>  0:19
+    CLOCK: [2012-06-08 Fri 14:43]--[2012-06-08 Fri 14:50] =>  0:07
+    :END:
+**** categories [fn:1] [fn:2]
+     - Sports
+       - American Football
+       - Badminton
+       - Baseball
+       - Basketball
+       - Boxing
+       - Cricket
+       - Cycling
+       - Hockey
+       - Golf
+       - Handball
+       - Olympics
+       - Racing
+       - Rugby
+       - Table Tennis
+       - Tennis
+     - Entenrtainment
+       - Arts
+       - Books
+       - Celebrities
+       - Movies
+       - Music
+       - TV
+       - Humor
+     - Lifestyle
+       - Automotive
+       - Culture
+       - Food and Beverage
+       - Home and Garden
+       - Theatre
+       - Travel
+       - Health
+     - Technology
+       - Computing
+       - Internet
+       - Personal Technology
+       - Video Games
+     - Business
+       - Companies
+       - Economy
+       - Industry
+       - Markets
+     - Education
+     - Science
+       - Environmenent
+       - Geography
+       - Space
+     - Headlines
+     - Politics
+     - Religion
+*** TODO views
+    :CLOCK:
+    CLOCK: [2012-08-02 Thu 19:47]--[2012-08-02 Thu 20:07] =>  0:20
+    CLOCK: [2012-08-02 Thu 19:09]--[2012-08-02 Thu 19:41] =>  0:32
+    CLOCK: [2012-08-02 Thu 15:15]--[2012-08-02 Thu 17:06] =>  1:51
+    CLOCK: [2012-08-02 Thu 12:45]--[2012-08-02 Thu 14:45] =>  2:00
+    CLOCK: [2012-07-13 Fri 13:30]--[2012-07-13 Fri 15:47] =>  2:17
+    CLOCK: [2012-07-13 Fri 12:00]--[2012-07-13 Fri 12:19] =>  0:19
+    CLOCK: [2012-07-13 Fri 10:52]--[2012-07-13 Fri 11:20] =>  0:28
+    CLOCK: [2012-07-10 Tue 16:43]--[2012-07-10 Tue 17:06] =>  0:23
+    CLOCK: [2012-07-10 Tue 12:55]--[2012-07-10 Tue 16:03] =>  3:08
+    :END:
+*** TODO routes
+*** TODO wireframes
+*** TODO reports
+    - http://jandmworks.com/simplot/user/simplot.html
+** cron
+*** DONE resize photo
+     CLOSED: [2012-07-24 Tue 19:19]
+    :CLOCK:
+    CLOCK: [2012-07-24 Tue 19:09]--[2012-07-24 Tue 19:19] =>  0:10
+    CLOCK: [2012-07-23 Mon 18:59]--[2012-07-23 Mon 19:09] =>  0:10
+    CLOCK: [2012-07-23 Mon 16:35]--[2012-07-23 Mon 17:58] =>  1:23
+    CLOCK: [2012-07-23 Mon 15:27]--[2012-07-23 Mon 16:28] =>  1:01
+    CLOCK: [2012-07-23 Mon 14:32]--[2012-07-23 Mon 14:33] =>  0:01
+    CLOCK: [2012-07-20 Fri 19:49]--[2012-07-20 Fri 20:08] =>  0:19
+    :END:
+*** reports
+** Archive                                                          :ARCHIVE:
+*** next
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2012-08-07 Tue 20:03
+    :END:
+    - [X] static navigation (primary and secondary) according to page
+    - [X] correct dependencies of utils/* in golbin.asd
+    - [X] linode + git + nginx
+    - [X] add photos to articles
+    - [X] config
+    - [X] 'master' in config
+    - [X] populate/tmp-init of categories/tags
+    - [X] add authors
+    - [X] author/category/tag pages
+    - [X] layout
+    - [X] static files
+    - [X] db
+      - [X] active articles and authors
+      - [X] edit articles (to activate/approve them)
+    - [X] show only active (ones that have some articles in them) authors, categories and tags in navigation
+    - [X] undo *active*
+    - [X] support for photos
+*** DONE hosting
+    CLOSED: [2012-07-28 Sat 18:41]
+    :CLOCK:
+    CLOCK: [2012-07-28 Sat 16:40]--[2012-07-28 Sat 18:41] =>  2:01
+    CLOCK: [2012-07-05 Thu 15:50]--[2012-07-05 Thu 16:11] =>  0:21
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2012-08-29 Wed 11:55
+    :END:
+    - [X] linode
+    - [X] git
+    - [X] nginx
++      :PROPERTIES:
++      :ARCHIVE_TIME: 2013-07-06 Sat 02:34
+    :END:
+** TODO refactor
+  :CLOCK:
+  CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
+  CLOCK: [2012-07-05 Thu 16:12]--[2012-07-05 Thu 18:35] =>  2:23
+  CLOCK: [2012-07-04 Wed 11:16]--[2012-07-04 Wed 11:48] =>  0:32
+  CLOCK: [2012-07-04 Wed 09:30]--[2012-07-04 Wed 11:15] =>  1:45
+  CLOCK: [2012-06-21 Thu 13:19]--[2012-06-21 Thu 13:47] =>  0:28
+  CLOCK: [2012-06-21 Thu 11:59]--[2012-06-21 Thu 12:06] =>  0:07
+  CLOCK: [2012-06-21 Thu 11:15]--[2012-06-21 Thu 11:46] =>  0:31
+  :END:
+** frontend
+*** misc
+**** DONE undo *active*
+    CLOSED: [2012-07-10 Tue 12:52]
+    :CLOCK:
+    CLOCK: [2012-07-10 Tue 12:41]--[2012-07-10 Tue 12:52] =>  0:11
+    :END:
+**** DONE show only active (ones that have some articles in them) authors, categories and tags in navigation
+    CLOSED: [2012-07-04 Wed 09:24]
+    :CLOCK:
+    CLOCK: [2012-07-04 Wed 08:50]--[2012-07-04 Wed 09:24] =>  0:34
+    CLOCK: [2012-07-03 Tue 17:40]--[2012-07-03 Tue 18:14] =>  0:34
+    :END:
+**** DONE static files
+    CLOSED: [2012-06-21 Thu 15:13]
+    :CLOCK:
+    CLOCK: [2012-06-21 Thu 14:27]--[2012-06-21 Thu 15:00] =>  0:33
+    CLOCK: [2012-06-21 Thu 13:50]--[2012-06-21 Thu 14:10] =>  0:20
+    :END:
+**** DONE db
+    CLOSED: [2012-07-03 Tue 16:17]
+    :CLOCK:
+    CLOCK: [2012-07-03 Tue 15:21]--[2012-07-03 Tue 16:17] =>  0:56
+    CLOCK: [2012-07-03 Tue 14:49]--[2012-07-03 Tue 15:10] =>  0:21
+    CLOCK: [2012-06-26 Tue 19:30]--[2012-06-26 Tue 20:00] =>  0:30
+    CLOCK: [2012-06-26 Tue 17:30]--[2012-06-26 Tue 19:02] =>  1:32
+    CLOCK: [2012-06-26 Tue 12:19]--[2012-06-26 Tue 12:35] =>  0:16
+    CLOCK: [2012-06-21 Thu 19:00]--[2012-06-21 Thu 19:51] =>  0:51
+    CLOCK: [2012-06-21 Thu 15:00]--[2012-06-21 Thu 17:40] =>  2:40
+    :END:
+    - this completes the CRU (D isn't needed) of DB using cl-prevalence
+**** TODO navigation
+*** TODO views
+   :CLOCK:
+   CLOCK: [2012-08-03 Fri 19:06]--[2012-08-03 Fri 20:13] =>  1:07
+   CLOCK: [2012-06-20 Wed 18:50]--[2012-06-20 Wed 20:11] =>  1:21
+   :END:
+**** common
+***** TODO layout
+     :CLOCK:
+     CLOCK: [2012-06-29 Fri 17:52]--[2012-06-29 Fri 18:01] =>  0:09
+     CLOCK: [2012-06-20 Wed 17:55]--[2012-06-20 Wed 18:48] =>  0:53
+     CLOCK: [2012-06-20 Wed 14:12]--[2012-06-20 Wed 17:15] =>  3:03
+     :END:
+     - http://travel.yahoo.com/ideas/
+     - http://travel.yahoo.com/ideas/five-miles-up-with-----christopher-gorham.html
+***** TODO navigation
+     :CLOCK:
+     CLOCK: [2012-08-06 Mon 20:34]--[2012-08-06 Mon 22:08] =>  1:34
+     CLOCK: [2012-08-06 Mon 19:48]--[2012-08-06 Mon 20:15] =>  0:27
+     CLOCK: [2012-06-20 Wed 13:19]--[2012-06-20 Wed 14:12] =>  0:53
+     CLOCK: [2012-06-19 Tue 19:00]--[2012-06-19 Tue 19:26] =>  0:26
+     CLOCK: [2012-06-19 Tue 17:36]--[2012-06-19 Tue 18:11] =>  0:35
+     CLOCK: [2012-06-19 Tue 16:35]--[2012-06-19 Tue 17:35] =>  1:00
+     CLOCK: [2012-06-14 Thu 13:46]--[2012-06-14 Thu 15:15] =>  1:29
+     CLOCK: [2012-06-13 Wed 11:41]--[2012-06-13 Wed 12:02] =>  0:21
+     CLOCK: [2012-06-13 Wed 08:40]--[2012-06-13 Wed 10:40] =>  2:00
+     CLOCK: [2012-06-12 Tue 19:26]--[2012-06-12 Tue 20:26] =>  1:00
+     :END:
+***** header
+****** logo
+****** trending
+****** TODO navigation
+      :CLOCK:
+      CLOCK: [2012-06-08 Fri 16:44]--[2012-06-08 Fri 16:45] =>  0:01
+      :END:
+***** footer
+***** ads
+***** TODO #views
+     :CLOCK:
+     CLOCK: [2012-06-13 Wed 11:14]--[2012-06-13 Wed 11:35] =>  0:21
+     CLOCK: [2012-06-13 Wed 10:55]--[2012-06-13 Wed 11:14] =>  0:19
+     :END:
+***** TODO pagination
+**** TODO home
+    :CLOCK:
+    CLOCK: [2012-07-24 Tue 19:20]--[2012-07-24 Tue 19:55] =>  0:35
+    :END:
+***** latest
+***** most-popular
+**** TODO article
+    :CLOCK:
+    CLOCK: [2012-07-30 Mon 18:47]--[2012-07-30 Mon 19:02] =>  0:15
+    CLOCK: [2012-07-30 Mon 16:07]--[2012-07-30 Mon 16:36] =>  0:29
+    CLOCK: [2012-07-30 Mon 14:26]--[2012-07-30 Mon 15:36] =>  1:10
+    CLOCK: [2012-07-20 Fri 19:13]--[2012-07-20 Fri 19:35] =>  0:22
+    CLOCK: [2012-07-20 Fri 16:42]--[2012-07-20 Fri 17:22] =>  0:40
+    CLOCK: [2012-06-19 Tue 14:48]--[2012-06-19 Tue 15:40] =>  0:52
+    :END:
+***** related-carousel
+**** TODO cat/subcat
+***** list of other cat/subcat
+**** TODO author
+    :CLOCK:
+    CLOCK: [2012-06-20 Wed 17:34]--[2012-06-20 Wed 17:54] =>  0:20
+    :END:
+***** list of other authors
+**** TODO tags
+***** list of other tags
+*** TODO wireframes
+   :CLOCK:
+   CLOCK: [2012-06-13 Wed 10:40]--[2012-06-13 Wed 10:54] =>  0:14
+   :END:
+*** DONE routes
+   CLOSED: [2012-07-10 Tue 12:53]
+   :CLOCK:
+   CLOCK: [2012-07-04 Wed 11:48]--[2012-07-04 Wed 12:21] =>  0:33
+   CLOCK: [2012-06-08 Fri 15:11]--[2012-06-08 Fri 16:00] =>  0:49
+   CLOCK: [2012-06-08 Fri 13:02]--[2012-06-08 Fri 13:06] =>  0:04
+   :END:
+   - [X] home
+   - [X] home-page
+   - [X] cat
+   - [X] cat-subcat
+   - [X] tag
+   - [X] author
+   - [X] article
+   - [X] static-files
+   - [X] search
+*** DONE template@pencil
+    CLOSED: [2012-06-08 Fri 14:35]
+   :CLOCK:
+   CLOCK: [2012-06-08 Fri 13:59]--[2012-06-08 Fri 14:35] =>  0:36
+   :END:
+   - [X] template
+   - [X] navigation
+*** nginx
+   - [ ] proxy
+   - [ ] static files
+   - [ ] caching
+*** future requirements/improvements
+   - extra (empty), user-settable, primary-navigation fields
+     - html5
+     - html4 + cookie
+   - related articles
+     - users who viewed this also viewed
+       - http://coding.smashingmagazine.com/2011/03/23/speeding-up-your-websites-database/
+         - How Can A Database Slow Down A Website?
+         - …Or Just Cheat
+** utils
+*** DONE config
+   CLOSED: [2012-06-30 Sat 00:32]
+   :CLOCK:
+   CLOCK: [2012-06-29 Fri 23:32]--[2012-06-30 Sat 00:32] =>  1:00
+   CLOCK: [2012-06-29 Fri 18:52]--[2012-06-29 Fri 20:16] =>  1:24
+   CLOCK: [2012-06-19 Tue 16:22]--[2012-06-19 Tue 16:35] =>  0:13
+   CLOCK: [2012-06-19 Tue 15:42]--[2012-06-19 Tue 16:10] =>  0:28
+   CLOCK: [2012-06-19 Tue 14:27]--[2012-06-19 Tue 14:47] =>  0:20
+   CLOCK: [2012-06-18 Mon 15:48]--[2012-06-18 Mon 17:42] =>  1:54
+   CLOCK: [2012-06-18 Mon 13:33]--[2012-06-18 Mon 15:06] =>  1:33
+   CLOCK: [2012-06-18 Mon 13:07]--[2012-06-18 Mon 13:21] =>  0:14
+   CLOCK: [2012-06-18 Mon 11:07]--[2012-06-18 Mon 12:07] =>  1:00
+   CLOCK: [2012-06-15 Fri 16:32]--[2012-06-15 Fri 20:04] =>  3:32
+   :END:
+*** cache
+   - w/ time for each with-cache call
+   - cache BE calls (especially DB reads)
+   - http://static.springsource.org/spring/docs/3.1.0.M1/spring-framework-reference/html/cache.html (Look for @Cacheable, key generation and @CacheEvict)
+*** html
+*** db
+*** init
+*** l10n
+** TODO models
+  :CLOCK:
+  CLOCK: [2012-07-18 Wed 20:51]--[2012-07-18 Wed 20:58] =>  0:07
+  CLOCK: [2012-07-18 Wed 19:10]--[2012-07-18 Wed 20:16] =>  1:06
+  CLOCK: [2012-07-05 Thu 12:56]--[2012-07-05 Thu 13:48] =>  0:52
+  CLOCK: [2012-07-05 Thu 11:46]--[2012-07-05 Thu 12:00] =>  0:14
+  CLOCK: [2012-06-08 Fri 19:07]--[2012-06-08 Fri 20:15] =>  1:08
+  CLOCK: [2012-06-08 Fri 17:20]--[2012-06-08 Fri 18:20] =>  1:00
+  CLOCK: [2012-06-08 Fri 16:45]--[2012-06-08 Fri 17:11] =>  0:26
+  :END:
+  - [ ] user
+  - [X] author(user)
+  - [X] category
+  - [X] tag
+  - [X] view
+  - [X] article
+  - [X] photos
+** editorial
+*** TODO initial content
+   :CLOCK:
+   CLOCK: [2012-07-10 Tue 17:23]--[2012-07-10 Tue 17:42] =>  0:19
+   CLOCK: [2012-06-08 Fri 14:43]--[2012-06-08 Fri 14:50] =>  0:07
+   :END:
+**** categories [fn:1] [fn:2]
+    - Sports
+      - American Football
+      - Badminton
+      - Baseball
+      - Basketball
+      - Boxing
+      - Cricket
+      - Cycling
+      - Hockey
+      - Golf
+      - Handball
+      - Olympics
+      - Racing
+      - Rugby
+      - Table Tennis
+      - Tennis
+    - Entenrtainment
+      - Arts
+      - Books
+      - Celebrities
+      - Movies
+      - Music
+      - TV
+      - Humor
+    - Lifestyle
+      - Automotive
+      - Culture
+      - Food and Beverage
+      - Home and Garden
+      - Theatre
+      - Travel
+      - Health
+    - Technology
+      - Computing
+      - Internet
+      - Personal Technology
+      - Video Games
+    - Business
+      - Companies
+      - Economy
+      - Industry
+      - Markets
+    - Education
+    - Science
+      - Environmenent
+      - Geography
+      - Space
+    - Headlines
+    - Politics
+    - Religion
+*** TODO views
+   :CLOCK:
+   CLOCK: [2012-08-02 Thu 19:47]--[2012-08-02 Thu 20:07] =>  0:20
+   CLOCK: [2012-08-02 Thu 19:09]--[2012-08-02 Thu 19:41] =>  0:32
+   CLOCK: [2012-08-02 Thu 15:15]--[2012-08-02 Thu 17:06] =>  1:51
+   CLOCK: [2012-08-02 Thu 12:45]--[2012-08-02 Thu 14:45] =>  2:00
+   CLOCK: [2012-07-13 Fri 13:30]--[2012-07-13 Fri 15:47] =>  2:17
+   CLOCK: [2012-07-13 Fri 12:00]--[2012-07-13 Fri 12:19] =>  0:19
+   CLOCK: [2012-07-13 Fri 10:52]--[2012-07-13 Fri 11:20] =>  0:28
+   CLOCK: [2012-07-10 Tue 16:43]--[2012-07-10 Tue 17:06] =>  0:23
+   CLOCK: [2012-07-10 Tue 12:55]--[2012-07-10 Tue 16:03] =>  3:08
+   :END:
+*** TODO routes
+*** TODO wireframes
+*** TODO reports
+   - http://jandmworks.com/simplot/user/simplot.html
+** cron
+*** DONE resize photo
+    CLOSED: [2012-07-24 Tue 19:19]
+   :CLOCK:
+   CLOCK: [2012-07-24 Tue 19:09]--[2012-07-24 Tue 19:19] =>  0:10
+   CLOCK: [2012-07-23 Mon 18:59]--[2012-07-23 Mon 19:09] =>  0:10
+   CLOCK: [2012-07-23 Mon 16:35]--[2012-07-23 Mon 17:58] =>  1:23
+   CLOCK: [2012-07-23 Mon 15:27]--[2012-07-23 Mon 16:28] =>  1:01
+   CLOCK: [2012-07-23 Mon 14:32]--[2012-07-23 Mon 14:33] =>  0:01
+   CLOCK: [2012-07-20 Fri 19:49]--[2012-07-20 Fri 20:08] =>  0:19
+   :END:
+*** reports
+** Archive                                                          :ARCHIVE:
+*** next
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2012-08-07 Tue 20:03
+   :END:
+   - [X] static navigation (primary and secondary) according to page
+   - [X] correct dependencies of utils/* in golbin.asd
+   - [X] linode + git + nginx
+   - [X] add photos to articles
+   - [X] config
+   - [X] 'master' in config
+   - [X] populate/tmp-init of categories/tags
+   - [X] add authors
+   - [X] author/category/tag pages
+   - [X] layout
+   - [X] static files
+   - [X] db
+     - [X] active articles and authors
+     - [X] edit articles (to activate/approve them)
+   - [X] show only active (ones that have some articles in them) authors, categories and tags in navigation
+   - [X] undo *active*
+   - [X] support for photos
+*** DONE hosting
+   CLOSED: [2012-07-28 Sat 18:41]
+   :CLOCK:
+   CLOCK: [2012-07-28 Sat 16:40]--[2012-07-28 Sat 18:41] =>  2:01
+   CLOCK: [2012-07-05 Thu 15:50]--[2012-07-05 Thu 16:11] =>  0:21
+   :END:
+   :PROPERTIES:
+   :ARCHIVE_TIME: 2012-08-29 Wed 11:55
+   :END:
+   - [X] linode
+   - [X] git
+   - [X] nginx
 * notes
 ** misc
    - http://www.html-ipsum.com/
