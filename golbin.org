@@ -1768,6 +1768,13 @@
      CLOCK: [2013-07-08 Mon 13:36]--[2013-07-08 Mon 13:39] =>  0:03
      CLOCK: [2013-07-08 Mon 13:21]--[2013-07-08 Mon 13:34] =>  0:13
      :END:
+**** TODO [fed] mr category लेख -> लेखणीतून
+     :CLOCK:
+     CLOCK: [2013-07-09 Tue 14:44]--[2013-07-09 Tue 14:54] =>  0:10
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-09 Tue 14:55
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
