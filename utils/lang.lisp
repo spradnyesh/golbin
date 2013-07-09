@@ -17,7 +17,11 @@
 
 (defun get-translation (key)
   (let* ((lang (if (boundp '*request*)
-                   (lang (dimensions *request*))
+                   (if (get-parameter "lang")
+                       (get-parameter "lang")
+                       (if (cookie-in "ed-lang")
+                           (cookie-in "ed-lang")
+                           (lang (dimensions *request*))))
                    (get-dimension-value "lang")))
          (out-hash (gethash lang *translation-table*)))
     (if out-hash

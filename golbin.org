@@ -4,6 +4,7 @@
 ** backlog
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
+    CLOCK: [2013-07-09 Tue 16:07]--[2013-07-09 Tue 16:16] =>  0:09
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
     CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
     :END:
@@ -16,7 +17,11 @@
        5. if correct, process form
 **** registration
      - send email w/ 50 numbers to all authors (after successful registration)
-*** [ed] author registration page
+*** TODO [ed] author registration page
+    :CLOCK:
+    CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
+    CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
+    :END:
 *** email server
     - for
       - golb.in email addresses

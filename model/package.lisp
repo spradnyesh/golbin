@@ -67,6 +67,7 @@
            :mini-author
            :author-storage
            :authors
+           :token
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; methods
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

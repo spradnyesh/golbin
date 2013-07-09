@@ -13,7 +13,7 @@
 (defun create-code-map ()
   (loop for i from 1 to 50 collect (put-space-at-center (random-digits))))
 
-(defun create-code-map-image (code-map)
+(defun create-code-map-image (code-map author-handle)
   (with-image* (400 235)
     (allocate-color 255 255 255)                 ; background: white
     (with-default-color ((allocate-color 0 0 0)) ; font: black
@@ -34,18 +34,37 @@
             (when (zerop (mod col 5))
               (incf row)
               (setf col 0))))))
-    (write-image-to-file (make-pathname :name "code"
+    (write-image-to-file (make-pathname :name author-handle
                                         :type "jpg"
                                         :defaults (merge-pathnames "../data/static/photos/" *home*))
                          :if-exists :supersede)))
 
-(defun v-register-author-post ()
-  (let* ((author-name (post-parameter "author-name"))
-         (slug (slugify author-name)))
-    (add-author (make-instance 'author
-                               :name author-name
-                               :alias author-name
-                               :username slug
-                               :handle slug
-                               :password slug
-                               :status :a))))
+(defun v-register-get ()
+  (template
+         :title "Register"
+         :logged-in nil
+         :js nil
+         :body (htm (:form :action (h-genurl 'r-register-post)
+                           :method "POST"
+                           (str (label-input "name" "text"))
+                           (:input :type "submit"
+                                   :name "submit"
+                                   :id "submit"
+                                   :value "Register")))))
+
+(defun v-register-post ()
+  (let* ((name (post-parameter "name"))
+         (slug (slugify name))
+         (token (create-code-map)))
+    (if (add-author (make-instance 'author
+                                   :name name
+                                   :alias name
+                                   :username slug
+                                   :handle slug
+                                   :password slug
+                                   :token token
+                                   :status :a))
+        (progn
+          (create-code-map-image token slug)
+          (redirect (h-genurl 'r-login-get)))
+        (redirect (h-genurl 'r-register-get)))))
