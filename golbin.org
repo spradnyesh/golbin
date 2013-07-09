@@ -2,14 +2,6 @@
 
 * tasks
 ** backlog
-*** [fe] a-cite should have hyperlinks
-*** TODO [articles] add aai kavita
-    :CLOCK:
-    CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
-    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
-    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
-    :END:
-*** [performance] http://www.appelsiini.net/projects/lazyload
 *** TODO 50 4-digit numbers for every author for all forms
     :CLOCK:
     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
@@ -24,6 +16,22 @@
        5. if correct, process form
 **** registration
      - send email w/ 50 numbers to all authors (after successful registration)
+*** [ed] author registration page
+*** email server
+    - for
+      - golb.in email addresses
+      - get (and forward) every comment as an email
+    - servers
+      - mail-mta/exim
+      - mail-mta/courier
+*** [fe] a-cite should have hyperlinks
+*** TODO [articles] add aai kavita
+    :CLOCK:
+    CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
+    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
+    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
+    :END:
+*** [performance] http://www.appelsiini.net/projects/lazyload
 *** [bug][seo] clear GA confusion b/n www. and mr.
 *** TODO [bug] "written by..." should come in local language
     :CLOCK:
@@ -75,6 +83,7 @@
     - https://docs.djangoproject.com/en/dev/ref/contrib/admin/
 *** TODO [fe] theme
     :CLOCK:
+    CLOCK: [2013-07-09 Tue 15:39]--[2013-07-09 Tue 16:04] =>  0:25
     CLOCK: [2013-03-03 Sun 14:49]--[2013-03-03 Sun 15:10] =>  0:21
     CLOCK: [2012-12-22 Sat 17:01]--[2012-12-22 Sat 17:03] =>  0:02
     CLOCK: [2012-12-22 Sat 16:35]--[2012-12-22 Sat 17:00] =>  0:25
@@ -158,20 +167,12 @@
 *** [fed] photo slideshow articles
 *** [fed] gravatar for author images
     - http://en.gravatar.com/site/implement/images/
-*** [ed] author registration page
 *** [reports] accounts table/storage for authors
     - monthly
       - views
       - rate per view
       - paid X INR
       - paid on date
-*** email server
-    - for
-      - golb.in email addresses
-      - get (and forward) every comment as an email
-    - servers
-      - mail-mta/exim
-      - mail-mta/courier
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20

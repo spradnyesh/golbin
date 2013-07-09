@@ -75,7 +75,8 @@
             (:font-family "Lohit Devanagari"))
 
            (("h2")
-            (:font-size "140%"))
+            (:font-size "140%"
+                        :padding "4px 0"))
 
            (("h3")
             (:font-size "120%"))
@@ -298,6 +299,13 @@
             (:color "#999"
                     :margin-bottom "20px"
                     :text-align "center"))
+
+           ;; devanagari
+           ((".dvngr" h2)
+            (:padding "8px 0 0 0"))
+
+           ((".dvngr" h3)
+            (:padding "5px 0 0 0"))
 
            ;; sharethis.com
            ((".stpulldown-gradient")
