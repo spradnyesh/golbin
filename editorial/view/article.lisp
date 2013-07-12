@@ -11,14 +11,14 @@
               (and article (= (id l) (id (if (eql :c cat-subcat)
                                              (cat article)
                                              (subcat article))))))
-          (:option :selected "selected" :value (id l) (name l))
-          (:option :value (id l) (name l))))))
+          (<:option :selected "selected" :value (id l) (name l))
+          (<:option :value (id l) (name l))))))
 
 (defmacro get-photo-direction-markup (dir direction)
   `(if (and article
             (eql ,dir (photo-direction article)))
-       (:option :selected "selected" :value ,direction ,(string-capitalize `,direction))
-       (:option :value ,direction ,(string-capitalize `,direction))))
+       (<:option :selected "selected" :value ,direction ,(string-capitalize `,direction))
+       (<:option :value ,direction ,(string-capitalize `,direction))))
 
 (defun get-article-status-markup (article)
   (if article
@@ -54,13 +54,13 @@
                  (get-config "photo.article-lead.side.max-width")))))
 
 (defun make-photo-attribution-div (img-tag photo)
-  (:div :class "a-photo"
+  (<:div :class "a-photo"
         img-tag
         (let ((attr (attribution photo)))
           (unless (nil-or-empty attr)
-            (:a :class "p-attribution small"
+            (<:a :class "p-attribution small"
                 :href attr "photo attribution")))
-        (:p :class "p-title" (title photo))))
+        (<:p :class "p-title" (title photo))))
 
 (defun add-photo-attribution (body)
   (dolist (img-tag (all-matches-as-strings "<img (.*?)\/>" body))
@@ -86,22 +86,22 @@
       (template
        :title "Add Article"
        :logged-in t
-       :js (progn (:script :type "text/javascript"
+       :js (progn (<:script :type "text/javascript"
                            (format t
                                    "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"
                                    (get-category-tree-json)
                                    (get-thumb-side-photo-sizes-json)))
-                  (:script :type "text/javascript"
+                  (<:script :type "text/javascript"
                            :src "/static/ckeditor/ckeditor.js")
-                  (:script :type "text/javascript"
+                  (<:script :type "text/javascript"
                            :src "/static/ckeditor/adapters/jquery.js")
-                  (:script :type "text/javascript"
+                  (<:script :type "text/javascript"
                            (format t "$('#body').ckeditor()")))
        #- (and)
        (if (string-equal "en-IN" (get-dimension-value "lang"))
-           (progn (:script :type "text/javascript"
+           (progn (<:script :type "text/javascript"
                          :src "/static/ckeditor/ckeditor.js")
-                (:script :type "text/javascript"
+                (<:script :type "text/javascript"
                          :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
                          :defer "defer")))
        :body (let* ((article (when id (get-article-by-id id)))
@@ -110,59 +110,59 @@
                                                    (id (cat article))
                                                    1)))
                     (photo (when article (photo article))))
-               (:div :id "article"
-                     (:form :action (if article
+               (<:div :id "article"
+                     (<:form :action (if article
                                         (h-genurl 'r-article-edit-post :id id)
                                         (h-genurl 'r-article-new-post))
                             :method "POST"
-                            (:table (tr-td-input "title" :value (when article (title article)))
+                            (<:table (tr-td-input "title" :value (when article (title article)))
                                     (when article (htm
-                                                   (:tr
-                                                    (:td "URL")
-                                                    (:td (:input :class "td-input url"
+                                                   (<:tr
+                                                    (<:td "URL")
+                                                    (<:td (<:input :class "td-input url"
                                                                  :type "text"
                                                                  :disabled "disabled"
                                                                  :name "url"
                                                                  :value (slug article))))))
                                     (tr-td-text "summary" :value (when article (summary article)))
-                                    (:tr (:td "Lead Photo")
-                                         (:td (:input :class "td-input"
+                                    (<:tr (<:td "Lead Photo")
+                                         (<:td (<:input :class "td-input"
                                                       :type "hidden"
                                                       :name "lead-photo"
                                                       :id "lead-photo"
                                                       :value (when photo (id photo)))
-                                              (:span (when photo
+                                              (<:span (when photo
                                                        (article-lead-photo-url (photo article) "related-thumb")
-                                                       (:a :id "unselect-lead-photo"
+                                                       (<:a :id "unselect-lead-photo"
                                                            :href ""
                                                            "Unselect photo. ")))
-                                              (:a :id "select-lead-photo"
+                                              (<:a :id "select-lead-photo"
                                                   :href ""
                                                   "Select")
                                               " or "
-                                              (:a :id "upload-lead-photo"
+                                              (<:a :id "upload-lead-photo"
                                                   :href ""
                                                   "Upload")
                                               " a photo"))
-                                    (:tr (:td "Lead Photo Placement")
-                                         (:td (:select :id "pd"
+                                    (<:tr (<:td "Lead Photo Placement")
+                                         (<:td (<:select :id "pd"
                                                        :name "pd"
                                                        :class "td-input"
                                                        (get-photo-direction-markup :b "center")
                                                        (get-photo-direction-markup :l "left")
                                                        (get-photo-direction-markup :r "right"))))
-                                    (:tr (:td "Non Lead Photos")
-                                         (:td (:input :class "td-input"
+                                    (<:tr (<:td "Non Lead Photos")
+                                         (<:td (<:input :class "td-input"
                                                       :type "hidden"
                                                       :name "nonlead-photo"
                                                       :id "nonlead-photo"
                                                       :value (when photo (id photo)))
-                                              (:span)
-                                              (:a :id "select-nonlead-photo"
+                                              (<:span)
+                                              (<:a :id "select-nonlead-photo"
                                                   :href ""
                                                   "Select")
                                               " or "
-                                              (:a :id "upload-nonlead-photo"
+                                              (<:a :id "upload-nonlead-photo"
                                                   :href ""
                                                   "Upload")
                                               " a photo"))
@@ -173,61 +173,61 @@
                                         (tr-td-text "body"
                                                     :value (when article (body article))
                                                     :class "ckeditor")
-                                        (progn (:tr (:td "Body")
-                                                  (:td (let ((trimmed-name "body")
+                                        (progn (<:tr (<:td "Body")
+                                                  (<:td (let ((trimmed-name "body")
                                                              (value (when article (body article))))
-                                                         (:textarea :cols 40
+                                                         (<:textarea :cols 40
                                                                     :rows 7
                                                                     :name (format nil "~A" trimmed-name)
                                                                     :id (format nil "~A" trimmed-name)
                                                                     value
                                                                     :MicrosoftILITWebAttach "true"))))
-                                             (:input :type "hidden"
+                                             (<:input :type "hidden"
                                                      :id "MicrosoftILITWebEmbedInfo"
                                                      :attachMode "optin"
                                                      :value "")
-                                             (:script :type "text/javascript"
+                                             (<:script :type "text/javascript"
                                                       :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
                                                       :defer "defer")))
                                     (unless (string-equal (get-dimension-value "lang") "en-IN")
-                                      (:tr (:td (get-dimension-value "lang"))
-                                           (:td "Click " ; XXX: translate
-                                                (:a :href "http://www.google.co.in/transliterate"
+                                      (<:tr (<:td (get-dimension-value "lang"))
+                                           (<:td "Click " ; XXX: translate
+                                                (<:a :href "http://www.google.co.in/transliterate"
                                                     :target "_blank"
                                                     "here")
                                                 " to use Google Transliterate or "
-                                                (:a :href "http://www.google.com/inputtools/windows/index.html"
+                                                (<:a :href "http://www.google.com/inputtools/windows/index.html"
                                                     :target "_blank"
                                                     "here")
                                                 " to download Google Transliterate software on your PC.")))
-                                    (:tr (:td "Category")
-                                         (:td (:select :name "cat"
+                                    (<:tr (<:td "Category")
+                                         (<:td (<:select :name "cat"
                                                        :class "td-input cat"
                                                        (get-cat-subcat-markup article cats :c))))
-                                    (:tr (:td "Sub Category")
-                                         (:td (:select :name "subcat"
+                                    (<:tr (<:td "Sub Category")
+                                         (<:td (<:select :name "subcat"
                                                        :class "td-input subcat"
                                                        (get-cat-subcat-markup article subcats :s))))
                                     (tr-td-input "tags" :value (when article (get-tags-markup article)))
-                                    (:tr (:td "Status")
+                                    (<:tr (<:td "Status")
                                          (let ((status (get-article-status-markup article)))
-                                           (:td :class (string-downcase status) status)))
-                                    (:tr (:td (:input :id "save"
+                                           (<:td :class (string-downcase status) status)))
+                                    (<:tr (<:td (<:input :id "save"
                                                       :name "save"
                                                       :type "submit"
                                                       :value "Save")
-                                              (when article (:sup "#1")))
+                                              (when article (<:sup "#1")))
                                          (when article
-                                           (:td (:a :href (h-genurl 'r-article
+                                           (<:td (<:a :href (h-genurl 'r-article
                                                                     :slug-and-id (format nil
                                                                                          "~a-~a"
                                                                                          (slug article)
                                                                                          id))
-                                                    "Preview") (:sup "#2")))))
+                                                    "Preview") (<:sup "#2")))))
                             (when article
-                              (:div :class "notes"
-                                    (:p "#1: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")
-                                    (:p "#2: You can only preview after the article has been saved successfully.")))))))))
+                              (<:div :class "notes"
+                                    (<:p "#1: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")
+                                    (<:p "#2: You can only preview after the article has been saved successfully.")))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login

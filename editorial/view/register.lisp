@@ -44,10 +44,10 @@
          :title "Register"
          :logged-in nil
          :js nil
-         :body (:form :action (h-genurl 'r-register-post)
+         :body (<:form :action (h-genurl 'r-register-post)
                             :method "POST"
                             (label-input "name" "text")
-                            (:input :type "submit"
+                            (<:input :type "submit"
                                     :name "submit"
                                     :id "submit"
                                     :value "Register"))))

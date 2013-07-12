@@ -16,8 +16,8 @@
                   (num-per-page (get-config "pagination.article.limit"))
                   (num-pages (get-config "pagination.article.range"))
                   (offset (* page num-per-page)))
-             (:div :id "articles"
-                   (:ul
+             (<:div :id "articles"
+                   (<:ul
                     (dolist (article (paginate articles-list
                                                offset
                                                num-per-page))
@@ -26,33 +26,33 @@
                              (delete (if (can-article-be-deleted?)
                                          "Delete"
                                          "Undelete")))
-                        (:li (:div :class "crud"
-                                   (:p (:a :href (h-genurl 'r-article-edit-get :id id) "Edit"))
+                        (<:li (<:div :class "crud"
+                                   (<:p (<:a :href (h-genurl 'r-article-edit-get :id id) "Edit"))
                                    (when (can-article-be-deleted?)
-                                     (:form :method "POST"
+                                     (<:form :method "POST"
                                             :action (h-genurl 'r-article-delete-post :id id)
-                                            (:input :name "page"
+                                            (<:input :name "page"
                                                     :type "hidden"
                                                     :value page)
-                                            (:input :id "delete"
+                                            (<:input :id "delete"
                                                     :name "delete"
                                                     :type "submit"
                                                     :value delete))))
                              (when (photo article)
-                               (:div :class "index-thumb"
+                               (<:div :class "index-thumb"
                                      (article-lead-photo-url (photo article) "index-thumb")))
-                             (:h3 :class (format nil
+                             (<:h3 :class (format nil
                                                  "a-title ~a"
                                                  (if (string-equal delete "Undelete")
                                                      "deleted"
                                                      ""))
-                                  (:a :href (h-genurl 'r-article
+                                  (<:a :href (h-genurl 'r-article
                                                       :slug-and-id (format nil
                                                                            "~a-~a"
                                                                            (slug article)
                                                                            id))
                                       (title article)))
-                             (:p :class "a-summary" (summary article)))))))
+                             (<:p :class "a-summary" (summary article)))))))
              (pagination-markup page
                                 (length articles-list)
                                 num-per-page
