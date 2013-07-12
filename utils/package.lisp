@@ -1,6 +1,6 @@
 (defpackage :hawksbill.utils
   (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time)
-  (:shadow :mime-type :size)
+  (:shadow :mime-type :size :htm :str :esc :fmt)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
   (:export :*home*
@@ -84,7 +84,13 @@
            :*translation-table*
            :translate
            :load-all-languages
-           :show-translation-tree))
+           :show-translation-tree
+           ;; who
+           :*who-macros*
+           :fmt
+           :str
+           :esc
+           :htm))
 
 (in-package :hawksbill.utils)
 

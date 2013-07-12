@@ -29,7 +29,13 @@
     - servers
       - mail-mta/exim
       - mail-mta/courier
-*** [fe] a-cite should have hyperlinks
+*** TODO [fe] a-cite should have hyperlinks
+    :CLOCK:
+    CLOCK: [2013-07-12 Fri 17:01]--[2013-07-12 Fri 17:28] =>  0:27
+    CLOCK: [2013-07-12 Fri 16:34]--[2013-07-12 Fri 16:57] =>  0:23
+    CLOCK: [2013-07-12 Fri 15:44]--[2013-07-12 Fri 16:11] =>  0:27
+    CLOCK: [2013-07-12 Fri 14:30]--[2013-07-12 Fri 15:40] =>  1:10
+    :END:
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07

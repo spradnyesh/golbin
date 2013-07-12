@@ -3,6 +3,7 @@
   (:decorators #'hawksbill.utils:init-dimensions)
   (:import-from :hawksbill.golbin.frontend :v-article :fe-page-template :article-preamble-markup :article-body-markup :article-related-markup)
   (:shadow :% :prototype :size :acceptor :mime-type)
+  (:shadowing-import-from :hawksbill.utils :fmt :esc :str :htm)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home

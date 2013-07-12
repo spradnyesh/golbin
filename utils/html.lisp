@@ -10,7 +10,7 @@
 ;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro with-html (&body body)
-  `(with-html-output-to-string (*standard-output* nil)
+  `(with-html-output-to-string (*who-stream* nil)
      (htm
       ,@body)))
 
