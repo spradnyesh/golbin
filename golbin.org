@@ -29,6 +29,11 @@
     - servers
       - mail-mta/exim
       - mail-mta/courier
+*** UNDERGOING [fed] cl-who -> sexml
+    :CLOCK:
+    CLOCK: [2013-07-12 Fri 18:41]
+    CLOCK: [2013-07-12 Fri 18:00]--[2013-07-12 Fri 18:34] =>  0:34
+    :END:
 *** TODO [fe] a-cite should have hyperlinks
     :CLOCK:
     CLOCK: [2013-07-12 Fri 17:01]--[2013-07-12 Fri 17:28] =>  0:27

@@ -9,6 +9,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#- (and)
 (defmacro with-html (&body body)
   `(with-html-output-to-string (*who-stream* nil)
      (htm
@@ -20,24 +21,22 @@
 (defun tr-td-input (name &key (value "") (typeof "text"))
   (let ((for (regex-replace-all "-" name " "))
         (trimmed-name (trim-name name)))
-    (with-html
-      (:tr
-       (:td (format t "~A" (string-capitalize for)))
-       (:td (:input :class (format nil "td-input ~A" trimmed-name)
-                    :type typeof
-                    :name (str trimmed-name)
-                    :value value))))))
+    (:tr
+     (:td (format t "~A" (string-capitalize for)))
+     (:td (:input :class (format nil "td-input ~A" trimmed-name)
+                  :type typeof
+                  :name trimmed-name
+                  :value value)))))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
-  (with-html
-    (:tr (:td (format t "~A" (string-capitalize name)))
-         (:td (let ((trimmed-name (trim-name name)))
-                (htm (:textarea :cols cols
-                                :rows rows
-                                :name (str trimmed-name)
-                                :id (str trimmed-name)
-                                :class class
-                                (str value))))))))
+  (:tr (:td (format t "~A" (string-capitalize name)))
+       (:td (let ((trimmed-name (trim-name name)))
+              (:textarea :cols cols
+                         :rows rows
+                         :name trimmed-name
+                         :id trimmed-name
+                         :class class
+                         value)))))
 
 (defun remove-all-style (body)
   (regex-replace-all "style=\\\"(.*?)\\\"" body ""))
@@ -69,18 +68,16 @@
    (when (and (equal *environment* "prod")
               (not (search "yui" path)))
      (setf path (regex-replace ".css$" path "-min.css")))
-   (with-html
-     (:link :rel "stylesheet"
-            :type "text/css"
-            :href path)))
+   (:link :rel "stylesheet"
+          :type "text/css"
+          :href path))
 
  (defun link-js (path)
    (when (and (equal *environment* "prod")
               (not (search "yui" path)))
      (setf path (regex-replace ".js$" path "-min.js")))
-   (with-html
-     (:script :type "text/javascript"
-              :src path)))
+   (:script :type "text/javascript"
+            :src path))
 
  (defun get-css (title)
    (declare (ignore title))

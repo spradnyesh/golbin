@@ -22,37 +22,37 @@
                           (htm
                            (:li
                             (when (photo article)
-                              (htm (:div :class "index-thumb"
-                                         (str (article-lead-photo-url (photo article) "index-thumb")))))
+                              (:div :class "index-thumb"
+                                    (article-lead-photo-url (photo article) "index-thumb")))
                             (:h3 (:a :class "a-title"
                                      :href (h-genurl 'r-article
                                                      :slug-and-id (format nil "~A-~A"
                                                                           (slug article)
                                                                           (id article)))
-                                     (str (title article))))
+                                     (title article)))
                             (:cite :class "a-cite small"
-                                   (str (format nil
-                                                "~a - ~a ~a- ~a"
-                                                (alias (author article))
-                                                (name (cat article))
-                                                (let ((subcat-name (name (subcat article))))
-                                                  (if (not (string= "--" subcat-name))
-                                                      (format nil ", ~a " subcat-name)
-                                                      ""))
-                                                (prettyprint-date (universal-to-timestamp (date article))))))
-                            (:p :class "a-summary" (str (summary article))))))))
-                 (str ,(if route-params
-                           `(pagination-markup page
-                                               (length ,articles-list)
-                                               num-per-page
-                                               num-pages
-                                               ,route
-                                               ,@route-params)
-                           `(pagination-markup page
-                                               (length ,articles-list)
-                                               num-per-page
-                                               num-pages
-                                               ,route))))))
+                                   (format nil
+                                           "~a - ~a ~a- ~a"
+                                           (alias (author article))
+                                           (name (cat article))
+                                           (let ((subcat-name (name (subcat article))))
+                                             (if (not (string= "--" subcat-name))
+                                                 (format nil ", ~a " subcat-name)
+                                                 ""))
+                                           (prettyprint-date (universal-to-timestamp (date article)))))
+                            (:p :class "a-summary" (summary article)))))))
+                 ,(if route-params
+                      `(pagination-markup page
+                                          (length ,articles-list)
+                                          num-per-page
+                                          num-pages
+                                          ,route
+                                          ,@route-params)
+                      `(pagination-markup page
+                                          (length ,articles-list)
+                                          num-per-page
+                                          num-pages
+                                          ,route)))))
        (v-404)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
