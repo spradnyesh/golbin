@@ -21,17 +21,17 @@
 (defun tr-td-input (name &key (value "") (typeof "text"))
   (let ((for (regex-replace-all "-" name " "))
         (trimmed-name (trim-name name)))
-    (:tr
-     (:td (format t "~A" (string-capitalize for)))
-     (:td (:input :class (format nil "td-input ~A" trimmed-name)
+    (<:tr
+     (<:td (format t "~A" (string-capitalize for)))
+     (<:td (<:input :class (format nil "td-input ~A" trimmed-name)
                   :type typeof
                   :name trimmed-name
                   :value value)))))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
-  (:tr (:td (format t "~A" (string-capitalize name)))
-       (:td (let ((trimmed-name (trim-name name)))
-              (:textarea :cols cols
+  (<:tr (<:td (format t "~A" (string-capitalize name)))
+       (<:td (let ((trimmed-name (trim-name name)))
+              (<:textarea :cols cols
                          :rows rows
                          :name trimmed-name
                          :id trimmed-name
@@ -68,7 +68,7 @@
    (when (and (equal *environment* "prod")
               (not (search "yui" path)))
      (setf path (regex-replace ".css$" path "-min.css")))
-   (:link :rel "stylesheet"
+   (<:link :rel "stylesheet"
           :type "text/css"
           :href path))
 
@@ -76,7 +76,7 @@
    (when (and (equal *environment* "prod")
               (not (search "yui" path)))
      (setf path (regex-replace ".js$" path "-min.js")))
-   (:script :type "text/javascript"
+   (<:script :type "text/javascript"
             :src path))
 
  (defun get-css (title)

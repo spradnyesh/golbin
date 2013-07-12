@@ -32,14 +32,14 @@
    :description nil
    :body (let ((carousel-tabs (get-config "pagination.home.carousel.tabs"))
                (related-length (get-config "pagination.article.related")))
-           (:div :id "jumbotron")
-           (:div :id "categories-carousel"
+           (<:div :id "jumbotron")
+           (<:div :id "categories-carousel"
                  (dolist (cat (get-home-page-categories carousel-tabs))
                    (article-carousel-container ""
-                                               (:span (:a :href (h-genurl 'r-cat :cat (slug cat))
+                                               (<:span (<:a :href (h-genurl 'r-cat :cat (slug cat))
                                                           (name cat)))
                                                (get-articles-by-cat cat)
                                                (h-genurl 'r-ajax-home-category-articles
                                                          :cat-slug (slug cat)
                                                          :page 0))))
-           (:div :id "authors"))))
+           (<:div :id "authors"))))

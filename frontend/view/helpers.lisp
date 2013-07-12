@@ -6,8 +6,8 @@
 (defmacro dolist-li-a (list class route value-fn &rest route-params)
   `(dolist (l ,list)
      (htm
-      (:li :class ,class
-           (:a :href ,(if route-params
+      (<:li :class ,class
+           (<:a :href ,(if route-params
                           `(h-genurl ,route ,@route-params)
                           `(h-genurl ,route))
                (,value-fn l))))))

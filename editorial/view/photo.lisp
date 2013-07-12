@@ -6,37 +6,38 @@
 (defun photo-get-markup (&optional (ajax nil))
   (let ((cats (get-root-categorys))
         (subcats (get-subcategorys 1)))
-    (:form :action (if ajax
+    (<:form :action (if ajax
                        (h-genurl 'r-ajax-photo-post)
                        (h-genurl 'r-photo-post))
            :method "POST"
            :enctype "multipart/form-data"
-           (:table (tr-td-input "title")
-                   (:tr
-                    (:td "Type of")
-                    (:td (:select :name "typeof"
+           (<:table (tr-td-input "title")
+                   (<:tr
+                    (<:td "Type of")
+                    (<:td (<:select :name "typeof"
                                   :class "td-input"
-                                  (:option :value "article" "Article")
-                                  (:option :value "author" "Author")
-                                  #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
-                   (:tr (:td "Category")
-                        (:td (:select :name "cat"
+                                  (<:option :value "article" "Article")
+                                  (<:option :value "author" "Author")
+                                  #- (and)
+                                  (<:option :value "slideshow" "Slideshow")))) ; TODO
+                   (<:tr (<:td "Category")
+                        (<:td (<:select :name "cat"
                                       :class "td-input cat"
-                                      (:option :selected "selected"
+                                      (<:option :selected "selected"
                                                :value (id (first cats)) (name (first cats)))
                                       (dolist (cat (rest cats))
-                                        (:option :value (id cat) (name cat))))))
-                   (:tr (:td "Sub Category")
-                        (:td (:select :name "subcat"
-                                      :class "td-input subcat"
-                                      (:option :selected "selected"
-                                               :value (id (first subcats)) (name (first subcats)))
-                                      (dolist (subcat (rest subcats))
-                                        (:option :value (id subcat) (name subcat))))))
+                                        (<:option :value (id cat) (name cat))))))
+                   (<:tr (<:td "Sub Category")
+                         (<:td (<:select :name "subcat"
+                                        :class "td-input subcat"
+                                        (<:option :selected "selected"
+                                                 :value (id (first subcats)) (name (first subcats)))
+                                        (dolist (subcat (rest subcats))
+                                          (<:option :value (id subcat) (name subcat))))))
                    (tr-td-input "tags")
                    (tr-td-input "attribution")
                    (tr-td-input "photo" :typeof "file"))
-           (:input :id "upload"
+           (<:input :id "upload"
                    :name "upload"
                    :type "submit"
                    :value "Upload"))))
@@ -51,7 +52,7 @@
   (template
    :title "Add Photo"
    :logged-in t
-   :js (:script :type "text/javascript"
+   :js (<:script :type "text/javascript"
                 (format t
                         "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
                         (get-category-tree-json)
@@ -153,23 +154,24 @@
    :js nil
    :body (let ((count 10))
       (htm
-       (:form :action (h-genurl 'r-tmp-photo-post)
+       (<:form :action (h-genurl 'r-tmp-photo-post)
               :method "POST"
               :enctype "multipart/form-data"
-              (:table (:input :class "td-input"
+              (<:table (<:input :class "td-input"
                               :type "hidden"
                               :name "count"
                               :value count)
-                      (:tr
-                       (:td "Type of")
-                       (:td (:select :name "typeof"
+                      (<:tr
+                       (<:td "Type of")
+                       (<:td (<:select :name "typeof"
                                      :class "td-input"
-                                     (:option :value "article" "Article")
-                                     (:option :value "author" "Author")
-                                     #|(:option :value "slideshow" "Slideshow")|#)))
+                                     (<:option :value "article" "Article")
+                                     (<:option :value "author" "Author")
+                                     #- (and)
+                                     (<:option :value "slideshow" "Slideshow"))))
                       (dotimes (i count)
                         (tr-td-input (format nil "photo-~a" i) :typeof "file")))
-              (:input :id "upload"
+              (<:input :id "upload"
                       :name "upload"
                       :type "submit"
                       :value "Upload"))))))

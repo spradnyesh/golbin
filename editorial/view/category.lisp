@@ -8,14 +8,14 @@
     (template
      :title "Edit Cat/Subcat"
      :logged-in t
-     :js (:script :type "text/javascript"
+     :js (<:script :type "text/javascript"
                   (on-load))
-     :body (:form :action (h-genurl 'r-cat-post)
+     :body (<:form :action (h-genurl 'r-cat-post)
                   :method "POST"
-                  (:ol :id "sort-catsubcat"
+                  (<:ol :id "sort-catsubcat"
                        (dolist (cats (get-category-tree))
-                         (:li (:div :class "cat" (name (first cats)))
-                              (:ol (dolist (subcat (second cats))
-                                     (:li (:div :class "subcat" (name subcat))))))))))))
+                         (<:li (<:div :class "cat" (name (first cats)))
+                              (<:ol (dolist (subcat (second cats))
+                                     (<:li (<:div :class "subcat" (name subcat))))))))))))
 
 (defun v-cat-post ())

@@ -6,7 +6,7 @@
 (defmacro js-script (&rest body)
   "Utility macro for including ParenScript into the HTML notation.
 Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/parenscript/manual/parenscript-tutorial.pdf)"
-  `(:script :type "text/javascript"
+  `(<:script :type "text/javascript"
             "~%//<![CDATA[~%"
             (ps ,@body)
             "~%//]]>~%"))
