@@ -52,3 +52,11 @@
   `(with-login
        (h-genurl 'r-login-get)
      ,@body))
+
+
+(sexml:with-compiletime-active-layers
+    (sexml:standard-sexml sexml:xml-doctype)
+  (sexml:support-dtd
+   (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
+   :<))
+(<:augment-with-doctype "html" "")

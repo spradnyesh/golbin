@@ -41,3 +41,11 @@
   (restas.directory-publisher:*baseurl* '("static"))
   (restas.directory-publisher:*directory* (merge-pathnames "../data/static/" *home*))
   (restas.directory-publisher:*autoindex* t))
+
+
+(sexml:with-compiletime-active-layers
+    (sexml:standard-sexml sexml:xml-doctype)
+  (sexml:support-dtd
+   (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
+   :<))
+(<:augment-with-doctype "html" "")

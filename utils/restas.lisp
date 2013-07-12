@@ -82,7 +82,7 @@
        (defun ,v-404 ()
          (,template
           :title (translate "page-not-found")
-          :body (htm (:div :class "error"
-                           "Sorry! We were unable to find the content that you are looking for. Please click "
-                           (:a :href "javascript:history.go(-1)" "here")
-                           " to go back.")))))))
+          :body (:div :class "error"
+                      "Sorry! We were unable to find the content that you are looking for. Please click "
+                      (:a :href "javascript:history.go(-1)" "here")
+                      " to go back."))))))

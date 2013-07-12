@@ -1,6 +1,6 @@
 (defpackage :hawksbill.utils
-  (:use :cl :cl-who :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time)
-  (:shadow :mime-type :size :htm :str :esc :fmt)
+  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time)
+  (:shadow :mime-type :size)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
   (:export :*home*
@@ -84,13 +84,7 @@
            :*translation-table*
            :translate
            :load-all-languages
-           :show-translation-tree
-           ;; who
-           :*who-macros*
-           :fmt
-           :str
-           :esc
-           :htm))
+           :show-translation-tree))
 
 (in-package :hawksbill.utils)
 
@@ -114,3 +108,10 @@
 
 ;; http://common-lisp.net/project/parenscript/tutorial.html
 (setf *js-string-delimiter* #\")
+
+
+(sexml:with-compiletime-active-layers
+    (sexml:standard-sexml sexml:xml-doctype)
+  (sexml:support-dtd
+   (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
+   :<))

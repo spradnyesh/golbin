@@ -4,143 +4,138 @@
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro article-preamble-markup-common (key &optional tags)
-  `(with-html
-     (translate ,key
-                (htm (:a :id "a-author"
-                         :href (h-genurl 'r-author
-                                         :author (handle (author article)))
-                         (alias (author article))))
-                (prettyprint-date timestamp)
-                (prettyprint-time timestamp)
-                (htm (:a :id "a-cat"
-                         :href (h-genurl 'r-cat
-                                         :cat (slug (cat article)))
-                         (name (cat article))))
-                (if (string= "--" (name (subcat article)))
-                    ""
-                    (htm (:a :id "a-cat-subcat"
-                             :href (h-genurl 'r-cat-subcat
-                                             :cat (slug (cat article))
-                                             :subcat (slug (subcat article)))
-                             (name (subcat article)))))
-                ,tags)))
+  `(translate ,key
+              (:a :id "a-author"
+                  :href (h-genurl 'r-author
+                                  :author (handle (author article)))
+                  (alias (author article)))
+              (prettyprint-date timestamp)
+              (prettyprint-time timestamp)
+              (:a :id "a-cat"
+                  :href (h-genurl 'r-cat
+                                  :cat (slug (cat article)))
+                  (name (cat article)))
+              (if (string= "--" (name (subcat article)))
+                  ""
+                  (:a :id "a-cat-subcat"
+                      :href (h-genurl 'r-cat-subcat
+                                      :cat (slug (cat article))
+                                      :subcat (slug (subcat article)))
+                      (name (subcat article))))
+              ,tags))
 
 (defun article-preamble-markup (article)
   (let ((timestamp (universal-to-timestamp (date article)))
         (tags (tags article)))
-    (with-html
-      (:h2 :id "a-title" (str (title article)))
-      (:cite :id "a-cite" :class "small"
-             (str (if tags
-                      (article-preamble-markup-common
-                       "written-by-with-tags"
-                       (htm (:span :id "a-tags"
-                                   (str (fe-article-tags-markup tags)))))
-                      (article-preamble-markup-common "written-by-without-tags")))))))
+    (:h2 :id "a-title" (title article))
+    (:cite :id "a-cite" :class "small"
+           (if tags
+               (article-preamble-markup-common
+                "written-by-with-tags"
+                (:span :id "a-tags"))
+               (fe-article-tags-markup tags)
+               (article-preamble-markup-common "written-by-without-tags")))))
 
 (defun do-child-comments (parent-id children)
-  (with-html (:ul :class "comment"
-                  (let ((i 0)
-                        (str-i nil))
-                    (dolist (child children)
-                      (setf str-i (write-to-string i))
-                      (str (get-comment-markup child
-                                               (if (string= "-1" parent-id)
-                                                   str-i
-                                                   (join-string-list-with-delim "." (list parent-id str-i)))))
-                      (incf i))))))
+  (:ul :class "comment"
+       (let ((i 0)
+             (str-i nil))
+         (dolist (child children)
+           (setf str-i (write-to-string i))
+           (get-comment-markup child
+                               (if (string= "-1" parent-id)
+                                   str-i
+                                   (join-string-list-with-delim "." (list parent-id str-i))))
+           (incf i)))))
 
 (defun get-comment-markup (comment parent-id)
-  (with-html (:li (:p :class "c-name-says"
-                      (:span :class "c-name" (str (username comment)))
-                      (:span :class "c-says" " says:")) ; XXX: translate
-                  (:p :class "c-date-at" (str (date comment)))
-                  (let ((url (userurl comment)))
-                    (when url
-                      (htm (:p :class "c-url" (str url)))))
-                  (:p :class "c-body" (str (body comment)))
-                  (:p :class "c-reply" (:a :id parent-id :href "" "Reply")) ; XXX: translate
-                  (let ((children (children comment)))
-                    (when children
-                      (str (do-child-comments parent-id children)))))))
+  (:li (:p :class "c-name-says"
+           (:span :class "c-name" (username comment))
+           (:span :class "c-says" " says:")) ; XXX: translate
+       (:p :class "c-date-at" (date comment))
+       (let ((url (userurl comment)))
+         (when url
+           (:p :class "c-url" url)))
+       (:p :class "c-body" (body comment))
+       (:p :class "c-reply" (:a :id parent-id :href "" "Reply")) ; XXX: translate
+       (let ((children (children comment)))
+         (when children
+           (do-child-comments parent-id children)))))
 
 (defun article-comments-markup (article slug-and-id)
-  (with-html (:form :id "a-comments"
-                    :method "POST"
-                    :action (h-genurl 'r-article-comment :slug-and-id slug-and-id)
-                    (let ((children (comments article)))
-                      (when children
-                        (str (do-child-comments "-1" children))))
-                    (:input :class "td-input parent"
-                            :type "hidden"
-                            :name "parent")
-                    (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment") ; XXX: translate
-                        (:table :id "c-table"
-                                (str (tr-td-input "name *"))
-                                (str (tr-td-input "email *"))
-                                (str (tr-td-input "url"))
-                                (str (tr-td-text "comment *"))
-                                (str (tr-td-input "submit" :value "Submit" :typeof "submit"))))))) ; XXX: translate
+  (:form :id "a-comments"
+         :method "POST"
+         :action (h-genurl 'r-article-comment :slug-and-id slug-and-id)
+         (let ((children (comments article)))
+           (when children
+             (do-child-comments "-1" children)))
+         (:input :class "td-input parent"
+                 :type "hidden"
+                 :name "parent")
+         (:p :class "c-reply" (:a :id "-1" :href "" "Add a comment") ; XXX: translate
+             (:table :id "c-table"
+                     (tr-td-input "name *")
+                     (tr-td-input "email *")
+                     (tr-td-input "url")
+                     (tr-td-text "comment *")
+                     (tr-td-input "submit" :value "Submit" :typeof "submit"))))) ; XXX: translate
 
 (defun article-body-markup (article)
-  (with-html (let ((photo (photo article)))
-               (when photo
-                 (let* ((photo-direction (photo-direction article))
-                        (pd (cond ((eql :l photo-direction) "left")
-                                  ((eql :r photo-direction) "right")
-                                  ((eql :b photo-direction) "block")))
-                        (a-photo-pd (join-string-list-with-delim " "
-                                                                 (list "a-photo"
-                                                                       pd))))
-                   (htm (:div :class a-photo-pd
-                              (str (article-lead-photo-url photo pd))
-                              (let ((attr (attribution photo)))
-                                (unless (nil-or-empty attr)
-                                  (htm (:a :class "p-attribution small" :href attr "photo attribution"))))
-                              (:p :class "p-title" (str (title photo))))))))
-             (:div :id "a-body"
-                   (str (body article)))))
+  (let ((photo (photo article)))
+    (when photo
+      (let* ((photo-direction (photo-direction article))
+             (pd (cond ((eql :l photo-direction) "left")
+                       ((eql :r photo-direction) "right")
+                       ((eql :b photo-direction) "block")))
+             (a-photo-pd (join-string-list-with-delim " "
+                                                      (list "a-photo"
+                                                            pd))))
+        (:div :class a-photo-pd
+              (article-lead-photo-url photo pd)
+              (let ((attr (attribution photo)))
+                (unless (nil-or-empty attr)
+                  (:a :class "p-attribution small" :href attr "photo attribution")))
+              (:p :class "p-title" (title photo))))))
+  (:div :id "a-body" (body article)))
 
 (defun article-related-markup (id article)
-  (with-html
-    (:div :id "related"
-          (:span :class "hidden" (str id))
-          (let ((related-length (get-config "pagination.article.related"))
-                (cat (cat article))
-                (subcat (subcat article))
-                (author (author article))
-                (cat-subcat-list (get-related-articles "cat-subcat" article))
-                (author-list (get-related-articles "author" article)))
-            (str (article-carousel-container "Articles in the same Category / Subcategory:- "
-                                             (:span (:a :href (h-genurl 'r-cat
-                                                                        :cat (slug cat))
-                                                        (str (name cat)))
-                                                    " / "
-                                                    (:a :href (h-genurl 'r-cat-subcat
-                                                                        :cat (slug cat)
-                                                                        :subcat (slug subcat))
-                                                        (str (name subcat))))
-                                             cat-subcat-list
-                                             (h-genurl 'r-ajax-article-related
-                                                       :id id
-                                                       :typeof "cat-subcat"
-                                                       :page 0)))
-            (str (article-carousel-container "Articles authored by:- "
-                                             (:span (:a :href (h-genurl 'r-author
-                                                                        :author (handle author))
-                                                        (str (alias author))))
-                                             author-list
-                                             (h-genurl 'r-ajax-article-related
-                                                       :id id
-                                                       :typeof "author"
-                                                       :page 0)))))))
+  (:div :id "related"
+        (:span :class "hidden" id)
+        (let ((related-length (get-config "pagination.article.related"))
+              (cat (cat article))
+              (subcat (subcat article))
+              (author (author article))
+              (cat-subcat-list (get-related-articles "cat-subcat" article))
+              (author-list (get-related-articles "author" article)))
+          (article-carousel-container "Articles in the same Category / Subcategory:- "
+                                      (:span (:a :href (h-genurl 'r-cat
+                                                                 :cat (slug cat))
+                                                 (name cat))
+                                             " / "
+                                             (:a :href (h-genurl 'r-cat-subcat
+                                                                 :cat (slug cat)
+                                                                 :subcat (slug subcat))
+                                                 (name subcat)))
+                                      cat-subcat-list
+                                      (h-genurl 'r-ajax-article-related
+                                                :id id
+                                                :typeof "cat-subcat"
+                                                :page 0))
+          (article-carousel-container "Articles authored by:- "
+                                      (:span (:a :href (h-genurl 'r-author
+                                                                 :author (handle author))
+                                                 (alias author)))
+                                      author-list
+                                      (h-genurl 'r-ajax-article-related
+                                                :id id
+                                                :typeof "author"
+                                                :page 0)))))
 
 (defun fe-article-tags-markup (tags)
-  (with-html
-    (join-string-list-with-delim ", "
-                                 (dolist (tag tags)
-                                   (htm (:a :href (h-genurl 'r-tag :tag (slug tag))
-                                            (str (name tag))))))))
+  (join-string-list-with-delim ", "
+                               (dolist (tag tags)
+                                 (:a :href (h-genurl 'r-tag :tag (slug tag))
+                                     (name tag)))))
 
 (defun get-id-from-slug-and-id (slug-and-id)
   (parse-integer (first (split-sequence "-" slug-and-id
@@ -167,11 +162,11 @@
          :description (summary article)
          :body (:div
                 (:div :id "article"
-                      (str (article-preamble-markup article))
-                      (str (article-body-markup article))
+                      (article-preamble-markup article)
+                      (article-body-markup article)
                       #- (and)
-                      (str (article-comments-markup article slug-and-id)))
-                (str (article-related-markup id article))))
+                      (article-comments-markup article slug-and-id))
+                (article-related-markup id article)))
         (v-404))))
 
 (defun v-ajax-article-related (id typeof page)

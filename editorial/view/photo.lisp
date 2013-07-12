@@ -6,41 +6,40 @@
 (defun photo-get-markup (&optional (ajax nil))
   (let ((cats (get-root-categorys))
         (subcats (get-subcategorys 1)))
-    (with-html
-      (:form :action (if ajax
-                         (h-genurl 'r-ajax-photo-post)
-                         (h-genurl 'r-photo-post))
-             :method "POST"
-             :enctype "multipart/form-data"
-             (:table (str (tr-td-input "title"))
-                     (:tr
-                      (:td "Type of")
-                      (:td (:select :name "typeof"
-                                    :class "td-input"
-                                    (:option :value "article" "Article")
-                                    (:option :value "author" "Author")
-                                    #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
-                     (:tr (:td "Category")
-                          (:td (:select :name "cat"
-                                        :class "td-input cat"
-                                        (:option :selected "selected"
-                                                 :value (id (first cats)) (str (name (first cats))))
-                                        (dolist (cat (rest cats))
-                                          (htm (:option :value (id cat) (str (name cat))))))))
-                     (:tr (:td "Sub Category")
-                          (:td (:select :name "subcat"
-                                        :class "td-input subcat"
-                                        (:option :selected "selected"
-                                                 :value (id (first subcats)) (str (name (first subcats))))
-                                        (dolist (subcat (rest subcats))
-                                          (htm (:option :value (id subcat) (str (name subcat))))))))
-                     (str (tr-td-input "tags"))
-                     (str (tr-td-input "attribution"))
-                     (str (tr-td-input "photo" :typeof "file")))
-             (:input :id "upload"
-                     :name "upload"
-                     :type "submit"
-                     :value "Upload")))))
+    (:form :action (if ajax
+                       (h-genurl 'r-ajax-photo-post)
+                       (h-genurl 'r-photo-post))
+           :method "POST"
+           :enctype "multipart/form-data"
+           (:table (tr-td-input "title")
+                   (:tr
+                    (:td "Type of")
+                    (:td (:select :name "typeof"
+                                  :class "td-input"
+                                  (:option :value "article" "Article")
+                                  (:option :value "author" "Author")
+                                  #|(:option :value "slideshow" "Slideshow")|#))) ; TODO
+                   (:tr (:td "Category")
+                        (:td (:select :name "cat"
+                                      :class "td-input cat"
+                                      (:option :selected "selected"
+                                               :value (id (first cats)) (name (first cats)))
+                                      (dolist (cat (rest cats))
+                                        (:option :value (id cat) (name cat))))))
+                   (:tr (:td "Sub Category")
+                        (:td (:select :name "subcat"
+                                      :class "td-input subcat"
+                                      (:option :selected "selected"
+                                               :value (id (first subcats)) (name (first subcats)))
+                                      (dolist (subcat (rest subcats))
+                                        (:option :value (id subcat) (name subcat))))))
+                   (tr-td-input "tags")
+                   (tr-td-input "attribution")
+                   (tr-td-input "photo" :typeof "file"))
+           (:input :id "upload"
+                   :name "upload"
+                   :type "submit"
+                   :value "Upload"))))
 
 (defun normalize-photo-tags (tags)
   (remove-duplicates (remove nil tags)))
@@ -52,12 +51,12 @@
   (template
    :title "Add Photo"
    :logged-in t
-   :js (htm (:script :type "text/javascript"
-                       (format t
-                               "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
-                               (get-category-tree-json)
-                               (on-load))))
-   :body (str (photo-get-markup))))
+   :js (:script :type "text/javascript"
+                (format t
+                        "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
+                        (get-category-tree-json)
+                        (on-load)))
+   :body (photo-get-markup)))
 
 (defun v-photo-post (&optional (ajax nil))
   (let ((title (post-parameter "title"))
@@ -169,7 +168,7 @@
                                      (:option :value "author" "Author")
                                      #|(:option :value "slideshow" "Slideshow")|#)))
                       (dotimes (i count)
-                        (str (tr-td-input (format nil "photo-~a" i) :typeof "file"))))
+                        (tr-td-input (format nil "photo-~a" i) :typeof "file")))
               (:input :id "upload"
                       :name "upload"
                       :type "submit"

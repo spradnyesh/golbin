@@ -44,13 +44,13 @@
          :title "Register"
          :logged-in nil
          :js nil
-         :body (htm (:form :action (h-genurl 'r-register-post)
-                           :method "POST"
-                           (str (label-input "name" "text"))
-                           (:input :type "submit"
-                                   :name "submit"
-                                   :id "submit"
-                                   :value "Register")))))
+         :body (:form :action (h-genurl 'r-register-post)
+                            :method "POST"
+                            (label-input "name" "text")
+                            (:input :type "submit"
+                                    :name "submit"
+                                    :id "submit"
+                                    :value "Register"))))
 
 (defun v-register-post ()
   (let* ((name (post-parameter "name"))
