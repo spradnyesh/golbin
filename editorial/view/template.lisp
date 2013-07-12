@@ -15,9 +15,9 @@
        (:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
        (:style :type "text/css"
                (str (ed-get-css))))
-      (:body :class (format nil "~a" (if (string-equal "en-IN" (get-dimension-value "lang"))
-                                         ""
-                                         "dvngr"))
+      (:body :class (str (if (string-equal "en-IN" (get-dimension-value "lang"))
+                             ""
+                             "dvngr"))
              (:div :class "yui3-g"
                    (:div :id "hd"
                          (str (ed-header ,logged-in)))
