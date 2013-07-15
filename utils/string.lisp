@@ -1,5 +1,11 @@
 (in-package :hawksbill.utils)
 
+(defmacro fmtnil (&rest args)
+  (let ((form (apply #'concatenate 'string (loop
+               for i to (1- (length args))
+               collect "~a "))))
+    `(format nil ,form ,@args)))
+
 ;; http://stackoverflow.com/questions/211717/common-lisp-programmatic-keyword
 (defun make-keyword (name)
   (values (intern (string-upcase name) "KEYWORD")))

@@ -116,14 +116,13 @@
                                         (h-genurl 'r-article-new-post))
                             :method "POST"
                             (<:table (tr-td-input "title" :value (when article (title article)))
-                                    (when article (htm
-                                                   (<:tr
+                                     (when article (<:tr
                                                     (<:td "URL")
                                                     (<:td (<:input :class "td-input url"
-                                                                 :type "text"
-                                                                 :disabled "disabled"
-                                                                 :name "url"
-                                                                 :value (slug article))))))
+                                                                   :type "text"
+                                                                   :disabled "disabled"
+                                                                   :name "url"
+                                                                   :value (slug article)))))
                                     (tr-td-text "summary" :value (when article (summary article)))
                                     (<:tr (<:td "Lead Photo")
                                          (<:td (<:input :class "td-input"

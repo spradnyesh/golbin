@@ -5,12 +5,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro dolist-li-a (list class route value-fn &rest route-params)
   `(dolist (l ,list)
-     (htm
-      (<:li :class ,class
+     (<:li :class ,class
            (<:a :href ,(if route-params
-                          `(h-genurl ,route ,@route-params)
-                          `(h-genurl ,route))
-               (,value-fn l))))))
+                           `(h-genurl ,route ,@route-params)
+                           `(h-genurl ,route))
+                (,value-fn l)))))
 
 (defmacro fe-intern (smbl)
   `(intern (string-upcase ,smbl) :hawksbill.golbin.frontend))

@@ -28,12 +28,12 @@
   (let ((timestamp (universal-to-timestamp (date article)))
         (tags (tags article)))
     (<:h2 :id "a-title" (title article))
-    (<:cite :id "a-cite" :class "small"
+    (<:span :id "a-cite" :class "small"
            (if tags
                (article-preamble-markup-common
                 "written-by-with-tags"
-                (<:span :id "a-tags"))
-               (fe-article-tags-markup tags)
+                (<:span :id "a-tags"
+                        (fe-article-tags-markup tags)))
                (article-preamble-markup-common "written-by-without-tags")))))
 
 (defun do-child-comments (parent-id children)

@@ -4,35 +4,39 @@
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title js tags description body)
-  `(<:html (<:head (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
-                 (<:meta :name "application-name" :content "Golb.in")
-                 (<:meta :name "author" :content "golbin@rocketmail.com")
-                 (<:meta :name "copyright" :content "Golb.in 2012")
+  `(<:html (<:head
+            #- (and)
+            (progn
+              (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+              (<:meta :name "application-name" :content "Golb.in")
+              (<:meta :name "author" :content "golbin@rocketmail.com")
+              (<:meta :name "copyright" :content "Golb.in 2012")
 
-                 (<:meta :name "keywords"
-                        :content (join-string-list-with-delim ", "
-                                                              (append ,tags
-                                                                      (list (get-config "site.name")))))
-                 (<:meta :name "description" :content ,description)
-                 (<:meta :name "google" :content "notranslate")
+              (<:meta :name "keywords"
+                      :content (join-string-list-with-delim ", "
+                                                            (append ,tags
+                                                                    (list (get-config "site.name")))))
+              (<:meta :name "description" :content ,description)
+              (<:meta :name "google" :content "notranslate"))
 
-                 (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
-                 (<:link :rel "stylesheet"
-                        :type "text/css"
-                        :href "/static/css/yui3-reset-fonts-grids-min.css")
-                 ;; http://www.faqoverflow.com/askubuntu/16556.html
-                 (<:link :rel "stylesheet"
-                        :type "text/css"
-                        :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
-                 (<:link :rel "stylesheet"
-                        :type "text/css"
-                        :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
-                 (if (string-equal (get-dimension-value "envt") "prod")
-                     (<:link :rel "stylesheet" :type "text/css"
-                            :href "/static/css/fe-13-min.css")
-                     ;; google analytics and adsense
-                     (<:script :type "text/javascript"
-                              "
+            (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
+            (<:link :rel "stylesheet"
+                    :type "text/css"
+                    :href "/static/css/yui3-reset-fonts-grids-min.css")
+            ;; http://www.faqoverflow.com/askubuntu/16556.html
+            (<:link :rel "stylesheet"
+                    :type "text/css"
+                    :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
+            (<:link :rel "stylesheet"
+                    :type "text/css"
+                    :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
+            (if (string-equal (get-dimension-value "envt") "prod")
+                (fmtnil
+                  (<:link :rel "stylesheet" :type "text/css"
+                          :href "/static/css/fe-13-min.css")
+                  ;; google analytics and adsense
+                  (<:script :type "text/javascript"
+                            "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_trackPageview']);
@@ -42,28 +46,29 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-")
-                     (<:style (fe-get-css))))
+"))
+                (<:style (fe-get-css))))
 
-          (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
-                            ""
-                            "dvngr")
-                 (<:div :class "yui3-g"
-                       (<:div :id "hd"
-                             (fe-header))
-                       (<:div :id "bd"
-                             (<:div :class "yui3-u-3-4"
-                                   (<:div :id "col-1" :class "yui3-u-1-4"
-                                         (fe-ads-1))
-                                   (<:div :id "col-2" :class "yui3-u-3-4"
-                                         (<:div :id "wrapper" ,body)))
-                             (<:div :id "col-3" :class "yui3-u-1-4"
-                                   (fe-ads-2)))
-                       (<:div :id "ft" (fe-footer))))
-          (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-          (if (string-equal (get-dimension-value "envt") "prod")
-              (<:script :type "text/javascript"
-                       "
+           (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
+                              ""
+                              "dvngr")
+                   (<:div :class "yui3-g"
+                          (<:div :id "hd"
+                                 (fe-header))
+                          (<:div :id "bd"
+                                 (<:div :class "yui3-u-3-4"
+                                        (<:div :id "col-1" :class "yui3-u-1-4"
+                                               (fe-ads-1))
+                                        (<:div :id "col-2" :class "yui3-u-3-4"
+                                               (<:div :id "wrapper" ,body)))
+                                 (<:div :id "col-3" :class "yui3-u-1-4"
+                                        (fe-ads-2)))
+                          (<:div :id "ft" (fe-footer))))
+           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+           (if (string-equal (get-dimension-value "envt") "prod")
+               (fmtnil
+                 (<:script :type "text/javascript"
+                           "
     var switchTo5x=true;
     $.getScript('/static/js/fe-2-min.js');
     $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
@@ -77,9 +82,9 @@
         });
     });
 ")
-              (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-              (<:script :type "text/javascript" (on-load)))
-          ,js))
+                 (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js"))
+               (<:script :type "text/javascript" (on-load)))
+           ,js))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
@@ -115,6 +120,8 @@
              (<:h3 (<:a :href ,url
                         (name subcat)))))))
 
+(defvar *a* nil)
+
 ;; XXX: needs cache (key: uri)
 (defun fe-navigation ()
   (let* ((route (if (boundp '*request*)
@@ -127,45 +134,44 @@
          (subnav-cat-slug nil)
          (subnav-subcats nil))
     (<:div :id "nav"
-          (<:ul :id "prinav"
-               (<:li :id "nav-home" :class (if (eq route (fe-intern :r-home))
-                                              "cat selected"
-                                              "cat")
-                    (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
-               (dolist (cat (get-root-categorys))
-                 (when (plusp (rank cat))
-                   (let ((cat-slug (slug cat)))
-                     (<:li :class (nav-selected (string-equal (url-encode cat-slug) (first cat-subcat))
-                                      "cat selected"
-                                      "cat"
-                                    (setf subnav-cat-slug cat-slug)
-                                    (setf subnav-subcats (get-subcategorys (id cat))))
-                           (<:h2 (<:a :href (h-genurl 'r-cat
-                                                      :cat cat-slug)
-                                      (name cat)))
-                           (<:ul
-                            (dolist (subcat (get-subcategorys (id cat)))
-                              (fe-subnav (h-genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))
-          (<:ul :id "subnav"
-               (dolist (subcat subnav-subcats)
-                 (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
+           (<:ul :id "prinav"
+                 (<:li :id "nav-home" :class (if (eq route (fe-intern :r-home))
+                                                 "cat selected"
+                                                 "cat")
+                       (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
+                 (dolist (cat (get-root-categorys))
+                   (when (plusp (rank cat))
+                     (let ((cat-slug (slug cat)))
+                       (<:li :class (nav-selected (string-equal (url-encode cat-slug) (first cat-subcat))
+                                        "cat selected"
+                                        "cat"
+                                      (setf subnav-cat-slug cat-slug)
+                                      (setf subnav-subcats (get-subcategorys (id cat))))
+                             (<:h2 (<:a :href (h-genurl 'r-cat
+                                                        :cat cat-slug)
+                                        (name cat)))
+                             (<:ul
+                              (dolist (subcat (get-subcategorys (id cat)))
+                                (fe-subnav (h-genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))
+           (<:ul :id "subnav"
+                 (dolist (subcat subnav-subcats)
+                   (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
 
 (defun fe-header ()
-  (<:div :id "banner"
-        (fe-logo)
-        (fe-site-search))
-  #- (and)
-  (trending)
-  (fe-navigation))
+  (fmtnil (<:div :id "banner"
+                 (fmtnil (fe-logo)
+                         #- (and)
+                         (fe-site-search)))
+          (fe-navigation)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fe-footer ()
-  (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
-  (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
-  (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
-  (<:p (<:a :href "mailto:webmaster@golb.in" "Contact us"))) ; XXX: translate
+  (fmtnil (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
+          (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
+          (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
+          (<:p (<:a :href "mailto:webmaster@golb.in" "Contact us")))) ; XXX: translate
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads
@@ -185,23 +191,24 @@
 
 (defun fe-ads-2 ()
   (when (string-equal (get-dimension-value "envt") "prod")
-    (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-          (<:code :type "text/javascript"
-                 "<!--
+    (fmtnil
+     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
+            (<:code :type "text/javascript"
+                    "<!--
                           google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '5029165182';
                           google_ad_width = 300;
                           google_ad_height = 250;
                           //-->")
-          #- (and)
-          (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
-    (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-          (<:code :type "text/javascript"
-                 "<!--
+            #- (and)
+            (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
+     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
+            (<:code :type "text/javascript"
+                    "<!--
                           google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '9459364786';
                           google_ad_width = 300;
                           google_ad_height = 600;
                           //-->")
-          #- (and)
-          (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
+            #- (and)
+            (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")))))
