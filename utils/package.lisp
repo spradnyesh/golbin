@@ -69,6 +69,7 @@
            :nil-or-empty
            :make-keyword
            :string-pad
+           :fmtnil
            ;; pagination
            :paginate
            :pagination-markup
@@ -115,3 +116,4 @@
   (sexml:support-dtd
    (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
    :<))
+(<:augment-with-doctype "html" "")

@@ -153,28 +153,27 @@
    :logged-in t
    :js nil
    :body (let ((count 10))
-      (htm
-       (<:form :action (h-genurl 'r-tmp-photo-post)
-              :method "POST"
-              :enctype "multipart/form-data"
-              (<:table (<:input :class "td-input"
-                              :type "hidden"
-                              :name "count"
-                              :value count)
-                      (<:tr
-                       (<:td "Type of")
-                       (<:td (<:select :name "typeof"
-                                     :class "td-input"
-                                     (<:option :value "article" "Article")
-                                     (<:option :value "author" "Author")
-                                     #- (and)
-                                     (<:option :value "slideshow" "Slideshow"))))
-                      (dotimes (i count)
-                        (tr-td-input (format nil "photo-~a" i) :typeof "file")))
-              (<:input :id "upload"
-                      :name "upload"
-                      :type "submit"
-                      :value "Upload"))))))
+           (<:form :action (h-genurl 'r-tmp-photo-post)
+                   :method "POST"
+                   :enctype "multipart/form-data"
+                   (<:table (<:input :class "td-input"
+                                     :type "hidden"
+                                     :name "count"
+                                     :value count)
+                            (<:tr
+                             (<:td "Type of")
+                             (<:td (<:select :name "typeof"
+                                             :class "td-input"
+                                             (<:option :value "article" "Article")
+                                             (<:option :value "author" "Author")
+                                             #- (and)
+                                             (<:option :value "slideshow" "Slideshow"))))
+                            (dotimes (i count)
+                              (tr-td-input (format nil "photo-~a" i) :typeof "file")))
+                   (<:input :id "upload"
+                            :name "upload"
+                            :type "submit"
+                            :value "Upload")))))
 
 (defun v-tmp-photo-post ()
   (let ((count (post-parameter "count"))

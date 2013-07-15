@@ -29,9 +29,17 @@
     - servers
       - mail-mta/exim
       - mail-mta/courier
-*** UNDERGOING [fed] cl-who -> sexml
+*** TODO [#A] slime debug local variables
     :CLOCK:
-    CLOCK: [2013-07-12 Fri 19:11]
+    CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
+    CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
+    CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
+    :END:
+*** TODO [fed] cl-who -> sexml
+    :CLOCK:
+    CLOCK: [2013-07-15 Mon 17:11]--[2013-07-15 Mon 17:14] =>  0:03
+    CLOCK: [2013-07-15 Mon 10:58]--[2013-07-15 Mon 11:44] =>  0:46
+    CLOCK: [2013-07-12 Fri 19:11]--[2013-07-12 Fri 19:27] =>  0:16
     CLOCK: [2013-07-12 Fri 18:41]--[2013-07-12 Fri 19:09] =>  0:28
     CLOCK: [2013-07-12 Fri 18:00]--[2013-07-12 Fri 18:34] =>  0:34
     :END:
