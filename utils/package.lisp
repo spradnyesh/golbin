@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time)
+  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8)
   (:shadow :mime-type :size)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
@@ -70,6 +70,7 @@
            :make-keyword
            :string-pad
            :fmtnil
+           :string-to-utf-8
            ;; pagination
            :paginate
            :pagination-markup

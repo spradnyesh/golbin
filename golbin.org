@@ -1820,6 +1820,14 @@
      :ARCHIVE_TIME: 2013-07-17 Wed 18:19
      :END:
      - works fine for en-IN
+**** DONE [bug][fe] mr-IN tags index page not working correctly
+     CLOSED: [2013-07-17 Wed 20:24]
+     :CLOCK:
+     CLOCK: [2013-07-17 Wed 19:35]--[2013-07-17 Wed 20:23] =>  0:48
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-17 Wed 20:24
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

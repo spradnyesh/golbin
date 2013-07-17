@@ -3,8 +3,14 @@
 (defmacro fmtnil (&rest args)
   (let ((form (apply #'concatenate 'string (loop
                for i to (1- (length args))
-               collect "~a "))))
+               collect "~a"))))
     `(format nil ,form ,@args)))
+
+(defmacro string-to-utf-8 (str ext-fmt)
+  `(handler-case
+       (utf-8-bytes-to-string (string-to-octets ,str
+                                                :external-format ,ext-fmt))
+     (external-format-encoding-error () nil)))
 
 ;; http://stackoverflow.com/questions/211717/common-lisp-programmatic-keyword
 (defun make-keyword (name)
