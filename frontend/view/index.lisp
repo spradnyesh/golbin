@@ -13,33 +13,35 @@
           :js nil
           :tags (list ,title)
           :description nil
-          :body (progn
+          :body (fmtnil
                   (<:div :id "articles"
                          (<:ul
-                          (dolist (article (paginate ,articles-list
-                                                     offset
-                                                     num-per-page))
-                            (<:li
-                             (when (photo article)
-                               (<:div :class "index-thumb"
-                                      (article-lead-photo-url (photo article) "index-thumb")))
-                             (<:h3 (<:a :class "a-title"
-                                        :href (h-genurl 'r-article
-                                                        :slug-and-id (format nil "~A-~A"
-                                                                             (slug article)
-                                                                             (id article)))
-                                        (title article)))
-                             (<:span :class "a-cite small"
-                                     (format nil
-                                             "~a - ~a ~a- ~a"
-                                             (alias (author article))
-                                             (name (cat article))
-                                             (let ((subcat-name (name (subcat article))))
-                                               (if (not (string= "--" subcat-name))
-                                                   (format nil ", ~a " subcat-name)
-                                                   ""))
-                                             (prettyprint-date (universal-to-timestamp (date article)))))
-                             (<:p :class "a-summary" (summary article))))))
+                          (join-string-list-with-delim
+                           ""
+                           (loop for article in (paginate ,articles-list
+                                                          offset
+                                                          num-per-page)
+                                collect (<:li
+                                         (when (photo article)
+                                           (<:div :class "index-thumb"
+                                                  (article-lead-photo-url (photo article) "index-thumb")))
+                                         (<:h3 (<:a :class "a-title"
+                                                    :href (h-genurl 'r-article
+                                                                    :slug-and-id (format nil "~A-~A"
+                                                                                         (slug article)
+                                                                                         (id article)))
+                                                    (title article)))
+                                         (<:span :class "a-cite small"
+                                                 (format nil
+                                                         "~a - ~a ~a- ~a"
+                                                         (alias (author article))
+                                                         (name (cat article))
+                                                         (let ((subcat-name (name (subcat article))))
+                                                           (if (not (string= "--" subcat-name))
+                                                               (format nil ", ~a " subcat-name)
+                                                               ""))
+                                                         (prettyprint-date (universal-to-timestamp (date article)))))
+                                         (<:p :class "a-summary" (summary article)))))))
                   ,(if route-params
                        `(pagination-markup page
                                            (length ,articles-list)
@@ -79,7 +81,7 @@
 
 (defun v-tag (slug &optional (page 0))
   (view-index (name (get-tag-by-slug (utf-8-bytes-to-string (string-to-octets slug))))
-              (get-articles-by-tag-slug slug)
+              (get-articles-by-tag-slug (url-encode slug))
               'r-tag-page :tag slug))
 
 (defun v-search ())

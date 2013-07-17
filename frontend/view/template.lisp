@@ -139,23 +139,31 @@
                                                  "cat selected"
                                                  "cat")
                        (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
-                 (dolist (cat (get-root-categorys))
-                   (when (plusp (rank cat))
-                     (let ((cat-slug (slug cat)))
-                       (<:li :class (nav-selected (string-equal (url-encode cat-slug) (first cat-subcat))
-                                        "cat selected"
-                                        "cat"
-                                      (setf subnav-cat-slug cat-slug)
-                                      (setf subnav-subcats (get-subcategorys (id cat))))
-                             (<:h2 (<:a :href (h-genurl 'r-cat
-                                                        :cat cat-slug)
-                                        (name cat)))
-                             (<:ul
-                              (dolist (subcat (get-subcategorys (id cat)))
-                                (fe-subnav (h-genurl 'r-cat-subcat :cat cat-slug :subcat subcat-slug)))))))))
+                 (join-string-list-with-delim
+                  ""
+                  (loop for cat in (get-root-categorys)
+                     when (plusp (rank cat))
+                     collect (let ((cat-slug (slug cat)))
+                               (<:li :class (nav-selected (string-equal (url-encode cat-slug) (first cat-subcat))
+                                                "cat selected"
+                                                "cat"
+                                              (setf subnav-cat-slug cat-slug)
+                                              (setf subnav-subcats (get-subcategorys (id cat))))
+                                     (<:h2 (<:a :href (h-genurl 'r-cat
+                                                                :cat cat-slug)
+                                                (name cat)))
+                                     (<:ul
+                                      (join-string-list-with-delim
+                                       ""
+                                       (loop for subcat in (get-subcategorys (id cat))
+                                          collect (fe-subnav (h-genurl 'r-cat-subcat
+                                                                       :cat cat-slug
+                                                                       :subcat subcat-slug))))))))))
            (<:ul :id "subnav"
-                 (dolist (subcat subnav-subcats)
-                   (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
+                 (join-string-list-with-delim
+                  ""
+                  (loop for subcat in subnav-subcats
+                     collect (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug))))))))
 
 (defun fe-header ()
   (fmtnil (<:div :id "banner"

@@ -27,14 +27,15 @@
 (defun article-preamble-markup (article)
   (let ((timestamp (universal-to-timestamp (date article)))
         (tags (tags article)))
-    (<:h2 :id "a-title" (title article))
-    (<:span :id "a-cite" :class "small"
-           (if tags
-               (article-preamble-markup-common
-                "written-by-with-tags"
-                (<:span :id "a-tags"
-                        (fe-article-tags-markup tags)))
-               (article-preamble-markup-common "written-by-without-tags")))))
+    (fmtnil
+     (<:h2 :id "a-title" (title article))
+     (<:span :id "a-cite" :class "small"
+             (if tags
+                 (article-preamble-markup-common
+                  "written-by-with-tags"
+                  (<:span :id "a-tags"
+                          (fe-article-tags-markup tags)))
+                 (article-preamble-markup-common "written-by-without-tags"))))))
 
 (defun do-child-comments (parent-id children)
   (<:ul :class "comment"
@@ -134,9 +135,9 @@
 
 (defun fe-article-tags-markup (tags)
   (join-string-list-with-delim ", "
-                               (dolist (tag tags)
-                                 (<:a :href (h-genurl 'r-tag :tag (slug tag))
-                                     (name tag)))))
+                               (loop for tag in tags
+                                  collect (<:a :href (h-genurl 'r-tag :tag (slug tag))
+                                               (name tag)))))
 
 (defun get-id-from-slug-and-id (slug-and-id)
   (parse-integer (first (split-sequence "-" slug-and-id

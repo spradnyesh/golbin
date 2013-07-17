@@ -98,7 +98,7 @@
 (defun get-articles-by-tag-slug (slug)
   (get-articles-by #'(lambda (article)
                        (dolist (tag (tags article))
-                         (when (equal slug (slug tag))
+                         (when (string-equal slug (slug tag))
                            (return t))))))
 
 (defun get-articles-by-cat (cat)
