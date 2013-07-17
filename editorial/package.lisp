@@ -29,7 +29,9 @@
            :r-logout
            :r-ajax-tags
            :r-robots
-           :r-404))
+           :r-404
+           :r-register-get
+           :r-register-post))
 
 (in-package :hawksbill.golbin.editorial)
 

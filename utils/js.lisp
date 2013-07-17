@@ -8,9 +8,9 @@
 Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/parenscript/manual/parenscript-tutorial.pdf)"
   `(with-html
      (:script :type "text/javascript"
-              (format nil "~%//<![CDATA[~%")
+              "~%//<![CDATA[~%"
               (str (ps ,@body))
-              (format nil "~%//]]>~%"))))
+              "~%//]]>~%")))
 
 ;; http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-6
 (defmacro $event ((selector event-binding) &body body)

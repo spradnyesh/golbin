@@ -24,7 +24,7 @@
               ;; incf-<name>-last-id (system)
               (defun ,(intern (string-upcase (format nil "incf-~a-last-id" `,name))) (system)
                 (let ((storage (get-storage ,system ,dim-str)))
-                  (incf (,(intern (string-upcase (format nil "last-id"))) storage))))
+                  (incf (,(intern (string-upcase "last-id")) storage))))
 
               ;; insert-<name> (system object)
               (defun ,(intern (string-upcase (format nil "insert-~a" `,name))) (system object)

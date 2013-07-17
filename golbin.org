@@ -1782,6 +1782,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-09 Tue 14:55
      :END:
+**** DONE [bug][fe] subcat page showing all articles from other subcat of same cat
+     CLOSED: [2013-07-17 Wed 17:54]
+     :CLOCK:
+     CLOCK: [2013-07-17 Wed 17:38]--[2013-07-17 Wed 17:54] =>  0:16
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-17 Wed 17:54
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
