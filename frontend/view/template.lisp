@@ -123,8 +123,6 @@
              (<:h3 (<:a :href ,url
                         (name subcat)))))))
 
-(defvar *a* nil)
-
 ;; XXX: needs cache (key: uri)
 (defun fe-navigation ()
   (let* ((route (if (boundp '*request*)
