@@ -1790,6 +1790,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-17 Wed 17:54
      :END:
+**** DONE [bug][fe] cat/subcat pages not highlighting nav/subnav in mr-IN
+     CLOSED: [2013-07-17 Wed 18:19]
+     :CLOCK:
+     CLOCK: [2013-07-17 Wed 17:59]--[2013-07-17 Wed 18:05] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-17 Wed 18:19
+     :END:
+     - works fine for en-IN
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

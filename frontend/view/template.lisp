@@ -112,7 +112,7 @@
      (when (and (not (string= "--" (name subcat)))
                 (plusp (rank subcat)))
        (let ((subcat-slug (slug subcat)))
-         (htm (:li :class (nav-selected (string-equal subcat-slug (second cat-subcat))
+         (htm (:li :class (nav-selected (string-equal (url-encode subcat-slug) (second cat-subcat))
                               "subcat selected"
                               "subcat")
                    (:h3 (:a :href ,url
@@ -123,11 +123,10 @@
   (let* ((route (if (boundp '*request*)
                     (route-symbol *route*)
                     :r-home))
-         (uri (if (boundp '*request*)
-                  (hunchentoot:request-uri *request*)
-                  "/"))
          (cat-subcat (when (nav-cat? route)
-                       (get-nav-cat-subcat-slugs uri)))
+                       (get-nav-cat-subcat-slugs (if (boundp '*request*)
+                                                     (hunchentoot:request-uri *request*)
+                                                     "/"))))
          (subnav-cat-slug nil)
          (subnav-subcats nil))
     (with-html
@@ -140,7 +139,7 @@
                  (dolist (cat (get-root-categorys))
                    (when (plusp (rank cat))
                      (let ((cat-slug (slug cat)))
-                       (htm (:li :class (nav-selected (string-equal cat-slug (first cat-subcat))
+                       (htm (:li :class (nav-selected (string-equal (url-encode cat-slug) (first cat-subcat))
                                             "cat selected"
                                             "cat"
                                           (setf subnav-cat-slug cat-slug)
