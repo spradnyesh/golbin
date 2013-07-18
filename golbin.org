@@ -3,8 +3,8 @@
 * tasks
 ** backlog
 *** [bug][fe] related carousel not working
-*** [bug][ed] subcat in article add/edit page is not sorted according to rank
 *** [bug][fe] meta tag not showing up
+*** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
     CLOCK: [2013-07-18 Thu 17:34]--[2013-07-18 Thu 17:47] =>  0:13
@@ -1858,6 +1858,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 13:26
+     :END:
+**** DONE [bug][ed] subcat in article add/edit page is not sorted according to rank
+     CLOSED: [2013-07-18 Thu 18:04]
+     :CLOCK:
+     CLOCK: [2013-07-18 Thu 17:53]--[2013-07-18 Thu 18:04] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-18 Thu 18:04
      :END:
 ** TODO refactor
    :CLOCK:
