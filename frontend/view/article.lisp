@@ -109,29 +109,30 @@
               (author (author article))
               (cat-subcat-list (get-related-articles "cat-subcat" article))
               (author-list (get-related-articles "author" article)))
-          (article-carousel-container "Articles in the same Category / Subcategory:- "
-                                      (<:span (<:a :href (h-genurl 'r-cat
-                                                                 :cat (slug cat))
-                                                 (name cat))
-                                             " / "
-                                             (<:a :href (h-genurl 'r-cat-subcat
-                                                                 :cat (slug cat)
-                                                                 :subcat (slug subcat))
-                                                 (name subcat)))
-                                      cat-subcat-list
-                                      (h-genurl 'r-ajax-article-related
-                                                :id id
-                                                :typeof "cat-subcat"
-                                                :page 0))
-          (article-carousel-container "Articles authored by:- "
-                                      (<:span (<:a :href (h-genurl 'r-author
-                                                                 :author (handle author))
-                                                 (alias author)))
-                                      author-list
-                                      (h-genurl 'r-ajax-article-related
-                                                :id id
-                                                :typeof "author"
-                                                :page 0)))))
+          (fmtnil
+           (article-carousel-container "Articles in the same Category / Subcategory:- "
+                                       (<:span (<:a :href (h-genurl 'r-cat
+                                                                    :cat (slug cat))
+                                                    (name cat))
+                                               " / "
+                                               (<:a :href (h-genurl 'r-cat-subcat
+                                                                    :cat (slug cat)
+                                                                    :subcat (slug subcat))
+                                                    (name subcat)))
+                                       cat-subcat-list
+                                       (h-genurl 'r-ajax-article-related
+                                                 :id id
+                                                 :typeof "cat-subcat"
+                                                 :page 0))
+           (article-carousel-container "Articles authored by:- "
+                                       (<:span (<:a :href (h-genurl 'r-author
+                                                                    :author (handle author))
+                                                    (alias author)))
+                                       author-list
+                                       (h-genurl 'r-ajax-article-related
+                                                 :id id
+                                                 :typeof "author"
+                                                 :page 0))))))
 
 (defun fe-article-tags-markup (tags)
   (join-string-list-with-delim ", "

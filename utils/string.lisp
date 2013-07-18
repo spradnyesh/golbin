@@ -1,10 +1,13 @@
 (in-package :hawksbill.utils)
 
-(defmacro fmtnil (&rest args)
-  (let ((form (apply #'concatenate 'string (loop
-               for i to (1- (length args))
-               collect "~a"))))
-    `(format nil ,form ,@args)))
+(defvar *a* nil)
+(defvar *b* nil)
+(defun fmtnil (&rest args)
+  (let ((args (remove-if #'null args)))
+    (apply #'format nil (apply #'concatenate 'string
+                               (loop
+                                  for i to (1- (length args))
+                                  collect "~a")) args)))
 
 (defmacro string-to-utf-8 (str ext-fmt)
   `(handler-case
