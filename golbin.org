@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][fe] mr-IN article not showing "related carousel"
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
     CLOCK: [2013-07-18 Thu 12:02]--[2013-07-18 Thu 12:13] =>  0:11
@@ -1844,6 +1843,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 11:09
+     :END:
+**** CANCELLED [bug][fe] mr-IN article not showing "related carousel"
+     CLOSED: [2013-07-18 Thu 13:25]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-07-18 Thu 13:25] \\
+       not a bug: all aai articles are in the same cat (although different subcat)
+     CLOCK: [2013-07-18 Thu 13:17]--[2013-07-18 Thu 13:25] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-18 Thu 13:26
      :END:
 ** TODO refactor
    :CLOCK:
