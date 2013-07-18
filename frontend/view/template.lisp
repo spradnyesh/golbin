@@ -6,18 +6,16 @@
 (defmacro template (&key title js tags description body)
   `(<:html (<:head
             (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
-            #- (and)
-            (progn
-              (<:meta :name "application-name" :content "Golb.in")
-              (<:meta :name "author" :content "golbin@rocketmail.com")
-              (<:meta :name "copyright" :content "Golb.in 2012")
+            (<:meta :name "application-name" :content "Golb.in")
+            (<:meta :name "author" :content "golbin@rocketmail.com")
+            (<:meta :name "copyright" :content "Golb.in 2012")
 
-              (<:meta :name "keywords"
-                      :content (join-string-list-with-delim ", "
-                                                            (append ,tags
-                                                                    (list (get-config "site.name")))))
-              (<:meta :name "description" :content ,description)
-              (<:meta :name "google" :content "notranslate"))
+            (<:meta :name "keywords"
+                    :content (join-string-list-with-delim ", "
+                                                          (append ,tags
+                                                                  (list (get-config "site.name")))))
+            (<:meta :name "description" :content ,description)
+            (<:meta :name "google" :content "notranslate")
 
             (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
             (<:link :rel "stylesheet"

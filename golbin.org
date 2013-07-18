@@ -3,7 +3,6 @@
 * tasks
 ** backlog
 *** [bug][fe] related carousel not working
-*** [bug][fe] meta tag not showing up
 *** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
@@ -1883,6 +1882,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 18:42
+     :END:
+**** DONE [bug][fe] meta tag not showing up
+     CLOSED: [2013-07-18 Thu 18:45]
+     :CLOCK:
+     CLOCK: [2013-07-18 Thu 18:43]
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-18 Thu 18:45
      :END:
 ** TODO refactor
    :CLOCK:
