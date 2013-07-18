@@ -2,8 +2,10 @@
 
 * tasks
 ** backlog
+*** [bug][fe] meta tag not showing up
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
+    CLOCK: [2013-07-18 Thu 13:27]--[2013-07-18 Thu 13:51] =>  0:24
     CLOCK: [2013-07-18 Thu 12:02]--[2013-07-18 Thu 12:13] =>  0:11
     CLOCK: [2013-07-18 Thu 11:57]--[2013-07-18 Thu 12:01] =>  0:04
     CLOCK: [2013-07-18 Thu 11:25]--[2013-07-18 Thu 11:54] =>  0:29

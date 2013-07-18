@@ -25,7 +25,7 @@
          :js nil
          :body (if (is-logged-in?)
                    (redirect (h-genurl 'r-home))
-                   (progn (<:form :action (h-genurl 'r-login-post)
+                   (fmtnil (<:form :action (h-genurl 'r-login-post)
                                  :method "POST"
                                  (label-input "username" "text")
                                  (label-input "password" "password")
@@ -35,32 +35,32 @@
                                          :value "Login"))
                           (let ((ed-lang (cookie-in "ed-lang")))
                             (cond ((string= ed-lang "en-IN")
-                                   (<:p
-                                    (lang-a "en-IN" t "English")
-                                    (lang-a "hi-IN" nil "हिन्दी")
-                                    (lang-a "mr-IN" nil "मराठी"))
-                                   (<:p
-                                    (<:a :id "register" :href (h-genurl 'r-register-get
-                                                                        :lang "en-IN")
-                                         (translate "register-here"))))
+                                   (fmtnil (<:p
+                                            (lang-a "en-IN" t "English")
+                                            (lang-a "hi-IN" nil "हिन्दी")
+                                            (lang-a "mr-IN" nil "मराठी"))
+                                           (<:p
+                                            (<:a :id "register" :href (h-genurl 'r-register-get
+                                                                                :lang "en-IN")
+                                                 (translate "register-here")))))
                                   ((string= ed-lang "hi-IN")
-                                   (<:p
-                                    (lang-a "en-IN" nil "English")
-                                    (lang-a "hi-IN" t "हिन्दी")
-                                    (lang-a "mr-IN" nil "मराठी"))
-                                   (<:p
-                                    (<:a :id "register" :href (h-genurl 'r-register-get
-                                                                        :lang "hi-IN")
-                                         (translate "register-here"))))
+                                   (fmtnil (<:p
+                                            (lang-a "en-IN" nil "English")
+                                            (lang-a "hi-IN" t "हिन्दी")
+                                            (lang-a "mr-IN" nil "मराठी"))
+                                           (<:p
+                                            (<:a :id "register" :href (h-genurl 'r-register-get
+                                                                                :lang "hi-IN")
+                                                 (translate "register-here")))))
                                   ((string= ed-lang "mr-IN")
-                                   (<:p
-                                    (lang-a "en-IN" nil "English")
-                                    (lang-a "hi-IN" nil "हिन्दी")
-                                    (lang-a "mr-IN" t "मराठी"))
-                                   (<:p
-                                    (<:a :id "register" :href (h-genurl 'r-register-get
-                                                                       :lang "mr-IN")
-                                        (translate "register-here"))))
+                                   (fmtnil (<:p
+                                            (lang-a "en-IN" nil "English")
+                                            (lang-a "hi-IN" nil "हिन्दी")
+                                            (lang-a "mr-IN" t "मराठी"))
+                                           (<:p
+                                            (<:a :id "register" :href (h-genurl 'r-register-get
+                                                                                :lang "mr-IN")
+                                                 (translate "register-here")))))
                                   (t (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))))
 
 (defun v-login-post ()

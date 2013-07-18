@@ -4,16 +4,6 @@
 ;;;; hunchentoot params
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defparameter hunchentoot:*default-content-type* "text/html; charset=utf-8")
-(setf *prologue* "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; helper macros
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-#- (and)
-(defmacro with-html (&body body)
-  `(with-html-output-to-string (*who-stream* nil)
-     (htm
-      ,@body)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
@@ -22,14 +12,14 @@
   (let ((for (regex-replace-all "-" name " "))
         (trimmed-name (trim-name name)))
     (<:tr
-     (<:td (format t "~A" (string-capitalize for)))
+     (<:td (format nil "~A" (string-capitalize for)))
      (<:td (<:input :class (format nil "td-input ~A" trimmed-name)
                   :type typeof
                   :name trimmed-name
                   :value value)))))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
-  (<:tr (<:td (format t "~A" (string-capitalize name)))
+  (<:tr (<:td (format nil "~A" (string-capitalize name)))
        (<:td (let ((trimmed-name (trim-name name)))
               (<:textarea :cols cols
                          :rows rows

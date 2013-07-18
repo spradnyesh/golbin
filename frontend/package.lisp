@@ -2,7 +2,6 @@
   (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :trivial-utf-8 :flexi-streams :local-time)
   (:decorators #'hawksbill.utils:init-dimensions)
   (:shadow :% :prototype :size :acceptor :mime-type)
-  #|(:shadowing-import-from :hawksbill.utils :fmt :esc :str :htm)|#
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home
@@ -24,10 +23,6 @@
            :r-ajax-article-related
            ;; enable article to be previewed in editorial
            :v-article
-           :fe-page-template
-           :article-preamble-markup
-           :article-body-markup
-           :article-related-markup
            :r-robots
            :r-404))
 

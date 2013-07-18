@@ -1,9 +1,8 @@
 (restas:define-module :hawksbill.golbin.editorial
   (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd)
   (:decorators #'hawksbill.utils:init-dimensions)
-  (:import-from :hawksbill.golbin.frontend :v-article :fe-page-template :article-preamble-markup :article-body-markup :article-related-markup)
+  (:import-from :hawksbill.golbin.frontend :v-article)
   (:shadow :% :prototype :size :acceptor :mime-type)
-  #|(:shadowing-import-from :hawksbill.utils :fmt :esc :str :htm)|#
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home

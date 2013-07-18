@@ -4,15 +4,19 @@
 ;;;; helper functions and macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-cat-subcat-markup (article list cat-subcat)
-  (let ((i 0))
-    (dolist (l list)
-      (incf i)
-      (if (or (and (not article) (= i 1))
-              (and article (= (id l) (id (if (eql :c cat-subcat)
-                                             (cat article)
-                                             (subcat article))))))
-          (<:option :selected "selected" :value (id l) (name l))
-          (<:option :value (id l) (name l))))))
+  (join-string-list-with-delim
+    ""
+    (loop
+       for l in list
+       for i from 1
+       collect (if (or (and (not article)
+                            (= i 1))
+                       (and article
+                            (= (id l) (id (if (eql :c cat-subcat)
+                                              (cat article)
+                                              (subcat article))))))
+                   (<:option :selected "selected" :value (id l) (name l))
+                   (<:option :value (id l) (name l))))))
 
 (defmacro get-photo-direction-markup (dir direction)
   `(if (and article
@@ -56,11 +60,12 @@
 (defun make-photo-attribution-div (img-tag photo)
   (<:div :class "a-photo"
         img-tag
-        (let ((attr (attribution photo)))
-          (unless (nil-or-empty attr)
-            (<:a :class "p-attribution small"
-                :href attr "photo attribution")))
-        (<:p :class "p-title" (title photo))))
+        (fmtnil
+         (let ((attr (attribution photo)))
+           (unless (nil-or-empty attr)
+             (<:a :class "p-attribution small"
+                  :href attr "photo attribution")))
+         (<:p :class "p-title" (title photo)))))
 
 (defun add-photo-attribution (body)
   (dolist (img-tag (all-matches-as-strings "<img (.*?)\/>" body))

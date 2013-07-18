@@ -56,35 +56,36 @@
 ;; navigations for different author types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun author-nav ()
-  (progn
-    (<:li :id "nav-article"
+  (fmtnil
+   (<:li :id "nav-article"
          (<:h2 (<:a :href (h-genurl 'r-article-new-get) "Add Article")))
-    (<:li :id "nav-photo"
+   (<:li :id "nav-photo"
          (<:h2 (<:a :href (h-genurl 'r-photo-get) "Add Photo")))))
 (defun editor-nav ()
   (<:li :id "nav-approve"
-       (<:h2 (<:a :href (h-genurl 'r-approve-articles) "Approve Articles"))))
+        (<:h2 (<:a :href (h-genurl 'r-approve-articles) "Approve Articles"))))
 (defun admin-nav ())
 (defun logout-nav ()
   (<:li :id "nav-logout"
-       (<:h2 (<:a :href (h-genurl 'r-logout) "Logout"))))
+        (<:h2 (<:a :href (h-genurl 'r-logout) "Logout"))))
 
 (defun ed-navigation (logged-in)
   (<:ul :id "nav"
-       (<:li :id "nav-home"
-            (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
-       (when logged-in
-         (let ((author-type (session-value :author-type)))
-           (cond ((eq author-type :u)   ; author
-                  (author-nav))
-                 ((eq author-type :e)   ; editor
-                  (author-nav)
-                  (editor-nav))
-                 ((eq author-type :d)   ; admin
-                  (author-nav)
-                  (editor-nav)
-                  (admin-nav))))
-         (logout-nav))))
+        (<:li :id "nav-home"
+              (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
+        (when logged-in
+          (fmtnil
+           (let ((author-type (session-value :author-type)))
+             (cond ((eq author-type :u) ; author
+                    (author-nav))
+                   ((eq author-type :e) ; editor
+                    (fmtnil (author-nav)
+                            (editor-nav)))
+                   ((eq author-type :d) ; admin
+                    (fmtnil (author-nav)
+                            (editor-nav)
+                            (admin-nav)))))
+           (logout-nav)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

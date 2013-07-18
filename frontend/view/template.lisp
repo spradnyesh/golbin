@@ -5,9 +5,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title js tags description body)
   `(<:html (<:head
+            (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
             #- (and)
             (progn
-              (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
               (<:meta :name "application-name" :content "Golb.in")
               (<:meta :name "author" :content "golbin@rocketmail.com")
               (<:meta :name "copyright" :content "Golb.in 2012")
