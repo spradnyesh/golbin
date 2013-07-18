@@ -2,9 +2,12 @@
 
 * tasks
 ** backlog
+*** [bug][fe] related carousel not working
+*** [bug][ed] subcat in article add/edit page is not sorted according to rank
 *** [bug][fe] meta tag not showing up
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
+    CLOCK: [2013-07-18 Thu 17:34]--[2013-07-18 Thu 17:47] =>  0:13
     CLOCK: [2013-07-18 Thu 13:27]--[2013-07-18 Thu 13:51] =>  0:24
     CLOCK: [2013-07-18 Thu 12:02]--[2013-07-18 Thu 12:13] =>  0:11
     CLOCK: [2013-07-18 Thu 11:57]--[2013-07-18 Thu 12:01] =>  0:04

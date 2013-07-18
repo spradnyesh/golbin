@@ -53,7 +53,7 @@
    :title "Add Photo"
    :logged-in t
    :js (<:script :type "text/javascript"
-                (format t
+                (format nil
                         "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
                         (get-category-tree-json)
                         (on-load)))
