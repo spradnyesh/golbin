@@ -165,11 +165,6 @@
     (:float "left"
             :padding-right "10px"))
 
-   (("#articles .a-cite")
-    (:color "#999999"
-            :padding "2px 0"
-            :display "block"))
-
    (("#articles .a-summary")
     (:color "#4a4a4a"))
 
@@ -196,7 +191,7 @@
    (("#a-title")
     (:font-size "160%"))
 
-   (("#a-cite")
+   ((".a-cite")
     (:color "#999999"
             :padding "2px 0"
             :display "block"))

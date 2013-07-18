@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title js tags description body)
   `(<:html (<:head
-            (:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+            (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
             #- (and)
             (progn
               (<:meta :name "application-name" :content "Golb.in")
@@ -33,7 +33,7 @@
             (if (string-equal (get-dimension-value "envt") "prod")
                 (fmtnil
                   (<:link :rel "stylesheet" :type "text/css"
-                          :href "/static/css/fe-13-min.css")
+                          :href "/static/css/fe-14-min.css")
                   ;; google analytics and adsense
                   (<:script :type "text/javascript"
                             "

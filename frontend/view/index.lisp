@@ -30,16 +30,9 @@
                                                                                          (slug article)
                                                                                          (id article)))
                                                     (title article)))
-                                         (<:span :class "a-cite small"
-                                                 (format nil
-                                                         "~a - ~a ~a- ~a"
-                                                         (alias (author article))
-                                                         (name (cat article))
-                                                         (let ((subcat-name (name (subcat article))))
-                                                           (if (not (string= "--" subcat-name))
-                                                               (format nil ", ~a " subcat-name)
-                                                               ""))
-                                                         (prettyprint-date (universal-to-timestamp (date article)))))
+                                         (let ((timestamp (universal-to-timestamp (date article))))
+                                           (<:span :class "a-cite small"
+                                                   (article-preamble-markup-common "written-by-without-tags")))
                                          (<:p :class "a-summary" (summary article))))))
                   ,(if route-params
                        `(pagination-markup page

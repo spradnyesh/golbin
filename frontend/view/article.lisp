@@ -17,11 +17,12 @@
                   (name (cat article)))
               (if (string= "--" (name (subcat article)))
                   ""
-                  (<:a :id "a-cat-subcat"
-                      :href (h-genurl 'r-cat-subcat
-                                      :cat (slug (cat article))
-                                      :subcat (slug (subcat article)))
-                      (name (subcat article))))
+                  (fmtnil " / "
+                          (<:a :id "a-cat-subcat"
+                               :href (h-genurl 'r-cat-subcat
+                                               :cat (slug (cat article))
+                                               :subcat (slug (subcat article)))
+                               (name (subcat article)))))
               ,tags))
 
 (defun article-preamble-markup (article)
@@ -29,11 +30,11 @@
         (tags (tags article)))
     (fmtnil
      (<:h2 :id "a-title" (title article))
-     (<:span :id "a-cite" :class "small"
+     (<:span :class "a-cite small"
              (if tags
                  (article-preamble-markup-common
                   "written-by-with-tags"
-                  (<:span :id "a-tags"
+                  (<:span :class "a-tags"
                           (fe-article-tags-markup tags)))
                  (article-preamble-markup-common "written-by-without-tags"))))))
 

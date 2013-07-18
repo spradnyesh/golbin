@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [fe] make cite of article and list same
 *** [bug][fe] related carousel not working
 *** [bug][fe] meta tag not showing up
 *** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
@@ -1875,6 +1874,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 18:24
+     :END:
+**** DONE [fe] make cite of article and list (almost) same
+     CLOSED: [2013-07-18 Thu 18:42]
+     :CLOCK:
+     CLOCK: [2013-07-18 Thu 18:37]--[2013-07-18 Thu 18:42] =>  0:05
+     CLOCK: [2013-07-18 Thu 18:25]--[2013-07-18 Thu 18:35] =>  0:10
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-18 Thu 18:42
      :END:
 ** TODO refactor
    :CLOCK:
