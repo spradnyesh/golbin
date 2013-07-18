@@ -1828,6 +1828,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-17 Wed 20:24
      :END:
+**** DONE [bug][fe] mr-IN: nav/subnav not highlighting in article page
+     CLOSED: [2013-07-18 Thu 11:09]
+     :CLOCK:
+     CLOCK: [2013-07-18 Thu 10:52]--[2013-07-18 Thu 11:09] =>  0:17
+     CLOCK: [2013-07-17 Wed 20:26]--[2013-07-17 Wed 20:27] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-18 Thu 11:09
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

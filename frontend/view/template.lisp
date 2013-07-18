@@ -114,10 +114,8 @@
   `(when (and (not (string= "--" (name subcat)))
               (plusp (rank subcat)))
      (let ((subcat-slug (slug subcat)))
-       (<:li :class (nav-selected (string-equal (url-encode subcat-slug) (second cat-subcat))
-                        #- (and)
-                        (string-equal (string-to-utf-8 subcat-slug :utf-8)
-                                      (string-to-utf-8 cat-subcat :latin1))
+       (<:li :class (nav-selected (string-equal (url-encode subcat-slug)
+                                                (second cat-subcat))
                         "subcat selected"
                         "subcat")
              (<:h3 (<:a :href ,url
@@ -145,10 +143,8 @@
                   (loop for cat in (get-root-categorys)
                      when (plusp (rank cat))
                      collect (let ((cat-slug (slug cat)))
-                               (<:li :class (nav-selected (string-equal (url-encode cat-slug) (first cat-subcat))
-                                                #- (and)
-                                                (string-equal (string-to-utf-8 cat-slug :utf-8)
-                                                              (string-to-utf-8 cat-subcat :latin1))
+                               (<:li :class (nav-selected (string-equal (url-encode cat-slug)
+                                                                        (first cat-subcat))
                                                 "cat selected"
                                                 "cat"
                                               (setf subnav-cat-slug cat-slug)
