@@ -11,6 +11,7 @@
          ;; undo .yui3-g css
          ((".yui3-g") (:letter-spacing "normal" :word-spacing "normal"))
          (("input") (:font "inherit"))
+         (("select") (:font "inherit"))
          (("textarea") (:font "inherit"))
          ;; common
          (("body") (:color "#000000" :background-color "#CBDDEB"))
