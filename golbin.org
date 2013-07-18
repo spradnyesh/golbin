@@ -55,13 +55,6 @@
     CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
     CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
     :END:
-*** TODO [fe] a-cite should have hyperlinks
-    :CLOCK:
-    CLOCK: [2013-07-12 Fri 17:01]--[2013-07-12 Fri 17:28] =>  0:27
-    CLOCK: [2013-07-12 Fri 16:34]--[2013-07-12 Fri 16:57] =>  0:23
-    CLOCK: [2013-07-12 Fri 15:44]--[2013-07-12 Fri 16:11] =>  0:27
-    CLOCK: [2013-07-12 Fri 14:30]--[2013-07-12 Fri 15:40] =>  1:10
-    :END:
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
@@ -1890,6 +1883,17 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 18:45
+     :END:
+**** DONE [fe] a-cite should have hyperlinks
+     CLOSED: [2013-07-18 Thu 18:46]
+     :CLOCK:
+     CLOCK: [2013-07-12 Fri 17:01]--[2013-07-12 Fri 17:28] =>  0:27
+     CLOCK: [2013-07-12 Fri 16:34]--[2013-07-12 Fri 16:57] =>  0:23
+     CLOCK: [2013-07-12 Fri 15:44]--[2013-07-12 Fri 16:11] =>  0:27
+     CLOCK: [2013-07-12 Fri 14:30]--[2013-07-12 Fri 15:40] =>  1:10
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-18 Thu 18:47
      :END:
 ** TODO refactor
    :CLOCK:
