@@ -16,12 +16,11 @@
           :body (fmtnil
                   (<:div :id "articles"
                          (<:ul
-                          (join-string-list-with-delim
-                           ""
-                           (loop for article in (paginate ,articles-list
+                          (join-loop article
+                                     (paginate ,articles-list
                                                           offset
                                                           num-per-page)
-                                collect (<:li
+                                     (<:li
                                          (when (photo article)
                                            (<:div :class "index-thumb"
                                                   (article-lead-photo-url (photo article) "index-thumb")))
@@ -41,7 +40,7 @@
                                                                (format nil ", ~a " subcat-name)
                                                                ""))
                                                          (prettyprint-date (universal-to-timestamp (date article)))))
-                                         (<:p :class "a-summary" (summary article)))))))
+                                         (<:p :class "a-summary" (summary article))))))
                   ,(if route-params
                        `(pagination-markup page
                                            (length ,articles-list)

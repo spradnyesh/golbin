@@ -153,17 +153,15 @@
                                                                 :cat cat-slug)
                                                 (name cat)))
                                      (<:ul
-                                      (join-string-list-with-delim
-                                       ""
-                                       (loop for subcat in (get-subcategorys (id cat))
-                                          collect (fe-subnav (h-genurl 'r-cat-subcat
+                                      (join-loop subcat
+                                                 (get-subcategorys (id cat))
+                                                 (fe-subnav (h-genurl 'r-cat-subcat
                                                                        :cat cat-slug
-                                                                       :subcat subcat-slug))))))))))
+                                                                       :subcat subcat-slug)))))))))
            (<:ul :id "subnav"
-                 (join-string-list-with-delim
-                  ""
-                  (loop for subcat in subnav-subcats
-                     collect (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug))))))))
+                 (join-loop subcat
+                            subnav-subcats
+                            (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
 
 (defun fe-header ()
   (fmtnil (<:div :id "banner"

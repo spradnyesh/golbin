@@ -71,6 +71,7 @@
            :string-pad
            :fmtnil
            :string-to-utf-8
+           :join-loop
            ;; pagination
            :paginate
            :pagination-markup

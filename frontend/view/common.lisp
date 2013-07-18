@@ -30,10 +30,9 @@
 (defun article-carousel-markup (article-list)
   (when article-list
     (<:ul :class "related"
-          (join-string-list-with-delim
-           ""
-           (loop for article in article-list
-                collect (<:li
+          (join-loop article
+                     article-list
+                     (<:li
                          (if (photo article)
                              (<:div :class "related-thumb"
                                     (article-lead-photo-url (photo article) "related-thumb"))
@@ -43,4 +42,4 @@
                                               :slug-and-id (format nil "~A-~A"
                                                                    (slug article)
                                                                    (id article)))
-                              (title article))))))))
+                              (title article)))))))

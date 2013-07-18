@@ -15,6 +15,12 @@
                                                 :external-format ,ext-fmt))
      (external-format-encoding-error () nil)))
 
+(defmacro join-loop (var list body)
+  `(join-string-list-with-delim
+    ""
+    (loop for ,var in ,list
+       collect ,body)))
+
 ;; http://stackoverflow.com/questions/211717/common-lisp-programmatic-keyword
 (defun make-keyword (name)
   (values (intern (string-upcase name) "KEYWORD")))
