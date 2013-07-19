@@ -90,7 +90,7 @@
 (defun fe-logo ()
   (<:h1 (<:a :href (h-genurl 'r-home)
            (<:img :id "logo"
-                 :source ""
+                 :src ""
                  :alt (get-config "site.name")))))
 
 (defun fe-site-search ()
@@ -183,15 +183,15 @@
 (defun fe-ads-1 ()
   (when (string-equal (get-dimension-value "envt") "prod")
     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-          (<:code :type "text/javascript"
-                 "<!--
+           (<:code :type "text/javascript"
+                   "<!--
                  google_ad_client = 'ca-pub-7627106577670276';
                  google_ad_slot = '1936097987';
                  google_ad_width = 160;
                  google_ad_height = 600;
                  //-->")
-          #- (and)
-          (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
+           #- (and)
+           (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
 
 (defun fe-ads-2 ()
   (when (string-equal (get-dimension-value "envt") "prod")
