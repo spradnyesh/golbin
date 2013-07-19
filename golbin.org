@@ -2,10 +2,11 @@
 
 * tasks
 ** backlog
-*** [bug][fe] related carousel not working
-*** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
+    CLOCK: [2013-07-19 Fri 15:30]--[2013-07-19 Fri 15:34] =>  0:04
+    CLOCK: [2013-07-19 Fri 14:57]--[2013-07-19 Fri 14:58] =>  0:01
+    CLOCK: [2013-07-19 Fri 14:40]--[2013-07-19 Fri 14:50] =>  0:10
     CLOCK: [2013-07-18 Thu 17:34]--[2013-07-18 Thu 17:47] =>  0:13
     CLOCK: [2013-07-18 Thu 13:27]--[2013-07-18 Thu 13:51] =>  0:24
     CLOCK: [2013-07-18 Thu 12:02]--[2013-07-18 Thu 12:13] =>  0:11
@@ -18,6 +19,8 @@
     CLOCK: [2013-07-12 Fri 18:41]--[2013-07-12 Fri 19:09] =>  0:28
     CLOCK: [2013-07-12 Fri 18:00]--[2013-07-12 Fri 18:34] =>  0:34
     :END:
+*** [bug][fe] related carousel not working
+*** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO utf8 -> url-encode
     :CLOCK:
     CLOCK: [2013-07-18 Thu 11:10]--[2013-07-18 Thu 11:24] =>  0:14
@@ -63,19 +66,6 @@
     :END:
 *** [performance] http://www.appelsiini.net/projects/lazyload
 *** [bug][seo] clear GA confusion b/n www. and mr.
-*** TODO [bug] "written by..." should come in local language
-    :CLOCK:
-    CLOCK: [2013-06-13 Thu 12:58]--[2013-06-13 Thu 13:29] =>  0:31
-    CLOCK: [2013-06-13 Thu 10:52]--[2013-06-13 Thu 11:02] =>  0:10
-    CLOCK: [2013-06-12 Wed 17:14]--[2013-06-12 Wed 17:37] =>  0:23
-    CLOCK: [2013-06-12 Wed 16:30]--[2013-06-12 Wed 16:57] =>  0:27
-    CLOCK: [2013-06-12 Wed 15:48]--[2013-06-12 Wed 16:15] =>  0:27
-    CLOCK: [2013-06-10 Mon 18:29]--[2013-06-10 Mon 18:36] =>  0:07
-    CLOCK: [2013-06-10 Mon 18:15]--[2013-06-10 Mon 18:25] =>  0:10
-    CLOCK: [2013-06-10 Mon 17:27]--[2013-06-10 Mon 18:05] =>  0:38
-    CLOCK: [2013-06-10 Mon 17:10]--[2013-06-10 Mon 17:26] =>  0:16
-    CLOCK: [2013-06-10 Mon 12:52]--[2013-06-10 Mon 13:04] =>  0:12
-    :END:
 *** [performance] partial responses for requests
     - send back the following as soon as we get the request
       - http header
@@ -1879,7 +1869,7 @@
 **** DONE [bug][fe] meta tag not showing up
      CLOSED: [2013-07-18 Thu 18:45]
      :CLOCK:
-     CLOCK: [2013-07-18 Thu 18:43]
+     CLOCK: [2013-07-18 Thu 18:43]--[2013-07-18 Thu 18:48] =>  0:05
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 18:45
@@ -1894,6 +1884,41 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-18 Thu 18:47
+     :END:
+**** DONE [bug] "written by..." should come in local language
+     CLOSED: [2013-07-19 Fri 14:39]
+     :CLOCK:
+     CLOCK: [2013-06-13 Thu 12:58]--[2013-06-13 Thu 13:29] =>  0:31
+     CLOCK: [2013-06-13 Thu 10:52]--[2013-06-13 Thu 11:02] =>  0:10
+     CLOCK: [2013-06-12 Wed 17:14]--[2013-06-12 Wed 17:37] =>  0:23
+     CLOCK: [2013-06-12 Wed 16:30]--[2013-06-12 Wed 16:57] =>  0:27
+     CLOCK: [2013-06-12 Wed 15:48]--[2013-06-12 Wed 16:15] =>  0:27
+     CLOCK: [2013-06-10 Mon 18:29]--[2013-06-10 Mon 18:36] =>  0:07
+     CLOCK: [2013-06-10 Mon 18:15]--[2013-06-10 Mon 18:25] =>  0:10
+     CLOCK: [2013-06-10 Mon 17:27]--[2013-06-10 Mon 18:05] =>  0:38
+     CLOCK: [2013-06-10 Mon 17:10]--[2013-06-10 Mon 17:26] =>  0:16
+     CLOCK: [2013-06-10 Mon 12:52]--[2013-06-10 Mon 13:04] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-19 Fri 14:39
+     :END:
+**** DONE cl-gd not working
+     CLOSED: [2013-07-19 Fri 15:28]
+     :CLOCK:
+     CLOCK: [2013-07-19 Fri 14:54]--[2013-07-19 Fri 14:57] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-19 Fri 15:29
+     :END:
+     - eqi media-libs/gd-2.0.35-r3 && equo conf update && equo deptest && equo libtest && ldconfig
+**** DONE [bug][ed] store passwd in encrypted format
+     CLOSED: [2013-07-19 Fri 17:19]
+     :CLOCK:
+     CLOCK: [2013-07-19 Fri 16:54]--[2013-07-19 Fri 17:19] =>  0:25
+     CLOCK: [2013-07-19 Fri 15:42]--[2013-07-19 Fri 16:25] =>  0:43
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-19 Fri 17:19
      :END:
 ** TODO refactor
    :CLOCK:

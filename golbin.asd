@@ -21,7 +21,8 @@
                                      (:file "l10n" :depends-on ("package"))
                                      (:file "pagination" :depends-on ("restas"))
                                      (:file "db" :depends-on ("config" "dimensions"))
-                                     (:file "datetime" :depends-on ("lang" "string"))))
+                                     (:file "datetime" :depends-on ("lang" "string"))
+                                     (:file "cipher" :depends-on ("string"))))
                (:module "common"
                         :components ((:file "package")
                                      (:file "init" :depends-on ("package"))

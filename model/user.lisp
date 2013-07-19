@@ -67,8 +67,9 @@
 (defun verify-login (username password)
   (let ((author (get-author-by-username username)))
     (when (and author
-               (string-equal password (password author)))
-      (values t author))))
+               (string-equal (hash-password password)
+                             (password author)))
+      author)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
@@ -147,5 +148,6 @@
                                    :username slug
                                    :handle slug
                                    :password slug
-                                   :salt (generate-user-salt)
+                                   :token (create-code-map)
+                                   :salt (generate-salt 32)
                                    :status :a))))))

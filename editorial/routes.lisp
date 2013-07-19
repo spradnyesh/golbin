@@ -74,3 +74,9 @@
 ;; start/stop/restart various servers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (start/stop/restart-system "ed")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; load cipher.key if not already loaded
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(unless (get-config "cipher.key")
+  (add-config "cipher.key" (read-line) "master"))

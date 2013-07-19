@@ -72,6 +72,7 @@
            :fmtnil
            :string-to-utf-8
            :join-loop
+           :get-random-string
            ;; pagination
            :paginate
            :pagination-markup
@@ -87,7 +88,12 @@
            :*translation-table*
            :translate
            :load-all-languages
-           :show-translation-tree))
+           :show-translation-tree
+           ;; cipher
+           :hash-password
+           :do-encrypt
+           :do-decrypt
+           :generate-salt))
 
 (in-package :hawksbill.utils)
 

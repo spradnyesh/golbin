@@ -64,16 +64,16 @@
                                   (t (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))))
 
 (defun v-login-post ()
-  (let ((username (post-parameter "username"))
-        (password (post-parameter "password")))
-    (multiple-value-bind (logged-in author) (verify-login username password)
-      (if logged-in
-          (progn
-            (start-session)
-            (setf (session-value :author) (handle author))
-            (setf (session-value :author-type) (author-type author))
-            (redirect (h-genurl 'r-home)))
-          (redirect (h-genurl 'r-login-get))))))
+  (let* ((username (post-parameter "username"))
+         (password (post-parameter "password"))
+         (author (verify-login username password)))
+    (if author
+        (progn
+          (start-session)
+          (setf (session-value :author) (handle author))
+          (setf (session-value :author-type) (author-type author))
+          (redirect (h-genurl 'r-home)))
+        (redirect (h-genurl 'r-login-get)))))
 
 (defun v-logout ()
   (with-ed-login

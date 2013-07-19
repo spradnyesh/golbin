@@ -47,6 +47,7 @@
          :body (<:form :action (h-genurl 'r-register-post)
                             :method "POST"
                             (label-input "name" "text")
+                            (label-input "password" "password")
                             (<:input :type "submit"
                                     :name "submit"
                                     :id "submit"
@@ -54,6 +55,7 @@
 
 (defun v-register-post ()
   (let* ((name (post-parameter "name"))
+         (password (post-parameter "password"))
          (slug (slugify name))
          (token (create-code-map)))
     (if (add-author (make-instance 'author
@@ -61,8 +63,9 @@
                                    :alias name
                                    :username slug
                                    :handle slug
-                                   :password slug
+                                   :password (hash-password password)
                                    :token token
+                                   :salt (generate-salt 32)
                                    :status :a))
         (progn
           (create-code-map-image token slug)
