@@ -2,6 +2,26 @@
 
 * tasks
 ** backlog
+*** TODO email server
+    :CLOCK:
+    CLOCK: [2013-07-19 Fri 18:38]
+    CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
+    :END:
+    - for
+      - golb.in email addresses
+      - get (and forward) every comment as an email
+    - servers
+      - mail-mta/exim
+        - http://www.exim.org/
+      - mail-mta/courier
+        - http://www.nuclex.org/blog/1-personal/83-installing-courier-on-gentoo
+        - http://www.courier-mta.org/install.html (bad, outdated)
+      - sendmail
+        - http://forums.gentoo.org/viewtopic.php?t=23703
+        - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
+    - cl
+      - *** cl-smtp (works) ***
+      - cl-sendmail (sucks)
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
     CLOCK: [2013-07-19 Fri 15:30]--[2013-07-19 Fri 15:34] =>  0:04
@@ -45,13 +65,6 @@
     CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
     CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
     :END:
-*** email server
-    - for
-      - golb.in email addresses
-      - get (and forward) every comment as an email
-    - servers
-      - mail-mta/exim
-      - mail-mta/courier
 *** TODO [#A] slime debug local variables
     :CLOCK:
     CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
