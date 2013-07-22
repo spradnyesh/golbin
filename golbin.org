@@ -25,9 +25,6 @@
     - cl
       - *** cl-smtp (works) ***
       - cl-sendmail (sucks)
-*** TODO [bug][fe] related carousel not working
-    :CLOCK:
-    :END:
 *** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
@@ -46,8 +43,6 @@
     CLOCK: [2013-07-12 Fri 18:41]--[2013-07-12 Fri 19:09] =>  0:28
     CLOCK: [2013-07-12 Fri 18:00]--[2013-07-12 Fri 18:34] =>  0:34
     :END:
-*** [bug][fe] related carousel not working
-*** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO utf8 -> url-encode
     :CLOCK:
     CLOCK: [2013-07-18 Thu 11:10]--[2013-07-18 Thu 11:24] =>  0:14
@@ -1967,6 +1962,14 @@
      :ARCHIVE_TIME: 2013-07-22 Mon 16:20
      :END:
      - since less # articles now
+**** DONE [bug][fe] related carousel not working
+     CLOSED: [2013-07-22 Mon 16:48]
+     :CLOCK:
+     CLOCK: [2013-07-22 Mon 16:34]--[2013-07-22 Mon 16:48] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-22 Mon 16:48
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

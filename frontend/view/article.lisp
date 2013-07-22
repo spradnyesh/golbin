@@ -101,17 +101,18 @@
               (<:p :class "p-title" (title photo))))))
   (<:div :id "a-body" (body article)))
 
-(defun article-related-markup (id article)
-  (<:div :id "related"
-         (<:span :class "hidden" id)
-         (let ((related-length (get-config "pagination.article.related"))
-               #- (and) ; XXX: uncomment this when we have sufficient related articles
-               (progn
-                 (cat (cat article))
-                 (subcat (subcat article))
-                 (cat-subcat-list (get-related-articles "cat-subcat" article)))
-               (author (author article))
-               (author-list (get-related-articles "author" article)))
+(defun article-related-markup (article)
+  (let ((related-length (get-config "pagination.article.related"))
+        (id (id article))
+        #- (and) ; XXX: uncomment this when we have sufficient related articles
+        (progn
+          (cat (cat article))
+          (subcat (subcat article))
+          (cat-subcat-list (get-related-articles "cat-subcat" article)))
+        (author (author article))
+        (author-list (get-related-articles "author" article)))
+    (<:div :id "related"
+           (<:span :class "hidden" id)
            (fmtnil
             #- (and) ; XXX: uncomment this when we have sufficient related articles
             (article-carousel-container "Articles in the same Category / Subcategory:- "
@@ -173,7 +174,7 @@
                       (article-body-markup article)
                       #- (and)
                       (article-comments-markup article slug-and-id))
-                (article-related-markup id article)))
+                (article-related-markup article)))
         (v-404))))
 
 (defun v-ajax-article-related (id typeof page)
