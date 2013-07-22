@@ -88,12 +88,9 @@
                                                 :tags (normalize-photo-tags photo-tags)
                                                 :attribution attribution)))
           (if ajax
-              ;; need to remove the '\\' that encode-json-to-string adds before every '/'
-              (regex-replace-all "\\\\"
-                                 (encode-json-to-string
-                                  `((:status . "success")
-                                    (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
-                                 "")
+              (encode-json-to-string
+               `((:status . "success")
+                 (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
               (redirect (h-genurl 'r-photo-get))))))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
@@ -122,27 +119,21 @@
                          (* start photos-per-page)
                          photos-per-page)))
     (if list
-        (regex-replace-all              ; need to remove the '\\' that
-         "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
-         (encode-json-to-string
-          `((:status . "success")
-            (:data . ,(loop for
-                         photo in list
-                         collect (list (id photo) ((lambda (p)
-                                                     (article-lead-photo-url p "related-thumb"))
-                                                   photo))))))
-         "")
+        (encode-json-to-string
+         `((:status . "success")
+           (:data . ,(loop for
+                        photo in list
+                        collect (list (id photo) ((lambda (p)
+                                                    (article-lead-photo-url p "related-thumb"))
+                                                  photo))))))
         (encode-json-to-string
          `((:status . "failure")
            (:data . nil))))))
 
 (defun v-ajax-photo-get ()
-  (regex-replace-all                    ; need to remove the '\\' that
-   "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
-   (encode-json-to-string
+  (encode-json-to-string
     `((:status . "success")
-      (:data . ,(photo-get-markup t))))
-   ""))
+      (:data . ,(photo-get-markup t)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; required for tmp-init

@@ -1978,6 +1978,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-22 Mon 17:51
      :END:
+**** DONE [bug][fed] remove regex-replace-all "\\\\" (encode-json-to-string
+     CLOSED: [2013-07-22 Mon 17:56]
+     :CLOCK:
+     CLOCK: [2013-07-22 Mon 17:53]--[2013-07-22 Mon 17:56] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-22 Mon 17:56
+     :END:
+     - not needed due to cl-who -> sexml
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
