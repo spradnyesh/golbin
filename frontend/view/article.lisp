@@ -183,12 +183,9 @@
                        :from (* page related-length)
                        :to (1- (* (1+ page) related-length)))))
     (if list
-        (regex-replace-all              ; need to remove the '\\' that
-         "\\\\" ; encode-json-to-string adds before every '/' in the photo path :(
-         (encode-json-to-string
+        (encode-json-to-string
           `((:status . "success")
             (:data . ,(article-carousel-markup list))))
-         "")
         (encode-json-to-string
          `((:status . "failure")
            (:data . nil))))))

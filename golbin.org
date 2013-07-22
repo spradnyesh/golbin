@@ -2,6 +2,18 @@
 
 * tasks
 ** backlog
+*** TODO [ed] theme
+    :CLOCK:
+    CLOCK: [2013-07-22 Mon 16:50]--[2013-07-22 Mon 17:10] =>  0:20
+    CLOCK: [2013-03-10 Sun 16:23]--[2013-03-10 Sun 16:35] =>  0:12
+    :END:
+    - http://demo.activeadmin.info/admin (ror admin)
+    - http://radiantcms.org/demo/
+    - spree
+      - Your Store: http://super-emporium-3888.spree.mx
+      - Your Store's Admin Area: http://super-emporium-3888.spree.mx/admin
+      - Username: spree@example.com
+      - Password: spree123
 *** TODO email server
     :CLOCK:
     CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
@@ -67,7 +79,7 @@
     CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
     CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
     :END:
-*** TODO [#A] slime debug local variables
+*** TODO slime debug local variables
     :CLOCK:
     CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
     CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
@@ -111,11 +123,6 @@
     - http://weitz.de/hunchentoot/#sessions
 *** [fed] analyze http://common-lisp.net/project/ht-ajax/ht-ajax.html and/or http://martin-loetzsch.de/ht-simple-ajax/
 *** [ed] use https://github.com/Inaimathi/formlets for ed forms
-*** TODO [ed] theme
-    :CLOCK:
-    CLOCK: [2013-03-10 Sun 16:23]--[2013-03-10 Sun 16:35] =>  0:12
-    :END:
-    - https://docs.djangoproject.com/en/dev/ref/contrib/admin/
 *** TODO [fe] theme
     :CLOCK:
     CLOCK: [2013-07-09 Tue 15:39]--[2013-07-09 Tue 16:04] =>  0:25
@@ -1963,12 +1970,13 @@
      :END:
      - since less # articles now
 **** DONE [bug][fe] related carousel not working
-     CLOSED: [2013-07-22 Mon 16:48]
+     CLOSED: [2013-07-22 Mon 17:51]
      :CLOCK:
+     CLOCK: [2013-07-22 Mon 17:21]--[2013-07-22 Mon 17:51] =>  0:30
      CLOCK: [2013-07-22 Mon 16:34]--[2013-07-22 Mon 16:48] =>  0:14
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-07-22 Mon 16:48
+     :ARCHIVE_TIME: 2013-07-22 Mon 17:51
      :END:
 ** TODO refactor
    :CLOCK:
