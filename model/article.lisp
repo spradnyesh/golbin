@@ -124,7 +124,8 @@
           :key #'id)))
 
 (defun get-related-articles (typeof article)
-  (let* ((cat-id (id (cat article)))
+  (let* ((id (id article))
+         (cat-id (id (cat article)))
          (subcat (subcat article))
          (subcat-id (if subcat (id subcat) 0))
          (author-id (id (author article))))
@@ -136,8 +137,10 @@
                                      (/= (id (author article)) author-id)))))
           ((string-equal typeof "author")
            (get-articles-by #'(lambda (article)
-                                (and (/= (id (cat article)) cat-id)
-                                     (/= (id (subcat article)) subcat-id)
+                                (and (/= (id article) id)
+                                     (= (id (author article)) author-id))
+                                #- (and) ; XXX: uncomment this when we have sufficient related articles
+                                (and (/= (id (subcat article)) subcat-id)
                                      (= (id (author article)) author-id))))))))
 
 ;; editorial: an author needs to see *all* of his articles
