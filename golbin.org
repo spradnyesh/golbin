@@ -4,12 +4,15 @@
 ** backlog
 *** TODO email server
     :CLOCK:
-    CLOCK: [2013-07-19 Fri 18:38]--[2013-07-19 Fri 20:38] =>  2:00
+    CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
     CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
     :END:
     - for
       - golb.in email addresses
       - get (and forward) every comment as an email
+    - clients (if needed only for sending emails, not receiving)
+      - ssmtp
+        - http://frenchtouch.pro/tutorial/configure-your-debian-server-to-send-mails/47
     - servers
       - mail-mta/exim
         - http://www.exim.org/
@@ -22,6 +25,12 @@
     - cl
       - *** cl-smtp (works) ***
       - cl-sendmail (sucks)
+*** TODO [#A] [bug][fe] ads not showing up in production
+    :CLOCK:
+    CLOCK: [2013-07-20 Sat 01:56]--[2013-07-20 Sat 02:29] =>  0:33
+    :END:
+*** [bug][fe] related carousel not working
+*** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO [fed] cl-who -> sexml
     :CLOCK:
     CLOCK: [2013-07-19 Fri 15:30]--[2013-07-19 Fri 15:34] =>  0:04
