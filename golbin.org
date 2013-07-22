@@ -4,7 +4,7 @@
 ** backlog
 *** TODO email server
     :CLOCK:
-    CLOCK: [2013-07-19 Fri 18:38]
+    CLOCK: [2013-07-19 Fri 18:38]--[2013-07-19 Fri 20:38] =>  2:00
     CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
     :END:
     - for
@@ -1933,6 +1933,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-19 Fri 17:19
      :END:
+**** DONE [bug][ed] reading cipher-key at init time (cold start) is failing
+     CLOSED: [2013-07-22 Mon 15:53]
+      :CLOCK:
+      CLOCK: [2013-07-22 Mon 15:40]--[2013-07-22 Mon 15:52] =>  0:12
+      CLOCK: [2013-07-22 Mon 14:09]--[2013-07-22 Mon 14:42] =>  0:33
+      :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-22 Mon 15:53
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06
@@ -2251,6 +2260,7 @@
    - http://google.com/transliterate
      - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
        - font-family: "lohit hindi"
+   - http://beta.quicklisp.org/dist/quicklisp/2012-07-03/distinfo.txt
 ** ideas
    - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
    - http://www.seomoz.org/blog/tips-to-use-google-for-seo
