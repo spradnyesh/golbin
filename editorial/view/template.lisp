@@ -7,6 +7,7 @@
   `(<:html
     (<:head
      (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+     (<:meta :name "google" :content "notranslate")
      (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
      (<:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
      ;; http://www.faqoverflow.com/askubuntu/16556.html
@@ -14,12 +15,12 @@
      (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
      (<:style :type "text/css" (ed-get-css)))
     (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
-                            ""
-                            "dvngr")
-           (<:div :class "yui3-g"
-                 (<:div :id "hd" (ed-header ,logged-in))
-                 (<:div :id "bd" ,body)
-                 (<:div :id "ft" (ed-footer))))
+                       ""
+                       "dvngr")
+            (<:div :class "yui3-g"
+                   (<:div :id "hd" (ed-header ,logged-in))
+                   (<:div :id "bd" ,body)
+                   (<:div :id "ft" (ed-footer))))
     (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
     (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
     (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
@@ -31,14 +32,34 @@
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun ed-header (logged-in)
-  (ed-navigation logged-in))
+  (fmtnil (ed-logo)
+          (ed-navigation logged-in)))
 
 (defun ed-logo ()
-  (<:h1
-   (<:a :href (h-genurl 'r-home)
-       (<:img :id "logo"
-             :source ""
-             :alt (get-config "site.name")))))
+  (<:div :id "logo" (<:h1
+                     (<:a :href (h-genurl 'r-home)
+                          (get-config "site.name")
+                          #- (and)
+                          (<:img :src ""
+                                 :alt (get-config "site.name"))))
+         (<:ul :class "langs"
+          (let ((ed-lang (cookie-in "ed-lang")))
+            (cond ((string-equal ed-lang "en-IN")
+                   (<:li
+                    (lang-a "en-IN" t "English")
+                    (lang-a "hi-IN" nil "हिन्दी")
+                    (lang-a "mr-IN" nil "मराठी")))
+                  ((string-equal ed-lang "hi-IN")
+                   (<:li
+                    (lang-a "en-IN" nil "English")
+                    (lang-a "hi-IN" t "हिन्दी")
+                    (lang-a "mr-IN" nil "मराठी")))
+                  ((string-equal ed-lang "mr-IN")
+                   (<:li
+                    (lang-a "en-IN" nil "English")
+                    (lang-a "hi-IN" nil "हिन्दी")
+                    (lang-a "mr-IN" t "मराठी")))
+                  (t (redirect (h-genurl 'r-login-get :lang "en-IN"))))))))
 
 (defun ed-site-search ()
   #- (and)

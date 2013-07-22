@@ -14,23 +14,42 @@
          (("select") (:font "inherit"))
          (("textarea") (:font "inherit"))
          ;; common
-         (("body") (:color "#000000" :background-color "#CBDDEB"))
-         (("h2") (:font-weight "bold" :font-size "140%"))
-         (("h3") (:font-weight "bold" :font-size "120%"))
-         (("a") (:text-decoration "none"))
-         ((".yui3-g") (:width "1000px" :margin "0 auto" :background-color "#FFFFFF"))
-         ((".error") (:color "red" :font-size "90%" :padding "5px 0"))
+         (("body") (:color "#5e6469"))
+         (("h1") (:font-weight "bold"
+                               :font-size "160%"
+                               :display "inline-block"))
+         (("h2") (:font-weight "bold"
+                               :font-size "140%"))
+         (("h3") (:font-weight "bold"
+                               :font-size "120%"))
+         (("a") (:text-decoration "none"
+                                  :margin-right "7px"))
+         ((".yui3-g") (:width "1000px"
+                              :margin "0 auto"
+                              :background-color "#FFFFFF"))
+         ((".error") (:color "red"
+                             :font-size "90%"
+                             :padding "5px 0"))
          ((".dvngr") (:font-family "Mangal, Lohit Devanagari"))
          ;; hd
-         (("#banner") (:height "100px"))
-         (("#banner h1") (:height "80px" :width "80px" :border "1px solid"))
+         (("#hd") (:background-color "#6a7176"
+                                     :height "30px"
+                                     :overflow "visible"
+                                     :padding "20px 0 15px 30px"
+                                     :margin-bottom "20px"))
+         (("#logo") (:float "left"))
+         (("#logo a") (:color "#cdcdcd"))
+         (("#logo .langs") (:margin "-7px 0 0 -10px"))
+         (("#logo .langs a") (:font-size "80%"))
          ;; bd
          (("#bd") (:min-height "800px"))
          ;; ft
          (("#ft") (:height "100px"))
          ;; nav
-         (("#nav") (:height "50px"))
-         (("#nav li") (:float "left" :margin "0 25px" :text-align "center" :padding "10px 0"))
+         (("#nav a") (:color "#cdcdcd"))
+         (("#nav li") (:float "left"
+                              :margin "0 25px"
+                              :text-align "center"))
          (("#nav li ul") (:display "none"))
          ;; home
          (("#articles ul li") (:height "70px"))
@@ -40,6 +59,34 @@
          (("#articles .a-title.deleted") (:text-decoration "line-through"))
          (("#articles .a-cite") (:font-size "80%" :color "#999999" :padding "2px 0" :display "block"))
          (("#articles .a-summary") (:color "#4a4a4a"))
+         ;; login
+         (("#login") (:margin-left "20px"))
+         (("#login fieldset.inputs") (:width "550px"
+                                             :background "#f4f4f4"
+                                             :border-radius "4px"
+                                             :box-shadow "inset 0 1px 4px #dddddd"))
+         (("#login fieldset.inputs li") (:padding "10px"))
+         (("#login fieldset.inputs .label") (:width "20%"
+                                                    :float "left"
+                                                    :display "block"
+                                                    :font-weight "bold"
+                                                    :padding-top "9px"))
+         (("#login fieldset.inputs .input") (:width "76%"
+                                             :border "1px solid #c9d0d6"
+                                             :border-radius "3px"
+                                             :outline "none"
+                                             :padding "8px 10px 7px"))
+         (("#login fieldset.actions") (:margin "15px 0 20px 0"))
+         (("#login fieldset.actions li") (:float "left"))
+         (("#login fieldset.actions li *") (:border-radius "200px"
+                                                           :display "inline-block"
+                                                           :font-weight "bold"
+                                                           :padding "7px 16px 6px"
+                                                           :border "1px solid #484e53"
+                                                           :color "#efefef"
+                                                           :cursor "pointer"
+                                                           :background "#838a90"
+                                                           :margin-right "10px"))
          ;; article
          (("#a-title") (:font-weight "bold" :font-size "120%" :padding-bottom "10px"))
          (("#a-details") (:font-size "80%" :padding-bottom "10px"))
@@ -57,5 +104,4 @@
          ((".pagination") (:text-align "center" :padding "20px 0 30px"))
          ((".pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))
          ((".pagination li a") (:text-decoration "none" :color "#035583"))
-         ((".pagination .disabled") (:border "none"))
-         ))
+         ((".pagination .disabled") (:border "none"))))
