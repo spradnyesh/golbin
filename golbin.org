@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** TODO restas daemon + swank + slime
+    :CLOCK:
+    CLOCK: [2013-07-23 Tue 18:23]--[2013-07-23 Tue 18:57] =>  0:34
+    :END:
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-07-23 Tue 17:22]--[2013-07-23 Tue 17:28] =>  0:06
