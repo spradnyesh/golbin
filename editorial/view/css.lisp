@@ -6,15 +6,29 @@
 (defun ed-get-css ()
   (css ; http://travel.yahoo.com/ideas/ http://travel.yahoo.com/ideas/five-miles-up-with-----christopher-gorham.html
          ;; necessary
-         ((".clearfix:before, .clearfix:after")
-          (:content "." :display "block" :font-size 0 :height 0 :line-height 0 :visibility "hidden" :clear "both"))
+         ((".clearfix:before, .clearfix:after") (:content "."
+                                                          :display "block"
+                                                          :font-size 0
+                                                          :height 0
+                                                          :line-height 0
+                                                          :visibility "hidden"
+                                                          :clear "both"))
          ;; undo .yui3-g css
-         ((".yui3-g") (:letter-spacing "normal" :word-spacing "normal"))
+         ((".yui3-g") (:letter-spacing "normal"
+                                       :word-spacing "normal"
+                                       :width "1000px"
+                                       :margin "0 auto"
+                                       :background-color "#FFFFFF"))
          (("input") (:font "inherit"))
          (("select") (:font "inherit"))
          (("textarea") (:font "inherit"))
          ;; common
-         (("body") (:color "#5e6469"))
+         (("html") (:color "#919191"
+                           :background "#61a1f0"
+                           :text-shadow "none"))
+         (("body") (:border-top "5px solid #50a2f3"
+                                :padding-top "10px"
+                                :line-height "24px"))
          (("h1") (:font-weight "bold"
                                :font-size "160%"
                                :display "inline-block"))
@@ -22,86 +36,144 @@
                                :font-size "140%"))
          (("h3") (:font-weight "bold"
                                :font-size "120%"))
+         (("p") (:margin "16px 0"))
          (("a") (:text-decoration "none"
+                                  :color "#61a1f0"
                                   :margin-right "7px"))
-         ((".yui3-g") (:width "1000px"
-                              :margin "0 auto"
-                              :background-color "#FFFFFF"))
+         (("a:hover") (:color "#8dba53 !important"))
+         (("figure") (:margin "0"))
          ((".error") (:color "red"
                              :font-size "90%"
                              :padding "5px 0"))
          ((".dvngr") (:font-family "Mangal, Lohit Devanagari"))
+         ((".wrapper") (:position "relative"
+                                  :margin "0 auto"
+                                  :padding "0"))
          ;; hd
-         (("#hd") (:background-color "#6a7176"
-                                     :height "30px"
-                                     :overflow "visible"
-                                     :padding "20px 0 15px 30px"
-                                     :margin-bottom "20px"))
+         (("#hd") (:height "120px"))
          (("#logo") (:float "left"))
-         (("#logo a") (:color "#cdcdcd"))
-         (("#logo .langs") (:margin "-7px 0 0 -10px"))
+         (("#logo .langs") (:margin "-7px 0 0 40px"))
          (("#logo .langs a") (:font-size "80%"))
          ;; bd
-         (("#bd") (:min-height "800px"))
+         (("#bd") (:min-height "500px"))
          ;; ft
-         (("#ft") (:height "100px"))
+         (("#ft") (:font-size "12px"
+                              :line-height "22px"
+                              :color "#fff"
+                              :background-color "#61a1f0"
+                              :margin-top "30px"
+                              :padding-top "20px"
+                              :border-top "5px solid #dfeefd"))
+         (("#ft .wrapper") (:width "80%"))
+         (("#ft a") (:color "#fff"))
+         (("#ft h5") (:font-size "15px"
+                                 :line-height "52px"
+                                 :margin-bottom "23px"
+                                 :text-transform "uppercase"))
          ;; nav
-         (("#nav a") (:color "#cdcdcd"))
+         (("#nav") (:padding-top "40px"
+                                 :text-align "right"))
          (("#nav li") (:float "left"
                               :margin "0 25px"
                               :text-align "center"))
          (("#nav li ul") (:display "none"))
          ;; home
-         (("#articles ul li") (:height "70px"))
-         (("#articles .crud") (:float "left" :padding-right "10px" :width "60px"))
-         (("#articles .index-thumb") (:float "left" :padding-right "10px"))
+         (("#articles") (:margin "0 50px"))
+         (("#articles p") (:margin "0"))
+         (("#articles ul li") (:min-height "50px"
+                                       :border-bottom "1px dotted gray"
+                                       :margin-bottom "10px"))
+         (("#articles .crud") (:float "left"
+                                      :padding-right "30px"
+                                      :width "60px"))
+         (("#articles .crud .delete") (:background-color "#fff"
+                                                         :border "0"
+                                                         :cursor "pointer"
+                                                         :color "#61a1f0"))
+         (("#articles .crud .delete:hover") (:color "#8dba53 !important"))
+         (("#articles .index-thumb") (:float "left"
+                                             :padding-right "10px"))
          (("#articles .a-title") (:color "#21629C"))
          (("#articles .a-title.deleted") (:text-decoration "line-through"))
-         (("#articles .a-cite") (:font-size "80%" :color "#999999" :padding "2px 0" :display "block"))
+         (("#articles .a-cite") (:font-size "80%"
+                                            :color "#999999"
+                                            :padding "2px 0"
+                                            :display "block"))
          (("#articles .a-summary") (:color "#4a4a4a"))
          ;; login
-         (("#login") (:margin-left "20px"))
-         (("#login fieldset.inputs") (:width "550px"
-                                             :background "#f4f4f4"
-                                             :border-radius "4px"
-                                             :box-shadow "inset 0 1px 4px #dddddd"))
-         (("#login fieldset.inputs li") (:padding "10px"))
-         (("#login fieldset.inputs .label") (:width "20%"
-                                                    :float "left"
-                                                    :display "block"
-                                                    :font-weight "bold"
-                                                    :padding-top "9px"))
-         (("#login fieldset.inputs .input") (:width "76%"
-                                             :border "1px solid #c9d0d6"
-                                             :border-radius "3px"
-                                             :outline "none"
-                                             :padding "8px 10px 7px"))
-         (("#login fieldset.actions") (:margin "15px 0 20px 0"))
-         (("#login fieldset.actions li") (:float "left"))
-         (("#login fieldset.actions li *") (:border-radius "200px"
-                                                           :display "inline-block"
-                                                           :font-weight "bold"
-                                                           :padding "7px 16px 6px"
-                                                           :border "1px solid #484e53"
-                                                           :color "#efefef"
-                                                           :cursor "pointer"
-                                                           :background "#838a90"
-                                                           :margin-right "10px"))
+         (("#login-sub-hd") (:background-color "#99c165"
+                                               :color "white"
+                                               :border-top "5px solid #edf4e5"
+                                               :border-bottom "5px solid #edf4e5"
+                                               :box-shadow "inset 0 0 15px 0 #739c3e"
+                                               :height "55px"
+                                               :padding "35px 0 0 100px"
+                                               :font-size "34px"))
+         (("#login") (:margin "30px 0 0 100px"))
+         (("#login a") (:margin "0"))
+         (("#login fieldset.inputs .label") (:display "block"))
+         (("#login fieldset.inputs .input") (:border "3px solid #dedede"
+                                                     :border-radius "8px"
+                                                     :border-width "3px"
+                                                     :padding "7px 20px"
+                                                     :outline "none"
+                                                     :background-color "#fff"
+                                                     :width "210px"
+                                                     :height "34px"))
+         (("#login fieldset.inputs .input:hover") (:border-color "#d5e6c0"))
+         (("#login fieldset.inputs .input:focus") (:border-color "#61a1f0"))
+         (("#login #submit") (:border-radius "20px"
+                                             :border "3px solid #abcdef"
+                                             :padding "7px 20px"
+                                             :text-transform "uppercase"
+                                             :background-color "#61a1f0"
+                                             :color "#fff"
+                                             :font-weight "bold"
+                                             :font-size "12px"))
+         (("#login #submit:hover") (:border-color "#d5e6c0"
+                                                  :background-color "#739c3e"))
          ;; article
-         (("#a-title") (:font-weight "bold" :font-size "120%" :padding-bottom "10px"))
-         (("#a-details") (:font-size "80%" :padding-bottom "10px"))
+         (("#a-title") (:font-weight "bold"
+                                     :font-size "120%"
+                                     :padding-bottom "10px"))
+         (("#a-details") (:font-size "80%"
+                                     :padding-bottom "10px"))
          ;; category
          (("#sort-catsubcat .cat") (:padding-left "20px"))
          (("#sort-catsubcat .subcat") (:padding-left "40px"))
          ;; upload photo pane
-         (("#photo-pane") (:width "500px" :height "550px" :position "fixed" :top "100px" :left "250px" :border "1px solid red" :background-color "#CCCCCC"))
-         (("#photo-pane p a.close") (:position "absolute" :top "0" :right "0"))
-         (("#photo-pane ul") (:margin "20px 0 0 10px" :height "500px"))
-         (("#photo-pane ul li") (:float "left" :height "125px" :margin "0 10px" :width "100px" :overflow "hidden"))
+         (("#photo-pane") (:width "500px"
+                                  :height "550px"
+                                  :position "fixed"
+                                  :top "100px"
+                                  :left "250px"
+                                  :border "1px solid red"
+                                  :background-color "#CCCCCC"))
+         (("#photo-pane p a.close") (:position "absolute"
+                                               :top "0"
+                                               :right "0"))
+         (("#photo-pane ul") (:margin "20px 0 0 10px"
+                                      :height "500px"))
+         (("#photo-pane ul li") (:float "left"
+                                        :height "125px"
+                                        :margin "0 10px"
+                                        :width "100px"
+                                        :overflow "hidden"))
          (("#photo-pane ul li span") (:display "none"))
          (("#photo-pane ul li a") (:display "block"))
          ;; pagination
-         ((".pagination") (:text-align "center" :padding "20px 0 30px"))
-         ((".pagination li") (:margin-right "10px" :display "inline" :font-size "93%" :border "1px solid" :border-color "#DDD" :border-radius "3px 3px 3px 3px" :margin "0 2px" :padding "2px 4px" :vertical-align "middle"))
-         ((".pagination li a") (:text-decoration "none" :color "#035583"))
+         ((".pagination-results") (:text-align "center"))
+         ((".pagination") (:text-align "center"
+                                       :padding "20px 0 30px"))
+         ((".pagination li") (:margin-right "10px"
+                                            :display "inline"
+                                            :font-size "93%"
+                                            :border "1px solid"
+                                            :border-color "#DDD"
+                                            :border-radius "3px 3px 3px 3px"
+                                            :margin "0 2px"
+                                            :padding "2px 4px"
+                                            :vertical-align "middle"))
+         ((".pagination li a") (:text-decoration "none"
+                                                 :color "#035583"))
          ((".pagination .disabled") (:border "none"))))

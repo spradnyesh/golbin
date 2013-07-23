@@ -2,19 +2,28 @@
 
 * tasks
 ** backlog
+*** TODO [articles] add aai kavita
+    :CLOCK:
+    CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
+    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
+    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
+    :END:
 *** TODO [ed] theme
     :CLOCK:
+    CLOCK: [2013-07-23 Tue 13:08]--[2013-07-23 Tue 14:14] =>  1:06
+    CLOCK: [2013-07-23 Tue 11:05]--[2013-07-23 Tue 12:34] =>  1:29
+    CLOCK: [2013-07-23 Tue 10:48]--[2013-07-23 Tue 10:55] =>  0:07
     CLOCK: [2013-07-22 Mon 18:56]--[2013-07-22 Mon 20:21] =>  1:25
     CLOCK: [2013-07-22 Mon 16:50]--[2013-07-22 Mon 17:10] =>  0:20
     CLOCK: [2013-03-10 Sun 16:23]--[2013-03-10 Sun 16:35] =>  0:12
     :END:
-    - http://demo.activeadmin.info/admin (ror admin)
-    - http://radiantcms.org/demo/
     - spree
       - Your Store: http://super-emporium-3888.spree.mx
       - Your Store's Admin Area: http://super-emporium-3888.spree.mx/admin
       - Username: spree@example.com
       - Password: spree123
+    - http://demo.activeadmin.info/admin (ror admin)
+    - http://radiantcms.org/demo/
 *** TODO email server
     :CLOCK:
     CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
@@ -85,12 +94,6 @@
     CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
     CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
     CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
-    :END:
-*** TODO [articles] add aai kavita
-    :CLOCK:
-    CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
-    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
-    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
 *** [performance] http://www.appelsiini.net/projects/lazyload
 *** [bug][seo] clear GA confusion b/n www. and mr.
