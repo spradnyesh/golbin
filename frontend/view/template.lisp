@@ -136,26 +136,25 @@
                                                  "cat selected"
                                                  "cat")
                        (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
-                 (join-string-list-with-delim
-                  ""
-                  (loop for cat in (get-root-categorys)
-                     when (plusp (rank cat))
-                     collect (let ((cat-slug (slug cat)))
-                               (<:li :class (nav-selected (string-equal (url-encode cat-slug)
-                                                                        (first cat-subcat))
-                                                "cat selected"
-                                                "cat"
-                                              (setf subnav-cat-slug cat-slug)
-                                              (setf subnav-subcats (get-subcategorys (id cat))))
-                                     (<:h2 (<:a :href (h-genurl 'r-cat
-                                                                :cat cat-slug)
-                                                (name cat)))
-                                     (<:ul
-                                      (join-loop subcat
-                                                 (get-subcategorys (id cat))
-                                                 (fe-subnav (h-genurl 'r-cat-subcat
-                                                                       :cat cat-slug
-                                                                       :subcat subcat-slug)))))))))
+                 (loop for cat in (get-root-categorys)
+                    when (plusp (rank cat))
+                    collecting (let ((cat-slug (slug cat)))
+                                 (<:li :class (nav-selected (string-equal (url-encode cat-slug)
+                                                                          (first cat-subcat))
+                                                  "cat selected"
+                                                  "cat"
+                                                (setf subnav-cat-slug cat-slug)
+                                                (setf subnav-subcats (get-subcategorys (id cat))))
+                                       (<:h2 (<:a :href (h-genurl 'r-cat
+                                                                  :cat cat-slug)
+                                                  (name cat)))
+                                       (<:ul
+                                        (join-loop subcat
+                                                   (get-subcategorys (id cat))
+                                                   (fe-subnav (h-genurl 'r-cat-subcat
+                                                                        :cat cat-slug
+                                                                        :subcat subcat-slug)))))) into a
+                    finally (return (apply #'concatenate 'string a))))
            (<:ul :id "subnav"
                  (join-loop subcat
                             subnav-subcats

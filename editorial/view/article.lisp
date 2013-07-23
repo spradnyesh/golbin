@@ -4,19 +4,18 @@
 ;;;; helper functions and macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-cat-subcat-markup (article list cat-subcat)
-  (join-string-list-with-delim
-    ""
-    (loop
-       for l in list
-       for i from 1
-       collect (if (or (and (not article)
-                            (= i 1))
-                       (and article
-                            (= (id l) (id (if (eql :c cat-subcat)
-                                              (cat article)
-                                              (subcat article))))))
-                   (<:option :selected "selected" :value (id l) (name l))
-                   (<:option :value (id l) (name l))))))
+  (loop
+     for l in list
+     for i from 1
+     collecting (if (or (and (not article)
+                             (= i 1))
+                        (and article
+                             (= (id l) (id (if (eql :c cat-subcat)
+                                               (cat article)
+                                               (subcat article))))))
+                    (<:option :selected "selected" :value (id l) (name l))
+                    (<:option :value (id l) (name l))) into a
+     finally (return (apply #'concatenate 'string a))))
 
 (defmacro get-photo-direction-markup (dir direction)
   `(if (and article

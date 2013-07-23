@@ -1,7 +1,10 @@
 (in-package :hawksbill.golbin.editorial)
 
 (defun random-digits (&optional (n 4))
-  (join-string-list-with-delim "" (loop for i from 1 to n collect (write-to-string (random 10)))))
+  (loop
+     for i from 1 to n
+     collecting (write-to-string (random 10)) into a
+     finally (return (apply #'concatenate 'string a))))
 
 (defun put-space-at-center (string)
   (let ((len-by-2 (/ (length string) 2)))
