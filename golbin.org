@@ -192,8 +192,10 @@
       - [ ] check for empty name/email/body
       - [ ] add separate mail/url and style as in http://blog.spathare.com/2010/02/mozillas-interest-in-open-standards/#comments
     - [X] js
-    - [X] captcha: not needed since spam blocking will block bots as well
+    - [ ] captcha
       - http://www.google.com/recaptcha
+        - https://developers.google.com/recaptcha/docs/display
+        - https://developers.google.com/recaptcha/docs/verify
       - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
     - [ ] spam
       - http://akismet.com/
@@ -1996,6 +1998,14 @@
      :ARCHIVE_TIME: 2013-07-22 Mon 17:56
      :END:
      - not needed due to cl-who -> sexml
+**** DONE [bug][fe] rhs ads sticking to page edge; need to have some margin
+     CLOSED: [2013-07-24 Wed 19:33]
+     :CLOCK:
+     CLOCK: [2013-07-24 Wed 19:17]--[2013-07-24 Wed 19:33] =>  0:16
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-24 Wed 19:33
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

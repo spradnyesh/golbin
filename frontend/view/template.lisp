@@ -54,12 +54,12 @@
                           (<:div :id "hd"
                                  (fe-header))
                           (<:div :id "bd"
-                                 (<:div :class "yui3-u-3-4"
+                                 (<:div :class "yui3-u-17-24"
                                         (<:div :id "col-1" :class "yui3-u-1-4"
                                                (fe-ads-1))
                                         (<:div :id "col-2" :class "yui3-u-3-4"
                                                (<:div :id "wrapper" ,body)))
-                                 (<:div :id "col-3" :class "yui3-u-1-4"
+                                 (<:div :id "col-3" :class "yui3-u-7-24"
                                         (fe-ads-2)))
                           (<:div :id "ft" (fe-footer))))
            (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
@@ -188,9 +188,7 @@
                  google_ad_slot = '1936097987';
                  google_ad_width = 160;
                  google_ad_height = 600;
-                 //-->")
-           #- (and)
-           (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))))
+                 //-->"))))
 
 (defun fe-ads-2 ()
   (when (string-equal (get-dimension-value "envt") "prod")
@@ -202,9 +200,7 @@
                           google_ad_slot = '5029165182';
                           google_ad_width = 300;
                           google_ad_height = 250;
-                          //-->")
-            #- (and)
-            (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js"))
+                          //-->"))
      (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
             (<:code :type "text/javascript"
                     "<!--
@@ -212,6 +208,4 @@
                           google_ad_slot = '9459364786';
                           google_ad_width = 300;
                           google_ad_height = 600;
-                          //-->")
-            #- (and)
-            (<:script :type  "text/javascript" :src "http://pagead2.googlesyndication.com/pagead/show_ads.js")))))
+                          //-->")))))
