@@ -215,7 +215,8 @@
                                      (<:tr (<:td "Status")
                                            (let ((status (get-article-status-markup article)))
                                              (<:td :class (string-downcase status) status)))
-                                     (<:tr (<:td (<:input :id "save"
+                                     (<:tr (<:td)
+                                           (<:td (<:input :id "save"
                                                           :name "save"
                                                           :type "submit"
                                                           :value "Save")

@@ -101,6 +101,10 @@
                                             :display "block"))
          (("#articles .a-summary") (:color "#4a4a4a"))
          ;; login
+         ((".lang-selected") (:background-color "#99c165"
+                                                :padding "0 5px"
+                                                :color "#fff"
+                                                :border-radius "8px"))
          (("#login-sub-hd") (:background-color "#99c165"
                                                :color "white"
                                                :border-top "5px solid #edf4e5"
@@ -133,6 +137,13 @@
          (("#login #submit:hover") (:border-color "#d5e6c0"
                                                   :background-color "#739c3e"))
          ;; article
+         (("#article") (:margin "0 25px"))
+         (("#article a") (:margin-right "0"))
+         (("#article table") (:table-layout "fixed"))
+         (("#article table td") (:padding "5px 0"))
+         (("#article table td.label") (:width "100px"))
+         (("#article table td input, #article table td textarea") (:border "1px solid #d3d3d3"
+                                               :border-radius "3px"))
          (("#a-title") (:font-weight "bold"
                                      :font-size "120%"
                                      :padding-bottom "10px"))

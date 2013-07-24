@@ -11,22 +11,23 @@
 (defun tr-td-input (name &key (value "") (typeof "text"))
   (let ((for (regex-replace-all "-" name " "))
         (trimmed-name (trim-name name)))
-    (<:tr
-     (<:td (format nil "~A" (string-capitalize for)))
-     (<:td (<:input :class (format nil "td-input ~A" trimmed-name)
-                  :type typeof
-                  :name trimmed-name
-                  :value value)))))
+    (<:tr (<:td :class "label"
+                (format nil "~A" (string-capitalize for)))
+          (<:td (<:input :class (format nil "td-input ~A" trimmed-name)
+                         :type typeof
+                         :name trimmed-name
+                         :value value)))))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
-  (<:tr (<:td (format nil "~A" (string-capitalize name)))
-       (<:td (let ((trimmed-name (trim-name name)))
-              (<:textarea :cols cols
-                         :rows rows
-                         :name trimmed-name
-                         :id trimmed-name
-                         :class class
-                         value)))))
+  (<:tr (<:td :class "label"
+              (format nil "~A" (string-capitalize name)))
+        (<:td (let ((trimmed-name (trim-name name)))
+                (<:textarea :cols cols
+                            :rows rows
+                            :name trimmed-name
+                            :id trimmed-name
+                            :class class
+                            value)))))
 
 (defun remove-all-style (body)
   (regex-replace-all "style=\\\"(.*?)\\\"" body ""))
