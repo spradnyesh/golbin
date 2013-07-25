@@ -9,7 +9,6 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
-*** [bug][ed] /photo/ should not be reachable when not logged in
 *** TODO [ed] theme
     :CLOCK:
     CLOCK: [2013-07-25 Thu 11:37]--[2013-07-25 Thu 11:41] =>  0:04
@@ -2029,6 +2028,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-25 Thu 13:17
      :END:
+**** DONE [bug][ed] /photo/ should not be reachable when not logged in
+     CLOSED: [2013-07-25 Thu 13:29]
+     :CLOCK:
+     CLOCK: [2013-07-25 Thu 13:17]--[2013-07-25 Thu 13:29] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-25 Thu 13:29
+     :END:
+     - and other URIs too
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

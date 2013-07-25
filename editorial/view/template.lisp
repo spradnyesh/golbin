@@ -4,30 +4,33 @@
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title logged-in js body)
-  `(<:html
-    (<:head
-     (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
-     (<:meta :name "google" :content "notranslate")
-     (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
-     (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/spree.ico")
-     (<:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
-     ;; http://www.faqoverflow.com/askubuntu/16556.html
-     (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
-     (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
-     (<:style :type "text/css" (ed-get-css)))
-    (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
-                       ""
-                       "dvngr")
-            (<:div :class "yui3-g"
-                   (<:header :id "hd" (ed-header ,logged-in))
-                   (<:div :id "bd" ,body)
-                   (<:footer :id "ft" (ed-footer))))
-    (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-    (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
-    (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-    (<:script :type  "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
-    (<:script :type "text/javascript" (on-load))
-    ,js))
+  `(if (and (not (is-logged-in?))
+            (not (string= "/login/" (hunchentoot:request-uri *request*))))
+       (redirect (h-genurl 'r-login-get))
+       (<:html
+        (<:head
+         (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+         (<:meta :name "google" :content "notranslate")
+         (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
+         (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/spree.ico")
+         (<:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
+         ;; http://www.faqoverflow.com/askubuntu/16556.html
+         (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
+         (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
+         (<:style :type "text/css" (ed-get-css)))
+        (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
+                           ""
+                           "dvngr")
+                (<:div :class "yui3-g"
+                       (<:header :id "hd" (ed-header ,logged-in))
+                       (<:div :id "bd" ,body)
+                       (<:footer :id "ft" (ed-footer))))
+        (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+        (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
+        (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
+        (<:script :type  "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
+        (<:script :type "text/javascript" (on-load))
+        ,js)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
@@ -105,20 +108,19 @@
         (<:h2 (<:a :href (h-genurl 'r-logout) "Logout"))))
 
 (defun ed-navigation (logged-in)
-  (<:ul :id "nav"
-        (when logged-in
-          (fmtnil
-           (let ((author-type (session-value :author-type)))
-             (cond ((eq author-type :u) ; author
-                    (author-nav))
-                   ((eq author-type :e) ; editor
-                    (fmtnil (author-nav)
-                            (editor-nav)))
-                   ((eq author-type :d) ; admin
-                    (fmtnil (author-nav)
-                            (editor-nav)
-                            (admin-nav)))))
-           (logout-nav)))))
+  (when logged-in
+    (<:ul :id "nav"
+          (let ((author-type (session-value :author-type)))
+            (cond ((eq author-type :u)  ; author
+                   (author-nav))
+                  ((eq author-type :e)  ; editor
+                   (fmtnil (author-nav)
+                           (editor-nav)))
+                  ((eq author-type :d)  ; admin
+                   (fmtnil (author-nav)
+                           (editor-nav)
+                           (admin-nav)))))
+          (logout-nav))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer
