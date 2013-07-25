@@ -216,10 +216,10 @@
                                            (let ((status (get-article-status-markup article)))
                                              (<:td :class (string-downcase status) status)))
                                      (<:tr (<:td)
-                                           (<:td (<:input :id "save"
-                                                          :name "save"
+                                           (<:td (<:input :id "submit"
+                                                          :name "submit"
                                                           :type "submit"
-                                                          :value "Save")
+                                                          :value "Submit")
                                                  (when article (<:sup "#1")))
                                            (when article
                                              (<:td (<:a :href (h-genurl 'r-article

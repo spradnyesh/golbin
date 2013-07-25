@@ -26,7 +26,7 @@
          (("html") (:color "#919191"
                            :background "#61a1f0"
                            :text-shadow "none"))
-         (("body") (:border-top "5px solid #50a2f3"
+         (("body") (:border-top "5px solid #61a1f0"
                                 :padding-top "10px"
                                 :line-height "24px"))
          (("h1") (:font-weight "bold"
@@ -118,7 +118,6 @@
          (("#login fieldset.inputs .label") (:display "block"))
          (("#login fieldset.inputs .input") (:border "3px solid #dedede"
                                                      :border-radius "8px"
-                                                     :border-width "3px"
                                                      :padding "7px 20px"
                                                      :outline "none"
                                                      :background-color "#fff"
@@ -126,24 +125,28 @@
                                                      :height "34px"))
          (("#login fieldset.inputs .input:hover") (:border-color "#d5e6c0"))
          (("#login fieldset.inputs .input:focus") (:border-color "#61a1f0"))
-         (("#login #submit") (:border-radius "20px"
-                                             :border "3px solid #abcdef"
-                                             :padding "7px 20px"
-                                             :text-transform "uppercase"
-                                             :background-color "#61a1f0"
-                                             :color "#fff"
-                                             :font-weight "bold"
-                                             :font-size "12px"))
-         (("#login #submit:hover") (:border-color "#d5e6c0"
-                                                  :background-color "#739c3e"))
+         (("#submit") (:border-radius "20px"
+                                      :border "3px solid #abcdef"
+                                      :padding "7px 20px"
+                                      :text-transform "uppercase"
+                                      :background-color "#61a1f0"
+                                      :color "#fff"
+                                      :font-weight "bold"
+                                      :font-size "12px"))
+         (("#submit:hover") (:border-color "#d5e6c0"
+                                           :background-color "#739c3e"))
          ;; article
          (("#article") (:margin "0 25px"))
          (("#article a") (:margin-right "0"))
          (("#article table") (:table-layout "fixed"))
-         (("#article table td") (:padding "5px 0"))
-         (("#article table td.label") (:width "100px"))
-         (("#article table td input, #article table td textarea") (:border "1px solid #d3d3d3"
-                                               :border-radius "3px"))
+         (("#article td") (:padding "5px 0"))
+         (("#article td.label") (:width "90px"))
+         (("#article input, #article textarea") (:border "3px solid #dedede"
+                                                         :padding "7px 20px"
+                                                         :line-height "15px"
+                                                         :border-radius "8px"))
+         (("#article table td input:hover, #article table td textarea:hover") (:border-color "#d5e6c0"))
+         (("#article table td input:focus, #article table td textarea:focus") (:border-color "#61a1f0"))
          (("#a-title") (:font-weight "bold"
                                      :font-size "120%"
                                      :padding-bottom "10px"))

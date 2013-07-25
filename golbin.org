@@ -11,6 +11,8 @@
     :END:
 *** TODO [ed] theme
     :CLOCK:
+    CLOCK: [2013-07-25 Thu 18:12]--[2013-07-25 Thu 18:30] =>  0:18
+    CLOCK: [2013-07-25 Thu 15:59]--[2013-07-25 Thu 16:12] =>  0:13
     CLOCK: [2013-07-25 Thu 11:37]--[2013-07-25 Thu 11:41] =>  0:04
     CLOCK: [2013-07-24 Wed 19:50]--[2013-07-24 Wed 20:23] =>  0:33
     CLOCK: [2013-07-24 Wed 19:34]--[2013-07-24 Wed 19:45] =>  0:11
@@ -57,23 +59,6 @@
       - *** cl-smtp (works) ***
       - cl-sendmail (sucks)
 *** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
-*** TODO [fed] cl-who -> sexml
-    :CLOCK:
-    CLOCK: [2013-07-19 Fri 15:30]--[2013-07-19 Fri 15:34] =>  0:04
-    CLOCK: [2013-07-19 Fri 14:57]--[2013-07-19 Fri 14:58] =>  0:01
-    CLOCK: [2013-07-19 Fri 14:40]--[2013-07-19 Fri 14:50] =>  0:10
-    CLOCK: [2013-07-18 Thu 17:34]--[2013-07-18 Thu 17:47] =>  0:13
-    CLOCK: [2013-07-18 Thu 13:27]--[2013-07-18 Thu 13:51] =>  0:24
-    CLOCK: [2013-07-18 Thu 12:02]--[2013-07-18 Thu 12:13] =>  0:11
-    CLOCK: [2013-07-18 Thu 11:57]--[2013-07-18 Thu 12:01] =>  0:04
-    CLOCK: [2013-07-18 Thu 11:25]--[2013-07-18 Thu 11:54] =>  0:29
-    CLOCK: [2013-07-17 Wed 18:51]--[2013-07-17 Wed 19:33] =>  0:42
-    CLOCK: [2013-07-15 Mon 17:11]--[2013-07-15 Mon 17:14] =>  0:03
-    CLOCK: [2013-07-15 Mon 10:58]--[2013-07-15 Mon 11:44] =>  0:46
-    CLOCK: [2013-07-12 Fri 19:11]--[2013-07-12 Fri 19:27] =>  0:16
-    CLOCK: [2013-07-12 Fri 18:41]--[2013-07-12 Fri 19:09] =>  0:28
-    CLOCK: [2013-07-12 Fri 18:00]--[2013-07-12 Fri 18:34] =>  0:34
-    :END:
 *** TODO utf8 -> url-encode
     :CLOCK:
     CLOCK: [2013-07-18 Thu 11:10]--[2013-07-18 Thu 11:24] =>  0:14
@@ -186,7 +171,26 @@
     CLOCK: [2012-12-01 Sat 17:27]--[2012-12-01 Sat 18:10] =>  0:43
     CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
     :END:
-    - [X] disable until integrated w/ akismet
+    - [ ] invert the model
+      - as-is:
+        - article contains pointer to parent comments
+        - parent comments contains pointer to children comments
+        - drawback:
+          - article (and all comments along w/ it) are rewritten to DB when a new comment (at any level) is added
+          - hence, bad write-time performance
+        - benefit:
+          - easy to implement and test
+          - good read-time performance (since de-normalized)
+      - to-be:
+        - article does *not* contain pointer to comment(s)
+        - comment contains id, article-id and parent-id
+        - comment-id is unique across article only (different articles can have comments w/ same IDs; thus articles can *not* share comments)
+        - drawback:
+          - finding all comments for an article might be non-trivial, since search + sort
+          - bad read-time performance (since not de-normalized)
+        - benefit:
+          - good write-time performance
+      - classic space v/s time compromise
     - [ ] model
       - [ ] separate email and url
     - [-] fe
@@ -2037,6 +2041,25 @@
      :ARCHIVE_TIME: 2013-07-25 Thu 13:29
      :END:
      - and other URIs too
+**** TODO [fed] cl-who -> sexml
+     :CLOCK:
+     CLOCK: [2013-07-19 Fri 15:30]--[2013-07-19 Fri 15:35] =>  0:05
+     CLOCK: [2013-07-19 Fri 14:40]--[2013-07-19 Fri 14:50] =>  0:10
+     CLOCK: [2013-07-18 Thu 17:34]--[2013-07-18 Thu 17:47] =>  0:13
+     CLOCK: [2013-07-18 Thu 13:27]--[2013-07-18 Thu 13:51] =>  0:24
+     CLOCK: [2013-07-18 Thu 12:02]--[2013-07-18 Thu 12:13] =>  0:11
+     CLOCK: [2013-07-18 Thu 11:57]--[2013-07-18 Thu 12:01] =>  0:04
+     CLOCK: [2013-07-18 Thu 11:25]--[2013-07-18 Thu 11:54] =>  0:29
+     CLOCK: [2013-07-17 Wed 18:51]--[2013-07-17 Wed 19:33] =>  0:42
+     CLOCK: [2013-07-15 Mon 17:11]--[2013-07-15 Mon 17:14] =>  0:03
+     CLOCK: [2013-07-15 Mon 10:58]--[2013-07-15 Mon 11:44] =>  0:46
+     CLOCK: [2013-07-12 Fri 19:11]--[2013-07-12 Fri 19:27] =>  0:16
+     CLOCK: [2013-07-12 Fri 18:41]--[2013-07-12 Fri 19:09] =>  0:28
+     CLOCK: [2013-07-12 Fri 18:00]--[2013-07-12 Fri 18:34] =>  0:34
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-25 Thu 13:30
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
