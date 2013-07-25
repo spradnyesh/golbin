@@ -135,6 +135,9 @@
                    ;; TODO: translate
                    (alert "There are errors in the submitted article. Please correct them and submit again."))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; photo pane/page
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;; common for select/upload photo pane
                  (create-photo-pane ()
                    ($apply ($ "#bd")

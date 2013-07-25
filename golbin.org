@@ -9,8 +9,10 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
+*** [bug][ed] /photo/ should not be reachable when not logged in
 *** TODO [ed] theme
     :CLOCK:
+    CLOCK: [2013-07-25 Thu 11:37]--[2013-07-25 Thu 11:41] =>  0:04
     CLOCK: [2013-07-24 Wed 19:50]--[2013-07-24 Wed 20:23] =>  0:33
     CLOCK: [2013-07-24 Wed 19:34]--[2013-07-24 Wed 19:45] =>  0:11
     CLOCK: [2013-07-24 Wed 19:07]--[2013-07-24 Wed 19:16] =>  0:09
@@ -2018,6 +2020,15 @@
      :ARCHIVE_TIME: 2013-07-25 Thu 11:37
      :END:
      - after correcting column lengths for ads padding
+**** DONE [bug][ed] cat/subcat dropdown not working in photos pane/page
+     CLOSED: [2013-07-25 Thu 13:17]
+     :CLOCK:
+     CLOCK: [2013-07-25 Thu 13:16]--[2013-07-25 Thu 13:17] =>  0:01
+     CLOCK: [2013-07-25 Thu 13:02]--[2013-07-25 Thu 13:15] =>  0:13
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-25 Thu 13:17
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

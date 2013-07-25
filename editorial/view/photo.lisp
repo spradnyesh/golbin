@@ -25,15 +25,19 @@
                                       :class "td-input cat"
                                       (<:option :selected "selected"
                                                :value (id (first cats)) (name (first cats)))
-                                      (dolist (cat (rest cats))
-                                        (<:option :value (id cat) (name cat))))))
+                                      (loop
+                                         for cat in (rest cats)
+                                         collecting (<:option :value (id cat) (name cat)) into a
+                                         finally (return (apply #'concatenate 'string a))))))
                    (<:tr (<:td "Sub Category")
                          (<:td (<:select :name "subcat"
                                         :class "td-input subcat"
                                         (<:option :selected "selected"
                                                  :value (id (first subcats)) (name (first subcats)))
-                                        (dolist (subcat (rest subcats))
-                                          (<:option :value (id subcat) (name subcat))))))
+                                        (loop
+                                         for subcat in (rest subcats)
+                                         collecting (<:option :value (id subcat) (name subcat)) into a
+                                         finally (return (apply #'concatenate 'string a))))))
                    (tr-td-input "tags")
                    (tr-td-input "attribution")
                    (tr-td-input "photo" :typeof "file"))
