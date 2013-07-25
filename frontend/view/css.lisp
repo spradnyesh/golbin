@@ -246,7 +246,8 @@
 
    ((".carousel p.prev")
     (:position "relative"
-               :top "50px"))
+               :top "50px"
+               :margin-right "20px"))
 
    ((".carousel p.next")
     (:position "relative"
@@ -259,11 +260,12 @@
     (:list-style-type "none"
                       :float "left"
                       :width "120px"
-                      :margin "0 15px"))
+                      :margin "0 5px"))
 
    ((".carousel ul li div")
     (:width "100px"
-            :height "100px"))
+            :height "100px"
+            :margin "5px 0"))
 
    ((".carousel ul li div.no-photo")
     (:background-color "#F0F0F0"))
