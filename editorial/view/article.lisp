@@ -215,23 +215,26 @@
                                      (<:tr (<:td "Status")
                                            (let ((status (get-article-status-markup article)))
                                              (<:td :class (string-downcase status) status)))
-                                     (<:tr (<:td)
-                                           (<:td (<:input :id "submit"
-                                                          :name "submit"
-                                                          :type "submit"
-                                                          :value "Submit")
-                                                 (when article (<:sup "#1")))
-                                           (when article
+                                     (when article
+                                       (<:tr (<:td)
                                              (<:td (<:a :href (h-genurl 'r-article
                                                                         :slug-and-id (format nil
                                                                                              "~a-~a"
                                                                                              (slug article)
                                                                                              id))
-                                                        "Preview") (<:sup "#2")))))
+                                                        "Preview") (<:sup "#1"))))
+                                     (<:tr (<:td)
+                                           (<:td (<:input :id "submit"
+                                                          :name "submit"
+                                                          :type "submit"
+                                                          :value "Submit")
+                                                 (when article (<:sup "#2")))
+                                           ))
                             (when article
                               (<:div :class "notes"
-                                     (<:p "#1: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")
-                                     (<:p "#2: You can only preview after the article has been saved successfully.")))))))))
+                                     (<:p "#1: You can only preview after the article has been saved successfully.")
+                                     (<:p "#2: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")
+                                     ))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login

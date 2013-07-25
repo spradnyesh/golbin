@@ -27,8 +27,7 @@
                            :background "#61a1f0"
                            :text-shadow "none"))
          (("body") (:border-top "5px solid #61a1f0"
-                                :padding-top "10px"
-                                :line-height "24px"))
+                                :padding-top "10px"))
          (("h1") (:font-weight "bold"
                                :font-size "160%"
                                :display "inline-block"))
@@ -38,13 +37,13 @@
                                :font-size "120%"))
          (("p") (:margin "16px 0"))
          (("a") (:text-decoration "none"
-                                  :color "#61a1f0"
-                                  :margin-right "7px"))
+                                  :color "#61a1f0"))
          (("a:hover") (:color "#8dba53 !important"))
          (("figure") (:margin "0"))
          ((".error") (:color "red"
                              :font-size "90%"
                              :padding "5px 0"))
+         ((".small") (:font-size "80%"))
          ((".dvngr") (:font-family "Mangal, Lohit Devanagari"))
          ((".wrapper") (:position "relative"
                                   :margin "0 auto"
@@ -53,7 +52,7 @@
          (("#hd") (:height "120px"))
          (("#logo") (:float "left"))
          (("#logo .langs") (:margin "-7px 0 0 40px"))
-         (("#logo .langs a") (:font-size "80%"))
+         (("#logo .langs a") (:margin-right "7px"))
          ;; bd
          (("#bd") (:min-height "500px"))
          ;; ft
@@ -94,10 +93,6 @@
                                              :padding-right "10px"))
          (("#articles .a-title") (:color "#21629C"))
          (("#articles .a-title.deleted") (:text-decoration "line-through"))
-         (("#articles .a-cite") (:font-size "80%"
-                                            :color "#999999"
-                                            :padding "2px 0"
-                                            :display "block"))
          (("#articles .a-summary") (:color "#4a4a4a"))
          ;; login
          ((".lang-selected") (:background-color "#99c165"

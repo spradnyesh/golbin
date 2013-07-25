@@ -42,15 +42,18 @@
          (ed-navigation logged-in)))
 
 (defmacro lang-a (lang selected lang-name)
-  (let ((class (when (or (string= lang "hi-IN")
-                         (string= lang "mr-IN"))
-                 "dvngr")))
+  (let* ((class "small")
+         (class (concatenate 'string
+                             class
+                             (when (or (string= lang "hi-IN")
+                                       (string= lang "mr-IN"))
+                               " dvngr"))))
     `(<:a :class (if ,selected
-                    (concatenate 'string ,class " lang-selected")
-                    ,class)
-         :href (h-genurl 'r-login-get
-                         :lang ,lang)
-         ,lang-name)))
+                     (concatenate 'string ,class " lang-selected")
+                     ,class)
+          :href (h-genurl 'r-login-get
+                          :lang ,lang)
+          ,lang-name)))
 
 (defun ed-logo (logged-in)
   (<:figure :id "logo" (<:h1

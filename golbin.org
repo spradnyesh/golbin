@@ -9,8 +9,10 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
+*** [bug][ed] article delete not working???
 *** TODO [ed] theme
     :CLOCK:
+    CLOCK: [2013-07-25 Thu 19:29]--[2013-07-25 Thu 19:49] =>  0:20
     CLOCK: [2013-07-25 Thu 18:30]--[2013-07-25 Thu 18:56] =>  0:26
     CLOCK: [2013-07-25 Thu 18:12]--[2013-07-25 Thu 18:30] =>  0:18
     CLOCK: [2013-07-25 Thu 15:59]--[2013-07-25 Thu 16:12] =>  0:13
@@ -2068,7 +2070,7 @@
        wasn't a bug; just cl-gd needed to be recompiled
      :END:
      :CLOCK:
-     CLOCK: [2013-07-25 Thu 19:17]
+     CLOCK: [2013-07-25 Thu 19:17]--[2013-07-25 Thu 19:29] =>  0:12
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-25 Thu 19:27
