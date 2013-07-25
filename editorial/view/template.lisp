@@ -3,8 +3,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro template (&key title logged-in js body)
-  `(if (and (not (is-logged-in?))
+(defmacro template (&key title (logged-in nil) js body)
+  `(if (and ,logged-in
+            (not (is-logged-in?))
             (not (string= "/login/" (hunchentoot:request-uri *request*))))
        (redirect (h-genurl 'r-login-get))
        (<:html
@@ -22,7 +23,7 @@
                            ""
                            "dvngr")
                 (<:div :class "yui3-g"
-                       (<:header :id "hd" (ed-header ,logged-in))
+                       (<:header :id "hd" (ed-header (is-logged-in?)))
                        (<:div :id "bd" ,body)
                        (<:footer :id "ft" (ed-footer))))
         (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")

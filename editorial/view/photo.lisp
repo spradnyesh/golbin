@@ -6,45 +6,47 @@
 (defun photo-get-markup (&optional (ajax nil))
   (let ((cats (get-root-categorys))
         (subcats (get-subcategorys 1)))
-    (<:form :action (if ajax
-                       (h-genurl 'r-ajax-photo-post)
-                       (h-genurl 'r-photo-post))
-           :method "POST"
-           :enctype "multipart/form-data"
-           (<:table (tr-td-input "title")
-                   (<:tr
-                    (<:td "Type of")
-                    (<:td (<:select :name "typeof"
-                                  :class "td-input"
-                                  (<:option :value "article" "Article")
-                                  (<:option :value "author" "Author")
-                                  #- (and)
-                                  (<:option :value "slideshow" "Slideshow")))) ; TODO
-                   (<:tr (<:td "Category")
-                        (<:td (<:select :name "cat"
-                                      :class "td-input cat"
-                                      (<:option :selected "selected"
-                                               :value (id (first cats)) (name (first cats)))
-                                      (loop
-                                         for cat in (rest cats)
-                                         collecting (<:option :value (id cat) (name cat)) into a
-                                         finally (return (apply #'concatenate 'string a))))))
-                   (<:tr (<:td "Sub Category")
-                         (<:td (<:select :name "subcat"
-                                        :class "td-input subcat"
-                                        (<:option :selected "selected"
-                                                 :value (id (first subcats)) (name (first subcats)))
-                                        (loop
-                                         for subcat in (rest subcats)
-                                         collecting (<:option :value (id subcat) (name subcat)) into a
-                                         finally (return (apply #'concatenate 'string a))))))
-                   (tr-td-input "tags")
-                   (tr-td-input "attribution")
-                   (tr-td-input "photo" :typeof "file"))
-           (<:input :id "upload"
-                   :name "upload"
-                   :type "submit"
-                   :value "Upload"))))
+    (<:div :class "wrapper"
+           (<:form :action (if ajax
+                               (h-genurl 'r-ajax-photo-post)
+                               (h-genurl 'r-photo-post))
+                   :method "POST"
+                   :enctype "multipart/form-data"
+                   (<:table (tr-td-input "title")
+                            (<:tr
+                             (<:td "Type of")
+                             (<:td (<:select :name "typeof"
+                                             :class "td-input"
+                                             (<:option :value "article" "Article")
+                                             (<:option :value "author" "Author")
+                                             #- (and)
+                                             (<:option :value "slideshow" "Slideshow")))) ; TODO
+                            (<:tr (<:td "Category")
+                                  (<:td (<:select :name "cat"
+                                                  :class "td-input cat"
+                                                  (<:option :selected "selected"
+                                                            :value (id (first cats)) (name (first cats)))
+                                                  (loop
+                                                     for cat in (rest cats)
+                                                     collecting (<:option :value (id cat) (name cat)) into a
+                                                     finally (return (apply #'concatenate 'string a))))))
+                            (<:tr (<:td "Sub Category")
+                                  (<:td (<:select :name "subcat"
+                                                  :class "td-input subcat"
+                                                  (<:option :selected "selected"
+                                                            :value (id (first subcats)) (name (first subcats)))
+                                                  (loop
+                                                     for subcat in (rest subcats)
+                                                     collecting (<:option :value (id subcat) (name subcat)) into a
+                                                     finally (return (apply #'concatenate 'string a))))))
+                            (tr-td-input "tags")
+                            (tr-td-input "attribution")
+                            (tr-td-input "photo" :typeof "file")
+                            (<:tr (<:td)
+                                  (<:td (<:input :id "submit"
+                                                 :name "submit"
+                                                 :type "submit"
+                                                 :value "Upload"))))))))
 
 (defun normalize-photo-tags (tags)
   (remove-duplicates (remove nil tags)))

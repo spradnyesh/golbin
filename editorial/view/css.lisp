@@ -62,9 +62,8 @@
                               :color "#fff"
                               :background-color "#61a1f0"
                               :margin-top "30px"
-                              :padding-top "20px"
+                              :padding "20px"
                               :border-top "5px solid #dfeefd"))
-         (("#ft .wrapper") (:width "80%"))
          (("#ft a") (:color "#fff"))
          (("#ft h5") (:font-size "15px"
                                  :line-height "52px"
@@ -136,22 +135,17 @@
          (("#submit:hover") (:border-color "#d5e6c0"
                                            :background-color "#739c3e"))
          ;; article
-         (("#article") (:margin "0 25px"))
-         (("#article a") (:margin-right "0"))
-         (("#article table") (:table-layout "fixed"))
-         (("#article td") (:padding "5px 0"))
-         (("#article td.label") (:width "90px"))
-         (("#article input, #article textarea") (:border "3px solid #dedede"
+         ((".wrapper") (:margin "0 25px"))
+         ((".wrapper a") (:margin-right "0"))
+         ((".wrapper table") (:table-layout "fixed"))
+         ((".wrapper td") (:padding "10px 0"))
+         ((".wrapper td.label") (:width "90px"))
+         ((".wrapper input, .wrapper textarea") (:border "3px solid #dedede"
                                                          :padding "7px 20px"
                                                          :line-height "15px"
                                                          :border-radius "8px"))
-         (("#article table td input:hover, #article table td textarea:hover") (:border-color "#d5e6c0"))
-         (("#article table td input:focus, #article table td textarea:focus") (:border-color "#61a1f0"))
-         (("#a-title") (:font-weight "bold"
-                                     :font-size "120%"
-                                     :padding-bottom "10px"))
-         (("#a-details") (:font-size "80%"
-                                     :padding-bottom "10px"))
+         ((".wrapper table td input:hover, .wrapper table td textarea:hover") (:border-color "#d5e6c0"))
+         ((".wrapper table td input:focus, .wrapper table td textarea:focus") (:border-color "#61a1f0"))
          ;; category
          (("#sort-catsubcat .cat") (:padding-left "20px"))
          (("#sort-catsubcat .subcat") (:padding-left "40px"))
@@ -161,8 +155,9 @@
                                   :position "fixed"
                                   :top "100px"
                                   :left "250px"
-                                  :border "1px solid red"
-                                  :background-color "#CCCCCC"))
+                                  :border "3px solid #dedede"
+                                  :border-radius "10px"
+                                  :background-color "#fff"))
          (("#photo-pane p a.close") (:position "absolute"
                                                :top "0"
                                                :right "0"))

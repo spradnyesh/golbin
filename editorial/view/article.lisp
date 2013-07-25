@@ -114,7 +114,7 @@
                                                  (id (cat article))
                                                  1)))
                   (photo (when article (photo article))))
-             (<:div :id "article"
+             (<:div :class "wrapper"
                     (<:form :action (if article
                                         (h-genurl 'r-article-edit-post :id id)
                                         (h-genurl 'r-article-new-post))
