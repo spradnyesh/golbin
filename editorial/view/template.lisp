@@ -99,7 +99,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun editor-nav ()
   (<:li :id "n-approve"
-        (<:h2 (<:a :href (h-genurl 'r-approve-articles)
+        (<:h3 (<:a :href (h-genurl 'r-approve-articles)
                    (translate "approve-articles")))))
 (defun admin-nav ())
 (defun logout-nav ()

@@ -50,14 +50,20 @@
                      "display" "block"))
                  (restore-subcategory (event)
                    ($prevent-default)
-                   (let ((node (or (aref ($apply ($ (@ event target parent-node))
-                                        children
-                                      "ul")
-                                    0)
-                                   ($ (@ event target parent-node parent-node parent-node))))))
-                   ($apply ($ node)
-                       css
-                     "display" "none"))
+                   (let* ((target (@ event target))
+                          (node-name (@ target node-name))
+                          (node (cond ((= node-name "LI")
+                                       ($ (@ target parent-node)))
+                                      ((= node-name "H2")
+                                       (aref ($apply ($ (@ target parent-node))
+                                                 children
+                                               "ul")
+                                             0))
+                                      ((= node-name "A")
+                                       ($ (@ target parent-node parent-node parent-node))))))
+                     ($apply ($ node)
+                         css
+                       "display" "none")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; common to article/photo pages
@@ -405,12 +411,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; category page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 (sort-categories (ele)
+                 #|(sort-categories (ele)
                    ($apply ele nested-sortable (create :handle "div"
                                                        :items "li"
                                                        :toleranceElement "> div"
                                                        :maxLevels 1
-                                                       :protectRoot t))))))
+                                                       :protectRoot t)))|#)))
 
         ;; define event handlers
         ((@ ($ ".prinav" ) hover)
@@ -427,4 +433,4 @@
         ;; some init functions
         (submit-article-ajax)
         #|(tags-autocomplete ($ ".tags"))|#
-        (sort-categories ($ "#sort-catsubcat")))))
+        #|(sort-categories ($ "#sort-catsubcat"))|#)))

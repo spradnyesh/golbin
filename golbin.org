@@ -14,22 +14,6 @@
     CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
     CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
     :END:
-*** TODO [ed] change navigation structure
-    :CLOCK:
-    CLOCK: [2013-07-26 Fri 13:38]--[2013-07-26 Fri 14:27] =>  0:49
-    CLOCK: [2013-07-26 Fri 11:12]--[2013-07-26 Fri 11:48] =>  0:36
-    CLOCK: [2013-07-26 Fri 10:43]--[2013-07-26 Fri 11:10] =>  0:27
-    :END:
-    - add
-      - article
-      - photo
-      - --slideshow
-    - reports
-    - misc
-      - approve articles
-      - change password
-      - change token card
-      - logout
 *** TODO [ed] theme
     :CLOCK:
     CLOCK: [2013-07-25 Thu 19:29]--[2013-07-25 Thu 19:49] =>  0:20
@@ -2102,6 +2086,27 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-26 Fri 10:42
      :END:
+**** DONE [ed] change navigation structure
+     CLOSED: [2013-07-26 Fri 18:47]
+     :CLOCK:
+     CLOCK: [2013-07-26 Fri 17:24]--[2013-07-26 Fri 17:55] =>  0:31
+     CLOCK: [2013-07-26 Fri 13:38]--[2013-07-26 Fri 14:27] =>  0:49
+     CLOCK: [2013-07-26 Fri 11:12]--[2013-07-26 Fri 11:48] =>  0:36
+     CLOCK: [2013-07-26 Fri 10:43]--[2013-07-26 Fri 11:10] =>  0:27
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-26 Fri 18:47
+     :END:
+     - add
+       - article
+       - photo
+       - --slideshow
+     - reports
+     - misc
+       - approve articles
+       - change password
+       - change token card
+       - logout
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
