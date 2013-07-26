@@ -3,6 +3,7 @@
 (import-macros-from-lisp '$event)
 (import-macros-from-lisp '$apply)
 (import-macros-from-lisp '$prevent-default)
+(import-macros-from-lisp '$log)
 
 (defun on-load ()
   (ps ($event (document ready)
@@ -35,6 +36,28 @@
                  ;; http://stackoverflow.com/a/8764051
                  (get-url-parameter (name)
                    (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|#|;|$)"))) exec) (@ location search)) (array null "")) 1) replace) (regex "/\\+/g") "%20")) null))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; navigation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (update-subcategory (event)
+                   ($prevent-default)
+                   ($apply ($ (aref ($apply ($ (@ event target parent-node))
+                                        children
+                                      "ul")
+                                    0))
+                       css
+                     "display" "block"))
+                 (restore-subcategory (event)
+                   ($prevent-default)
+                   (let ((node (or (aref ($apply ($ (@ event target parent-node))
+                                        children
+                                      "ul")
+                                    0)
+                                   ($ (@ event target parent-node parent-node parent-node))))))
+                   ($apply ($ node)
+                       css
+                     "display" "none"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; common to article/photo pages
@@ -390,6 +413,9 @@
                                                        :protectRoot t))))))
 
         ;; define event handlers
+        ((@ ($ ".prinav" ) hover)
+           (lambda (event) (update-subcategory event))
+           (lambda (event) (restore-subcategory event)))
         ($event (".cat" change) (change-category event ""))
         ($event ("#article form" submit) (article-submit event))
         ($event ("#select-lead-photo" click) (select-lead-photo-init event))

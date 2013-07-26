@@ -23,9 +23,9 @@
                            ""
                            "dvngr")
                 (<:div :class "yui3-g"
-                       (<:header :id "hd" (ed-header (is-logged-in?)))
+                       (<:header :id "hd" (header (is-logged-in?)))
                        (<:div :id "bd" ,body)
-                       (<:footer :id "ft" (ed-footer))))
+                       (<:footer :id "ft" (footer))))
         (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
         (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
         (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
@@ -36,10 +36,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun ed-header (logged-in)
+(defun header (logged-in)
   (<:div :class "wrapper"
-         (ed-logo logged-in)
-         (ed-navigation logged-in)))
+         (logo logged-in)
+         (navigation logged-in)))
 
 (defmacro lang-a (lang selected lang-name)
   (let* ((class "small")
@@ -55,7 +55,7 @@
                           :lang ,lang)
           ,lang-name)))
 
-(defun ed-logo (logged-in)
+(defun logo (logged-in)
   (<:figure :id "logo" (<:h1
                         (<:a :href (h-genurl 'r-home)
                              (<:img :src "/static/css/images/spree.png"
@@ -82,7 +82,7 @@
                               (lang-a "mr-IN" t "मराठी")))
                             (t (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))
 
-(defun ed-site-search ()
+(defun site-search ()
   #- (and)
   (<:form :method "GET"
          :action (h-genurl 'route-search)
@@ -97,39 +97,55 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; navigations for different author types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun author-nav ()
-  (fmtnil
-   (<:li :id "nav-article"
-         (<:h2 (<:a :href (h-genurl 'r-article-new-get) "Add Article")))
-   (<:li :id "nav-photo"
-         (<:h2 (<:a :href (h-genurl 'r-photo-get) "Add Photo")))))
 (defun editor-nav ()
-  (<:li :id "nav-approve"
-        (<:h2 (<:a :href (h-genurl 'r-approve-articles) "Approve Articles"))))
+  (<:li :id "n-approve"
+        (<:h2 (<:a :href (h-genurl 'r-approve-articles)
+                   (translate "approve-articles")))))
 (defun admin-nav ())
 (defun logout-nav ()
-  (<:li :id "nav-logout"
-        (<:h2 (<:a :href (h-genurl 'r-logout) "Logout"))))
+  (<:li :id "n-logout"
+        (<:h3 (<:a :href (h-genurl 'r-logout)
+                   (translate "logout")))))
 
-(defun ed-navigation (logged-in)
+(defun nav-add ()
+  (<:ul :class "subnav"
+        (<:li :id "n-article"
+              (<:h3 (<:a :href (h-genurl 'r-article-new-get)
+                         (translate "article"))))
+        (<:li :id "n-photo"
+              (<:h3 (<:a :href (h-genurl 'r-photo-get)
+                         (translate "photo"))))))
+
+(defun nav-report ()
+  (<:ul :class "subnav"))
+
+(defun nav-misc ()
+  (let ((author-type (session-value :author-type)))
+    (<:ul :class "subnav"
+          (fmtnil (cond ((eq author-type :e) ; editor
+                         (fmtnil (editor-nav)))
+                        ((eq author-type :d) ; admin
+                         (fmtnil (editor-nav)
+                                 (admin-nav))))
+                  (logout-nav)))))
+
+(defun navigation (logged-in)
   (when logged-in
     (<:ul :id "nav"
-          (let ((author-type (session-value :author-type)))
-            (cond ((eq author-type :u)  ; author
-                   (author-nav))
-                  ((eq author-type :e)  ; editor
-                   (fmtnil (author-nav)
-                           (editor-nav)))
-                  ((eq author-type :d)  ; admin
-                   (fmtnil (author-nav)
-                           (editor-nav)
-                           (admin-nav)))))
-          (logout-nav))))
+          (<:li :class "prinav"
+                (<:h2 (translate "add")) ; available to all authors by default
+                (nav-add))
+          (<:li :class "prinav"
+                (<:h2 (translate "reports")) ; also available to all authors by default
+                (nav-report))
+          (<:li :class "prinav"
+                (<:h2 (translate "misc")) ; based upon author-type (except logout)
+                (nav-misc)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun ed-footer ()
+(defun footer ()
   (<:div :class "wrapper"
          (<:div :id "col-1" :class "yui3-u-1-4"
                 (<:img :alt "Spree Demo Theme"

@@ -9,7 +9,27 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
-*** [bug][ed] article delete not working???
+*** TODO [ed] author registration page
+    :CLOCK:
+    CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
+    CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
+    :END:
+*** TODO [ed] change navigation structure
+    :CLOCK:
+    CLOCK: [2013-07-26 Fri 13:38]--[2013-07-26 Fri 14:27] =>  0:49
+    CLOCK: [2013-07-26 Fri 11:12]--[2013-07-26 Fri 11:48] =>  0:36
+    CLOCK: [2013-07-26 Fri 10:43]--[2013-07-26 Fri 11:10] =>  0:27
+    :END:
+    - add
+      - article
+      - photo
+      - --slideshow
+    - reports
+    - misc
+      - approve articles
+      - change password
+      - change token card
+      - logout
 *** TODO [ed] theme
     :CLOCK:
     CLOCK: [2013-07-25 Thu 19:29]--[2013-07-25 Thu 19:49] =>  0:20
@@ -81,11 +101,6 @@
        5. if correct, process form
 **** registration
      - send email w/ 50 numbers to all authors (after successful registration)
-*** TODO [ed] author registration page
-    :CLOCK:
-    CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
-    CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
-    :END:
 *** TODO slime debug local variables
     :CLOCK:
     CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
@@ -237,6 +252,11 @@
       - rate per view
       - paid X INR
       - paid on date
+*** [reports] author report dashboard
+    - table
+| article-Id | today | current week | current month | last month | ??? |
+|------------+-------+--------------+---------------+------------+-----|
+|            |       |              |               |            |     |
 *** TODO [lang] externalize strings from code, add library code
     :CLOCK:
     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
@@ -286,9 +306,6 @@
       - this half-year
       - this year
 *** [fe] disable prev/next when carousel is no longer scrollable in that direction
-*** [reports] article-id: views (day, week, month, year)
-*** [reports] author-id: total views, views for every article, most-viewed in (day, week, month, year)
-*** [reports] time (day, week, month, year): most-viewed article/author
 *** TODO [ed] add search (using cat/subcat, tags) in select-photo pane
     :CLOCK:
     CLOCK: [2012-09-03 Mon 21:00]--[2012-09-03 Mon 21:36] =>  0:36
@@ -2074,6 +2091,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-07-25 Thu 19:27
+     :END:
+**** CANCELLED [bug][ed] article delete not working???
+     CLOSED: [2013-07-26 Fri 10:42]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-07-26 Fri 10:42] \\
+       it's working just fine
+     CLOCK: [2013-07-26 Fri 10:36]--[2013-07-26 Fri 10:42] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-26 Fri 10:42
      :END:
 ** TODO refactor
    :CLOCK:

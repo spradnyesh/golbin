@@ -69,12 +69,14 @@
                                  :margin-bottom "23px"
                                  :text-transform "uppercase"))
          ;; nav
-         (("#nav") (:padding-top "40px"
-                                 :text-align "right"))
-         (("#nav li") (:float "left"
-                              :margin "0 25px"
-                              :text-align "center"))
-         (("#nav li ul") (:display "none"))
+         ((".prinav") (:float "left"
+                              :margin "40px 0 0 50px"
+                              :min-width "100px"))
+         ((".prinav h2") (:color "#61a1f0"
+                                 :cursor "pointer"))
+         ((".prinav h2:hover") (:color "#8dba53 !important"))
+         ((".subnav") (:display "none"))
+         ((".subnav li") (:padding "5px 0"))
          ;; home
          (("#articles") (:margin "0 50px"))
          (("#articles p") (:margin "0"))
