@@ -42,29 +42,6 @@
     :CLOCK:
     CLOCK: [2013-07-23 Tue 18:23]--[2013-07-23 Tue 18:57] =>  0:34
     :END:
-*** TODO email server
-    :CLOCK:
-    CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
-    CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
-    :END:
-    - for
-      - golb.in email addresses
-      - get (and forward) every comment as an email
-    - clients (if needed only for sending emails, not receiving)
-      - ssmtp
-        - http://frenchtouch.pro/tutorial/configure-your-debian-server-to-send-mails/47
-    - servers
-      - mail-mta/exim
-        - http://www.exim.org/
-      - mail-mta/courier
-        - http://www.nuclex.org/blog/1-personal/83-installing-courier-on-gentoo
-        - http://www.courier-mta.org/install.html (bad, outdated)
-      - sendmail
-        - http://forums.gentoo.org/viewtopic.php?t=23703
-        - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
-    - cl
-      - *** cl-smtp (works) ***
-      - cl-sendmail (sucks)
 *** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 *** TODO utf8 -> url-encode
     :CLOCK:
@@ -2107,6 +2084,33 @@
        - change password
        - change token card
        - logout
+**** DONE email server
+     CLOSED: [2013-07-28 Sun 00:54]
+     :CLOCK:
+     CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
+     CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-07-28 Sun 00:54
+     :END:
+     - for
+       - golb.in email addresses
+       - get (and forward) every comment as an email
+     - clients (if needed only for sending emails, not receiving)
+       - ssmtp
+         - http://frenchtouch.pro/tutorial/configure-your-debian-server-to-send-mails/47
+     - servers
+       - mail-mta/exim
+         - http://www.exim.org/
+       - mail-mta/courier
+         - http://www.nuclex.org/blog/1-personal/83-installing-courier-on-gentoo
+         - http://www.courier-mta.org/install.html (bad, outdated)
+       - sendmail
+         - http://forums.gentoo.org/viewtopic.php?t=23703
+         - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
+     - cl
+       - *** cl-smtp (works) ***
+       - cl-sendmail (sucks)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
