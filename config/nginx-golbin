@@ -1,0 +1,62 @@
+server {
+    listen         80;
+    server_name    golb.in;
+    rewrite ^/(.*) http://www.golb.in/$1 permanent;
+}
+server {
+    listen         80;
+    server_name    www.golb.in;
+
+    access_log     /var/log/nginx/www.golb.in.access.log;
+    error_log      /var/log/nginx/www.golb.in.error.log;
+
+    location ~ ^/(static|uploads)/ {
+        root       /home/hawksbill/code/startup/s/golbin/data;
+        autoindex  on;
+        expires    365d;
+        access_log off;
+    }
+    
+    location / {
+        include    /etc/nginx/proxy.conf;
+        proxy_pass http://127.0.0.1:8000;
+    }
+}
+server {
+    listen         80;
+    server_name    mr.golb.in;
+
+    access_log     /var/log/nginx/mr.golb.in.access.log;
+    error_log      /var/log/nginx/mr.golb.in.error.log;
+
+    location ~ ^/(static|uploads)/ {
+        root       /home/hawksbill/code/startup/s/golbin/data;
+        autoindex  on;
+        expires    365d;
+        access_log off;
+    }
+    
+    location / {
+        include    /etc/nginx/proxy.conf;
+        proxy_pass http://127.0.0.1:8000;
+    }
+}
+server {
+    listen         80;
+    server_name    ed.golb.in;
+
+    access_log     /var/log/nginx/ed.golb.in.access.log;
+    error_log      /var/log/nginx/ed.golb.in.error.log;
+
+    location ~ ^/(static|uploads)/ {
+        root       /home/hawksbill/code/startup/s/golbin/data;
+        autoindex  on;
+        expires    365d;
+        access_log off;
+    }
+    
+    location / {
+        include    /etc/nginx/proxy.conf;
+        proxy_pass http://127.0.0.1:8888;
+    }
+}

@@ -2085,13 +2085,14 @@
        - change token card
        - logout
 **** DONE email server
-     CLOSED: [2013-07-28 Sun 00:54]
+     CLOSED: [2013-07-28 Sun 01:13]
      :CLOCK:
+     CLOCK: [2013-07-28 Sun 01:00]--[2013-07-28 Sun 01:13] =>  0:13
      CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
      CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-07-28 Sun 00:54
+     :ARCHIVE_TIME: 2013-07-28 Sun 01:13
      :END:
      - for
        - golb.in email addresses
