@@ -14,3 +14,6 @@ article=Article
 photo=Photo
 approve-articles=Approve Articles
 logout=Logout
+username=Username
+password=Password
+login=Login

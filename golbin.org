@@ -12,6 +12,7 @@
     :END:
 *** TODO [ed] author registration page
     :CLOCK:
+    CLOCK: [2013-07-29 Mon 11:35]--[2013-07-29 Mon 12:27] =>  0:52
     CLOCK: [2013-07-09 Tue 17:45]--[2013-07-09 Tue 19:06] =>  1:21
     CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
     :END:
@@ -2086,15 +2087,24 @@
        - change token card
        - logout
 **** DONE email server
-     CLOSED: [2013-07-28 Sun 01:13]
+     CLOSED: [2013-07-29 Mon 11:34]
      :CLOCK:
+     CLOCK: [2013-07-29 Mon 11:07]--[2013-07-29 Mon 11:34] =>  0:27
      CLOCK: [2013-07-28 Sun 01:00]--[2013-07-28 Sun 01:13] =>  0:13
      CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
      CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-07-28 Sun 01:13
+     :ARCHIVE_TIME: 2013-07-29 Mon 11:34
      :END:
+***** linode
+      - msmtp
+***** s$
+      - courier
+        - http://www.nuclex.org/blog/personal/83-installing-courier-on-gentoo
+        - https://wiki.gentoo.org/wiki/Complete_Virtual_Mail_Server
+        - (cl-smtp:send-email "127.0.0.1" "pradyus@golb.in" "pradyus@golb.in" "test2" "hello world2")
+***** rNd
      - for
        - golb.in email addresses
        - get (and forward) every comment as an email
@@ -2110,9 +2120,9 @@
        - sendmail
          - http://forums.gentoo.org/viewtopic.php?t=23703
          - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
-     - cl
-       - *** cl-smtp (works) ***
-       - cl-sendmail (sucks)
+***** cl
+      - *** cl-smtp (works) ***
+      - cl-sendmail (sucks)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
