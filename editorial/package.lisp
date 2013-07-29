@@ -53,12 +53,12 @@
      ,@body))
 
 
-(sexml:with-compiletime-active-layers
-    (sexml:standard-sexml sexml:xml-doctype)
-  (sexml:support-dtd
+(with-compiletime-active-layers
+    (standard-sexml xml-doctype)
+  (support-dtd
    (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
    :<))
 (<:augment-with-doctype "html" "")
 
-(defparameter *whitelist* '("/register/" "/login/")
+(defparameter *whitelist* '("/register/" "/login/" "/why-register/")
   "list of routes that can be accessed in a non-logged-in state")

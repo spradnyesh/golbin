@@ -38,16 +38,49 @@
          (("p") (:margin "16px 0"))
          (("a") (:text-decoration "none"
                                   :color "#61a1f0"))
-         (("a:hover") (:color "#8dba53 !important"))
+         (("a:hover") (:color "#8dba53"))
          (("figure") (:margin "0"))
+         (("strong") (:font-weight "bold"))
          ((".error") (:color "red"
                              :font-size "90%"
                              :padding "5px 0"))
          ((".small") (:font-size "80%"))
          ((".dvngr") (:font-family "Mangal, Lohit Devanagari"))
+         ((".yes, .no") (:color "#fff"
+                                :text-align "center"))
+         ((".yes") (:background-color "#8dba53"))
+         ((".no") (:color "#fff"
+                          :background-color "#ff4444"))
          ((".wrapper") (:position "relative"
-                                  :margin "0 auto"
+                                  :margin "0 25px"
                                   :padding "0"))
+         ((".wrapper a") (:margin-right "0"))
+         ((".wrapper table") (:table-layout "fixed"
+                                            :border-collapse "inherit"
+                                            :border-spacing "5px"))
+         ((".wrapper td") (:padding "10px 10px"))
+         ((".wrapper input, .wrapper textarea") (:border "3px solid #dedede"
+                                                         :padding "7px 20px"
+                                                         :line-height "15px"
+                                                         :border-radius "8px"))
+         ((".wrapper input:hover, .wrapper textarea:hover") (:border-color "#d5e6c0"))
+         ((".wrapper input:focus, .wrapper textarea:focus") (:border-color "#61a1f0"))
+         ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
+         ((".tooltip") (:color "#61a1f0"
+                               :cursor "help"
+                               :position "relative"))
+         ((".tooltip span") (:margin-left "-999em"
+                                          :position "absolute"))
+         ((".tooltip:hover span") (:left "5px"
+                                         :top "5px"
+                                         :z-index "99"
+                                         :margin-left "0"
+                                         :width "250px"
+                                         :background-color "#ffffaa"
+                                         :border "1px solid #dedede"
+                                         :text-align "center"
+                                         :color "#333"
+                                         :padding "10px"))
          ;; hd
          (("#hd") (:height "120px"))
          (("#logo") (:float "left"))
@@ -74,7 +107,7 @@
                               :min-width "100px"))
          ((".prinav h2") (:color "#61a1f0"
                                  :cursor "pointer"))
-         ((".prinav h2:hover") (:color "#8dba53 !important"))
+         ((".prinav h2:hover") (:color "#8dba53"))
          ((".subnav") (:display "none"))
          ((".subnav li") (:padding "5px 0"))
          ;; home
@@ -90,12 +123,14 @@
                                                          :border "0"
                                                          :cursor "pointer"
                                                          :color "#61a1f0"))
-         (("#articles .crud .delete:hover") (:color "#8dba53 !important"))
+         (("#articles .crud .delete:hover") (:color "#8dba53"))
          (("#articles .index-thumb") (:float "left"
                                              :padding-right "10px"))
          (("#articles .a-title") (:color "#21629C"))
          (("#articles .a-title.deleted") (:text-decoration "line-through"))
          (("#articles .a-summary") (:color "#4a4a4a"))
+         ;; article
+         (("#article td.label") (:width "90px"))
          ;; login
          ((".lang-selected") (:background-color "#99c165"
                                                 :padding "0 5px"
@@ -131,18 +166,6 @@
                                       :font-size "12px"))
          (("#submit:hover") (:border-color "#d5e6c0"
                                            :background-color "#739c3e"))
-         ;; article
-         ((".wrapper") (:margin "0 25px"))
-         ((".wrapper a") (:margin-right "0"))
-         ((".wrapper table") (:table-layout "fixed"))
-         ((".wrapper td") (:padding "10px 0"))
-         ((".wrapper td.label") (:width "90px"))
-         ((".wrapper input, .wrapper textarea") (:border "3px solid #dedede"
-                                                         :padding "7px 20px"
-                                                         :line-height "15px"
-                                                         :border-radius "8px"))
-         ((".wrapper table td input:hover, .wrapper table td textarea:hover") (:border-color "#d5e6c0"))
-         ((".wrapper table td input:focus, .wrapper table td textarea:focus") (:border-color "#61a1f0"))
          ;; category
          (("#sort-catsubcat .cat") (:padding-left "20px"))
          (("#sort-catsubcat .subcat") (:padding-left "40px"))
