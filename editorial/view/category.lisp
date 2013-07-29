@@ -7,7 +7,6 @@
   (with-ed-login
     (template
      :title "Edit Cat/Subcat"
-     :logged-in t
      :js (<:script :type "text/javascript"
                   (on-load))
      :body (<:form :action (h-genurl 'r-cat-post)

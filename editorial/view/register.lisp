@@ -44,17 +44,16 @@
 
 (defun v-register-get ()
   (template
-         :title "Register"
-         :logged-in nil
-         :js nil
-         :body (<:form :action (h-genurl 'r-register-post)
-                            :method "POST"
-                            (label-input "name" "text")
-                            (label-input "password" "password")
-                            (<:input :type "submit"
-                                    :name "submit"
-                                    :id "submit"
-                                    :value "Register"))))
+   :title "Register"
+   :js nil
+   :body (<:form :action (h-genurl 'r-register-post)
+                 :method "POST"
+                 (label-input "username" "text")
+                 (label-input "password" "password")
+                 (<:input :type "submit"
+                          :name "submit"
+                          :id "submit"
+                          :value "Register"))))
 
 (defun v-register-post ()
   (let* ((name (post-parameter "name"))

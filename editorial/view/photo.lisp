@@ -57,7 +57,6 @@
 (defun v-photo-get ()
   (template
    :title "Add Photo"
-   :logged-in t
    :js (<:script :type "text/javascript"
                 (format nil
                         "~%//<![CDATA[~%var categoryTree = ~a;~%~a~%//]]>~%"
@@ -147,7 +146,6 @@
 (defun v-tmp-photo-get ()
   (template
    :title "Add Photo"
-   :logged-in t
    :js nil
    :body (let ((count 10))
            (<:form :action (h-genurl 'r-tmp-photo-post)

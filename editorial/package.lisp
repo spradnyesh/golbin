@@ -59,3 +59,6 @@
    (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
    :<))
 (<:augment-with-doctype "html" "")
+
+(defparameter *whitelist* '("/register/" "/login/")
+  "list of routes that can be accessed in a non-logged-in state")

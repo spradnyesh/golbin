@@ -89,7 +89,6 @@
   (with-ed-login
     (template
      :title "Add Article"
-     :logged-in t
      :js (fmtnil (<:script :type "text/javascript"
                            (format nil
                                    "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"

@@ -7,7 +7,6 @@
   (with-ed-login
     (template
      :title "Home"
-     :logged-in t
      :js nil
      :body (let* ((author (get-author-by-handle (session-value :author)))
                   (articles-list (get-all-articles-by-author author))
