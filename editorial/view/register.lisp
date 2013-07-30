@@ -47,72 +47,94 @@
    :title "Why Register"
    :js nil
    :body (<:div :class "wrapper"
-                (<:table
-                 (<:thead (<:tr (<:td)
-                                (<:td (<:strong (translate "google"))
-                                      (<:span :class "tooltip"
-                                              (<:sup "#")
-                                              (<:span :class "classic"
-                                                      (translate "google-ads"))))
-                                (<:td (<:strong (translate "golbin")))
-                                (<:td (translate "details"))))
-                 (<:tbody (<:tr (<:td (translate "courier"))
-                                (<:td :class "no" (translate "yes"))
-                                (<:td :class "yes" (translate "no"))
-                                (<:td (translate "courier-dtls")))
-                          (<:tr (<:td (translate "ads-wait"))
-                                (<:td :class "no" (translate "yes"))
-                                (<:td :class "yes" (translate "no"))
-                                (<:td (translate "already-complted")))
-                          (<:tr (<:td (translate "ads-approval"))
-                                (<:td :class "no" (translate "yes"))
-                                (<:td :class "yes" (translate "no"))
-                                (<:td (translate "already-complted")))
-                          (<:tr (<:td (translate "seo"))
-                                (<:td :class "no" (translate "no"))
-                                (<:td :class "yes" (translate "yes"))
-                                (<:td (translate "we-do-it-for-you")))
-                          (<:tr (<:td (translate "performance"))
-                                (<:td :class "no" (translate "no"))
-                                (<:td :class "yes" (translate "yes"))
-                                (<:td (translate "we-do-it-for-you")))
-                          (<:tr (<:td (translate "income"))
-                                (<:td :class "yes" "100%")
-                                (<:td :class "no" "70%")
-                                (<:td (translate "income-dtls")))
-                          (<:tr (<:td (translate "hosting-cost"))
-                                (<:td :class "no" (translate "yes"))
-                                (<:td :class "yes" (translate "no"))
-                                (<:td (translate "we-do-it-for-you")))
-                          (<:tr (<:td (translate "marketing"))
-                                (<:td :class "no" (translate "no"))
-                                (<:td :class "yes" (translate "yes"))
-                                (<:td (translate "we-do-it-for-you")))
-                          (<:tr (<:td (translate "giant-shoulders"))
-                                (<:td :class "no" (translate "no"))
-                                (<:td :class "yes" (translate "yes"))
-                                (<:td (translate "giant-shoulders-dtls")))
-                          (<:tr (<:td (translate "min-pay-amt"))
-                                (<:td :class "no" (translate "yes"))
-                                (<:td :class "yes" (translate "no"))
-                                (<:td (translate "min-pay-amt-dtls")))
-                          (<:tr (<:td (translate "perf-reports"))
-                                (<:td :class "no" (translate "no"))
-                                (<:td :class "yes" (translate "yes"))
-                                (<:td (translate "perf-reports-dtls"))))))))
+                (<:table (<:thead (<:tr :class "t-head"
+                                        (<:td)
+                                        (<:td (<:strong (translate "google"))
+                                              (tooltip "google-ads"))
+                                        (<:td (<:strong (translate "golbin")))
+                                        (<:td (<:strong (translate "details")))))
+                         (<:tbody (<:tr :class "t-odd"
+                                        (<:td (translate "courier"))
+                                        (<:td :class "no" (translate "yes"))
+                                        (<:td :class "yes" (translate "no"))
+                                        (<:td (translate "courier-dtls")
+                                              (tooltip "courier-tltip")))
+                                  (<:tr :class "t-even"
+                                        (<:td (translate "ads-wait"))
+                                        (<:td :class "no" (translate "yes"))
+                                        (<:td :class "yes" (translate "no"))
+                                        (<:td (translate "already-complted")
+                                              (tooltip "ads-wait-tltip")))
+                                  (<:tr :class "t-odd"
+                                        (<:td (translate "ads-approval"))
+                                        (<:td :class "no" (translate "yes"))
+                                        (<:td :class "yes" (translate "no"))
+                                        (<:td (translate "already-complted")
+                                              (tooltip "ads-approval-tltip")))
+                                  (<:tr :class "t-even"
+                                        (<:td (translate "seo"))
+                                        (<:td :class "no" (translate "no"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td (translate "we-do-it-for-you")
+                                              (tooltip "we-do-it-for-you-tltip")))
+                                  (<:tr :class "t-odd"
+                                        (<:td (translate "performance"))
+                                        (<:td :class "no" (translate "no"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td (translate "we-do-it-for-you")
+                                              (tooltip "we-do-it-for-you-tltip")))
+                                  (<:tr :class "t-even"
+                                        (<:td (translate "income"))
+                                        (<:td :class "yes" "100%")
+                                        (<:td :class "no" "70%")
+                                        (<:td (translate "income-dtls")))
+                                  (<:tr :class "t-odd"
+                                        (<:td (translate "hosting-cost"))
+                                        (<:td :class "no" (translate "yes"))
+                                        (<:td :class "yes" (translate "no"))
+                                        (<:td (translate "we-do-it-for-you")
+                                              (tooltip "we-do-it-for-you-tltip")))
+                                  (<:tr :class "t-even"
+                                        (<:td (translate "marketing"))
+                                        (<:td :class "no" (translate "no"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td (translate "we-do-it-for-you")
+                                              (tooltip "we-do-it-for-you-tltip")))
+                                  (<:tr :class "t-odd"
+                                        (<:td (translate "giant-shoulders"))
+                                        (<:td :class "no" (translate "no"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td (translate "giant-shoulders-dtls")
+                                              (tooltip "giant-shoulders-tltip")))
+                                  (<:tr :class "t-even"
+                                        (<:td (translate "min-pay-amt"))
+                                        (<:td :class "no" (translate "yes"))
+                                        (<:td :class "yes" (translate "no"))
+                                        (<:td (translate "min-pay-amt-dtls")
+                                              (tooltip "min-pay-amt-tltip")))
+                                  (<:tr :class "t-odd"
+                                        (<:td (translate "perf-reports"))
+                                        (<:td :class "no" (translate "no"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td (translate "perf-reports-dtls")
+                                              (tooltip "perf-reports-tltip")))))
+                (<:p (<:a :class "submit"
+                          :href (h-genurl 'r-register-get)
+                          (translate "register-here"))))))
 
 (defun v-register-get ()
   (template
    :title "Register"
    :js nil
-   :body (<:form :action (h-genurl 'r-register-post)
-                 :method "POST"
-                 (label-input "username" "text")
-                 (label-input "password" "password")
-                 (<:input :type "submit"
-                          :name "submit"
-                          :id "submit"
-                          :value "Register"))))
+   :body (<:div :class "wrapper"
+                (<:form :action (h-genurl 'r-register-post)
+                        :method "POST"
+                        (label-input "username" "text")
+                        (label-input "password" "password")
+                        (<:input :type "submit"
+                                 :name "submit"
+                                 :class "submit"
+                                 :value "Register")))))
 
 (defun v-register-post ()
   (let* ((name (post-parameter "name"))

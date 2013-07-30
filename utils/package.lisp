@@ -38,6 +38,7 @@
            :remove-all-style
            :cleanup-ckeditor-text
            :hu-init
+           :tooltip
            ;; js
            :js-script
            :obfuscate-js

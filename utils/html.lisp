@@ -29,6 +29,12 @@
                             :class class
                             value)))))
 
+(defmacro tooltip (key &key (marker "#") (class "classic"))
+  `(<:span :class "tooltip"
+           (<:sup ,marker)
+           (<:span :class ,class
+                   (translate ,key))))
+
 (defun remove-all-style (body)
   (regex-replace-all "style=\\\"(.*?)\\\"" body ""))
 

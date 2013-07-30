@@ -41,7 +41,22 @@
          (("a:hover") (:color "#8dba53"))
          (("figure") (:margin "0"))
          (("strong") (:font-weight "bold"))
-         ((".error") (:color "red"
+         (("input, textarea") (:border "3px solid #ddd"
+                                                         :padding "7px 20px"
+                                                         :line-height "15px"
+                                                         :border-radius "8px"))
+         (("input:hover, textarea:hover") (:border-color "#d5e6c0"))
+         (("input:focus, textarea:focus") (:border-color "#61a1f0"))
+         (("table") (:table-layout "fixed"
+                                   :border-collapse "inherit"
+                                   :border-spacing "5px"))
+         (("td") (:padding "10px 10px"))
+         ((".t-head") (:color "#fff"
+                              :background-color "#61a1f0"))
+         ((".t-head .tooltip") (:color "#fff"))
+         ((".t-odd"))
+         ((".t-even") (:background-color "#dfeefd"))
+         ((".error") (:color "#f66"
                              :font-size "90%"
                              :padding "5px 0"))
          ((".small") (:font-size "80%"))
@@ -50,21 +65,10 @@
                                 :text-align "center"))
          ((".yes") (:background-color "#8dba53"))
          ((".no") (:color "#fff"
-                          :background-color "#ff4444"))
-         ((".wrapper") (:position "relative"
+                          :background-color "#f66"))
+         ((".wrapper") (:emacs-position "relative"
                                   :margin "0 25px"
                                   :padding "0"))
-         ((".wrapper a") (:margin-right "0"))
-         ((".wrapper table") (:table-layout "fixed"
-                                            :border-collapse "inherit"
-                                            :border-spacing "5px"))
-         ((".wrapper td") (:padding "10px 10px"))
-         ((".wrapper input, .wrapper textarea") (:border "3px solid #dedede"
-                                                         :padding "7px 20px"
-                                                         :line-height "15px"
-                                                         :border-radius "8px"))
-         ((".wrapper input:hover, .wrapper textarea:hover") (:border-color "#d5e6c0"))
-         ((".wrapper input:focus, .wrapper textarea:focus") (:border-color "#61a1f0"))
          ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
          ((".tooltip") (:color "#61a1f0"
                                :cursor "help"
@@ -77,10 +81,21 @@
                                          :margin-left "0"
                                          :width "250px"
                                          :background-color "#ffffaa"
-                                         :border "1px solid #dedede"
+                                         :border "1px solid #ddd"
                                          :text-align "center"
                                          :color "#333"
                                          :padding "10px"))
+         ((".submit") (:border-radius "20px"
+                                      :border "3px solid #abcdef"
+                                      :padding "7px 20px"
+                                      :text-transform "uppercase"
+                                      :background-color "#61a1f0"
+                                      :color "#fff"
+                                      :font-weight "bold"
+                                      :font-size "12px"))
+         ((".submit:hover") (:border-color "#afdc75"
+                                           :background-color "#8dba53"
+                                           :color "#fff"))
          ;; hd
          (("#hd") (:height "120px"))
          (("#logo") (:float "left"))
@@ -142,12 +157,12 @@
                                                :border-bottom "5px solid #edf4e5"
                                                :box-shadow "inset 0 0 15px 0 #739c3e"
                                                :height "55px"
-                                               :padding "35px 0 0 100px"
+                                               :padding "20px 0 0 100px"
                                                :font-size "34px"))
          (("#login") (:margin "30px 0 0 100px"))
          (("#login a") (:margin "0"))
          (("#login fieldset.inputs .label") (:display "block"))
-         (("#login fieldset.inputs .input") (:border "3px solid #dedede"
+         (("#login fieldset.inputs .input") (:border "3px solid #ddd"
                                                      :border-radius "8px"
                                                      :padding "7px 20px"
                                                      :outline "none"
@@ -156,16 +171,6 @@
                                                      :height "34px"))
          (("#login fieldset.inputs .input:hover") (:border-color "#d5e6c0"))
          (("#login fieldset.inputs .input:focus") (:border-color "#61a1f0"))
-         (("#submit") (:border-radius "20px"
-                                      :border "3px solid #abcdef"
-                                      :padding "7px 20px"
-                                      :text-transform "uppercase"
-                                      :background-color "#61a1f0"
-                                      :color "#fff"
-                                      :font-weight "bold"
-                                      :font-size "12px"))
-         (("#submit:hover") (:border-color "#d5e6c0"
-                                           :background-color "#739c3e"))
          ;; category
          (("#sort-catsubcat .cat") (:padding-left "20px"))
          (("#sort-catsubcat .subcat") (:padding-left "40px"))
@@ -175,7 +180,7 @@
                                   :position "fixed"
                                   :top "100px"
                                   :left "250px"
-                                  :border "3px solid #dedede"
+                                  :border "3px solid #ddd"
                                   :border-radius "10px"
                                   :background-color "#fff"))
          (("#photo-pane p a.close") (:position "absolute"

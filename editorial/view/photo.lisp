@@ -43,7 +43,7 @@
                             (tr-td-input "attribution")
                             (tr-td-input "photo" :typeof "file")
                             (<:tr (<:td)
-                                  (<:td (<:input :id "submit"
+                                  (<:td (<:input :class "submit"
                                                  :name "submit"
                                                  :type "submit"
                                                  :value "Upload"))))))))

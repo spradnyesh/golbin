@@ -5,7 +5,7 @@
 (define-route r-login-post ("/login/" :method :post) (v-login-post))
 
 ;; register
-(define-route r-why-register-get ("/why-register/") (v-why-register-get))
+(define-route r-why-register ("/why-register/") (v-why-register-get))
 (define-route r-register-get ("/register/") (v-register-get))
 (define-route r-register-post ("/register/" :method :post) (v-register-post))
 

@@ -17,17 +17,15 @@
                                   (label-input "password" "password")
                                   (<:p (<:input :type "submit"
                                                 :name "submit"
-                                                :id "submit"
+                                                :class "submit"
                                                 :value (translate "login"))))
                       (let ((ed-lang (cookie-in "ed-lang")))
                         (if ed-lang
                             (translate "register-forgot"
-                                       (<:a :id "register"
-                                            :href (h-genurl 'r-register-get
+                                       (<:a :href (h-genurl 'r-why-register
                                                             :lang ed-lang)
-                                            (translate "register-here"))
-                                       (<:a :id "forgot"
-                                            :href (h-genurl 'r-register-get
+                                            (translate "join-us"))
+                                       (<:a :href (h-genurl 'r-register-get
                                                             :lang ed-lang)
                                             (translate "forgot-password")))
                             (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))

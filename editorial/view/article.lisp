@@ -224,7 +224,7 @@
                                                                                              id))
                                                         "Preview") (<:sup "#1"))))
                                      (<:tr (<:td)
-                                           (<:td (<:input :id "submit"
+                                           (<:td (<:input :class "submit"
                                                           :name "submit"
                                                           :type "submit"
                                                           :value "Submit")
