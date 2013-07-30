@@ -47,7 +47,14 @@
            *translation-table*))
 
 ;; if #params are less than #~a in translated format-string
-;; then die silently and return nil instead of an error
+;; then die silently and return the key instead of an error
 (defun translate (key &rest params)
-  (handler-case (apply #'format nil (get-translation key) params)
-           (sb-format:format-error () nil)))
+  (handler-case (apply #'format
+                       nil
+                       (let ((trans (get-translation key)))
+                         (if trans
+                             trans
+                             (concatenate 'string "[[" key "]]")))
+                       params)
+           (sb-format:format-error ()
+             (concatenate 'string "[[[" key "]]]"))))

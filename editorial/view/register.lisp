@@ -129,12 +129,20 @@
    :body (<:div :class "wrapper"
                 (<:form :action (h-genurl 'r-register-post)
                         :method "POST"
-                        (label-input "username" "text")
-                        (label-input "password" "password")
-                        (<:input :type "submit"
-                                 :name "submit"
-                                 :class "submit"
-                                 :value "Register")))))
+                        (<:fieldset :class "inputs"
+                                    (<:table
+                                     (<:tbody
+                                      (tr-td-input "username")
+                                      (tr-td-input "password" :typeof "password")
+                                      (<:tr (<:td (<:label :class "label" :for "password2"
+                                                           "Retype password"))
+                                            (<:td (<:input :class "input" :type "password2"
+                                                           :name "password2"
+                                                           :id "password2")))
+                                      (<:tr (<:td (<:input :type "submit"
+                                                           :name "submit"
+                                                           :class "submit"
+                                                           :value "Register"))))))))))
 
 (defun v-register-post ()
   (let* ((name (post-parameter "name"))

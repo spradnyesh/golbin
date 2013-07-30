@@ -35,6 +35,7 @@
            :with-html
            :tr-td-input
            :tr-td-text
+           :label-input
            :remove-all-style
            :cleanup-ckeditor-text
            :hu-init

@@ -6,28 +6,35 @@
 (defparameter hunchentoot:*default-content-type* "text/html; charset=utf-8")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; helper macros
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro tr-td-helper (&body body)
+  `(let ((for (regex-replace-all "-" name " ")))
+    (<:tr (<:td :class class
+                (<:label :class "label"
+                         :for for
+                         (format nil "~A" (string-capitalize (translate for)))))
+          (<:td ,@body))))
+
+(defmacro label-input (for-name-id typeof)
+  `(<:p (<:label :class "label" :for ,for-name-id
+                 (format nil "~a: " (translate ,for-name-id)))
+        (<:input :class "input" :type ,typeof
+                 :name ,for-name-id
+                 :id ,for-name-id)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun tr-td-input (name &key (value "") (typeof "text"))
-  (let ((for (regex-replace-all "-" name " "))
-        (trimmed-name (trim-name name)))
-    (<:tr (<:td :class "label"
-                (format nil "~A" (string-capitalize for)))
-          (<:td (<:input :class (format nil "td-input ~A" trimmed-name)
-                         :type typeof
-                         :name trimmed-name
-                         :value value)))))
+(defun tr-td-input (name &key (class "") (value "") (typeof "text"))
+  (tr-td-helper (<:input :type typeof
+                         :name for
+                         :value value)))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
-  (<:tr (<:td :class "label"
-              (format nil "~A" (string-capitalize name)))
-        (<:td (let ((trimmed-name (trim-name name)))
-                (<:textarea :cols cols
+  (tr-td-helper (<:textarea :cols cols
                             :rows rows
-                            :name trimmed-name
-                            :id trimmed-name
-                            :class class
-                            value)))))
+                            value)))
 
 (defmacro tooltip (key &key (marker "#") (class "classic"))
   `(<:span :class "tooltip"

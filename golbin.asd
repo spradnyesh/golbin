@@ -58,9 +58,8 @@
                                      (:module "view"
                                               :components ((:file "css")
                                                            (:file "js")
-                                                           (:file "helpers")
                                                            (:file "misc")
-                                                           (:file "template" :depends-on ("css" "js" "helpers"))
+                                                           (:file "template" :depends-on ("css" "js"))
                                                            (:file "author" :depends-on ("template"))
                                                            (:file "article" :depends-on ("template" "misc"))
                                                            (:file "login" :depends-on ("template"))

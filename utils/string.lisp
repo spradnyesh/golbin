@@ -38,9 +38,6 @@
 (defun make-keyword (name)
   (values (intern (string-upcase name) "KEYWORD")))
 
-(defun trim-name (name)
-  (first (split-sequence " " name :test #'string-equal)))
-
 ;; prepend/append (based on 'direction) string of 'character
 ;; of length (- 'length (length 'string)) to given 'string
 (defun string-pad (string character length &optional (direction :l))
