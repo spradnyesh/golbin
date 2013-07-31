@@ -50,3 +50,4 @@ perf-reports-tltip=Get reports on the performance/earnings of your content on sa
 yes=yes
 no=no
 join-us=New here? Why don't you join us?
+retype-password=Retype Password

@@ -17,9 +17,7 @@
    (email :initarg :email :initform nil :accessor email)))
 
 (defclass author (user)
-  ((address-1 :initarg :address1 :initform nil :accessor address-1)
-   (address-2 :initarg :address2 :initform nil :accessor address-2)
-   (address-3 :initarg :address3 :initform nil :accessor address-3)
+  ((street :initarg :address1 :initform nil :accessor street)
    (city :initarg :city :initform nil :accessor city)
    (state :initarg :state :initform nil :accessor state)
    (country :initarg :country :initform nil :accessor country)

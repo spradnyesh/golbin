@@ -9,32 +9,42 @@
 ;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro tr-td-helper (&body body)
-  `(let ((for (regex-replace-all "-" name " ")))
+  `(let ((for (regex-replace-all " " name "-")))
     (<:tr (<:td :class class
                 (<:label :class "label"
                          :for for
-                         (format nil "~A" (string-capitalize (translate for)))))
+                         (if mandatory
+                             (fmtnil (translate for)
+                                     (<:span :class "mandatory" "*"))
+                             (fmtnil (translate for)))))
           (<:td ,@body))))
 
-(defmacro label-input (for-name-id typeof)
-  `(<:p (<:label :class "label" :for ,for-name-id
-                 (format nil "~a: " (translate ,for-name-id)))
+(defmacro label-input (for typeof &optional (mandatory nil))
+  `(<:p (<:label :class "label" :for ,for
+                 (if ,mandatory
+                             (fmtnil (translate ,for)
+                                     (<:span :class "mandatory" "*"))
+                             (fmtnil (translate ,for))))
         (<:input :class "input" :type ,typeof
-                 :name ,for-name-id
-                 :id ,for-name-id)))
+                 :name ,for
+                 :id ,for)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun tr-td-input (name &key (class "") (value "") (typeof "text"))
+(defun tr-td-input (name &key (class "") (value "") (typeof "text") (mandatory nil) (tooltip nil))
   (tr-td-helper (<:input :type typeof
                          :name for
-                         :value value)))
+                         :value value)
+                (when tooltip
+                           (tooltip tooltip))))
 
-(defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7))
+(defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
   (tr-td-helper (<:textarea :cols cols
                             :rows rows
-                            value)))
+                            value)
+                (when tooltip
+                              (tooltip tooltip))))
 
 (defmacro tooltip (key &key (marker "#") (class "classic"))
   `(<:span :class "tooltip"

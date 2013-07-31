@@ -1,46 +1,7 @@
 (in-package :hawksbill.golbin.editorial)
 
-(defun random-digits (&optional (n 4))
-  (loop
-     for i from 1 to n
-     collecting (write-to-string (random 10)) into a
-     finally (return (apply #'concatenate 'string a))))
-
-(defun put-space-at-center (string)
-  (let ((len-by-2 (/ (length string) 2)))
-    (concatenate 'string
-                 (subseq string 0 len-by-2)
-                 " "
-                 (subseq string len-by-2))))
-
-(defun create-code-map ()
-  (loop for i from 1 to 50 collect (put-space-at-center (random-digits))))
-
-(defun create-code-map-image (code-map author-handle)
-  (with-image* (400 235)
-    (allocate-color 255 255 255)                 ; background: white
-    (with-default-color ((allocate-color 0 0 0)) ; font: black
-      (with-default-font (:medium)
-        (let ((row 0)
-              (col 0)
-              (col-pad 75)
-              (row-pad 20)
-              (i 1))
-          (dolist (code code-map)
-            ;; index (font: red)
-            (draw-string (+ 20 (* col-pad col)) (+ 20 (* row-pad row)) (string-pad (write-to-string i) #\Space 2)
-                         :color (allocate-color 255 0 0))
-            ;; code
-            (draw-string (+ 40 (* col-pad col)) (+ 20 (* row-pad row)) code)
-            (incf col)
-            (incf i)
-            (when (zerop (mod col 5))
-              (incf row)
-              (setf col 0))))))
-    (write-image-to-file (make-pathname :name author-handle
-                                        :type "jpg"
-                                        :defaults (merge-pathnames "../data/static/photos/" *home*))
-                         :if-exists :supersede)))
+(defun validate-register ()
+  nil)
 
 (defun v-why-register-get ()
   (template
@@ -127,38 +88,74 @@
    :title "Register"
    :js nil
    :body (<:div :class "wrapper"
+                :id "register"
                 (<:form :action (h-genurl 'r-register-post)
                         :method "POST"
                         (<:fieldset :class "inputs"
                                     (<:table
                                      (<:tbody
-                                      (tr-td-input "username")
-                                      (tr-td-input "password" :typeof "password")
+                                      (tr-td-input "email address"
+                                                   :mandatory t)
+                                      (<:tr (<:td (<:label :class "label" :for "username"
+                                                           (translate "username")
+                                                           (<:span :class "mandatory" "*")))
+                                            (<:td (<:input :class "input" :type "text"
+                                                           :name "username")
+                                                  (tooltip (translate "check-if-username-exists"))))
+                                      (tr-td-input "alias"
+                                                   :tooltip "alias")
+                                      (tr-td-input "password" :typeof "password" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "password2"
-                                                           "Retype password"))
+                                                           (translate "retype-password")
+                                                           (<:span :class "mandatory" "*")))
                                             (<:td (<:input :class "input" :type "password2"
-                                                           :name "password2"
-                                                           :id "password2")))
+                                                           :name "password2")))
+                                      (tr-td-input "name" :mandatory t)
+                                      (tr-td-input "age" :mandatory t)
+                                      (<:tr (<:td (<:label :class "label" :for "gender"
+                                                           (translate "gender")
+                                                           (<:span :class "mandatory" "*")))
+                                            (<:td (<:select :class "input"
+                                                            :name "gender"
+                                                            (<:option :value "m" (translate "male"))
+                                                            (<:option :value "f" (translate "female")))))
+                                      (tr-td-input "street" :mandatory t)
+                                      (tr-td-input "city" :mandatory t)
+                                      (tr-td-input "state" :mandatory t)
+                                      (tr-td-input "zipcode" :mandatory t)
+                                      (tr-td-input "phone number" :mandatory t)
                                       (<:tr (<:td (<:input :type "submit"
                                                            :name "submit"
                                                            :class "submit"
                                                            :value "Register"))))))))))
 
-(defun v-register-post ()
-  (let* ((name (post-parameter "name"))
+#|(defun v-register-post (&key (ajax nil))
+  (let* ((email-address (post-parameter "email-address"))
+         (username (post-parameter "username"))
          (password (post-parameter "password"))
-         (slug (slugify name))
-         (token (create-code-map)))
-    (if (add-author (make-instance 'author
-                                   :name name
-                                   :alias name
-                                   :username slug
-                                   :handle slug
-                                   :password (hash-password password)
-                                   :token token
-                                   :salt (generate-salt 32)
-                                   :status :a))
-        (progn
+         (password2 (post-parameter "password2"))
+         (name (post-parameter "name"))
+         (handle (slugify name))
+         (age (post-parameter "age"))
+         (gender (post-parameter "gender"))
+         (street (post-parameter "street"))
+         (city (post-parameter "city"))
+         (state (post-parameter "state"))
+         (zipcode (post-parameter "zipcode"))
+         (phone-number (post-parameter "phone-number"))
+         (err0r (validate-register)))
+    (if (not err0r)
+        (let ((token (create-code-map)))
+          (add-author (make-instance 'author
+                                     :name name
+                                     :alias name
+                                     :username slug
+                                     :handle slug
+                                     :password (hash-password password)
+                                     :token token
+                                     :salt (generate-salt 32)
+                                     :status :a))
           (create-code-map-image token slug)
-          (redirect (h-genurl 'r-login-get)))
-        (redirect (h-genurl 'r-register-get)))))
+          (submit-success ajax (h-genurl 'r-register-confirm)))
+        ;; validation failed
+        (submit-error ajax err0r (h-genurl 'r-article-new-get)))))|#

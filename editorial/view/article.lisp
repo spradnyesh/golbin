@@ -72,7 +72,7 @@
       (setf body (regex-replace img-tag body photo-div))))
   body)
 
-(defun validate (data)
+(defun validate-article (data)
   (let ((err0r nil)
         (non-golbin-images (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
                                                    (cdr (assoc :body data)))))
@@ -258,7 +258,7 @@
            (tags p-tags)
            (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
            (article-tags nil))
-      (let ((err0r (validate (list (cons :body body)))))
+      (let ((err0r (validate-article (list (cons :body body)))))
         (if (not err0r)
             (let ((body (add-photo-attribution (cleanup-ckeditor-text (remove-all-style body)))))
               (dolist (tag tags)
@@ -291,18 +291,11 @@
                                                            :photo photo
                                                            :photo-direction pd
                                                            :tags article-tags)))))
-              (if ajax
-                  (encode-json-to-string `((:status . "success")
-                                           (:data . ,(h-genurl 'r-article-edit-get :id (write-to-string id)))))
-                  (redirect (h-genurl 'r-article-edit-get :id (write-to-string id)))))
+              (submit-success (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed
-            (if ajax
-                (encode-json-to-string `((:status . "error")
-                                         (:errors . ,err0r)))
-                ;; no-ajax => we lose all changes here
-                (if id
-                    (redirect (h-genurl 'r-article-edit-get :id (write-to-string id)))
-                    (redirect (h-genurl 'r-article-new-get)))))))))
+            (submit-error (if id
+                              (h-genurl 'r-article-edit-get :id (write-to-string id))
+                              (h-genurl 'r-article-new-get)))))))
 
 (defun v-article-delete-post (id)
   (with-ed-login

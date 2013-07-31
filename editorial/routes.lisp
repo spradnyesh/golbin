@@ -40,6 +40,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-route r-ajax-register-new-post ("/ajax/register/" :method :post
+                                                        :content-type "text/json") (v-register-post :ajax t))
 (define-route r-ajax-article-new-post ("/ajax/article/" :method :post
                                                         :content-type "text/json") (v-article-post :ajax t))
 (define-route r-ajax-article-edit-post ("/ajax/article/:id/" :method :post

@@ -69,6 +69,8 @@
          ((".wrapper") (:emacs-position "relative"
                                   :margin "0 25px"
                                   :padding "0"))
+         ((".mandatory") (:color "#f66"
+                                 :padding "5px"))
          ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
          ((".tooltip") (:color "#61a1f0"
                                :cursor "help"

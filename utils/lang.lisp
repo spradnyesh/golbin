@@ -26,7 +26,8 @@
          (out-hash (gethash lang *translation-table*)))
     (if out-hash
         (gethash key out-hash)
-        (gethash key (gethash (get-config "site.lang") *translation-table*)))))
+        (gethash key (gethash (get-config "site.lang") ; everything falls back to site.lang
+                              *translation-table*)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; APIs
@@ -54,7 +55,7 @@
                        (let ((trans (get-translation key)))
                          (if trans
                              trans
-                             (concatenate 'string "[[" key "]]")))
+                             (string-capitalize (regex-replace-all "-" key " "))))
                        params)
            (sb-format:format-error ()
              (concatenate 'string "[[[" key "]]]"))))
