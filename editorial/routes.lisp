@@ -5,9 +5,12 @@
 (define-route r-login-post ("/login/" :method :post) (v-login-post))
 
 ;; register
-(define-route r-why-register ("/why-register/") (v-why-register-get))
 (define-route r-register-get ("/register/") (v-register-get))
 (define-route r-register-post ("/register/" :method :post) (v-register-post))
+(define-route r-why-register ("/register/why/") (v-why-register-get))
+(define-route r-register-hurdle ("/register/hurdle/:email") (v-register-hurdle email))
+(define-route r-register-do-confirm ("/register/do/:hash/") (v-register-do-confirm hash))
+(define-route r-register-done-confirm ("/register/done/:msg") (v-register-done-confirm msg))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; only for logged-in users

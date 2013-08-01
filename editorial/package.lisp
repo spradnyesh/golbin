@@ -31,7 +31,11 @@
            :r-robots
            :r-404
            :r-register-get
-           :r-register-post))
+           :r-register-post
+           :r-why-register
+           :r-register-hurdle
+           :r-register-do-confirm
+           :r-register-done-confirm))
 
 (in-package :hawksbill.golbin.editorial)
 

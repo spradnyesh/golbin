@@ -22,10 +22,10 @@
   (let ((cipher (get-cipher key))
         (msg (ascii-string-to-byte-array plaintext)))
     (encrypt-in-place cipher msg)
-    (octets-to-integer msg)))
+    (write-to-string (octets-to-integer msg) :base 36)))
 
 (defun do-decrypt (ciphertext-int &optional (key (get-config "cipher.key")))
   (let ((cipher (get-cipher key))
-        (msg (integer-to-octets ciphertext-int)))
+        (msg (integer-to-octets (parse-integer ciphertext-int :radix 36))))
     (decrypt-in-place cipher msg)
     (coerce (mapcar #'code-char (coerce msg 'list)) 'string)))

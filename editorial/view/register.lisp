@@ -1,8 +1,32 @@
 (in-package :hawksbill.golbin.editorial)
 
-(defun validate-register ()
-  nil)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-confirm-register-email-text (hash)
+  (declare (ignore hash)))
 
+(defun validate-register (password password2)
+  (let ((err0r nil))
+    (when (not (string-equal password password2))
+      (push (translate "passwords-no-match") err0r))
+    err0r))
+
+(defmacro why-register-tr (odd-even key class-1 class-2 value-1 value-2 desc tooltip)
+  `(<:tr :class (concatenate 'string
+                             "t-"
+                             (if (zerop ,odd-even)
+                                 "even"
+                                 "odd"))
+         (<:td (translate ,key))
+         (<:td :class ,class-1 (translate ,value-1))
+         (<:td :class ,class-2 (translate ,value-2))
+         (<:td (translate ,desc)
+               (tooltip ,tooltip))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; view functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-why-register-get ()
   (template
    :title "Why Register"
@@ -14,12 +38,7 @@
                                               (tooltip "google-ads"))
                                         (<:td (<:strong (translate "golbin")))
                                         (<:td (<:strong (translate "details")))))
-                         (<:tbody (<:tr :class "t-odd"
-                                        (<:td (translate "courier"))
-                                        (<:td :class "no" (translate "yes"))
-                                        (<:td :class "yes" (translate "no"))
-                                        (<:td (translate "courier-dtls")
-                                              (tooltip "courier-tltip")))
+                         (<:tbody (why-register-tr 1 "courier" "no" "yes" "yes" "no" "courier-dtls" "courier-tltip")
                                   (<:tr :class "t-even"
                                         (<:td (translate "ads-wait"))
                                         (<:td :class "no" (translate "yes"))
@@ -132,10 +151,11 @@
 (defun v-register-post (&key (ajax nil))
   (let* ((email-address (post-parameter "email-address"))
          (username (post-parameter "username"))
+         (alias (post-parameter "alias"))
          (password (post-parameter "password"))
          (password2 (post-parameter "password2"))
          (name (post-parameter "name"))
-         (handle (slugify name))
+         (handle (slugify username))
          (age (post-parameter "age"))
          (gender (post-parameter "gender"))
          (street (post-parameter "street"))
@@ -143,19 +163,48 @@
          (state (post-parameter "state"))
          (zipcode (post-parameter "zipcode"))
          (phone-number (post-parameter "phone-number"))
-         (err0r (validate-register)))
+         (err0r (validate-register password password2)))
     (if (not err0r)
-        (let ((token (create-code-map)))
+        (let* ((salt (generate-salt 32))
+               (token (create-code-map))
+               (hash (do-encrypt (concatenate 'string
+                                              email-address
+                                              "@"
+                                              salt))))
           (add-author (make-instance 'author
-                                     :name name
-                                     :alias name
-                                     :username slug
-                                     :handle slug
+                                     :email email-address
+                                     :username username
+                                     :alias alias
                                      :password (hash-password password)
+                                     :name name
+                                     :handle handle
+                                     :age age
+                                     :gender gender
+                                     :street street
+                                     :city city
+                                     :state state
+                                     :zipcode zipcode
+                                     :phone phone-number
                                      :token token
-                                     :salt (generate-salt 32)
+                                     :salt salt
                                      :status :a))
-          (create-code-map-image token slug)
-          (submit-success ajax (h-genurl 'r-register-confirm)))
+          (create-code-map-image token handle)
+          (sendmail email-address
+                    (get-config "site.email")
+                    :body (get-confirm-register-email-text hash))
+          (submit-success (h-genurl 'r-register-hurdle)))
         ;; validation failed
-        (submit-error ajax err0r (h-genurl 'r-article-new-get)))))
+        (submit-error (h-genurl 'r-register-get)))))
+
+#|(defun r-register-hurdle (email)
+  (template
+   :title "Register Hurdle"
+   :js nil
+   :body (<:div :class "wrapper"
+                (<:p (translate "confirmation-email-sent")))))|#
+
+#|(defun r-register-do-confirm (hash)
+  (multiple-value-bind (email salt)
+      (split-sequence "@" (do-decrypt hash))
+    (if (find-author-by-email-salt email salt)
+        )))|#

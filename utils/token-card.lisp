@@ -14,7 +14,9 @@
                  (subseq string len-by-2))))
 
 (defun create-code-map ()
-  (loop for i from 1 to 50 collect (put-space-at-center (random-digits))))
+  (loop
+     for i from 1 to 50
+     collect (put-space-at-center (random-digits))))
 
 (defun create-code-map-image (code-map file-name)
   (with-image* (400 235)

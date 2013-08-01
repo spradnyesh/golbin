@@ -95,7 +95,12 @@
            :hash-password
            :do-encrypt
            :do-decrypt
-           :generate-salt))
+           :generate-salt
+           ;; token-card
+           :create-code-map
+           :create-code-map-image
+           ;; email
+           :sendmail))
 
 (in-package :hawksbill.utils)
 
