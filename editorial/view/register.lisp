@@ -129,7 +129,7 @@
                                                            :class "submit"
                                                            :value "Register"))))))))))
 
-#|(defun v-register-post (&key (ajax nil))
+(defun v-register-post (&key (ajax nil))
   (let* ((email-address (post-parameter "email-address"))
          (username (post-parameter "username"))
          (password (post-parameter "password"))
@@ -158,4 +158,4 @@
           (create-code-map-image token slug)
           (submit-success ajax (h-genurl 'r-register-confirm)))
         ;; validation failed
-        (submit-error ajax err0r (h-genurl 'r-article-new-get)))))|#
+        (submit-error ajax err0r (h-genurl 'r-article-new-get)))))

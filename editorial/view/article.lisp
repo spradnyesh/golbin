@@ -233,8 +233,7 @@
                             (when article
                               (<:div :class "notes"
                                      (<:p "#1: You can only preview after the article has been saved successfully.")
-                                     (<:p "#2: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")
-                                     ))))))))
+                                     (<:p "#2: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
@@ -295,7 +294,7 @@
             ;; validation failed
             (submit-error (if id
                               (h-genurl 'r-article-edit-get :id (write-to-string id))
-                              (h-genurl 'r-article-new-get)))))))
+                              (h-genurl 'r-article-new-get))))))))
 
 (defun v-article-delete-post (id)
   (with-ed-login

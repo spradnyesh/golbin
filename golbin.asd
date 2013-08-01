@@ -63,7 +63,7 @@
                                                            (:file "author" :depends-on ("template"))
                                                            (:file "article" :depends-on ("template" "misc"))
                                                            (:file "login" :depends-on ("template"))
-                                                           (:file "register" :depends-on ("template"))
+                                                           (:file "register" :depends-on ("template" "misc"))
                                                            (:file "home" :depends-on ("template"))
                                                            (:file "photo" :depends-on ("author")))
                                               :depends-on ("package"))
