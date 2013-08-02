@@ -2137,6 +2137,14 @@
 ***** cl
       - *** cl-smtp (works) ***
       - cl-sendmail (sucks)
+**** DONE [ed] *whitelist* should contains route names instead of URLs
+     CLOSED: [2013-08-02 Fri 13:52]
+     :CLOCK:
+     CLOCK: [2013-08-02 Fri 12:50]--[2013-08-02 Fri 13:52] =>  1:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-02 Fri 13:52
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

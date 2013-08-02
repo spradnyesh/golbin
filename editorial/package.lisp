@@ -1,9 +1,9 @@
 (restas:define-module :hawksbill.golbin.editorial
-  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd)
+  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes)
   (:decorators #'hawksbill.utils:init-dimensions)
   (:import-from :hawksbill.golbin.frontend :v-article)
   (:shadow :% :prototype :size :acceptor :mime-type)
-  (:shadowing-import-from :restas :redirect :start)
+  (:shadowing-import-from :restas :redirect :start :route)
   (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
   (:export :r-home
            :r-photos
@@ -35,7 +35,8 @@
            :r-why-register
            :r-register-hurdle
            :r-register-do-confirm
-           :r-register-done-confirm))
+           :r-register-done-confirm
+           :r-ajax-register-post))
 
 (in-package :hawksbill.golbin.editorial)
 
@@ -64,5 +65,9 @@
    :<))
 (<:augment-with-doctype "html" "")
 
-(defparameter *whitelist* '("/register/" "/login/" "/why-register/")
+(defparameter *whitelist* '(r-login-get
+                            r-register-get
+                            r-why-register
+                            r-register-hurdle
+                            r-register-done-confirm)
   "list of routes that can be accessed in a non-logged-in state")

@@ -1,6 +1,20 @@
 (in-package :hawksbill.golbin.editorial)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar *a* nil)
+(defun in-whitelist? ()
+  (let ((vhost (first restas::*vhosts*)))
+    (multiple-value-bind (route bindings)
+        (match (slot-value vhost 'restas::mapper)
+          (request-uri*))
+      (declare (ignore bindings))
+      (setf *a* route)
+      #|(break)|#
+      (find (route-symbol (proxy-route-target route)) *whitelist*))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title js body)
@@ -10,14 +24,10 @@
                    :path "/"
                    :value lang)
        (redirect (script-name *request*)))
-     (cond ((and (not (find (request-uri *request*)
-                            *whitelist*
-                            :test #'string=))
+     (cond ((and (not (in-whitelist?))
                  (not (is-logged-in?)))
             (redirect (h-genurl 'r-login-get)))
-           ((and (find (request-uri *request*)
-                            *whitelist*
-                            :test #'string=)
+           ((and (in-whitelist?)
                  (is-logged-in?))
             (redirect (h-genurl 'r-home)))
            (t (<:html

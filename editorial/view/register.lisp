@@ -192,19 +192,30 @@
           (sendmail email-address
                     (get-config "site.email")
                     :body (get-confirm-register-email-text hash))
-          (submit-success (h-genurl 'r-register-hurdle)))
+          (submit-success (h-genurl 'r-register-hurdle
+                                    :email (do-encrypt email-address))))
         ;; validation failed
         (submit-error (h-genurl 'r-register-get)))))
 
-#|(defun r-register-hurdle (email)
+(defun v-register-hurdle (email)
+  (declare (ignore email))
   (template
    :title "Register Hurdle"
    :js nil
    :body (<:div :class "wrapper"
-                (<:p (translate "confirmation-email-sent")))))|#
+                (<:p (translate "confirmation-email-sent")))))
 
-#|(defun r-register-do-confirm (hash)
+(defun v-register-do-confirm (hash)
   (multiple-value-bind (email salt)
       (split-sequence "@" (do-decrypt hash))
-    (if (find-author-by-email-salt email salt)
-        )))|#
+    (declare (ignore email salt))
+    #|(if (find-author-by-email-salt email salt)
+        )|#))
+
+(defun v-register-done-confirm (msg)
+  (declare (ignore msg))
+  (template
+   :title "Register Hurdle"
+   :js nil
+   :body (<:div :class "wrapper"
+                (<:p (translate "confirmation-email-sent")))))
