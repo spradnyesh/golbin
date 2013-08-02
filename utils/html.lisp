@@ -8,6 +8,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro tooltip (key &key (marker "#") (class "classic"))
+  `(<:span :class "tooltip"
+           (<:sup ,marker)
+           (<:span :class ,class
+                   (translate ,key))))
+
 (defmacro tr-td-helper (&body body)
   `(let ((for (regex-replace-all " " name "-")))
     (<:tr (<:td :class class
@@ -37,20 +43,14 @@
                          :name for
                          :value value)
                 (when tooltip
-                           (tooltip tooltip))))
+                  (tooltip tooltip))))
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
   (tr-td-helper (<:textarea :cols cols
                             :rows rows
                             value)
                 (when tooltip
-                              (tooltip tooltip))))
-
-(defmacro tooltip (key &key (marker "#") (class "classic"))
-  `(<:span :class "tooltip"
-           (<:sup ,marker)
-           (<:span :class ,class
-                   (translate ,key))))
+                  (tooltip tooltip))))
 
 (defun remove-all-style (body)
   (regex-replace-all "style=\\\"(.*?)\\\"" body ""))
