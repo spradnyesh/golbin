@@ -63,7 +63,7 @@
     `(<:a :class (if ,selected
                      (concatenate 'string ,class " lang-selected")
                      ,class)
-          :href (concatenate 'string (request-uri *request*) "?lang=" ,lang)
+          :href (concatenate 'string (request-uri*) "?lang=" ,lang)
           ,lang-name)))
 
 (defun logo (logged-in)

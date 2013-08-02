@@ -126,7 +126,7 @@
                     :r-home))
          (cat-subcat (when (nav-cat? route)
                        (get-nav-cat-subcat-slugs (if (boundp '*request*)
-                                                     (request-uri *request*)
+                                                     (request-uri*)
                                                      "/"))))
          (subnav-cat-slug nil)
          (subnav-subcats nil))
