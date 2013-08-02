@@ -113,7 +113,9 @@
                         (<:fieldset :class "inputs"
                                     (<:table
                                      (<:tbody
-                                      (tr-td-input "email address"
+                                      (tr-td-input "name" :mandatory t)
+                                      (tr-td-input "age" :mandatory t)
+                                      (tr-td-input "email"
                                                    :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "username"
                                                            (translate "username")
@@ -129,8 +131,6 @@
                                                            (<:span :class "mandatory" "*")))
                                             (<:td (<:input :class "input" :type "password2"
                                                            :name "password2")))
-                                      (tr-td-input "name" :mandatory t)
-                                      (tr-td-input "age" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "gender"
                                                            (translate "gender")
                                                            (<:span :class "mandatory" "*")))
@@ -138,10 +138,6 @@
                                                             :name "gender"
                                                             (<:option :value "m" (translate "male"))
                                                             (<:option :value "f" (translate "female")))))
-                                      (tr-td-input "street" :mandatory t)
-                                      (tr-td-input "city" :mandatory t)
-                                      (tr-td-input "state" :mandatory t)
-                                      (tr-td-input "zipcode" :mandatory t)
                                       (tr-td-input "phone number" :mandatory t)
                                       (<:tr (<:td (<:input :type "submit"
                                                            :name "submit"
@@ -149,7 +145,7 @@
                                                            :value "Register"))))))))))
 
 (defun v-register-post (&key (ajax nil))
-  (let* ((email-address (post-parameter "email-address"))
+  (let* ((email (post-parameter "email"))
          (username (post-parameter "username"))
          (alias (post-parameter "alias"))
          (password (post-parameter "password"))
@@ -158,21 +154,17 @@
          (handle (slugify username))
          (age (post-parameter "age"))
          (gender (post-parameter "gender"))
-         (street (post-parameter "street"))
-         (city (post-parameter "city"))
-         (state (post-parameter "state"))
-         (zipcode (post-parameter "zipcode"))
          (phone-number (post-parameter "phone-number"))
          (err0r (validate-register password password2)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
                (token (create-code-map))
                (hash (do-encrypt (concatenate 'string
-                                              email-address
+                                              email
                                               "@"
                                               salt))))
           (add-author (make-instance 'author
-                                     :email email-address
+                                     :email email
                                      :username username
                                      :alias alias
                                      :password (hash-password password)
@@ -180,42 +172,48 @@
                                      :handle handle
                                      :age age
                                      :gender gender
-                                     :street street
-                                     :city city
-                                     :state state
-                                     :zipcode zipcode
                                      :phone phone-number
                                      :token token
                                      :salt salt
                                      :status :a))
           (create-code-map-image token handle)
-          (sendmail email-address
+          (sendmail email
                     (get-config "site.email")
                     :body (get-confirm-register-email-text hash))
           (submit-success (h-genurl 'r-register-hurdle
-                                    :email (do-encrypt email-address))))
+                                    :email (insecure-encrypt email))))
         ;; validation failed
         (submit-error (h-genurl 'r-register-get)))))
 
 (defun v-register-hurdle (email)
-  (declare (ignore email))
   (template
    :title "Register Hurdle"
    :js nil
    :body (<:div :class "wrapper"
-                (<:p (translate "confirmation-email-sent")))))
+                (<:p (translate "confirmation-email-sent"
+                                email)))))
 
 (defun v-register-do-confirm (hash)
   (multiple-value-bind (email salt)
       (split-sequence "@" (do-decrypt hash))
-    (declare (ignore email salt))
-    #|(if (find-author-by-email-salt email salt)
-        )|#))
+    (if (find-author-by-email-salt email salt)
+        (redirect (h-genurl 'r-register-done-confirm
+                            :status (insecure-encrypt "yes")))
+        (redirect (h-genurl 'r-register-done-confirm
+                            :status (insecure-encrypt "no"))))))
 
-(defun v-register-done-confirm (msg)
-  (declare (ignore msg))
-  (template
-   :title "Register Hurdle"
-   :js nil
-   :body (<:div :class "wrapper"
-                (<:p (translate "confirmation-email-sent")))))
+(defun v-register-done-confirm (status)
+  (let ((status (insecure-decrypt status)))
+    (template
+     :title "Register Hurdle"
+     :js nil
+     :body (<:div :class "wrapper"
+                  (if (string= "yes" status)
+                      (<:p (translate "registration-complete"
+                                      (translate "click-here"
+                                                 (<:a :href (h-genurl 'r-login-get)
+                                                      (translate "here")))))
+                      (<:p (translate "registration-failed"
+                                      (translate "click-here"
+                                                 (<:a :href (h-genurl 'r-register-get)
+                                                      (translate "here"))))))))))

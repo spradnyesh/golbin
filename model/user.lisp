@@ -114,6 +114,15 @@
 (defun get-current-author-id ()
   (id (get-author-by-handle (session-value :author))))
 
+(defun find-author-by-email-salt (email salt)
+  (find (make-instance 'author
+                       :email email
+                       :salt salt)
+        (get-all-authors)
+        :test #'(lambda (a b)
+                  (and (string-equal (email a) (email b))
+                       (string-equal (salt a) (salt b))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -122,6 +122,7 @@
            :get-random-author
            :get-current-author-id
            :verify-login
+           :find-author-by-email-salt
            ;; comment
            :comment
            :children

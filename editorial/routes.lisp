@@ -10,7 +10,7 @@
 (define-route r-why-register ("/register/why/") (v-why-register-get))
 (define-route r-register-hurdle ("/register/hurdle/:email") (v-register-hurdle email))
 (define-route r-register-do-confirm ("/register/do/:hash/") (v-register-do-confirm hash))
-(define-route r-register-done-confirm ("/register/done/:msg") (v-register-done-confirm msg))
+(define-route r-register-done-confirm ("/register/done/:status") (v-register-done-confirm status))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; only for logged-in users

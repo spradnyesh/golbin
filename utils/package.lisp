@@ -95,6 +95,8 @@
            :hash-password
            :do-encrypt
            :do-decrypt
+           :insecure-encrypt
+           :insecure-decrypt
            :generate-salt
            ;; token-card
            :create-code-map

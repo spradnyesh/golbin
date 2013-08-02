@@ -24,8 +24,14 @@
     (encrypt-in-place cipher msg)
     (write-to-string (octets-to-integer msg) :base 36)))
 
-(defun do-decrypt (ciphertext-int &optional (key (get-config "cipher.key")))
+(defun do-decrypt (ciphertext &optional (key (get-config "cipher.key")))
   (let ((cipher (get-cipher key))
-        (msg (integer-to-octets (parse-integer ciphertext-int :radix 36))))
+        (msg (integer-to-octets (parse-integer ciphertext :radix 36))))
     (decrypt-in-place cipher msg)
     (coerce (mapcar #'code-char (coerce msg 'list)) 'string)))
+
+(defun insecure-encrypt (plaintext)
+  (do-encrypt plaintext (get-config "site.cipher.key")))
+
+(defun insecure-decrypt (ciphertext)
+  (do-decrypt ciphertext (get-config "site.cipher.key")))
