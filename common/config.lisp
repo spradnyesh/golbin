@@ -8,7 +8,8 @@
                           ("url" "golb.in")
                           ("lang" "en-IN")
                           ("envt" "prod")
-                          ("email" "golb_in@yahoo.com")
+                          ("email" ("address" "golb_in@yahoo.com")
+                                   ("host" "127.0.0.1"))
                           ("cipher" ("key" "aCpLvFWfcfUxmz4h"))) ; used for non-secure encryption
                   ("db" ("type" "prevalence"))
                   ("hunchentoot" ("debug" ("errors" ("catch" t)

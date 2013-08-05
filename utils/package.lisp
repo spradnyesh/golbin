@@ -1,5 +1,5 @@
 (defpackage :hawksbill.utils
-  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8)
+  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8 :cl-smtp)
   (:shadow :mime-type :size)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)

@@ -10,9 +10,6 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
-*** [ed] sendmail should send html mail (template)
-    - w/o navigation
-    - with inline css and js
 *** TODO [ed] author registration page
     :CLOCK:
     CLOCK: [2013-08-02 Fri 13:54]--[2013-08-02 Fri 14:18] =>  0:24
@@ -2149,6 +2146,19 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-02 Fri 13:52
      :END:
+**** DONE [ed] sendmail should send html mail (template)
+     CLOSED: [2013-08-05 Mon 16:54]
+     :CLOCK:
+     CLOCK: [2013-08-05 Mon 16:50]--[2013-08-05 Mon 16:54] =>  0:04
+     CLOCK: [2013-08-05 Mon 16:21]--[2013-08-05 Mon 16:50] =>  0:29
+     CLOCK: [2013-08-05 Mon 15:57]--[2013-08-05 Mon 15:59] =>  0:02
+     CLOCK: [2013-08-05 Mon 15:48]--[2013-08-05 Mon 15:57] =>  0:09
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-05 Mon 16:54
+     :END:
+     - w/o navigation
+     - with inline css and js
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

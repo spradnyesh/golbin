@@ -17,7 +17,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro template (&key title js body)
+(defmacro template (&key title js body (email t))
   `(let ((lang (get-parameter "lang")))
      (when lang
        (set-cookie "ed-lang"
@@ -45,7 +45,7 @@
                                   ""
                                   "dvngr")
                        (<:div :class "yui3-g"
-                              (<:header :id "hd" (header (is-logged-in?)))
+                              (<:header :id "hd" (header (is-logged-in?) ,email))
                               (<:div :id "bd" ,body)
                               (<:footer :id "ft" (footer))))
                (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
@@ -58,10 +58,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun header (logged-in)
+(defun header (logged-in email)
   (<:div :class "wrapper"
          (logo logged-in)
-         (navigation logged-in)))
+         (when email
+           (navigation logged-in))))
 
 (defmacro lang-a (lang selected lang-name)
   (let* ((class "small")

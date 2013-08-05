@@ -4,7 +4,7 @@
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-confirm-register-email-text (hash)
-  (declare (ignore hash)))
+  (translate hash))
 
 (defun validate-register (password password2)
   (let ((err0r nil))
@@ -177,9 +177,10 @@
                                      :salt salt
                                      :status :a))
           (create-code-map-image token handle)
-          (sendmail email
-                    (get-config "site.email")
-                    :body (get-confirm-register-email-text hash))
+          (sendmail :to email
+                    :subject (translate "confirm-registration")
+                    :body (get-confirm-register-email-text hash)
+                    :package hawksbill.golbin.editorial)
           (submit-success (h-genurl 'r-register-hurdle
                                     :email (insecure-encrypt email))))
         ;; validation failed
