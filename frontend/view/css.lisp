@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CSS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-get-css ()
+(defun get-css ()
   (css
    (("body")
     (:background "#75DAFF url('/static/css/images/cloud-background.jpg') repeat-x"

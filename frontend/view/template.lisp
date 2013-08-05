@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro template (&key title js tags description body)
+(defmacro template (&key title js tags description body (email t))
   `(<:html (<:head
             (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
             (<:meta :name "application-name" :content "Golb.in")
@@ -45,23 +45,23 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 "))
-                (<:style (fe-get-css))))
+                (<:style (get-css))))
 
            (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
                               ""
                               "dvngr")
                    (<:div :class "yui3-g"
                           (<:div :id "hd"
-                                 (fe-header))
+                                 (header ,email))
                           (<:div :id "bd"
                                  (<:div :class "yui3-u-17-24"
                                         (<:div :id "col-1" :class "yui3-u-1-4"
-                                               (fe-ads-1))
+                                               (ads-1))
                                         (<:div :id "col-2" :class "yui3-u-3-4"
                                                (<:div :id "wrapper" ,body)))
                                  (<:div :id "col-3" :class "yui3-u-7-24"
-                                        (fe-ads-2)))
-                          (<:div :id "ft" (fe-footer))))
+                                        (ads-2)))
+                          (<:div :id "ft" (footer))))
            (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
            (if (string-equal (get-dimension-value "envt") "prod")
                (fmtnil
@@ -87,13 +87,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-logo ()
+(defun logo ()
   (<:h1 (<:a :href (h-genurl 'r-home)
            (<:img :id "logo"
                  :src ""
                  :alt (get-config "site.name")))))
 
-(defun fe-site-search ()
+(defun site-search ()
   #- (and)
   (<:form :method "GET"
          :action (h-genurl 'r-search)
@@ -105,10 +105,10 @@
          (<:input :type "submit"
                  :value "Submit")))
 
-(defun fe-trending ()
+(defun trending ()
   (<:div :id "trending-tags"))
 
-(defmacro fe-subnav (url)
+(defmacro subnav (url)
   `(when (and (not (string= "--" (name subcat)))
               (plusp (rank subcat)))
      (let ((subcat-slug (slug subcat)))
@@ -120,7 +120,7 @@
                         (name subcat)))))))
 
 ;; XXX: needs cache (key: uri)
-(defun fe-navigation ()
+(defun navigation ()
   (let* ((route (if (boundp '*request*)
                     (route-symbol *route*)
                     :r-home))
@@ -151,26 +151,27 @@
                                        (<:ul
                                         (join-loop subcat
                                                    (get-subcategorys (id cat))
-                                                   (fe-subnav (h-genurl 'r-cat-subcat
+                                                   (subnav (h-genurl 'r-cat-subcat
                                                                         :cat cat-slug
                                                                         :subcat subcat-slug)))))) into a
                     finally (return (apply #'concatenate 'string a))))
            (<:ul :id "subnav"
                  (join-loop subcat
                             subnav-subcats
-                            (fe-subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
+                            (subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
 
-(defun fe-header ()
+(defun header (email)
   (fmtnil (<:div :id "banner"
-                 (fmtnil (fe-logo)
+                 (fmtnil (logo)
                          #- (and)
-                         (fe-site-search)))
-          (fe-navigation)))
+                         (site-search)))
+          (when email
+            (navigation))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-footer ()
+(defun footer ()
   (fmtnil (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
           (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
           (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
@@ -179,7 +180,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun fe-ads-1 ()
+(defun ads-1 ()
   (when (string-equal (get-dimension-value "envt") "prod")
     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
            (<:code :type "text/javascript"
@@ -190,7 +191,7 @@
                  google_ad_height = 600;
                  //-->"))))
 
-(defun fe-ads-2 ()
+(defun ads-2 ()
   (when (string-equal (get-dimension-value "envt") "prod")
     (fmtnil
      (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
