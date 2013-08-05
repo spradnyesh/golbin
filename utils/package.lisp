@@ -75,6 +75,7 @@
            :string-to-utf-8
            :join-loop
            :get-random-string
+           :is-null-or-empty
            ;; pagination
            :paginate
            :pagination-markup

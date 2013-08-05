@@ -84,3 +84,9 @@
       "")
      " ")
     "-")))
+
+(defun is-null-or-empty (key)
+  (declare (inline))
+  (when (or (null key)
+            (string= key ""))
+    t))
