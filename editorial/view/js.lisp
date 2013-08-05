@@ -59,6 +59,8 @@
                                                  children
                                                "ul")
                                              0))
+                                      ((= node-name "H3")
+                                       ($ (@ target parent-node parent-node)))
                                       ((= node-name "A")
                                        ($ (@ target parent-node parent-node parent-node))))))
                      ($apply ($ node)
