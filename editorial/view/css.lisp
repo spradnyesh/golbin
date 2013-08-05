@@ -99,7 +99,7 @@
                                            :background-color "#8dba53"
                                            :color "#fff"))
          ;; hd
-         (("#hd") (:height "120px"))
+         (("#hd") (:height "140px"))
          (("#logo") (:float "left"))
          (("#logo .langs") (:margin "-7px 0 0 40px"))
          (("#logo .langs a") (:margin-right "7px"))
@@ -140,7 +140,7 @@
                                                          :border "0"
                                                          :cursor "pointer"
                                                          :color "#61a1f0"
-                                                         :padding-left "0"
+                                                         :padding "0"
                                                          :margin-left "-3px"))
          (("#articles .crud .delete:hover") (:color "#8dba53"))
          (("#articles .index-thumb") (:float "left"
