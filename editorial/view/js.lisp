@@ -80,8 +80,6 @@
                  ;; register submit
                  (register-submit (event)
                    ($prevent-default)
-                   ;; http://stackoverflow.com/a/1903820
-                   ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
                    ;; TODO: client side error handling
                    ($apply ($ "#register form") ajax-submit
                      ;; http://api.jquery.com/jQuery.ajax/

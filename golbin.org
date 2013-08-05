@@ -10,8 +10,10 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
+*** [bug][ed] ckeditor not showing up
 *** TODO [ed] author registration page
     :CLOCK:
+    CLOCK: [2013-08-05 Mon 18:53]--[2013-08-05 Mon 19:37] =>  0:44
     CLOCK: [2013-08-02 Fri 13:54]--[2013-08-02 Fri 14:18] =>  0:24
     CLOCK: [2013-08-01 Thu 19:00]--[2013-08-01 Thu 19:40] =>  0:40
     CLOCK: [2013-08-01 Thu 18:25]--[2013-08-01 Thu 18:59] =>  0:34

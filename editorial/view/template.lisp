@@ -11,7 +11,6 @@
           (request-uri*))
       (declare (ignore bindings))
       (setf *a* route)
-      #|(break)|#
       (find (route-symbol (proxy-route-target route)) *whitelist*))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

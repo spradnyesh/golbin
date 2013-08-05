@@ -6,11 +6,28 @@
 (defun get-confirm-register-email-text (hash)
   (translate hash))
 
-(defun validate-register (password password2)
+(defmacro cannot-be-empty (key string)
+  `(when (is-null-or-empty ,key)
+     (push (translate (format nil "~a-cannot-be-empty" ,string))
+           err0r)))
+
+(defun validate-register (email username password password2 name age gender phone-number)
   (let ((err0r nil))
+    (cannot-be-empty email "email")
+    (cannot-be-empty username "username")
+    (cannot-be-empty password "password")
+    (cannot-be-empty password2 "re-password")
+    (cannot-be-empty name "name")
+    (cannot-be-empty age "age")
+    (cannot-be-empty gender "gender")
+    (cannot-be-empty phone-number "phone-number")
+    (when (get-author-by-username username)
+      (push (translate "username-already-exists") err0r))
     (when (not (string-equal password password2))
       (push (translate "passwords-no-match") err0r))
-    err0r))
+    (when (not (or (string= gender "m")(string= gender "f")))
+      (push (translate "invalid-gender") err0r))
+    (reverse err0r)))
 
 (defmacro why-register-tr (odd-even key class-1 class-2 value-1 value-2 desc tooltip)
   `(<:tr :class (concatenate 'string
@@ -129,7 +146,7 @@
                                       (<:tr (<:td (<:label :class "label" :for "password2"
                                                            (translate "retype-password")
                                                            (<:span :class "mandatory" "*")))
-                                            (<:td (<:input :class "input" :type "password2"
+                                            (<:td (<:input :class "input" :type "password"
                                                            :name "password2")))
                                       (<:tr (<:td (<:label :class "label" :for "gender"
                                                            (translate "gender")
@@ -155,7 +172,14 @@
          (age (post-parameter "age"))
          (gender (post-parameter "gender"))
          (phone-number (post-parameter "phone-number"))
-         (err0r (validate-register password password2)))
+         (err0r (validate-register email
+                                   username
+                                   password
+                                   password2
+                                   name
+                                   age
+                                   gender
+                                   phone-number)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
                (token (create-code-map))
