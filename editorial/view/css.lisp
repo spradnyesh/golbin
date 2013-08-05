@@ -139,7 +139,9 @@
          (("#articles .crud .delete") (:background-color "#fff"
                                                          :border "0"
                                                          :cursor "pointer"
-                                                         :color "#61a1f0"))
+                                                         :color "#61a1f0"
+                                                         :padding-left "0"
+                                                         :margin-left "-3px"))
          (("#articles .crud .delete:hover") (:color "#8dba53"))
          (("#articles .index-thumb") (:float "left"
                                              :padding-right "10px"))
