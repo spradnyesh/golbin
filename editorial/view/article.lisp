@@ -99,7 +99,7 @@
                  (<:script :type "text/javascript"
                            :src "/static/ckeditor/adapters/jquery.js")
                  (<:script :type "text/javascript"
-                           (format nil "$('#body').ckeditor()")))
+                           (format nil "$('.ckeditor td textarea').ckeditor()")))
      #- (and)
      (if (string-equal "en-IN" (get-dimension-value "lang"))
          (progn (<:script :type "text/javascript"
@@ -169,7 +169,7 @@
                                                       :href ""
                                                       "Upload")
                                                  " a photo"))
-                                     (tr-td-text "body"
+                                     (tr-td-text "body" :class "ckeditor"
                                                  :value (when article (body article)))
                                      #- (and)
                                      (if (string-equal "en-IN" (get-dimension-value "lang"))

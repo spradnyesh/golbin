@@ -16,8 +16,8 @@
 
 (defmacro tr-td-helper (&body body)
   `(let ((for (regex-replace-all " " name "-")))
-    (<:tr (<:td :class class
-                (<:label :class "label"
+    (<:tr :class class
+          (<:td (<:label :class "label"
                          :for for
                          (if mandatory
                              (fmtnil (translate for)
