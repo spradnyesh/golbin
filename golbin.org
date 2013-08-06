@@ -2,7 +2,10 @@
 
 * tasks
 ** backlog
-*** [ed] translations for author registration
+*** TODO [ed] translations for author registration
+    :CLOCK:
+    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
+    :END:
 *** TODO [reports] author report dashboard
     :CLOCK:
     CLOCK: [2013-08-06 Tue 17:07]--[2013-08-06 Tue 17:11] =>  0:04
