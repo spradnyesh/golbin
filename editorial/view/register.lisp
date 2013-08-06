@@ -186,7 +186,8 @@
                (hash (insecure-encrypt (concatenate 'string
                                               email
                                               "@"
-                                              salt))))
+                                              salt)))
+               (filename (create-code-map-image token handle)))
           (add-author (make-instance 'author
                                      :email email
                                      :username username
@@ -200,11 +201,11 @@
                                      :token token
                                      :salt salt
                                      :status :a))
-          (create-code-map-image token handle)
-          (sendmail :to email
+          #|(sendmail :to email
                     :subject (translate "confirm-registration")
                     :body (get-confirm-register-email-text hash)
-                    :package hawksbill.golbin.editorial)
+                    :package hawksbill.golbin.editorial
+                    :attachments (list filename))|#
           (submit-success (h-genurl 'r-register-hurdle
                                     :email (insecure-encrypt email))))
         ;; validation failed
