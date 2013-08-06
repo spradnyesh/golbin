@@ -8,6 +8,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro timed-redirect ()
+  `(<:script :type "text/javascript"
+             (format nil "setTimeout('location.href=\"~a\"', 5000);" route)))
+
 (defmacro click-here (key route)
   `(translate ,key
               (<:a :href ,route

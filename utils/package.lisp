@@ -42,6 +42,7 @@
            :hu-init
            :tooltip
            :click-here
+           :timed-redirect
            ;; js
            :js-script
            :obfuscate-js

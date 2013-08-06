@@ -223,25 +223,29 @@
                                 (insecure-decrypt email))))))
 
 (defun v-register-do-confirm (hash)
-  (let* ((es (split-sequence "|" (insecure-decrypt (string-downcase hash)) :test #'string=))
+  (let* ((es (split-sequence "|" (insecure-decrypt hash) :test #'string=))
          (email (first es))
          (salt (second es)))
     (if (find-author-by-email-salt email salt)
         (redirect (h-genurl 'r-register-done-confirm
-                            :status (insecure-encrypt "yes")))
+                            :status "yes"))
         (redirect (h-genurl 'r-register-done-confirm
-                            :status (insecure-encrypt "no"))))))
+                            :status "no")))))
 
 (defun v-register-done-confirm (status)
-  (let ((status (insecure-decrypt status)))
+  (let ((status status))
     (template
      :title "Register Hurdle"
      :js nil
      :body (<:div :class "wrapper"
-                  (if (string= "yes" status)
-                      (<:p (click-here "registration-complete"
-                                       (<:a :href (h-genurl 'r-login-get)
-                                            (translate "here"))))
-                      (<:p (click-here "registration-failed"
-                                       (<:a :href (h-genurl 'r-register-get)
-                                            (translate "here")))))))))
+                  (if (string-equal "yes" status)
+                      (let ((route (h-genurl 'r-login-get
+                                             :lang (cookie-in "ed-lang"))))
+                        (fmtnil (timed-redirect)
+                                (<:p (click-here "registration-complete"
+                                                 route))))
+                      (let ((route (h-genurl 'r-register-get
+                                             :lang (cookie-in "ed-lang"))))
+                        (fmtnil (timed-redirect)
+                                (<:p (click-here "registration-failed"
+                                                 route)))))))))
