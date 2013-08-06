@@ -12,6 +12,7 @@
     :END:
 *** TODO [ed] author registration page
     :CLOCK:
+    CLOCK: [2013-08-06 Tue 14:36]--[2013-08-06 Tue 14:38] =>  0:02
     CLOCK: [2013-08-05 Mon 18:53]--[2013-08-05 Mon 19:37] =>  0:44
     CLOCK: [2013-08-02 Fri 13:54]--[2013-08-02 Fri 14:18] =>  0:24
     CLOCK: [2013-08-01 Thu 19:00]--[2013-08-01 Thu 19:40] =>  0:40
@@ -2168,6 +2169,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-06 Tue 14:35
+     :END:
+**** DONE [bug][ed] article add/edit ckeditor post not working
+     CLOSED: [2013-08-06 Tue 14:55]
+     :CLOCK:
+     CLOCK: [2013-08-06 Tue 14:54]--[2013-08-06 Tue 14:55] =>  0:01
+     CLOCK: [2013-08-06 Tue 14:39]--[2013-08-06 Tue 14:53] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-06 Tue 14:55
      :END:
 ** TODO refactor
    :CLOCK:

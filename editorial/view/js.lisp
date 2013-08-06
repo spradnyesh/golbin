@@ -178,7 +178,7 @@
                  (article-submit (event)
                    ($prevent-default)
                    ;; http://stackoverflow.com/a/1903820
-                   ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
+                   ($apply (@ -c-k-e-d-i-t-o-r instances editor1) update-element)
                    ;; TODO: client side error handling
                    ($apply ($ "#article form") ajax-submit
                      ;; http://api.jquery.com/jQuery.ajax/
