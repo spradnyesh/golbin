@@ -67,10 +67,19 @@
 
 
 (defun h-genurl (&rest args)
+  (declare (inline))
   (if (boundp '*request*)
       (apply #'genurl (if (parameter "d1m")
                           (append args (list :d1m (parameter "d1m")))
                           args))
+      "/"))
+
+(defun h-gen-full-url (&rest args)
+  (declare (inline))
+  (if (boundp '*request*)
+      (apply #'gen-full-url (if (parameter "d1m")
+                                (append args (list :d1m (parameter "d1m")))
+                                args))
       "/"))
 
 

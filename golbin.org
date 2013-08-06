@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [ed] translations for author registration
 *** TODO [reports] author report dashboard
     :CLOCK:
     CLOCK: [2013-08-06 Tue 17:07]--[2013-08-06 Tue 17:11] =>  0:04
@@ -2081,43 +2082,6 @@
        - change password
        - change token card
        - logout
-**** DONE email server
-     CLOSED: [2013-07-29 Mon 11:34]
-     :CLOCK:
-     CLOCK: [2013-07-29 Mon 11:07]--[2013-07-29 Mon 11:34] =>  0:27
-     CLOCK: [2013-07-28 Sun 01:00]--[2013-07-28 Sun 01:13] =>  0:13
-     CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
-     CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-07-29 Mon 11:34
-     :END:
-***** linode
-      - msmtp
-***** s$
-      - courier
-        - http://www.nuclex.org/blog/personal/83-installing-courier-on-gentoo
-        - https://wiki.gentoo.org/wiki/Complete_Virtual_Mail_Server
-        - (cl-smtp:send-email "127.0.0.1" "pradyus@golb.in" "pradyus@golb.in" "test2" "hello world2")
-***** rNd
-     - for
-       - golb.in email addresses
-       - get (and forward) every comment as an email
-     - clients (if needed only for sending emails, not receiving)
-       - ssmtp
-         - http://frenchtouch.pro/tutorial/configure-your-debian-server-to-send-mails/47
-     - servers
-       - mail-mta/exim
-         - http://www.exim.org/
-       - mail-mta/courier
-         - http://www.nuclex.org/blog/1-personal/83-installing-courier-on-gentoo
-         - http://www.courier-mta.org/install.html (bad, outdated)
-       - sendmail
-         - http://forums.gentoo.org/viewtopic.php?t=23703
-         - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
-***** cl
-      - *** cl-smtp (works) ***
-      - cl-sendmail (sucks)
 **** DONE [ed] *whitelist* should contains route names instead of URLs
      CLOSED: [2013-08-02 Fri 13:52]
      :CLOCK:
@@ -2168,9 +2132,81 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-06 Tue 15:36
      :END:
-**** DONE [ed] author registration page
-     CLOSED: [2013-08-06 Tue 16:01]
+**** DONE [fed][util] lisp style error handling
+     CLOSED: [2013-08-06 Tue 17:12]
      :CLOCK:
+     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
+     CLOCK: [2013-02-28 Thu 13:30]--[2013-02-28 Thu 14:45] =>  1:15
+     CLOCK: [2013-02-27 Wed 17:00]--[2013-02-27 Wed 18:35] =>  1:35
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-06 Tue 17:12
+     :END:
+     - [X] http://psg.com/~dlamkins/sl/chapter23.html
+     - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
+     - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
+**** DONE [ed] attachment (for token-card) in cl-smtp
+     CLOSED: [2013-08-06 Tue 17:34]
+     :CLOCK:
+     CLOCK: [2013-08-06 Tue 17:33]--[2013-08-06 Tue 17:34] =>  0:01
+     CLOCK: [2013-08-06 Tue 17:13]--[2013-08-06 Tue 17:26] =>  0:13
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-06 Tue 17:34
+     :END:
+     - http://ryepup.unwashedmeme.com/blog/2008/10/31/some-simple-cl-smtp-examples/
+**** DONE email server
+     CLOSED: [2013-08-06 Tue 19:30]
+     :CLOCK:
+     CLOCK: [2013-08-06 Tue 19:12]--[2013-08-06 Tue 19:30] =>  0:18
+     CLOCK: [2013-07-29 Mon 11:07]--[2013-07-29 Mon 11:34] =>  0:27
+     CLOCK: [2013-07-28 Sun 01:00]--[2013-07-28 Sun 01:13] =>  0:13
+     CLOCK: [2013-07-19 Fri 18:38]--[2013-07-20 Sat 02:50] =>  8:12
+     CLOCK: [2013-07-19 Fri 17:23]--[2013-07-19 Fri 17:37] =>  0:14
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-06 Tue 19:30
+     :END:
+***** linode
+      - msmtp
+***** s$
+      - sendmail
+        - http://forums.gentoo.org/viewtopic.php?t=23703
+        - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
+***** rNd
+     - for
+       - golb.in email addresses
+       - get (and forward) every comment as an email
+     - clients (if needed only for sending emails, not receiving)
+       - ssmtp
+         - http://frenchtouch.pro/tutorial/configure-your-debian-server-to-send-mails/47
+     - servers
+       - mail-mta/exim
+         - http://www.exim.org/
+       - mail-mta/courier
+         - http://www.nuclex.org/blog/1-personal/83-installing-courier-on-gentoo
+         - http://www.courier-mta.org/install.html (bad, outdated)
+       - sendmail
+         - http://forums.gentoo.org/viewtopic.php?t=23703
+         - http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#.Uej3jFSUm9k
+***** cl
+      - *** cl-smtp (works) ***
+      - cl-sendmail (sucks)
+**** DONE [bug] sendmail not working
+     CLOSED: [2013-08-06 Tue 19:30]
+     :CLOCK:
+     CLOCK: [2013-08-06 Tue 19:04]--[2013-08-06 Tue 19:12] =>  0:08
+     CLOCK: [2013-08-06 Tue 18:01]--[2013-08-06 Tue 18:12] =>  0:11
+     CLOCK: [2013-08-06 Tue 17:45]--[2013-08-06 Tue 17:51] =>  0:06
+     CLOCK: [2013-08-06 Tue 17:35]--[2013-08-06 Tue 17:40] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-06 Tue 19:30
+     :END:
+**** DONE [ed] author registration page
+     CLOSED: [2013-08-06 Tue 20:17]
+     :CLOCK:
+     CLOCK: [2013-08-06 Tue 19:31]--[2013-08-06 Tue 20:17] =>  0:46
      CLOCK: [2013-08-06 Tue 15:37]--[2013-08-06 Tue 15:55] =>  0:18
      CLOCK: [2013-08-06 Tue 14:55]--[2013-08-06 Tue 15:28] =>  0:33
      CLOCK: [2013-08-06 Tue 14:36]--[2013-08-06 Tue 14:38] =>  0:02
@@ -2195,31 +2231,8 @@
      CLOCK: [2013-07-09 Tue 16:16]--[2013-07-09 Tue 16:31] =>  0:15
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-08-06 Tue 16:01
+     :ARCHIVE_TIME: 2013-08-06 Tue 20:17
      :END:
-**** DONE [fed][util] lisp style error handling
-     CLOSED: [2013-08-06 Tue 17:12]
-     :CLOCK:
-     CLOCK: [2013-02-28 Thu 15:05]--[2013-02-28 Thu 15:18] =>  0:13
-     CLOCK: [2013-02-28 Thu 13:30]--[2013-02-28 Thu 14:45] =>  1:15
-     CLOCK: [2013-02-27 Wed 17:00]--[2013-02-27 Wed 18:35] =>  1:35
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-08-06 Tue 17:12
-     :END:
-     - [X] http://psg.com/~dlamkins/sl/chapter23.html
-     - [X] http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
-     - [X] http://video.google.com/videoplay?docid=448441135356213813&q=lisp
-**** DONE [ed] attachment (for token-card) in cl-smtp
-     CLOSED: [2013-08-06 Tue 17:34]
-     :CLOCK:
-     CLOCK: [2013-08-06 Tue 17:33]--[2013-08-06 Tue 17:34] =>  0:01
-     CLOCK: [2013-08-06 Tue 17:13]--[2013-08-06 Tue 17:26] =>  0:13
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-08-06 Tue 17:34
-     :END:
-     - http://ryepup.unwashedmeme.com/blog/2008/10/31/some-simple-cl-smtp-examples/
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

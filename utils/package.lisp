@@ -13,6 +13,7 @@
            :with-login
            :is-logged-in?
            :h-genurl
+           :h-gen-full-url
            :m-404
            ;; dimensions
            :*resources*
@@ -40,6 +41,7 @@
            :cleanup-ckeditor-text
            :hu-init
            :tooltip
+           :click-here
            ;; js
            :js-script
            :obfuscate-js

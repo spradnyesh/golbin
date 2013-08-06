@@ -3,8 +3,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-confirm-register-email-text (hash)
-  (translate hash))
+(defun get-confirm-register-email-text (hash lang)
+  (click-here "register-email"
+              (h-gen-full-url 'r-register-do-confirm
+                              :hash hash
+                              :lang lang)))
 
 (defmacro cannot-be-empty (key string)
   `(when (is-null-or-empty ,key)
@@ -185,7 +188,7 @@
                (token (create-code-map))
                (hash (insecure-encrypt (concatenate 'string
                                               email
-                                              "@"
+                                              "|"
                                               salt)))
                (filename (create-code-map-image token handle)))
           (add-author (make-instance 'author
@@ -201,11 +204,11 @@
                                      :token token
                                      :salt salt
                                      :status :a))
-          #|(sendmail :to email
+          (sendmail :to email
                     :subject (translate "confirm-registration")
-                    :body (get-confirm-register-email-text hash)
+                    :body (get-confirm-register-email-text hash (cookie-in "ed-lang"))
                     :package hawksbill.golbin.editorial
-                    :attachments (list filename))|#
+                    :attachments (list filename))
           (submit-success (h-genurl 'r-register-hurdle
                                     :email (insecure-encrypt email))))
         ;; validation failed
@@ -220,7 +223,7 @@
                                 (insecure-decrypt email))))))
 
 (defun v-register-do-confirm (hash)
-  (let* ((es (split-sequence "@" (insecure-decrypt hash) :test #'string=))
+  (let* ((es (split-sequence "|" (insecure-decrypt (string-downcase hash)) :test #'string=))
          (email (first es))
          (salt (second es)))
     (if (find-author-by-email-salt email salt)
@@ -236,11 +239,9 @@
      :js nil
      :body (<:div :class "wrapper"
                   (if (string= "yes" status)
-                      (<:p (translate "registration-complete"
-                                      (translate "click-here"
-                                                 (<:a :href (h-genurl 'r-login-get)
-                                                      (translate "here")))))
-                      (<:p (translate "registration-failed"
-                                      (translate "click-here"
-                                                 (<:a :href (h-genurl 'r-register-get)
-                                                      (translate "here"))))))))))
+                      (<:p (click-here "registration-complete"
+                                       (<:a :href (h-genurl 'r-login-get)
+                                            (translate "here"))))
+                      (<:p (click-here "registration-failed"
+                                       (<:a :href (h-genurl 'r-register-get)
+                                            (translate "here")))))))))

@@ -22,10 +22,12 @@
                    :value lang)
        (redirect (script-name *request*)))
      (cond ((and (not (in-whitelist?)) ; not in whitelist and not logged-in => goto login page
-                 (not (is-logged-in?)))
+                 (not (is-logged-in?))
+                 (not ,email))
             (redirect (h-genurl 'r-login-get)))
            ((and (in-whitelist?) ; in whitelist and logged in => goto home page
-                 (is-logged-in?))
+                 (is-logged-in?)
+                 (not ,email))
             (redirect (h-genurl 'r-home)))
            (t (<:html ; (in whitelist and logged out) OR (not in whitelist and logged in) => show page asked
                (<:head
@@ -45,12 +47,13 @@
                               (<:header :id "hd" (header (is-logged-in?) ,email))
                               (<:div :id "bd" ,body)
                               (<:footer :id "ft" (footer))))
-               (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-               (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
-               (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-               (<:script :type  "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
-               (<:script :type "text/javascript" (on-load))
-               ,js)))))
+               (unless ,email
+                 (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+                 (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
+                 (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
+                 (<:script :type  "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
+                 (<:script :type "text/javascript" (on-load))
+                 ,js))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header

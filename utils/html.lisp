@@ -8,6 +8,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro click-here (key route)
+  `(translate ,key
+              (<:a :href ,route
+                   (translate "here"))))
+
 (defmacro tooltip (key &key (marker "#") (class "classic"))
   `(<:span :class "tooltip"
            (<:sup ,marker)
