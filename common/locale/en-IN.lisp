@@ -32,3 +32,4 @@ retype-password=Retype Password
 check-if-username-exists=Check if username already exists
 article-preview=You can only preview after the article has been saved successfully.
 article-submit=On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.
+confirmation-email-sent=We have sent an email to your email address <strong>~a</strong>. Please click the confirmation link to complete your registration.

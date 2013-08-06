@@ -57,7 +57,6 @@
        (h-genurl 'r-login-get)
      ,@body))
 
-
 (with-compiletime-active-layers
     (standard-sexml xml-doctype)
   (support-dtd
@@ -69,5 +68,6 @@
                             r-register-get
                             r-why-register
                             r-register-hurdle
+                            r-register-do-confirm
                             r-register-done-confirm)
   "list of routes that can be accessed in a non-logged-in state")

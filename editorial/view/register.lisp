@@ -183,7 +183,7 @@
     (if (not err0r)
         (let* ((salt (generate-salt 32))
                (token (create-code-map))
-               (hash (do-encrypt (concatenate 'string
+               (hash (insecure-encrypt (concatenate 'string
                                               email
                                               "@"
                                               salt))))
@@ -216,11 +216,12 @@
    :js nil
    :body (<:div :class "wrapper"
                 (<:p (translate "confirmation-email-sent"
-                                email)))))
+                                (insecure-decrypt email))))))
 
 (defun v-register-do-confirm (hash)
-  (multiple-value-bind (email salt)
-      (split-sequence "@" (do-decrypt hash))
+  (let* ((es (split-sequence "@" (insecure-decrypt hash) :test #'string=))
+         (email (first es))
+         (salt (second es)))
     (if (find-author-by-email-salt email salt)
         (redirect (h-genurl 'r-register-done-confirm
                             :status (insecure-encrypt "yes")))

@@ -3,14 +3,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *a* nil)
 (defun in-whitelist? ()
   (let ((vhost (first restas::*vhosts*)))
     (multiple-value-bind (route bindings)
         (match (slot-value vhost 'restas::mapper)
           (request-uri*))
       (declare (ignore bindings))
-      (setf *a* route)
       (find (route-symbol (proxy-route-target route)) *whitelist*))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -23,13 +21,13 @@
                    :path "/"
                    :value lang)
        (redirect (script-name *request*)))
-     (cond ((and (not (in-whitelist?))
+     (cond ((and (not (in-whitelist?)) ; not in whitelist and not logged-in => goto login page
                  (not (is-logged-in?)))
             (redirect (h-genurl 'r-login-get)))
-           ((and (in-whitelist?)
+           ((and (in-whitelist?) ; in whitelist and logged in => goto home page
                  (is-logged-in?))
             (redirect (h-genurl 'r-home)))
-           (t (<:html
+           (t (<:html ; (in whitelist and logged out) OR (not in whitelist and logged in) => show page asked
                (<:head
                 (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
                 (<:meta :name "google" :content "notranslate")

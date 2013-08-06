@@ -9,7 +9,7 @@
 (define-route r-register-post ("/register/" :method :post) (v-register-post))
 (define-route r-why-register ("/register/why/") (v-why-register-get))
 (define-route r-register-hurdle ("/register/hurdle/:email") (v-register-hurdle email))
-(define-route r-register-do-confirm ("/register/do/:hash/") (v-register-do-confirm hash))
+(define-route r-register-do-confirm ("/register/do/:hash") (v-register-do-confirm hash))
 (define-route r-register-done-confirm ("/register/done/:status") (v-register-done-confirm status))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -87,5 +87,5 @@
 (defmethod ed-start-real :after ((instance ed-acceptor))
   (declare (ignore instance))
   (unless (get-config "cipher.key")
-    (format t "please enter cipher-key:~%")
+    (format t "please enter cipher-key: ")
     (add-config "cipher.key" (read-line) "master")))
