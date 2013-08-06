@@ -222,18 +222,14 @@
                                                                                              "~a-~a"
                                                                                              (slug article)
                                                                                              id))
-                                                        "Preview") (<:sup "#1"))))
+                                                        "Preview")
+                                                   (tooltip "article-preview"))))
                                      (<:tr (<:td)
                                            (<:td (<:input :class "submit"
                                                           :name "submit"
                                                           :type "submit"
                                                           :value "Submit")
-                                                 (when article (<:sup "#2")))
-                                           ))
-                            (when article
-                              (<:div :class "notes"
-                                     (<:p "#1: You can only preview after the article has been saved successfully.")
-                                     (<:p "#2: On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again.")))))))))
+                                                 (when article (tooltip "article-submit")))))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
