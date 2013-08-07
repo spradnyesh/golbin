@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [ed] mr/hi ckeditor should show devanagari font
 *** TODO [ed] translations for author registration
     :CLOCK:
     CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
