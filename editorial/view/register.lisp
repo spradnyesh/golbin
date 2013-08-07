@@ -239,13 +239,11 @@
      :js nil
      :body (<:div :class "wrapper"
                   (if (string-equal "yes" status)
-                      (let ((route (h-genurl 'r-login-get
-                                             :lang (cookie-in "ed-lang"))))
+                      (let ((route (h-genurl 'r-login-get)))
                         (fmtnil (timed-redirect)
                                 (<:p (click-here "registration-complete"
                                                  route))))
-                      (let ((route (h-genurl 'r-register-get
-                                             :lang (cookie-in "ed-lang"))))
+                      (let ((route (h-genurl 'r-register-get)))
                         (fmtnil (timed-redirect)
                                 (<:p (click-here "registration-failed"
                                                  route)))))))))
