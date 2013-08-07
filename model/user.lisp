@@ -105,6 +105,12 @@
         :key #'username
         :test #'string-equal))
 
+(defun get-author-by-email (email)
+  (find email
+        (get-all-authors)
+        :key #'email
+        :test #'string-equal))
+
 (defun get-random-author ()
   (let ((all-authors (get-all-authors)))
     (nth (random (length all-authors)) all-authors)))

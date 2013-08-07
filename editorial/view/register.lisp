@@ -26,6 +26,8 @@
     (cannot-be-empty phone-number "phone-number")
     (when (get-author-by-username username)
       (push (translate "username-already-exists") err0r))
+    (when (get-author-by-email email)
+      (push (translate "email-already-exists") err0r))
     (when (not (string-equal password password2))
       (push (translate "passwords-no-match") err0r))
     (when (not (or (string= gender "m")(string= gender "f")))
