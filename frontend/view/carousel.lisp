@@ -6,6 +6,7 @@
 ;; this should be in article.lisp, but putting it here to avoid circular dependency
 (defun get-slug-and-id (article)
   (fmtnil (slug article)
+          "-"
           (id article)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

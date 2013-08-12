@@ -58,6 +58,9 @@
     - [ ] load devanagari font for only hindi/marathi
 *** [ed] forgot password
 *** [utils] replace utils/locale w/ cl-locale
+*** [ed] move ?lang -> cookie(ed-lang) into template
+    - rename cookie name from ed-lang to lang
+    - because the cookie domain is unique
 *** [ed] mr/hi ckeditor should show devanagari font
 *** cron for saving db (comments/articles) on linode
 *** [ed] emails to golb_in
@@ -2275,6 +2278,14 @@
      - because once the cookie is set, then the GET param ain't necessary anymore
      - except /register/do/:hash, because it gets invoked by author from email (cookie ain't set)
        - so set cookie in /do/, so that /done/ can use it (if needed)
+**** DONE [bug][fe] get-slug-id does not return slug-id correctly
+     CLOSED: [2013-08-12 Mon 17:04]
+     :CLOCK:
+     CLOCK: [2013-08-12 Mon 17:03]--[2013-08-12 Mon 17:04] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-12 Mon 17:04
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
