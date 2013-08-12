@@ -37,11 +37,10 @@ Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/pa
     (defun traverse (root)
       (dolist (node root)
         (when (and (consp node)
-                   (string-equal
-                    tag
-                    (handler-case
-                        (string (first node))
-                      (simple-type-error () nil))))
+                   (string-equal tag
+                                 (handler-case
+                                     (string (first node))
+                                   (simple-type-error () nil))))
           (setf rslt
                 (append rslt
                         (list root)))
