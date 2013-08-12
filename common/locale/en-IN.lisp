@@ -37,3 +37,4 @@ seo=Search Engine Optimization
 we-do-it-for-you-tltip=So that you don't have to spend time doing it yourself
 written-by-with-tags=written by ~a on ~a at ~a in category ~a~a, using tags ~a
 written-by-without-tags=written by ~a on ~a at ~a in category ~a ~a
+add-a-comment=Add a comment

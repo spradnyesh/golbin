@@ -5,10 +5,11 @@
   (init-db-system "author" :authors dim-str)
   (init-db-system "category" :categorys dim-str)
   (init-db-system "photo" :photos dim-str)
-  (init-db-system "tag" :tags dim-str))
+  (init-db-system "tag" :tags dim-str)
+  (init-db-system "comment" :comments dim-str))
 
 (defun model-first-run ()
-  (dolist (l '("article" "author" "category" "photo" "tag"))
+  (dolist (l '("article" "author" "category" "photo" "tag" "comment"))
     (execute (get-db-handle) (make-transaction (intern (string-upcase (format nil "make-~as-root" l))))))
   (add-cat/subcat))
 

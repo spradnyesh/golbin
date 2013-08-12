@@ -105,11 +105,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; comment
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;; submit comments using ajax
+                 (ajax-comments ()
+                   ($apply ($ "#comments")
+                       attr
+                     "action"
+                     (+ "/ajax" ($apply ($ "#comments") attr "action"))))
+
                  (comment-reply (event)
                    ($prevent-default)
-                   ($apply ($ "#a-comments .parent") val ($apply ($ this) attr "id"))
-                   ($apply ($apply ($ this) parent) append ($apply ($ "#c-table") remove))
+                   ($apply ($ "#comments .parent") val ($apply ($ this) attr "id"))
+                   #|($apply ($apply ($ this) parent) append ($apply ($ "#c-table") remove))|#
                    ($apply ($ "#c-table") show))))
+
+          ;; some init functions
+          (ajax-comments)
 
           ;; define event handlers
           ((@ ($ "#prinav .cat h2 a" ) hover)
@@ -117,4 +127,4 @@
            (lambda (event) (restore-subcategory event)))
           ($event (".carousel p.prev a" click) (carousel-prev event))
           ($event (".carousel p.next a" click) (carousel-next event))
-          ($event ("#a-comments .c-reply a" click) (comment-reply event))))))
+          ($event ("#comments .c-reply a" click) (comment-reply event))))))

@@ -17,9 +17,7 @@
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
    (location :initarg :location :initform nil :accessor location)
-   (author :initarg :author :initform nil :accessor author)
-   (comments :initarg :comments :initform nil :accessor comments)
-   (comments-count :initarg :comments-count :initform 0 :accessor comments-count))
+   (author :initarg :author :initform nil :accessor author))
   (:documentation "Article Class"))
 
 (defclass article-storage ()
@@ -54,29 +52,6 @@
 
     article))
 
-(defun add-article-comment (article parent-id comment)
-  (when article
-    (if (or (null (comments article))
-            (string= "-1" parent-id))
-        ;; this is the 1st comment for the article
-        ;; or this is a top level comment
-        (let ((comments (comments article)))
-          (push comment comments)
-          (setf (comments article) comments))
-        ;; article already has comments
-        (let ((parent (comments article))
-              (p-id (split-sequence "." parent-id :test #'string=)))
-          (dotimes (i (1- (length p-id)))
-            (setf parent (children (nth (parse-integer (nth i p-id)) parent))))
-          ;; take special care since the last node can be nil
-          (setf parent (nth (parse-integer (first (last p-id))) parent))
-          (push comment (children parent))))
-    (incf (comments-count article))
-
-    ;; save article into storage
-    (execute (get-db-handle) (make-transaction 'update-article article))
-
-    article))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters

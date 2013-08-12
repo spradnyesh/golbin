@@ -26,9 +26,7 @@
                                                   (article-lead-photo-url (photo article) "index-thumb")))
                                          (<:h3 (<:a :class "a-title"
                                                     :href (h-genurl 'r-article
-                                                                    :slug-and-id (format nil "~A-~A"
-                                                                                         (slug article)
-                                                                                         (id article)))
+                                                                    :slug-and-id (get-slug-and-id article))
                                                     (title article)))
                                          (let ((timestamp (universal-to-timestamp (date article))))
                                            (<:span :class "a-cite small"

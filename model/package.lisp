@@ -1,3 +1,4 @@
+
 (defpackage :hawksbill.golbin.model
   (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json :split-sequence :cl-ppcre :trivial-utf-8 :flexi-streams)
   (:import-from :hunchentoot :session-value :url-encode)
@@ -68,6 +69,8 @@
            :author-storage
            :authors
            :token
+           :comment
+           :comment-storage
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
            ;; methods
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,7 +96,6 @@
            :get-articles-by-cat-subcat
            :get-related-articles
            :get-all-articles-by-author
-           :comments
            ;; category
            :add-category
            :get-category-by-slug
@@ -127,9 +129,10 @@
            :find-author-by-email-salt
            ;; comment
            :comment
-           :children
            :userurl
            :userip
            :useragent
+           :article-id
+           :add-comment
            ;; init
            :model-init))

@@ -1,7 +1,7 @@
 (in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; helper functions
+;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro article-preamble-markup-common (key &optional tags)
   `(translate ,key
@@ -25,6 +25,9 @@
                                (name (subcat article)))))
               ,tags))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun article-preamble-markup (article)
   (let ((timestamp (universal-to-timestamp (date article)))
         (tags (tags article)))
@@ -37,51 +40,6 @@
                   (<:span :class "a-tags"
                           (fe-article-tags-markup tags)))
                  (article-preamble-markup-common "written-by-without-tags"))))))
-
-(defun do-child-comments (parent-id children)
-  (<:ul :class "comment"
-       (let ((i 0)
-             (str-i nil))
-         (dolist (child children)
-           (setf str-i (write-to-string i))
-           (get-comment-markup child
-                               (if (string= "-1" parent-id)
-                                   str-i
-                                   (join-string-list-with-delim "." (list parent-id str-i))))
-           (incf i)))))
-
-(defun get-comment-markup (comment parent-id)
-  (<:li (<:p :class "c-name-says"
-           (<:span :class "c-name" (username comment))
-           (<:span :class "c-says" " says:")) ; XXX: translate
-       (<:p :class "c-date-at" (date comment))
-       (let ((url (userurl comment)))
-         (when url
-           (<:p :class "c-url" url)))
-       (<:p :class "c-body" (body comment))
-       (<:p :class "c-reply" (<:a :id parent-id :href "" "Reply")) ; XXX: translate
-       (let ((children (children comment)))
-         (when children
-           (do-child-comments parent-id children)))))
-
-(defun article-comments-markup (article slug-and-id)
-  (<:form :id "a-comments"
-         :method "POST"
-         :action (h-genurl 'r-article-comment :slug-and-id slug-and-id)
-         (let ((children (comments article)))
-           (when children
-             (do-child-comments "-1" children)))
-         (<:input :class "td-input parent"
-                 :type "hidden"
-                 :name "parent")
-         (<:p :class "c-reply"
-              (<:a :id "-1" :href "" "Add a comment") ; XXX: translate
-             (<:table :id "c-table"
-                     (tr-td-input "name *")
-                     (tr-td-input "email *")
-                     (tr-td-input "url")
-                     (tr-td-text "comment *")
-                     (tr-td-input "submit" :value "Submit" :typeof "submit"))))) ; XXX: translate
 
 (defun article-body-markup (article)
   (let ((photo (photo article)))
@@ -172,8 +130,7 @@
                 (<:div :id "article"
                       (article-preamble-markup article)
                       (article-body-markup article)
-                      #- (and)
-                      (article-comments-markup article slug-and-id))
+                      (article-comments-markup id))
                 (article-related-markup article)))
         (v-404))))
 
@@ -189,25 +146,3 @@
         (encode-json-to-string
          `((:status . "failure")
            (:data . nil))))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; comments
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-comment (slug-and-id)
-  (let ((parent (post-parameter "parent"))
-        (name (post-parameter "name"))
-        (email (post-parameter "email"))
-        (url (post-parameter "url"))
-        (body (post-parameter "comment")))
-    (add-article-comment (get-article-by-id (get-id-from-slug-and-id slug-and-id))
-                         parent
-                         (make-instance 'comment
-                                        :body body
-                                        :date (get-universal-time)
-                                        :status :a
-                                        :username name
-                                        :useremail email
-                                        :userurl url
-                                        :userip (remote-addr *request*)
-                                        :useragent (user-agent)))
-    (redirect (h-genurl 'r-article :slug-and-id slug-and-id))))
