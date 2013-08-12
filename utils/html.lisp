@@ -56,6 +56,7 @@
 
 (defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
   (tr-td-helper (<:textarea :cols cols
+                            :name for
                             :rows rows
                             value)
                 (when tooltip
