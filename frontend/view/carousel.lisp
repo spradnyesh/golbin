@@ -1,6 +1,14 @@
 (in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; misc functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; this should be in article.lisp, but putting it here to avoid circular dependency
+(defun get-slug-and-id (article)
+  (fmtnil (slug article)
+          (id article)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro article-carousel-container (title a-href list url)
@@ -34,13 +42,11 @@
           (join-loop article
                      article-list
                      (<:li
-                         (if (photo article)
-                             (<:div :class "related-thumb"
-                                    (article-lead-photo-url (photo article) "related-thumb"))
-                             (<:div :class "related-thumb no-photo"))
-                         (<:a :class "a-title"
-                              :href (h-genurl 'r-article
-                                              :slug-and-id (format nil "~A-~A"
-                                                                   (slug article)
-                                                                   (id article)))
-                              (title article)))))))
+                      (if (photo article)
+                          (<:div :class "related-thumb"
+                                 (article-lead-photo-url (photo article) "related-thumb"))
+                          (<:div :class "related-thumb no-photo"))
+                      (<:a :class "a-title"
+                           :href (h-genurl 'r-article
+                                           :slug-and-id (get-slug-and-id article))
+                           (title article)))))))
