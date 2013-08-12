@@ -38,6 +38,7 @@
                                            ("range" 10) ; number of entries in pagination markup
                                            ("related" 4)
                                            ("editorial" ("lead-photo-select-pane" 16)))
+                                ("comments" 20)
                                 ("home" ("carousel" ("tabs" 10))))
                   ("parenscript" ("obfuscation" nil)))
         ("envt:dev" ("hunchentoot" ("debug" ("errors" ("catch" nil)

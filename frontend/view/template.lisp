@@ -31,7 +31,7 @@
             (if (string-equal (get-dimension-value "envt") "prod")
                 (fmtnil
                   (<:link :rel "stylesheet" :type "text/css"
-                          :href "/static/css/fe-15-min.css")
+                          :href "/static/css/fe-16-min.css")
                   ;; google analytics and adsense
                   (<:script :type "text/javascript"
                             "
@@ -68,7 +68,7 @@
                  (<:script :type "text/javascript"
                            "
     var switchTo5x=true;
-    $.getScript('/static/js/fe-2-min.js');
+    $.getScript('/static/js/fe-3-min.js');
     $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
         $('div.lazyload_ad').lazyLoadAd();
     });

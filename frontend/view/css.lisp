@@ -26,9 +26,6 @@
    (("p")
     (:margin "15px 0"))
 
-   (("li")
-    (:margin-bottom "15px"))
-
    (("a:link, a:active, a:visited, a:hover")
     (:border "none"
              :color "#21629C"
@@ -36,21 +33,6 @@
 
    (("a:hover")
     (:color "#000"))
-
-   (("input::-moz-focus-inner")
-    (:border "0"))
-
-   (("textarea")
-    (:border "1px solid #F0F0F0"
-             :font-family "'Ubuntu', Arial,sans-serif"
-             :font-size "13px"
-             :width "80%"))
-
-   (("input")
-    (:width "150px"))
-
-   (("input:focus")
-    (:outline "none"))
 
    (("acronym, abbr")
     (:cursor "help"))
@@ -154,24 +136,21 @@
     (:float "left"
             :padding-right "25px"))
 
-   (("#articles ul li")
+   ;; index
+   (("#articles li")
     (:border-bottom "1px dotted"
-                    :border-color "#CCC"))
-
-   (("#articles ul li p")
-    (:margin "0 0 10px 0"))
+                    :border-color "#CCC"
+                    :margin-bottom "15px"))
 
    (("#articles .index-thumb")
     (:float "left"
             :padding-right "10px"))
 
    (("#articles .a-summary")
-    (:color "#4a4a4a"))
+    (:color "#4a4a4a"
+            :margin "0 0 10px 0"))
 
    ;; article
-   (("#article")
-    (:margin-bottom "50px"))
-
    (("#article img")
     (:display "block"
               :padding-bottom "5px"))
@@ -200,6 +179,9 @@
     (:text-align "justify"
                  :padding-top "10px"))
 
+   (("#a-body li")
+    (:margin-bottom "15px"))
+
    (("#a-body div.a-photo")
     (:float "right"))
 
@@ -218,24 +200,39 @@
    (("#a-body img")
     (:padding "10px"))
 
-   (("#a-comments")
-    (:margin-top "25px"))
+   (("#related")
+    (:border-top "1px dotted #ccc"
+                 :margin-top "25px"
+                 :padding-top "10px"))
 
-   (("#a-comments .comment")
-    (:padding-left "10px"))
+   ;; comments
+   (("#comments")
+    (:margin-top "35px"
+                 :padding-top "10px"
+                 :border-top "1px dotted #ccc"))
 
-   (("#c-table")
-    (:display "none"))
+   (("#comments ul")
+    (:margin-top "20px"))
 
-   (("#static h3")
-    (:margin "20px 0"))
+   (("#comments li")
+    (:border-bottom "1px dotted"
+                    :border-color "#CCC"
+                    :margin-bottom "15px"))
 
-   (("#static h4")
-    (:margin "10px 0;"))
+   (("#comments td")
+    (:padding "5px 20px 5px 0"))
 
-   (("#static li")
-    (:background "url('/static/css/images/icon_bullet.png') 5px 2px no-repeat"
-                 :padding-left "25px"))
+   (("#comments input, #comments textarea")
+    (:border "3px solid #ddd"
+             :padding "7px 20px"
+             :line-height "15px"
+             :border-radius "8px"))
+
+
+   ((".c-body")
+    (:padding "10px"
+              :background-color "#f0f0f0"
+              :margin-top "-10px"))
 
    ;; carousel
    ((".carousel")

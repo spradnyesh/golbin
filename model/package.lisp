@@ -85,6 +85,8 @@
            :get-photo-by-id
            :get-all-tags
            :get-tag-by-id
+           :get-all-comments
+           :get-comment-by-id
            ;; article
            :add-article
            :add-article-comment
@@ -128,11 +130,12 @@
            :verify-login
            :find-author-by-email-salt
            ;; comment
-           :comment
            :userurl
+           :useremail
            :userip
            :useragent
            :article-id
            :add-comment
+           :get-article-comments
            ;; init
            :model-init))

@@ -1,53 +1,44 @@
 (in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; helper functions
+;; helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun do-child-comments (parent-id children)
-  (<:ul :class "comment"
-       (let ((i 0)
-             (str-i nil))
-         (join-loop child children
-                    (progn
-                      (setf str-i (write-to-string i))
-                      (get-comment-markup child
-                                          (if (string= "-1" parent-id)
-                                              str-i
-                                              (join-string-list-with-delim "." (list parent-id str-i))))
-                      (incf i))))))
+(defun get-comment-markup (comment)
+  (let ((url (userurl comment))
+        (email (useremail comment))
+        (datetime (universal-to-timestamp (date comment))))
+    (<:li :class "comment"
+          (translate "user-comment-prelude"
+                     (if (nil-or-empty url)
+                         (if (nil-or-empty email)
+                             (username comment)
+                             (<:a :href (concatenate 'string "mailto:" email)
+                                  (username comment)))
+                         (<:a :href url
+                              (username comment)))
+                     (prettyprint-date datetime)
+                     (prettyprint-time datetime))
+          (<:p :class "c-body" (body comment)))))
 
-(defun get-comment-markup (comment parent-id)
-  (<:li (<:p :class "c-name-says"
-           (<:span :class "c-name" (username comment))
-           (<:span :class "c-says" " says:")) ; XXX: translate
-       (<:p :class "c-date-at" (date comment))
-       (let ((url (userurl comment)))
-         (when url
-           (<:p :class "c-url" url)))
-       (<:p :class "c-body" (body comment))
-       (<:p :class "c-reply" (<:a :id parent-id :href "" "Reply")) ; XXX: translate
-       (let ((children (children comment)))
-         (when children
-           (do-child-comments parent-id children)))))
-
-(defun article-comments-markup (article-id)
-  (<:form :id "comments"
-         :method "POST"
-         :action (h-genurl 'r-article-comment :id article-id)
-         (<:input :class "td-input parent"
-                 :type "hidden"
-                 :name "parent")
-         (<:p :class "c-reply"
-              (<:a :id "-1" :href "" (translate "add-a-comment"))
-              (<:table :id "c-table"
-                       (tr-td-input "name")
-                       (tr-td-input "email")
-                       (tr-td-input "url")
-                       (tr-td-text "comment")
-                       (tr-td-input "submit" :value (translate "submit") :typeof "submit")))))
+(defun article-comments-markup (article-id start)
+  (<:div :id "comments"
+         (<:h3 "Comments")
+         (<:form :method "POST"
+                 :action (h-genurl 'r-article-comment :id article-id)
+                 (<:table
+                  (tr-td-input "name")
+                  (tr-td-input "email")
+                  (tr-td-input "url")
+                  (tr-td-text "comment")
+                  (tr-td-input "submit" :value (translate "submit") :typeof "submit"))
+                 (<:ul (join-loop comment
+                                  (paginate (get-article-comments article-id)
+                                            start
+                                            (get-config "pagination.comments"))
+                                  (get-comment-markup comment))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; view functions
+;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-comment (article-id)
   (let ((name (post-parameter "name"))

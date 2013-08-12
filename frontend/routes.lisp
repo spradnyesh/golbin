@@ -20,7 +20,9 @@
 (define-route r-author-page ("/author/:author/:page" :parse-vars (list :page #'parse-integer)) (v-author author page))
 ;; article
 (define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
-(define-route r-article-comment ("/comment/:id/" :method :post) (v-comment id))
+(define-route r-article-comment ("/comment/:id/" :method :post
+                                                 :parse-vars (list :id #'parse-integer))
+  (v-comment id))
 
 ;; search
 (define-route r-search ("/search/") (v-search))
@@ -41,7 +43,9 @@
                                              :parse-vars (list :page #'parse-integer)
                                              :content-type "text/json")
   (v-ajax-home-category-articles cat-slug page))
-(define-route r-ajax-article-comment ("/ajax/comment/:id/" :method :post) (v-comment id))
+(define-route r-ajax-article-comment ("/ajax/comment/:id/" :method :post
+                                                           :parse-vars (list :id #'parse-integer))
+  (v-comment id))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 404, define this as the last route

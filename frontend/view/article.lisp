@@ -114,7 +114,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-article (slug-and-id &optional (editorial nil))
   (let* ((id (get-id-from-slug-and-id slug-and-id))
-         (article (get-article-by-id id)))
+         (article (get-article-by-id id))
+         (comment-pagination (get-parameter "c-start"))
+         (comment-pagination (if comment-pagination
+                                 (handler-case
+                                     (parse-integer comment-pagination)
+                                   (sb-int:simple-parse-error () 0))
+                                 0)))
     (if (and article
              (or editorial
                  (eql :a (status article))))
@@ -129,9 +135,9 @@
          :body (<:div
                 (<:div :id "article"
                       (article-preamble-markup article)
-                      (article-body-markup article)
-                      (article-comments-markup id))
-                (article-related-markup article)))
+                      (article-body-markup article))
+                (article-related-markup article)
+                (article-comments-markup id comment-pagination)))
         (v-404))))
 
 (defun v-ajax-article-related (id typeof page)

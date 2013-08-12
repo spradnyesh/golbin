@@ -22,6 +22,15 @@
   (:documentation "Object of this class will act as the storage for Comments"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; getters
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-article-comments (article-id)
+  (get-object-by #'(lambda (comment)
+                     (= (article-id comment)
+                        article-id))
+                 (get-all-comments)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-comment (comment)
