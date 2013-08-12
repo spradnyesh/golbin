@@ -30,9 +30,10 @@
      (external-format-encoding-error () nil)))
 
 (defmacro join-loop (var list body)
-  `(loop for ,var in ,list
-      collecting ,body into a
-      finally (return (apply #'concatenate 'string a))))
+  (let ((a (gensym)))
+    `(loop for ,var in ,list
+        collecting ,body into ,a
+        finally (return (apply #'concatenate 'string ,a)))))
 
 ;; http://stackoverflow.com/questions/211717/common-lisp-programmatic-keyword
 (defun make-keyword (name)
