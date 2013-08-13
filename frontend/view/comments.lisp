@@ -72,8 +72,6 @@
         (response (post-parameter "response"))
         (userip (remote-addr*)))
     (let ((err0r (validate-comment name email url challenge response userip)))
-      (setf *a* err0r)
-      (break)
       (if (not err0r)
           (progn
             (add-comment (make-instance 'comment

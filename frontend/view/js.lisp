@@ -14,6 +14,15 @@
           ;; define functions
           (flet (
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; utility functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 (ajax-fail (jq-x-h-r text-status error-thrown)
+                   ;; ajax call itself failed
+                   (if (string-equal text-status "parseerror")
+                       (alert "Received an invalid response from server. Please try again after some time.") ; TODO: translate
+                       (alert "Network error"))
+                   false)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; navigation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (update-subcategory (event)
@@ -107,19 +116,32 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;; submit comments using ajax
                  (ajaxify-comments ()
-                   ($apply ($ "#comments")
+                   ($apply ($ "#comments form")
                        attr
                      "action"
-                     (+ "/ajax" ($apply ($ "#comments") attr "action"))))
+                     (+ "/ajax" ($apply ($ "#comments form") attr "action"))))
 
                  (comment-submit (event)
-                   ($apply ($ "#challenge td input")
-                       val
-                     ($apply -recaptcha get_challenge))
-                   ($apply ($ "#response td input")
-                       val
-                     ($apply -recaptcha get_response))
-                   t)))
+                   ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
+                   ($apply ($ "#response td input") val ($apply -recaptcha get_response))
+                   ($apply ($ "#comments form")
+                       ajax-submit
+                     (create :data-type "json"
+                             :cache false
+                             :async false
+                             :success (lambda (data text-status jq-x-h-r)
+                                        (comment-submit-done data text-status jq-x-h-r))
+                             :error (lambda (jq-x-h-r text-status error-thrown)
+                                      (ajax-fail jq-x-h-r text-status error-thrown)))))
+
+                 (comment-submit-done (data text-status jq-x-h-r)
+                   (if (= data.status "success")
+                       (setf window.location data.data) ; this is the redirect after POST
+                       (comment-fail data)))
+
+                 (comment-fail (data)
+                   ;; TODO: translate
+                   (alert "There are errors in the submitted comment. Please correct them and submit again."))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; event handlers

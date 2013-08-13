@@ -2,12 +2,11 @@
 
 * tasks
 ** backlog
-*** [fe] validate comments
-    - check for empty name and (email or url) and body
-    - both js and server side
 *** [ed] disallow access to non-js browsers
-*** TODO ajaxify comments
+*** TODO [fe] ajaxify comments
     :CLOCK:
+    CLOCK: [2013-08-13 Tue 19:50]--[2013-08-13 Tue 20:14] =>  0:24
+    CLOCK: [2013-08-13 Tue 19:27]--[2013-08-13 Tue 19:47] =>  0:20
     CLOCK: [2013-08-13 Tue 18:46]--[2013-08-13 Tue 19:21] =>  0:35
     CLOCK: [2013-08-13 Tue 17:37]--[2013-08-13 Tue 18:03] =>  0:26
     :END:
@@ -2337,6 +2336,13 @@
        - https://developers.google.com/recaptcha/docs/display
        - https://developers.google.com/recaptcha/docs/verify
      - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
+**** DONE [fe] validate comments
+     CLOSED: [2013-08-13 Tue 20:14]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-13 Tue 20:14
+     :END:
+     - check for empty name and (email or url) and body
+     - both js and server side
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
