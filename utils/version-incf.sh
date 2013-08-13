@@ -8,18 +8,18 @@ cd ..
 ###################################################
 rslt=`find . -name template.lisp | xargs grep "$1-.*-min.$2"`
 file=`echo $rslt | cut -d ':' -f 1`
-oldVersion=`echo $rslt | cut -d ':' -f 2 | cut -d \- -f 2`
-newVersion=`expr $oldVersion + 1`
-oldString=`echo $1-$oldVersion-min.$2`
+currVersion=`echo $rslt | cut -d \- -f 2`
+oldVersion=`expr $currVersion - 1`
+newVersion=`expr $currVersion + 1`
+currString=`echo $1-$currVersion-min.$2`
 newString=`echo $1-$newVersion-min.$2`
-#echo [$file] [$oldString] [$oldVersion] [$newVersion] [$newString]
-sed -e "s/${oldString}/${newString}/" $file > $file.tmp && mv $file.tmp $file
+#echo [$file] [$currString] [$oldVersion] [$currVersion] [$newVersion] [$newString]
+sed -e "s/${currString}/${newString}/" $file > $file.tmp && mv $file.tmp $file
 
 ###################################################
 ## git mv
 ###################################################
-file=`\find . -name "$1-$oldVersion-min.$2"`
+file=`\find . -name "$1-$currVersion-min.$2"`
 dir=`dirname $file`
 cd $dir
-#git mv "$1-$oldVersion.$2" "$1-$newVersion.$2"
 git mv "$1-$oldVersion-min.$2" "$1-$newVersion-min.$2"
