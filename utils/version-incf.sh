@@ -8,7 +8,7 @@ cd ..
 ###################################################
 rslt=`find . -name template.lisp | xargs grep "$1-.*-min.$2"`
 file=`echo $rslt | cut -d ':' -f 1`
-oldVersion=`echo $rslt | cut -d ':' -f 3 | cut -d \" -f 2 | cut -d - -f 2`
+oldVersion=`echo $rslt | cut -d ':' -f 2 | cut -d \- -f 2`
 newVersion=`expr $oldVersion + 1`
 oldString=`echo $1-$oldVersion-min.$2`
 newString=`echo $1-$newVersion-min.$2`

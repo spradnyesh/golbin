@@ -10,8 +10,6 @@
       - https://developers.google.com/recaptcha/docs/display
       - https://developers.google.com/recaptcha/docs/verify
     - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
-*** [bug][utils] version-incf.sh not working for "fe js"
-    - works fine for "fe css"???
 *** [fe][performance] improve load time
     - [ ] combine css/js
     - [ ] replace ubuntu w/ standard form
@@ -2306,6 +2304,15 @@
        - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
      - spam
        - http://akismet.com/
+**** DONE [bug][utils] version-incf.sh not working for "fe js"
+     CLOSED: [2013-08-13 Tue 13:34]
+     :CLOCK:
+     CLOCK: [2013-08-13 Tue 13:25]--[2013-08-13 Tue 13:34] =>  0:09
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-13 Tue 13:34
+     :END:
+     - works fine for "fe css"???
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
