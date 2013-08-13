@@ -220,17 +220,18 @@
                     :margin-bottom "15px"))
 
    (("#comments td")
-    (:padding "5px 20px 5px 0"))
+    (:padding "5px 5px 5px 0"))
 
    (("#comments input, #comments textarea")
     (:border "3px solid #ddd"
-             :padding "7px 20px"
+             :padding "7px"
              :line-height "15px"
-             :border-radius "8px"))
+             :border-radius "8px"
+             :width "225px"))
 
 
    (("#comments h3")
-    (:padding "5px 0"))
+    (:padding "5px 0 15px"))
 
    ((".c-body")
     (:padding "10px"

@@ -29,12 +29,10 @@
                     :type "text/css"
                     :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
             (if (string-equal (get-dimension-value "envt") "prod")
-                (fmtnil
-                  (<:link :rel "stylesheet" :type "text/css"
-                          :href "/static/css/fe-17-min.css")
-                  ;; google analytics and adsense
-                  (<:script :type "text/javascript"
-                            "
+                (fmtnil (<:link :rel "stylesheet" :type "text/css"
+                                :href "/static/css/fe-18-min.css")
+                        ;; google analytics and adsense
+                        (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_trackPageview']);
@@ -66,11 +64,20 @@
            (if (string-equal (get-dimension-value "envt") "prod")
                (fmtnil
                  (<:script :type "text/javascript"
-                           "
+                           (format nil "
     var switchTo5x=true;
-    $.getScript('/static/js/fe-3-min.js');
+    $.getScript('/static/js/fe-4-min.js');
     $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
         $('div.lazyload_ad').lazyLoadAd();
+    });
+    $.getScript('http://www.google.com/recaptcha/api/js/recaptcha_ajax.js', function(data, textStatus, jqxhr) {
+        Recaptcha.create('~a',
+            'recaptcha',
+            {
+                theme: 'white',
+                callback: Recaptcha.focus_response_field
+            }
+        );
     });
     $.getScript('http://s.sharethis.com/loader.js', function(data, textStatus, jqxhr) {
         $.getScript('http://w.sharethis.com/button/buttons.js', function(data, textStatus, jqxhr) {
@@ -79,7 +86,7 @@
             var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
         });
     });
-")
+" (get-config "cipher.fe.comments.public")))
                  (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js"))
                (<:script :type "text/javascript" (on-load)))
            ,js))

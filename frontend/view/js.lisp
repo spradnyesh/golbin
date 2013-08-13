@@ -103,28 +103,34 @@
                  (carousel-fail (data))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; comment
+;;; comments
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;; submit comments using ajax
-                 (ajax-comments ()
+                 (ajaxify-comments ()
                    ($apply ($ "#comments")
                        attr
                      "action"
                      (+ "/ajax" ($apply ($ "#comments") attr "action"))))
 
-                 (comment-reply (event)
-                   ($prevent-default)
-                   ($apply ($ "#comments .parent") val ($apply ($ this) attr "id"))
-                   #|($apply ($apply ($ this) parent) append ($apply ($ "#c-table") remove))|#
-                   ($apply ($ "#c-table") show))))
+                 (comment-submit (event)
+                   ($apply ($ "#challenge td input")
+                       val
+                     ($apply -recaptcha get_challenge))
+                   ($apply ($ "#response td input")
+                       val
+                     ($apply -recaptcha get_response))
+                   t)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; event handlers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           ;; some init functions
-          (ajax-comments)
+          (ajaxify-comments)
 
-          ;; define event handlers
+          ;; event handlers
           ((@ ($ "#prinav .cat h2 a" ) hover)
            (lambda (event) (update-subcategory event))
            (lambda (event) (restore-subcategory event)))
           ($event (".carousel p.prev a" click) (carousel-prev event))
           ($event (".carousel p.next a" click) (carousel-next event))
-          ($event ("#comments .c-reply a" click) (comment-reply event))))))
+          ($event ("#comments form" submit) (comment-submit event))))))

@@ -9,8 +9,11 @@
                           ("lang" "en-IN")
                           ("envt" "prod")
                           ("email" ("address" "golb_in@yahoo.com")
-                                   ("host" "127.0.0.1"))
-                          ("cipher" ("key" "aCpLvFWfcfUxmz4h"))) ; used for non-secure encryption
+                                   ("host" "127.0.0.1")))
+                  ("cipher" ("insecure" "aCpLvFWfcfUxmz4h") ; used for non-secure encryption
+                            ("secure" "")
+                            ("fe" ("comments" ("public" "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi")
+                                              ("private" ""))))
                   ("db" ("type" "prevalence"))
                   ("hunchentoot" ("debug" ("errors" ("catch" t)
                                                     ("show" nil))

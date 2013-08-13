@@ -5,7 +5,14 @@
 *** [fe] validate comments
     - check for empty name and (email or url) and body
     - both js and server side
-*** [fe] captcha for comments
+*** TODO [fe] captcha for comments
+    :CLOCK:
+    CLOCK: [2013-08-13 Tue 16:28]--[2013-08-13 Tue 16:42] =>  0:14
+    CLOCK: [2013-08-13 Tue 15:37]--[2013-08-13 Tue 16:25] =>  0:48
+    CLOCK: [2013-08-13 Tue 15:04]--[2013-08-13 Tue 15:29] =>  0:25
+    CLOCK: [2013-08-13 Tue 14:28]--[2013-08-13 Tue 15:01] =>  0:33
+    CLOCK: [2013-08-13 Tue 13:52]--[2013-08-13 Tue 14:21] =>  0:29
+    :END:
     - http://www.google.com/recaptcha
       - https://developers.google.com/recaptcha/docs/display
       - https://developers.google.com/recaptcha/docs/verify
@@ -15,7 +22,7 @@
     - [ ] replace ubuntu w/ standard form
       - 'Ubuntu', Arial, sans-serif
     - [ ] load devanagari font for only hindi/marathi
-*** [ed] forgot password
+*** [ed] forgot password logic
 *** [utils] replace utils/locale w/ cl-locale
 *** [ed] move ?lang -> cookie(ed-lang) into template
     - rename cookie name from ed-lang to lang

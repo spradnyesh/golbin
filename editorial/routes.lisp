@@ -82,10 +82,10 @@
 (start/stop/restart-system "ed")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; load cipher.key if not already loaded
+;; load cipher.secure if not already loaded
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmethod ed-start-real :after ((instance ed-acceptor))
   (declare (ignore instance))
-  (unless (get-config "cipher.key")
-    (format t "please enter cipher-key: ")
-    (add-config "cipher.key" (read-line) "master")))
+  (when (nil-or-empty (get-config "cipher.secure"))
+    (format t "please enter secure cipher-key: ")
+    (add-config "cipher.secure" (read-line) "master")))

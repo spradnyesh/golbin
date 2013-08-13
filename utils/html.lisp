@@ -25,17 +25,21 @@
 
 (defmacro tr-td-helper (&body body)
   `(let ((for (regex-replace-all " " name "-")))
-    (<:tr :class class
-          (<:td (<:label :class "label"
-                         :for for
-                         (if mandatory
-                             (fmtnil (translate for)
-                                     (<:span :class "mandatory" "*"))
-                             (fmtnil (translate for)))))
-          (<:td ,@body))))
+     (<:tr :id (if id
+                   name
+                   "")
+           :class class
+           (<:td (<:label :class "label"
+                          :for for
+                          (if mandatory
+                              (fmtnil (translate for)
+                                      (<:span :class "mandatory" "*"))
+                              (fmtnil (translate for)))))
+           (<:td ,@body))))
 
 (defmacro label-input (for typeof &optional (mandatory nil))
-  `(<:p (<:label :class "label" :for ,for
+  `(<:p (<:label :class "label"
+                 :for ,for
                  (if ,mandatory
                              (fmtnil (translate ,for)
                                      (<:span :class "mandatory" "*"))
@@ -47,20 +51,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun tr-td-input (name &key (class "") (value "") (typeof "text") (mandatory nil) (tooltip nil))
+(defun tr-td-input (name &key (id nil) (class "") (value "") (typeof "text") (mandatory nil) (tooltip nil))
   (tr-td-helper (<:input :type typeof
                          :name for
                          :value value)
                 (when tooltip
                   (tooltip tooltip))))
 
-(defun tr-td-text (name &key (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
+(defun tr-td-text (name &key (id nil) (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
   (tr-td-helper (<:textarea :cols cols
                             :name for
                             :rows rows
                             value)
                 (when tooltip
                   (tooltip tooltip))))
+(defun tr-td-submit ()
+  (<:tr (<:td)
+        (<:td (<:input :type "submit"
+                       :name "submit"
+                       :value (translate "submit")))))
 
 (defun remove-all-style (body)
   (regex-replace-all "style=\\\"(.*?)\\\"" body ""))

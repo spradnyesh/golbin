@@ -36,6 +36,7 @@
            :with-html
            :tr-td-input
            :tr-td-text
+           :tr-td-submit
            :label-input
            :remove-all-style
            :cleanup-ckeditor-text

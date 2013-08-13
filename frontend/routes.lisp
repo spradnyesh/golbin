@@ -56,3 +56,12 @@
 ;; start/stop/restart various servers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (start/stop/restart-system "fe")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; load cipher.fe.comments.private if not already loaded
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmethod fe-start-real :after ((instance fe-acceptor))
+  (declare (ignore instance))
+  (when (nil-or-empty (get-config "cipher.fe.comments.private"))
+    (format t "please enter fe.comments.private key: ")
+    (add-config "cipher.fe.comments.private" (read-line) "master")))
