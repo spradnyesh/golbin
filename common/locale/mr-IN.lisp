@@ -51,3 +51,5 @@ we-do-it-for-you=we do it for you
 written-by-with-tags=~a यांनीे ~a या दिवशी ~a वाजता ~a ~a या श्रेणीत ~a हे टॆग्स वापरून लिहिले
 written-by-without-tags=~a यांनीे ~a या दिवशी ~a वाजता ~a ~a या श्रेणीत लिहिले
 yes=yes
+add-a-comment=Add a comment
+user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span> म्हणाला (<span class="c-date">~a</span> या दिवशी <span class="c-time">~a</span> वाजता):</p>

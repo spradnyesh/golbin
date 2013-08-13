@@ -55,4 +55,5 @@
                                 :userurl url
                                 :userip (remote-addr*)
                                 :useragent (user-agent)))
-    (redirect (h-genurl 'r-article :slug-and-id (get-slug-and-id (get-article-by-id article-id))))))
+    (redirect (h-genurl 'r-article
+                        :slug-and-id (url-encode (get-slug-and-id (get-article-by-id article-id)))))))

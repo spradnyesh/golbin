@@ -229,6 +229,9 @@
              :border-radius "8px"))
 
 
+   (("#comments h3")
+    (:padding "5px 0"))
+
    ((".c-body")
     (:padding "10px"
               :background-color "#f0f0f0"

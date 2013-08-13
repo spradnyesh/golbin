@@ -2,62 +2,16 @@
 
 * tasks
 ** backlog
+*** [fe] validate comments
+    - check for empty name and (email or url) and body
+    - both js and server side
+*** [fe] captcha for comments
+    - http://www.google.com/recaptcha
+      - https://developers.google.com/recaptcha/docs/display
+      - https://developers.google.com/recaptcha/docs/verify
+    - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
 *** [bug][utils] version-incf.sh not working for "fe js"
     - works fine for "fe css"???
-*** TODO [fe] comments
-    :CLOCK:
-    CLOCK: [2013-08-12 Mon 19:53]--[2013-08-12 Mon 20:04] =>  0:11
-    CLOCK: [2013-08-12 Mon 18:50]--[2013-08-12 Mon 19:52] =>  1:02
-    CLOCK: [2013-08-12 Mon 17:32]--[2013-08-12 Mon 18:04] =>  0:32
-    CLOCK: [2013-08-12 Mon 17:04]--[2013-08-12 Mon 17:21] =>  0:17
-    CLOCK: [2013-08-12 Mon 15:26]--[2013-08-12 Mon 15:48] =>  0:22
-    CLOCK: [2013-08-12 Mon 12:51]--[2013-08-12 Mon 14:41] =>  1:50
-    CLOCK: [2012-12-21 Fri 08:07]--[2012-12-21 Fri 08:08] =>  0:01
-    CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
-    CLOCK: [2012-12-02 Sun 19:42]--[2012-12-02 Sun 20:14] =>  0:32
-    CLOCK: [2012-12-02 Sun 18:35]--[2012-12-02 Sun 18:38] =>  0:03
-    CLOCK: [2012-12-02 Sun 17:05]--[2012-12-02 Sun 18:30] =>  1:25
-    CLOCK: [2012-12-02 Sun 16:24]--[2012-12-02 Sun 16:48] =>  0:24
-    CLOCK: [2012-12-01 Sat 18:45]--[2012-12-01 Sat 19:20] =>  0:35
-    CLOCK: [2012-12-01 Sat 17:27]--[2012-12-01 Sat 18:10] =>  0:43
-    CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
-    :END:
-    - [X] invert the model
-      - as-is:
-        - article contains pointer to parent comments
-        - parent comments contains pointer to children comments
-        - drawback:
-          - article (and all comments along w/ it) are rewritten to DB when a new comment (at any level) is added
-          - hence, bad write-time performance
-        - benefit:
-          - easy to implement and test
-          - good read-time performance (since de-normalized)
-      - to-be:
-        - article does *not* contain pointer to comment(s)
-        - comment contains id, article-id and parent-id
-        - comment-id is unique across article only (different articles can have comments w/ same IDs; thus articles can *not* share comments)
-        - drawback:
-          - finding all comments for an article might be non-trivial, since search + sort
-          - bad read-time performance (since not de-normalized)
-        - benefit:
-          - good write-time performance
-      - classic space v/s time compromise
-    - [X] model
-      - [X] separate email and url
-    - [-] fe
-      - [X] get
-      - [X] post
-      - [X] ajax post
-      - [ ] check for empty name/email/body
-      - [ ] add separate mail/url and style as in http://blog.spathare.com/2010/02/mozillas-interest-in-open-standards/#comments
-    - [X] js
-    - [ ] captcha
-      - http://www.google.com/recaptcha
-        - https://developers.google.com/recaptcha/docs/display
-        - https://developers.google.com/recaptcha/docs/verify
-      - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
-    - [ ] spam
-      - http://akismet.com/
 *** [fe][performance] improve load time
     - [ ] combine css/js
     - [ ] replace ubuntu w/ standard form
@@ -2293,6 +2247,65 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-12 Mon 17:04
      :END:
+**** DONE [fe] comments
+     CLOSED: [2013-08-13 Tue 13:23]
+     :CLOCK:
+     CLOCK: [2013-08-13 Tue 13:05]--[2013-08-13 Tue 13:23] =>  0:18
+     CLOCK: [2013-08-12 Mon 19:53]--[2013-08-12 Mon 20:04] =>  0:11
+     CLOCK: [2013-08-12 Mon 18:50]--[2013-08-12 Mon 19:52] =>  1:02
+     CLOCK: [2013-08-12 Mon 17:32]--[2013-08-12 Mon 18:04] =>  0:32
+     CLOCK: [2013-08-12 Mon 17:04]--[2013-08-12 Mon 17:21] =>  0:17
+     CLOCK: [2013-08-12 Mon 15:26]--[2013-08-12 Mon 15:48] =>  0:22
+     CLOCK: [2013-08-12 Mon 12:51]--[2013-08-12 Mon 14:41] =>  1:50
+     CLOCK: [2012-12-21 Fri 08:07]--[2012-12-21 Fri 08:08] =>  0:01
+     CLOCK: [2012-12-02 Sun 21:37]--[2012-12-02 Sun 22:12] =>  0:35
+     CLOCK: [2012-12-02 Sun 19:42]--[2012-12-02 Sun 20:14] =>  0:32
+     CLOCK: [2012-12-02 Sun 18:35]--[2012-12-02 Sun 18:38] =>  0:03
+     CLOCK: [2012-12-02 Sun 17:05]--[2012-12-02 Sun 18:30] =>  1:25
+     CLOCK: [2012-12-02 Sun 16:24]--[2012-12-02 Sun 16:48] =>  0:24
+     CLOCK: [2012-12-01 Sat 18:45]--[2012-12-01 Sat 19:20] =>  0:35
+     CLOCK: [2012-12-01 Sat 17:27]--[2012-12-01 Sat 18:10] =>  0:43
+     CLOCK: [2012-12-01 Sat 16:46]--[2012-12-01 Sat 17:10] =>  0:24
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-13 Tue 13:24
+     :END:
+     - [X] invert the model
+       - as-is:
+         - article contains pointer to parent comments
+         - parent comments contains pointer to children comments
+         - drawback:
+           - article (and all comments along w/ it) are rewritten to DB when a new comment (at any level) is added
+           - hence, bad write-time performance
+         - benefit:
+           - easy to implement and test
+           - good read-time performance (since de-normalized)
+       - to-be:
+         - article does *not* contain pointer to comment(s)
+         - comment contains id, article-id and parent-id
+         - comment-id is unique across article only (different articles can have comments w/ same IDs; thus articles can *not* share comments)
+         - drawback:
+           - finding all comments for an article might be non-trivial, since search + sort
+           - bad read-time performance (since not de-normalized)
+         - benefit:
+           - good write-time performance
+       - classic space v/s time compromise
+     - [X] model
+       - [X] separate email and url
+     - [X] fe
+       - [X] get
+       - [X] post
+       - [X] ajax post
+       - check for empty name/email/body
+       - [X] add separate mail/url and style as in http://blog.spathare.com/2010/02/mozillas-interest-in-open-standards/#comments
+     - [X] js
+     - captcha
+       - http://www.google.com/recaptcha
+         - https://developers.google.com/recaptcha/docs/display
+         - https://developers.google.com/recaptcha/docs/verify
+       - http://www.webdesignfromscratch.com/javascript/human-form-validation-check-trick/
+     - spam
+       - http://akismet.com/
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

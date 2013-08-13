@@ -31,7 +31,7 @@
             (if (string-equal (get-dimension-value "envt") "prod")
                 (fmtnil
                   (<:link :rel "stylesheet" :type "text/css"
-                          :href "/static/css/fe-16-min.css")
+                          :href "/static/css/fe-17-min.css")
                   ;; google analytics and adsense
                   (<:script :type "text/javascript"
                             "
