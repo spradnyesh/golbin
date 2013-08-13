@@ -9,10 +9,17 @@
 ;; helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun validate-comment (name email url challenge response userip)
-  (and (not (nil-or-empty name))
-       (or (not (nil-or-empty email))
-           (not (nil-or-empty url)))
-       (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))))
+  (let ((err0r nil))
+    (cannot-be-empty name "name" err0r)
+    (when (and (nil-or-empty email)
+               (nil-or-empty url))
+      (push (translate "one-of-email-or-url-should-be-given")
+           err0r))
+    (multiple-value-bind (status error-code)
+        (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
+      (unless status
+        (push (translate "captcha-verification-failed" error-code) err0r)))
+    err0r))
 
 (defun get-comment-markup (comment)
   (let ((url (userurl comment))
@@ -56,7 +63,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun v-comment (article-id)
+(defun v-comment (article-id &optional ajax)
   (let ((name (post-parameter "name"))
         (email (post-parameter "email"))
         (url (post-parameter "url"))
@@ -64,16 +71,25 @@
         (challenge (post-parameter "challenge"))
         (response (post-parameter "response"))
         (userip (remote-addr*)))
-    (when (validate-comment name email url challenge response userip)
-      (add-comment (make-instance 'comment
-                                  :body body
-                                  :date (get-universal-time)
-                                  :status :a
-                                  :article-id article-id
-                                  :username name
-                                  :useremail email
-                                  :userurl url
-                                  :userip userip
-                                  :useragent (user-agent))))
-    (redirect (h-genurl 'r-article
-                        :slug-and-id (url-encode (get-slug-and-id (get-article-by-id article-id)))))))
+    (let ((err0r (validate-comment name email url challenge response userip)))
+      (setf *a* err0r)
+      (break)
+      (if (not err0r)
+          (progn
+            (add-comment (make-instance 'comment
+                                        :body body
+                                        :date (get-universal-time)
+                                        :status :a
+                                        :article-id article-id
+                                        :username name
+                                        :useremail email
+                                        :userurl url
+                                        :userip userip
+                                        :useragent (user-agent)))
+            (submit-success ajax
+                            (h-genurl 'r-article
+                                      :slug-and-id (url-encode (get-slug-and-id (get-article-by-id article-id))))))
+          (submit-error ajax
+                        err0r
+                        (h-genurl 'r-article
+                                  :slug-and-id (url-encode (get-slug-and-id (get-article-by-id article-id)))))))))

@@ -286,9 +286,12 @@
                                                            :photo photo
                                                            :photo-direction pd
                                                            :tags article-tags)))))
-              (submit-success (h-genurl 'r-article-edit-get :id (write-to-string id))))
+              (submit-success ajax
+                              (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed
-            (submit-error (if id
+            (submit-error ajax
+                          err0r
+                          (if id
                               (h-genurl 'r-article-edit-get :id (write-to-string id))
                               (h-genurl 'r-article-new-get))))))))
 

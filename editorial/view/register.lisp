@@ -9,21 +9,16 @@
                               :hash hash
                               :lang lang)))
 
-(defmacro cannot-be-empty (key string)
-  `(when (is-null-or-empty ,key)
-     (push (translate (format nil "~a-cannot-be-empty" ,string))
-           err0r)))
-
 (defun validate-register (email username password password2 name age gender phone-number)
   (let ((err0r nil))
-    (cannot-be-empty email "email")
-    (cannot-be-empty username "username")
-    (cannot-be-empty password "password")
-    (cannot-be-empty password2 "re-password")
-    (cannot-be-empty name "name")
-    (cannot-be-empty age "age")
-    (cannot-be-empty gender "gender")
-    (cannot-be-empty phone-number "phone-number")
+    (cannot-be-empty email "email" err0r)
+    (cannot-be-empty username "username" err0r)
+    (cannot-be-empty password "password" err0r)
+    (cannot-be-empty password2 "re-password" err0r)
+    (cannot-be-empty name "name" err0r)
+    (cannot-be-empty age "age" err0r)
+    (cannot-be-empty gender "gender" err0r)
+    (cannot-be-empty phone-number "phone-number" err0r)
     (when (get-author-by-username username)
       (push (translate "username-already-exists") err0r))
     (when (get-author-by-email email)
@@ -211,10 +206,13 @@
                     :body (get-confirm-register-email-text hash (cookie-in "ed-lang"))
                     :package hawksbill.golbin.editorial
                     :attachments (list filename))
-          (submit-success (h-genurl 'r-register-hurdle
+          (submit-success ajax
+                          (h-genurl 'r-register-hurdle
                                     :email (insecure-encrypt email))))
         ;; validation failed
-        (submit-error (h-genurl 'r-register-get)))))
+        (submit-error ajax
+                      err0r
+                      (h-genurl 'r-register-get)))))
 
 (defun v-register-hurdle (email)
   (template

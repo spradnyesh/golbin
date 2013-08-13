@@ -44,8 +44,9 @@
                                              :content-type "text/json")
   (v-ajax-home-category-articles cat-slug page))
 (define-route r-ajax-article-comment ("/ajax/comment/:id/" :method :post
-                                                           :parse-vars (list :id #'parse-integer))
-  (v-comment id))
+                                                           :parse-vars (list :id #'parse-integer)
+                                                           :content-type "text/json")
+  (v-comment id t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 404, define this as the last route

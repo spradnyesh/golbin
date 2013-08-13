@@ -48,6 +48,24 @@
                  :name ,for
                  :id ,for)))
 
+(defmacro submit-success (ajax route)
+  `(if ,ajax
+       (encode-json-to-string `((:status . "success")
+                                (:data . ,,route)))
+       (redirect ,route)))
+
+(defmacro submit-error (ajax err0r route)
+  `(if ,ajax
+       (encode-json-to-string `((:status . "error")
+                                (:errors . ,,err0r)))
+       ;; no-ajax => we lose all changes here
+       (redirect ,route)))
+
+(defmacro cannot-be-empty (key string err0r)
+  `(when (is-null-or-empty ,key)
+     (push (translate (format nil "~a-cannot-be-empty" ,string))
+           ,err0r)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

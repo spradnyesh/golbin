@@ -1,6 +1,6 @@
 (defpackage :hawksbill.utils
-  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8 :cl-smtp)
-  (:shadow :mime-type :size)
+  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8 :cl-smtp :json)
+  (:shadow :mime-type :size :prototype)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
   (:export :*home*
@@ -44,6 +44,9 @@
            :tooltip
            :click-here
            :timed-redirect
+           :submit-success
+           :submit-error
+           :cannot-be-empty
            ;; js
            :js-script
            :obfuscate-js

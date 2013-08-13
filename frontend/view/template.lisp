@@ -62,11 +62,10 @@
                           (<:div :id "ft" (footer))))
            (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
            (if (string-equal (get-dimension-value "envt") "prod")
-               (fmtnil
-                 (<:script :type "text/javascript"
+               (fmtnil (<:script :type "text/javascript"
                            (format nil "
     var switchTo5x=true;
-    $.getScript('/static/js/fe-4-min.js');
+    //$.getScript('/static/js/fe-4-min.js');
     $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
         $('div.lazyload_ad').lazyLoadAd();
     });
@@ -79,6 +78,7 @@
             }
         );
     });
+    $.getScript('http://malsup.github.com/jquery.form.js');
     $.getScript('http://s.sharethis.com/loader.js', function(data, textStatus, jqxhr) {
         $.getScript('http://w.sharethis.com/button/buttons.js', function(data, textStatus, jqxhr) {
             stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399', doNotHash: false, doNotCopy: false, hashAddressBar: false});
@@ -87,7 +87,8 @@
         });
     });
 " (get-config "cipher.fe.comments.public")))
-                 (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js"))
+                 (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+                 (<:script :type "text/javascript" (on-load)))
                (<:script :type "text/javascript" (on-load)))
            ,js))
 
