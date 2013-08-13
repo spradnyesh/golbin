@@ -10,11 +10,22 @@
     CLOCK: [2013-08-13 Tue 18:46]--[2013-08-13 Tue 19:21] =>  0:35
     CLOCK: [2013-08-13 Tue 17:37]--[2013-08-13 Tue 18:03] =>  0:26
     :END:
-*** [fe][performance] improve load time
-    - [ ] combine css/js
-    - [ ] replace ubuntu w/ standard form
-      - 'Ubuntu', Arial, sans-serif
-    - [ ] load devanagari font for only hindi/marathi
+*** TODO [fe][performance] improve load time
+    :CLOCK:
+    CLOCK: [2013-08-13 Tue 20:17]--[2013-08-13 Tue 21:10] =>  0:53
+    :END:
+    - todo
+      - [X] combine css
+      - [ ] combine js
+      - [X] replace ubuntu w/ standard form
+        - 'Ubuntu', Arial, sans-serif
+      - [ ] load devanagari font for only hindi/marathi
+    - tools
+      - app-benchmarks/siege-3.0.2 (http://www.joedog.org/siege-home/)
+      - app-benchmarks/httperf-0.9.0-r2
+      - app-benchmarks/jmeter-2.0.1-r4
+    - guides
+      - https://developers.google.com/speed/docs/best-practices/rendering?csw=1#UseEfficientCSSSelectors
 *** [ed] forgot password logic
 *** [utils] replace utils/locale w/ cl-locale
 *** [ed] move ?lang -> cookie(ed-lang) into template

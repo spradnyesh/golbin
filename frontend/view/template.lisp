@@ -9,7 +9,6 @@
             (<:meta :name "application-name" :content "Golb.in")
             (<:meta :name "author" :content "golbin@rocketmail.com")
             (<:meta :name "copyright" :content "Golb.in 2012")
-
             (<:meta :name "keywords"
                     :content (join-string-list-with-delim ", "
                                                           (append ,tags
@@ -20,17 +19,10 @@
             (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
             (<:link :rel "stylesheet"
                     :type "text/css"
-                    :href "/static/css/yui3-reset-fonts-grids-min.css")
-            ;; http://www.faqoverflow.com/askubuntu/16556.html
-            (<:link :rel "stylesheet"
-                    :type "text/css"
-                    :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
-            (<:link :rel "stylesheet"
-                    :type "text/css"
                     :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
             (if (string-equal (get-dimension-value "envt") "prod")
                 (fmtnil (<:link :rel "stylesheet" :type "text/css"
-                                :href "/static/css/fe-18-min.css")
+                                :href "/static/css/fe-19-min.css")
                         ;; google analytics and adsense
                         (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
@@ -44,7 +36,6 @@
   })();
 "))
                 (<:style (get-css))))
-
            (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
                               ""
                               "dvngr")

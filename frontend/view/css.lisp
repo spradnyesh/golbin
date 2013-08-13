@@ -8,7 +8,7 @@
    (("body")
     (:background "#75DAFF url('/static/css/images/cloud-background.jpg') repeat-x"
                  :color "#292929"
-                 :font-family "'Ubuntu', Arial,sans-serif"
+                 :font-family "'Ubuntu',Arial,sans-serif"
                  :font-size "14px"
                  :line-height "21px"
                  :margin "0 auto"
