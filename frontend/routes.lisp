@@ -36,7 +36,10 @@
 ;; article related
 (define-route r-ajax-article-related ("/ajax/article-related/:id/:typeof/:page/"
                                       :parse-vars (list :id #'parse-integer
-                                                        :page #'parse-integer)
+                                                        :page #'parse-integer
+                                                        :typeof #'(lambda (a)
+                                                                    (or (string= a "author")
+                                                                        (string= a "cat-subcat"))))
                                       :content-type "text/json")
   (v-ajax-article-related id typeof page))
 (define-route r-ajax-home-category-articles ("/ajax/home/:cat-slug/:page/"

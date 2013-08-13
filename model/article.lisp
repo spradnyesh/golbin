@@ -104,6 +104,7 @@
          (subcat (subcat article))
          (subcat-id (if subcat (id subcat) 0))
          (author-id (id (author article))))
+    ;; if a new typeof is added, add validation in route too
     (cond ((string-equal typeof "cat-subcat")
            (get-articles-by #'(lambda (article)
                                 (and (= (id (cat article)) cat-id)
