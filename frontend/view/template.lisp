@@ -4,27 +4,29 @@
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title js tags description body (email t))
-  `(<:html (<:head
-            (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
-            (<:meta :name "application-name" :content "Golb.in")
-            (<:meta :name "author" :content "golbin@rocketmail.com")
-            (<:meta :name "copyright" :content "Golb.in 2012")
-            (<:meta :name "keywords"
-                    :content (join-string-list-with-delim ", "
-                                                          (append ,tags
-                                                                  (list (get-config "site.name")))))
-            (<:meta :name "description" :content ,description)
-            (<:meta :name "google" :content "notranslate")
-
-            (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
-            (<:link :rel "stylesheet"
-                    :type "text/css"
-                    :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
-            (if (string-equal (get-dimension-value "envt") "prod")
-                (fmtnil (<:link :rel "stylesheet" :type "text/css"
-                                :href "/static/css/fe-19-min.css")
-                        ;; google analytics and adsense
-                        (<:script :type "text/javascript" "
+  `(let ((lang (get-dimension-value "lang")))
+     (<:html (<:head
+              (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
+              (<:meta :name "application-name" :content "Golb.in")
+              (<:meta :name "author" :content "golbin@rocketmail.com")
+              (<:meta :name "copyright" :content "Golb.in 2012")
+              (<:meta :name "keywords"
+                      :content (join-string-list-with-delim ", "
+                                                            (append ,tags
+                                                                    (list (get-config "site.name")))))
+              (<:meta :name "description" :content ,description)
+              (<:meta :name "google" :content "notranslate")
+              (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
+              (when (or (string= "mr" lang)
+                        (string= "hi" lang))
+                (<:link :rel "stylesheet"
+                        :type "text/css"
+                        :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
+              (if (string-equal (get-dimension-value "envt") "prod")
+                  (fmtnil (<:link :rel "stylesheet" :type "text/css"
+                                  :href "/static/css/fe-19-min.css")
+                          ;; google analytics and adsense
+                          (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_trackPageview']);
@@ -35,52 +37,29 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 "))
-                (<:style (get-css))))
-           (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
-                              ""
-                              "dvngr")
-                   (<:div :class "yui3-g"
-                          (<:div :id "hd"
-                                 (header ,email))
-                          (<:div :id "bd"
-                                 (<:div :class "yui3-u-17-24"
-                                        (<:div :id "col-1" :class "yui3-u-1-4"
-                                               (ads-1))
-                                        (<:div :id "col-2" :class "yui3-u-3-4"
-                                               (<:div :id "wrapper" ,body)))
-                                 (<:div :id "col-3" :class "yui3-u-7-24"
-                                        (ads-2)))
-                          (<:div :id "ft" (footer))))
-           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-           (if (string-equal (get-dimension-value "envt") "prod")
-               (fmtnil (<:script :type "text/javascript"
-                           (format nil "
-    var switchTo5x=true;
-    $.getScript('/static/js/fe-4-min.js');
-    $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
-        $('div.lazyload_ad').lazyLoadAd();
-    });
-    $.getScript('http://www.google.com/recaptcha/api/js/recaptcha_ajax.js', function(data, textStatus, jqxhr) {
-        Recaptcha.create('~a',
-            'recaptcha',
-            {
-                theme: 'white',
-                callback: Recaptcha.focus_response_field
-            }
-        );
-    });
-    $.getScript('http://malsup.github.com/jquery.form.js');
-    $.getScript('http://s.sharethis.com/loader.js', function(data, textStatus, jqxhr) {
-        $.getScript('http://w.sharethis.com/button/buttons.js', function(data, textStatus, jqxhr) {
-            stLight.options({publisher: '72b76e38-1974-422a-bd23-e5b0b26b0399', doNotHash: false, doNotCopy: false, hashAddressBar: false});
-            var options={ 'publisher': '72b76e38-1974-422a-bd23-e5b0b26b0399', 'scrollpx': 50, 'ad': { 'visible': false}, 'chicklets': { 'items': ['facebook', 'twitter', 'googleplus', 'blogger', 'orkut', 'pinterest', 'sharethis', 'googleplus', 'email']}};
-            var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
-        });
-    });
-" (get-config "cipher.fe.comments.public")))
-                 (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js"))
-               (<:script :type "text/javascript" (on-load)))
-           ,js))
+                  (<:style (get-css))))
+             (<:body :class (if (string-equal "en-IN" lang)
+                                ""
+                                "dvngr")
+                     (<:div :class "yui3-g"
+                            (<:div :id "hd"
+                                   (header ,email))
+                            (<:div :id "bd"
+                                   (<:div :class "yui3-u-17-24"
+                                          (<:div :id "col-1" :class "yui3-u-1-4"
+                                                 (ads-1))
+                                          (<:div :id "col-2" :class "yui3-u-3-4"
+                                                 (<:div :id "wrapper" ,body)))
+                                   (<:div :id "col-3" :class "yui3-u-7-24"
+                                          (ads-2)))
+                            (<:div :id "ft" (footer))))
+             (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+             #- (and)
+             (<:script :type "text/javascript" (on-load))
+             (if (string-equal (get-dimension-value "envt") "prod")
+                 (<:script :type "text/javascript" :src "/static/js/fe-5-min.js")
+                 (<:script :type "text/javascript" (on-load)))
+             (<:script :type "text/javascript" ,js))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
