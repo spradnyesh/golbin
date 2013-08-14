@@ -2,19 +2,20 @@
 
 * tasks
 ** backlog
+*** TODO [#B] [security][fed] process output
+    :CLOCK:
+    CLOCK: [2013-08-14 Wed 18:33]--[2013-08-14 Wed 18:38] =>  0:05
+    :END:
+    - [X] fe: comments
+    - [-] ed:
+      - [X] assume articles have been reviewed
+      - [ ] disallow script tags in body
 *** TODO [fed] regex for email validation
     :CLOCK:
     CLOCK: [2013-08-14 Wed 16:58]--[2013-08-14 Wed 17:02] =>  0:04
     :END:
     - http://www.regular-expressions.info/email.html
     - ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$
-*** TODO [#B] [security][fed] process output
-    :CLOCK:
-    :END:
-    - fe: comments
-    - ed:
-      - assume articles have been reviewed
-      - disallow script tags in body
 *** [ed] forgot password logic
 *** [utils] replace utils/locale w/ cl-locale
 *** [ed] move ?lang -> cookie(ed-lang) into template

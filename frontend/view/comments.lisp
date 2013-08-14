@@ -36,7 +36,7 @@
                               (username comment)))
                      (prettyprint-date datetime)
                      (prettyprint-time datetime))
-          (<:p :class "c-body" (body comment)))))
+          (<:p :class "c-body" (encode-entities (body comment))))))
 
 (defun article-comments-markup (article-id start)
   (<:div :id "comments"

@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.frontend
-  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :trivial-utf-8 :flexi-streams :local-time :cl-recaptcha)
+  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :trivial-utf-8 :flexi-streams :local-time :cl-recaptcha :html-entities)
   (:decorators #'hawksbill.utils:init-dimensions)
   (:shadow :% :prototype :size :acceptor :mime-type)
   (:shadowing-import-from :restas :redirect :start)
