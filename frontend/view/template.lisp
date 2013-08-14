@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro template (&key title js tags description body (email t))
+(defmacro template (&key title js tags description body (email nil))
   `(let ((lang (get-dimension-value "lang")))
      (<:html (<:head
               (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
@@ -142,7 +142,7 @@
                  (fmtnil (logo)
                          #- (and)
                          (site-search)))
-          (when email
+          (unless email
             (navigation))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
