@@ -56,6 +56,7 @@
          ((".t-head .tooltip") (:color "#fff"))
          ((".t-odd"))
          ((".t-even") (:background-color "#dfeefd"))
+         ((".hidden") (:display "none"))
          ((".error") (:color "#f66"
                              :font-size "90%"
                              :padding "5px 0"))

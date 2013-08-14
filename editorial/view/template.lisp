@@ -14,7 +14,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro template (&key title js body (email t))
+(defmacro template (&key title js body (email nil))
   `(let ((lang (get-parameter "lang")))
      (when lang
        (set-cookie "ed-lang"
@@ -41,19 +41,24 @@
                 (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
                 (<:style :type "text/css" (ed-get-css)))
                (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
-                                  ""
-                                  "dvngr")
+                                               ""
+                                               "dvngr")
                        (<:div :class "yui3-g"
                               (<:header :id "hd" (header (is-logged-in?) ,email))
-                              (<:div :id "bd" ,body)
+                              (<:noscript (translate "use-javascript-enabled-browser"))
+                              (<:div :id "bd"
+                                     :class "hidden abc"
+                                     ,body)
                               (<:footer :id "ft" (footer))))
                (unless ,email
-                 (<:script :type  "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-                 (<:script :type  "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
-                 (<:script :type  "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-                 (<:script :type  "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
-                 (<:script :type "text/javascript" (on-load))
-                 ,js))))))
+                 (fmtnil (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+                         (<:script :type "text/javascript"
+                                   (ps ($apply ($ "#bd") remove-class "hidden")))
+                         (<:script :type "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
+                         (<:script :type "text/javascript" :src "http://malsup.github.com/jquery.form.js")
+                         (<:script :type "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
+                         (<:script :type "text/javascript" (on-load))
+                         ,js)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
@@ -61,7 +66,7 @@
 (defun header (logged-in email)
   (<:div :class "wrapper"
          (logo logged-in)
-         (when email
+         (unless email
            (navigation logged-in))))
 
 (defmacro lang-a (lang selected lang-name)
