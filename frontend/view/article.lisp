@@ -139,9 +139,7 @@
                                    :callback "Recaptcha.focus_response_field"))))
                    ($apply $
                        get-script
-                     "http://malsup.github.io/jquery.form.js"
-                     #'(lambda (data text-status jqxhr)
-                         ($apply ($ "div.lazyload_ad") lazy-load-ad)))))
+                     "http://malsup.github.io/jquery.form.js")))
          :tags (append (loop for tag in (tags article)
                           collect (name tag))
                        (list (name (cat article))
