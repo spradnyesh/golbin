@@ -56,7 +56,7 @@
                (fmtnil (<:script :type "text/javascript"
                            (format nil "
     var switchTo5x=true;
-    //$.getScript('/static/js/fe-4-min.js');
+    $.getScript('/static/js/fe-4-min.js');
     $.getScript('/static/js/jquery-lazyload-ad-1-4-2-min.js', function(data, textStatus, jqxhr) {
         $('div.lazyload_ad').lazyLoadAd();
     });
@@ -78,8 +78,7 @@
         });
     });
 " (get-config "cipher.fe.comments.public")))
-                 (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-                 (<:script :type "text/javascript" (on-load)))
+                 (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js"))
                (<:script :type "text/javascript" (on-load)))
            ,js))
 
