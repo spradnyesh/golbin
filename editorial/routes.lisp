@@ -44,22 +44,22 @@
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define-route r-ajax-register-post ("/ajax/register/" :method :post
-                                                      :content-type "text/json") (v-register-post :ajax t))
+                                                      :content-type "application/json") (v-register-post :ajax t))
 (define-route r-ajax-article-new-post ("/ajax/article/" :method :post
-                                                        :content-type "text/json") (v-article-post :ajax t))
+                                                        :content-type "application/json") (v-article-post :ajax t))
 (define-route r-ajax-article-edit-post ("/ajax/article/:id/" :method :post
                                                              :parse-vars (list :id #'parse-integer)
-                                                             :content-type "text/json")
+                                                             :content-type "application/json")
   (v-article-post :id id :ajax t))
-(define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "text/json"
+(define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "application/json"
                                                                :parse-vars (list :page #'parse-integer))
   (v-ajax-photos-select who page))
-(define-route r-ajax-photo-get ("/ajax/photo/" :content-type "text/json")
+(define-route r-ajax-photo-get ("/ajax/photo/" :content-type "application/json")
   (v-ajax-photo-get))
 (define-route r-ajax-photo-post ("/ajax/photo/" :method :post
-                                                :content-type "text/json")
+                                                :content-type "application/json")
   (v-photo-post t))
-(define-route r-ajax-tags ("/ajax/tags/" :content-type "text/json")
+(define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
 
 #|(

@@ -40,15 +40,15 @@
                                                         :typeof #'(lambda (a)
                                                                     (or (string= a "author")
                                                                         (string= a "cat-subcat"))))
-                                      :content-type "text/json")
+                                      :content-type "application/json")
   (v-ajax-article-related id typeof page))
 (define-route r-ajax-home-category-articles ("/ajax/home/:cat-slug/:page/"
                                              :parse-vars (list :page #'parse-integer)
-                                             :content-type "text/json")
+                                             :content-type "application/json")
   (v-ajax-home-category-articles cat-slug page))
 (define-route r-ajax-article-comment ("/ajax/comment/:id/" :method :post
                                                            :parse-vars (list :id #'parse-integer)
-                                                           :content-type "text/json")
+                                                           :content-type "application/json")
   (v-comment id t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
