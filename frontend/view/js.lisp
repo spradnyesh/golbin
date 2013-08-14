@@ -122,6 +122,7 @@
                      (+ "/ajax" ($apply ($ "#comments form") attr "action"))))
 
                  (comment-submit (event)
+                   ($prevent-default)
                    ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
                    ($apply ($ "#response td input") val ($apply -recaptcha get_response))
                    ($apply ($ "#comments form")
