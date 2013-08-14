@@ -15,6 +15,8 @@
                (nil-or-empty url))
       (push (translate "one-of-email-or-url-should-be-given")
            err0r))
+    (unless (validate-email email)
+      (push (translate "invalid-email") err0r))
     (multiple-value-bind (status error-code)
         (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
       (unless status

@@ -47,6 +47,7 @@
            :submit-success
            :submit-error
            :cannot-be-empty
+           :validate-email
            ;; js
            :js-script
            :obfuscate-js

@@ -19,6 +19,8 @@
     (cannot-be-empty age "age" err0r)
     (cannot-be-empty gender "gender" err0r)
     (cannot-be-empty phone-number "phone-number" err0r)
+    (unless (validate-email email)
+      (push (translate "invalid-email") err0r))
     (when (get-author-by-username username)
       (push (translate "username-already-exists") err0r))
     (when (get-author-by-email email)

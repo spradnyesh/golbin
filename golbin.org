@@ -10,12 +10,6 @@
     - [-] ed:
       - [X] assume articles have been reviewed
       - [ ] disallow script tags in body
-*** TODO [fed] regex for email validation
-    :CLOCK:
-    CLOCK: [2013-08-14 Wed 16:58]--[2013-08-14 Wed 17:02] =>  0:04
-    :END:
-    - http://www.regular-expressions.info/email.html
-    - ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$
 *** [ed] forgot password logic
 *** [utils] replace utils/locale w/ cl-locale
 *** [ed] move ?lang -> cookie(ed-lang) into template
@@ -2392,6 +2386,19 @@
      - learnings
        - most important was to change event from "document.ready" to "window.load"
          - so earlier lazy loading was not really lazy loading :(
+**** DONE [fed] regex for email validation
+     CLOSED: [2013-08-14 Wed 18:51]
+     :CLOCK:
+     CLOCK: [2013-08-14 Wed 18:40]--[2013-08-14 Wed 18:50] =>  0:10
+     CLOCK: [2013-08-14 Wed 16:58]--[2013-08-14 Wed 17:02] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-14 Wed 18:51
+     :END:
+     - http://www.regular-expressions.info/email.html
+       - ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$
+     - [X] fe: comments
+     - [X] ed: register
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
