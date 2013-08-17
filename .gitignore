@@ -3,3 +3,4 @@ data/uploads
 data/static/photos/*
 data/static/ckeditor
 data.tar.bz2
+logs

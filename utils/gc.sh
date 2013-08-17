@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# */10 * * * * /home/hawksbill/golbin/scripts/gc.sh 2>&1 >> /home/hawksbill/golbin/gc.log
+# */10 * * * * $HOME/golbin/scripts/gc.sh 2>&1 >> $HOME/golbin/logs/gc.log
 
-cd /home/hawksbill/golbin
+cd $HOME/golbin
 git add data/db/prod
 git commit -am "s db frd @ `date +%F--%T`"
