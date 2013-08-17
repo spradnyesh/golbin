@@ -18,7 +18,7 @@
 *** [ed] mr/hi ckeditor should show devanagari font
 *** TODO cron for saving db (comments/articles) on linode
     :CLOCK:
-    CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:29] =>  0:01
+    CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
     :END:
 *** [ed] emails to golb_in
     - [ ] on author registration
