@@ -29,6 +29,7 @@
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
+  _gaq.push(['_setDomainName', 'golb.in']);
   _gaq.push(['_trackPageview']);
 
   (function() {

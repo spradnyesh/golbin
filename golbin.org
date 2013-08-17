@@ -77,7 +77,15 @@
     CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
     CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
     :END:
-*** [bug][seo] clear GA confusion b/n www. and mr.
+*** TODO [bug][seo] clear GA confusion b/n www. and mr.
+    :CLOCK:
+    CLOCK: [2013-08-18 Sun 07:06]--[2013-08-18 Sun 07:23] =>  0:17
+    :END:
+    - account: 35078884
+    - profile-id
+      - www: 64387896
+      - mr: 68192024
+      - hi: 68190841
 *** [performance] partial responses for requests
     - send back the following as soon as we get the request
       - http header
