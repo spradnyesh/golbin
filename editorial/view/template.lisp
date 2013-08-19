@@ -47,7 +47,7 @@
                               (<:header :id "hd" (header (is-logged-in?) ,email))
                               (<:noscript (translate "use-javascript-enabled-browser"))
                               (<:div :id "bd"
-                                     :class "hidden abc"
+                                     :class "hidden"
                                      ,body)
                               (<:footer :id "ft" (footer))))
                (unless ,email
