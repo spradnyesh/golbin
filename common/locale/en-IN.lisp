@@ -38,6 +38,7 @@ we-do-it-for-you-tltip=So that you don't have to spend time doing it yourself
 written-by-with-tags=written by ~a on ~a at ~a in category ~a~a, using tags ~a
 written-by-without-tags=written by ~a on ~a at ~a in category ~a ~a
 yes=yes
+no=no
 add-a-comment=Add a comment
 user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span><span class="c-says"> said (on </span><span class="c-date">~a</span> at <span class="c-time">~a</span>):</p>
 captcha-verification-failed=Recaptcha verification failed with error ~a
