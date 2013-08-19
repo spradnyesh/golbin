@@ -28,7 +28,7 @@
 
                  (ajax-fail (jq-x-h-r text-status error-thrown)
                    ;; ajax call itself failed
-                   (if (string-equal text-status "parseerror")
+                   (if (= text-status "parseerror")
                        (alert "Received an invalid response from server. Please try again after some time.") ; TODO: translate
                        (alert "Network error"))
                    false)
