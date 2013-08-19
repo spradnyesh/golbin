@@ -87,6 +87,23 @@
     (:text-align "center"
                  :padding "20px 0"))
 
+   ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
+   ((".tooltip") (:color "#61a1f0"
+                         :cursor "help"
+                         :margin-left "3px"))
+   ((".tooltip span") (:margin-left "-999em"
+                                    :position "absolute"))
+   ((".tooltip:hover span") (:left "5px"
+                                   :top "5px"
+                                   :z-index "99"
+                                   :margin-left "0"
+                                   :width "250px"
+                                   :background-color "#ffffaa"
+                                   :border "1px solid #ddd"
+                                   :text-align "center"
+                                   :color "#333"
+                                   :padding "10px"))
+
    ;; main structure elements
    (("#wrapper")
     (:background "#FFF"

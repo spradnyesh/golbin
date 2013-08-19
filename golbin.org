@@ -5,9 +5,12 @@
 *** [ed] support non-js browsers too
 *** [bug][ed] fix subnav overflow css
 *** [ed] refactor js for form submission
-*** [ed] clean up non-ajax routes
 *** [fe] "load more" pagination for comments
-*** [fe] tooltips in comments
+*** TODO [fe] tooltips in comments
+    :CLOCK:
+    CLOCK: [2013-08-19 Mon 20:16]--[2013-08-19 Mon 20:18] =>  0:02
+    CLOCK: [2013-08-19 Mon 19:55]--[2013-08-19 Mon 20:14] =>  0:19
+    :END:
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
 *** [ed] admin should be able to approve author

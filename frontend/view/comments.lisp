@@ -44,12 +44,12 @@
                        (<:form :method "POST"
                                :action (h-genurl 'r-article-comment :id article-id)
                                (<:table
-                                (tr-td-input "name")
-                                (tr-td-input "email")
+                                (tr-td-input "name" :tooltip "mandatory")
+                                (tr-td-input "email" :tooltip "mandatory, but will not be shown")
                                 (tr-td-input "url")
-                                (tr-td-text "comment" :cols 18)
-                                (tr-td-input "challenge" :class "hidden" :id t :value "abc")
-                                (tr-td-input "response" :class "hidden" :id t :value "def")
+                                (tr-td-text "comment" :tooltip "mandatory")
+                                (tr-td-input "challenge" :class "hidden" :id t :value "")
+                                (tr-td-input "response" :class "hidden" :id t :value "")
                                 (tr-td-submit))))
                 (<:div :class "yui3-u-1-2"
                        (<:div :id "recaptcha")))

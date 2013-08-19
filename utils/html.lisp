@@ -34,7 +34,8 @@
                           (if mandatory
                               (fmtnil (translate for)
                                       (<:span :class "mandatory" "*"))
-                              (fmtnil (translate for)))))
+                              (fmtnil (translate for))))
+                 #|(when tooltip (tooltip tooltip))|#)
            (<:td ,@body))))
 
 (defmacro label-input (for typeof &optional (mandatory nil))
@@ -72,17 +73,13 @@
 (defun tr-td-input (name &key (id nil) (class "") (value "") (typeof "text") (mandatory nil) (tooltip nil))
   (tr-td-helper (<:input :type typeof
                          :name for
-                         :value value)
-                (when tooltip
-                  (tooltip tooltip))))
+                         :value value)))
 
 (defun tr-td-text (name &key (id nil) (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
   (tr-td-helper (<:textarea :cols cols
                             :name for
                             :rows rows
-                            value)
-                (when tooltip
-                  (tooltip tooltip))))
+                            value)))
 (defun tr-td-submit ()
   (<:tr (<:td)
         (<:td (<:input :type "submit"
