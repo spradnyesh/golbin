@@ -2,7 +2,21 @@
 
 * tasks
 ** backlog
-*** TODO [#B] [security][fed] process output
+*** [ed] accounts
+    - [ ] change email
+    - [ ] change password
+    - [ ] regenerate token card
+*** [fe] "load more" pagination for comments
+*** [fed] "write once earn for life" in "why register"
+*** [fe] tooltips in comments
+*** [bug][fe] spelling mistake in
+    - [ ] "yanni"
+    - [ ] "tags" in "mr"
+*** [fe] put id in comments so that they are easy to delete
+*** [fe] like/unlike for comments
+*** [ed] user should be powerless after registration until his account is approved
+*** [ed] token key (crumb) should be time limited
+*** TODO [security][fed] process output
     :CLOCK:
     CLOCK: [2013-08-14 Wed 18:33]--[2013-08-14 Wed 18:38] =>  0:05
     :END:
@@ -2399,6 +2413,14 @@
        - ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$
      - [X] fe: comments
      - [X] ed: register
+**** DONE [ed] remove "add photos" subnav
+     CLOSED: [2013-08-19 Mon 14:08]
+     :CLOCK:
+     CLOCK: [2013-08-19 Mon 14:07]--[2013-08-19 Mon 14:08] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-19 Mon 14:08
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
