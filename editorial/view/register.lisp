@@ -136,11 +136,11 @@
                                    phone-number)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
-               (token (create-code-map))
                (hash (insecure-encrypt (concatenate 'string
                                               email
                                               "|"
                                               salt)))
+               (token (create-code-map))
                (filename (create-code-map-image token handle)))
           (add-author (make-instance 'author
                                      :email email

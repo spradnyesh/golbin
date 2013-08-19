@@ -49,7 +49,12 @@
     (if (not err0r)
         (progn
           (setf (password author) new-password)
+          (setf (salt author) (generate-salt 32))
           (edit-author author)
+          (sendmail :to (email author)
+              :subject (translate "password-changed")
+              :body (translate "new-token-email")
+              :package hawksbill.golbin.editorial)
           (submit-success ajax
                           (h-genurl 'r-account-password-done
                                     :status "yes")))
@@ -105,8 +110,40 @@
       (translate "email-changed")
       (translate "email-not-changed"))))
 
-(defun v-account-token-get ())
+(defun v-account-token-get ()
+  (template
+   :title (translate "change-token")
+   :js nil
+   :body (<:div :id "accounts"
+                (<:form :action (h-genurl 'r-account-token-post)
+                        :method "POST"
+                        :id "token"
+                        (<:fieldset :class "inputs"
+                                    (<:p (translate "re-generate-email-token"))
+                                    (<:p (<:input :type "submit"
+                                                  :name "submit"
+                                                  :class "submit"
+                                                  :value (translate "submit"))))))))
 
-(defun v-account-token-post ())
+(defun v-account-token-post (&key (ajax nil))
+  (let* ((token (create-code-map))
+         (author (get-author-by-handle (session-value :author)))
+         (filename (create-code-map-image token (handle author))))
+    (setf (token author) token)
+    (edit-author author)
+    (sendmail :to (email author)
+              :subject (translate "confirm-registration")
+              :body (translate "new-token-email")
+              :package hawksbill.golbin.editorial
+              :attachments (list filename))
+    (submit-success ajax
+                    (h-genurl 'r-account-token-done
+                              :status "yes"))))
 
-(defun v-account-token-done ())
+(defun v-account-token-done (status)
+  (template
+   :title (translate "change-token")
+   :js nil
+   :body (if (string= status "yes")
+             (translate "token-changed")
+             (translate "token-not-changed"))))

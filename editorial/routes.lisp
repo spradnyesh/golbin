@@ -103,7 +103,7 @@
   (v-account-email-post :ajax t))
 (define-route r-account-token-post ("/ajax/account/token/" :method :post
                                                            :content-type "application/json")
-  (v-account-token-post))
+  (v-account-token-post :ajax t))
 #|(
  (define-route r-articles ("/articles/") (v-articles))
  (define-route r-tag ("/tag/" :method :post) (v-tag-post)) ; only post
