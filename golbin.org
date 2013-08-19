@@ -2504,6 +2504,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-19 Mon 19:49
      :END:
+**** DONE [fe] comments should not have a mailto: link
+     CLOSED: [2013-08-19 Mon 19:52]
+     :CLOCK:
+     CLOCK: [2013-08-19 Mon 19:51]--[2013-08-19 Mon 19:52] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-19 Mon 19:52
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17

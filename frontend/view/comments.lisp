@@ -25,16 +25,12 @@
 
 (defun get-comment-markup (comment)
   (let ((url (userurl comment))
-        (email (useremail comment))
         (datetime (universal-to-timestamp (date comment))))
     (<:li :class "comment"
           (<:span :class "hidden" (id comment))
           (translate "user-comment-prelude"
                      (if (nil-or-empty url)
-                         (if (nil-or-empty email)
-                             (username comment)
-                             (<:a :href (concatenate 'string "mailto:" email)
-                                  (username comment)))
+                         (username comment)
                          (<:a :href url
                               (username comment)))
                      (prettyprint-date datetime)
