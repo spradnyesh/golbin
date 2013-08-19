@@ -215,4 +215,8 @@
                                             :vertical-align "middle"))
          ((".pagination li a") (:text-decoration "none"
                                                  :color "#035583"))
-         ((".pagination .disabled") (:border "none"))))
+         ((".pagination .disabled") (:border "none"))
+         ;; accounts
+         (("#accounts") (:margin "0 20px"))
+         (("#accounts label") (:display "block"
+                                        :margin "5px 0"))))

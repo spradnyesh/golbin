@@ -24,17 +24,18 @@
   (template
    :title (translate "change-password")
    :js nil
-   :body (<:form :action (h-genurl 'r-account-password-post)
-                         :method "POST"
-                         :id "password"
-                         (<:fieldset :class "inputs"
-                                     (label-input "current-password" "password")
-                                     (label-input "new-password" "password")
-                                     (label-input "re-enter-password" "password")
-                                     (<:p (<:input :type "submit"
-                                                   :name "submit"
-                                                   :class "submit"
-                                                   :value (translate "submit")))))))
+   :body (<:div :id "accounts"
+                (<:form :action (h-genurl 'r-account-password-post)
+                        :method "POST"
+                        :id "password"
+                        (<:fieldset :class "inputs"
+                                    (label-input "current-password" "password")
+                                    (label-input "new-password" "password")
+                                    (label-input "re-enter-password" "password")
+                                    (<:p (<:input :type "submit"
+                                                  :name "submit"
+                                                  :class "submit"
+                                                  :value (translate "submit"))))))))
 
 (defun v-account-password-post (&key (ajax nil))
   (let* ((old-password (post-parameter "current-password"))
@@ -69,15 +70,16 @@
   (template
    :title (translate "change-email")
    :js nil
-   :body (<:form :action (h-genurl 'r-account-email-post)
-                         :method "POST"
-                         :id "email"
-                         (<:fieldset :class "inputs"
-                                     (label-input "new-email" "text")
-                                     (<:p (<:input :type "submit"
-                                                   :name "submit"
-                                                   :class "submit"
-                                                   :value (translate "submit")))))))
+   :body (<:div :id "accounts"
+                (<:form :action (h-genurl 'r-account-email-post)
+                                       :method "POST"
+                                       :id "email"
+                                       (<:fieldset :class "inputs"
+                                                   (label-input "new-email" "text")
+                                                   (<:p (<:input :type "submit"
+                                                                 :name "submit"
+                                                                 :class "submit"
+                                                                 :value (translate "submit"))))))))
 
 (defun v-account-email-post (&key (ajax nil))
   (let* ((email (post-parameter "new-email"))

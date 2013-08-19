@@ -11,7 +11,10 @@
     CLOCK: [2013-08-19 Mon 14:30]--[2013-08-19 Mon 14:35] =>  0:05
     CLOCK: [2013-08-19 Mon 14:18]--[2013-08-19 Mon 14:30] =>  0:12
     :END:
-**** regenerate token card
+**** TODO regenerate token card
+     :CLOCK:
+     CLOCK: [2013-08-19 Mon 17:13]--[2013-08-19 Mon 17:14] =>  0:01
+     :END:
 **** Archive                                                        :ARCHIVE:
 ***** DONE change email
       CLOSED: [2013-08-19 Mon 16:12]
@@ -24,14 +27,15 @@
       :ARCHIVE_TIME: 2013-08-19 Mon 16:12
       :END:
 ***** DONE change password
-      CLOSED: [2013-08-19 Mon 17:12]
-      :CLOCK:
-      CLOCK: [2013-08-19 Mon 17:02]--[2013-08-19 Mon 17:12] =>  0:10
-      CLOCK: [2013-08-19 Mon 16:13]--[2013-08-19 Mon 16:23] =>  0:10
-      :END:
-      :PROPERTIES:
-      :ARCHIVE_TIME: 2013-08-19 Mon 17:12
-      :END:
+      CLOSED: [2013-08-19 Mon 17:24]
+       :CLOCK:
+       CLOCK: [2013-08-19 Mon 17:14]--[2013-08-19 Mon 17:25] =>  0:11
+       CLOCK: [2013-08-19 Mon 17:02]--[2013-08-19 Mon 17:12] =>  0:10
+       CLOCK: [2013-08-19 Mon 16:13]--[2013-08-19 Mon 16:23] =>  0:10
+       :END:
+       :PROPERTIES:
+       :ARCHIVE_TIME: 2013-08-19 Mon 17:24
+       :END:
 *** [fe] "load more" pagination for comments
 *** [fe] tooltips in comments
 *** [bug][fe] spelling mistake in
