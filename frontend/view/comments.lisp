@@ -28,6 +28,7 @@
         (email (useremail comment))
         (datetime (universal-to-timestamp (date comment))))
     (<:li :class "comment"
+          (<:span :class "hidden" (id comment))
           (translate "user-comment-prelude"
                      (if (nil-or-empty url)
                          (if (nil-or-empty email)

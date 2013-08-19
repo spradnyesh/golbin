@@ -8,7 +8,6 @@
 *** [ed] clean up non-ajax routes
 *** [fe] "load more" pagination for comments
 *** [fe] tooltips in comments
-*** [fe] put id in comments so that they are easy to delete
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
 *** [ed] admin should be able to approve author
@@ -2497,6 +2496,14 @@
      :END:
      - [X] "yanni"
      - [X] "tags" in "mr"
+**** DONE [fe] put id in comments so that they are easy to delete
+     CLOSED: [2013-08-19 Mon 19:49]
+     :CLOCK:
+     CLOCK: [2013-08-19 Mon 19:47]--[2013-08-19 Mon 19:49] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-19 Mon 19:49
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17
