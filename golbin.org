@@ -7,7 +7,6 @@
     - [ ] change password
     - [ ] regenerate token card
 *** [fe] "load more" pagination for comments
-*** [fed] "write once earn for life" in "why register"
 *** [fe] tooltips in comments
 *** [bug][fe] spelling mistake in
     - [ ] "yanni"
@@ -2420,6 +2419,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-19 Mon 14:08
+     :END:
+**** DONE [ed] "write once earn for life" in "why register"
+     CLOSED: [2013-08-19 Mon 14:11]
+     :CLOCK:
+     CLOCK: [2013-08-19 Mon 14:09]--[2013-08-19 Mon 14:11] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-19 Mon 14:11
      :END:
 ** TODO refactor
    :CLOCK:
