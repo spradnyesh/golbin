@@ -138,10 +138,7 @@
   (<:ul :class "subnav"
         (<:li :id "n-article"
               (<:h3 (<:a :href (h-genurl 'r-article-new-get)
-                         (translate "article"))))
-        (<:li :id "n-photo"
-              (<:h3 (<:a :href (h-genurl 'r-photo-get)
-                         (translate "photo"))))))
+                         (translate "article"))))))
 
 (defun nav-report ()
   (<:ul :class "subnav"))

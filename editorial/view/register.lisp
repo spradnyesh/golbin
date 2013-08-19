@@ -116,7 +116,13 @@
                                         (<:td :class "no" (translate "no"))
                                         (<:td :class "yes" (translate "yes"))
                                         (<:td (translate "perf-reports-dtls")
-                                              (tooltip "perf-reports-tltip")))))
+                                              (tooltip "perf-reports-tltip")))
+                                  (<:tr :class "t-even"
+                                        (<:td (translate "write-once-earn-for-life"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td :class "yes" (translate "yes"))
+                                        (<:td (translate "write-once-earn-for-life-dtls")
+                                              (tooltip "write-once-earn-for-life-tltip")))))
                 (<:p (<:a :class "submit"
                           :href (h-genurl 'r-register-get)
                           (translate "register-here"))))))
