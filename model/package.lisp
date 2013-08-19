@@ -121,6 +121,7 @@
            :get-tags-for-autocomplete
            ;; user
            :add-author
+           :edit-author
            :get-mini-author-details-from-id
            :get-author-by-handle
            :get-author-by-username

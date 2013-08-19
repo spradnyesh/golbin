@@ -10,7 +10,12 @@
 (define-route r-why-register ("/register/why/") (v-why-register-get))
 (define-route r-register-hurdle ("/register/hurdle/:email") (v-register-hurdle email))
 (define-route r-register-do-confirm ("/register/do/:hash") (v-register-do-confirm hash))
-(define-route r-register-done-confirm ("/register/done/:status") (v-register-done-confirm status))
+(define-route r-register-done-confirm ("/register/done/:status"
+                                       :parse-vars (list :status #'(lambda (a)
+                                                                     (when (or (string= a "yes")
+                                                                               (string= a "no"))
+                                                                       a))))
+  (v-register-done-confirm status))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; only for logged-in users
@@ -23,18 +28,12 @@
 (define-route r-article-new-get ("/article/") (v-article-get))
 (define-route r-article-new-post ("/article/" :method :post) (v-article-post))
 (define-route r-article-edit-get ("/article/:id/" :parse-vars (list :id #'parse-integer)) (v-article-get id))
-(define-route r-article-edit-post ("/article/:id/" :method :post :parse-vars (list :id #'parse-integer))
+(define-route r-article-edit-post ("/article/:id/" :method :post
+                                                   :parse-vars (list :id #'parse-integer))
   (v-article-post :id id))
-(define-route r-article-delete-post ("/article/:id/delete/" :method :post :parse-vars (list :id #'parse-integer))
+(define-route r-article-delete-post ("/article/:id/delete/" :method :post
+                                                            :parse-vars (list :id #'parse-integer))
   (v-article-delete-post id))
-
-;; account
-(define-route r-account-password-get ("/account/password/") (v-account-password-get))
-(define-route r-account-password-post ("/account/password/" :method :post) (v-account-password-post))
-(define-route r-account-email-get ("/account/email/") (v-account-email-get))
-(define-route r-account-email-post ("/account/email/" :method :post) (v-account-email-post))
-(define-route r-account-token-get ("/account/token/") (v-account-token-get))
-(define-route r-account-token-post ("/account/token/" :method :post) (v-account-token-post))
 
 ;(define-route r-approve-articles ("/article/approve/") (v-articles-approve))
 
@@ -48,9 +47,31 @@
 ;(define-route r-cat-get ("/cat/") (v-cat-get))
 ;(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))
 
+;; account
+(define-route r-account-password-get ("/account/password/") (v-account-password-get))
+(define-route r-account-password-done ("/account/password/:status"
+                                       :parse-vars (list :status #'(lambda (a)
+                                                                     (when (or (string= a "yes")
+                                                                               (string= a "no"))
+                                                                       a))))
+  (v-account-password-done status))
+(define-route r-account-email-get ("/account/email/") (v-account-email-get))
+(define-route r-account-email-done ("/account/email/:status"
+                                    :parse-vars (list :status #'(lambda (a)
+                                                                     (when (or (string= a "yes")
+                                                                               (string= a "no"))
+                                                                       a))))
+  (v-account-email-done status))
+(define-route r-account-token-get ("/account/token/") (v-account-token-get))
+(define-route r-account-token-done ("/account/token/:status"
+                                    :parse-vars (list :status #'(lambda (a)
+                                                                     (when (or (string= a "yes")
+                                                                               (string= a "no"))
+                                                                       a))))
+  (v-account-token-done status))
+
 ;; robots
 (define-route r-robots ("/robots.txt") (handle-static-file (merge-pathnames "../data/static/ed-robots.txt" *home*) "text/plain"))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
@@ -73,7 +94,16 @@
   (v-photo-post t))
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
-
+;; account
+(define-route r-account-password-post ("/ajax/account/password/" :method :post
+                                                                 :content-type "application/json")
+  (v-account-password-post))
+(define-route r-account-email-post ("/ajax/account/email/" :method :post
+                                                           :content-type "application/json")
+  (v-account-email-post :ajax t))
+(define-route r-account-token-post ("/ajax/account/token/" :method :post
+                                                           :content-type "application/json")
+  (v-account-token-post))
 #|(
  (define-route r-articles ("/articles/") (v-articles))
  (define-route r-tag ("/tag/" :method :post) (v-tag-post)) ; only post

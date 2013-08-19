@@ -2,15 +2,28 @@
 
 * tasks
 ** backlog
+*** [ed] support non-js browsers too
 *** [bug][ed] fix subnav overflow css
+*** [ed] refactor js for form submission
+*** [ed] clean up non-ajax routes
 *** TODO [ed] accounts
     :CLOCK:
     CLOCK: [2013-08-19 Mon 14:30]--[2013-08-19 Mon 14:35] =>  0:05
     CLOCK: [2013-08-19 Mon 14:18]--[2013-08-19 Mon 14:30] =>  0:12
     :END:
-**** change email
 **** change password
 **** regenerate token card
+**** Archive                                                        :ARCHIVE:
+***** DONE change email
+      CLOSED: [2013-08-19 Mon 16:12]
+      :CLOCK:
+      CLOCK: [2013-08-19 Mon 15:39]--[2013-08-19 Mon 16:12] =>  0:33
+      CLOCK: [2013-08-19 Mon 14:56]--[2013-08-19 Mon 15:20] =>  0:24
+      CLOCK: [2013-08-19 Mon 14:36]--[2013-08-19 Mon 14:38] =>  0:02
+      :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2013-08-19 Mon 16:12
+      :END:
 *** [fe] "load more" pagination for comments
 *** [fe] tooltips in comments
 *** [bug][fe] spelling mistake in

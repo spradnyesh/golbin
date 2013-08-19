@@ -38,6 +38,37 @@
                    (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|#|;|$)"))) exec) (@ location search)) (array null "")) 1) replace) (regex "/\\+/g") "%20")) null))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; forms
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                 ;; submit form using ajax
+                 (submit-form-ajax (form)
+                   ($apply ($ form) attr "action" (+ "/ajax" ($apply ($ form) attr "action"))))
+
+                 ;; email submit
+                 (form-submit (event form)
+                   ($prevent-default)
+                   ;; TODO: client side error handling
+                   ($apply ($ form) ajax-submit
+                     ;; http://api.jquery.com/jQuery.ajax/
+                     (create :data-type "json"
+                             :cache false
+                             :async false
+                             :success (lambda (data text-status jq-x-h-r)
+                                        (form-submit-done data text-status jq-x-h-r))
+                             :error (lambda (jq-x-h-r text-status error-thrown)
+                                      (ajax-fail jq-x-h-r text-status error-thrown)))))
+
+                 (form-submit-done (data text-status jq-x-h-r)
+                   (if (= data.status "success")
+                       ;; this is the redirect after POST
+                       (setf window.location data.data)
+                       (form-fail data)))
+
+                 (form-fail (data)
+                   ;; TODO: translate
+                   (alert "There are errors in the submitted email. Please correct them and submit again."))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; navigation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  (update-subcategory (event)
@@ -451,13 +482,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; category page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 #|(sort-categories (ele)
+                 #- (and)
+                 (sort-categories (ele)
                    ($apply ele nested-sortable (create :handle "div"
                                                        :items "li"
                                                        :toleranceElement "> div"
                                                        :maxLevels 1
-                                                       :protectRoot t)))|#)))
+                                                       :protectRoot t))))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; event handling
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;; define event handlers
         ((@ ($ ".prinav" ) hover)
            (lambda (event) (update-subcategory event))
@@ -465,6 +500,7 @@
         ($event (".cat" change) (change-category event ""))
         ($event ("#register form" submit) (register-submit event))
         ($event ("#article form" submit) (article-submit event))
+        ($event ("#email" submit) (form-submit event "#email"))
         ($event ("#select-lead-photo" click) (select-lead-photo-init event))
         ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
@@ -474,5 +510,6 @@
         ;; some init functions
         (submit-article-ajax)
         (submit-register-ajax)
+
         #|(tags-autocomplete ($ ".tags"))|#
         #|(sort-categories ($ "#sort-catsubcat"))|#)))
