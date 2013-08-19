@@ -17,6 +17,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define-route r-home ("/") (v-home))
 (define-route r-logout ("/logout/") (v-logout))
+
 ;; article
 (define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id t))
 (define-route r-article-new-get ("/article/") (v-article-get))
@@ -26,12 +27,23 @@
   (v-article-post :id id))
 (define-route r-article-delete-post ("/article/:id/delete/" :method :post :parse-vars (list :id #'parse-integer))
   (v-article-delete-post id))
-#|(define-route r-approve-articles ("/article/approve/") (v-articles-approve))|#
+
+;; account
+(define-route r-account-password-get ("/account/password/") (v-account-password-get))
+(define-route r-account-password-post ("/account/password/" :method :post) (v-account-password-post))
+(define-route r-account-email-get ("/account/email/") (v-account-email-get))
+(define-route r-account-email-post ("/account/email/" :method :post) (v-account-email-post))
+(define-route r-account-token-get ("/account/token/") (v-account-token-get))
+(define-route r-account-token-post ("/account/token/" :method :post) (v-account-token-post))
+
+;(define-route r-approve-articles ("/article/approve/") (v-articles-approve))
+
 ;; photo
 (define-route r-photo-get ("/photo/") (v-photo-get))
 (define-route r-photo-post ("/photo/" :method :post) (v-photo-post))
 (define-route r-tmp-photo-get ("/tmp-photo/") (v-tmp-photo-get))
 (define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
+
 ;; cat/subcat
 ;(define-route r-cat-get ("/cat/") (v-cat-get))
 ;(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))

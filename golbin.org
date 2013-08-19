@@ -2,10 +2,15 @@
 
 * tasks
 ** backlog
-*** [ed] accounts
-    - [ ] change email
-    - [ ] change password
-    - [ ] regenerate token card
+*** [bug][ed] fix subnav overflow css
+*** TODO [ed] accounts
+    :CLOCK:
+    CLOCK: [2013-08-19 Mon 14:30]--[2013-08-19 Mon 14:35] =>  0:05
+    CLOCK: [2013-08-19 Mon 14:18]--[2013-08-19 Mon 14:30] =>  0:12
+    :END:
+**** change email
+**** change password
+**** regenerate token card
 *** [fe] "load more" pagination for comments
 *** [fe] tooltips in comments
 *** [bug][fe] spelling mistake in
@@ -14,6 +19,10 @@
 *** [fe] put id in comments so that they are easy to delete
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
+*** [ed] admin should be able to approve author
+*** [ed] editor should be able to approve article
+*** [ed] remove "/photo/" from routes
+    - only /ajax/photo/ is needed
 *** TODO [security][fed] process output
     :CLOCK:
     CLOCK: [2013-08-14 Wed 18:33]--[2013-08-14 Wed 18:38] =>  0:05

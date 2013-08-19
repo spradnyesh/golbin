@@ -125,10 +125,11 @@
 ;; navigations for different author types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun editor-nav ()
-  (<:li :id "n-approve"
-        (<:h3 (<:a :href (h-genurl 'r-approve-articles)
+  (<:li (<:h3 (<:a :href (h-genurl 'r-approve-articles)
                    (translate "approve-articles")))))
+
 (defun admin-nav ())
+
 (defun logout-nav ()
   (<:li :id "n-logout"
         (<:h3 (<:a :href (h-genurl 'r-logout)
@@ -136,9 +137,17 @@
 
 (defun nav-add ()
   (<:ul :class "subnav"
-        (<:li :id "n-article"
-              (<:h3 (<:a :href (h-genurl 'r-article-new-get)
+        (<:li (<:h3 (<:a :href (h-genurl 'r-article-new-get)
                          (translate "article"))))))
+
+(defun nav-account ()
+  (<:ul :class "subnav"
+        (<:li (<:h3 (<:a :href (h-genurl 'r-account-password-get)
+                         (translate "change-password"))))
+        (<:li (<:h3 (<:a :href (h-genurl 'r-account-email-get)
+                         (translate "change-email"))))
+        (<:li (<:h3 (<:a :href (h-genurl 'r-account-token-get)
+                         (translate "change-token-card"))))))
 
 (defun nav-report ()
   (<:ul :class "subnav"))
@@ -162,6 +171,9 @@
           (<:li :class "prinav"
                 (<:h2 (translate "reports")) ; also available to all authors by default
                 (nav-report))
+          (<:li :class "prinav"
+                (<:h2 (translate "account")) ; also available to all authors by default
+                (nav-account))
           (<:li :class "prinav"
                 (<:h2 (translate "misc")) ; based upon author-type (except logout)
                 (nav-misc)))))
