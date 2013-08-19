@@ -208,7 +208,7 @@
                                      :phone phone-number
                                      :token token
                                      :salt salt
-                                     :status :a))
+                                     :status :d))
           (sendmail :to email
                     :subject (translate "confirm-registration")
                     :body (get-confirm-register-email-text hash (cookie-in "ed-lang"))

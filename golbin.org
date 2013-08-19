@@ -13,7 +13,6 @@
     - [ ] "tags" in "mr"
 *** [fe] put id in comments so that they are easy to delete
 *** [fe] like/unlike for comments
-*** [ed] user should be powerless after registration until his account is approved
 *** [ed] token key (crumb) should be time limited
 *** TODO [security][fed] process output
     :CLOCK:
@@ -2438,6 +2437,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-19 Mon 14:11
+     :END:
+**** DONE [ed] user should be powerless after registration until his account is approved
+     CLOSED: [2013-08-19 Mon 14:14]
+     :CLOCK:
+     CLOCK: [2013-08-19 Mon 14:12]--[2013-08-19 Mon 14:14] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-19 Mon 14:14
      :END:
 ** TODO refactor
    :CLOCK:
