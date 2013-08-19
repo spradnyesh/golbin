@@ -97,7 +97,7 @@
 ;; account
 (define-route r-account-password-post ("/ajax/account/password/" :method :post
                                                                  :content-type "application/json")
-  (v-account-password-post))
+  (v-account-password-post :ajax t))
 (define-route r-account-email-post ("/ajax/account/email/" :method :post
                                                            :content-type "application/json")
   (v-account-email-post :ajax t))

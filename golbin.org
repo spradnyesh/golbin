@@ -11,7 +11,6 @@
     CLOCK: [2013-08-19 Mon 14:30]--[2013-08-19 Mon 14:35] =>  0:05
     CLOCK: [2013-08-19 Mon 14:18]--[2013-08-19 Mon 14:30] =>  0:12
     :END:
-**** change password
 **** regenerate token card
 **** Archive                                                        :ARCHIVE:
 ***** DONE change email
@@ -23,6 +22,15 @@
       :END:
       :PROPERTIES:
       :ARCHIVE_TIME: 2013-08-19 Mon 16:12
+      :END:
+***** DONE change password
+      CLOSED: [2013-08-19 Mon 17:12]
+      :CLOCK:
+      CLOCK: [2013-08-19 Mon 17:02]--[2013-08-19 Mon 17:12] =>  0:10
+      CLOCK: [2013-08-19 Mon 16:13]--[2013-08-19 Mon 16:23] =>  0:10
+      :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2013-08-19 Mon 17:12
       :END:
 *** [fe] "load more" pagination for comments
 *** [fe] tooltips in comments

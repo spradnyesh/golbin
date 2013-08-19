@@ -501,6 +501,7 @@
         ($event ("#register form" submit) (register-submit event))
         ($event ("#article form" submit) (article-submit event))
         ($event ("#email" submit) (form-submit event "#email"))
+        ($event ("#password" submit) (form-submit event "#password"))
         ($event ("#select-lead-photo" click) (select-lead-photo-init event))
         ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
