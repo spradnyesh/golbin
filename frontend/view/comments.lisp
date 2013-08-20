@@ -44,10 +44,10 @@
                        (<:form :method "POST"
                                :action (h-genurl 'r-article-comment :id article-id)
                                (<:table
-                                (tr-td-input "name" :tooltip "mandatory")
+                                (tr-td-input "name" :mandatory t)
                                 (tr-td-input "email" :tooltip "mandatory, but will not be shown")
                                 (tr-td-input "url")
-                                (tr-td-text "comment" :tooltip "mandatory")
+                                (tr-td-text "comment" :mandatory t)
                                 (tr-td-input "challenge" :class "hidden" :id t :value "")
                                 (tr-td-input "response" :class "hidden" :id t :value "")
                                 (tr-td-submit))))

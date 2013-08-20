@@ -105,6 +105,9 @@
                                    :color "#333"
                                    :padding "10px"))
 
+   ((".mandatory") (:color "#f66"
+                           :margin-left "3px"))
+
    ;; main structure elements
    (("#wrapper")
     (:background "#FFF"

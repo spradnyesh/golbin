@@ -24,12 +24,12 @@
                         :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
               (if (string-equal (get-dimension-value "envt") "prod")
                   (fmtnil #- (and)
-                          (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-20-min.css")
                           (fmtnil
                             (<:link :rel "stylesheet" :type "text/css"
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
+                          (<:link :rel "stylesheet" :type "text/css"
+                                  :href "/static/css/fe-20-min.css")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
