@@ -93,7 +93,8 @@
                                       ((= node-name "H3")
                                        ($ (@ target parent-node parent-node)))
                                       ((= node-name "A")
-                                       ($ (@ target parent-node parent-node parent-node))))))
+                                       (unless (= (@ target parent-node node-name) "H2")
+                                         ($ (@ target parent-node parent-node parent-node)))))))
                      ($apply ($ node)
                          css
                        "display" "none")))

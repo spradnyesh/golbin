@@ -23,9 +23,9 @@
          (("select") (:font "inherit"))
          (("textarea") (:font "inherit"))
          ;; common
-         (("html") (:color "#919191"
+         #|(("html") (:color "#919191"
                            :background "#61a1f0"
-                           :text-shadow "none"))
+                           :text-shadow "none"))|#
          (("body") (:border-top "5px solid #61a1f0"
                                 :padding-top "10px"))
          (("h1") (:font-weight "bold"
@@ -101,10 +101,23 @@
                                            :background-color "#8dba53"
                                            :color "#fff"))
          ;; hd
-         (("#hd") (:height "140px"))
-         (("#logo") (:float "left"))
+         (("#hd") (:height "120px"))
+         (("#logo") (:float "left"
+                            :margin-top "-40px"
+                            :width "200px"))
          (("#logo .langs") (:margin "-7px 0 0 40px"))
          (("#logo .langs a") (:margin-right "7px"))
+         ;; nav
+         (("#nav") (:margin-top "40px"))
+         ((".prinav") (:float "left"
+                              :width "100px"))
+         ((".prinav.wide") (:width "175px"))
+         ((".prinav h2") (:color "#61a1f0"
+                                 :cursor "pointer"))
+         ((".prinav h2:hover") (:color "#8dba53"))
+         ((".subnav") (:display "none"
+                                :z-index "99"))
+         ((".subnav li") (:padding "5px 0"))
          ;; bd
          (("#bd") (:min-height "500px"))
          ;; ft
@@ -120,15 +133,6 @@
                                  :line-height "52px"
                                  :margin-bottom "23px"
                                  :text-transform "uppercase"))
-         ;; nav
-         ((".prinav") (:float "left"
-                              :margin "40px 0 0 50px"
-                              :min-width "100px"))
-         ((".prinav h2") (:color "#61a1f0"
-                                 :cursor "pointer"))
-         ((".prinav h2:hover") (:color "#8dba53"))
-         ((".subnav") (:display "none"))
-         ((".subnav li") (:padding "5px 0"))
          ;; home
          (("#articles") (:margin "0 50px"))
          (("#articles p") (:margin "0"))

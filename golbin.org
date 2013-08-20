@@ -2,16 +2,21 @@
 
 * tasks
 ** backlog
-*** [ed] support non-js browsers too
-*** [bug][ed] fix subnav overflow css
 *** [ed] refactor js for form submission
+*** [ed] support non-js browsers too
+*** [ed] remove "/photo/" from routes
+    - only /ajax/photo/ is needed
+*** [ed] forgot password logic
+
+
+*** [ed] move ?lang -> cookie(ed-lang) into template
+    - rename cookie name from ed-lang to lang
+    - because the cookie domain is unique
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
 *** [ed] admin should be able to approve author
 *** [ed] editor should be able to approve article
-*** [ed] remove "/photo/" from routes
-    - only /ajax/photo/ is needed
 *** TODO [security][fed] process output
     :CLOCK:
     CLOCK: [2013-08-14 Wed 18:33]--[2013-08-14 Wed 18:38] =>  0:05
@@ -20,11 +25,7 @@
     - [-] ed:
       - [X] assume articles have been reviewed
       - [ ] disallow script tags in body
-*** [ed] forgot password logic
 *** [utils] replace utils/locale w/ cl-locale
-*** [ed] move ?lang -> cookie(ed-lang) into template
-    - rename cookie name from ed-lang to lang
-    - because the cookie domain is unique
 *** [ed] mr/hi ckeditor should show devanagari font
 *** TODO cron for saving db (comments/articles) on linode
     :CLOCK:
@@ -2529,6 +2530,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-20 Tue 12:07
+     :END:
+**** DONE [bug][ed] fix subnav overflow css
+     CLOSED: [2013-08-20 Tue 14:34]
+     :CLOCK:
+     CLOCK: [2013-08-20 Tue 14:31]--[2013-08-20 Tue 14:34] =>  0:03
+     CLOCK: [2013-08-20 Tue 13:43]--[2013-08-20 Tue 14:21] =>  0:38
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-20 Tue 14:34
      :END:
 ** TODO refactor
    :CLOCK:

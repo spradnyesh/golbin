@@ -144,9 +144,6 @@
         (<:li (<:h3 (<:a :href (h-genurl 'r-account-token-get)
                          (translate "change-token-card"))))))
 
-(defun nav-report ()
-  (<:ul :class "subnav"))
-
 (defun nav-misc ()
   (let ((author-type (session-value :author-type)))
     (<:ul :class "subnav"
@@ -166,14 +163,12 @@
                   (when (eq :a (status author))
                     (nav-add)))
             (<:li :class "prinav"
-                  (<:h2 (translate "reports"))
-                  (when (eq :a (status author))
-                    (nav-report)))
-            (<:li :class "prinav"
+                  (<:h2 (translate "reports")))
+            (<:li :class "prinav wide"
                   (<:h2 (translate "account"))
                   (when (eq :a (status author))
                     (nav-account)))
-            (<:li :class "prinav"
+            (<:li :class "prinav wide"
                   (<:h2 (translate "misc"))
                   (when (eq :a (status author))
                     (nav-misc)))
