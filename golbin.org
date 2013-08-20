@@ -3,6 +3,8 @@
 * tasks
 ** backlog
 *** [#B] [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+*** [ed] article validation
+    - mandatory fields, etc
 *** TODO [security][fed] process output
     :CLOCK:
     CLOCK: [2013-08-20 Tue 16:48]--[2013-08-20 Tue 16:58] =>  0:10
@@ -2563,6 +2565,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-20 Tue 17:09
+     :END:
+**** DONE [fed] display form errors better
+     CLOSED: [2013-08-20 Tue 19:30]
+     :CLOCK:
+     CLOCK: [2013-08-20 Tue 19:15]--[2013-08-20 Tue 19:30] =>  0:15
+     CLOCK: [2013-08-20 Tue 18:33]--[2013-08-20 Tue 18:58] =>  0:25
+     CLOCK: [2013-08-20 Tue 17:18]--[2013-08-20 Tue 18:08] =>  0:50
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-20 Tue 19:27
      :END:
 ** TODO refactor
    :CLOCK:

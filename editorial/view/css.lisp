@@ -185,26 +185,27 @@
          (("#sort-catsubcat .cat") (:padding-left "20px"))
          (("#sort-catsubcat .subcat") (:padding-left "40px"))
          ;; upload photo pane
-         (("#photo-pane") (:width "500px"
-                                  :height "550px"
-                                  :position "fixed"
-                                  :top "100px"
-                                  :left "250px"
-                                  :border "3px solid #ddd"
-                                  :border-radius "10px"
-                                  :background-color "#fff"))
-         (("#photo-pane p a.close") (:position "absolute"
-                                               :top "0"
-                                               :right "0"))
-         (("#photo-pane ul") (:margin "20px 0 0 10px"
+         (("#pane") (:width "540px"
+                            :min-height "100px"
+                            :position "fixed"
+                            :top "100px"
+                            :left "250px"
+                            :border "3px solid #ddd"
+                            :border-radius "10px"
+                            :background-color "#fff"))
+         (("#pane a.close") (:position "absolute"
+                                               :top "20px"
+                                               :right "20px"))
+         (("#pane .message") (:margin "50px 20px 20px"))
+         (("#pane ul.photo") (:margin "20px 0 0 10px"
                                       :height "500px"))
-         (("#photo-pane ul li") (:float "left"
-                                        :height "125px"
+         (("#pane ul.photo li") (:float "left"
+                                        :height "130px"
                                         :margin "0 10px"
                                         :width "100px"
                                         :overflow "hidden"))
-         (("#photo-pane ul li span") (:display "none"))
-         (("#photo-pane ul li a") (:display "block"))
+         (("#pane ul.photo li span") (:display "none"))
+         (("#pane ul.photo li a") (:display "block"))
          ;; pagination
          ((".pagination-results") (:text-align "center"))
          ((".pagination") (:text-align "center"
@@ -221,6 +222,10 @@
          ((".pagination li a") (:text-decoration "none"
                                                  :color "#035583"))
          ((".pagination .disabled") (:border "none"))
+         ((".pagination .prev") (:position "absolute"
+                                           :left "20px"))
+         ((".pagination .next") (:position "absolute"
+                                           :right "20px"))
          ;; accounts
          (("#accounts") (:margin "0 20px"))
          (("#accounts label") (:display "block"

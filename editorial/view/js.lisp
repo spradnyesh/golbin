@@ -37,6 +37,16 @@
                  (get-url-parameter (name)
                    (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|#|;|$)"))) exec) (@ location search)) (array null "")) 1) replace) (regex "/\\+/g") "%20")) null))
 
+                 (create-pane (id)
+                   ($apply ($ "#bd")
+                       append
+                     ($ (+ "<div id='" id "'><a class='close' href=''>Close</a><div class='message'></div></div>")))
+                   ($event ((+ "#" id " a.close") click) (close-pane event)))
+
+                 (close-pane (event)
+                   ($prevent-default)
+                   ((@ ($ "#pane") remove)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; forms
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -65,8 +75,14 @@
                        (form-fail data)))
 
                  (form-fail (data)
-                   ;; TODO: translate
-                   (alert "There are errors in the submitted email. Please correct them and submit again."))
+                   (create-pane "pane")
+                   ($apply ($ "#pane ul") remove)
+                   ($apply ($ "#pane .message") append ($ (+ "<p>" data.message "</p>")))
+                   (let ((errors "<ul>"))
+                     (dolist (err data.errors)
+                       (setf errors (+ errors "<li>" err "</li>")))
+                     (setf errors (+ errors "</ul>")))
+                   ($apply ($ "#pane .message") append ($ errors)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; navigation
@@ -162,21 +178,11 @@
 ;;; photo pane/page
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;; common for select/upload photo pane
-                 (create-photo-pane ()
-                   ($apply ($ "#bd")
-                       append
-                     ($ "<div id='photo-pane'><p><a class='close' href=''>Close</a></p><ul></ul></div>"))
-                   ($event ("#photo-pane a.close" click) (close-photo-pane event)))
-
                  (photo-fail (data)
                    ;; TODO: clear loading icon
                    ;; TODO: show error message
                    (setf select-photo-paginate false)
                    false)
-
-                 (close-photo-pane (event)
-                   ($prevent-default)
-                   ((@ ($ "#photo-pane") remove)))
 
                  (nonlead-photo-url (event)
                    ($prevent-default)
@@ -203,31 +209,32 @@
                    (select-photo-init event))
                  (select-photo-init (event)
                    ($prevent-default)
-                   (create-photo-pane)
-                   ($apply ($ "#photo-pane") append ($ "<div class='pagination'><a href='' class='prev'>Previous</a><a href='' class='next'>Next</a></div>"))
-                   ($apply ($ "#photo-pane p") prepend ($ "<div class='search'></div>"))
+                   (create-pane "pane")
+                   ($apply ($ "#pane") append ($ "<div class='pagination'><a href='' class='prev'>Previous</a><a href='' class='next'>Next</a></div>"))
                    ;; TODO: show loading icon
                    (select-photo-add-all-my-tabs)
                    (select-search-markup)
                    (select-photo-call event "all" 0)
-                   ($event ("#photo-pane .pagination a.prev" click) (select-photo-pagination-prev event))
-                   ($event ("#photo-pane .pagination a.next" click) (select-photo-pagination-next event)))
+                   ($event ("#pane .pagination a.prev" click) (select-photo-pagination-prev event))
+                   ($event ("#pane .pagination a.next" click) (select-photo-pagination-next event)))
 
                  (select-photo-add-all-my-tabs ()
-                   ($apply ($ "#photo-pane p") prepend ($ "<span>Photos<a class='all-photos' href=''> All </a><a class='my-photos' href=''> My </a></span>"))
-                   ($event ("#photo-pane a.all-photos" click) (select-photo-call event "all" 0))
-                   ($event ("#photo-pane a.my-photos" click) (select-photo-call event "me" 0)))
+                   ($apply ($ "#pane .message") prepend ($ "<span>Photos<a class='all-photos' href=''> All </a><a class='my-photos' href=''> My </a></span>"))
+                   ($event ("#pane a.all-photos" click) (select-photo-call event "all" 0))
+                   ($event ("#pane a.my-photos" click) (select-photo-call event "me" 0)))
 
                  (select-search-markup ()
                    (let ((cat ($ "<select name='cat' class='td-input cat'><option selected='selected' value='0'>Select</option></select>"))
                          (subcat ($ "<select name='subcat' class='td-input subcat'><option selected='selected' value='0'>Select</option></select>"))
-                         (tags ($ "<input class='td-input tags' type='text'>"))
+                         (tags ($ "<span>tags</span><input class='td-input tags' type='text'>"))
                          (search ($ "<a href='' class='search-btn'>Search</a>")))
-                     ($apply ($apply ($apply ($apply ($ "#photo-pane .search")
+                     ($apply ($ "#pane .message") prepend ($ "<div class='search'></div>"))
+                     ($apply ($apply ($apply ($apply ($ "#pane .search")
                                                  append cat)
                                          append subcat)
                                  append tags)
                          append search)
+                     ($apply ($ "#pane .message") append ($ "<ul class='photo'></ul>"))
                      ;; cat-subcat change
                      (let ((cat nil)
                            (ele nil))
@@ -238,12 +245,12 @@
                                              (+ "" (@ cat id)))
                                        text
                                      (@ cat name)))
-                         ($apply ($ "#photo-pane .search .cat") append ele)))
-                     ($event ("#photo-pane .search .cat" change) (change-category "#photo-pane .search"))
+                         ($apply ($ "#pane .search .cat") append ele)))
+                     ($event ("#pane .search .cat" change) (change-category nil "#pane .search"))
                      ;; tags
-                     #|(tags-autocomplete ($ "#photo-pane .search .tags"))|#
+                     #|(tags-autocomplete ($ "#pane .search .tags"))|#
                      ;; search
-                     ($event ("#photo-pane .search a.search-btn" click)
+                     ($event ("#pane .search a.search-btn" click)
                        (select-photo-call event select-photo-who (elt select-photo-next-page select-photo-who)))))
 
                  (select-photo-call (event who page)
@@ -258,11 +265,11 @@
                                                      "/"
                                                      page
                                                      "/?cat="
-                                                     ($apply ($ "#photo-pane .search .cat") val)
+                                                     ($apply ($ "#pane .search .cat") val)
                                                      "&subcat="
-                                                     ($apply ($ "#photo-pane .search .subcat") val)
+                                                     ($apply ($ "#pane .search .subcat") val)
                                                      "&tags="
-                                                     ($apply ($ "#photo-pane .search .tags") val)
+                                                     ($apply ($ "#pane .search .tags") val)
                                                      "&d1m=" (get-url-parameter "d1m"))
                                              :cache false
                                              :async false
@@ -282,14 +289,14 @@
                                     (setf (elt select-photo-next-page select-photo-who)
                                           (1+ (elt select-photo-next-page select-photo-who))))
                                 (setf select-photo-paginate false))
-                              ($apply ($ "#photo-pane ul") empty)
+                              ($apply ($ "#pane ul") empty)
                               (dolist (d data.data)
                                 (let* ((id ((@ ($ "<span></span>") html) (elt d 0)))
                                        (img ($ (elt d 1)))
                                        (title ((@ ($ "<p></p>") append) ((@ ($ img) attr) "alt")))
                                        (a ($apply ($ "<a href=''></a>") append img)))
                                   ($event (a click) (select-photo event))
-                                  ($apply ($ "#photo-pane ul")
+                                  ($apply ($ "#pane ul")
                                       append
                                     ($apply ($apply ($apply ($ "<li></li>")
                                                         append id)
@@ -321,7 +328,7 @@
                              ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
                              ;; add-event so that when image is clicked, we show a popoup w/ url for copying
                              ($event (a-target click) (nonlead-photo-url event))))))
-                   (close-photo-pane nil))
+                   (close-pane nil))
 
                  (select-photo-pagination-prev (event)
                    ($prevent-default)
@@ -344,8 +351,8 @@
                    (upload-photo-init event))
                  (upload-photo-init (event)
                    ($prevent-default)
-                   (create-photo-pane)
-                   ($apply ($ "#photo-pane ul") remove)
+                   (create-pane "pane")
+                   ($apply ($ "#pane ul") remove)
                    ;; TODO: show loading icon
                    (upload-photo-call))
 
@@ -363,19 +370,19 @@
                  (upload-photo-get-done (data)
                    (if (= data.status "success")
                        (progn
-                         ($apply ($ "#photo-pane")
+                         ($apply ($ "#pane")
                              append
                            data.data)
-                         ($event ("#photo-pane form" submit) (upload-photo-submit event))
-                         ($event ("#photo-pane .cat" change) (change-category event "#photo-pane"))
+                         ($event ("#pane form" submit) (upload-photo-submit event))
+                         ($event ("#pane .cat" change) (change-category event "#pane"))
                          #- (and)
-                         (tags-autocomplete ($ "#photo-pane .tags")))
+                         (tags-autocomplete ($ "#pane .tags")))
                        (photo-fail data)))
 
                  (upload-photo-submit (event)
                    ($prevent-default)
                    ;; TODO: client side error handling
-                   ($apply ($ "#photo-pane form") ajax-submit
+                   ($apply ($ "#pane form") ajax-submit
                      (create :data-type "json"
                              :async false
                              :success (lambda (data text-status jq-x-h-r)
@@ -400,7 +407,7 @@
                                ;; add-event so that when image is clicked, we show a popoup w/ url for copying
                                ($event (a-target click) (nonlead-photo-url event)))))
                        (photo-fail data))
-                   (close-photo-pane nil))
+                   (close-pane nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; category page
@@ -433,7 +440,6 @@
         ;; some init functions
         (submit-form-ajax "#article form")
         (submit-form-ajax "#register form")
-        (submit-form-ajax "#accounts form")
 
         #|(tags-autocomplete ($ ".tags"))|#
         #|(sort-categories ($ "#sort-catsubcat"))|#)))
