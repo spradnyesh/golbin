@@ -72,14 +72,16 @@
       (setf body (regex-replace img-tag body photo-div))))
   body)
 
-(defun validate-article (data)
+(defun validate-article (body)
   (let ((err0r nil)
         (non-golbin-images (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
-                                                   (cdr (assoc :body data)))))
-    (when (or nil
-              non-golbin-images)
-      (setf err0r (make-hash-table))
-      (setf (gethash 'non-golbin-images err0r) non-golbin-images))
+                                                   body))
+        (script-tags (all-matches-as-strings "<script(.*?)>(.*?)<\/script>"
+                                             body)))
+    (when non-golbin-images
+      (push (translate "non-golbin-images" (join-string-list-with-delim "," non-golbin-images)) err0r))
+    (when script-tags
+      (push (translate "script-tags" (join-string-list-with-delim "," script-tags)) err0r))
     err0r))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -253,9 +255,9 @@
            (tags p-tags)
            (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
            (article-tags nil))
-      (let ((err0r (validate-article (list (cons :body body)))))
+      (let ((err0r (validate-article body)))
         (if (not err0r)
-            (let ((body (add-photo-attribution (cleanup-ckeditor-text (remove-all-style body)))))
+            (let ((body (add-photo-attribution (cleanup-ckeditor-text body))))
               (dolist (tag tags)
                 (let ((tag-added (add-tag tag)))
                   (when tag-added
