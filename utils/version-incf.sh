@@ -22,4 +22,5 @@ sed -e "s/${currString}/${newString}/" $file > $file.tmp && mv $file.tmp $file
 file=`\find . -name "$1-$currVersion-min.$2"`
 dir=`dirname $file`
 cd $dir
-git mv "$1-$oldVersion-min.$2" "$1-$newVersion-min.$2"
+ln -s "$1-min.$2" "$1-$newVersion-min.$2"
+git add "$1-min.$2"
