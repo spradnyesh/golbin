@@ -86,16 +86,14 @@
                                      (<:tbody
                                       (tr-td-input "name" :mandatory t)
                                       (tr-td-input "age" :mandatory t)
-                                      (tr-td-input "email"
-                                                   :mandatory t)
+                                      (tr-td-input "email" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "username"
                                                            (translate "username")
                                                            (<:span :class "mandatory" "*")))
                                             (<:td (<:input :class "input" :type "text"
                                                            :name "username")
                                                   (tooltip (translate "check-if-username-exists"))))
-                                      (tr-td-input "alias"
-                                                   :tooltip "alias")
+                                      (tr-td-input "alias" :tooltip "alias")
                                       (tr-td-input "password" :typeof "password" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "password2"
                                                            (translate "retype-password")

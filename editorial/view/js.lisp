@@ -100,44 +100,6 @@
                        "display" "none")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; registration page
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;; submit form using ajax
-                 (submit-register-ajax ()
-                   ($apply ($ "#register form")
-                       attr
-                     "action"
-                     (+ "/ajax" ($apply ($ "#register form") attr "action"))))
-
-                 ;; register submit
-                 (register-submit (event)
-                   ($prevent-default)
-                   ;; TODO: client side error handling
-                   ($apply ($ "#register form") ajax-submit
-                     ;; http://api.jquery.com/jQuery.ajax/
-                     (create :data-type "json"
-                             :cache false
-                             :async false
-                             :success (lambda (data text-status jq-x-h-r)
-                                        (register-submit-done data text-status jq-x-h-r))
-                             :error (lambda (jq-x-h-r text-status error-thrown)
-                                      (ajax-fail jq-x-h-r text-status error-thrown)))))
-
-                 (register-submit-done (data text-status jq-x-h-r)
-                   (if (= data.status "success")
-                       ;; this is the redirect after POST
-                       (setf window.location data.data)
-                       (register-fail data)))
-
-                 (register-fail (data)
-                   (when (/= nil (@ data errors non-golbin-images))
-                     ($apply ($apply ($ "#body") parent)
-                         append
-                       ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))
-                   ;; TODO: translate
-                   (alert "There are errors in the submitted register. Please correct them and submit again."))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; common to article/photo pages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                  ;; tags autocomplete
@@ -195,46 +157,6 @@
                                  ($apply ($ (+ form-prefix " .subcat"))
                                      append
                                    ele))))))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; article page
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                 ;; submit form using ajax
-                 (submit-article-ajax ()
-                   ($apply ($ "#article form")
-                       attr
-                     "action"
-                     (+ "/ajax" ($apply ($ "#article form") attr "action"))))
-
-                 ;; article submit
-                 (article-submit (event)
-                   ($prevent-default)
-                   ;; http://stackoverflow.com/a/1903820
-                   ($apply (@ -c-k-e-d-i-t-o-r instances editor1) update-element)
-                   ;; TODO: client side error handling
-                   ($apply ($ "#article form") ajax-submit
-                     ;; http://api.jquery.com/jQuery.ajax/
-                     (create :data-type "json"
-                             :cache false
-                             :async false
-                             :success (lambda (data text-status jq-x-h-r)
-                                        (article-submit-done data text-status jq-x-h-r))
-                             :error (lambda (jq-x-h-r text-status error-thrown)
-                                      (ajax-fail jq-x-h-r text-status error-thrown)))))
-
-                 (article-submit-done (data text-status jq-x-h-r)
-                   (if (= data.status "success")
-                       ;; this is the redirect after POST
-                       (setf window.location data.data)
-                       (article-fail data)))
-
-                 (article-fail (data)
-                   (when (/= nil (@ data errors non-golbin-images))
-                     ($apply ($apply ($ "#body") parent)
-                         append
-                       ($ "<p class='error'>Body contains images not hosted on Golbin. Please upload your images to Golbin first, and then use them inside the body</p>")))
-                   ;; TODO: translate
-                   (alert "There are errors in the submitted article. Please correct them and submit again."))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; photo pane/page
@@ -496,21 +418,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;; define event handlers
         ((@ ($ ".prinav" ) hover)
-           (lambda (event) (update-subcategory event))
-           (lambda (event) (restore-subcategory event)))
+         (lambda (event) (update-subcategory event))
+         (lambda (event) (restore-subcategory event)))
         ($event (".cat" change) (change-category event ""))
-        ($event ("#register form" submit) (register-submit event))
-        ($event ("#article form" submit) (article-submit event))
-        ($event ("#accounts form" submit) (form-submit event "#accounts form"))
         ($event ("#select-lead-photo" click) (select-lead-photo-init event))
         ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
+        ($event ("#register form" submit) (form-submit event "#register form"))
+        ($event ("#article form" submit) (form-submit event "#article form"))
+        ($event ("#accounts form" submit) (form-submit event "#accounts form"))
 
         ;; some init functions
-        (submit-article-ajax)
-        (submit-register-ajax)
+        (submit-form-ajax "#article form")
+        (submit-form-ajax "#register form")
+        (submit-form-ajax "#accounts form")
 
         #|(tags-autocomplete ($ ".tags"))|#
         #|(sort-categories ($ "#sort-catsubcat"))|#)))
