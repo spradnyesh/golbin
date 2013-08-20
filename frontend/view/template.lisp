@@ -65,7 +65,7 @@
              (if (string-equal (get-dimension-value "envt") "prod")
                  (<:script :type "text/javascript" :src "/static/js/fe-5-min.js")
                  (<:script :type "text/javascript" (on-load)))
-             (js-script ,js))))
+             (<:script :type "text/javascript" ,js))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header

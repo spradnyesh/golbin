@@ -2554,6 +2554,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-20 Tue 16:47
      :END:
+**** DONE [bug][ed] body not showing
+     CLOSED: [2013-08-20 Tue 17:09]
+     :CLOCK:
+     CLOCK: [2013-08-20 Tue 16:59]--[2013-08-20 Tue 17:09] =>  0:10
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-20 Tue 17:09
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17

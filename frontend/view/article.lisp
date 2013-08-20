@@ -126,20 +126,20 @@
                  (eql :a (status article))))
         (template
          :title (title article)
-         :js ($event (window load)
-               ($apply $
-                   get-script
-                 "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"
-                 #'(lambda (data text-status jqxhr)
-                     ($apply -recaptcha
-                         create
-                       "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi" ; (get-config "cipher.fe.comments.public")
-                       "recaptcha"
-                       (create :theme "white"
-                               :callback "Recaptcha.focus_response_field"))))
-               ($apply $
-                   get-script
-                 "http://malsup.github.io/jquery.form.js"))
+         :js (ps ($event (window load)
+                   ($apply $
+                       get-script
+                     "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"
+                     #'(lambda (data text-status jqxhr)
+                         ($apply -recaptcha
+                             create
+                           "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi" ; (get-config "cipher.fe.comments.public")
+                           "recaptcha"
+                           (create :theme "white"
+                                   :callback "Recaptcha.focus_response_field"))))
+                   ($apply $
+                       get-script
+                     "http://malsup.github.io/jquery.form.js")))
          :tags (append (loop for tag in (tags article)
                           collect (name tag))
                        (list (name (cat article))

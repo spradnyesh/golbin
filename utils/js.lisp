@@ -3,14 +3,6 @@
 (defun obfuscate-js ()
   (setf *ps-print-pretty* (not (get-config "parenscript.obfuscation"))))
 
-(defmacro js-script (&rest body)
-  "Utility macro for including ParenScript into the HTML notation.
-Copy-pasted from the parenscript-tutorial.pdf (http://common-lisp.net/project/parenscript/manual/parenscript-tutorial.pdf)"
-  `(<:script :type "text/javascript"
-            "~%//<![CDATA[~%"
-            (ps ,@body)
-            "~%//]]>~%"))
-
 ;; http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-6
 (defmacro $event ((selector event-binding) &body body)
   `((@ ($ ,selector) ,event-binding) (lambda (event) ,@body)))

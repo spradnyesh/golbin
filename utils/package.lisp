@@ -49,7 +49,6 @@
            :cannot-be-empty
            :validate-email
            ;; js
-           :js-script
            :obfuscate-js
            :$event
            :$apply
