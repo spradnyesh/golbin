@@ -68,10 +68,10 @@
                                   (why-register-tr 1 "giant-shoulders" "no" "yes" "no" "yes" "giant-shoulders-dtls" "giant-shoulders-tltip")
                                   (why-register-tr 0 "min-pay-amt" "no" "yes" "yes" "no" "min-pay-amt-dtls" "min-pay-amt-tltip")
                                   (why-register-tr 1 "perf-reports" "no" "yes" "no" "yes" "perf-reports-dtls" "perf-reports-tltip")
-                                  (why-register-tr 0 "write-once-earn-for-life" "yes" "yes" "yes" "yes" "write-once-earn-for-life-dtls" "write-once-earn-for-life-tltip")
-                                  (<:p (<:a :class "submit"
+                                  (why-register-tr 0 "write-once-earn-for-life" "yes" "yes" "yes" "yes" "write-once-earn-for-life-dtls" "write-once-earn-for-life-tltip")))
+                (<:p (<:a :class "submit"
                           :href (h-genurl 'r-register-get)
-                          (translate "register-here"))))))))
+                          (translate "register-here"))))))
 
 (defun v-register-get ()
   (template
