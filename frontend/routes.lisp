@@ -3,9 +3,6 @@
 ;; home
 (define-route r-home ("/") (v-home))
 (define-route r-home-page ("/:page" :parse-vars (list :page #'parse-integer)) (v-home page))
-;; static pages
-(define-route r-tos ("/tos.html") (v-tos))
-(define-route r-privacy ("/privacy.html") (v-privacy))
 ;; category
 (define-route r-cat ("/category/:cat/") (v-cat cat))
 (define-route r-cat-page ("/category/:cat/:page" :parse-vars (list :page #'parse-integer)) (v-cat cat page))
@@ -23,26 +20,27 @@
 (define-route r-article-comment ("/comment/:id/" :method :post
                                                  :parse-vars (list :id #'parse-integer))
   (v-comment id))
-
-;; search
-(define-route r-search ("/search/") (v-search))
+;; static pages
+(define-route r-tos ("/tos.html") (v-tos))
+(define-route r-privacy ("/privacy.html") (v-privacy))
 
 ;; robots
-(define-route r-robots ("/robots.txt") (handle-static-file (merge-pathnames "../data/static/fe-robots.txt" *home*) "text/plain"))
+(define-route r-robots ("/robots.txt")
+  (handle-static-file (merge-pathnames "../data/static/fe-robots.txt" *home*) "text/plain"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; article related
-(define-route r-ajax-article-related ("/ajax/article-related/:id/:typeof/:page/"
+(define-route r-ajax-article-related ("/ajax/article-related/:id/:typeof/:page"
                                       :parse-vars (list :id #'parse-integer
                                                         :page #'parse-integer
                                                         :typeof #'(lambda (a)
-                                                                    (or (string= a "author")
-                                                                        (string= a "cat-subcat"))))
+                                                                    (when (or (string= a "author")
+                                                                              (string= a "cat-subcat"))
+                                                                      a)))
                                       :content-type "application/json")
   (v-ajax-article-related id typeof page))
-(define-route r-ajax-home-category-articles ("/ajax/home/:cat-slug/:page/"
+(define-route r-ajax-home-category-articles ("/ajax/home/:cat-slug/:page"
                                              :parse-vars (list :page #'parse-integer)
                                              :content-type "application/json")
   (v-ajax-home-category-articles cat-slug page))

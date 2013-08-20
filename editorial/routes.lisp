@@ -17,6 +17,10 @@
                                                                        a))))
   (v-register-done-confirm status))
 
+;; robots
+(define-route r-robots ("/robots.txt")
+  (handle-static-file (merge-pathnames "../data/static/ed-robots.txt" *home*) "text/plain"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; only for logged-in users
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -34,21 +38,15 @@
 (define-route r-article-delete-post ("/article/:id/delete/" :method :post
                                                             :parse-vars (list :id #'parse-integer))
   (v-article-delete-post id))
-
 ;(define-route r-approve-articles ("/article/approve/") (v-articles-approve))
 
-;; photo
-(define-route r-photo-get ("/photo/") (v-photo-get))
-(define-route r-photo-post ("/photo/" :method :post) (v-photo-post))
+;; photo (non-ajax needed for tmp-init)
 (define-route r-tmp-photo-get ("/tmp-photo/") (v-tmp-photo-get))
 (define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
 
-;; cat/subcat
-;(define-route r-cat-get ("/cat/") (v-cat-get))
-;(define-route r-cat-post ("/cat/" :method :post) (v-cat-post))
-
 ;; account
 (define-route r-account-password-get ("/account/password/") (v-account-password-get))
+(define-route r-account-password-post ("/ajax/account/password/" :method :post) (v-account-password-post))
 (define-route r-account-password-done ("/account/password/:status"
                                        :parse-vars (list :status #'(lambda (a)
                                                                      (when (or (string= a "yes")
@@ -56,6 +54,7 @@
                                                                        a))))
   (v-account-password-done status))
 (define-route r-account-email-get ("/account/email/") (v-account-email-get))
+(define-route r-account-email-post ("/ajax/account/email/" :method :post) (v-account-email-post))
 (define-route r-account-email-done ("/account/email/:status"
                                     :parse-vars (list :status #'(lambda (a)
                                                                      (when (or (string= a "yes")
@@ -63,15 +62,13 @@
                                                                        a))))
   (v-account-email-done status))
 (define-route r-account-token-get ("/account/token/") (v-account-token-get))
+(define-route r-account-token-post ("/ajax/account/token/" :method :post) (v-account-token-post))
 (define-route r-account-token-done ("/account/token/:status"
                                     :parse-vars (list :status #'(lambda (a)
-                                                                     (when (or (string= a "yes")
-                                                                               (string= a "no"))
-                                                                       a))))
+                                                                  (when (or (string= a "yes")
+                                                                            (string= a "no"))
+                                                                    a))))
   (v-account-token-done status))
-
-;; robots
-(define-route r-robots ("/robots.txt") (handle-static-file (merge-pathnames "../data/static/ed-robots.txt" *home*) "text/plain"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
@@ -94,7 +91,6 @@
   (v-photo-post t))
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
-;; account
 (define-route r-account-password-post ("/ajax/account/password/" :method :post
                                                                  :content-type "application/json")
   (v-account-password-post :ajax t))
@@ -104,14 +100,6 @@
 (define-route r-account-token-post ("/ajax/account/token/" :method :post
                                                            :content-type "application/json")
   (v-account-token-post :ajax t))
-#|(
- (define-route r-articles ("/articles/") (v-articles))
- (define-route r-tag ("/tag/" :method :post) (v-tag-post)) ; only post
- (define-route r-photos ("/photos/") (v-photos))
- (define-route r-photo-id ("/photo/:id/") (v-photo-get id))
- ;; only for admin
- (define-route r-author ("/author/") (v-author-get))
- (define-route r-author ("/author/" :method :post) (v-author-post)))|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 404, define this as the last route
