@@ -35,7 +35,7 @@
                               (fmtnil (translate for)
                                       (<:span :class "mandatory" "*"))
                               (fmtnil (translate for))))
-                 #|(when tooltip (tooltip tooltip))|#)
+                 (when tooltip (tooltip tooltip)))
            (<:td ,@body))))
 
 (defmacro label-input (for typeof &optional (mandatory nil))

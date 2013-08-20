@@ -89,8 +89,9 @@
 
    ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
    ((".tooltip") (:color "#61a1f0"
-                         :cursor "help"
-                         :margin-left "3px"))
+                               :cursor "help"
+                               :margin-left "3px"
+                               :position "relative"))
    ((".tooltip span") (:margin-left "-999em"
                                     :position "absolute"))
    ((".tooltip:hover span") (:left "5px"
