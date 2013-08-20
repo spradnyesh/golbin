@@ -130,11 +130,6 @@
 
 (defun admin-nav ())
 
-(defun logout-nav ()
-  (<:li :id "n-logout"
-        (<:h3 (<:a :href (h-genurl 'r-logout)
-                   (translate "logout")))))
-
 (defun nav-add ()
   (<:ul :class "subnav"
         (<:li (<:h3 (<:a :href (h-genurl 'r-article-new-get)
@@ -160,23 +155,31 @@
                         ((eq author-type :d) ; admin
                          (fmtnil (editor-nav)
                                  (admin-nav))))
-                  (logout-nav)))))
+                  ))))
 
 (defun navigation (logged-in)
-  (when logged-in
-    (<:ul :id "nav"
-          (<:li :class "prinav"
-                (<:h2 (translate "add")) ; available to all authors by default
-                (nav-add))
-          (<:li :class "prinav"
-                (<:h2 (translate "reports")) ; also available to all authors by default
-                (nav-report))
-          (<:li :class "prinav"
-                (<:h2 (translate "account")) ; also available to all authors by default
-                (nav-account))
-          (<:li :class "prinav"
-                (<:h2 (translate "misc")) ; based upon author-type (except logout)
-                (nav-misc)))))
+  (let ((author (get-author-by-handle (session-value :author))))
+    (when logged-in
+      (<:ul :id "nav"
+            (<:li :class "prinav"
+                  (<:h2 (translate "add"))
+                  (when (eq :a (status author))
+                    (nav-add)))
+            (<:li :class "prinav"
+                  (<:h2 (translate "reports"))
+                  (when (eq :a (status author))
+                    (nav-report)))
+            (<:li :class "prinav"
+                  (<:h2 (translate "account"))
+                  (when (eq :a (status author))
+                    (nav-account)))
+            (<:li :class "prinav"
+                  (<:h2 (translate "misc"))
+                  (when (eq :a (status author))
+                    (nav-misc)))
+            (<:li :class "prinav"
+                  (<:h2 (<:a :href (h-genurl 'r-logout)
+                             (translate "logout"))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

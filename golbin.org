@@ -2441,14 +2441,6 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-19 Mon 14:11
      :END:
-**** DONE [ed] user should be powerless after registration until his account is approved
-     CLOSED: [2013-08-19 Mon 14:14]
-     :CLOCK:
-     CLOCK: [2013-08-19 Mon 14:12]--[2013-08-19 Mon 14:14] =>  0:02
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-08-19 Mon 14:14
-     :END:
 **** DONE [ed] accounts
      CLOSED: [2013-08-19 Mon 18:03]
      :CLOCK:
@@ -2514,6 +2506,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-19 Mon 19:52
+     :END:
+**** DONE [ed] user should be powerless after registration until his account is approved
+     CLOSED: [2013-08-20 Tue 11:52]
+     :CLOCK:
+     CLOCK: [2013-08-20 Tue 11:50]--[2013-08-20 Tue 11:52] =>  0:02
+     CLOCK: [2013-08-20 Tue 11:30]--[2013-08-20 Tue 11:41] =>  0:11
+     CLOCK: [2013-08-19 Mon 14:12]--[2013-08-19 Mon 14:14] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-20 Tue 11:52
      :END:
 ** TODO refactor
    :CLOCK:
