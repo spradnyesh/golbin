@@ -3,17 +3,6 @@
 * tasks
 ** backlog
 *** [#B] [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-*** [ed] article validation
-    - mandatory fields, etc
-*** TODO [security][fed] process output
-    :CLOCK:
-    CLOCK: [2013-08-20 Tue 16:48]--[2013-08-20 Tue 16:58] =>  0:10
-    CLOCK: [2013-08-14 Wed 18:33]--[2013-08-14 Wed 18:38] =>  0:05
-    :END:
-    - [X] fe: comments
-    - [-] ed:
-      - [X] assume articles have been reviewed
-      - [ ] disallow script tags in body
 *** [fed] put form processing js into utils so that it can be used from both fe and ed
 *** [ed] support non-js browsers too
 *** [ed] forgot password logic
@@ -2576,6 +2565,28 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-20 Tue 19:27
      :END:
+**** DONE [ed] article validation
+     CLOSED: [2013-08-21 Wed 10:28]
+     :CLOCK:
+     CLOCK: [2013-08-21 Wed 10:17]--[2013-08-21 Wed 10:28] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 10:28
+     :END:
+     - mandatory fields, etc
+**** DONE [security][fed] process output
+     CLOSED: [2013-08-21 Wed 10:28]
+     :CLOCK:
+     CLOCK: [2013-08-20 Tue 16:48]--[2013-08-20 Tue 16:58] =>  0:10
+     CLOCK: [2013-08-14 Wed 18:33]--[2013-08-14 Wed 18:38] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 10:28
+     :END:
+     - [X] fe: comments
+     - [X] ed:
+       - [X] assume articles have been reviewed
+       - [X] disallow script tags in body
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17

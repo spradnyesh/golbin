@@ -72,12 +72,14 @@
       (setf body (regex-replace img-tag body photo-div))))
   body)
 
-(defun validate-article (body)
+(defun validate-article (title body)
   (let ((err0r nil)
         (non-golbin-images (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
                                                    body))
-        (script-tags (all-matches-as-strings "<script(.*?)>(.*?)<\/script>"
+        (script-tags (all-matches-as-strings "<script(.*?)>"
                                              body)))
+    (cannot-be-empty title "title" err0r)
+    (cannot-be-empty body "body" err0r)
     (when non-golbin-images
       (push (translate "non-golbin-images" (join-string-list-with-delim "," non-golbin-images)) err0r))
     (when script-tags
@@ -121,7 +123,9 @@
                                         (h-genurl 'r-article-edit-post :id id)
                                         (h-genurl 'r-article-new-post))
                             :method "POST"
-                            (<:table (tr-td-input "title" :value (when article (title article)))
+                            (<:table (tr-td-input "title"
+                                                  :value (when article (title article))
+                                                  :mandatory t)
                                      (when article (<:tr
                                                     (<:td "URL")
                                                     (<:td (<:input :class "td-input url"
@@ -171,8 +175,10 @@
                                                       :href ""
                                                       "Upload")
                                                  " a photo"))
-                                     (tr-td-text "body" :class "ckeditor"
-                                                 :value (when article (body article)))
+                                     (tr-td-text "body"
+                                                 :class "ckeditor"
+                                                 :value (when article (body article))
+                                                 :mandatory t)
                                      #- (and)
                                      (if (string-equal "en-IN" (get-dimension-value "lang"))
                                          (tr-td-text "body"
@@ -255,7 +261,7 @@
            (tags p-tags)
            (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
            (article-tags nil))
-      (let ((err0r (validate-article body)))
+      (let ((err0r (validate-article title body)))
         (if (not err0r)
             (let ((body (add-photo-attribution (cleanup-ckeditor-text body))))
               (dolist (tag tags)
