@@ -59,7 +59,7 @@
   `(if ,ajax
        (encode-json-to-string `((:status . "error")
                                 (:message . ,(translate "submit-error"))
-                                (:errors . ,,err0r)))
+                                (:errors . ,(reverse ,err0r))))
        ;; no-ajax => we lose all changes here
        (redirect ,route)))
 
