@@ -3,8 +3,6 @@
 * tasks
 ** backlog
 *** [#B] [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-*** [bug][fe] recaptcha is failing
-    - w/ "invalid-request-cookie" error
 *** [ed] support non-js browsers too
 *** [ed] forgot password logic
 *** [ed] move ?lang -> cookie(ed-lang) into template
@@ -2612,6 +2610,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-21 Wed 11:16
      :END:
+**** DONE [#A] [bug][fe] recaptcha is failing
+     CLOSED: [2013-08-21 Wed 14:52]
+     :CLOCK:
+     CLOCK: [2013-08-21 Wed 14:36]--[2013-08-21 Wed 14:52] =>  0:16
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 14:52
+     :END:
+     - w/ "invalid-request-cookie" error
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17

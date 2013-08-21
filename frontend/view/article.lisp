@@ -147,8 +147,8 @@
          :description (summary article)
          :body (<:div
                 (<:div :id "article"
-                      (article-preamble-markup article)
-                      (article-body-markup article))
+                       (article-preamble-markup article)
+                       (article-body-markup article))
                 (article-related-markup article)
                 (article-comments-markup id comment-pagination)))
         (v-404))))
