@@ -109,6 +109,19 @@
                            :margin-left "3px"))
 
    ;; main structure elements
+   (("#pane") (:width "540px"
+                      :min-height "100px"
+                      :position "fixed"
+                      :top "100px"
+                      :left "250px"
+                      :border "3px solid #ddd"
+                      :border-radius "10px"
+                      :background-color "#fff"))
+   (("#pane a.close") (:position "absolute"
+                                 :top "20px"
+                                 :right "20px"))
+   (("#pane .message") (:margin "50px 20px 20px"))
+
    (("#wrapper")
     (:background "#FFF"
                  :clear "both"

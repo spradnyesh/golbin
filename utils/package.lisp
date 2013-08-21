@@ -53,6 +53,8 @@
            :$apply
            :$prevent-default
            :$log
+           :$ajax-form
+           :$pane
            ;; db
            :init-db-system
            :get-object-by

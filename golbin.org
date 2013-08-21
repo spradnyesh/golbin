@@ -3,7 +3,6 @@
 * tasks
 ** backlog
 *** [#B] [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-*** [fed] put form processing js into utils so that it can be used from both fe and ed
 *** [ed] support non-js browsers too
 *** [ed] forgot password logic
 *** [ed] move ?lang -> cookie(ed-lang) into template
@@ -2594,6 +2593,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-21 Wed 10:33
+     :END:
+**** DONE [fed] put form processing js into utils so that it can be used from both fe and ed
+     CLOSED: [2013-08-21 Wed 11:11]
+     :CLOCK:
+     CLOCK: [2013-08-21 Wed 10:36]--[2013-08-21 Wed 11:11] =>  0:35
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 11:11
      :END:
 ** TODO refactor
    :CLOCK:
