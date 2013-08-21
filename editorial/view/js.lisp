@@ -385,12 +385,14 @@
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
-        ($event ("#register form" submit) (form-submit event "#register form"))
         ($event ("#article form" submit) (form-submit event "#article form"))
+        ($event ("#password form" submit) (form-submit event "#password form"))
+        ($event ("#register form" submit) (form-submit event "#register form"))
         ($event ("#accounts form" submit) (form-submit event "#accounts form"))
 
         ;; some init functions
         (submit-form-ajax "#article form")
+        (submit-form-ajax "#password form")
         (submit-form-ajax "#register form")
 
         #|(tags-autocomplete ($ ".tags"))|#

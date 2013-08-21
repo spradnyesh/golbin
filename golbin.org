@@ -3,8 +3,6 @@
 * tasks
 ** backlog
 *** [#B] [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-*** [ed] support non-js browsers too
-*** [ed] forgot password logic
 *** [ed] move ?lang -> cookie(ed-lang) into template
     - rename cookie name from ed-lang to lang
     - because the cookie domain is unique
@@ -2626,6 +2624,18 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-21 Wed 16:51
+     :END:
+**** DONE [ed] forgot password logic
+     CLOSED: [2013-08-21 Wed 18:06]
+     :CLOCK:
+     CLOCK: [2013-08-21 Wed 17:08]--[2013-08-21 Wed 18:06] =>  0:58
+     CLOCK: [2013-08-21 Wed 16:51]--[2013-08-21 Wed 16:57] =>  0:06
+     CLOCK: [2013-08-21 Wed 15:56]--[2013-08-21 Wed 16:49] =>  0:53
+     CLOCK: [2013-08-21 Wed 15:02]--[2013-08-21 Wed 15:15] =>  0:13
+     CLOCK: [2013-08-21 Wed 14:53]--[2013-08-21 Wed 14:59] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 18:06
      :END:
 ** TODO refactor
    :CLOCK:

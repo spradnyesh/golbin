@@ -48,13 +48,13 @@
                                            new-password-2)))
     (if (not err0r)
         (progn
-          (setf (password author) new-password)
+          (setf (password author) (hash-password new-password))
           (setf (salt author) (generate-salt 32))
           (edit-author author)
           (sendmail :to (email author)
-              :subject (translate "password-changed")
-              :body (translate "new-token-email")
-              :package hawksbill.golbin.editorial)
+                    :subject (translate "password-changed")
+                    :body (translate "password-changed-email")
+                    :package hawksbill.golbin.editorial)
           (submit-success ajax
                           (h-genurl 'r-account-password-done
                                     :status "yes")))
@@ -144,6 +144,7 @@
   (template
    :title (translate "change-token")
    :js nil
-   :body (if (string= status "yes")
-             (translate "token-changed")
-             (translate "token-not-changed"))))
+   :body (<:div :class "wrapper"
+                (if (string= status "yes")
+                    (translate "token-changed")
+                    (translate "token-not-changed")))))

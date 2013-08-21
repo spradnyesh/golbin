@@ -25,9 +25,9 @@
       (push (translate "username-already-exists") err0r))
     (when (get-author-by-email email)
       (push (translate "email-already-exists") err0r))
-    (when (not (string-equal password password2))
+    (unless (string-equal password password2)
       (push (translate "passwords-no-match") err0r))
-    (when (not (or (string= gender "m")(string= gender "f")))
+    (unless (or (string= gender "m")(string= gender "f"))
       (push (translate "invalid-gender") err0r))
     (reverse err0r)))
 
@@ -108,10 +108,7 @@
                                                             (<:option :value "m" (translate "male"))
                                                             (<:option :value "f" (translate "female")))))
                                       (tr-td-input "phone number" :mandatory t)
-                                      (<:tr (<:td (<:input :type "submit"
-                                                           :name "submit"
-                                                           :class "submit"
-                                                           :value "Register"))))))))))
+                                      (tr-td-submit))))))))
 
 (defun v-register-post (&key (ajax nil))
   (let* ((email (post-parameter "email"))

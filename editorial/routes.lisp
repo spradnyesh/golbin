@@ -17,6 +17,19 @@
                                                                        a))))
   (v-register-done-confirm status))
 
+;; forgot password
+(define-route r-password-get ("/password/") (v-password-get))
+(define-route r-password-post ("/password/" :method :post) (v-password-post))
+(define-route r-password-email ("/password/email/") (v-password-email))
+(define-route r-password-change-get ("/password/change/:hash ") (v-password-change-get hash))
+(define-route r-password-change-post ("/password/change/" :method :post) (v-password-change-post))
+(define-route r-password-changed ("/password/changed/:status"
+                                  :parse-vars (list :status #'(lambda (a)
+                                                                (when (or (string= a "yes")
+                                                                          (string= a "no"))
+                                                                  a))))
+  (v-password-changed status))
+
 ;; robots
 (define-route r-robots ("/robots.txt")
   (handle-static-file (merge-pathnames "../data/static/ed-robots.txt" *home*) "text/plain"))
@@ -73,8 +86,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define-route r-ajax-register-post ("/ajax/register/" :method :post
-                                                      :content-type "application/json") (v-register-post :ajax t))
 (define-route r-ajax-article-new-post ("/ajax/article/" :method :post
                                                         :content-type "application/json") (v-article-post :ajax t))
 (define-route r-ajax-article-edit-post ("/ajax/article/:id/" :method :post
@@ -91,15 +102,23 @@
   (v-photo-post t))
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
-(define-route r-account-password-post ("/ajax/account/password/" :method :post
+(define-route r-ajax-register-post ("/ajax/register/" :method :post
+                                                      :content-type "application/json") (v-register-post :ajax t))
+(define-route r-ajax-account-password-post ("/ajax/account/password/" :method :post
                                                                  :content-type "application/json")
   (v-account-password-post :ajax t))
-(define-route r-account-email-post ("/ajax/account/email/" :method :post
+(define-route r-ajax-account-email-post ("/ajax/account/email/" :method :post
                                                            :content-type "application/json")
   (v-account-email-post :ajax t))
-(define-route r-account-token-post ("/ajax/account/token/" :method :post
+(define-route r-ajax-account-token-post ("/ajax/account/token/" :method :post
                                                            :content-type "application/json")
   (v-account-token-post :ajax t))
+(define-route r-ajax-password-post ("/ajax/password/" :method :post
+                                            :content-type "application/json")
+  (v-password-post :ajax t))
+(define-route r-ajax-password-change-post ("/ajax/password/change/" :method :post
+                                                          :content-type "application/json")
+  (v-password-change-post :ajax t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 404, define this as the last route

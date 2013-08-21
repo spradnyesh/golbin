@@ -36,7 +36,27 @@
            :r-register-hurdle
            :r-register-do-confirm
            :r-register-done-confirm
-           :r-ajax-register-post))
+           :r-ajax-register-post
+           :r-account-password-get
+           :r-account-password-post
+           :r-account-password-done
+           :r-account-email-get
+           :r-account-email-post
+           :r-account-email-done
+           :r-account-token-get
+           :r-account-token-post
+           :r-account-token-done
+           :r-ajax-account-password-post
+           :r-ajax-account-email-post
+           :r-ajax-account-token-post
+           :r-password-get
+           :r-password-post
+           :r-password-email
+           :r-password-change-get
+           :r-password-change-post
+           :r-password-changed
+           :r-ajax-password-post
+           :r-ajax-password-change-post))
 
 (in-package :hawksbill.golbin.editorial)
 
@@ -65,6 +85,10 @@
 (<:augment-with-doctype "html" "")
 
 (defparameter *whitelist* '(r-login-get
+                            r-password-get
+                            r-password-email
+                            r-password-change-get
+                            r-password-changed
                             r-register-get
                             r-why-register
                             r-register-hurdle

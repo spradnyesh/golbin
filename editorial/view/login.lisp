@@ -22,7 +22,7 @@
                                           (<:a :href (h-genurl 'r-why-register
                                                                :lang ed-lang)
                                                (translate "join-us"))
-                                          (<:a :href (h-genurl 'r-register-get
+                                          (<:a :href (h-genurl 'r-password-get
                                                                :lang ed-lang)
                                                (translate "forgot-password")))
                                (redirect (h-genurl 'r-login-get :lang "en-IN"))))))))

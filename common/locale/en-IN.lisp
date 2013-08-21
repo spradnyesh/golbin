@@ -43,3 +43,5 @@ add-a-comment=Add a comment
 user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span><span class="c-says"> said (on </span><span class="c-date">~a</span> at <span class="c-time">~a</span>):</p>
 captcha-verification-failed=Recaptcha verification failed with error ~a
 submit-error=There are errors in the submitted email. Please correct them and submit again.
+username-or-email=Please enter your username or email address
+password-email=Please click ~a to change your password
