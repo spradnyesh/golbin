@@ -2619,6 +2619,14 @@
      :ARCHIVE_TIME: 2013-08-21 Wed 14:52
      :END:
      - w/ "invalid-request-cookie" error
+**** DONE [ed] support non-js browsers too
+     CLOSED: [2013-08-21 Wed 16:51]
+     :CLOCK:
+     CLOCK: [2013-08-21 Wed 16:49]--[2013-08-21 Wed 16:51] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 16:51
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17

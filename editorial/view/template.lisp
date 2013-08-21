@@ -45,15 +45,11 @@
                                                "dvngr")
                        (<:div :class "yui3-g"
                               (<:header :id "hd" (header (is-logged-in?) ,email))
-                              (<:noscript (translate "use-javascript-enabled-browser"))
                               (<:div :id "bd"
-                                     :class "hidden"
                                      ,body)
                               (<:footer :id "ft" (footer))))
                (unless ,email
                  (fmtnil (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
-                         (<:script :type "text/javascript"
-                                   (ps ($apply ($ "#bd") remove-class "hidden")))
                          (<:script :type "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
                          (<:script :type "text/javascript" :src "http://malsup.github.com/jquery.form.js")
                          (<:script :type "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
