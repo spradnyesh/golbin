@@ -158,12 +158,13 @@
   (let ((author (get-author-by-handle (session-value :author))))
     (when logged-in
       (<:ul :id "nav"
-            (<:li :class "prinav"
-                  (<:h2 (translate "add"))
-                  (when (eq :a (status author))
-                    (nav-add)))
-            (<:li :class "prinav"
-                  (<:h2 (translate "reports")))
+            (when (eq :a (status author))
+              (<:li :class "prinav wide"
+                    (<:h2 (<:a :href (h-genurl 'r-article-new-get)
+                               (translate "add-article")))))
+            (when (eq :a (status author))
+              (<:li :class "prinav"
+                    (<:h2 (translate "reports"))))
             (<:li :class "prinav wide"
                   (<:h2 (translate "account"))
                   (when (eq :a (status author))

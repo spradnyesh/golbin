@@ -2587,6 +2587,14 @@
      - [X] ed:
        - [X] assume articles have been reviewed
        - [X] disallow script tags in body
+**** DONE [ed] nav add/article -> add-article
+     CLOSED: [2013-08-21 Wed 10:33]
+     :CLOCK:
+     CLOCK: [2013-08-21 Wed 10:30]--[2013-08-21 Wed 10:33] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-21 Wed 10:33
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17
