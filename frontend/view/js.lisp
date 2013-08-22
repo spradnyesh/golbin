@@ -81,14 +81,6 @@
                           ($apply ($ "#subnav") append subnav))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; comments
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                    (comments-form-submit (event)
-                      ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
-                      ($apply ($ "#response td input") val ($apply -recaptcha get_response))
-                      (form-submit event "#comments form"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; carousel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     (carousel-prev (event)
@@ -163,4 +155,8 @@
            (lambda (event) (restore-subcategory event)))
           ($event (".carousel p.prev a" click) (carousel-prev event))
           ($event (".carousel p.next a" click) (carousel-next event))
-          ($event ("#comments form" submit) (comments-form-submit event))))))
+          ($event ("#comments form" submit)
+            ((lambda (event)
+               ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
+               ($apply ($ "#response td input") val ($apply -recaptcha get_response))
+               (form-submit event "#comments form"))))))))

@@ -375,6 +375,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; event handling
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;; some init functions
+        (submit-form-ajax "#article form")
+        (submit-form-ajax "#password form")
+        (submit-form-ajax "#register form")
+
         ;; define event handlers
         ((@ ($ ".prinav" ) hover)
          (lambda (event) (update-subcategory event))
@@ -385,15 +390,15 @@
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
-        ($event ("#article form" submit) (form-submit event "#article form"))
+        ($event ("#accounts form" submit) (form-submit event "#accounts form"))
+        ($event ("#article form" submit)
+          ((lambda (event)
+             ;; http://stackoverflow.com/a/1903820
+             ($apply (@ -c-k-e-d-i-t-o-r instances editor1) update-element)
+             (form-submit event "#article form"))))
         ($event ("#password form" submit) (form-submit event "#password form"))
         ($event ("#register form" submit) (form-submit event "#register form"))
         ($event ("#accounts form" submit) (form-submit event "#accounts form"))
-
-        ;; some init functions
-        (submit-form-ajax "#article form")
-        (submit-form-ajax "#password form")
-        (submit-form-ajax "#register form")
 
         #|(tags-autocomplete ($ ".tags"))|#
         #|(sort-categories ($ "#sort-catsubcat"))|#)))

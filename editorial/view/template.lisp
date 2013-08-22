@@ -16,11 +16,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro template (&key title js body (email nil))
   `(let ((lang (get-parameter "lang")))
-     (when lang
-       (set-cookie "ed-lang"
-                   :path "/"
-                   :value lang)
-       (redirect (script-name *request*)))
+     (if lang
+         (progn
+           (set-cookie "ed-lang"
+                       :path "/"
+                       :value lang)
+           (redirect (script-name *request*)))
+         (setf lang (cookie-in "ed-lang")))
      (cond ((and (not (in-whitelist?)) ; not in whitelist and not logged-in => goto login page
                  (not (is-logged-in?))
                  (not ,email))
@@ -36,13 +38,12 @@
                 (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
                 (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/spree.ico")
                 (<:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
-                ;; http://www.faqoverflow.com/askubuntu/16556.html
-                (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/css?family=Ubuntu:regular")
-                (<:link :rel "stylesheet" :type "text/css" :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css")
+                (unless (string= "en" lang)
+                  (<:link :rel "stylesheet"
+                          :type "text/css"
+                          :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
                 (<:style :type "text/css" (ed-get-css)))
-               (<:body :class (if (string-equal "en-IN" (get-dimension-value "lang"))
-                                               ""
-                                               "dvngr")
+               (<:body :class (if (string= "en" lang) "" "dvngr")
                        (<:div :class "yui3-g"
                               (<:header :id "hd" (header (is-logged-in?) ,email))
                               (<:div :id "bd"
