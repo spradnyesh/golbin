@@ -2,17 +2,17 @@
 
 * tasks
 ** backlog
-*** [#B] [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-*** [ed] move ?lang -> cookie(ed-lang) into template
-    - rename cookie name from ed-lang to lang
-    - because the cookie domain is unique
+*** [ed] r-account-* should have ajax counterparts
+    - add init in js
+*** [bug][ed] sprite image in logged-out pages
+*** [ed][reports] investigate GA users
+*** [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
 *** [ed] admin should be able to approve author
 *** [ed] editor should be able to approve article
 *** [utils] replace utils/locale w/ cl-locale
-*** [ed] mr/hi ckeditor should show devanagari font
 *** TODO cron for saving db (comments/articles) on linode
     :CLOCK:
     CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
@@ -2637,8 +2637,37 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-21 Wed 18:06
      :END:
+**** CANCELLED [ed] move ?lang -> cookie(ed-lang) into template
+     CLOSED: [2013-08-22 Thu 14:08]
+     :LOGBOOK:
+     - State "CANCELLED"  from "TODO"       [2013-08-22 Thu 14:08] \\
+       screws up utils/dimensions
+     - State "CANCELLED"  from "UNDERGOING" [2013-08-22 Thu 14:07] \\
+       screws up utils/dimensions
+     :END:
+     :CLOCK:
+     CLOCK: [2013-08-22 Thu 13:39]--[2013-08-22 Thu 13:43] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-22 Thu 14:08
+     :END:
+     - rename cookie name from ed-lang to lang
+     - because the cookie domain is unique
+**** DONE [ed] mr/hi ckeditor should show devanagari font
+     CLOSED: [2013-08-22 Thu 19:17]
+     :CLOCK:
+     CLOCK: [2013-08-22 Thu 19:00]--[2013-08-22 Thu 19:17] =>  0:17
+     CLOCK: [2013-08-22 Thu 14:20]--[2013-08-22 Thu 14:51] =>  0:31
+     CLOCK: [2013-08-22 Thu 14:08]--[2013-08-22 Thu 14:12] =>  0:04
+     CLOCK: [2013-08-22 Thu 13:45]--[2013-08-22 Thu 14:05] =>  0:20
+     CLOCK: [2013-08-22 Thu 13:31]--[2013-08-22 Thu 13:38] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-22 Thu 19:17
+     :END:
 ** TODO refactor
    :CLOCK:
+   CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13
    CLOCK: [2012-07-30 Mon 19:26]--[2012-07-30 Mon 19:32] =>  0:06

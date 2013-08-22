@@ -61,7 +61,7 @@
                              :font-size "90%"
                              :padding "5px 0"))
          ((".small") (:font-size "80%"))
-         ((".dvngr") (:font-family "Mangal, Lohit Devanagari"))
+         ((".dvngr") (:font-family "Lohit Devanagari"))
          ((".yes, .no") (:color "#fff"
                                 :text-align "center"))
          ((".yes") (:background-color "#8dba53"))

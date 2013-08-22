@@ -103,14 +103,14 @@
                  (<:script :type "text/javascript"
                            :src "/static/ckeditor/adapters/jquery.js")
                  (<:script :type "text/javascript"
-                           (format nil "$('.ckeditor td textarea').ckeditor()")))
-     #- (and)
-     (if (string-equal "en-IN" (get-dimension-value "lang"))
-         (progn (<:script :type "text/javascript"
-                          :src "/static/ckeditor/ckeditor.js")
-                (<:script :type "text/javascript"
-                          :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
-                          :defer "defer")))
+                           (fmtnil "$('.ckeditor td textarea').ckeditor();"))
+                 ;; http://ckeditor.com/forums/FCKeditor-2.x/Change-default-font-editor
+                 (unless (string= "en" lang)
+                   (<:script :type "text/javascript"
+                             "CKEDITOR.on('instanceReady', function(e) {
+e.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
+});
+")))
      :body (let* ((article (when id (get-article-by-id id)))
                   (cats (get-root-categorys))
                   (subcats (get-subcategorys (if article
@@ -179,27 +179,6 @@
                                                  :class "ckeditor"
                                                  :value (when article (body article))
                                                  :mandatory t)
-                                     #- (and)
-                                     (if (string-equal "en-IN" (get-dimension-value "lang"))
-                                         (tr-td-text "body"
-                                                     :value (when article (body article))
-                                                     :class "ckeditor")
-                                         (progn (<:tr (<:td "Body")
-                                                      (<:td (let ((trimmed-name "body")
-                                                                  (value (when article (body article))))
-                                                              (<:textarea :cols 40
-                                                                          :rows 7
-                                                                          :name (format nil "~A" trimmed-name)
-                                                                          :id (format nil "~A" trimmed-name)
-                                                                          value
-                                                                          :MicrosoftILITWebAttach "true"))))
-                                                (<:input :type "hidden"
-                                                         :id "MicrosoftILITWebEmbedInfo"
-                                                         :attachMode "optin"
-                                                         :value "")
-                                                (<:script :type "text/javascript"
-                                                          :src "http://ilit.microsoft.com/bookmarklet/script/Hindi.js"
-                                                          :defer "defer")))
                                      (unless (string-equal (get-dimension-value "lang") "en-IN")
                                        (<:tr (<:td (get-dimension-value "lang"))
                                              (<:td "Click " ; XXX: translate
