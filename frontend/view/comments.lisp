@@ -8,10 +8,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helpers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun validate-comment (name email challenge response userip)
+(defun validate-comment (name email body challenge response userip)
   (let ((err0r nil))
     (cannot-be-empty name "name" err0r)
     (cannot-be-empty email "email" err0r)
+    (cannot-be-empty body "body" err0r)
     (unless (validate-email email)
       (push (translate "invalid-email") err0r))
     (multiple-value-bind (status error-code)
@@ -69,7 +70,7 @@
         (challenge (post-parameter "challenge"))
         (response (post-parameter "response"))
         (userip (remote-addr*)))
-    (let ((err0r (validate-comment name email challenge response userip)))
+    (let ((err0r (validate-comment name email body challenge response userip)))
       (if (not err0r)
           (progn
             (add-comment (make-instance 'comment
