@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fed] ed-lang -> lang
 *** [ed] r-account-* should have ajax counterparts
     - add init in js
 *** [bug][ed] sprite image in logged-out pages
@@ -2664,6 +2665,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-22 Thu 19:17
+     :END:
+**** DONE refactor js forms
+     CLOSED: [2013-08-23 Fri 11:47]
+     :CLOCK:
+     CLOCK: [2013-08-23 Fri 11:42]--[2013-08-23 Fri 11:47] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-23 Fri 11:47
      :END:
 ** TODO refactor
    :CLOCK:
