@@ -2,10 +2,17 @@
 
 * tasks
 ** backlog
+*** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
+    - fe: comments
+    - ed: article body
 *** [fed] ed-lang -> lang
 *** [ed][reports] investigate GA users
-*** [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+    :CLOCK:
+    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
+    :END:
     - maybe use a html-parser like closure-html?
+      - http://common-lisp.net/project/closure/closure-html/examples.html
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
