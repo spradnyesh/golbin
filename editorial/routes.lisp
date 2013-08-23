@@ -59,7 +59,7 @@
 
 ;; account
 (define-route r-account-password-get ("/account/password/") (v-account-password-get))
-(define-route r-account-password-post ("/ajax/account/password/" :method :post) (v-account-password-post))
+(define-route r-account-password-post ("/account/password/" :method :post) (v-account-password-post))
 (define-route r-account-password-done ("/account/password/:status"
                                        :parse-vars (list :status #'(lambda (a)
                                                                      (when (or (string= a "yes")
@@ -67,7 +67,7 @@
                                                                        a))))
   (v-account-password-done status))
 (define-route r-account-email-get ("/account/email/") (v-account-email-get))
-(define-route r-account-email-post ("/ajax/account/email/" :method :post) (v-account-email-post))
+(define-route r-account-email-post ("/account/email/" :method :post) (v-account-email-post))
 (define-route r-account-email-done ("/account/email/:status"
                                     :parse-vars (list :status #'(lambda (a)
                                                                      (when (or (string= a "yes")
@@ -75,7 +75,7 @@
                                                                        a))))
   (v-account-email-done status))
 (define-route r-account-token-get ("/account/token/") (v-account-token-get))
-(define-route r-account-token-post ("/ajax/account/token/" :method :post) (v-account-token-post))
+(define-route r-account-token-post ("/account/token/" :method :post) (v-account-token-post))
 (define-route r-account-token-done ("/account/token/:status"
                                     :parse-vars (list :status #'(lambda (a)
                                                                   (when (or (string= a "yes")
@@ -87,7 +87,8 @@
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define-route r-ajax-article-new-post ("/ajax/article/" :method :post
-                                                        :content-type "application/json") (v-article-post :ajax t))
+                                                        :content-type "application/json")
+  (v-article-post :ajax t))
 (define-route r-ajax-article-edit-post ("/ajax/article/:id/" :method :post
                                                              :parse-vars (list :id #'parse-integer)
                                                              :content-type "application/json")
@@ -103,21 +104,22 @@
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
 (define-route r-ajax-register-post ("/ajax/register/" :method :post
-                                                      :content-type "application/json") (v-register-post :ajax t))
+                                                      :content-type "application/json")
+  (v-register-post :ajax t))
 (define-route r-ajax-account-password-post ("/ajax/account/password/" :method :post
-                                                                 :content-type "application/json")
+                                                                      :content-type "application/json")
   (v-account-password-post :ajax t))
 (define-route r-ajax-account-email-post ("/ajax/account/email/" :method :post
-                                                           :content-type "application/json")
+                                                                :content-type "application/json")
   (v-account-email-post :ajax t))
 (define-route r-ajax-account-token-post ("/ajax/account/token/" :method :post
-                                                           :content-type "application/json")
+                                                                :content-type "application/json")
   (v-account-token-post :ajax t))
 (define-route r-ajax-password-post ("/ajax/password/" :method :post
-                                            :content-type "application/json")
+                                                      :content-type "application/json")
   (v-password-post :ajax t))
 (define-route r-ajax-password-change-post ("/ajax/password/change/" :method :post
-                                                          :content-type "application/json")
+                                                                    :content-type "application/json")
   (v-password-change-post :ajax t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

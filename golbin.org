@@ -3,8 +3,6 @@
 * tasks
 ** backlog
 *** [fed] ed-lang -> lang
-*** [ed] r-account-* should have ajax counterparts
-    - add init in js
 *** [ed][reports] investigate GA users
 *** [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
 *** [fe] "load more" pagination for comments
@@ -2682,6 +2680,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-23 Fri 12:00
      :END:
+**** DONE [ed] r-account-* should have ajax counterparts
+     CLOSED: [2013-08-23 Fri 12:06]
+     :CLOCK:
+     CLOCK: [2013-08-23 Fri 12:04]--[2013-08-23 Fri 12:06] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-23 Fri 12:06
+     :END:
+     - add init in js
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01
