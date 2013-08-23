@@ -5,6 +5,7 @@
 *** [fed] ed-lang -> lang
 *** [ed][reports] investigate GA users
 *** [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+    - maybe use a html-parser like closure-html?
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
@@ -2663,14 +2664,6 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-22 Thu 19:17
      :END:
-**** DONE refactor js forms
-     CLOSED: [2013-08-23 Fri 11:47]
-     :CLOCK:
-     CLOCK: [2013-08-23 Fri 11:42]--[2013-08-23 Fri 11:47] =>  0:05
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-08-23 Fri 11:47
-     :END:
 **** DONE [bug][ed] sprite image in logged-out pages
      CLOSED: [2013-08-23 Fri 12:00]
      :CLOCK:
@@ -2689,6 +2682,15 @@
      :ARCHIVE_TIME: 2013-08-23 Fri 12:06
      :END:
      - add init in js
+**** DONE refactor js forms
+     CLOSED: [2013-08-23 Fri 13:08]
+     :CLOCK:
+     CLOCK: [2013-08-23 Fri 13:05]--[2013-08-23 Fri 13:08] =>  0:03
+     CLOCK: [2013-08-23 Fri 11:42]--[2013-08-23 Fri 11:47] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-23 Fri 13:08
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01

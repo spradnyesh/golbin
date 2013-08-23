@@ -12,9 +12,9 @@
   (let ((err0r nil))
     (cannot-be-empty name "name" err0r)
     (cannot-be-empty email "email" err0r)
-    (cannot-be-empty body "body" err0r)
     (unless (validate-email email)
       (push (translate "invalid-email") err0r))
+    (cannot-be-empty body "body" err0r)
     (multiple-value-bind (status error-code)
         (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
       (unless status
