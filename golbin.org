@@ -5,7 +5,6 @@
 *** [fed] ed-lang -> lang
 *** [ed] r-account-* should have ajax counterparts
     - add init in js
-*** [bug][ed] sprite image in logged-out pages
 *** [ed][reports] investigate GA users
 *** [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
 *** [fe] "load more" pagination for comments
@@ -2673,6 +2672,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-23 Fri 11:47
+     :END:
+**** DONE [bug][ed] sprite image in logged-out pages
+     CLOSED: [2013-08-23 Fri 12:00]
+     :CLOCK:
+     CLOCK: [2013-08-23 Fri 11:54]--[2013-08-23 Fri 12:00] =>  0:06
+     CLOCK: [2013-08-23 Fri 11:48]--[2013-08-23 Fri 11:52] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-23 Fri 12:00
      :END:
 ** TODO refactor
    :CLOCK:

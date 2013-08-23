@@ -101,14 +101,14 @@
                                            :background-color "#8dba53"
                                            :color "#fff"))
          ;; hd
-         (("#hd") (:height "120px"))
+         (("#hd") (:height "120px"
+                           :margin-top "40px"))
          (("#logo") (:float "left"
                             :margin-top "-40px"
                             :width "200px"))
          (("#logo .langs") (:margin "-7px 0 0 40px"))
          (("#logo .langs a") (:margin-right "7px"))
          ;; nav
-         (("#nav") (:margin-top "40px"))
          ((".prinav") (:float "left"
                               :width "100px"))
          ((".prinav.wide") (:width "175px"))

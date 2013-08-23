@@ -105,7 +105,7 @@
                  (<:script :type "text/javascript"
                            (fmtnil "$('.ckeditor td textarea').ckeditor();"))
                  ;; http://ckeditor.com/forums/FCKeditor-2.x/Change-default-font-editor
-                 (unless (string= "en" lang)
+                 (unless (string= "en-IN" lang)
                    (<:script :type "text/javascript"
                              "CKEDITOR.on('instanceReady', function(e) {
 e.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
