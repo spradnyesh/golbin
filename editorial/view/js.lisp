@@ -394,7 +394,7 @@
         ($event ("#article form" submit)
           ((lambda (event)
              ;; http://stackoverflow.com/a/1903820
-             ($apply (@ -c-k-e-d-i-t-o-r instances editor1) update-element)
+             ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
              (form-submit event "#article form"))
            event))
         ($event ("#password form" submit) (form-submit event "#password form"))

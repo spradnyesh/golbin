@@ -2,6 +2,25 @@
 
 * tasks
 ** backlog
+*** TODO [articles] add aai kavita
+    :CLOCK:
+    CLOCK: [2013-08-26 Mon 11:39]--[2013-08-26 Mon 11:53] =>  0:14
+    CLOCK: [2013-08-26 Mon 11:30]--[2013-08-26 Mon 11:33] =>  0:03
+    CLOCK: [2013-08-26 Mon 10:58]--[2013-08-26 Mon 11:03] =>  0:05
+    CLOCK: [2013-07-29 Mon 10:45]--[2013-07-29 Mon 10:57] =>  0:12
+    CLOCK: [2013-07-23 Tue 17:22]--[2013-07-23 Tue 17:28] =>  0:06
+    CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
+    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
+    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
+    :END:
+*** TODO cron for saving db (comments/articles) on linode
+    :CLOCK:
+    CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
+    :END:
+*** TODO [ed] translations for author registration
+    :CLOCK:
+    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
+    :END:
 *** [fe] daily digest email for comments to authors
 *** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
     - fe: comments
@@ -20,10 +39,6 @@
 *** [ed] admin should be able to approve author
 *** [ed] editor should be able to approve article
 *** [utils] replace utils/locale w/ cl-locale
-*** TODO cron for saving db (comments/articles) on linode
-    :CLOCK:
-    CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
-    :END:
 *** [ed] emails to golb_in
     - [ ] on author registration
     - [ ] on article(s) submit (add/edit)
@@ -31,10 +46,6 @@
     - [ ] monthly report
     - [ ] approval of add/edit article(s)
 *** [fe] collect emails (submitted in comments) for spamming
-*** TODO [ed] translations for author registration
-    :CLOCK:
-    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
-    :END:
 *** TODO [reports] author report dashboard
     :CLOCK:
     CLOCK: [2013-08-06 Tue 17:07]--[2013-08-06 Tue 17:11] =>  0:04
@@ -46,14 +57,6 @@
 | article-Id | today | current week | current month | last month | ??? |
 |------------+-------+--------------+---------------+------------+-----|
 |            |       |              |               |            |     |
-*** TODO [articles] add aai kavita
-    :CLOCK:
-    CLOCK: [2013-07-29 Mon 10:45]--[2013-07-29 Mon 10:57] =>  0:12
-    CLOCK: [2013-07-23 Tue 17:22]--[2013-07-23 Tue 17:28] =>  0:06
-    CLOCK: [2013-07-09 Tue 14:56]--[2013-07-09 Tue 15:03] =>  0:07
-    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
-    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
-    :END:
 *** TODO restas daemon + swank + slime
     :CLOCK:
     CLOCK: [2013-07-23 Tue 18:23]--[2013-07-23 Tue 18:57] =>  0:34
@@ -2706,6 +2709,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-26 Mon 10:51
+     :END:
+**** DONE [bug][ed] article edit (maybe add too) js not working
+     CLOSED: [2013-08-26 Mon 11:57]
+     :CLOCK:
+     CLOCK: [2013-08-26 Mon 11:07]--[2013-08-26 Mon 11:30] =>  0:23
+     CLOCK: [2013-08-26 Mon 11:03]--[2013-08-26 Mon 11:07] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-26 Mon 11:57
      :END:
 ** TODO refactor
    :CLOCK:
