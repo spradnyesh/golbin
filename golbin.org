@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fe] daily digest email for comments to authors
 *** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
     - fe: comments
     - ed: article body
@@ -2697,6 +2698,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-23 Fri 13:08
+     :END:
+**** DONE [bug][fe] lohit css not getting loaded on ubuntu???
+     CLOSED: [2013-08-26 Mon 10:51]
+     :CLOCK:
+     CLOCK: [2013-08-26 Mon 10:49]--[2013-08-26 Mon 10:51] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-26 Mon 10:51
      :END:
 ** TODO refactor
    :CLOCK:

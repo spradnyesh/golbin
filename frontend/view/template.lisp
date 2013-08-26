@@ -17,8 +17,8 @@
               (<:meta :name "description" :content ,description)
               (<:meta :name "google" :content "notranslate")
               (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
-              (when (or (string= "mr" lang)
-                        (string= "hi" lang))
+              (when (or (string= "mr-IN" lang)
+                        (string= "hi-IN" lang))
                 (<:link :rel "stylesheet"
                         :type "text/css"
                         :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
