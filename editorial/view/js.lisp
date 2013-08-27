@@ -379,6 +379,7 @@
         (submit-form-ajax "#article form")
         (submit-form-ajax "#accounts form")
         (submit-form-ajax "#register form")
+        (submit-form-ajax "#login form")
 
         ;; define event handlers
         ((@ ($ ".prinav" ) hover)
@@ -396,6 +397,7 @@
              ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
              (form-submit event "#article form"))
            event))
+        ($event ("#login form" submit) (form-submit event "#login form"))
         ($event ("#register form" submit) (form-submit event "#register form"))
         ($event ("#accounts form" submit) (form-submit event "#accounts form"))
 

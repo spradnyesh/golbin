@@ -90,6 +90,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-route r-ajax-login-post ("/ajax/login/" :method :post
+                                                :content-type "application/json")
+  (v-login-post :ajax t))
 (define-route r-ajax-article-new-post ("/ajax/article/" :method :post
                                                         :content-type "application/json")
   (v-article-post :ajax t))

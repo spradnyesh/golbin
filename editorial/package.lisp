@@ -21,6 +21,7 @@
            :r-article-delete-post
            :r-login-get
            :r-login-post
+           :r-ajax-login-post
            :r-ajax-photo-get
            :r-ajax-photo-post
            :r-ajax-photos-select
