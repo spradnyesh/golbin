@@ -42,6 +42,8 @@
            :r-account-password-done
            :r-account-email-get
            :r-account-email-post
+           :r-account-email-hurdle
+           :r-account-email-verify
            :r-account-email-done
            :r-account-token-get
            :r-account-token-post

@@ -378,6 +378,7 @@
         ;; some init functions
         (submit-form-ajax "#article form")
         (submit-form-ajax "#password form")
+        (submit-form-ajax "#accounts form")
         (submit-form-ajax "#register form")
 
         ;; define event handlers

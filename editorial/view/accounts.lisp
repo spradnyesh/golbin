@@ -11,14 +11,16 @@
       (push (translate "new-passwords-dont-match") err0r))
     err0r))
 
-(defun validate-account-email (email)
+(defun validate-account-email (email author)
   (let ((err0r nil))
+    (when (string= email (email author))
+      (push (translate "same-as-old-email") err0r))
     (unless (validate-email email)
       (push (translate "invalid-email") err0r))
     err0r))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; view functions
+;; password view functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-account-password-get ()
   (template
@@ -71,6 +73,9 @@
       (translate "password-changed")
       (translate "password-not-changed"))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; email view functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-account-email-get ()
   (template
    :title (translate "change-email")
@@ -89,18 +94,56 @@
 (defun v-account-email-post (&key (ajax nil))
   (let* ((email (post-parameter "new-email"))
          (author (get-author-by-handle (session-value :author)))
-         (err0r (validate-account-email email)))
+         (err0r (validate-account-email email author)))
     (if (not err0r)
-        (progn
-          (setf (email author) email)
-          (edit-author author)
+        (let* ((salt (salt author))
+               (hash (insecure-encrypt (concatenate 'string
+                                                    (email author) ; old-email
+                                                    "|"
+                                                    email ; new-email
+                                                    "|"
+                                                    salt))))
+          (sendmail :to email
+                    :subject (translate "confirm-email-change")
+                    :body (click-here "change-email-email"
+                                      (h-gen-full-url 'r-account-email-verify
+                                                      :hash hash
+                                                      :lang (cookie-in "ed-lang")))
+                    :package hawksbill.golbin.editorial)
           (submit-success ajax
-                          (h-genurl 'r-account-email-done
-                                    :status "yes")))
+                          (h-genurl 'r-account-email-hurdle
+                                    :email (insecure-encrypt email))))
         (submit-error ajax
                       err0r
-                      (redirect (h-genurl 'r-account-email-done
-                                          :status "no"))))))
+                      (redirect (h-genurl 'r-account-email-get))))))
+
+(defun v-account-email-hurdle (email)
+  (template
+   :title (translate "change-email")
+   :js nil
+   :body (<:div :class "wrapper"
+                (<:p (translate "confirmation-email-sent"
+                                (insecure-decrypt email))))))
+
+(defun v-account-email-verify (hash)
+  (let* ((ees (split-sequence "|" (insecure-decrypt hash) :test #'string=))
+         (old-email (first ees))
+         (new-email (second ees))
+         (salt (third ees))
+         (author (find-author-by-email-salt old-email salt)))
+    (if author
+        (progn
+          (setf (email author) new-email)
+          (edit-author author)
+          (sendmail :to new-email
+                    :cc old-email
+                    :subject (translate "email-changed-subject")
+                    :body (translate "email-changed-body" old-email new-email)
+                    :package hawksbill.golbin.editorial)
+          (redirect (h-genurl 'r-account-email-done
+                              :status "yes")))
+        (redirect (h-genurl 'r-account-email-done
+                            :status "no")))))
 
 (defun v-account-email-done (status)
   (template
@@ -110,6 +153,9 @@
       (translate "email-changed")
       (translate "email-not-changed"))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; token card view functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-account-token-get ()
   (template
    :title (translate "change-token")

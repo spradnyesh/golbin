@@ -66,14 +66,18 @@
                                                                                (string= a "no"))
                                                                        a))))
   (v-account-password-done status))
+
 (define-route r-account-email-get ("/account/email/") (v-account-email-get))
 (define-route r-account-email-post ("/account/email/" :method :post) (v-account-email-post))
+(define-route r-account-email-hurdle ("/account/email/hurdle/:email") (v-account-email-hurdle email))
+(define-route r-account-email-verify ("/account/email/verify/:hash") (v-account-email-verify hash))
 (define-route r-account-email-done ("/account/email/:status"
                                     :parse-vars (list :status #'(lambda (a)
                                                                      (when (or (string= a "yes")
                                                                                (string= a "no"))
                                                                        a))))
   (v-account-email-done status))
+
 (define-route r-account-token-get ("/account/token/") (v-account-token-get))
 (define-route r-account-token-post ("/account/token/" :method :post) (v-account-token-post))
 (define-route r-account-token-done ("/account/token/:status"

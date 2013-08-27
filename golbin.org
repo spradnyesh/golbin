@@ -2,6 +2,8 @@
 
 * tasks
 ** backlog
+*** [bug][ed] maybe bug in account/password form
+    - form id is password, "#password form" won't work
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-08-26 Mon 11:39]--[2013-08-26 Mon 11:53] =>  0:14
@@ -2730,6 +2732,18 @@
      :ARCHIVE_TIME: 2013-08-27 Tue 14:14
      :END:
      - http://docs.ckeditor.com/#!/api/CKEDITOR.editor
+**** DONE [bug][ed] change email flow
+     CLOSED: [2013-08-27 Tue 17:40]
+     :CLOCK:
+     CLOCK: [2013-08-27 Tue 17:38]--[2013-08-27 Tue 17:40] =>  0:02
+     CLOCK: [2013-08-27 Tue 15:56]--[2013-08-27 Tue 16:07] =>  0:11
+     CLOCK: [2013-08-27 Tue 15:37]--[2013-08-27 Tue 15:53] =>  0:16
+     CLOCK: [2013-08-27 Tue 15:04]--[2013-08-27 Tue 15:08] =>  0:04
+     CLOCK: [2013-08-27 Tue 14:33]--[2013-08-27 Tue 14:52] =>  0:19
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-27 Tue 17:40
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01

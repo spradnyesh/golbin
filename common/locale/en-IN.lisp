@@ -45,3 +45,4 @@ captcha-verification-failed=Recaptcha verification failed with error ~a
 submit-error=There are errors in the submitted email. Please correct them and submit again.
 username-or-email=Please enter your username or email address
 password-email=Please click ~a to change your password
+change-email-email=Please click ~a to confirm changing your email
