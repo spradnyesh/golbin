@@ -2719,6 +2719,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-26 Mon 11:57
      :END:
+**** DONE [bug][ed] lohit in ckeditor during view<->src, not just init
+     CLOSED: [2013-08-27 Tue 14:13]
+     :CLOCK:
+     CLOCK: [2013-08-27 Tue 13:50]--[2013-08-27 Tue 14:13] =>  0:23
+     CLOCK: [2013-08-27 Tue 13:38]--[2013-08-27 Tue 13:50] =>  0:12
+     CLOCK: [2013-08-26 Mon 11:58]--[2013-08-26 Mon 12:05] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-27 Tue 14:14
+     :END:
+     - http://docs.ckeditor.com/#!/api/CKEDITOR.editor
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01

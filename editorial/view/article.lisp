@@ -106,9 +106,16 @@
                            (fmtnil "$('.ckeditor td textarea').ckeditor();"))
                  ;; http://ckeditor.com/forums/FCKeditor-2.x/Change-default-font-editor
                  (unless (string= "en-IN" lang)
-                   (<:script :type "text/javascript"
-                             "CKEDITOR.on('instanceReady', function(e) {
-e.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
+                   (<:script :type "text/javascript" "
+CKEDITOR.on('instanceReady', function(e) {
+    e.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
+    e.editor.on('mode', function(a) {
+        if (a.data.previousMode == 'source') {
+            a.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
+        } else { // a.data.previousMode == 'wysiwyg'
+            a.editor.textarea.setStyle('font-family', 'Lohit Devanagari');
+        }
+    });
 });
 ")))
      :body (let* ((article (when id (get-article-by-id id)))
