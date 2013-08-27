@@ -5,8 +5,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun validate-account-password (current-password old-password new-password new-password-2)
   (let ((err0r nil))
+    (cannot-be-empty old-password "old-password" err0r)
+    (cannot-be-empty new-password "new-password" err0r)
+    (cannot-be-empty new-password-2 "new-password-2" err0r)
     (unless (string= old-password current-password)
       (push (translate "wrong-current-password") err0r))
+    (when (string= (hash-password new-password) current-password)
+      (push (translate "current-new-passwords-cannot-be-same") err0r))
     (unless (string= new-password new-password-2)
       (push (translate "new-passwords-dont-match") err0r))
     err0r))
@@ -69,9 +74,10 @@
   (template
    :title (translate "change-password")
    :js nil
-   :body (if (string= status "yes")
-      (translate "password-changed")
-      (translate "password-not-changed"))))
+   :body (<:div :class "wrapper"
+                (if (string= status "yes")
+                    (translate "password-changed")
+                    (translate "password-not-changed")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; email view functions

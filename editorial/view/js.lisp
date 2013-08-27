@@ -377,7 +377,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;; some init functions
         (submit-form-ajax "#article form")
-        (submit-form-ajax "#password form")
         (submit-form-ajax "#accounts form")
         (submit-form-ajax "#register form")
 
@@ -391,14 +390,12 @@
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
-        ($event ("#accounts form" submit) (form-submit event "#accounts form"))
         ($event ("#article form" submit)
           ((lambda (event)
              ;; http://stackoverflow.com/a/1903820
              ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)
              (form-submit event "#article form"))
            event))
-        ($event ("#password form" submit) (form-submit event "#password form"))
         ($event ("#register form" submit) (form-submit event "#register form"))
         ($event ("#accounts form" submit) (form-submit event "#accounts form"))
 
