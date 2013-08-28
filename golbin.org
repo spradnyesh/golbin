@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [reports][ed] link article approval w/ GA
 *** [ed] approve articles for admin
     - should send email
       - to admin on approval request
@@ -2809,6 +2810,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-28 Wed 19:24
+     :END:
+**** DONE change spradnyesh email
+     CLOSED: [2013-08-28 Wed 19:42]
+     :CLOCK:
+     CLOCK: [2013-08-28 Wed 19:41]--[2013-08-28 Wed 19:42] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-28 Wed 19:42
      :END:
 ** TODO refactor
    :CLOCK:
