@@ -35,14 +35,14 @@
                                                           :name "submit"
                                                           :class "submit"
                                                           :value (translate "login"))))
-                                (let ((ed-lang (cookie-in "ed-lang")))
-                                  (if ed-lang
+                                (let ((lang (get-dimension-value "lang")))
+                                  (if lang
                                       (translate "register-forgot"
                                                  (<:a :href (h-genurl 'r-why-register
-                                                                      :lang ed-lang)
+                                                                      :lang lang)
                                                       (translate "join-us"))
                                                  (<:a :href (h-genurl 'r-password-get
-                                                                      :lang ed-lang)
+                                                                      :lang lang)
                                                       (translate "forgot-password")))
                                       (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))
 

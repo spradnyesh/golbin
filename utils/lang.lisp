@@ -16,14 +16,7 @@
     ht))
 
 (defun get-translation (key)
-  (let* ((lang (if (boundp '*request*)
-                   (if (get-parameter "lang")
-                       (get-parameter "lang")
-                       (if (cookie-in "ed-lang")
-                           (cookie-in "ed-lang")
-                           (lang (dimensions *request*))))
-                   (get-dimension-value "lang")))
-         (out-hash (gethash lang *translation-table*)))
+  (let ((out-hash (gethash (get-dimension-value "lang") *translation-table*)))
     (if out-hash
         (gethash key out-hash)
         (gethash key (gethash (get-config "site.lang") ; everything falls back to site.lang

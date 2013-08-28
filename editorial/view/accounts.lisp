@@ -114,7 +114,7 @@
                     :body (click-here "change-email-email"
                                       (h-gen-full-url 'r-account-email-verify
                                                       :hash hash
-                                                      :lang (cookie-in "ed-lang")))
+                                                      :lang (get-dimension-value "lang")))
                     :package hawksbill.golbin.editorial)
           (submit-success ajax
                           (h-genurl 'r-account-email-hurdle

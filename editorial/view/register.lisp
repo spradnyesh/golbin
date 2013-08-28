@@ -152,7 +152,7 @@
                                      :status :d))
           (sendmail :to email
                     :subject (translate "confirm-registration")
-                    :body (get-confirm-register-email-text hash (cookie-in "ed-lang"))
+                    :body (get-confirm-register-email-text hash (get-dimension-value "lang"))
                     :package hawksbill.golbin.editorial
                     :attachments (list filename))
           (submit-success ajax

@@ -69,7 +69,7 @@
                     :body (click-here "password-email"
                                       (h-gen-full-url 'r-password-change-get
                                                       :hash hash
-                                                      :lang (cookie-in "ed-lang")))
+                                                      :lang (get-dimension-value "lang")))
                     :package hawksbill.golbin.editorial)
           (submit-success ajax
                           (h-genurl 'r-password-email)))

@@ -17,11 +17,11 @@
 (defmacro template (&key title js body (email nil))
   `(let ((lang (get-parameter "lang")))
      (if lang
-         (progn (set-cookie "ed-lang"
+         (progn (set-cookie "lang"
                             :path "/"
                             :value lang)
                 (redirect (script-name *request*)))
-         (setf lang (cookie-in "ed-lang")))
+         (setf lang (get-dimension-value "lang")))
      (cond ((and (not (in-whitelist?)) ; not in whitelist and not logged-in => goto login page
                  (not (is-logged-in?))
                  (not ,email))
@@ -88,18 +88,18 @@
                              (get-config "site.name")))
             (unless logged-in
               (<:ul :class "langs"
-                    (let ((ed-lang (cookie-in "ed-lang")))
-                      (cond ((string-equal ed-lang "en-IN")
+                    (let ((lang (get-dimension-value "lang")))
+                      (cond ((string-equal lang "en-IN")
                              (<:li
                               (lang-a "en-IN" t "English")
                               (lang-a "hi-IN" nil "हिन्दी")
                               (lang-a "mr-IN" nil "मराठी")))
-                            ((string-equal ed-lang "hi-IN")
+                            ((string-equal lang "hi-IN")
                              (<:li
                               (lang-a "en-IN" nil "English")
                               (lang-a "hi-IN" t "हिन्दी")
                               (lang-a "mr-IN" nil "मराठी")))
-                            ((string-equal ed-lang "mr-IN")
+                            ((string-equal lang "mr-IN")
                              (<:li
                               (lang-a "en-IN" nil "English")
                               (lang-a "hi-IN" nil "हिन्दी")
