@@ -48,3 +48,4 @@ change-email-email=Please click ~a to confirm changing your email
 we-do-it-for-you=We have already done it for you
 performance=Speed
 tags=Tags: ~a
+select-or-upload=~a or ~a a photo

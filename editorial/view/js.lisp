@@ -149,8 +149,11 @@
                       ($prevent-default)
                       ;; change the photo-id in hidden-field
                       ($apply ($ "#lead-photo") val "")
-                      ;; remove img tag
-                      ($apply ($apply ($apply ($ "#lead-photo") siblings "span") children "img") remove)
+                      (let ((spans ($apply ($ "#lead-photo") siblings "span")))
+                        ;; remove img tag
+                        ($apply ($apply ($ (elt spans 0)) children) remove)
+                        ;; unhide "select/upload photo"
+                        ($apply ($ (elt spans 1)) remove-class "hidden"))
                       ;; remove 'unselect' link
                       ($apply ($ "#unselect-lead-photo") remove))
                     (select-lead-photo-init (event)
@@ -268,11 +271,14 @@
                                                     parent)
                                             siblings "span")
                                     html))
-                              (let ((span ($apply ($ "#lead-photo") siblings "span")))
+                              (let* ((spans ($apply ($ "#lead-photo") siblings "span"))
+                                     (span-1 ($ (elt spans 0)))
+                                     (span-2 ($ (elt spans 1))))
                                 ;; add photo thumb in 'span'
-                                ($apply span html target-img)
+                                ($apply span-1 html target-img)
                                 ;; add 'unselect' link in 'span'
-                                ($apply span append ($ "<a id='unselect-lead-photo' href=''>Unselect photo. </a>"))
+                                ($apply span-1 append ($ "<a id='unselect-lead-photo' href=''>Unselect photo. </a>"))
+                                ($apply span-2 add-class "hidden")
                                 ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))))
                             (progn
                               (let ((a-target ((@ ($ "<a href=''></a>") append) target-img)))

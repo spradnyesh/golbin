@@ -54,3 +54,4 @@ add-a-comment=Add a comment
 user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span> म्हणाला (<span class="c-date">~a</span> या दिवशी <span class="c-time">~a</span> वाजता):</p>
 performance=वेबसाईटची स्पीड
 tags=Tags: ~a
+select-or-upload=~a or ~a a photo

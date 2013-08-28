@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][ed] unselect/select photo shown simultaneously in article w/ lead photo
 *** [bug][ed] 1st load puts ed/login into infinite loop
     - ed-restart solves it
     - not reproducible when close slime and restart
@@ -2789,6 +2788,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-28 Wed 16:22
+     :END:
+**** DONE [bug][ed] unselect/select photo shown simultaneously in article w/ lead photo
+     CLOSED: [2013-08-28 Wed 16:55]
+     :CLOCK:
+     CLOCK: [2013-08-28 Wed 16:22]--[2013-08-28 Wed 16:54] =>  0:32
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-28 Wed 16:55
      :END:
 ** TODO refactor
    :CLOCK:

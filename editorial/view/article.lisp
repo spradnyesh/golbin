@@ -148,18 +148,21 @@ CKEDITOR.on('instanceReady', function(e) {
                                                           :id "lead-photo"
                                                           :value (when photo (id photo)))
                                                  (<:span (when photo
-                                                           (article-lead-photo-url (photo article) "related-thumb")
-                                                           (<:a :id "unselect-lead-photo"
-                                                                :href ""
-                                                                "Unselect photo. ")))
-                                                 (<:a :id "select-lead-photo"
-                                                      :href ""
-                                                      "Select")
-                                                 " or "
-                                                 (<:a :id "upload-lead-photo"
-                                                      :href ""
-                                                      "Upload")
-                                                 " a photo"))
+                                                           (fmtnil (article-lead-photo-url (photo article)
+                                                                                           "related-thumb")
+                                                                   (<:a :id "unselect-lead-photo"
+                                                                        :href ""
+                                                                        "Unselect photo. "))))
+                                                 (<:span :class (if photo
+                                                                    "hidden"
+                                                                    "")
+                                                         (translate "select-or-upload"
+                                                                    (<:a :id "select-lead-photo"
+                                                                         :href ""
+                                                                         (translate "select"))
+                                                                    (<:a :id "upload-lead-photo"
+                                                                         :href ""
+                                                                         (translate "upload"))))))
                                      (<:tr (<:td "Lead Photo Placement")
                                            (<:td (<:select :id "pd"
                                                            :name "pd"
