@@ -2764,6 +2764,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-27 Tue 18:32
      :END:
+**** DONE [fe] remove tags from cite in articles
+     CLOSED: [2013-08-28 Wed 16:05]
+     :CLOCK:
+     CLOCK: [2013-08-28 Wed 15:48]--[2013-08-28 Wed 16:05] =>  0:17
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-28 Wed 16:05
+     :END:
+     - refactor cite
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01

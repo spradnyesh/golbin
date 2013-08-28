@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro article-preamble-markup-common (key &optional tags)
+(defmacro article-preamble-markup-common (key)
   `(translate ,key
               (<:a :id "a-author"
                   :href (h-genurl 'r-author
@@ -17,29 +17,23 @@
                   (name (cat article)))
               (if (string= "--" (name (subcat article)))
                   ""
-                  (fmtnil " / "
-                          (<:a :id "a-cat-subcat"
-                               :href (h-genurl 'r-cat-subcat
-                                               :cat (slug (cat article))
-                                               :subcat (slug (subcat article)))
-                               (name (subcat article)))))
-              ,tags))
+                  (concatenate 'string
+                               " / "
+                               (<:a :id "a-cat-subcat"
+                                    :href (h-genurl 'r-cat-subcat
+                                                    :cat (slug (cat article))
+                                                    :subcat (slug (subcat article)))
+                                    (name (subcat article)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun article-preamble-markup (article)
-  (let ((timestamp (universal-to-timestamp (date article)))
-        (tags (tags article)))
+  (let ((timestamp (universal-to-timestamp (date article))))
     (fmtnil
      (<:h2 :id "a-title" (title article))
      (<:span :class "a-cite small"
-             (if tags
-                 (article-preamble-markup-common
-                  "written-by-with-tags"
-                  (<:span :class "a-tags"
-                          (fe-article-tags-markup tags)))
-                 (article-preamble-markup-common "written-by-without-tags"))))))
+             (article-preamble-markup-common "article-cite")))))
 
 (defun article-body-markup (article)
   (let ((photo (photo article)))
@@ -145,10 +139,14 @@
                        (list (name (cat article))
                              (name (subcat article))))
          :description (summary article)
-         :body (<:div
-                (<:div :id "article"
-                       (article-preamble-markup article)
-                       (article-body-markup article))
+         :body (<:div :class "wrapper"
+                      (<:div :id "article"
+                             (article-preamble-markup article)
+                             (article-body-markup article)
+                             (let ((tags (tags article)))
+                               (when tags
+                                 (<:p :class "a-tags"
+                                      (translate "tags" (fe-article-tags-markup tags))))))
                 (article-related-markup article)
                 (article-comments-markup id comment-pagination)))
         (v-404))))

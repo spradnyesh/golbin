@@ -30,7 +30,7 @@
                                                     (title article)))
                                          (let ((timestamp (universal-to-timestamp (date article))))
                                            (<:span :class "a-cite small"
-                                                   (article-preamble-markup-common "written-by-without-tags")))
+                                                   (article-preamble-markup-common "article-cite")))
                                          (<:p :class "a-summary" (summary article))))))
                   ,(if route-params
                        `(pagination-markup page

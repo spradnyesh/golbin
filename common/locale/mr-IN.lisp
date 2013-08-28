@@ -47,10 +47,10 @@ seo=सर्च ईंजिन ऑप्टिमायझेशन
 username=युसरनेम
 we-do-it-for-you-tltip=So that you don't have to spend time doing it yourself
 we-do-it-for-you=आम्ही तुमच्यासाठी आधीच केले आहे
-written-by-with-tags=~a यांनी ~a या दिवशी ~a वाजता ~a ~a या श्रेणीत ~a हे टॅग्स वापरून लिहिले
-written-by-without-tags=~a यांनी ~a या दिवशी ~a वाजता ~a ~a या श्रेणीत लिहिले
+article-cite=~a | ~a ~a | ~a ~a
 yes=हो
 no=नाही
 add-a-comment=Add a comment
 user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span> म्हणाला (<span class="c-date">~a</span> या दिवशी <span class="c-time">~a</span> वाजता):</p>
 performance=वेबसाईटची स्पीड
+tags=Tags: ~a
