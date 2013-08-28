@@ -72,6 +72,7 @@
            :get-random-from-list
            :subset
            :print-map
+           :push-map
            ;; string
            :slugify
            :join-string-list-with-delim

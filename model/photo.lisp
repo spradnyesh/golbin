@@ -90,7 +90,7 @@
         (execute (get-db-handle) (make-transaction 'incf-photo-last-id)))
   (setf (date photo)
         (get-universal-time))
-  (set-mini-author photo)
+  (setf (author photo) (get-mini-author))
 
   ;; save photo into storage
   (execute (get-db-handle) (make-transaction 'insert-photo photo))

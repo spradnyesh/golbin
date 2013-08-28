@@ -258,22 +258,29 @@ CKEDITOR.on('instanceReady', function(e) {
                   (when tag-added
                     (push tag-added article-tags))))
               (if id
-                  (let ((article (get-article-by-id id)))
-                    (edit-article (make-instance 'article
-                                                 :id id
-                                                 :title title
-                                                 :slug (slug article)
-                                                 :summary summary
-                                                 :body body
-                                                 :date (date article)
-                                                 :status :r
-                                                 :cat cat
-                                                 :subcat subcat
-                                                 :photo photo
-                                                 :photo-direction pd
-                                                 :tags article-tags)))
+                  (let* ((article (get-article-by-id id))
+                         (parent (or (parent article)
+                                     id)))
+                    (setf id (get-new-article-id))
+                    (add-article (make-instance 'article
+                                                :id id
+                                                :parent parent
+                                                :title title
+                                                :slug (slug article)
+                                                :summary summary
+                                                :body body
+                                                :date (date article)
+                                                :status :r
+                                                :cat cat
+                                                :subcat subcat
+                                                :photo photo
+                                                :photo-direction pd
+                                                :tags article-tags
+                                                :author (author article))))
                   (setf id (id (add-article (make-instance 'article
+                                                           :id (get-new-article-id)
                                                            :title title
+                                                           :slug (slugify title)
                                                            :summary summary
                                                            :body body
                                                            :status :r
@@ -282,7 +289,8 @@ CKEDITOR.on('instanceReady', function(e) {
                                                            :subcat subcat
                                                            :photo photo
                                                            :photo-direction pd
-                                                           :tags article-tags)))))
+                                                           :tags article-tags
+                                                           :author (get-mini-author))))))
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed
@@ -296,6 +304,16 @@ CKEDITOR.on('instanceReady', function(e) {
   (with-ed-login
     (let ((article (get-article-by-id id)))
       (when article
-        (setf (status article) :deleted)
+        (setf (status article) :e)
+        (edit-article article))
+      (redirect (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
+
+
+(defun v-article-approve-post (id)
+  (with-ed-login
+    (let ((article (get-article-by-id id)))
+      (when article
+        (setf (status article) :a)
+        (setf (id article) (parent article))
         (edit-article article))
       (redirect (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))

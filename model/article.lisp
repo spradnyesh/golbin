@@ -5,12 +5,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass article ()
   ((id :initarg :id :initform nil :accessor id)
+   (parent :initarg :parent :initform nil :accessor parent) ; id of already live article (on editing, new article gets a new ID so that existing (live) article will not disappear)
    (title :initarg :title :initform nil :accessor title)
    (slug :initarg :slug :initform nil :accessor slug)
    (summary :initarg :summary :initform nil :accessor summary)
    (body :initarg :body :initform nil :accessor body)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
-   (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :s submitted for approval, :a approved/active, :w rejected/withdrawn (deleted by admin)
+   (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
    (cat :initarg :cat :initform nil :accessor cat)
@@ -30,32 +31,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-article (article)
   (when article
-    ;; set some article params
-    (setf (id article)
-          (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
-    (setf (slug article)
-          (slugify (title article)))
-    (set-mini-author article)
-
     ;; save article into storage
     (execute (get-db-handle) (make-transaction 'insert-article article))
-
     article))
 
 (defun edit-article (article)
   (when article
-    ;; set some article params
-    (set-mini-author article)
-
     ;; save article into storage
     (execute (get-db-handle) (make-transaction 'update-article article))
-
     article))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun get-new-article-id ()
+  (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
+
 (defun get-active-articles ()
   (get-object-by #'(lambda (article)
                      (eql :a (status article)))
@@ -120,11 +111,32 @@
                                      (= (id (author article)) author-id))))))))
 
 ;; editorial: an author needs to see *all* of his articles
+;; but we need to filter out the most recent version of an edited article
 (defun get-all-articles-by-author (author)
-  (get-object-by #'(lambda (article)
-                     (= (id author)
-                        (id (author article))))
-                 (get-all-articles)))
+  (let ((hm (make-hash-table :test 'equal))
+        (rslt nil))
+    ;; separate articles based on parent-id
+    (dolist (a (get-object-by #'(lambda (article)
+                                 (= (id author)
+                                    (id (author article))))
+                             (get-all-articles)))
+      (push-map hm (write-to-string (parent a)) a))
+    ;; every value (in hashmap) should have only 1 element
+    (maphash #'(lambda (k v)
+                 (if (equal "NIL" k)
+                     (dolist (a v)
+                       (push a rslt))
+                     (let ((max (apply #'max (mapcar #'id v))))
+                       (push (find max v :key #'id) rslt))))
+             hm)
+    ;; remove root parents (remove p where (= (id p) (parent a)))
+    (dolist (p rslt)
+      (unless (null (parent p))
+        (setf rslt (remove-if #'(lambda (a)
+                                  (= (id a)
+                                     (parent p)))
+                              rslt))))
+    (sort rslt #'> :key #'id)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init

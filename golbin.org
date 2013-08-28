@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** [ed] approve articles for admin
+    - should send email
+      - to admin on approval request
+      - to author on approval
 *** [bug][ed] 1st load puts ed/login into infinite loop
     - ed-restart solves it
     - not reproducible when close slime and restart
@@ -2796,6 +2800,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-28 Wed 16:55
+     :END:
+**** DONE [bug][ed] edit article should not make current live article disappear
+     CLOSED: [2013-08-28 Wed 19:24]
+     :CLOCK:
+     CLOCK: [2013-08-28 Wed 18:35]--[2013-08-28 Wed 19:24] =>  0:49
+     CLOCK: [2013-08-28 Wed 18:01]--[2013-08-28 Wed 18:30] =>  0:29
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-28 Wed 19:24
      :END:
 ** TODO refactor
    :CLOCK:

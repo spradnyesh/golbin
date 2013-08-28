@@ -48,14 +48,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro set-mini-author (object)
-  `(multiple-value-bind (author-id author-alias author-handle)
-       (get-mini-author-details-from-id (get-current-author-id))
-     (setf (author ,object)
-           (make-instance 'mini-author
-                          :id author-id
-                          :alias author-alias
-                          :handle author-handle))))
+(defun get-mini-author ()
+  (multiple-value-bind (author-id author-alias author-handle)
+      (get-mini-author-details-from-id (get-current-author-id))
+    (make-instance 'mini-author
+                   :id author-id
+                   :alias author-alias
+                   :handle author-handle)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions

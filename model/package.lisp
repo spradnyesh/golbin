@@ -98,6 +98,7 @@
            :get-articles-by-cat-subcat
            :get-related-articles
            :get-all-articles-by-author
+           :get-new-article-id
            ;; category
            :add-category
            :get-category-by-slug
@@ -130,6 +131,7 @@
            :get-current-author-id
            :verify-login
            :find-author-by-email-salt
+           :get-mini-author
            ;; comment
            :userurl
            :useremail
