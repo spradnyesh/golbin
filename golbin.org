@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][ed] fix home page css
 *** [bug][ed] unselect/select photo shown simultaneously in article w/ lead photo
 *** [bug][ed] 1st load puts ed/login into infinite loop
     - ed-restart solves it
@@ -2782,6 +2781,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-28 Wed 16:19
+     :END:
+**** DONE [bug][ed] fix home page css
+     CLOSED: [2013-08-28 Wed 16:22]
+     :CLOCK:
+     CLOCK: [2013-08-28 Wed 16:20]--[2013-08-28 Wed 16:22] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-28 Wed 16:22
      :END:
 ** TODO refactor
    :CLOCK:

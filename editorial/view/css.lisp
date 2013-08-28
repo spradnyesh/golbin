@@ -136,7 +136,7 @@
          ;; home
          (("#articles") (:margin "0 50px"))
          (("#articles p") (:margin "0"))
-         (("#articles ul li") (:min-height "50px"
+         (("#articles ul li") (:min-height "65px"
                                        :border-bottom "1px dotted gray"
                                        :margin-bottom "10px"))
          (("#articles .crud") (:float "left"
