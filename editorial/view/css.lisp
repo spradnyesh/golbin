@@ -146,7 +146,7 @@
                                                          :border "0"
                                                          :cursor "pointer"
                                                          :color "#61a1f0"
-                                                         :padding "0"
+                                                         :padding "5px 0"
                                                          :margin-left "-3px"))
          (("#articles .crud .delete:hover") (:color "#8dba53"))
          ((".index-thumb") (:float "left"

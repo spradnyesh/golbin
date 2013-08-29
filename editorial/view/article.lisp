@@ -42,7 +42,6 @@
 
 (defmacro can-article-be-deleted? ()
   `(or (eql :r status)
-       (eql :s status)
        (eql :a status)))
 
 (defun get-thumb-side-photo-sizes-json ()
@@ -302,14 +301,18 @@ CKEDITOR.on('instanceReady', function(e) {
                               (h-genurl 'r-article-edit-get :id (write-to-string id))
                               (h-genurl 'r-article-new-get))))))))
 
-(defun v-article-delete-post (id)
+(defun v-article-delete-post (id &key (ajax nil))
   (with-ed-login
-    (let ((article (get-article-by-id id)))
+    (let ((article (get-article-by-id id))
+          (delete (post-parameter "delete")))
       (when article
-        (setf (status article) :e)
+        (cond ((string-equal "d" delete)
+               (setf (status article) :e))
+              ((string-equal "u" delete)
+               (setf (status article) :r)))
         (edit-article article))
-      (redirect (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
-
+      (submit-success ajax
+                      (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
 
 (defun v-articles-approve-get ()
   (with-ed-login
@@ -335,13 +338,14 @@ CKEDITOR.on('instanceReady', function(e) {
                                                   (<:span :class "small"
                                                           (translate "new")))
                                            (let ((orig-article (get-article-by-id (parent article))))
-                                             (<:div :class "orig"
-                                                    (<:h3
-                                                     (<:a :href (h-genurl 'r-article
-                                                                          :slug-and-id (get-slug-and-id orig-article))
-                                                          (title orig-article)))
-                                                    (<:span :class "small"
-                                                            (translate "original"))))))))))))
+                                             (when orig-article
+                                               (<:div :class "orig"
+                                                      (<:h3
+                                                       (<:a :href (h-genurl 'r-article
+                                                                            :slug-and-id (get-slug-and-id orig-article))
+                                                            (title orig-article)))
+                                                      (<:span :class "small"
+                                                              (translate "original")))))))))))))
 
 (defun v-article-approve-post (id &key (ajax nil))
   (with-ed-login

@@ -2,7 +2,11 @@
 
 * tasks
 ** backlog
-*** [ed] home page delete should be ajaxified
+*** TODO [ed] home page delete should be ajaxified
+    :CLOCK:
+    CLOCK: [2013-08-29 Thu 18:57]--[2013-08-29 Thu 19:32] =>  0:35
+    CLOCK: [2013-08-29 Thu 17:45]--[2013-08-29 Thu 17:58] =>  0:13
+    :END:
 *** [reports][ed] link article approval w/ GA
 *** [bug][ed] 1st load puts ed/login into infinite loop
     - ed-restart solves it

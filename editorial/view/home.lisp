@@ -26,27 +26,31 @@
                                       (let* ((id (id article))
                                              (status (status article))
                                              (delete (if (can-article-be-deleted?)
-                                                         "Delete"
-                                                         "Undelete")))
+                                                         "d"
+                                                         "u")))
                                         (<:li :class (when (eq :r (status article)) "draft")
                                               (<:div :class "crud"
                                                      (<:p (<:a :href (h-genurl 'r-article-edit-get :id id) "Edit"))
-                                                     (when (can-article-be-deleted?)
-                                                       (<:form :method "POST"
-                                                               :action (h-genurl 'r-article-delete-post :id id)
-                                                               (<:input :name "page"
-                                                                        :type "hidden"
-                                                                        :value page)
-                                                               (<:input :class "delete"
-                                                                        :name "delete"
-                                                                        :type "submit"
-                                                                        :value delete))))
+                                                     (<:form :method "POST"
+                                                             :action (h-genurl 'r-article-delete-post :id id)
+                                                             (<:input :name "page"
+                                                                      :type "hidden"
+                                                                      :value page)
+                                                             (<:input :name "delete"
+                                                                      :type "hidden"
+                                                                      :value delete)
+                                                             (<:input :class "delete"
+                                                                      :type "submit"
+                                                                      :value (if (or (eq :a (status article))
+                                                                                       (eq :r (status article)))
+                                                                                 (translate "delete")
+                                                                                 (translate "undelete")))))
                                               (when (photo article)
                                                 (<:div :class "index-thumb"
                                                        (article-lead-photo-url (photo article) "index-thumb")))
                                               (<:h3 :class (format nil
                                                                    "a-title ~a"
-                                                                   (if (string-equal delete "Undelete")
+                                                                   (if (eq :e (status article))
                                                                        "deleted"
                                                                        ""))
                                                     (<:a :href (h-genurl 'r-article

@@ -49,7 +49,7 @@
           (form-submit (event form)
             ($prevent-default)
             ;; TODO: client side error handling
-            ($apply ($ form) ajax-submit
+            ($apply ($ (@ event current-target)) ajax-submit
               ;; http://api.jquery.com/jQuery.ajax/
               (create :data-type "json"
                       :cache false

@@ -103,6 +103,10 @@
                                                              :parse-vars (list :id #'parse-integer)
                                                              :content-type "application/json")
   (v-article-post :id id :ajax t))
+(define-route r-ajax-article-delete-post ("/ajax/article/:id/delete/" :method :post
+                                                                      :parse-vars (list :id #'parse-integer)
+                                                                      :content-type "application/json")
+  (v-article-delete-post id :ajax t))
 (define-route r-ajax-approve-article-post ("/ajax/article/approve/:id" :method :post
                                                                        :content-type "application/json"
                                                                        :parse-vars (list :id #'parse-integer))
