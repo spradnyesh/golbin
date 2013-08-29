@@ -215,10 +215,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                      (when article
                                        (<:tr (<:td)
                                              (<:td (<:a :href (h-genurl 'r-article
-                                                                        :slug-and-id (format nil
-                                                                                             "~a-~a"
-                                                                                             (slug article)
-                                                                                             id))
+                                                                        :slug-and-id (get-slug-and-id article))
                                                         "Preview")
                                                    (tooltip "article-preview"))))
                                      (<:tr (<:td)
@@ -285,12 +282,17 @@ CKEDITOR.on('instanceReady', function(e) {
                                                            :body body
                                                            :status :r
                                                            :date (get-universal-time)
+                                                           :status :r
                                                            :cat cat
                                                            :subcat subcat
                                                            :photo photo
                                                            :photo-direction pd
                                                            :tags article-tags
                                                            :author (get-mini-author))))))
+              (sendmail :to (get-config "site.email.address")
+                        :subject (translate "article-submitted-for-approval" id)
+                        :body (translate "article-submitted-for-approval-body" id)
+                        :package hawksbill.golbin.editorial)
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed
@@ -309,11 +311,57 @@ CKEDITOR.on('instanceReady', function(e) {
       (redirect (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
 
 
-(defun v-article-approve-post (id)
+(defun v-articles-approve-get ()
   (with-ed-login
-    (let ((article (get-article-by-id id)))
+    (template
+     :title (translate "article-approval")
+     :js nil
+     :body (let ((articles-list (get-all-articles-for-approval)))
+             (<:div :id "approve"
+                    :class "wrapper"
+                    (<:ul (join-loop article
+                                     articles-list
+                                     (<:li :class "crud"
+                                           (<:form :method "POST"
+                                                   :action (h-genurl 'r-approve-article-post :id (id article))
+                                                   (<:input :name "approve"
+                                                            :type "submit"
+                                                            :value (translate "approve")))
+                                           (<:div :class "new"
+                                                  (<:h3
+                                                   (<:a :href (h-genurl 'r-article
+                                                                        :slug-and-id (get-slug-and-id article))
+                                                        (title article)))
+                                                  (<:span :class "small"
+                                                          (translate "new")))
+                                           (let ((orig-article (get-article-by-id (parent article))))
+                                             (<:div :class "orig"
+                                                    (<:h3
+                                                     (<:a :href (h-genurl 'r-article
+                                                                          :slug-and-id (get-slug-and-id orig-article))
+                                                          (title orig-article)))
+                                                    (<:span :class "small"
+                                                            (translate "original"))))))))))))
+
+(defun v-article-approve-post (id &key (ajax nil))
+  (with-ed-login
+    (let* ((article (get-article-by-id id))
+           (parent (parent article)))
       (when article
+        ;; process all intemediate edits (including current)
+        (dolist (l (get-intermediate-articles parent))
+          (setf (status l) :p)
+          (edit-article l))
+        ;; process parent article (w/ content of current article)
         (setf (status article) :a)
         (setf (id article) (parent article))
-        (edit-article article))
-      (redirect (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
+        (setf (parent article) nil)
+        (edit-article article)
+
+        (sendmail :to (email (get-author-by-id (id (author article))))
+                  :cc (get-config "site.email.address")
+                  :subject (translate "article-approved" id)
+                  :body (translate "article-approved-body" id)
+                  :package hawksbill.golbin.editorial))
+      (submit-success ajax
+                      (h-genurl 'r-approve-articles)))))

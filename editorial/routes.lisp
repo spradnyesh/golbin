@@ -51,7 +51,10 @@
 (define-route r-article-delete-post ("/article/:id/delete/" :method :post
                                                             :parse-vars (list :id #'parse-integer))
   (v-article-delete-post id))
-;(define-route r-approve-articles ("/article/approve/") (v-articles-approve))
+(define-route r-approve-articles ("/article/approve/") (v-articles-approve-get))
+(define-route r-approve-article-post ("/article/approve/:id" :method :post
+                                                             :parse-vars (list :id #'parse-integer))
+  (v-article-approve-post id))
 
 ;; photo (non-ajax needed for tmp-init)
 (define-route r-tmp-photo-get ("/tmp-photo/") (v-tmp-photo-get))
@@ -100,6 +103,10 @@
                                                              :parse-vars (list :id #'parse-integer)
                                                              :content-type "application/json")
   (v-article-post :id id :ajax t))
+(define-route r-ajax-approve-article-post ("/ajax/article/approve/:id" :method :post
+                                                                       :content-type "application/json"
+                                                                       :parse-vars (list :id #'parse-integer))
+  (v-article-approve-post id :ajax t))
 (define-route r-ajax-photos-select ("/ajax/photos/:who/:page/" :content-type "application/json"
                                                                :parse-vars (list :page #'parse-integer))
   (v-ajax-photos-select who page))

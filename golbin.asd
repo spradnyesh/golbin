@@ -68,7 +68,7 @@
                                                            (:file "login" :depends-on ("template"))
                                                            (:file "register" :depends-on ("template"))
                                                            (:file "password" :depends-on ("template"))
-                                                           (:file "home" :depends-on ("template"))
+                                                           (:file "home" :depends-on ("template" "misc"))
                                                            (:file "photo" :depends-on ("author"))
                                                            (:file "accounts"))
                                               :depends-on ("package"))

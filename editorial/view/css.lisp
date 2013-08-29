@@ -134,11 +134,11 @@
                                  :margin-bottom "23px"
                                  :text-transform "uppercase"))
          ;; home
-         (("#articles") (:margin "0 50px"))
          (("#articles p") (:margin "0"))
-         (("#articles ul li") (:min-height "65px"
-                                       :border-bottom "1px dotted gray"
-                                       :margin-bottom "10px"))
+         (("#articles li") (:min-height "50px"
+                                        :border-bottom "1px dotted gray"
+                                        :padding "10px"))
+         (("#articles li.draft") (:background-color "#dfeefd"))
          (("#articles .crud") (:float "left"
                                       :padding-right "30px"
                                       :width "60px"))
@@ -149,8 +149,8 @@
                                                          :padding "0"
                                                          :margin-left "-3px"))
          (("#articles .crud .delete:hover") (:color "#8dba53"))
-         (("#articles .index-thumb") (:float "left"
-                                             :padding-right "10px"))
+         ((".index-thumb") (:float "left"
+                                   :padding-right "10px"))
          (("#articles .a-title") (:color "#21629C"))
          (("#articles .a-title.deleted") (:text-decoration "line-through"))
          (("#articles .a-summary") (:color "#4a4a4a"))
@@ -226,6 +226,22 @@
                                            :left "20px"))
          ((".pagination .next") (:position "absolute"
                                            :right "20px"))
+         ;; approve articles
+         (("#approve .crud > div") (:float "left"
+                                         :width "40%"))
+         (("#approve h3") (:display "inline"))
+         (("#approve span") (:padding-left "5px"
+                                           :color "#aaa"
+                                           :position "absolute"))
+         (("#approve input") (:float "left"
+                                     :background-color "#fff"
+                                     :border "0"
+                                     :cursor "pointer"
+                                     :color "#61a1f0"
+                                     :padding "0 10px 0 0"))
+         (("#approve li") (:height "20px"
+                                   :padding "10px 0"
+                                   :border-bottom "1px dotted gray"))
          ;; accounts
          (("#accounts") (:margin "0 20px"))
          (("#accounts label") (:display "block"

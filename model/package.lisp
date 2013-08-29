@@ -98,6 +98,8 @@
            :get-articles-by-cat-subcat
            :get-related-articles
            :get-all-articles-by-author
+           :get-all-articles-for-approval
+           :get-intermediate-articles
            :get-new-article-id
            ;; category
            :add-category

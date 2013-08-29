@@ -52,8 +52,8 @@
                (unless ,email
                  (fmtnil (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
                          (<:script :type "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
-                         (<:script :type "text/javascript" :src "http://malsup.github.com/jquery.form.js")
-                         (<:script :type "text/javascript" :src "http://raw.github.com/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
+                         (<:script :type "text/javascript" :src "http://malsup.github.io/jquery.form.js")
+                         ;(<:script :type "text/javascript" :src "http://raw.github.io/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
                          (<:script :type "text/javascript" (on-load))
                          ,js)))))))
 
@@ -144,35 +144,29 @@
 (defun nav-misc ()
   (let ((author-type (session-value :author-type)))
     (<:ul :class "subnav"
-          (fmtnil (cond ((eq author-type :e) ; editor
-                         (fmtnil (editor-nav)))
-                        ((eq author-type :d) ; admin
-                         (fmtnil (editor-nav)
-                                 (admin-nav))))
-                  ))))
+          (cond ((eq author-type :e)    ; editor
+                 (fmtnil (editor-nav)))
+                ((eq author-type :d)    ; admin
+                 (fmtnil (editor-nav)
+                         (admin-nav)))))))
 
 (defun navigation (logged-in)
-  (let ((author (get-author-by-handle (session-value :author))))
-    (when logged-in
-      (<:ul :id "nav"
-            (when (eq :a (status author))
-              (<:li :class "prinav wide"
-                    (<:h2 (<:a :href (h-genurl 'r-article-new-get)
-                               (translate "add-article")))))
-            (when (eq :a (status author))
-              (<:li :class "prinav"
-                    (<:h2 (translate "reports"))))
-            (<:li :class "prinav wide"
-                  (<:h2 (translate "account"))
-                  (when (eq :a (status author))
-                    (nav-account)))
-            (<:li :class "prinav wide"
-                  (<:h2 (translate "misc"))
-                  (when (eq :a (status author))
-                    (nav-misc)))
-            (<:li :class "prinav"
-                  (<:h2 (<:a :href (h-genurl 'r-logout)
-                             (translate "logout"))))))))
+  (when logged-in
+    (<:ul :id "nav"
+          (<:li :class "prinav wide"
+                (<:h2 (<:a :href (h-genurl 'r-article-new-get)
+                           (translate "add-article"))))
+          (<:li :class "prinav"
+                (<:h2 (translate "reports")))
+          (<:li :class "prinav wide"
+                (<:h2 (translate "account"))
+                (nav-account))
+          (<:li :class "prinav wide"
+                (<:h2 (translate "misc"))
+                (nav-misc))
+          (<:li :class "prinav"
+                (<:h2 (<:a :href (h-genurl 'r-logout)
+                           (translate "logout")))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer

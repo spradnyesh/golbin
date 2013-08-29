@@ -2,11 +2,8 @@
 
 * tasks
 ** backlog
+*** [ed] home page delete should be ajaxified
 *** [reports][ed] link article approval w/ GA
-*** [ed] approve articles for admin
-    - should send email
-      - to admin on approval request
-      - to author on approval
 *** [bug][ed] 1st load puts ed/login into infinite loop
     - ed-restart solves it
     - not reproducible when close slime and restart
@@ -2819,6 +2816,20 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-28 Wed 19:42
      :END:
+**** DONE [ed] approve articles for admin
+     CLOSED: [2013-08-29 Thu 17:40]
+     :CLOCK:
+     CLOCK: [2013-08-29 Thu 17:14]--[2013-08-29 Thu 17:40] =>  0:26
+     CLOCK: [2013-08-29 Thu 15:57]--[2013-08-29 Thu 16:51] =>  0:54
+     CLOCK: [2013-08-29 Thu 13:35]--[2013-08-29 Thu 15:10] =>  1:35
+     CLOCK: [2013-08-29 Thu 10:32]--[2013-08-29 Thu 11:05] =>  0:33
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-29 Thu 17:40
+     :END:
+     - should send email
+       - to admin on approval request
+       - to author on approval
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01

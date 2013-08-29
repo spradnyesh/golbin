@@ -129,3 +129,12 @@
     (if obj
         (push-key-hm (push ele obj))
         (push-key-hm (list ele)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; set manipulation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun make-set (list &rest args)
+  (let ((rslt nil))
+    (dolist (l list)
+      (setf rslt (apply #'adjoin l rslt args)))
+    rslt))

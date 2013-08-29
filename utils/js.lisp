@@ -43,7 +43,8 @@
             false)
           ;; submit form using ajax
           (submit-form-ajax (form)
-            ($apply ($ form) attr "action" (+ "/ajax" ($apply ($ form) attr "action"))))
+            (dolist (a ($ form))
+              ($apply ($ a) attr "action" (+ "/ajax" ($apply ($ a) attr "action")))))
           ;; form submit
           (form-submit (event form)
             ($prevent-default)

@@ -17,6 +17,7 @@
                         (num-pages (get-config "pagination.article.range"))
                         (offset (* page num-per-page)))
                    (<:div :id "articles"
+                          :class "wrapper"
                           (<:ul
                            (join-loop article
                                       (paginate articles-list
@@ -27,7 +28,8 @@
                                              (delete (if (can-article-be-deleted?)
                                                          "Delete"
                                                          "Undelete")))
-                                        (<:li (<:div :class "crud"
+                                        (<:li :class (when (eq :r (status article)) "draft")
+                                              (<:div :class "crud"
                                                      (<:p (<:a :href (h-genurl 'r-article-edit-get :id id) "Edit"))
                                                      (when (can-article-be-deleted?)
                                                        (<:form :method "POST"
@@ -48,10 +50,7 @@
                                                                        "deleted"
                                                                        ""))
                                                     (<:a :href (h-genurl 'r-article
-                                                                         :slug-and-id (format nil
-                                                                                              "~a-~a"
-                                                                                              (slug article)
-                                                                                              id))
+                                                                         :slug-and-id (get-slug-and-id article))
                                                          (title article)))
                                               (<:p :class "a-summary" (summary article))))))
                           (pagination-markup page

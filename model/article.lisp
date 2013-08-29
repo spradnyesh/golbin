@@ -11,7 +11,7 @@
    (summary :initarg :summary :initform nil :accessor summary)
    (body :initarg :body :initform nil :accessor body)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
-   (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin)
+   (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin), :p processed (intermediate edits, discarded)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
    (cat :initarg :cat :initform nil :accessor cat)
@@ -48,9 +48,12 @@
   (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
 
 (defun get-active-articles ()
-  (get-object-by #'(lambda (article)
-                     (eql :a (status article)))
-                 (get-all-articles)))
+  (sort (make-set (get-object-by #'(lambda (article)
+                                      (eql :a (status article)))
+                                  (get-all-articles))
+                   :key #'id)
+        #'>
+        :key #'id))
 
 (defmacro get-articles-by (cond)
   `(get-object-by ,cond (get-active-articles)))
@@ -110,33 +113,49 @@
                                 (and (/= (id (subcat article)) subcat-id)
                                      (= (id (author article)) author-id))))))))
 
-;; editorial: an author needs to see *all* of his articles
-;; but we need to filter out the most recent version of an edited article
-(defun get-all-articles-by-author (author)
-  (let ((hm (make-hash-table :test 'equal))
-        (rslt nil))
-    ;; separate articles based on parent-id
-    (dolist (a (get-object-by #'(lambda (article)
-                                 (= (id author)
-                                    (id (author article))))
-                             (get-all-articles)))
-      (push-map hm (write-to-string (parent a)) a))
-    ;; every value (in hashmap) should have only 1 element
-    (maphash #'(lambda (k v)
-                 (if (equal "NIL" k)
-                     (dolist (a v)
-                       (push a rslt))
-                     (let ((max (apply #'max (mapcar #'id v))))
-                       (push (find max v :key #'id) rslt))))
-             hm)
-    ;; remove root parents (remove p where (= (id p) (parent a)))
-    (dolist (p rslt)
+;; we need to filter out the most recent version of an edited article
+(defun filter-approval-articles (list)
+  (dolist (p list)
       (unless (null (parent p))
-        (setf rslt (remove-if #'(lambda (a)
+        (setf list (remove-if #'(lambda (a)
                                   (= (id a)
                                      (parent p)))
-                              rslt))))
-    (sort rslt #'> :key #'id)))
+                              list))))
+  list)
+
+;; editorial: an author needs to see *all* of his articles
+(defun get-all-articles-by-author (author)
+  (let* ((rslt (get-object-by #'(lambda (article)
+                                  (and (not (eq :p (status article)))
+                                       (= (id author)
+                                          (id (author article)))))
+                             (get-all-articles)))
+         (parent-not-nil (make-set (remove-if #'(lambda (a)
+                                                  (null (parent a)))
+                                              rslt)
+                                   :key #'parent))
+         (parent-nil (make-set (remove-if #'(lambda (a)
+                                              (not (null (parent a))))
+                                    rslt)
+                               :key #'id)))
+    (sort (filter-approval-articles (append parent-nil parent-not-nil))
+          #'>
+          :key #'id)))
+
+(defun get-all-articles-for-approval ()
+  (filter-approval-articles (reverse (make-set (get-object-by #'(lambda (article)
+                                                                  (eq (status article)
+                                                                      :r))
+                                                              (get-all-articles))
+                                               :key #'parent))))
+
+(defun get-intermediate-articles (parent)
+  (get-object-by #'(lambda (a)
+                     (and (not (null (parent a)))
+                          (= parent
+                             (parent a))
+                          (eq :r (status a))))
+                 (get-all-articles)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init
