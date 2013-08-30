@@ -207,27 +207,27 @@ CKEDITOR.on('instanceReady', function(e) {
                                            (<:td (<:select :name "subcat"
                                                            :class "td-input subcat"
                                                            (get-cat-subcat-markup article subcats :s))))
-                                     (tr-td-input "tags" :value (when article (get-tags-markup article)))
+                                     (tr-td-input "ed-tags" :value (when article (get-tags-markup article)))
                                      (<:tr (<:td "Status")
                                            (let ((status (get-article-status-markup article)))
                                              (<:td :class (string-downcase status) status)))
-                                     (when article
-                                       (<:tr (<:td)
-                                             (<:td (<:a :href (h-genurl 'r-article
-                                                                        :slug-and-id (get-slug-and-id article))
-                                                        "Preview")
-                                                   (tooltip "article-preview"))))
-                                     (<:tr (<:td)
+                                     (<:tr (<:td (<:a :class "submit"
+                                                      :href "#"
+                                                      (translate "save"))
+                                                 (<:input :type "hidden"
+                                                          :name "submit-type"
+                                                          :value "submit"))
                                            (<:td (<:input :class "submit"
-                                                          :name "submit"
                                                           :type "submit"
-                                                          :value "Submit")
-                                                 (when article (tooltip "article-submit")))))))))))
+                                                          :name "submit"
+                                                          :value (translate "submit"))
+                                                 (tooltip "for approval"))))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
     (let* ((title (post-parameter "title"))
            (summary (post-parameter "summary"))
+           (submit-type (post-parameter "submit-type"))
            (body (post-parameter "body"))
            (p-cat (post-parameter "cat"))
            (cat (get-category-by-id (parse-integer p-cat)))
@@ -266,7 +266,8 @@ CKEDITOR.on('instanceReady', function(e) {
                                                 :summary summary
                                                 :body body
                                                 :date (date article)
-                                                :status :r
+                                                :status (cond ((equal submit-type "submit") :s)
+                                                              ((equal submit-type "save") :r))
                                                 :cat cat
                                                 :subcat subcat
                                                 :photo photo

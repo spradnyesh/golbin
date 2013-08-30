@@ -11,7 +11,7 @@
    (summary :initarg :summary :initform nil :accessor summary)
    (body :initarg :body :initform nil :accessor body)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
-   (status :initarg :status :initform nil :accessor status) ; :r draft, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin), :p processed (intermediate edits, discarded)
+   (status :initarg :status :initform nil :accessor status) ; :r draft, :s submitted for approval, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin), :p processed (intermediate edits, discarded)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
    (cat :initarg :cat :initform nil :accessor cat)
@@ -145,7 +145,7 @@
 (defun get-all-articles-for-approval ()
   (filter-approval-articles (reverse (make-set (get-object-by #'(lambda (article)
                                                                   (eq (status article)
-                                                                      :r))
+                                                                      :s))
                                                               (get-all-articles))
                                                :key #'parent))))
 

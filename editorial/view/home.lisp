@@ -28,7 +28,9 @@
                                              (delete (if (can-article-be-deleted?)
                                                          "d"
                                                          "u")))
-                                        (<:li :class (when (eq :r (status article)) "draft")
+                                        (<:li :class (cond ((eq :r (status article)) "draft")
+                                                           ((eq :s (status article)) "submitted")
+                                                           (t ""))
                                               (<:div :class "crud"
                                                      (<:p (<:a :href (h-genurl 'r-article-edit-get :id id) "Edit"))
                                                      (<:form :method "POST"
@@ -41,10 +43,9 @@
                                                                       :value delete)
                                                              (<:input :class "delete"
                                                                       :type "submit"
-                                                                      :value (if (or (eq :a (status article))
-                                                                                       (eq :r (status article)))
-                                                                                 (translate "delete")
-                                                                                 (translate "undelete")))))
+                                                                      :value (if (eq :e (status article))
+                                                                                 (translate "undelete")
+                                                                                 (translate "delete")))))
                                               (when (photo article)
                                                 (<:div :class "index-thumb"
                                                        (article-lead-photo-url (photo article) "index-thumb")))

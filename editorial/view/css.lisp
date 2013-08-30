@@ -139,6 +139,7 @@
                                         :border-bottom "1px dotted gray"
                                         :padding "10px"))
          (("#articles li.draft") (:background-color "#dfeefd"))
+         (("#articles li.submitted") (:background-color "#ddffcc"))
          (("#articles .crud") (:float "left"
                                       :padding-right "30px"
                                       :width "60px"))

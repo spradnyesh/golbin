@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [ed] preview and submit should be 2 different states
 *** [reports][ed] link article approval w/ GA
 *** TODO [bug][ed] 1st load puts ed/login into infinite loop
     :CLOCK:
@@ -2851,6 +2850,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-30 Fri 13:19
+     :END:
+**** DONE [ed] preview and submit should be 2 different states
+     CLOSED: [2013-08-30 Fri 14:08]
+     :CLOCK:
+     CLOCK: [2013-08-30 Fri 13:19]--[2013-08-30 Fri 14:08] =>  0:49
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-30 Fri 14:08
      :END:
 ** TODO refactor
    :CLOCK:
