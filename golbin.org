@@ -2,6 +2,12 @@
 
 * tasks
 ** backlog
+*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+    :CLOCK:
+    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
+    :END:
+    - maybe use a html-parser like closure-html?
+      - http://common-lisp.net/project/closure/closure-html/examples.html
 *** [reports][ed] link article approval w/ GA
 *** TODO [bug][ed] 1st load puts ed/login into infinite loop
     :CLOCK:
@@ -34,24 +40,16 @@
     - fe: comments
     - ed: article body
 *** [ed][reports] investigate GA users
-*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-    :CLOCK:
-    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
-    :END:
-    - maybe use a html-parser like closure-html?
-      - http://common-lisp.net/project/closure/closure-html/examples.html
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
-*** [ed] admin should be able to approve author
-*** [ed] editor should be able to approve article
 *** [utils] replace utils/locale w/ cl-locale
 *** [ed] emails to golb_in
     - [ ] on author registration
-    - [ ] on article(s) submit (add/edit)
+    - [X] on article(s) submit (add/edit)
 *** [ed] emails to authors
     - [ ] monthly report
-    - [ ] approval of add/edit article(s)
+    - [X] approval of add/edit article(s)
 *** [fe] collect emails (submitted in comments) for spamming
 *** TODO [reports] author report dashboard
     :CLOCK:
@@ -2861,6 +2859,7 @@
      :END:
 ** TODO refactor
    :CLOCK:
+   CLOCK: [2013-08-30 Fri 14:15]
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

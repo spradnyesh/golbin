@@ -351,7 +351,8 @@ CKEDITOR.on('instanceReady', function(e) {
 (defun v-article-approve-post (id &key (ajax nil))
   (with-ed-login
     (let* ((article (get-article-by-id id))
-           (parent (parent article)))
+           (parent (parent article))
+           (approver (who-am-i)))
       (when article
         ;; process all intemediate edits (including current)
         (dolist (l (get-intermediate-articles parent))

@@ -48,7 +48,7 @@
   (let* ((old-password (post-parameter "current-password"))
          (new-password (post-parameter "new-password"))
          (new-password-2 (post-parameter "re-enter-password"))
-         (author (get-author-by-handle (session-value :author)))
+         (author (who-am-i))
          (err0r (validate-account-password (password author)
                                            (hash-password old-password)
                                            new-password
@@ -99,7 +99,7 @@
 
 (defun v-account-email-post (&key (ajax nil))
   (let* ((email (post-parameter "new-email"))
-         (author (get-author-by-handle (session-value :author)))
+         (author (who-am-i))
          (err0r (validate-account-email email author)))
     (if (not err0r)
         (let* ((salt (salt author))
@@ -179,7 +179,7 @@
 
 (defun v-account-token-post (&key (ajax nil))
   (let* ((token (create-code-map))
-         (author (get-author-by-handle (session-value :author)))
+         (author (who-am-i))
          (filename (create-code-map-image token (handle author))))
     (setf (token author) token)
     (edit-author author)

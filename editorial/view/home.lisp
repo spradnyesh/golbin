@@ -8,7 +8,7 @@
     (template
      :title "Home"
      :js nil
-     :body (let ((author (get-author-by-handle (session-value :author))))
+     :body (let ((author (who-am-i)))
              (if (eq (status author) :a)
                  (let* ((articles-list (get-all-articles-by-author author))
                         (page (get-parameter "page"))
