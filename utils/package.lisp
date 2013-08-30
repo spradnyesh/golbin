@@ -133,7 +133,7 @@
 ;; dimensions
 (defvar *resources* (make-hash-table :test 'equal)) ; hashmap of all resources (eg db, etc) initialized during system-start
 ;; lang
-(defvar *translation-table*)
+(defvar *translation-table* nil)
 
 ;; http://common-lisp.net/project/parenscript/tutorial.html
 (setf *js-string-delimiter* #\")

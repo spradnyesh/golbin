@@ -15,7 +15,7 @@
                                      (:file "photo" :depends-on ("file"))
                                      (:file "lang" :depends-on ("file" "string"))
                                      (:file "js" :depends-on ("package"))
-                                     (:file "restas" :depends-on ("dimensions" "string"))
+                                     (:file "restas" :depends-on ("dimensions" "string" "lang"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("string"))
                                      (:file "l10n" :depends-on ("package"))
