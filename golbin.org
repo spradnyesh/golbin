@@ -4,6 +4,10 @@
 ** backlog
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
+    CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
+    CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
+    CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
+    CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
     CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
     :END:
     - maybe use a html-parser like closure-html?
@@ -2859,7 +2863,7 @@
      :END:
 ** TODO refactor
    :CLOCK:
-   CLOCK: [2013-08-30 Fri 14:15]
+   CLOCK: [2013-08-30 Fri 14:15]--[2013-08-30 Fri 14:35] =>  0:20
    CLOCK: [2013-08-22 Thu 19:20]--[2013-08-22 Thu 19:21] =>  0:01
    CLOCK: [2013-08-19 Mon 14:38]--[2013-08-19 Mon 14:55] =>  0:17
    CLOCK: [2013-07-23 Tue 17:40]--[2013-07-23 Tue 17:53] =>  0:13

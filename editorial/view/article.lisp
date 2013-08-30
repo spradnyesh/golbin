@@ -66,10 +66,13 @@
          (<:p :class "p-title" (title photo)))))
 
 (defun add-photo-attribution (body)
-  (dolist (img-tag (all-matches-as-strings "<img (.*?)\/>" body))
-    (let ((photo-div (make-photo-attribution-div img-tag (find-photo-by-img-tag img-tag))))
-      (setf body (regex-replace img-tag body photo-div))))
-  body)
+  #- (and)
+  ((dolist (img-tag (all-matches-as-strings "<img (.*?)\/>" body))
+     (let ((photo-div (make-photo-attribution-div img-tag (find-photo-by-img-tag img-tag))))
+       (setf body (regex-replace img-tag body photo-div))))
+   body)
+  (serialize-lhtml (remove-html-head-body (clean-html body))
+                   (make-string-sink)))
 
 (defun validate-article (title body)
   (let ((err0r nil)
@@ -254,6 +257,7 @@ CKEDITOR.on('instanceReady', function(e) {
                   (when tag-added
                     (push tag-added article-tags))))
               (if id
+                  ;; editing an existing article
                   (let* ((article (get-article-by-id id))
                          (parent (or (parent article)
                                      id)))
@@ -274,6 +278,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                                 :photo-direction pd
                                                 :tags article-tags
                                                 :author (author article))))
+                  ;; adding a new article
                   (setf id (id (add-article (make-instance 'article
                                                            :id (get-new-article-id)
                                                            :title title
@@ -365,7 +370,7 @@ CKEDITOR.on('instanceReady', function(e) {
         (edit-article article)
 
         (sendmail :to (email (get-author-by-id (id (author article))))
-                  :cc (get-config "site.email.address")
+                  :cc (list (get-config "site.email.address") (email (get-author-by-id (id approver))))
                   :subject (translate "article-approved" id)
                   :body (translate "article-approved-body" id)
                   :package hawksbill.golbin.editorial))
