@@ -2,12 +2,7 @@
 
 * tasks
 ** backlog
-*** TODO [ed] home page delete should be ajaxified
-    :CLOCK:
-    CLOCK: [2013-08-30 Fri 13:08]--[2013-08-30 Fri 13:09] =>  0:01
-    CLOCK: [2013-08-29 Thu 18:57]--[2013-08-29 Thu 19:32] =>  0:35
-    CLOCK: [2013-08-29 Thu 17:45]--[2013-08-29 Thu 17:58] =>  0:13
-    :END:
+*** [ed] preview and submit should be 2 different states
 *** [reports][ed] link article approval w/ GA
 *** TODO [bug][ed] 1st load puts ed/login into infinite loop
     :CLOCK:
@@ -2845,6 +2840,17 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-30 Fri 13:07
+     :END:
+**** DONE [ed] home page delete should be ajaxified
+     CLOSED: [2013-08-30 Fri 13:19]
+     :CLOCK:
+     CLOCK: [2013-08-30 Fri 13:15]--[2013-08-30 Fri 13:19] =>  0:04
+     CLOCK: [2013-08-30 Fri 13:08]--[2013-08-30 Fri 13:09] =>  0:01
+     CLOCK: [2013-08-29 Thu 18:57]--[2013-08-29 Thu 19:32] =>  0:35
+     CLOCK: [2013-08-29 Thu 17:45]--[2013-08-29 Thu 17:58] =>  0:13
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-08-30 Fri 13:19
      :END:
 ** TODO refactor
    :CLOCK:
