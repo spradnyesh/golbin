@@ -139,4 +139,7 @@
   (declare (ignore instance))
   (when (nil-or-empty (get-config "cipher.secure"))
     (format t "please enter secure cipher-key: ")
-    (add-config "cipher.secure" (read-line) "master")))
+    (add-config "cipher.secure" (read-line) "master"))
+  (when (nil-or-empty (get-config "site.email.password"))
+    (format t "please enter site.email.password key: ")
+    (add-config "site.email.password" (read-line) "master")))

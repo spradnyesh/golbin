@@ -2,6 +2,11 @@
 
 * tasks
 ** backlog
+*** TODO [bug][utils] email not being sent from linode
+    :CLOCK:
+    CLOCK: [2013-09-02 Mon 00:49]--[2013-09-02 Mon 01:16] =>  0:27
+    :END:
+    - http://time-loop.tumblr.com/post/55436845/sending-mail-from-common-lisp-through-gmail
 *** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
     - fe: comments
     - ed: article body
@@ -2697,6 +2702,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-23 Fri 13:08
+     :END:
+**** DONE [bug][ed] cl-gd-test:test failing
+     CLOSED: [2013-09-02 Mon 00:20]
+     :CLOCK:
+     CLOCK: [2013-09-02 Mon 00:00]--[2013-09-02 Mon 00:20] =>  0:20
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-02 Mon 00:49
      :END:
 ** TODO refactor
    :CLOCK:

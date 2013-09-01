@@ -66,4 +66,7 @@
   (declare (ignore instance))
   (when (nil-or-empty (get-config "cipher.fe.comments.private"))
     (format t "please enter fe.comments.private key: ")
-    (add-config "cipher.fe.comments.private" (read-line) "master")))
+    (add-config "cipher.fe.comments.private" (read-line) "master"))
+  (when (nil-or-empty (get-config "site.email.password"))
+    (format t "please enter site.email.password key: ")
+    (add-config "site.email.password" (read-line) "master")))
