@@ -11,4 +11,6 @@
                             :email t)
                  :attachments ,attachments
                  :cc ,cc
-                 :bcc ,bcc)))
+                 :authentication (list (get-config "site.email.address")
+                                       (get-config "site.email.password"))
+                 :ssl :tls)))
