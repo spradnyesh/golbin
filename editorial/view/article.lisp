@@ -66,13 +66,12 @@
          (<:p :class "p-title" (title photo)))))
 
 (defun add-photo-attribution (body)
-  #- (and)
-  ((dolist (img-tag (all-matches-as-strings "<img (.*?)\/>" body))
-     (let ((photo-div (make-photo-attribution-div img-tag (find-photo-by-img-tag img-tag))))
-       (setf body (regex-replace img-tag body photo-div))))
-   body)
-  (serialize-lhtml (remove-html-head-body (clean-html body))
-                   (make-string-sink)))
+  (regex-replace-all "<img (.*?)\/>"
+                     body
+                     #'(lambda (match &rest registers)
+                         (declare (ignore registers))
+                         (format nil "~a" (make-photo-attribution-div match (find-photo-by-img-tag match))))
+                     :simple-calls t))
 
 (defun validate-article (title body)
   (let ((err0r nil)

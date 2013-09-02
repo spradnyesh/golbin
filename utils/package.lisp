@@ -1,9 +1,8 @@
 (defpackage :hawksbill.utils
-  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8 :cl-smtp :json :closure-html)
+  (:use :cl :sexml :cl-memcached :cl-ppcre :parenscript :restas :split-sequence :hunchentoot :cl-prevalence :cl-gd :ironclad :local-time :flexi-streams :trivial-utf-8 :cl-smtp :json)
   (:shadow :mime-type :size :prototype)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :cl :null)
-  (:shadowing-import-from :closure-html :attribute :pt)
   (:export :*home*
            ;; init
            :destroy-system

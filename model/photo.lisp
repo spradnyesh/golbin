@@ -127,13 +127,13 @@
   (find filename (get-all-photos) :key #'new-filename :test #'string-equal))
 
 (defun find-photo-by-img-tag (img-tag)
-  (multiple-value-bind (match brackets)
+  (multiple-value-bind (match registers)
       (scan-to-strings "<img.*src=\\\"\/static\/photos\/(.+)_.+x.+\\\.(.+)\\\".*\/>" img-tag)
     (declare (ignore match))
     (find-photo-by-new-filename (concatenate 'string
-                                             (aref brackets 0)
+                                             (aref registers 0)
                                              "."
-                                             (aref brackets 1)))))
+                                             (aref registers 1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for resize photos cron
