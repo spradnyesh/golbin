@@ -110,44 +110,35 @@
                                                      "/"))))
          (subnav-cat-slug nil)
          (subnav-subcats nil))
-    (<:div :id "navigation"
-           :role "navigation"
-           :class "yom-mod yom-nav"
-           (<:div :class "bd"
-                  (<:div :class "nav"
-                         (<:div :class "nav-stack nav-0"
-                                (<:ul :class "navlist yog-grid"
-                                      (<:li :class (concatenate 'string
-                                                                "navitem first"
-                                                                (when (eq route (fe-intern :r-home))
-                                                                    "selected"))
-                                            (<:a :href (h-genurl 'r-home) (<:span (translate "home"))))
-                                      (loop for cat in (get-root-categorys)
-                                         when (plusp (rank cat))
-                                         collecting (let ((cat-slug (slug cat)))
-                                                      (<:li :class (nav-selected (string-equal (url-encode cat-slug)
-                                                                                               (first cat-subcat))
-                                                                       "navitem selected"
-                                                                       "navitem"
-                                                                     (setf subnav-cat-slug cat-slug)
-                                                                     (setf subnav-subcats (get-subcategorys (id cat))))
-                                                            (<:a :href (h-genurl 'r-cat
-                                                                                        :cat cat-slug)
-                                                                 (<:span (name cat)))
-                                                            (<:div :class "nav-sub nav-1"
-                                                                   (<:div :class "entries"
-                                                                          (<:ul :class "navlist subnavlist"
-                                                                           (join-loop subcat
-                                                                                      (get-subcategorys (id cat))
-                                                                                      (subnav (h-genurl 'r-cat-subcat
-                                                                                                        :cat cat-slug
-                                                                                                        :subcat subcat-slug)))))))) into a
-                                         finally (return (apply #'concatenate 'string a)))))
-                         (<:div :class "nav-stack nav-1"
-                                (<:ul :id "subnav"
-                                      (join-loop subcat
-                                                 subnav-subcats
-                                                 (subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug))))))))))
+    (<:div :id "nav"
+           (<:ul :id "prinav"
+                 (<:li :id "nav-home" :class (if (eq route (fe-intern :r-home))
+                                                 "cat selected"
+                                                 "cat")
+                       (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
+                 (loop for cat in (get-root-categorys)
+                    when (plusp (rank cat))
+                    collecting (let ((cat-slug (slug cat)))
+                                 (<:li :class (nav-selected (string-equal (url-encode cat-slug)
+                                                                          (first cat-subcat))
+                                                  "cat selected"
+                                                  "cat"
+                                                (setf subnav-cat-slug cat-slug)
+                                                (setf subnav-subcats (get-subcategorys (id cat))))
+                                       (<:h2 (<:a :href (h-genurl 'r-cat
+                                                                  :cat cat-slug)
+                                                  (name cat)))
+                                       (<:ul
+                                        (join-loop subcat
+                                                   (get-subcategorys (id cat))
+                                                   (subnav (h-genurl 'r-cat-subcat
+                                                                     :cat cat-slug
+                                                                     :subcat subcat-slug)))))) into a
+                    finally (return (apply #'concatenate 'string a))))
+           (<:ul :id "subnav"
+                 (join-loop subcat
+                            subnav-subcats
+                            (subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
 
 (defun header (email)
   (fmtnil (<:div :id "banner"

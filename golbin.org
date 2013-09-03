@@ -2,8 +2,16 @@
 
 * tasks
 ** backlog
+*** [ed] inline editor
+    - http://www.barneyparker.com/world-simplest-html5-wysisyg-inline-editor/
+*** [bug][fe] responsive layouts
+    - css for multiple screen sizes (only desktop, tablet for now)
+    - 1024x768, 768x1024
+    - http://www.w3.org/TR/CSS21/media.html
+    - http://alistapart.com/article/responsive-web-design
 *** TODO [fe] theme
     :CLOCK:
+    CLOCK: [2013-09-03 Tue 13:50]--[2013-09-03 Tue 14:03] =>  0:13
     CLOCK: [2013-09-03 Tue 13:03]--[2013-09-03 Tue 13:47] =>  0:44
     CLOCK: [2013-07-09 Tue 15:39]--[2013-07-09 Tue 16:04] =>  0:25
     CLOCK: [2013-03-03 Sun 14:49]--[2013-03-03 Sun 15:10] =>  0:21
@@ -3214,6 +3222,7 @@
        - font-family: "lohit hindi"
    - http://beta.quicklisp.org/dist/quicklisp/2012-07-03/distinfo.txt
 ** ideas
+   - https://github.com/Inaimathi/formlets
    - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
    - http://www.seomoz.org/blog/tips-to-use-google-for-seo
    - 'close sidebar' as in http://www.securitytube.net/video/1319
