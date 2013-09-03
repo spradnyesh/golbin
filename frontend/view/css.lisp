@@ -133,32 +133,54 @@
     (:height "175px"))
 
    ;; navigation
-   (("#nav, #ft")
-    (:background-color "#F0F0F0"
-                       :display "block"))
+   ((".yom-mod") (:zoom "1"))
+   ((".yom-nav") (:width "970px"
+                         :margin "0 auto"
+                         :position "relative"
+                         :padding "4px 0 0"))
+   ((".yom-nav .nav") (:font-size "100%"
+                                  :margin-bottom "0"))
+   ((".yom-nav .bd .nav .nav-0") (:border-color "#4ca2be"
+                                                :background "#03537c"
+                                                :font-size "100%"
+                                                :border-width "0"
+                                                :height "34px"
+                                                :border "1px solid"
+                                                :z-index "10"))
+   ((".yom-nav .bd .nav .nav-stack") (:text-transform "capitalize"
+                                                      :position "relative"
+                                                      :border-bottom "1px solid"))
+   ((".yom-nav .nav .nav-0 ul.yog-grid") (:height "34px"))
+   ((".yom-nav .nav .nav-0 ul.navlist") (:display "table"
+                                                  :position "relative"
+                                                  :text-decoration "none"
+                                                  :white-space "nowrap"))
+   ((".yog-grid") (:float "none"
+                          :width "970px"
+                          :margin "0 auto"))
+   ((".yom-nav .nav .nav-0 ul li.navitem") (:display "table-cell"
+                                                     :float "none"
+                                                     :position "relative"
+                                                     :text-decoration "none"
+                                                     :white-space "nowrap"))
+   ((".yom-nav .nav .nav-0 li a") (:background "-webkit-gradient(top, #3c668a, #113152)"
+                                               :border-top-color "#b3cee2"
+                                               :boder-left-color "#113253"
+                                               :border-style "solid"
+                                               :border-width "1px 0 0 1px!important"
+                                               :height "32px"
+                                               :border-color "#4ca2be #1f7797"))
+   ((".yom-nav .nav li a span") (:text-transform "none"
+                                                 :padding "10px"
+                                                 :text-align "center"
+                                                 :display "block"
+                                                 :color "#fff"
+                                                 :font-weight "bold"
+                                                 :white-space "nowrap"))
 
-   (("#nav a")
-    (:color "gray"))
 
-   (("#nav li")
-    (:float "left"
-            :margin "5px 0"))
-   (("#nav li h2 a, #nav li h3 a")
-    (:padding "0 20px"))
-   (("#nav .selected")
-    (:background-color "#FFF"))
 
-   (("#prinav")
-    (:height "40px"
-             :padding "10px 0 0 10px"))
-
-   (("#prinav .cat ul")
-    (:display "none"))
-
-   (("#subnav")
-    (:height "30px"
-             :padding "0 0 10px 10px"))
-
+   ;; body and footer
    (("#bd")
     (:background-color "#FFF"))
 

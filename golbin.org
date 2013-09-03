@@ -4,6 +4,7 @@
 ** backlog
 *** TODO [fe] theme
     :CLOCK:
+    CLOCK: [2013-09-03 Tue 13:03]--[2013-09-03 Tue 13:47] =>  0:44
     CLOCK: [2013-07-09 Tue 15:39]--[2013-07-09 Tue 16:04] =>  0:25
     CLOCK: [2013-03-03 Sun 14:49]--[2013-03-03 Sun 15:10] =>  0:21
     CLOCK: [2012-12-22 Sat 17:01]--[2012-12-22 Sat 17:03] =>  0:02
@@ -50,6 +51,7 @@
     :END:
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
+    CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
     CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
     CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
     CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
