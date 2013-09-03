@@ -66,7 +66,8 @@
          (<:p :class "p-title" (title photo)))))
 
 (defun add-photo-attribution (body)
-  (regex-replace-all "<img (.*?)\/>"
+  #|(regex-replace-all "([^(pqr)])q" "abqpqrcqd" "\\1pQr")|#
+  (regex-replace-all "([^<div class='a-photo'><img .*?\/>.*?</div>)])<img (.*?)\/>"
                      body
                      #'(lambda (match &rest registers)
                          (declare (ignore registers))
