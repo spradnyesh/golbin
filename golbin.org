@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [#B] [bug][fe] lead photos not showing up in article page
 *** TODO [fe] theme
     :CLOCK:
     CLOCK: [2013-07-09 Tue 15:39]--[2013-07-09 Tue 16:04] =>  0:25
@@ -2872,7 +2871,6 @@
      :CLOCK:
      CLOCK: [2013-08-30 Fri 13:19]--[2013-08-30 Fri 14:08] =>  0:49
      :END:
-     :PROPERTIES:
      :ARCHIVE_TIME: 2013-08-30 Fri 14:08
 **** DONE [bug][ed] cl-gd-test:test failing
      CLOSED: [2013-09-02 Mon 00:20]
@@ -2881,6 +2879,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-02 Mon 00:49
+     :END:
+**** DONE [#B] [bug][fe] lead photos not showing up in article page
+     CLOSED: [2013-09-03 Tue 10:49]
+     :CLOCK:
+     CLOCK: [2013-09-03 Tue 10:45]--[2013-09-03 Tue 10:49] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-03 Tue 10:49
      :END:
 ** TODO refactor
    :CLOCK:

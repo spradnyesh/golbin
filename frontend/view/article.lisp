@@ -36,22 +36,22 @@
              (article-preamble-markup-common "article-cite")))))
 
 (defun article-body-markup (article)
-  (let ((photo (photo article)))
-    (when photo
-      (let* ((photo-direction (photo-direction article))
-             (pd (cond ((eql :l photo-direction) "left")
-                       ((eql :r photo-direction) "right")
-                       ((eql :b photo-direction) "block")))
-             (a-photo-pd (join-string-list-with-delim " "
-                                                      (list "a-photo"
-                                                            pd))))
-        (<:div :class a-photo-pd
-              (article-lead-photo-url photo pd)
-              (let ((attr (attribution photo)))
-                (unless (nil-or-empty attr)
-                  (<:a :class "p-attribution small" :href attr "photo attribution")))
-              (<:p :class "p-title" (title photo))))))
-  (<:div :id "a-body" (body article)))
+  (fmtnil (let ((photo (photo article)))
+            (when photo
+              (let* ((photo-direction (photo-direction article))
+                     (pd (cond ((eql :l photo-direction) "left")
+                               ((eql :r photo-direction) "right")
+                               ((eql :b photo-direction) "block")))
+                     (a-photo-pd (join-string-list-with-delim " "
+                                                              (list "a-photo"
+                                                                    pd))))
+                (<:div :class a-photo-pd
+                       (article-lead-photo-url photo pd)
+                       (let ((attr (attribution photo)))
+                         (unless (nil-or-empty attr)
+                           (<:a :class "p-attribution small" :href attr "photo attribution")))
+                       (<:p :class "p-title" (title photo))))))
+          (<:div :id "a-body" (body article))))
 
 (defun article-related-markup (article)
   (let ((related-length (get-config "pagination.article.related"))
