@@ -7,8 +7,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-css ()
   (css
-    (("body") (:background "#cbddeb url('http://l.yimg.com/rw/lib/glbltravel/assets/bg_clouds.jpg') repeat-x"
-                           :color "#292929"
+    (("body") (:background "#cbddeb url('/static/css/images/travel_bg_clouds.jpg') repeat-x"
+                           :color "#333"
                            :font-family "'Ubuntu',Arial,sans-serif"
                            :font-size "14px"
                            :line-height "21px"
@@ -105,7 +105,7 @@
                                :margin-top "50px"
                                :min-height "800px"))
 
-    (("#banner") (:height "175px"))
+    (("#banner") (:height "75px"))
 
     ;; navigation
     (("#nav, #ft") (:display "block"

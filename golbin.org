@@ -13,6 +13,7 @@
 *** [bug][fe] ads not showing up in chrome
 *** TODO [fe] theme
     :CLOCK:
+    CLOCK: [2013-09-04 Wed 13:50]--[2013-09-04 Wed 13:56] =>  0:06
     CLOCK: [2013-09-04 Wed 11:04]--[2013-09-04 Wed 12:33] =>  1:29
     CLOCK: [2013-09-03 Tue 13:50]--[2013-09-03 Tue 14:03] =>  0:13
     CLOCK: [2013-09-03 Tue 13:03]--[2013-09-03 Tue 13:47] =>  0:44
