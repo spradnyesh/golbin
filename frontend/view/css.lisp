@@ -298,7 +298,7 @@
     ((".stpulldown-gradient")
      (:background "#E1E1E1"
                   :background "-moz-linear-gradient(top, '#E1E1E1' 0%, '#A7A7A7' 100%)"
-                  :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%, '#E1E1E1'), color-stop(100%, '#A7A7A7')) "
+                  :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%, '#E1E1E1'), color-stop(100%, '#A7A7A7'))"
                   :filter "progid: DXImageTransform.Microsoft.gradient(startColorstr='#E1E1E1', endColorstr='#A7A7A7',GradientType=0 )"
                   :background "-o-linear-gradient(top, '#E1E1E1' 0%, '#A7A7A7' 100%)"
                   :color "#636363"))

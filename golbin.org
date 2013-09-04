@@ -9,8 +9,10 @@
     - 1024x768, 768x1024
     - http://www.w3.org/TR/CSS21/media.html
     - http://alistapart.com/article/responsive-web-design
-*** [bug][fe] sharethis not showing up
-*** [bug][fe] ads not showing up in chrome
+*** TODO [bug][fe] sharethis not showing up
+    :CLOCK:
+    CLOCK: [2013-09-04 Wed 14:03]--[2013-09-04 Wed 15:12] =>  1:09
+    :END:
 *** TODO [fe] theme
     :CLOCK:
     CLOCK: [2013-09-04 Wed 13:50]--[2013-09-04 Wed 13:56] =>  0:06
@@ -2901,6 +2903,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-03 Tue 10:49
+     :END:
+**** CANCELLED [bug][fe] ads not showing up in chrome
+     CLOSED: [2013-09-04 Wed 14:03]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-09-04 Wed 14:03] \\
+       was a flashblock issue ;), not a bug
+     CLOCK: [2013-09-04 Wed 13:57]--[2013-09-04 Wed 14:03] =>  0:06
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-04 Wed 14:03
      :END:
 ** TODO refactor
    :CLOCK:
