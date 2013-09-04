@@ -95,9 +95,12 @@
   `(when (and (not (string= "--" (name subcat)))
               (plusp (rank subcat)))
      (let ((subcat-slug (slug subcat)))
-       (<:li :class "navitem"
-             (<:a :href ,url
-                  (<:span (name subcat)))))))
+       (<:li :class (nav-selected (string-equal (url-encode subcat-slug)
+                                                (second cat-subcat))
+                        "subcat selected"
+                        "subcat")
+             (<:h3 (<:a :href ,url
+                        (name subcat)))))))
 
 ;; XXX: needs cache (key: uri)
 (defun navigation ()
@@ -112,9 +115,10 @@
          (subnav-subcats nil))
     (<:div :id "nav"
            (<:ul :id "prinav"
-                 (<:li :id "nav-home" :class (if (eq route (fe-intern :r-home))
-                                                 "cat selected"
-                                                 "cat")
+                 (<:li :id "nav-home" :class (concatenate 'string
+                                                          "cat "
+                                                          (when (eq route (fe-intern :r-home))
+                                                              "selected"))
                        (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
                  (loop for cat in (get-root-categorys)
                     when (plusp (rank cat))

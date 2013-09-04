@@ -1,11 +1,13 @@
 (in-package :hawksbill.golbin.frontend)
 
+;; gradients: http://www.colorzilla.com/gradient-editor/
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CSS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-css ()
   (css
-    (("body") (:background "#75DAFF url('/static/css/images/cloud-background.jpg') repeat-x"
+    (("body") (:background "#cbddeb url('http://l.yimg.com/rw/lib/glbltravel/assets/bg_clouds.jpg') repeat-x"
                            :color "#292929"
                            :font-family "'Ubuntu',Arial,sans-serif"
                            :font-size "14px"
@@ -44,14 +46,11 @@
 
     ((".dvngr") (:font-family "Lohit Devanagari"))
 
-    (("h2") (:font-size "140%"
-                        :padding "4px 0"))
-
-    (("h3") (:font-size "120%"))
+    (("h2, h3") (:padding-top "7px"))
 
     (("h4") (:font-weight "bold"))
 
-    ((".small") (:font-size "80%"))
+    ((".small") (:font-size "75%"))
 
     ((".disabled") (:color "#999"))
 
@@ -103,39 +102,67 @@
 
     (("#wrapper") (:background "#FFF"
                                :clear "both"
-                               :margin "0 auto"
-                               :min-height "800px"
-                               :padding "20px"))
+                               :margin-top "50px"
+                               :min-height "800px"))
 
     (("#banner") (:height "175px"))
 
     ;; navigation
-    (("#nav, #ft") (:background-color "#F0F0F0"
-                                      :display "block"))
-
-    (("#nav a") (:color "gray"))
-
+    (("#nav, #ft") (:display "block"
+                             :color "#fff"))
+    (("#nav a, #ft a") (:color "#fff"))
     (("#nav li") (:float "left"
-                         :margin "5px 0"))
-    (("#nav li.selected h2 a") (:color "#000"))
-    (("#nav li h2 a, #nav li h3 a") (:padding "0 20px"
-                                              :color "#fff"))
-    (("#nav li h3 a:hover") (:color "gold"))
-    (("#nav .selected") (:background-color "#FFF"))
-
-    (("#prinav") (:height "40px"
-                          :padding "10px 0 0 10px"))
-
+                         :height "34px"))
+    ;; prinav (top -> bottom: #3c668a -> #113152)
+    (("#prinav") (:background "#3c668a"
+                              :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
+                              :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c668a), color-stop(100%,#113152))"
+                              :background "-webkit-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                              :background "-o-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                              :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                              :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
+                              :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
+                              :height "34px"))
+    ;; prinav .selected (top -> bottom: #fff -> #ddd)
+    (("#prinav .selected") (:background "#fff"
+                                     :background "-moz-linear-gradient(top, #fff 0%, #ddd 100%)"
+                                     :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ddd))"
+                                     :background "-webkit-linear-gradient(top, #fff 0%,#ddd 100%)"
+                                     :background "-o-linear-gradient(top, #fff 0%,#ddd 100%)"
+                                     :background "-ms-linear-gradient(top, #fff 0%,#ddd 100%)"
+                                     :background "linear-gradient(to bottom, #fff 0%,#ddd 100%)"
+                                     :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd',GradientType=0)"))(("#prinav a") (:padding "0 20px"))
+    (("#prinav li.selected a") (:color "#333"))
     (("#prinav .cat ul") (:display "none"))
-
-    (("#subnav") (:height "30px"
-                          :padding "0 0 10px 10px"))
+    ;; subnav (top -> bottom: #ddd -> #fff)
+    (("#subnav") (:background "#ddd"
+                              :background "-moz-linear-gradient(top, #ddd 0%, #fff 100%)"
+                              :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(100%,#fff))"
+                              :background "-webkit-linear-gradient(top, #ddd 0%,#fff 100%)"
+                              :background "-o-linear-gradient(top, #ddd 0%,#fff 100%)"
+                              :background "-ms-linear-gradient(top, #ddd 0%,#fff 100%)"
+                              :background "linear-gradient(to bottom, #ddd 0%,#fff 100%)"
+                              :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ddd', endColorstr='#fff',GradientType=0)"
+                              :height "34px"
+                              :border-bottom "1px solid #ebebeb"))
+    (("#subnav .selected a") (:color "#333"))
+    (("#subnav a") (:padding "0 20px"
+                             :color "#21629c"))
+    (("#prinav a:hover, #subnav a:hover") (:color "#eeb000"))
 
     ;; body and footer
     (("#bd") (:background-color "#FFF"))
 
-    (("#ft") (:padding "20px 250px"
-                       :height "30px"))
+    (("#ft") (:background "#3c668a"
+                              :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
+                              :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c668a), color-stop(100%,#113152))"
+                              :background "-webkit-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                              :background "-o-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                              :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                              :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
+                              :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
+                              :padding "20px 250px"
+                              :height "50px"))
 
     (("#ft p") (:float "left"
                        :padding-right "25px"))
@@ -265,9 +292,7 @@
                                      :text-align "center"))
 
     ;; devanagari
-    ((".dvngr" h2) (:padding "8px 0 0 0"))
-
-    ((".dvngr" h3) (:padding "5px 0 0 0"))
+    ((".dvngr h2, .dvngr h3") (:padding-top "10px"))
 
     ;; sharethis.com
     ((".stpulldown-gradient")

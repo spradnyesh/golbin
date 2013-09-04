@@ -9,8 +9,11 @@
     - 1024x768, 768x1024
     - http://www.w3.org/TR/CSS21/media.html
     - http://alistapart.com/article/responsive-web-design
+*** [bug][fe] sharethis not showing up
+*** [bug][fe] ads not showing up in chrome
 *** TODO [fe] theme
     :CLOCK:
+    CLOCK: [2013-09-04 Wed 11:04]--[2013-09-04 Wed 12:33] =>  1:29
     CLOCK: [2013-09-03 Tue 13:50]--[2013-09-03 Tue 14:03] =>  0:13
     CLOCK: [2013-09-03 Tue 13:03]--[2013-09-03 Tue 13:47] =>  0:44
     CLOCK: [2013-07-09 Tue 15:39]--[2013-07-09 Tue 16:04] =>  0:25
