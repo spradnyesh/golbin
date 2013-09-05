@@ -142,7 +142,8 @@
                                               "|"
                                               salt)))
                (token (create-code-map))
-               (filename (create-code-map-image token handle)))
+               (filename (create-code-map-image token handle))
+               (err0r "false"))
           (add-author (make-instance 'author
                                      :email email
                                      :username username
@@ -160,22 +161,27 @@
                     :subject (translate "confirm-registration")
                     :body (get-confirm-register-email-text hash (get-dimension-value "lang"))
                     :package hawksbill.golbin.editorial
-                    :attachments (list filename))
+                    :attachments (list filename)
+                    :error-handle (setf err0r "true"))
           (submit-success ajax
                           (h-genurl 'r-register-hurdle
-                                    :email (insecure-encrypt email))))
+                                    :email (insecure-encrypt (concatenate 'string email "|" err0r)))))
         ;; validation failed
         (submit-error ajax
                       err0r
                       (h-genurl 'r-register-get)))))
 
 (defun v-register-hurdle (email)
-  (template
-   :title "Register Hurdle"
-   :js nil
-   :body (<:div :class "wrapper"
-                (<:p (translate "confirmation-email-sent"
-                                (insecure-decrypt email))))))
+  (let* ((ee (split-sequence "|" (insecure-decrypt email) :test #'string=))
+         (email (first ee))
+         (err0r (second ee)))
+    (template
+     :title "Register Hurdle"
+     :js nil
+     :body (<:div :class "wrapper"
+                  (<:p (if (string= err0r "true")
+                           (translate "confirmation-email-failed" email)
+                           (translate "confirmation-email-sent" email)))))))
 
 (defun v-register-do-confirm (hash)
   (let* ((es (split-sequence "|" (insecure-decrypt hash) :test #'string=))

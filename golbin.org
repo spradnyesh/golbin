@@ -2,6 +2,34 @@
 
 * tasks
 ** backlog
+*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+    :CLOCK:
+    CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
+    CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
+    CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
+    CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
+    CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
+    CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
+    CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
+    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
+    :END:
+    - maybe use a html-parser like closure-html?
+      - http://common-lisp.net/project/closure/closure-html/examples.html
+    - regex (replace all "q" which are not of type "pqr" w/ "z")
+      - apqrbqcpqrdq -> apqrbzcpqrdz
+*** TODO [bug][utils] email not being sent from linode
+    :CLOCK:
+    CLOCK: [2013-09-02 Mon 00:49]--[2013-09-02 Mon 01:16] =>  0:27
+    :END:
+    - http://time-loop.tumblr.com/post/55436845/sending-mail-from-common-lisp-through-gmail
+**** DONE error-handling in email sending
+     CLOSED: [2013-09-05 Thu 19:14]
+     :CLOCK:
+     CLOCK: [2013-09-05 Thu 19:05]--[2013-09-05 Thu 19:14] =>  0:09
+     CLOCK: [2013-09-05 Thu 18:40]--[2013-09-05 Thu 19:04] =>  0:24
+     CLOCK: [2013-09-05 Thu 18:23]--[2013-09-05 Thu 18:40] =>  0:17
+     CLOCK: [2013-09-05 Thu 11:32]--[2013-09-05 Thu 12:01] =>  0:29
+     :END:
 *** TODO [fe] google site search
     :CLOCK:
     CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
@@ -69,26 +97,6 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
-*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-    :CLOCK:
-    CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
-    CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
-    CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
-    CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
-    CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
-    CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
-    CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
-    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
-    :END:
-    - maybe use a html-parser like closure-html?
-      - http://common-lisp.net/project/closure/closure-html/examples.html
-    - regex (replace all "q" which are not of type "pqr" w/ "z")
-      - apqrbqcpqrdq -> apqrbzcpqrdz
-*** TODO [bug][utils] email not being sent from linode
-    :CLOCK:
-    CLOCK: [2013-09-02 Mon 00:49]--[2013-09-02 Mon 01:16] =>  0:27
-    :END:
-    - http://time-loop.tumblr.com/post/55436845/sending-mail-from-common-lisp-through-gmail
 *** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
     - fe: comments
     - ed: article body
@@ -124,6 +132,8 @@
 *** [ed] emails to authors
     - [ ] monthly report
     - [X] approval of add/edit article(s)
+    - [ ] daily batch email of comments
+      - http://www.cliki.net/cl-cron
 *** [fe] collect emails (submitted in comments) for spamming
 *** TODO [reports] author report dashboard
     :CLOCK:

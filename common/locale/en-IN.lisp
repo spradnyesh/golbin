@@ -50,3 +50,4 @@ performance=Speed
 tags=Tags: ~a
 ed-tags=Tags
 select-or-upload=~a or ~a a photo
+invalid-age=Age should be between 18 and 70 years
