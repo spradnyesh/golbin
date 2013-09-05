@@ -11,25 +11,31 @@
 
 (defun validate-register (email username password password2 name age gender phone-number)
   (let ((err0r nil))
-    (cannot-be-empty email "email" err0r)
+    (cannot-be-empty name "name" err0r)
+    (cannot-be-empty age "age" err0r
+      (handler-case (let ((age (parse-integer age)))
+                      (when (or (< age 18)
+                                (> age 70))
+                        (push (translate "invalid-age") err0r)))
+        (sb-int:simple-parse-error ()
+          (push (translate "invalid-age") err0r))))
+    (cannot-be-empty email "email" err0r
+      (unless (validate-email email)
+        (push (translate "invalid-email") err0r)))
     (cannot-be-empty username "username" err0r)
     (cannot-be-empty password "password" err0r)
     (cannot-be-empty password2 "re-password" err0r)
-    (cannot-be-empty name "name" err0r)
-    (cannot-be-empty age "age" err0r)
-    (cannot-be-empty gender "gender" err0r)
+    (unless (string-equal password password2)
+      (push (translate "passwords-no-match") err0r))
+    (cannot-be-empty gender "gender" err0r
+      (unless (or (string= gender "m")(string= gender "f"))
+        (push (translate "invalid-gender") err0r)))
     (cannot-be-empty phone-number "phone-number" err0r)
-    (unless (validate-email email)
-      (push (translate "invalid-email") err0r))
     (when (get-author-by-username username)
       (push (translate "username-already-exists") err0r))
     (when (get-author-by-email email)
       (push (translate "email-already-exists") err0r))
-    (unless (string-equal password password2)
-      (push (translate "passwords-no-match") err0r))
-    (unless (or (string= gender "m")(string= gender "f"))
-      (push (translate "invalid-gender") err0r))
-    (reverse err0r)))
+    err0r))
 
 (defmacro why-register-tr (odd-even key class-1 class-2 value-1 value-2 desc tooltip)
   `(<:tr :class (concatenate 'string
@@ -85,21 +91,21 @@
                                     (<:table
                                      (<:tbody
                                       (tr-td-input "name" :mandatory t)
-                                      (tr-td-input "age" :mandatory t)
+                                      (tr-td-input "age" :mandatory t
+                                                   :tooltip (translate "min-18-years"))
                                       (tr-td-input "email" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "username"
                                                            (translate "username")
                                                            (<:span :class "mandatory" "*")))
                                             (<:td (<:input :class "input" :type "text"
-                                                           :name "username")
-                                                  (tooltip (translate "check-if-username-exists"))))
-                                      (tr-td-input "alias" :tooltip "alias")
+                                                           :name "username")))
                                       (tr-td-input "password" :typeof "password" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "password2"
                                                            (translate "retype-password")
                                                            (<:span :class "mandatory" "*")))
                                             (<:td (<:input :class "input" :type "password"
                                                            :name "password2")))
+                                      (tr-td-input "alias" :tooltip "alias")
                                       (<:tr (<:td (<:label :class "label" :for "gender"
                                                            (translate "gender")
                                                            (<:span :class "mandatory" "*")))
