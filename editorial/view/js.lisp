@@ -286,7 +286,7 @@
                                 ($apply ($apply ($ "#nonlead-photo") siblings "span") append a-target)
                                 ;; add-event so that when image is clicked, we show a popoup w/ url for copying
                                 ($event (a-target click) (nonlead-photo-url event))))))
-                      (close-pane nil))
+                      (close-pane nil "pane"))
 
                     (select-photo-pagination-prev (event)
                       ($prevent-default)
@@ -310,7 +310,6 @@
                     (upload-photo-init (event)
                       ($prevent-default)
                       (create-pane "pane")
-                      ($apply ($ "#pane ul") remove)
                       ;; TODO: show loading icon
                       (upload-photo-call))
 
@@ -365,7 +364,7 @@
                                   ;; add-event so that when image is clicked, we show a popoup w/ url for copying
                                   ($event (a-target click) (nonlead-photo-url event)))))
                           (photo-fail data))
-                      (close-pane nil))
+                      (close-pane nil "pane"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; category page

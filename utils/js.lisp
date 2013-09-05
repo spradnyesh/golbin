@@ -20,15 +20,15 @@
 ;;;; create and close pane
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro $pane (&body body)
-  `(flet ((create-pane (id)
+  `(flet ((create-pane (id a-class)
             ($apply ($ "#bd")
                 append
-              ($ (+ "<div id='" id "'><a class='close' href=''>Close</a><div class='message'></div></div>")))
-            ($event ((+ "#" id " a.close") click) (close-pane event)))
+              ($ (+ "<div id='" id "'><a class='close " a-class "' href=''>Close</a><div class='message'></div></div>")))
+            ($event ((+ "#" id " a.close") click) (close-pane event id)))
 
-          (close-pane (event)
+          (close-pane (event id)
             ($prevent-default)
-            ((@ ($ "#pane") remove))))
+            ((@ ($ (+ "#" id)) remove))))
      ,@body))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -57,7 +57,9 @@
                       :success (lambda (data text-status jq-x-h-r)
                                  (form-submit-done data text-status jq-x-h-r))
                       :error (lambda (jq-x-h-r text-status error-thrown)
-                               (ajax-fail jq-x-h-r text-status error-thrown)))))
+                               (ajax-fail jq-x-h-r text-status error-thrown))))
+            (create-pane "loading" "hidden")
+            ($apply ($ "#pane .message") append ($ "<div id='circularG'><div id='circularG_1' class='circularG'></div><div id='circularG_2' class='circularG'></div><div id='circularG_3' class='circularG'></div><div id='circularG_4' class='circularG'></div><div id='circularG_5' class='circularG'></div><div id='circularG_6' class='circularG'></div><div id='circularG_7' class='circularG'></div><div id='circularG_8' class='circularG'></div></div>")))
           ;; we have got a reply from the server
           (form-submit-done (data text-status jq-x-h-r)
             (if (= data.status "success")
@@ -67,7 +69,6 @@
           ;; the reply was an err0r :(
           (form-fail (data)
             (create-pane "pane")
-            ($apply ($ "#pane ul") remove)
             ($apply ($ "#pane .message") append ($ (+ "<p>" data.message "</p>")))
             (let ((errors "<ul>"))
               (dolist (err data.errors)

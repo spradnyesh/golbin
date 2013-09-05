@@ -2,6 +2,11 @@
 
 * tasks
 ** backlog
+*** TODO [#B] [util] visual feedback on ajax actions
+    :CLOCK:
+    CLOCK: [2013-09-05 Thu 19:18]--[2013-09-05 Thu 20:02] =>  0:44
+    :END:
+    - http://cssload.net/
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
     CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
