@@ -2,6 +2,12 @@
 
 * tasks
 ** backlog
+*** TODO [fe] google site search
+    :CLOCK:
+    CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
+    :END:
+    - https://www.google.com/cse/
+    - http://www.javascriptkit.com/script/script2/google_site_search.shtml
 *** [ed] inline editor
     - http://www.barneyparker.com/world-simplest-html5-wysisyg-inline-editor/
 *** [bug][fe] responsive layouts
@@ -2913,6 +2919,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-04 Wed 14:03
+     :END:
+**** DONE [#B] [bug][fe] comments not working
+     CLOSED: [2013-09-05 Thu 11:25]
+     :CLOCK:
+     CLOCK: [2013-09-05 Thu 11:22]--[2013-09-05 Thu 11:25] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-05 Thu 11:25
      :END:
 ** TODO refactor
    :CLOCK:
