@@ -252,7 +252,7 @@
 
     ((".carousel p.prev") (:position "relative"
                                      :top "50px"
-                                     :margin-right "20px"))
+                                     :margin-right "35px"))
 
     ((".carousel p.next") (:position "relative"
                                      :top "-90px"))
