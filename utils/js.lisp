@@ -20,13 +20,13 @@
 ;;;; create and close pane
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro $pane (&body body)
-  `(flet ((create-pane (id)
-            ($apply ($ "#bd")
+  `(flet ((create-pane (id parent)
+            ($apply ($ (+ "#" (if parent parent "bd")))
                 append
               ($ (+ "<div id='" id "'><a class='close' href=''>Close</a><div class='message'></div></div>")))
             ($event ((+ "#" id " a.close") click) (close-pane event id)))
-          (create-loading-pane ()
-            (create-pane "loading")
+          (create-loading-pane (parent)
+            (create-pane "loading" parent)
             ($apply ($ "#loading .message") append ($ "<div id='circularG'><div id='circularG_1' class='circularG'></div><div id='circularG_2' class='circularG'></div><div id='circularG_3' class='circularG'></div><div id='circularG_4' class='circularG'></div><div id='circularG_5' class='circularG'></div><div id='circularG_6' class='circularG'></div><div id='circularG_7' class='circularG'></div><div id='circularG_8' class='circularG'></div></div>")))
           (close-pane (event id)
             ($prevent-default)
@@ -51,9 +51,9 @@
             (dolist (a ($ form))
               ($apply ($ a) attr "action" (+ "/ajax" ($apply ($ a) attr "action")))))
           ;; form submit
-          (form-submit (event form)
+          (form-submit (event form parent)
             ($prevent-default)
-            (create-loading-pane)
+            (create-loading-pane parent)
             ;; TODO: client side error handling
             ($apply ($ (@ event current-target)) ajax-submit
               ;; http://api.jquery.com/jQuery.ajax/
@@ -61,19 +61,19 @@
                       :cache false
                       :async false
                       :success (lambda (data text-status jq-x-h-r)
-                                 (form-submit-done data text-status jq-x-h-r))
+                                 (form-submit-done data text-status jq-x-h-r parent))
                       :error (lambda (jq-x-h-r text-status error-thrown)
                                (ajax-fail jq-x-h-r text-status error-thrown)))))
           ;; we have got a reply from the server
-          (form-submit-done (data text-status jq-x-h-r)
+          (form-submit-done (data text-status jq-x-h-r parent)
             (close-loading-pane)
             (if (= data.status "success")
                 ;; this is the redirect after POST
                 (setf window.location data.data)
-                (form-fail data)))
+                (form-fail data parent)))
           ;; the reply was an err0r :(
-          (form-fail (data)
-            (create-pane "pane")
+          (form-fail (data parent)
+            (create-pane "pane" parent)
             ($apply ($ "#pane .message") append ($ (+ "<p>" data.message "</p>")))
             (let ((errors "<ul>"))
               (dolist (err data.errors)

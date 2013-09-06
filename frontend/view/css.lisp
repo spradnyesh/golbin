@@ -89,16 +89,25 @@
     ;; main structure elements
     (("#pane") (:width "540px"
                        :min-height "100px"
-                       :position "fixed"
-                       :top "100px"
-                       :left "250px"
+                       :position "absolute"
+                       :top "80px"
+                       :left "80px"
                        :border "3px solid #ddd"
                        :border-radius "10px"
                        :background-color "#fff"))
     (("#pane a.close") (:position "absolute"
                                   :top "20px"
                                   :right "20px"))
+    (("#pane .message li") (:border "0"
+                           :margin "0"))
     (("#pane .message") (:margin "50px 20px 20px"))
+    (("#loading") (:width "128px"
+                          :height "128px"
+                          :position "absolute"
+                          :top "210px"
+                          :left "400px"
+                          :border "0"))
+    (("#loading a.close") (:display "none"))
 
     (("#wrapper") (:background "#FFF"
                                :clear "both"
@@ -222,7 +231,8 @@
     ;; comments
     (("#comments") (:margin-top "35px"
                                 :padding-top "10px"
-                                :border-top "1px dotted #ccc"))
+                                :border-top "1px dotted #ccc"
+                                :position "relative"))
 
     (("#comments ul") (:margin-top "20px"))
 

@@ -160,5 +160,5 @@
             ((lambda (event)
                ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
                ($apply ($ "#response td input") val ($apply -recaptcha get_response))
-               (form-submit event "#comments form"))
+               (form-submit event "#comments form" "comments"))
              event))))))

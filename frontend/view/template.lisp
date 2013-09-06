@@ -29,7 +29,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-22-min.css")
+                                  :href "/static/css/fe-23-min.css")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
@@ -63,7 +63,7 @@
              #- (and)
              (<:script :type "text/javascript" (on-load))
              (if (string-equal (get-dimension-value "envt") "prod")
-                 (<:script :type "text/javascript" :src "/static/js/fe-8-min.js")
+                 (<:script :type "text/javascript" :src "/static/js/fe-9-min.js")
                  (<:script :type "text/javascript" (on-load)))
              (<:script :type "text/javascript" ,js))))
 
