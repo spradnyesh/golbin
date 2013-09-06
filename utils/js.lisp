@@ -20,15 +20,19 @@
 ;;;; create and close pane
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro $pane (&body body)
-  `(flet ((create-pane (id a-class)
+  `(flet ((create-pane (id)
             ($apply ($ "#bd")
                 append
-              ($ (+ "<div id='" id "'><a class='close " a-class "' href=''>Close</a><div class='message'></div></div>")))
+              ($ (+ "<div id='" id "'><a class='close' href=''>Close</a><div class='message'></div></div>")))
             ($event ((+ "#" id " a.close") click) (close-pane event id)))
-
+          (create-loading-pane ()
+            (create-pane "loading")
+            ($apply ($ "#loading .message") append ($ "<div id='circularG'><div id='circularG_1' class='circularG'></div><div id='circularG_2' class='circularG'></div><div id='circularG_3' class='circularG'></div><div id='circularG_4' class='circularG'></div><div id='circularG_5' class='circularG'></div><div id='circularG_6' class='circularG'></div><div id='circularG_7' class='circularG'></div><div id='circularG_8' class='circularG'></div></div>")))
           (close-pane (event id)
             ($prevent-default)
-            ((@ ($ (+ "#" id)) remove))))
+            ((@ ($ (+ "#" id)) remove)))
+          (close-loading-pane ()
+            ($apply ($ "#loading a.close") click)))
      ,@body))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -36,6 +40,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro $ajax-form (&body body)
   `(flet ((ajax-fail (jq-x-h-r text-status error-thrown)
+            (close-loading-pane)
             ;; ajax call itself failed
             (if (= text-status "parseerror")
                 (alert "Received an invalid response from server. Please try again after some time.")
@@ -48,6 +53,7 @@
           ;; form submit
           (form-submit (event form)
             ($prevent-default)
+            (create-loading-pane)
             ;; TODO: client side error handling
             ($apply ($ (@ event current-target)) ajax-submit
               ;; http://api.jquery.com/jQuery.ajax/
@@ -57,11 +63,10 @@
                       :success (lambda (data text-status jq-x-h-r)
                                  (form-submit-done data text-status jq-x-h-r))
                       :error (lambda (jq-x-h-r text-status error-thrown)
-                               (ajax-fail jq-x-h-r text-status error-thrown))))
-            (create-pane "loading" "hidden")
-            ($apply ($ "#pane .message") append ($ "<div id='circularG'><div id='circularG_1' class='circularG'></div><div id='circularG_2' class='circularG'></div><div id='circularG_3' class='circularG'></div><div id='circularG_4' class='circularG'></div><div id='circularG_5' class='circularG'></div><div id='circularG_6' class='circularG'></div><div id='circularG_7' class='circularG'></div><div id='circularG_8' class='circularG'></div></div>")))
+                               (ajax-fail jq-x-h-r text-status error-thrown)))))
           ;; we have got a reply from the server
           (form-submit-done (data text-status jq-x-h-r)
+            (close-loading-pane)
             (if (= data.status "success")
                 ;; this is the redirect after POST
                 (setf window.location data.data)

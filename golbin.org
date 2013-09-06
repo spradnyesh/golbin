@@ -2,8 +2,10 @@
 
 * tasks
 ** backlog
-*** TODO [#B] [util] visual feedback on ajax actions
+*** [bug][utils] loading icon not working in chrome
+*** TODO [#B] [utils] visual feedback on ajax actions
     :CLOCK:
+    CLOCK: [2013-09-06 Fri 12:44]--[2013-09-06 Fri 13:20] =>  0:36
     CLOCK: [2013-09-05 Thu 19:18]--[2013-09-05 Thu 20:02] =>  0:44
     :END:
     - http://cssload.net/
