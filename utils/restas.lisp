@@ -28,7 +28,6 @@
        (:documentation "need to make this a method so that i can have a :after"))
      (defmethod ,(intern-system "~a-start-real") ((,(intern-system "~a-instance") ,(intern-system "~a-acceptor")))
        (declare (ignore ,(intern-system "~a-instance")))
-       (load-all-languages)
        (unless *system-status*
          (setf *system-status* t)
          (init-config)
@@ -44,6 +43,7 @@
              (db-connect dim-str)))
          (hu-init)
          (obfuscate-js))
+       (load-all-languages)
        (start (get-config ,(format nil "~a.restas.package" `,system))
               :port (get-config ,(format nil "~a.restas.port" `,system))
               :acceptor-class ',(intern-system "~a-acceptor")))
@@ -51,7 +51,8 @@
        (funcall #',(intern-system "~a-start-real")
                 (make-instance ',(intern-system "~a-acceptor"))))
      (defun ,(intern-system "~a-stop") ()
-       (restas-stop (get-config ,(format nil "~a.restas.port" `,system))))
+       (when *system-status*
+         (restas-stop (get-config ,(format nil "~a.restas.port" `,system)))))
      (defun ,(intern-system "~a-restart") ()
        (,(intern-system "~a-stop"))
        (,(intern-system "~a-start")))))
