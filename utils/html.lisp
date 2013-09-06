@@ -105,8 +105,7 @@
 (defun hu-init ()
   (setf *catch-errors-p* (get-config "hunchentoot.debug.errors.catch"))
   (setf *show-lisp-errors-p* (get-config "hunchentoot.debug.errors.show"))
-  (setf *show-lisp-backtraces-p* (get-config "hunchentoot.debug.backtraces"))
-  (setf *default-connection-timeout* (get-config "hunchentoot.timeout")))
+  (setf *show-lisp-backtraces-p* (get-config "hunchentoot.debug.backtraces")))
 
 (defun logout ()
   (remove-session *session*)

@@ -28,6 +28,7 @@
        (:documentation "need to make this a method so that i can have a :after"))
      (defmethod ,(intern-system "~a-start-real") ((,(intern-system "~a-instance") ,(intern-system "~a-acceptor")))
        (declare (ignore ,(intern-system "~a-instance")))
+       (load-all-languages)
        (unless *system-status*
          (setf *system-status* t)
          (init-config)
@@ -41,7 +42,6 @@
              (setf (gethash dim-str *resources*) (make-hash-table :test 'equal))
              (model-init dim-str)
              (db-connect dim-str)))
-         (load-all-languages)
          (hu-init)
          (obfuscate-js))
        (start (get-config ,(format nil "~a.restas.package" `,system))
