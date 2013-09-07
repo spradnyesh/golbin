@@ -18,19 +18,6 @@
       - http://common-lisp.net/project/closure/closure-html/examples.html
     - regex (replace all "q" which are not of type "pqr" w/ "z")
       - apqrbqcpqrdq -> apqrbzcpqrdz
-*** TODO [bug][utils] email not being sent from linode
-    :CLOCK:
-    CLOCK: [2013-09-02 Mon 00:49]--[2013-09-02 Mon 01:16] =>  0:27
-    :END:
-    - http://time-loop.tumblr.com/post/55436845/sending-mail-from-common-lisp-through-gmail
-**** DONE error-handling in email sending
-     CLOSED: [2013-09-05 Thu 19:14]
-     :CLOCK:
-     CLOCK: [2013-09-05 Thu 19:05]--[2013-09-05 Thu 19:14] =>  0:09
-     CLOCK: [2013-09-05 Thu 18:40]--[2013-09-05 Thu 19:04] =>  0:24
-     CLOCK: [2013-09-05 Thu 18:23]--[2013-09-05 Thu 18:40] =>  0:17
-     CLOCK: [2013-09-05 Thu 11:32]--[2013-09-05 Thu 12:01] =>  0:29
-     :END:
 *** TODO [fe] google site search
     :CLOCK:
     CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
@@ -2952,6 +2939,31 @@
      :ARCHIVE_TIME: 2013-09-06 Fri 14:20
      :END:
      - http://cssload.net/
+**** DONE [bug][utils] email not being sent from linode
+     CLOSED: [2013-09-08 Sun 00:48]
+     :CLOCK:
+     CLOCK: [2013-09-02 Mon 00:49]--[2013-09-02 Mon 01:16] =>  0:27
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-08 Sun 00:48
+     :END:
+     - http://time-loop.tumblr.com/post/55436845/sending-mail-from-common-lisp-through-gmail
+***** DONE error-handling in email sending
+      CLOSED: [2013-09-05 Thu 19:14]
+      :CLOCK:
+      CLOCK: [2013-09-05 Thu 19:05]--[2013-09-05 Thu 19:14] =>  0:09
+      CLOCK: [2013-09-05 Thu 18:40]--[2013-09-05 Thu 19:04] =>  0:24
+      CLOCK: [2013-09-05 Thu 18:23]--[2013-09-05 Thu 18:40] =>  0:17
+      CLOCK: [2013-09-05 Thu 11:32]--[2013-09-05 Thu 12:01] =>  0:29
+      :END:
+**** DONE remote swank + slime
+     CLOSED: [2013-09-08 Sun 01:11]
+     :CLOCK:
+     CLOCK: [2013-09-08 Sun 00:49]--[2013-09-08 Sun 01:11] =>  0:22
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-08 Sun 01:11
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-30 Fri 14:15]--[2013-08-30 Fri 14:35] =>  0:20
