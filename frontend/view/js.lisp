@@ -124,7 +124,7 @@
                                                                (regex "/0\\\/$/")
                                                                (+ (elt page-typeof 0) "/"))
                                                         :cache false
-                                                        :async false
+                                                        :async true
                                                         :data-type "json"))
                                           done
                                         (lambda (data)

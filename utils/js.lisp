@@ -59,7 +59,7 @@
               ;; http://api.jquery.com/jQuery.ajax/
               (create :data-type "json"
                       :cache false
-                      :async false
+                      :async true
                       :success (lambda (data text-status jq-x-h-r)
                                  (form-submit-done data text-status jq-x-h-r parent))
                       :error (lambda (jq-x-h-r text-status error-thrown)

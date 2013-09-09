@@ -10,7 +10,6 @@
 *** [ed] cl-twitter
     - auto post on twitter for every article approval
 *** [fed] http://www.squidoo.com/ @ seth godin
-*** [bug][utils] loading icon not working in chrome
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
     CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
@@ -2972,6 +2971,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-08 Sun 01:11
+     :END:
+**** CANCELLED [bug][utils] loading icon not working in chrome
+     CLOSED: [2013-09-09 Mon 09:37]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-09-09 Mon 09:37] \\
+       made loading icon appear on chrome, but it's not animating (because of a feature of chrome???)
+     CLOCK: [2013-09-09 Mon 09:29]--[2013-09-09 Mon 09:37] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-09 Mon 09:38
      :END:
 ** TODO refactor
    :CLOCK:
