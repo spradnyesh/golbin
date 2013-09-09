@@ -2,12 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [bug][ed] fe-restart puts ed/login into infinite loop
-    :CLOCK:
-    CLOCK: [2013-08-30 Fri 13:09]--[2013-08-30 Fri 13:14] =>  0:05
-    :END:
-    - ed-restart solves it
-    - not reproducible when close slime and restart
 *** [bug][ed] disable all nav (except logout) for non approved author
 *** TODO [ed] replace token card by https
     :CLOCK:
@@ -2990,6 +2984,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-09 Mon 09:48
      :END:
+**** DONE [bug][ed] fe-restart puts ed/login into infinite loop
+     CLOSED: [2013-09-09 Mon 10:12]
+     :CLOCK:
+     CLOCK: [2013-09-09 Mon 09:49]--[2013-09-09 Mon 10:12] =>  0:23
+     CLOCK: [2013-08-30 Fri 13:09]--[2013-08-30 Fri 13:14] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-09 Mon 10:12
+     :END:
+     - ed-restart solves it
+     - not reproducible when close slime and restart
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-30 Fri 14:15]--[2013-08-30 Fri 14:35] =>  0:20

@@ -28,7 +28,8 @@
                (:module "common"
                         :components ((:file "package")
                                      (:file "init" :depends-on ("package"))
-                                     (:file "config" :depends-on ("init")))
+                                     (:file "config" :depends-on ("init"))
+                                     (:file "system" :depends-on ("package")))
                         :depends-on ("utils"))
                (:module "model"
                         :components ((:file "package")
