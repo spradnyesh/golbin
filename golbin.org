@@ -2,7 +2,13 @@
 
 * tasks
 ** backlog
-*** [fe] ed link in nav
+*** TODO [bug][ed] fe-restart puts ed/login into infinite loop
+    :CLOCK:
+    CLOCK: [2013-08-30 Fri 13:09]--[2013-08-30 Fri 13:14] =>  0:05
+    :END:
+    - ed-restart solves it
+    - not reproducible when close slime and restart
+*** [bug][ed] disable all nav (except logout) for non approved author
 *** TODO [ed] replace token card by https
     :CLOCK:
     CLOCK: [2013-09-09 Mon 09:10]--[2013-09-09 Mon 09:22] =>  0:12
@@ -97,12 +103,6 @@
     - ed: article body
 *** [ed][reports] investigate GA users
 *** [reports][ed] link article approval w/ GA
-*** TODO [bug][ed] 1st load puts ed/login into infinite loop
-    :CLOCK:
-    CLOCK: [2013-08-30 Fri 13:09]--[2013-08-30 Fri 13:14] =>  0:05
-    :END:
-    - ed-restart solves it
-    - not reproducible when close slime and restart
 *** TODO cron for saving db (comments/articles) on linode
     :CLOCK:
     CLOCK: [2013-09-08 Sun 01:22]--[2013-09-08 Sun 01:24] =>  0:02
@@ -2981,6 +2981,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-09 Mon 09:38
+     :END:
+**** DONE [fe] ed link in nav
+     CLOSED: [2013-09-09 Mon 09:48]
+     :CLOCK:
+     CLOCK: [2013-09-09 Mon 09:44]--[2013-09-09 Mon 09:48] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-09 Mon 09:48
      :END:
 ** TODO refactor
    :CLOCK:

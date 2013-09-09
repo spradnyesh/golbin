@@ -115,10 +115,10 @@
          (subnav-subcats nil))
     (<:div :id "nav"
            (<:ul :id "prinav"
-                 (<:li :id "nav-home" :class (concatenate 'string
-                                                          "cat "
-                                                          (when (eq route (fe-intern :r-home))
-                                                              "selected"))
+                 (<:li :class (concatenate 'string
+                                           "cat "
+                                           (when (eq route (fe-intern :r-home))
+                                             "selected"))
                        (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
                  (loop for cat in (get-root-categorys)
                     when (plusp (rank cat))
@@ -138,7 +138,8 @@
                                                    (subnav (h-genurl 'r-cat-subcat
                                                                      :cat cat-slug
                                                                      :subcat subcat-slug)))))) into a
-                    finally (return (apply #'concatenate 'string a))))
+                    finally (return (apply #'concatenate 'string a)))
+                 (<:li (<:h2 (<:a :href "http://ed.golb.in" (translate "join")))))
            (<:ul :id "subnav"
                  (join-loop subcat
                             subnav-subcats
