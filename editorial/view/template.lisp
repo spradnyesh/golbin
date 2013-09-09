@@ -137,9 +137,7 @@
         (<:li (<:h3 (<:a :href (h-genurl 'r-account-password-get)
                          (translate "change-password"))))
         (<:li (<:h3 (<:a :href (h-genurl 'r-account-email-get)
-                         (translate "change-email"))))
-        (<:li (<:h3 (<:a :href (h-genurl 'r-account-token-get)
-                         (translate "change-token-card"))))))
+                         (translate "change-email"))))))
 
 (defun nav-misc ()
   (let ((author-type (session-value :author-type)))

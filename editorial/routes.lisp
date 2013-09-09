@@ -81,15 +81,6 @@
                                                                        a))))
   (v-account-email-done status))
 
-(define-route r-account-token-get ("/account/token/") (v-account-token-get))
-(define-route r-account-token-post ("/account/token/" :method :post) (v-account-token-post))
-(define-route r-account-token-done ("/account/token/:status"
-                                    :parse-vars (list :status #'(lambda (a)
-                                                                  (when (or (string= a "yes")
-                                                                            (string= a "no"))
-                                                                    a))))
-  (v-account-token-done status))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -130,9 +121,6 @@
 (define-route r-ajax-account-email-post ("/ajax/account/email/" :method :post
                                                                 :content-type "application/json")
   (v-account-email-post :ajax t))
-(define-route r-ajax-account-token-post ("/ajax/account/token/" :method :post
-                                                                :content-type "application/json")
-  (v-account-token-post :ajax t))
 (define-route r-ajax-password-post ("/ajax/password/" :method :post
                                                       :content-type "application/json")
   (v-password-post :ajax t))
