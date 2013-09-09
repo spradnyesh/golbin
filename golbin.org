@@ -2,6 +2,14 @@
 
 * tasks
 ** backlog
+*** [fe] ed link in nav
+*** TODO [ed] replace token card by https
+    :CLOCK:
+    CLOCK: [2013-09-09 Mon 09:10]--[2013-09-09 Mon 09:22] =>  0:12
+    :END:
+*** [ed] cl-twitter
+    - auto post on twitter for every article approval
+*** [fed] http://www.squidoo.com/ @ seth godin
 *** [bug][utils] loading icon not working in chrome
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:

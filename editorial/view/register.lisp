@@ -141,8 +141,6 @@
                                               email
                                               "|"
                                               salt)))
-               (token (create-code-map))
-               (filename (create-code-map-image token handle))
                (err0r "false"))
           (add-author (make-instance 'author
                                      :email email
@@ -154,14 +152,12 @@
                                      :age age
                                      :gender gender
                                      :phone phone-number
-                                     :token token
                                      :salt salt
                                      :status :d))
           (sendmail :to email
                     :subject (translate "confirm-registration")
                     :body (get-confirm-register-email-text hash (get-dimension-value "lang"))
                     :package hawksbill.golbin.editorial
-                    :attachments (list filename)
                     :error-handle (setf err0r "true"))
           (submit-success ajax
                           (h-genurl 'r-register-hurdle

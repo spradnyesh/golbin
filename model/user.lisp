@@ -28,8 +28,7 @@
    (bank-account-no :initarg :account :initform nil :accessor bank-account-no)
    (bank-ifsc :initarg :ifsc :initform nil :accessor bank-ifsc)
    (author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
-   (education :initarg :education :initform nil :accessor education)
-   (token :initarg :token :initform nil :accessor token))) ; token card of 50 4 digit numbers
+   (education :initarg :education :initform nil :accessor education)))
 
 (defclass visitor (user)
   ((preference :initarg :preference :initform nil :accessor preference)))
@@ -163,6 +162,5 @@
                                    :username slug
                                    :handle slug
                                    :password slug
-                                   :token (create-code-map)
                                    :salt (generate-salt 32)
                                    :status :a))))))
