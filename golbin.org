@@ -3003,6 +3003,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-09 Mon 10:38
      :END:
+**** DONE [bug][fe] re-captcha should be validated only when not nil
+     CLOSED: [2013-09-09 Mon 11:15]
+     :CLOCK:
+     CLOCK: [2013-09-09 Mon 11:13]--[2013-09-09 Mon 11:15] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-09 Mon 11:15
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-30 Fri 14:15]--[2013-08-30 Fri 14:35] =>  0:20

@@ -15,10 +15,11 @@
       (unless (validate-email email)
         (push (translate "invalid-email") err0r)))
     (cannot-be-empty body "body" err0r)
-    (multiple-value-bind (status error-code)
-        (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
-      (unless status
-        (push (translate "captcha-verification-failed" error-code) err0r)))
+    (cannot-be-empty name "response" err0r
+      (multiple-value-bind (status error-code)
+          (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
+        (unless status
+          (push (translate "captcha-verification-failed" error-code) err0r))))
     err0r))
 
 (defun get-comment-markup (comment)
