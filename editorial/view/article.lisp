@@ -296,8 +296,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                                            :author (get-mini-author))))))
               (sendmail :to (get-config "site.email.address")
                         :subject (translate "article-submitted-for-approval" id)
-                        :body (translate "article-submitted-for-approval-body" id)
-                        :package hawksbill.golbin.editorial)
+                        :body (translate "article-submitted-for-approval-body" id))
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed
@@ -372,7 +371,6 @@ CKEDITOR.on('instanceReady', function(e) {
         (sendmail :to (email (get-author-by-id (id (author article))))
                   :cc (list (get-config "site.email.address") (email (get-author-by-id (id approver))))
                   :subject (translate "article-approved" id)
-                  :body (translate "article-approved-body" id)
-                  :package hawksbill.golbin.editorial))
+                  :body (translate "article-approved-body" id)))
       (submit-success ajax
                       (h-genurl 'r-approve-articles)))))

@@ -2,6 +2,33 @@
 
 * tasks
 ** backlog
+*** [bug][fed/utils] macro gensym
+*** TODO [bug][utils] loading icon not working in chrome
+    :CLOCK:
+    CLOCK: [2013-09-09 Mon 11:16]--[2013-09-09 Mon 11:17] =>  0:01
+    CLOCK: [2013-09-09 Mon 11:11]--[2013-09-09 Mon 11:12] =>  0:01
+    - State "CANCELLED"  from "UNDERGOING" [2013-09-09 Mon 09:37] \\
+      made loading icon appear on chrome, but it's not animating (because of a feature of chrome???)
+    CLOCK: [2013-09-09 Mon 09:29]--[2013-09-09 Mon 09:37] =>  0:08
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-09-09 Mon 09:38
+    :END:
+*** TODO [bug][ed] html email
+    :CLOCK:
+    CLOCK: [2013-09-09 Mon 11:00]--[2013-09-09 Mon 11:06] =>  0:06
+    :END:
+    - http://kb.mailchimp.com/article/how-to-code-html-emails
+    - http://24ways.org/2009/rock-solid-html-emails/
+**** Archive                                                        :ARCHIVE:
+***** DONE send text email for now
+      CLOSED: [2013-09-09 Mon 11:33]
+      :CLOCK:
+      CLOCK: [2013-09-09 Mon 11:29]--[2013-09-09 Mon 11:33] =>  0:04
+      :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2013-09-09 Mon 11:33
+      :END:
 *** TODO [ed] replace token card by https
     :CLOCK:
     CLOCK: [2013-09-09 Mon 09:10]--[2013-09-09 Mon 09:22] =>  0:12
@@ -2964,16 +2991,6 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-08 Sun 01:11
-     :END:
-**** CANCELLED [bug][utils] loading icon not working in chrome
-     CLOSED: [2013-09-09 Mon 09:37]
-     :CLOCK:
-     - State "CANCELLED"  from "UNDERGOING" [2013-09-09 Mon 09:37] \\
-       made loading icon appear on chrome, but it's not animating (because of a feature of chrome???)
-     CLOCK: [2013-09-09 Mon 09:29]--[2013-09-09 Mon 09:37] =>  0:08
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-09-09 Mon 09:38
      :END:
 **** DONE [bug][ed] fe-restart puts ed/login into infinite loop
      CLOSED: [2013-09-09 Mon 10:12]

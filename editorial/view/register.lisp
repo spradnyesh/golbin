@@ -157,7 +157,6 @@
           (sendmail :to email
                     :subject (translate "confirm-registration")
                     :body (get-confirm-register-email-text hash (get-dimension-value "lang"))
-                    :package hawksbill.golbin.editorial
                     :error-handle (setf err0r "true"))
           (submit-success ajax
                           (h-genurl 'r-register-hurdle

@@ -69,8 +69,7 @@
                     :body (click-here "password-email"
                                       (h-gen-full-url 'r-password-change-get
                                                       :hash hash
-                                                      :lang (get-dimension-value "lang")))
-                    :package hawksbill.golbin.editorial)
+                                                      :lang (get-dimension-value "lang"))))
           (submit-success ajax
                           (h-genurl 'r-password-email)))
         ;; validation failed
@@ -141,8 +140,7 @@
           (edit-author author)
           (sendmail :to (email author)
                     :subject (translate "password-changed")
-                    :body (translate "password-changed-email")
-                    :package hawksbill.golbin.editorial)
+                    :body (translate "password-changed-email"))
           (submit-success ajax
                           (h-genurl 'r-password-changed
                                     :status "yes")))

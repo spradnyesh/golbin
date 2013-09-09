@@ -60,8 +60,7 @@
           (edit-author author)
           (sendmail :to (email author)
                     :subject (translate "password-changed")
-                    :body (translate "password-changed-email")
-                    :package hawksbill.golbin.editorial)
+                    :body (translate "password-changed-email"))
           (submit-success ajax
                           (h-genurl 'r-account-password-done
                                     :status "yes")))
@@ -114,8 +113,7 @@
                     :body (click-here "change-email-email"
                                       (h-gen-full-url 'r-account-email-verify
                                                       :hash hash
-                                                      :lang (get-dimension-value "lang")))
-                    :package hawksbill.golbin.editorial)
+                                                      :lang (get-dimension-value "lang"))))
           (submit-success ajax
                           (h-genurl 'r-account-email-hurdle
                                     :email (insecure-encrypt email))))
@@ -144,8 +142,7 @@
           (sendmail :to new-email
                     :cc old-email
                     :subject (translate "email-changed-subject")
-                    :body (translate "email-changed-body" old-email new-email)
-                    :package hawksbill.golbin.editorial)
+                    :body (translate "email-changed-body" old-email new-email))
           (redirect (h-genurl 'r-account-email-done
                               :status "yes")))
         (redirect (h-genurl 'r-account-email-done
@@ -186,7 +183,6 @@
     (sendmail :to (email author)
               :subject (translate "confirm-registration")
               :body (translate "new-token-email")
-              :package hawksbill.golbin.editorial
               :attachments (list filename))
     (submit-success ajax
                     (h-genurl 'r-account-token-done
