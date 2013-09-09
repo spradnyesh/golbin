@@ -29,7 +29,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-24-min.css")
+                                  :href "/static/css/fe-25-min.css")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
