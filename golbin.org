@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][ed] disable all nav (except logout) for non approved author
 *** TODO [ed] replace token card by https
     :CLOCK:
     CLOCK: [2013-09-09 Mon 09:10]--[2013-09-09 Mon 09:22] =>  0:12
@@ -2995,6 +2994,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-09 Mon 10:32
+     :END:
+**** DONE [bug][ed] disable all nav (except logout) for non approved author
+     CLOSED: [2013-09-09 Mon 10:38]
+     :CLOCK:
+     CLOCK: [2013-09-09 Mon 10:33]--[2013-09-09 Mon 10:38] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-09 Mon 10:38
      :END:
 ** TODO refactor
    :CLOCK:

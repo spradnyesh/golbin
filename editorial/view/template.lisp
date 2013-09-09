@@ -153,17 +153,18 @@
 (defun navigation (logged-in)
   (when logged-in
     (<:ul :id "nav"
-          (<:li :class "prinav wide"
-                (<:h2 (<:a :href (h-genurl 'r-article-new-get)
-                           (translate "add-article"))))
-          (<:li :class "prinav"
-                (<:h2 (translate "reports")))
-          (<:li :class "prinav wide"
-                (<:h2 (translate "account"))
-                (nav-account))
-          (<:li :class "prinav wide"
-                (<:h2 (translate "misc"))
-                (nav-misc))
+          (when (eq (status (who-am-i)) :a)
+            (fmtnil (<:li :class "prinav wide"
+                          (<:h2 (<:a :href (h-genurl 'r-article-new-get)
+                                     (translate "add-article"))))
+                    (<:li :class "prinav"
+                          (<:h2 (translate "reports")))
+                    (<:li :class "prinav wide"
+                          (<:h2 (translate "account"))
+                          (nav-account))
+                    (<:li :class "prinav wide"
+                          (<:h2 (translate "misc"))
+                          (nav-misc))))
           (<:li :class "prinav"
                 (<:h2 (<:a :href (h-genurl 'r-logout)
                            (translate "logout")))))))
