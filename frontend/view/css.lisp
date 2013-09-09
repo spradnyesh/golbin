@@ -121,7 +121,10 @@
                              :color "#fff"))
     (("#nav a, #ft a") (:color "#fff"))
     (("#nav li") (:float "left"
-                         :height "34px"))
+                         :height "34px"
+                         :width "108px"
+                         :text-align "center"))
+    (("#nav #prinav #join") (:float "right"))
     ;; prinav (top -> bottom: #3c668a -> #113152)
     (("#prinav") (:background "#3c668a"
                               :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
@@ -140,8 +143,9 @@
                                      :background "-o-linear-gradient(top, #fff 0%,#ddd 100%)"
                                      :background "-ms-linear-gradient(top, #fff 0%,#ddd 100%)"
                                      :background "linear-gradient(to bottom, #fff 0%,#ddd 100%)"
-                                     :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd',GradientType=0)"))(("#prinav a") (:padding "0 20px"))
+                                     :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd',GradientType=0)"))
     (("#prinav li.selected a") (:color "#333"))
+    (("#prinav li") (:border-right "1px solid #333"))
     (("#prinav .cat ul") (:display "none"))
     ;; subnav (top -> bottom: #ddd -> #fff)
     (("#subnav") (:background "#ddd"

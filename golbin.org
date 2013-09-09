@@ -2976,14 +2976,6 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-09 Mon 09:38
      :END:
-**** DONE [fe] ed link in nav
-     CLOSED: [2013-09-09 Mon 09:48]
-     :CLOCK:
-     CLOCK: [2013-09-09 Mon 09:44]--[2013-09-09 Mon 09:48] =>  0:04
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-09-09 Mon 09:48
-     :END:
 **** DONE [bug][ed] fe-restart puts ed/login into infinite loop
      CLOSED: [2013-09-09 Mon 10:12]
      :CLOCK:
@@ -2995,6 +2987,15 @@
      :END:
      - ed-restart solves it
      - not reproducible when close slime and restart
+**** DONE [fe] ed link in nav
+     CLOSED: [2013-09-09 Mon 10:32]
+     :CLOCK:
+     CLOCK: [2013-09-09 Mon 10:13]--[2013-09-09 Mon 10:32] =>  0:19
+     CLOCK: [2013-09-09 Mon 09:44]--[2013-09-09 Mon 09:48] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-09 Mon 10:32
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-08-30 Fri 14:15]--[2013-08-30 Fri 14:35] =>  0:20

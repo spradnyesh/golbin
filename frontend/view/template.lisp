@@ -29,7 +29,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-23-min.css")
+                                  :href "/static/css/fe-24-min.css")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
@@ -139,7 +139,8 @@
                                                                      :cat cat-slug
                                                                      :subcat subcat-slug)))))) into a
                     finally (return (apply #'concatenate 'string a)))
-                 (<:li (<:h2 (<:a :href "http://ed.golb.in" (translate "join")))))
+                 (<:li :id "join"
+                       (<:h2 (<:a :href "http://ed.golb.in" (translate "join")))))
            (<:ul :id "subnav"
                  (join-loop subcat
                             subnav-subcats
