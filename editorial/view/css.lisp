@@ -27,10 +27,12 @@
     :background "#61a1f0"
     :text-shadow "none"))|#
          (("body") (:border-top "5px solid #61a1f0"
-                                :padding-top "10px"))
+                                :padding-top "10px"
+                                ))
          (("h1") (:font-weight "bold"
                                :font-size "160%"
-                               :display "inline-block"))
+                               :display "inline-block"
+                               :margin-bottom "5px"))
          (("h2") (:font-weight "bold"
                                :font-size "140%"))
          (("h3") (:font-weight "bold"
@@ -103,9 +105,9 @@
          ;; hd
          (("#hd") (:height "120px"
                            :margin-top "40px"))
-         (("#logo") (:float "left"
-                            :margin-top "-40px"
-                            :width "200px"))
+         (("#logo") (:margin-top "-40px"
+                                 :width "200px"
+                                 :height "40px"))
          (("#logo .langs") (:margin "-7px 0 0 40px"))
          (("#logo .langs a") (:margin-right "7px"))
          ;; nav
@@ -122,18 +124,14 @@
          (("#bd") (:min-height "500px"
                                :position "relative"))
          ;; ft
-         (("#ft") (:font-size "12px"
-                              :line-height "22px"
-                              :color "#fff"
-                              :background-color "#61a1f0"
-                              :margin-top "30px"
-                              :padding "20px"
-                              :border-top "5px solid #dfeefd"))
+         (("#ft") (:color "#fff"
+                          :height "50px"
+                          :background-color "#61a1f0"
+                          :border-top "5px solid #dfeefd"))
          (("#ft a") (:color "#fff"))
-         (("#ft h5") (:font-size "15px"
-                                 :line-height "52px"
-                                 :margin-bottom "23px"
-                                 :text-transform "uppercase"))
+         (("#ft p") (:float "left"
+                            :padding "0 40px"))
+
          ;; home
          (("#articles p") (:margin "0"))
          (("#articles li") (:min-height "50px"
@@ -142,7 +140,7 @@
          (("#articles li.draft") (:background-color "#dfeefd"))
          (("#articles li.submitted") (:background-color "#ddffcc"))
          (("#articles .crud") (:float "left"
-                                      :padding-right "30px"
+                                      :padding "10px 30px 0 0"
                                       :width "60px"))
          (("#articles .crud .delete") (:background-color "#fff"
                                                          :border "0"
