@@ -66,45 +66,14 @@
          (unless email
            (navigation logged-in))))
 
-(defmacro lang-a (lang selected lang-name)
-  (let* ((class "small")
-         (class (concatenate 'string
-                             class
-                             (when (or (string= lang "hi-IN")
-                                       (string= lang "mr-IN"))
-                               " dvngr"))))
-    `(<:a :class (if ,selected
-                     (concatenate 'string ,class " lang-selected")
-                     ,class)
-          :href (concatenate 'string (request-uri*) "?lang=" ,lang)
-          ,lang-name)))
-
 (defun logo (logged-in)
-  (<:figure :id "logo" (<:h1
-                        (<:a :href (h-genurl 'r-home)
-                             (get-config "site.name")))
+  (<:figure :id "logo"
+            (<:h1 (<:a :href (h-genurl 'r-home)
+                       (get-config "site.name")))
             (unless logged-in
-              (<:ul :class "langs"
-                    (let ((lang (get-dimension-value "lang")))
-                      (cond ((string-equal lang "en-IN")
-                             (<:li
-                              (lang-a "en-IN" t "English")
-                              #- (and)
-                              (lang-a "hi-IN" nil "हिन्दी")
-                              (lang-a "mr-IN" nil "मराठी")))
-                            #- (and)
-                            ((string-equal lang "hi-IN")
-                             (<:li
-                              (lang-a "en-IN" nil "English")
-                              (lang-a "hi-IN" t "हिन्दी")
-                              (lang-a "mr-IN" nil "मराठी")))
-                            ((string-equal lang "mr-IN")
-                             (<:li
-                              (lang-a "en-IN" nil "English")
-                              #- (and)
-                              (lang-a "hi-IN" nil "हिन्दी")
-                              (lang-a "mr-IN" t "मराठी")))
-                            (t (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))
+              (logo-langs (concatenate 'string (request-uri*) "?lang=en-IN")
+                          (concatenate 'string (request-uri*) "?lang=mr-IN")
+                          (concatenate 'string (request-uri*) "?lang=hi-IN")))))
 
 (defun site-search ()
   #- (and)

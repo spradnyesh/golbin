@@ -29,7 +29,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-25-min.css")
+                                  :href "/static/css/fe-26-min.css")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
@@ -48,8 +48,7 @@
                                 ""
                                 "dvngr")
                      (<:div :class "yui3-g"
-                            (<:div :id "hd"
-                                   (header ,email))
+                            (<:header :id "hd" (header ,email))
                             (<:div :id "bd"
                                    (<:div :class "yui3-u-17-24"
                                           (<:div :id "col-1" :class "yui3-u-1-4"
@@ -58,7 +57,7 @@
                                                  (<:div :id "wrapper" ,body)))
                                    (<:div :id "col-3" :class "yui3-u-7-24"
                                           (ads-2)))
-                            (<:div :id "ft" (footer))))
+                            (<:footer :id "ft" (footer))))
              (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
              #- (and)
              (if (string-equal (get-dimension-value "envt") "prod")
@@ -71,10 +70,15 @@
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun logo ()
-  (<:h1 (<:a :href (h-genurl 'r-home)
-           (<:img :id "logo"
-                 :src ""
-                 :alt (get-config "site.name")))))
+  (<:figure (<:h1 (<:a :href (h-genurl 'r-home)
+                       (get-config "site.name")
+                       #- (and)
+                       (<:img :id "logo"
+                              :src ""
+                              :alt (get-config "site.name"))))
+            (logo-langs "www.golb.in"
+                        "mr.golb.in"
+                        "hi.golb.in")))
 
 (defun site-search ()
   #- (and)

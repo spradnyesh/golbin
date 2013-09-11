@@ -102,6 +102,8 @@
            :translate
            :load-all-languages
            :show-translation-tree
+           :lang-a
+           :logo-langs
            ;; cipher
            :hash-password
            :do-encrypt

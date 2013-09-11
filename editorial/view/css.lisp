@@ -108,8 +108,12 @@
          (("#logo") (:margin-top "-40px"
                                  :width "200px"
                                  :height "40px"))
-         (("#logo .langs") (:margin "-7px 0 0 40px"))
-         (("#logo .langs a") (:margin-right "7px"))
+         (("#logo .langs li") (:float "left"))
+         (("#logo .langs a") (:margin-right "10px"))
+         (("#logo .langs a.selected") (:padding "1px"
+                                                :border-radius "5px"
+                                                :color "#fff"
+                                                :background-color "#8dba53"))
          ;; nav
          ((".prinav") (:float "left"
                               :width "100px"))

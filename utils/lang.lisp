@@ -1,8 +1,45 @@
 (in-package :hawksbill.utils)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper macros
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro lang-a (lang selected lang-name href)
+  (let* ((class "small")
+         (class (concatenate 'string
+                             class
+                             (when (or (string= lang "hi-IN")
+                                       (string= lang "mr-IN"))
+                               " dvngr"))))
+    `(<:li (<:a :class (if ,selected
+                           (concatenate 'string ,class " selected")
+                           ,class)
+                :href ,href
+                ,lang-name))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun logo-langs (en-href mr-href hi-href)
+  (declare (ignore hi-href))
+  (<:ul :class "langs"
+        (let ((lang (get-dimension-value "lang")))
+          (cond ((string-equal lang "en-IN")
+                 (fmtnil (lang-a "en-IN" t "English" en-href)
+                         #- (and)
+                         (lang-a "hi-IN" nil "हिन्दी" hi-href)
+                         (lang-a "mr-IN" nil "मराठी" mr-href)))
+                #- (and)
+                ((string-equal lang "hi-IN")
+                 (fmtnil (lang-a "en-IN" nil "English" en-href)
+                         (lang-a "hi-IN" t "हिन्दी" hi-href)
+                         (lang-a "mr-IN" nil "मराठी" mr-href)))
+                ((string-equal lang "mr-IN")
+                 (fmtnil (lang-a "en-IN" nil "English" en-href)
+                         #- (and)
+                         (lang-a "hi-IN" nil "हिन्दी" hi-href)
+                         (lang-a "mr-IN" t "मराठी" mr-href)))
+                (t (redirect (h-genurl 'r-login-get :lang "en-IN")))))))
+
 (defun load-language (file-path)
   (let ((ht (make-hash-table :test 'equal))
         (rslt nil))
