@@ -92,8 +92,10 @@
                       (cond ((string-equal lang "en-IN")
                              (<:li
                               (lang-a "en-IN" t "English")
+                              #- (and)
                               (lang-a "hi-IN" nil "हिन्दी")
                               (lang-a "mr-IN" nil "मराठी")))
+                            #- (and)
                             ((string-equal lang "hi-IN")
                              (<:li
                               (lang-a "en-IN" nil "English")
@@ -102,6 +104,7 @@
                             ((string-equal lang "mr-IN")
                              (<:li
                               (lang-a "en-IN" nil "English")
+                              #- (and)
                               (lang-a "hi-IN" nil "हिन्दी")
                               (lang-a "mr-IN" t "मराठी")))
                             (t (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))
