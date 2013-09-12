@@ -4,17 +4,17 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro lang-a (lang selected lang-name href)
-  (let* ((class "small")
-         (class (concatenate 'string
-                             class
-                             (when (or (string= lang "hi-IN")
-                                       (string= lang "mr-IN"))
-                               " dvngr"))))
-    `(<:li (<:a :class (if ,selected
-                           (concatenate 'string ,class " selected")
-                           ,class)
-                :href ,href
-                ,lang-name))))
+  (with-gensyms (class)
+    `(let ((,class (concatenate 'string
+                                "small"
+                                (when (or (string= ,lang "hi-IN")
+                                          (string= ,lang "mr-IN"))
+                                  " dvngr"))))
+       (<:li (<:a :class (if ,selected
+                             (concatenate 'string ,class " selected")
+                             ,class)
+                  :href ,href
+                  ,lang-name)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions

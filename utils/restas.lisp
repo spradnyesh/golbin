@@ -92,6 +92,7 @@
 ;; 404
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro m-404 (base-name)
+  ;; do *NOT* use with-gensyms here (atleast for x-404), otherwise they get defined in :hawksbill.utils and screw things up
   ;; http://stackoverflow.com/a/5891899
   (let*
       ((package (symbol-package base-name))

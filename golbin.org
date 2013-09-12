@@ -2,11 +2,35 @@
 
 * tasks
 ** backlog
+*** TODO [ed] translations
+    :CLOCK:
+    CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
+    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
+    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
+    :END:
+*** TODO [bug][fe] sharethis not showing up
+    :CLOCK:
+    CLOCK: [2013-09-04 Wed 14:03]--[2013-09-04 Wed 15:12] =>  1:09
+    :END:
+*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+    :CLOCK:
+    CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
+    CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
+    CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
+    CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
+    CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
+    CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
+    CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
+    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
+    :END:
+    - maybe use a html-parser like closure-html?
+      - http://common-lisp.net/project/closure/closure-html/examples.html
+    - regex (replace all "q" which are not of type "pqr" w/ "z")
+      - apqrbqcpqrdq -> apqrbzcpqrdz
 *** TODO check sites from windoZZZe
     :CLOCK:
     CLOCK: [2013-09-09 Mon 13:05]--[2013-09-09 Mon 13:27] =>  0:22
     :END:
-*** [bug][fed/utils] macro gensym
 *** TODO [bug][ed] html email
     :CLOCK:
     CLOCK: [2013-09-09 Mon 11:00]--[2013-09-09 Mon 11:06] =>  0:06
@@ -30,21 +54,6 @@
 *** [ed] cl-twitter
     - auto post on twitter for every article approval
 *** [fed] http://www.squidoo.com/ @ seth godin
-*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-    :CLOCK:
-    CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
-    CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
-    CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
-    CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
-    CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
-    CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
-    CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
-    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
-    :END:
-    - maybe use a html-parser like closure-html?
-      - http://common-lisp.net/project/closure/closure-html/examples.html
-    - regex (replace all "q" which are not of type "pqr" w/ "z")
-      - apqrbqcpqrdq -> apqrbzcpqrdz
 *** TODO [fe] google site search
     :CLOCK:
     CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
@@ -58,10 +67,6 @@
     - 1024x768, 768x1024
     - http://www.w3.org/TR/CSS21/media.html
     - http://alistapart.com/article/responsive-web-design
-*** TODO [bug][fe] sharethis not showing up
-    :CLOCK:
-    CLOCK: [2013-09-04 Wed 14:03]--[2013-09-04 Wed 15:12] =>  1:09
-    :END:
 *** TODO [fe] theme
     :CLOCK:
     CLOCK: [2013-09-04 Wed 13:50]--[2013-09-04 Wed 13:56] =>  0:06
@@ -121,11 +126,6 @@
     :CLOCK:
     CLOCK: [2013-09-08 Sun 01:22]--[2013-09-08 Sun 01:24] =>  0:02
     CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
-    :END:
-*** TODO [ed] translations
-    :CLOCK:
-    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
-    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
     :END:
 *** [fe] daily digest email for comments to authors
 *** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
@@ -3067,6 +3067,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-12 Thu 09:59
+     :END:
+**** DONE [bug][fed/utils] macro gensym
+     CLOSED: [2013-09-12 Thu 14:28]
+     :CLOCK:
+     CLOCK: [2013-09-12 Thu 13:58]
+     CLOCK: [2013-09-12 Thu 13:20]--[2013-09-12 Thu 13:31] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-12 Thu 14:28
      :END:
 ** TODO refactor
    :CLOCK:
