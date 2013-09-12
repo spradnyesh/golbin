@@ -91,7 +91,7 @@
     (("#loading a.close") (:display "none"))
 
     ;; header
-    (("#banner") (:height "80px"
+    (("#banner") (:height "85px"
                           :font-family "'Ubuntu',Arial,sans-serif"))
     (("#banner figure") (:padding "30px"))
     (("#banner h1") (:font-size "25px"

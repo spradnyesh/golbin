@@ -3060,6 +3060,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-11 Wed 18:10
      :END:
+**** DONE [bug][fe] css issue w/ banner
+     CLOSED: [2013-09-12 Thu 09:59]
+     :CLOCK:
+     CLOCK: [2013-09-12 Thu 09:58]--[2013-09-12 Thu 09:59] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-09-12 Thu 09:59
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
