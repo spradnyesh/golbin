@@ -1,6 +1,6 @@
 ads-approval-tltip=If you host Google ads on your website, then you have to wait till content on your website is approved before ads start appearing on your website
 ads-approval=Approval of website content
-ads-wait-tltip=If you host Google ads on your website, then you have to wait for some time (about 6 months) before they start appearing on your website
+ads-wait-tltip=You can only put Google ads on your website, if your website is atleast 6 months old
 ads-wait=Wait time for ads to appear on website
 article-preview=You can only preview after the article has been saved successfully
 article-submit=On saving the article will go into the draft mode and will have to be approved before it will be visible on the site again
