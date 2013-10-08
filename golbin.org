@@ -2,6 +2,11 @@
 
 * tasks
 ** backlog
+*** logo
+    - https://www.logaster.com/create/logo/
+    - http://logoyes.com/wizard/show/choose_icon.tpl
+*** https://www.varnish-cache.org/
+    - https://www.varnish-software.com/what-is-varnish
 *** TODO [ed] translations
     :CLOCK:
     CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
@@ -3071,7 +3076,6 @@
 **** DONE [bug][fed/utils] macro gensym
      CLOSED: [2013-09-12 Thu 14:28]
      :CLOCK:
-     CLOCK: [2013-09-12 Thu 13:58]
      CLOCK: [2013-09-12 Thu 13:20]--[2013-09-12 Thu 13:31] =>  0:11
      :END:
      :PROPERTIES:
