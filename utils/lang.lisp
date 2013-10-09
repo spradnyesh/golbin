@@ -13,7 +13,7 @@
        (<:li (<:a :class (if ,selected
                              (concatenate 'string ,class " selected")
                              ,class)
-                  :href ,href
+                  :href (concatenate 'string "http://" ,href)
                   ,lang-name)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
