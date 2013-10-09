@@ -17,6 +17,7 @@
               (<:meta :name "description" :content ,description)
               (<:meta :name "google" :content "notranslate")
               (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
+              (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/golbin-logo.ico")
               (when (or (string= "mr-IN" lang)
                         (string= "hi-IN" lang))
                 (<:link :rel "stylesheet"
@@ -29,7 +30,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-27-min.css")
+                                  :href "/static/css/fe-28-min.css")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
@@ -71,10 +72,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun logo ()
   (<:figure (<:h1 (<:a :href (h-genurl 'r-home)
-                       (get-config "site.name")
-                       #- (and)
-                       (<:img :id "logo"
-                              :src ""
+                       (<:img :src "/static/css/images/golbin-logo-50.png"
+                              :alt (get-config "site.name"))
+                       (<:img :src "/static/css/images/golbin-text-50.png"
                               :alt (get-config "site.name"))))
             (logo-langs "www.golb.in"
                         "mr.golb.in"

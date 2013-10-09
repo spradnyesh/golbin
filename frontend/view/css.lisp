@@ -91,11 +91,10 @@
     (("#loading a.close") (:display "none"))
 
     ;; header
-    (("#banner") (:height "85px"
-                          :font-family "'Ubuntu',Arial,sans-serif"))
-    (("#banner figure") (:padding "30px"))
-    (("#banner h1") (:font-size "25px"
-                                :margin-bottom "5px"))
+    (("#banner") (:font-family "'Ubuntu',Arial,sans-serif"))
+    (("#banner figure") (:padding "30px 10px"))
+    (("#banner h1") (:margin-bottom "5px"))
+    (("#banner h1 img") (:margin-right "25px"))
     (("#banner li") (:float "left"
                             :padding-right "10px"))
     (("#banner li .selected") (:color "#333"

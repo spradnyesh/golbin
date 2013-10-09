@@ -32,7 +32,7 @@
          (("h1") (:font-weight "bold"
                                :font-size "160%"
                                :display "inline-block"
-                               :margin-bottom "5px"))
+                               :margin-bottom "10px"))
          (("h2") (:font-weight "bold"
                                :font-size "140%"))
          (("h3") (:font-weight "bold"
@@ -105,9 +105,8 @@
          ;; hd
          (("#hd") (:height "120px"
                            :margin-top "40px"))
-         (("#logo") (:margin-top "-40px"
-                                 :width "200px"
-                                 :height "40px"))
+         (("#logo") (:margin-top "-40px"))
+         (("#logo h1 img") (:margin-right "25px"))
          (("#logo .langs li") (:float "left"))
          (("#logo .langs a") (:margin-right "10px"))
          (("#logo .langs a.selected") (:padding "1px"
@@ -115,6 +114,7 @@
                                                 :color "#fff"
                                                 :background-color "#8dba53"))
          ;; nav
+         (("#nav") (:margin-top "15px"))
          ((".prinav") (:float "left"
                               :width "100px"))
          ((".prinav.wide") (:width "175px"))

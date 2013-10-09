@@ -69,7 +69,10 @@
 (defun logo (logged-in)
   (<:figure :id "logo"
             (<:h1 (<:a :href (h-genurl 'r-home)
-                       (get-config "site.name")))
+                       (<:img :src "/static/css/images/golbin-logo-50.png"
+                              :alt (get-config "site.name"))
+                       (<:img :src "/static/css/images/golbin-text-50.png"
+                              :alt (get-config "site.name"))))
             (unless logged-in
               (logo-langs (concatenate 'string (request-uri*) "?lang=en-IN")
                           (concatenate 'string (request-uri*) "?lang=mr-IN")

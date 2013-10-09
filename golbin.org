@@ -2,9 +2,8 @@
 
 * tasks
 ** backlog
-*** logo
-    - https://www.logaster.com/create/logo/
-    - http://logoyes.com/wizard/show/choose_icon.tpl
+*** toc
+    - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
     - https://www.varnish-software.com/what-is-varnish
 *** TODO [ed] translations
@@ -3089,6 +3088,20 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-09 Wed 20:29
      :END:
+**** DONE logo
+     CLOSED: [2013-10-09 Wed 20:59]
+     :CLOCK:
+     CLOCK: [2013-10-09 Wed 20:49]--[2013-10-09 Wed 20:59] =>  0:10
+     CLOCK: [2013-10-09 Wed 20:30]--[2013-10-09 Wed 20:47] =>  0:17
+     CLOCK: [2013-10-09 Wed 19:52]--[2013-10-09 Wed 20:27] =>  0:35
+     CLOCK: [2013-10-09 Wed 12:49]--[2013-10-09 Wed 13:37] =>  0:48
+     CLOCK: [2013-10-08 Tue 18:20]--[2013-10-08 Tue 19:05] =>  0:45
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-09 Wed 20:59
+     :END:
+     - https://www.logaster.com/create/logo/
+     - http://logoyes.com/wizard/show/choose_icon.tpl
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
