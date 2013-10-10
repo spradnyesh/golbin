@@ -16,10 +16,14 @@
         (push (translate "invalid-email") err0r)))
     (cannot-be-empty body "body" err0r)
     (cannot-be-empty name "response" err0r
-      (multiple-value-bind (status error-code)
-          (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
-        (unless status
-          (push (translate "captcha-verification-failed" error-code) err0r))))
+      (handler-case
+          (with-timeout ((parse-integer (get-config "site.timeout.comments")))
+            (multiple-value-bind (status error-code)
+                (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
+              (unless status
+                (push (translate "captcha-verification-failed" error-code) err0r))))
+        (trivial-timeout:timeout-error ()
+          (push (translate "recaptcha-connection-failed") err0r))))
     err0r))
 
 (defun get-comment-markup (comment)

@@ -2,7 +2,14 @@
 
 * tasks
 ** backlog
-*** [#B] [bug][ed] post /ajax/article/ not working
+*** TODO [#B] [bug][ed] post /ajax/article/ not working
+    :CLOCK:
+    CLOCK: [2013-10-10 Thu 19:20]--[2013-10-10 Thu 19:30] =>  0:10
+    CLOCK: [2013-10-10 Thu 19:02]--[2013-10-10 Thu 19:13] =>  0:11
+    :END:
+    - sendmail not timingout
+    - use trivial-timeout for both sendmail and comments
+    - testing pending
 *** toc
     - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/

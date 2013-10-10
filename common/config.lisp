@@ -10,7 +10,9 @@
                           ("envt" "prod")
                           ("email" ("address" "golb_in@yahoo.com")
                                    ("host" "smtp.mail.yahoo.com")
-                                   ("password" "")))
+                                   ("password" ""))
+                          ("timeout" ("email" "3")
+                                     ("comments" "3")))
                   ("cipher" ("insecure" "aCpLvFWfcfUxmz4h") ; used for non-secure encryption
                             ("secure" "")
                             ("fe" ("comments" ("public" "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi")
