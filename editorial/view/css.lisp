@@ -103,7 +103,7 @@
                                            :background-color "#8dba53"
                                            :color "#fff"))
          ;; hd
-         (("#hd") (:height "120px"
+         (("#hd") (:height "220px"
                            :margin-top "40px"))
          (("#logo") (:margin-top "-40px"))
          (("#logo h1 img") (:margin-right "25px"))
