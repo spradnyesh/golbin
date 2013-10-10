@@ -3089,8 +3089,10 @@
      :ARCHIVE_TIME: 2013-10-09 Wed 20:29
      :END:
 **** DONE logo
-     CLOSED: [2013-10-09 Wed 20:59]
+     CLOSED: [2013-10-10 Thu 14:04]
      :CLOCK:
+     CLOCK: [2013-10-10 Thu 13:12]--[2013-10-10 Thu 14:04] =>  0:52
+     CLOCK: [2013-10-10 Thu 11:29]--[2013-10-10 Thu 11:55] =>  0:26
      CLOCK: [2013-10-09 Wed 20:49]--[2013-10-09 Wed 20:59] =>  0:10
      CLOCK: [2013-10-09 Wed 20:30]--[2013-10-09 Wed 20:47] =>  0:17
      CLOCK: [2013-10-09 Wed 19:52]--[2013-10-09 Wed 20:27] =>  0:35
@@ -3098,10 +3100,11 @@
      CLOCK: [2013-10-08 Tue 18:20]--[2013-10-08 Tue 19:05] =>  0:45
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-10-09 Wed 20:59
+     :ARCHIVE_TIME: 2013-10-10 Thu 14:04
      :END:
      - https://www.logaster.com/create/logo/
      - http://logoyes.com/wizard/show/choose_icon.tpl
+     - 26cbee, 3c668a, 113152
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

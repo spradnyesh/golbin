@@ -35,7 +35,7 @@
                 (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
                 (<:meta :name "google" :content "notranslate")
                 (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
-                (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/spree.ico")
+                (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/golbin-logo.ico")
                 (<:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
                 (when (or (not (is-logged-in?))
                           (not (string= "en-IN" lang)))
@@ -69,9 +69,11 @@
 (defun logo (logged-in)
   (<:figure :id "logo"
             (<:h1 (<:a :href (h-genurl 'r-home)
-                       (<:img :src "/static/css/images/golbin-logo-50.png"
+                       (<:img :src "/static/css/images/golbin-logo.png"
                               :alt (get-config "site.name"))
-                       (<:img :src "/static/css/images/golbin-text-50.png"
+                       (<:img :src "/static/css/images/golbin-text.png"
+                              :alt (get-config "site.name"))
+                       (<:img :src "/static/css/images/golbin-slogan.png"
                               :alt (get-config "site.name"))))
             (unless logged-in
               (logo-langs (concatenate 'string (request-uri*) "?lang=en-IN")
