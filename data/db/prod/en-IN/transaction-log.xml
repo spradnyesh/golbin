@@ -568,3 +568,46 @@
 	For me, the pros outweigh the cons by a huge margin. I have started blogging and am not looking back now. I hope you will too!&lt;/p&gt;
 </STRING></SLOT><SLOT NAME="LOCAL-TIME::DATE"><INT>3569920620</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::STATUS"><SYMBOL>:A</SYMBOL></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PHOTO"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PHOTO-DIRECTION"><SYMBOL>:L</SYMBOL></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::CAT"><OBJECT ID="4" CLASS="HAWKSBILL.GOLBIN.MODEL::CATEGORY"><SLOT NAME="CL-PREVALENCE::ID"><INT>4</INT></SLOT><SLOT NAME="CL-PREVALENCE::NAME"><STRING>Editorial</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PARENT"><INT>0</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>editorial</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::RANK"><INT>2</INT></SLOT></OBJECT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SUBCAT"><OBJECT ID="5" CLASS="HAWKSBILL.GOLBIN.MODEL::CATEGORY"><SLOT NAME="CL-PREVALENCE::ID"><INT>5</INT></SLOT><SLOT NAME="CL-PREVALENCE::NAME"><STRING>--</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PARENT"><INT>4</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>--</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::RANK"><FLOAT>2.0</FLOAT></SLOT></OBJECT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::TAGS"><SEQUENCE ID="6" CLASS="CL:LIST" SIZE="5"><OBJECT ID="7" CLASS="HAWKSBILL.GOLBIN.MODEL::TAG"><SLOT NAME="CL-PREVALENCE::NAME"><STRING>calvinandhobbes</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>calvinandhobbes</STRING></SLOT></OBJECT><OBJECT ID="8" CLASS="HAWKSBILL.GOLBIN.MODEL::TAG"><SLOT NAME="CL-PREVALENCE::NAME"><STRING>write</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>write</STRING></SLOT></OBJECT><OBJECT ID="9" CLASS="HAWKSBILL.GOLBIN.MODEL::TAG"><SLOT NAME="CL-PREVALENCE::NAME"><STRING>read</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>read</STRING></SLOT></OBJECT><OBJECT ID="10" CLASS="HAWKSBILL.GOLBIN.MODEL::TAG"><SLOT NAME="CL-PREVALENCE::NAME"><STRING>entrepreneur</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>entrepreneur</STRING></SLOT></OBJECT><OBJECT ID="11" CLASS="HAWKSBILL.GOLBIN.MODEL::TAG"><SLOT NAME="CL-PREVALENCE::NAME"><STRING>blog</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>blog</STRING></SLOT></OBJECT></SEQUENCE></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::LOCATION"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::AUTHOR"><OBJECT ID="12" CLASS="HAWKSBILL.GOLBIN.MODEL::MINI-AUTHOR"><SLOT NAME="CL-PREVALENCE::ID"><INT>1</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::HANDLE"><STRING>spradnyesh</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::ALIAS"><STRING>spradnyesh</STRING></SLOT></OBJECT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::COMMENTS"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::COMMENTS-COUNT"><INT>0</INT></SLOT></OBJECT></SEQUENCE></SLOT><SLOT NAME="CL:FUNCTION"><SYMBOL>HAWKSBILL.GOLBIN.MODEL::UPDATE-ARTICLE</SYMBOL></SLOT></OBJECT>
 <OBJECT ID="1" CLASS="CL-PREVALENCE::TRANSACTION"><SLOT NAME="CL-PREVALENCE::ARGS"><NULL/></SLOT><SLOT NAME="CL:FUNCTION"><SYMBOL>HAWKSBILL.GOLBIN.MODEL::MAKE-COMMENTS-ROOT</SYMBOL></SLOT></OBJECT>
+<OBJECT ID="1" CLASS="CL-PREVALENCE::TRANSACTION"><SLOT NAME="CL-PREVALENCE::ARGS"><NULL/></SLOT><SLOT NAME="CL:FUNCTION"><SYMBOL>HAWKSBILL.GOLBIN.MODEL::INCF-ARTICLE-LAST-ID</SYMBOL></SLOT></OBJECT>
+<OBJECT ID="1" CLASS="CL-PREVALENCE::TRANSACTION"><SLOT NAME="CL-PREVALENCE::ARGS"><SEQUENCE ID="2" CLASS="CL:LIST" SIZE="1"><OBJECT ID="3" CLASS="HAWKSBILL.GOLBIN.MODEL::ARTICLE"><SLOT NAME="CL-PREVALENCE::ID"><INT>6</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PARENT"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::TITLE"><STRING>virtualbox guest additions on Sabayon Linux</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>virtualbox-guest-additions-on-sabayon-linux</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SUMMARY"><STRING>Steps to get virtualbox-guest-additions to work on Sabayon Linux as a guest OS</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::BODY"><STRING>&lt;p&gt;
+	First, things keep changing continuously in the Linux world. Secondly, configurations differ, ergo YMMV ;)&lt;/p&gt;
+&lt;p&gt;
+	With that out of the way, lets attack the main issue. Thing is, i spent a total of 6 hours trying to get virtualbox guest additions to work my Sabayon Linux guest on a WindoZZZe-7 host :((&lt;/p&gt;
+&lt;p&gt;
+	unfortunately the &lt;a href=&quot;https://wiki.sabayon.org/index.php?title%3DHOWTO:_Install_VirtualBox&quot; target=&quot;_blank&quot;&gt;Sabayon wiki&lt;/a&gt; does not help much for when Sabayon is installed as a guest&lt;/p&gt;
+&lt;p&gt;
+	i got all sorts of errors right from guest addition features like full-screen and shared folder mounting not working to xorg crash without much helpful error logs. Also, simply installing virtualbox, pulls a new kernel, which makes things even more difficult. Anyways, long story short, i was able to solve all these problems by following the steps below. Do note down your kernel and virtualbox version numbers as they might vary with the ones given below&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;
+		equo install sys-kernel/sabayon-sources-3.11.2 sys-kernel/linux-sabayon-3.11.2 x11-drivers/xf86-video-virtualbox-4.2.18#3.11.2-sabayon app-emulation/virtualbox-modules-4.2.18#3.11.2-sabayon app-emulation/virtualbox-guest-additions-4.2.18#3.11.2-sabayon&lt;/li&gt;
+	&lt;li&gt;
+		kernel-switcher switch linux-server-3.11.2&lt;/li&gt;
+	&lt;li&gt;
+		add &amp;#39;modules=&amp;quot;vboxdrv vboxnetflt vboxnetadp vboxsf&amp;quot;&amp;#39; in /etc/conf.d/modules&lt;/li&gt;
+	&lt;li&gt;
+		add user to vboxusers and vboxguest groups&lt;/li&gt;
+	&lt;li&gt;
+		add virtualbox-guest-additions to default runlevel&lt;/li&gt;
+	&lt;li&gt;
+		eselect opengl set ati&lt;/li&gt;
+	&lt;li&gt;
+		do &lt;strong&gt;*NOT*&lt;/strong&gt; do the following. basically don&amp;#39;t use vboxvideo driver, instead use an empty xorg.conf file and things should just work fine
+		&lt;ol&gt;
+			&lt;li&gt;
+				cp /usr/share/doc/virtualbox-guest-additions-4.2.18/xorg.conf.vbox /etc/X11/xorg.conf&lt;/li&gt;
+			&lt;li&gt;
+				eselect opengl set xorg-x11&lt;/li&gt;
+			&lt;li&gt;
+				append &amp;#39;vboxvideo&amp;#39; to /etc/conf.d/modules (in step-3 above)&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+	Even after doing all above, i&amp;#39;m still facing some issues. I&amp;#39;d be grateful if someone could kindly tell me the solution, or even tell me a better/correct-er way of getting things to work:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;
+		shared folders work weirdly: i cannot view/enter contents of shared-folder. however, i have a soft-link to a file inside a shared folder, and i am able to read/write from/to the file without any problem. weird, huh???&lt;/li&gt;
+	&lt;li&gt;
+		clipboard sharing does not work&lt;/li&gt;
+&lt;/ul&gt;
+</STRING></SLOT><SLOT NAME="LOCAL-TIME::DATE"><INT>3589553079</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::STATUS"><SYMBOL>:A</SYMBOL></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PHOTO"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PHOTO-DIRECTION"><SYMBOL>:B</SYMBOL></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::CAT"><OBJECT ID="4" CLASS="HAWKSBILL.GOLBIN.MODEL::CATEGORY"><SLOT NAME="CL-PREVALENCE::ID"><INT>56</INT></SLOT><SLOT NAME="CL-PREVALENCE::NAME"><STRING>Technology</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PARENT"><INT>0</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>technology</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::RANK"><INT>10</INT></SLOT></OBJECT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SUBCAT"><OBJECT ID="5" CLASS="HAWKSBILL.GOLBIN.MODEL::CATEGORY"><SLOT NAME="CL-PREVALENCE::ID"><INT>58</INT></SLOT><SLOT NAME="CL-PREVALENCE::NAME"><STRING>Computing</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::PARENT"><INT>56</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::SLUG"><STRING>computing</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::RANK"><FLOAT>10.1</FLOAT></SLOT></OBJECT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::TAGS"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::LOCATION"><NULL/></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::AUTHOR"><OBJECT ID="6" CLASS="HAWKSBILL.GOLBIN.MODEL::MINI-AUTHOR"><SLOT NAME="CL-PREVALENCE::ID"><INT>1</INT></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::HANDLE"><STRING>spradnyesh</STRING></SLOT><SLOT NAME="HAWKSBILL.GOLBIN.MODEL::ALIAS"><STRING>spradnyesh</STRING></SLOT></OBJECT></SLOT></OBJECT></SEQUENCE></SLOT><SLOT NAME="CL:FUNCTION"><SYMBOL>HAWKSBILL.GOLBIN.MODEL::INSERT-ARTICLE</SYMBOL></SLOT></OBJECT>

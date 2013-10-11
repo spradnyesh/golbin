@@ -2,14 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [#B] [bug][ed] post /ajax/article/ not working
-    :CLOCK:
-    CLOCK: [2013-10-10 Thu 19:20]--[2013-10-10 Thu 19:30] =>  0:10
-    CLOCK: [2013-10-10 Thu 19:02]--[2013-10-10 Thu 19:13] =>  0:11
-    :END:
-    - sendmail not timingout
-    - use trivial-timeout for both sendmail and comments
-    - testing pending
 *** toc
     - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
@@ -3121,6 +3113,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-10 Thu 19:01
      :END:
+**** DONE [#B] [bug][ed] post /ajax/article/ not working
+     CLOSED: [2013-10-11 Fri 18:41]
+     :CLOCK:
+     CLOCK: [2013-10-10 Thu 19:20]--[2013-10-10 Thu 19:30] =>  0:10
+     CLOCK: [2013-10-10 Thu 19:02]--[2013-10-10 Thu 19:13] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-11 Fri 18:41
+     :END:
+     - sendmail not timingout
+     - use trivial-timeout for both sendmail and comments
+     - testing pending
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
@@ -3770,83 +3774,6 @@ usage: git push [<options>] [<repository> [<refspec>...]]
    - summary:
    - body:
    - notes:
-** TODO virtualbox guest additions on Sabayon Linux
-   :CLOCK:
-   CLOCK: [2013-10-10 Thu 14:00]--[2013-10-10 Thu 14:53] =>  0:53
-   :END:
-   - tags: VERR_FILE_NOT_FOUND VbglR3Init virtualbox virtualbox-guest-additions sabayon linux vboxvideo
-   - category
-   - summary Steps to get virtualbox-guest-additions to work on Sabayon Linux as a guest OS
-   - body
-First, things keep changing continuously in the Linux world. Secondly, configurations differ, ergo YMMV ;)
-
-With that out of the way, lets attack the main issue. Thing is, i spent a total of 6 hours trying to get virtualbox guest additions to work my Sabayon Linux guest on a WindoZZZe-7 host :((
-
-unfortunately the [[https://wiki.sabayon.org/index.php?title%3DHOWTO:_Install_VirtualBox][Sabayon wiki]] does not help much for when Sabayon is installed as a guest
-
-i got all sorts of errors right from guest addition features like full-screen and shared folder mounting not working to xorg crash without much helpful error logs. Anyways, long story short, i was able to solve all these problems by following the steps below
-
-note: 1. your kernel and virtualbox version numbers might vary
-2. simply installing virtualbox, pulls a new kernel, which makes things even more difficult
-
-      1. equo install sys-kernel/sabayon-sources-3.11.2 sys-kernel/linux-sabayon-3.11.2 x11-drivers/xf86-video-virtualbox-4.2.18#3.11.2-sabayon app-emulation/virtualbox-modules-4.2.18#3.11.2-sabayon app-emulation/virtualbox-guest-additions-4.2.18#3.11.2-sabayon
-      2. kernel-switcher switch linux-server-3.11.2
-      3. add 'modules="vboxdrv vboxnetflt vboxnetadp vboxsf"' in /etc/conf.d/modules
-      4. add user to vboxusers and vboxguest groups
-      5. add virtualbox-guest-additions to default runlevel
-      6. eselect opengl set ati
-      7. do *NOT* do the following. basically don't use vboxvideo driver, instead use an empty xorg.conf file and things should just work fine
-         1. cp /usr/share/doc/virtualbox-guest-additions-4.2.18/xorg.conf.vbox /etc/X11/xorg.conf
-         2. eselect opengl set xorg-x11
-         3. append 'vboxvideo' to /etc/conf.d/modules (in step-3 above)
-
-Even after doing all above, i'm still facing some issues. I'd be grateful if someone could kindly tell me the solution, or even tell me a better/correct-er way of getting things to work:
--- shared folders work weirdly: i cannot view/enter contents of shared-folder. however, i have a soft-link to a file inside a shared folder, and i am able to read/write from/to the file without any problem. weird, huh???
--- clipboard sharing does not work
-
-
-<p>
-	First, things keep changing continuously in the Linux world. Secondly, configurations differ, ergo YMMV ;)</p>
-<p>
-	With that out of the way, lets attack the main issue. Thing is, i spent a total of 6 hours trying to get virtualbox guest additions to work my Sabayon Linux guest on a WindoZZZe-7 host :((</p>
-<p>
-	unfortunately the <a href="https://wiki.sabayon.org/index.php?title%3DHOWTO:_Install_VirtualBox" target="_blank">Sabayon wiki</a> does not help much for when Sabayon is installed as a guest</p>
-<p>
-	i got all sorts of errors right from guest addition features like full-screen and shared folder mounting not working to xorg crash without much helpful error logs. Also, simply installing virtualbox, pulls a new kernel, which makes things even more difficult. Anyways, long story short, i was able to solve all these problems by following the steps below. Do note down your kernel and virtualbox version numbers as they might vary with the ones given below</p>
-<ol>
-	<li>
-		equo install sys-kernel/sabayon-sources-3.11.2 sys-kernel/linux-sabayon-3.11.2 x11-drivers/xf86-video-virtualbox-4.2.18#3.11.2-sabayon app-emulation/virtualbox-modules-4.2.18#3.11.2-sabayon app-emulation/virtualbox-guest-additions-4.2.18#3.11.2-sabayon</li>
-	<li>
-		kernel-switcher switch linux-server-3.11.2</li>
-	<li>
-		add &#39;modules=&quot;vboxdrv vboxnetflt vboxnetadp vboxsf&quot;&#39; in /etc/conf.d/modules</li>
-	<li>
-		add user to vboxusers and vboxguest groups</li>
-	<li>
-		add virtualbox-guest-additions to default runlevel</li>
-	<li>
-		eselect opengl set ati</li>
-	<li>
-		do <strong>*NOT*</strong> do the following. basically don&#39;t use vboxvideo driver, instead use an empty xorg.conf file and things should just work fine
-		<ol>
-			<li>
-				cp /usr/share/doc/virtualbox-guest-additions-4.2.18/xorg.conf.vbox /etc/X11/xorg.conf</li>
-			<li>
-				eselect opengl set xorg-x11</li>
-			<li>
-				append &#39;vboxvideo&#39; to /etc/conf.d/modules (in step-3 above)</li>
-		</ol>
-	</li>
-</ol>
-<p>
-	Even after doing all above, i&#39;m still facing some issues. I&#39;d be grateful if someone could kindly tell me the solution, or even tell me a better/correct-er way of getting things to work:</p>
-<ul>
-	<li>
-		shared folders work weirdly: i cannot view/enter contents of shared-folder. however, i have a soft-link to a file inside a shared folder, and i am able to read/write from/to the file without any problem. weird, huh???</li>
-	<li>
-		clipboard sharing does not work</li>
-</ul>
-
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -4242,6 +4169,88 @@ For me, the pros outweigh the cons by a huge margin. I have started blogging and
        1. honest/vulnerable
        2. frustration, thoughts of giving up (http://isaacgallegos.blogspot.kr/2012/02/frustration.html)
        3. [[http://en.wikipedia.org/wiki/Analysis_paralysis][analysis paralysis]]
+*** DONE virtualbox guest additions on Sabayon Linux
+   CLOSED: [2013-10-11 Fri 18:40]
+   :CLOCK:
+   CLOCK: [2013-10-11 Fri 18:33]--[2013-10-11 Fri 18:40] =>  0:07
+   CLOCK: [2013-10-10 Thu 14:00]--[2013-10-10 Thu 14:53] =>  0:53
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-10-11 Fri 18:40
+    :END:
+   - tags: VERR_FILE_NOT_FOUND,VbglR3Init,virtualbox,virtualbox-guest-additions,sabayon,linux,vboxvideo
+   - category
+   - summary Steps to get virtualbox-guest-additions to work on Sabayon Linux as a guest OS
+   - body
+First, things keep changing continuously in the Linux world. Secondly, configurations differ, ergo YMMV ;)
+
+With that out of the way, lets attack the main issue. Thing is, i spent a total of 6 hours trying to get virtualbox guest additions to work my Sabayon Linux guest on a WindoZZZe-7 host :((
+
+unfortunately the [[https://wiki.sabayon.org/index.php?title%3DHOWTO:_Install_VirtualBox][Sabayon wiki]] does not help much for when Sabayon is installed as a guest
+
+i got all sorts of errors right from guest addition features like full-screen and shared folder mounting not working to xorg crash without much helpful error logs. Anyways, long story short, i was able to solve all these problems by following the steps below
+
+note: 1. your kernel and virtualbox version numbers might vary
+2. simply installing virtualbox, pulls a new kernel, which makes things even more difficult
+
+      1. equo install sys-kernel/sabayon-sources-3.11.2 sys-kernel/linux-sabayon-3.11.2 x11-drivers/xf86-video-virtualbox-4.2.18#3.11.2-sabayon app-emulation/virtualbox-modules-4.2.18#3.11.2-sabayon app-emulation/virtualbox-guest-additions-4.2.18#3.11.2-sabayon
+      2. kernel-switcher switch linux-server-3.11.2
+      3. add 'modules="vboxdrv vboxnetflt vboxnetadp vboxsf"' in /etc/conf.d/modules
+      4. add user to vboxusers and vboxguest groups
+      5. add virtualbox-guest-additions to default runlevel
+      6. eselect opengl set ati
+      7. do *NOT* do the following. basically don't use vboxvideo driver, instead use an empty xorg.conf file and things should just work fine
+         1. cp /usr/share/doc/virtualbox-guest-additions-4.2.18/xorg.conf.vbox /etc/X11/xorg.conf
+         2. eselect opengl set xorg-x11
+         3. append 'vboxvideo' to /etc/conf.d/modules (in step-3 above)
+
+Even after doing all above, i'm still facing some issues. I'd be grateful if someone could kindly tell me the solution, or even tell me a better/correct-er way of getting things to work:
+-- shared folders work weirdly: i cannot view/enter contents of shared-folder. however, i have a soft-link to a file inside a shared folder, and i am able to read/write from/to the file without any problem. weird, huh???
+-- clipboard sharing does not work
+
+
+<p>
+	First, things keep changing continuously in the Linux world. Secondly, configurations differ, ergo YMMV ;)</p>
+<p>
+	With that out of the way, lets attack the main issue. Thing is, i spent a total of 6 hours trying to get virtualbox guest additions to work my Sabayon Linux guest on a WindoZZZe-7 host :((</p>
+<p>
+	unfortunately the <a href="https://wiki.sabayon.org/index.php?title%3DHOWTO:_Install_VirtualBox" target="_blank">Sabayon wiki</a> does not help much for when Sabayon is installed as a guest</p>
+<p>
+	i got all sorts of errors right from guest addition features like full-screen and shared folder mounting not working to xorg crash without much helpful error logs. Also, simply installing virtualbox, pulls a new kernel, which makes things even more difficult. Anyways, long story short, i was able to solve all these problems by following the steps below. Do note down your kernel and virtualbox version numbers as they might vary with the ones given below</p>
+<ol>
+	<li>
+		equo install sys-kernel/sabayon-sources-3.11.2 sys-kernel/linux-sabayon-3.11.2 x11-drivers/xf86-video-virtualbox-4.2.18#3.11.2-sabayon app-emulation/virtualbox-modules-4.2.18#3.11.2-sabayon app-emulation/virtualbox-guest-additions-4.2.18#3.11.2-sabayon</li>
+	<li>
+		kernel-switcher switch linux-server-3.11.2</li>
+	<li>
+		add &#39;modules=&quot;vboxdrv vboxnetflt vboxnetadp vboxsf&quot;&#39; in /etc/conf.d/modules</li>
+	<li>
+		add user to vboxusers and vboxguest groups</li>
+	<li>
+		add virtualbox-guest-additions to default runlevel</li>
+	<li>
+		eselect opengl set ati</li>
+	<li>
+		do <strong>*NOT*</strong> do the following. basically don&#39;t use vboxvideo driver, instead use an empty xorg.conf file and things should just work fine
+		<ol>
+			<li>
+				cp /usr/share/doc/virtualbox-guest-additions-4.2.18/xorg.conf.vbox /etc/X11/xorg.conf</li>
+			<li>
+				eselect opengl set xorg-x11</li>
+			<li>
+				append &#39;vboxvideo&#39; to /etc/conf.d/modules (in step-3 above)</li>
+		</ol>
+	</li>
+</ol>
+<p>
+	Even after doing all above, i&#39;m still facing some issues. I&#39;d be grateful if someone could kindly tell me the solution, or even tell me a better/correct-er way of getting things to work:</p>
+<ul>
+	<li>
+		shared folders work weirdly: i cannot view/enter contents of shared-folder. however, i have a soft-link to a file inside a shared folder, and i am able to read/write from/to the file without any problem. weird, huh???</li>
+	<li>
+		clipboard sharing does not work</li>
+</ul>
+
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
