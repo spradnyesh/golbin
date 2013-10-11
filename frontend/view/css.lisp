@@ -110,7 +110,7 @@
     (("#nav a, #ft a") (:color "#fff"))
     (("#nav li") (:float "left"
                          :height "34px"
-                         :width "108px"
+                         :min-width "108px"
                          :text-align "center"))
     (("#nav #prinav #join") (:float "right"))
     ;; prinav (top -> bottom: #3c668a -> #113152)

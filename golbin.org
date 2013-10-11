@@ -3125,6 +3125,14 @@
      - sendmail not timingout
      - use trivial-timeout for both sendmail and comments
      - testing pending
+**** DONE [bug][fe] subnav broken
+     CLOSED: [2013-10-11 Fri 18:45]
+     :CLOCK:
+     CLOCK: [2013-10-11 Fri 18:42]--[2013-10-11 Fri 18:45] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-11 Fri 18:45
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
