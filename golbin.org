@@ -2,6 +2,8 @@
 
 * tasks
 ** backlog
+*** [bug][ed] upload lead photo shows 2 thumbnails
+*** [bug][ed] tag auto-complete not working
 *** toc
     - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
@@ -3777,6 +3779,7 @@ usage: git push [<options>] [<repository> [<refspec>...]]
 
 
 ** template
+   - toc
    - cat/subcat:
    - tags:
    - lead image:
@@ -4302,6 +4305,58 @@ Not only that, quotes change over time, especially when different points-of-view
 <p>
 	Not only that, quotes change over time, especially when different points-of-view come into play, as can be seen <a href="http://www.amatecon.com/fish.html" target="_blank">here</a>. Anyways, as they say, &quot;Beauty lies in the eyes of the be(er)-holder ;)&quot;</p>
    - notes:
+*** DONE I am dreaming
+   CLOSED: [2013-10-15 Tue 16:17]
+   :CLOCK:
+   CLOCK: [2013-10-15 Tue 15:20]--[2013-10-15 Tue 16:17] =>  0:57
+   CLOCK: [2013-10-15 Tue 14:31]--[2013-10-15 Tue 14:54] =>  0:23
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-10-15 Tue 16:17
+    :END:
+   - toc
+     - what
+       - A lucid dream is a dream in which you know you are dreaming. Typically this happens when the dreamer experiences something strange, and when they stop to question their reality, they realize they are in a dream. Lucid dreams happen naturally on occasion, although some people may have them naturally more often than others. --http://www.dreamviews.com/content/what-lucid-dreaming-16/
+       - Lucid dreaming is awareness of the fact that you are dreaming. This awareness can range from very faint recognition of the fact to something as momentous as a broadening of awareness beyond what has ever been experienced even in waking life. Lucid dreams usually occur while a person is in the middle of a regular dream and suddenly realizes that they are dreaming. Once you realize this, you have the ability to control your dreams, which is pretty much the most essential part of lucid dreaming. --http://www.wikihow.com/Lucid-Dream
+     - why/benefits
+       - talk to subconscious: know more about yourself
+       - visualize and rehearse a scenario (asking boss about raise, achieving a goal, etc)
+       - greater confidence, improve creativity
+     - how
+       1. keep a dream journal
+       2. learn the best time to have a dream
+       3. try different techniques like MILD, WBTB, WILD, etc
+     - references
+       - http://www.world-of-lucid-dreaming.com/
+       - http://www.dreammoods.com/dreaminformation/dreamtypes/luciddreams.htm
+       - http://www.dreamviews.com/content/what-lucid-dreaming-16/
+       - http://www.wikihow.com/Lucid-Dream
+       - http://en.wikipedia.org/wiki/Lucid_dream
+   - cat/subcat:
+   - tags: lucid dreaming, subconscious
+   - lead image:
+     - http://www.flickr.com/photos/dreemreeper/421585027/
+   - summary: Realizing that you are dreaming leads to some very wonderful opportunities
+   - body:
+     - http://www.flickr.com/photos/h-k-d/3297826613/in/photostream/ http://www.flickr.com/photos/h-k-d/3297825515/in/photostream/ http://www.flickr.com/photos/h-k-d/3297822565/in/photostream/ http://www.flickr.com/photos/h-k-d/3297819293/in/photostream/
+
+I was listening to a [[http://www.radiolab.org/][radiolab]] episode a few days ago when I stumbled upon the words "lucid dreaming". It piqued my curiosity and I looked it up only to find very interesting things about it. So what is "lucid dreaming"? To quote [[http://www.dreamviews.com/content/what-lucid-dreaming-16/][dreamviews.com]]
+
+A lucid dream is a dream in which you know you are dreaming. Typically this happens when the dreamer experiences something strange, and when they stop to question their reality, they realize they are in a dream. Lucid dreams happen naturally on occasion, although some people may have them naturally more often than others.
+
+Now, why would anyone want to be aware of what dreams he's having? Well, there are some very interesting advantages:
+- A dream (in which you are aware) is like talking with your subconscious. And I mean literally talk. You can ask it questions, and it will answer back. You can learn something about yourself which you never knew. Maybe find out your passions, fears, etc. Sometimes it's difficult to "really" know what you "really" like/dislike. This technique will help you find it.
+- Being aware that you are dreaming makes it possible to modify a dream and even control it. This makes A dream an ideal place for visualization and rehearsal. This is very useful due to the following 2 facts
+  - Because brain activity during the dream state is the same as during a real life event, what you "learn" or "practice" in your lucid dream state is similar to the training and preparation you do in the waking world.  Your neuronal patterns are already being conditioned. --http://www.dreammoods.com/dreaminformation/dreamtypes/luciddreams.htm
+  - Visualization techniques are great tools for "goal achievement" (for example, see [[http://ezinearticles.com/?Visualization---How-to-Achieve-Your-Goals&id%3D8006701][here]], [[http://www.essentiallifeskills.net/visualization.html][here]], [[http://ezinearticles.com/?Visualization-Techniques---Using-the-Mind-to-Achieve-Goals&id%3D3534478][here]], [[http://www.huffingtonpost.com/frank-niles-phd/visualization-goals_b_878424.html][here]] and [[http://voices.yahoo.com/goal-setting-visualization-techniques-263469.html][here]])
+
+Lets come to the "how" of "lucid dreaming". There is a ton of good material out there to help you if you are interested. But here are some starting points
+       - http://www.world-of-lucid-dreaming.com/
+       - http://www.dreammoods.com/dreaminformation/dreamtypes/luciddreams.htm
+       - http://www.dreamviews.com/content/what-lucid-dreaming-16/
+       - http://www.wikihow.com/Lucid-Dream
+       - http://en.wikipedia.org/wiki/Lucid_dream
+  - notes:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
