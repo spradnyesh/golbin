@@ -3497,6 +3497,7 @@
      - trailing 'slash' should be put explicitly, to avoid matching to no/multiple rules
      - *submodule* and *route* special variables are populated during request, and aren't available from slime
 * TODO articles
+  SCHEDULED: <2013-10-15 Tue +1d>
   :CLOCK:
   CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
   CLOCK: [2013-03-03 Sun 13:50]--[2013-03-03 Sun 13:57] =>  0:07
@@ -3781,32 +3782,6 @@ usage: git push [<options>] [<repository> [<refspec>...]]
    - lead image:
    - summary:
    - body:
-   - notes:
-** TODO Catch a man a fish
-   :CLOCK:
-   CLOCK: [2013-10-14 Mon 19:47]--[2013-10-14 Mon 19:50] =>  0:03
-   CLOCK: [2013-10-14 Mon 19:30]--[2013-10-14 Mon 19:44] =>  0:14
-   CLOCK: [2013-10-14 Mon 19:25]--[2013-10-14 Mon 19:26] =>  0:01
-   CLOCK: [2013-10-14 Mon 19:21]--[2013-10-14 Mon 19:23] =>  0:02
-   :END:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-I have this (weird?) habit of collecting sentences -- quotes, proverbs, and the like. Any time i read something interesting anywhere, be it a book, blog or a magazine, or even a billboard, anything really, i note it down into my small (about 550+ lines long now) file of quotes. I also have a small program i wrote more than 5 years ago that shows me 1 line from the file everyday, and also sets it as my messenger status and email signature.
-
-Anyways, a few days ago, i read the following quote:
-[[http://www.iwise.com/tocbM][Catch a man a fish and you can sell it to him. Teach a man to fish, and you ruin a wonderful business opportunity. --Karl Marx]]
-and immediately my thoughts went to the proverb:
-[[Http://www.quotationspage.com/quote/2279.html][Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime. --Chinese proverb]]
-There is hardly a man who does not know the above proverb.
-
-But what struck me about these 2 quotes was that more important than a "thing", is the "point-of-view". How you view something, or what you are thinking when viewing something might completely change the appearance of that thing. This applies to not only inanimate things, but also to people. We tend to have pre-conceived notions about certain people, or group of people and label them.
-
-Chimamanda Adichie tells beautifully the dangers of having pre-conceived notions in this [[http://www.ted.com/][ted]] [[http://www.ted.com/talks/chimamanda_adichie_the_danger_of_a_single_story.html][talk]].
-
-As they say, "beauty lies in the eyes of the be(er)-holder ;)"
    - notes:
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
@@ -4285,6 +4260,48 @@ Even after doing all above, i'm still facing some issues. I'd be grateful if som
 		clipboard sharing does not work</li>
 </ul>
 
+*** DONE Give a man a fish...
+   CLOSED: [2013-10-15 Tue 14:26]
+   :CLOCK:
+   CLOCK: [2013-10-15 Tue 14:08]--[2013-10-15 Tue 14:26] =>  0:18
+   CLOCK: [2013-10-14 Mon 19:47]--[2013-10-14 Mon 19:50] =>  0:03
+   CLOCK: [2013-10-14 Mon 19:30]--[2013-10-14 Mon 19:44] =>  0:14
+   CLOCK: [2013-10-14 Mon 19:25]--[2013-10-14 Mon 19:26] =>  0:01
+   CLOCK: [2013-10-14 Mon 19:21]--[2013-10-14 Mon 19:23] =>  0:02
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-10-15 Tue 14:26
+    :END:
+   - cat/subcat:
+   - tags: beauty, fish, karl marx, chinese proverb, quote, proverb
+   - lead image:
+   - summary: Beauty lies in the eyes of the be(er)-holder
+   - body:
+I have this (weird?) habit of collecting sentences -- quotes, proverbs, and the like. Any time i read something interesting anywhere, be it a book, blog or a magazine, or even a billboard, anything really, i note it down into my small (about 550+ lines long now) file of quotes. I also have a small program i wrote more than 5 years ago that shows me 1 line from the file everyday, and also sets it as my messenger status and email signature.
+
+Anyways, a few days ago, i read the following quote:
+[[http://www.iwise.com/tocbM][Catch a man a fish and you can sell it to him. Teach a man to fish, and you ruin a wonderful business opportunity. --Karl Marx]]
+and immediately my thoughts went to the proverb:
+[[Http://www.quotationspage.com/quote/2279.html][Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime. --Chinese proverb]]
+There is hardly a man who does not know the above proverb.
+
+But what struck me about these 2 quotes was that more important than a "thing", is the "point-of-view". How you view something, or what you are thinking when viewing something might completely change the appearance of that thing. This applies to not only inanimate things, but also to people. We tend to have pre-conceived notions about certain people, or group of people and label them. [[http://en.wikipedia.org/wiki/Chimamanda_Ngozi_Adichie][Chimamanda Adichie]] tells beautifully the dangers of having pre-conceived notions in this [[http://www.ted.com/][ted]] [[http://www.ted.com/talks/chimamanda_adichie_the_danger_of_a_single_story.html][talk]].
+
+Not only that, quotes change over time, especially when different points-of-view come into play, as can be seen [[http://www.amatecon.com/fish.html][here]]. Anyways, as they say, "Beauty lies in the eyes of the be(er)-holder ;)"
+
+<p>
+	I have this (weird?) habit of collecting sentences -- quotes, proverbs, and the like. Any time i read something interesting anywhere, be it a book, blog or a magazine, or even a billboard, anything really, i note it down into my small (about 550+ lines long now) file of quotes. I also have a small program i wrote more than 5 years ago that shows me 1 line from the file everyday, and also sets it as my messenger status and email signature.</p>
+<p>
+	Anyways, a few days ago, i read the following quote:<br />
+	<a href="http://www.iwise.com/tocbM" target="_blank">Catch a man a fish and you can sell it to him. Teach a man to fish, and you ruin a wonderful business opportunity. --Karl Marx</a><br />
+	and immediately my thoughts went to the proverb:<br />
+	<a href="http://www.quotationspage.com/quote/2279.html" target="_blank">Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime. --Chinese proverb</a><br />
+	There is hardly a man who does not know the above proverb.</p>
+<p>
+	But what struck me about these 2 quotes was that more important than a &quot;thing&quot;, is the &quot;point-of-view&quot;. How you view something, or what you are thinking when viewing something might completely change the appearance of that thing. This applies to not only inanimate things, but also to people. We tend to have pre-conceived notions about certain people, or group of people and label them. <a href="http://en.wikipedia.org/wiki/Chimamanda_Ngozi_Adichie" target="_blank">Chimamanda Adichie</a> tells beautifully the dangers of having pre-conceived notions in this <a href="http://www.ted.com/" target="_blank">ted</a> <a href="http://www.ted.com/talks/chimamanda_adichie_the_danger_of_a_single_story.html" target="_blank">talk</a>.</p>
+<p>
+	Not only that, quotes change over time, especially when different points-of-view come into play, as can be seen <a href="http://www.amatecon.com/fish.html" target="_blank">here</a>. Anyways, as they say, &quot;Beauty lies in the eyes of the be(er)-holder ;)&quot;</p>
+   - notes:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
