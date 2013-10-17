@@ -258,7 +258,16 @@
                                                    append a)
                                            append title)))))
                           (photo-fail data)))
-
+                    (add-unselect-lead-photo (target-img)
+                      (let* ((spans ($apply ($ "#lead-photo") siblings "span"))
+                                     (span-1 ($ (elt spans 0)))
+                                     (span-2 ($ (elt spans 1))))
+                                ;; add photo thumb in 'span'
+                                ($apply span-1 html target-img)
+                                ;; add 'unselect' link in 'span'
+                                ($apply span-1 append ($ "<a id='unselect-lead-photo' href=''>Unselect photo. </a>"))
+                                ($apply span-2 add-class "hidden")
+                                ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))))
                     (select-photo (event)
                       ($prevent-default)
                       (let ((target-img ($ (@ event target))))
@@ -271,15 +280,7 @@
                                                     parent)
                                             siblings "span")
                                     html))
-                              (let* ((spans ($apply ($ "#lead-photo") siblings "span"))
-                                     (span-1 ($ (elt spans 0)))
-                                     (span-2 ($ (elt spans 1))))
-                                ;; add photo thumb in 'span'
-                                ($apply span-1 html target-img)
-                                ;; add 'unselect' link in 'span'
-                                ($apply span-1 append ($ "<a id='unselect-lead-photo' href=''>Unselect photo. </a>"))
-                                ($apply span-2 add-class "hidden")
-                                ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))))
+                              (add-unselect-lead-photo target-img))
                             (progn
                               (let ((a-target ((@ ($ "<a href=''></a>") append) target-img)))
                                 ;; append photo to list of nonlead photos
@@ -355,8 +356,7 @@
                                 ($apply ($ "#lead-photo")
                                     val
                                   (elt data.data 0))
-                                ;; change the photo url
-                                ($apply ($apply ($ "#lead-photo") siblings "span") html (elt data.data 1)))
+                                (add-unselect-lead-photo (elt data.data 1)))
                               (progn
                                 (let ((a-target ((@ ($ "<a href=''></a>") append) ($ (elt data.data 1)))))
                                   ;; append photo to list of nonlead photos
