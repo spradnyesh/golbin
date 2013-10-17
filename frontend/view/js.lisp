@@ -25,36 +25,7 @@
                           get-script
                         "/static/js/jquery-lazyload-ad-1-4-2-min.js"
                         #'(lambda (data text-status jqxhr)
-                            ($apply ($ "div.lazyload_ad") lazy-load-ad)))
-                      ($apply $
-                          get-script
-                        "http://w.sharethis.com/button/buttons.js"
-                        #'(lambda (data text-status jqxhr)
-                            ($apply st-light options
-                                    (create "publisher" "72b76e38-1974-422a-bd23-e5b0b26b0399"
-                                            "doNotHash" false
-                                            "doNotCopy" false
-                                            "hashAddressBar" false))
-                            ($apply $
-                                get-script
-                              "http://s.sharethis.com/loader.js"
-                              #'(lambda (data text-status jqxhr)
-                                  (let* ((options (create "publisher" "72b76e38-1974-422a-bd23-e5b0b26b0399"
-                                                          "scrollpx" 50
-                                                          "ad" (create  "visible" false)
-                                                          "chicklets" (create  "items" (array "facebook"
-                                                                                            "twitter"
-                                                                                            "googleplus"
-                                                                                            "evernote"
-                                                                                            "blogger"
-                                                                                            "orkut"
-                                                                                            "pinterest"
-                                                                                            "sharethis"
-                                                                                            "googleplus"
-                                                                                            "email"))))
-                                         (st_hover_widget (new ($apply (@ sharethis widgets)
-                                                                   pulldownbar
-                                                                 options))))))))))
+                            ($apply ($ "div.lazyload_ad") lazy-load-ad))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; navigation
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -280,4 +280,4 @@
               :margin-left "20px"
               :margin-top "5px"
               ;; put the :space in the above url purposefully; till Golbin logo comes up
-              :background "url('http: //sd.sharethis.com/disc/images/Logo_Area.png') no-repeat"))))
+              :background "url('/static/css/images/golbin-logo-sharethis.png') no-repeat"))))

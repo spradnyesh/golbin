@@ -30,13 +30,18 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-29-min.css")
+                                  :href "/static/css/fe-30-min.css")
+                          (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
+                          ;; hate that sharethis cannot be lazy-loaded :(
+                          (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
+                          (<:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
                           ;; google analytics and adsense
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_setDomainName', 'golb.in']);
   _gaq.push(['_trackPageview']);
+  var switchTo5x=true;
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -59,13 +64,20 @@
                                    (<:div :id "col-3" :class "yui3-u-7-24"
                                           (ads-2)))
                             (<:footer :id "ft" (footer))))
-             (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
              #- (and)
              (<:script :type "text/javascript" (on-load))
              (if (string-equal (get-dimension-value "envt") "prod")
-                 (<:script :type "text/javascript" :src "/static/js/fe-10-min.js")
+                 (<:script :type "text/javascript" :src "/static/js/fe-11-min.js")
                  (<:script :type "text/javascript" (on-load)))
-             (<:script :type "text/javascript" ,js))))
+             (<:script :type "text/javascript"
+                       (concatenate 'string
+                                    ;; hate that sharethis cannot be lazy-loaded :(
+                                    "stLight.options({publisher: \"72b76e38-1974-422a-bd23-e5b0b26b0399\", doNotHash: false, doNotCopy: false, hashAddressBar: true});
+                                     var options={ \"publisher\": \"72b76e38-1974-422a-bd23-e5b0b26b0399\", \"scrollpx\": 50, \"ad\": { \"visible\": false}, \"chicklets\": { \"items\": [\"facebook\",\"twitter\",\"googleplus\",\"evernote\",\"blogger\",\"orkut\",\"pinterest\",\"sharethis\",\"googleplus\",\"email\"]}};
+                                     var st_pulldown_widget = new sharethis.widgets.pulldownbar(options);
+                                     " ; this newline is needed for concatenating w/ ,js below
+                                    ,js))
+             )))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
@@ -176,29 +188,23 @@
   (when (string-equal (get-dimension-value "envt") "prod")
     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
            (<:code :type "text/javascript"
-                   "<!--
-                 google_ad_client = 'ca-pub-7627106577670276';
-                 google_ad_slot = '1936097987';
-                 google_ad_width = 160;
-                 google_ad_height = 600;
-                 //-->"))))
+                   "<!-- google_ad_client = 'ca-pub-7627106577670276';
+                         google_ad_slot = '1936097987';
+                         google_ad_width = 160;
+                         google_ad_height = 600; //-->"))))
 
 (defun ads-2 ()
   (when (string-equal (get-dimension-value "envt") "prod")
     (fmtnil
      (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
             (<:code :type "text/javascript"
-                    "<!--
-                          google_ad_client = 'ca-pub-7627106577670276';
+                    "<!-- google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '5029165182';
                           google_ad_width = 300;
-                          google_ad_height = 250;
-                          //-->"))
+                          google_ad_height = 250; //-->"))
      (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
             (<:code :type "text/javascript"
-                    "<!--
-                          google_ad_client = 'ca-pub-7627106577670276';
+                    "<!-- google_ad_client = 'ca-pub-7627106577670276';
                           google_ad_slot = '9459364786';
                           google_ad_width = 300;
-                          google_ad_height = 600;
-                          //-->")))))
+                          google_ad_height = 600; //-->")))))
