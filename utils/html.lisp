@@ -86,6 +86,7 @@
   (<:tr (<:td)
         (<:td (<:input :type "submit"
                        :name "submit"
+                       :class "submit"
                        :value (translate "submit")))))
 
 (defun validate-email (email)

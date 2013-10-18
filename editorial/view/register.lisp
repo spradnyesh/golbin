@@ -85,6 +85,7 @@
    :js nil
    :body (<:div :class "wrapper"
                 :id "register"
+                (<:p (<:a :href (h-genurl 'r-why-register) (translate "view-registeration-benefits")))
                 (<:form :action (h-genurl 'r-register-post)
                         :method "POST"
                         (<:fieldset :class "inputs"

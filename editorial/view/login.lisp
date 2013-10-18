@@ -38,7 +38,7 @@
                                 (let ((lang (get-dimension-value "lang")))
                                   (if lang
                                       (translate "register-forgot"
-                                                 (<:a :href (h-genurl 'r-why-register
+                                                 (<:a :href (h-genurl 'r-register-get
                                                                       :lang lang)
                                                       (translate "join-us"))
                                                  (<:a :href (h-genurl 'r-password-get

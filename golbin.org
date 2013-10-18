@@ -2,7 +2,11 @@
 
 * tasks
 ** backlog
-*** [perf][fe] sharethis should be lazyload-ed
+*** TODO [#B] [ed] make it super easy for authors to simply register and start writing
+    :CLOCK:
+    :END:
+    - no need for account approval
+    - it's better to block account later, than approve everyone initially
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
     CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
@@ -18,6 +22,7 @@
       - http://common-lisp.net/project/closure/closure-html/examples.html
     - regex (replace all "q" which are not of type "pqr" w/ "z")
       - apqrbqcpqrdq -> apqrbzcpqrdz
+*** [perf][fe] sharethis should be lazyload-ed
 *** tnc
     - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
@@ -3176,6 +3181,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-18 Fri 13:39
+     :END:
+**** DONE [ed] combine register and register/why pages
+     CLOSED: [2013-10-18 Fri 14:53]
+     :CLOCK:
+     CLOCK: [2013-10-18 Fri 14:42]--[2013-10-18 Fri 14:53] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-18 Fri 14:53
      :END:
 ** TODO refactor
    :CLOCK:
