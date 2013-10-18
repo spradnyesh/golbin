@@ -2,11 +2,11 @@
 
 * tasks
 ** backlog
-*** TODO [#B] [ed] make it super easy for authors to simply register and start writing
+*** setup dev envt
+*** TODO sendmail on dev
     :CLOCK:
+    CLOCK: [2013-10-18 Fri 15:26]--[2013-10-18 Fri 15:32] =>  0:06
     :END:
-    - no need for account approval
-    - it's better to block account later, than approve everyone initially
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
     CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
@@ -3190,6 +3190,16 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-18 Fri 14:53
      :END:
+**** DONE [#B] [ed] make it super easy for authors to simply register and start writing
+     CLOSED: [2013-10-18 Fri 15:45]
+     :CLOCK:
+     CLOCK: [2013-10-18 Fri 15:33]--[2013-10-18 Fri 15:45] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-18 Fri 15:45
+     :END:
+     - no need for account approval
+     - it's better to block account later, than approve everyone initially
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

@@ -154,7 +154,7 @@
                                      :gender gender
                                      :phone phone-number
                                      :salt salt
-                                     :status :d))
+                                     :status :a))
           (sendmail :to email
                     :subject (translate "confirm-registration")
                     :body (get-confirm-register-email-text hash (get-dimension-value "lang"))
