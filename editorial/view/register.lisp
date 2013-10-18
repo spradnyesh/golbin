@@ -146,7 +146,7 @@
           (add-author (make-instance 'author
                                      :email email
                                      :username username
-                                     :alias alias
+                                     :alias (if alias alias handle)
                                      :password (hash-password password)
                                      :name name
                                      :handle handle
