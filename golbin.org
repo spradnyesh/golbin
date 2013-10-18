@@ -2,9 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [bug][ed] tags not getting created
-    :CLOCK:
-    :END:
 *** [bug][ed] tag auto-complete not working
 *** [perf][fe] sharethis should be lazyload-ed
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
@@ -3162,6 +3159,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-18 Fri 13:18
+     :END:
+**** DONE [bug][ed] tags not getting created
+     CLOSED: [2013-10-18 Fri 13:24]
+     :CLOCK:
+     CLOCK: [2013-10-18 Fri 13:19]--[2013-10-18 Fri 13:24] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-18 Fri 13:24
      :END:
 ** TODO refactor
    :CLOCK:

@@ -245,7 +245,7 @@ CKEDITOR.on('instanceReady', function(e) {
            (pd (cond ((string-equal pd "center") :b)
                      ((string-equal pd "left") :l)
                      ((string-equal pd "right") :r)))
-           (p-tags (post-parameter "tags"))
+           (p-tags (post-parameter "ed-tags"))
            (tags p-tags)
            (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
            (article-tags nil))
