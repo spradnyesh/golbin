@@ -37,7 +37,7 @@
                                                   (join-loop subcat
                                                              (rest subcats)
                                                              (<:option :value (id subcat) (name subcat))))))
-                            (tr-td-input "tags")
+                            (tr-td-input "ed-tags")
                             (tr-td-input "attribution")
                             (tr-td-input "photo" :typeof "file")
                             (<:tr (<:td)

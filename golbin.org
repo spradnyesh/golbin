@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][ed] tag auto-complete not working
 *** [perf][fe] sharethis should be lazyload-ed
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
@@ -3167,6 +3166,16 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-18 Fri 13:24
+     :END:
+**** CANCELLED [bug][ed] tag auto-complete not working
+     CLOSED: [2013-10-18 Fri 13:39]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-10-18 Fri 13:39] \\
+       advanced feature, will keep for later
+     CLOCK: [2013-10-18 Fri 13:24]--[2013-10-18 Fri 13:39] =>  0:15
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-18 Fri 13:39
      :END:
 ** TODO refactor
    :CLOCK:
