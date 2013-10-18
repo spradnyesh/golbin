@@ -2,8 +2,11 @@
 
 * tasks
 ** backlog
+*** TODO [bug][ed] tags not getting created
+    :CLOCK:
+    :END:
 *** [bug][ed] tag auto-complete not working
-*** [perf][fe] put sharethis into lazyload
+*** [perf][fe] sharethis should be lazyload-ed
 *** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
     :CLOCK:
     CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
@@ -19,7 +22,7 @@
       - http://common-lisp.net/project/closure/closure-html/examples.html
     - regex (replace all "q" which are not of type "pqr" w/ "z")
       - apqrbqcpqrdq -> apqrbzcpqrdz
-*** toc
+*** tnc
     - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
     - https://www.varnish-software.com/what-is-varnish
@@ -3150,6 +3153,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-17 Thu 14:25
+     :END:
+**** DONE [bug][fe] comments not working
+     CLOSED: [2013-10-18 Fri 13:18]
+     :CLOCK:
+     CLOCK: [2013-10-18 Fri 13:07]--[2013-10-18 Fri 13:18] =>  0:11
+     CLOCK: [2013-10-18 Fri 13:05]--[2013-10-18 Fri 13:07] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-18 Fri 13:18
      :END:
 ** TODO refactor
    :CLOCK:
