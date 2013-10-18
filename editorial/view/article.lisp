@@ -66,13 +66,14 @@
          (<:p :class "p-title" (title photo)))))
 
 (defun add-photo-attribution (body)
-  #|(regex-replace-all "([^(pqr)])q" "abqpqrcqd" "\\1pQr")|#
-  (regex-replace-all "([^<div class='a-photo'><img .*?\/>.*?</div>)])<img (.*?)\/>"
-                     body
-                     #'(lambda (match &rest registers)
-                         (declare (ignore registers))
-                         (format nil "~a" (make-photo-attribution-div match (find-photo-by-img-tag match))))
-                     :simple-calls t))
+  (dolist (img (all-matches-as-strings "<img.*?/>" body))
+    (unless (search "data-a=\"1\"" img :test #'string-equal)
+      (setf body
+            (regex-replace img
+                           body
+                           (make-photo-attribution-div (regex-replace "<img" img "<img data-a=\"1\"")
+                                                       (find-photo-by-img-tag img))))))
+  body)
 
 (defun validate-article (title body)
   (let ((err0r nil)

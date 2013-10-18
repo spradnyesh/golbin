@@ -7,21 +7,6 @@
     :CLOCK:
     CLOCK: [2013-10-18 Fri 15:26]--[2013-10-18 Fri 15:32] =>  0:06
     :END:
-*** TODO [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
-    :CLOCK:
-    CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
-    CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
-    CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
-    CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
-    CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
-    CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
-    CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
-    CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
-    :END:
-    - maybe use a html-parser like closure-html?
-      - http://common-lisp.net/project/closure/closure-html/examples.html
-    - regex (replace all "q" which are not of type "pqr" w/ "z")
-      - apqrbqcpqrdq -> apqrbzcpqrdz
 *** [perf][fe] sharethis should be lazyload-ed
 *** tnc
     - https://www.logaster.com/terms-of-use/
@@ -3200,6 +3185,27 @@
      :END:
      - no need for account approval
      - it's better to block account later, than approve everyone initially
+**** DONE [bug][ed] add-photo-attribution should apply to only newly added photos while editing article
+     CLOSED: [2013-10-18 Fri 18:54]
+     :CLOCK:
+     CLOCK: [2013-10-18 Fri 17:11]--[2013-10-18 Fri 18:54] =>  1:43
+     CLOCK: [2013-10-18 Fri 16:01]--[2013-10-18 Fri 16:11] =>  0:10
+     CLOCK: [2013-09-03 Tue 11:05]--[2013-09-03 Tue 12:02] =>  0:57
+     CLOCK: [2013-09-02 Mon 19:25]--[2013-09-02 Mon 20:25] =>  1:00
+     CLOCK: [2013-09-02 Mon 11:45]--[2013-09-02 Mon 11:47] =>  0:02
+     CLOCK: [2013-08-30 Fri 17:10]--[2013-08-30 Fri 17:37] =>  0:27
+     CLOCK: [2013-08-30 Fri 16:26]--[2013-08-30 Fri 16:55] =>  0:29
+     CLOCK: [2013-08-30 Fri 16:16]--[2013-08-30 Fri 16:24] =>  0:08
+     CLOCK: [2013-08-30 Fri 15:52]--[2013-08-30 Fri 16:13] =>  0:21
+     CLOCK: [2013-08-23 Fri 13:10]--[2013-08-23 Fri 13:25] =>  0:15
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-18 Fri 18:54
+     :END:
+     - maybe use a html-parser like closure-html?
+       - http://common-lisp.net/project/closure/closure-html/examples.html
+     - regex (replace all "q" which are not of type "pqr" w/ "z")
+       - apqrbqcpqrdq -> apqrbzcpqrdz
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

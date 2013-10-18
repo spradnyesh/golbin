@@ -128,7 +128,7 @@
 
 (defun find-photo-by-img-tag (img-tag)
   (multiple-value-bind (match registers)
-      (scan-to-strings "<img.*src=\\\"\/static\/photos\/(.+)_.+x.+\\\.(.+)\\\".*\/>" img-tag)
+      (scan-to-strings "<img.*?src=\\\"\/static\/photos\/(.+?)_.+?x.+?\\\.(.+?)\\\".*?\/>" img-tag)
     (declare (ignore match))
     (find-photo-by-new-filename (concatenate 'string
                                              (aref registers 0)
