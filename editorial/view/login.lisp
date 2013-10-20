@@ -22,9 +22,7 @@
   (template
    :title "Login"
    :js nil
-   :body (fmtnil (<:p :id "login-sub-hd"
-                      (translate "login-existing"))
-                 (<:div :class "wrapper"
+   :body (<:div :class "wrapper"
                         :id "login"
                         (<:form :action (h-genurl 'r-login-post)
                                 :method "POST"
@@ -44,7 +42,7 @@
                                                  (<:a :href (h-genurl 'r-password-get
                                                                       :lang lang)
                                                       (translate "forgot-password")))
-                                      (redirect (h-genurl 'r-login-get :lang "en-IN")))))))))
+                                      (redirect (h-genurl 'r-login-get :lang "en-IN"))))))))
 
 (defun v-login-post (&key (ajax nil))
   (let ((username (post-parameter "username"))

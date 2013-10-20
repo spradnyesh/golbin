@@ -149,7 +149,7 @@
     (("#subnav .selected a") (:color "#333"))
     (("#subnav a") (:padding "0 20px"
                              :color "#21629c"))
-    (("#prinav a:hover, #subnav a:hover") (:color "#eeb000"))
+    (("#nav a:hover") (:color "#eeb000"))
 
     ;; body and footer
     (("#wrapper") (:background "#FFF"
@@ -168,7 +168,7 @@
                               :padding "20px 250px"
                               :height "50px"))
     (("#ft p") (:float "left"
-                       :padding-right "25px"))
+                       :padding-right "35px"))
 
     ;; index
     (("#articles li") (:border-bottom "1px dotted"

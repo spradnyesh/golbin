@@ -61,10 +61,10 @@
 ;; page header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun header (logged-in email)
-  (<:div :class "wrapper"
-         (logo logged-in)
-         (unless email
-           (navigation logged-in))))
+  (fmtnil (<:div :id "banner"
+                 (logo logged-in))
+          (unless email
+            (navigation logged-in))))
 
 (defun logo (logged-in)
   (<:figure :id "logo"
@@ -97,7 +97,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun editor-nav ()
   (<:li (<:h3 (<:a :href (h-genurl 'r-approve-articles)
-                   (translate "approve-articles")))))
+                           (translate "approve-articles")))))
 
 (defun admin-nav ())
 
@@ -123,30 +123,31 @@
                          (admin-nav)))))))
 
 (defun navigation (logged-in)
-  (when logged-in
-    (<:ul :id "nav"
+  (if logged-in
+      (<:ul :id "nav"
           (when (eq (status (who-am-i)) :a)
-            (fmtnil (<:li :class "prinav wide"
+            (fmtnil (<:li :class "prinav"
                           (<:h2 (<:a :href (h-genurl 'r-article-new-get)
                                      (translate "add-article"))))
                     (<:li :class "prinav"
-                          (<:h2 (translate "reports")))
-                    (<:li :class "prinav wide"
-                          (<:h2 (translate "account"))
+                          (<:h2 (<:a :href "#" (translate "reports"))))
+                    (<:li :class "prinav"
+                          (<:h2 (<:a :href "#" (translate "account")))
                           (nav-account))
-                    (<:li :class "prinav wide"
-                          (<:h2 (translate "misc"))
+                    (<:li :class "prinav"
+                          (<:h2 (<:a :href "#" (translate "misc")))
                           (nav-misc))))
           (<:li :class "prinav"
                 (<:h2 (<:a :href (h-genurl 'r-logout)
-                           (translate "logout")))))))
+                           (translate "logout")))))
+      (<:div :id "nav"
+           (<:div :class "prinav"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun footer ()
-  (<:div :class "wrapper"
-         (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
-         (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
-         (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
-         (<:p (<:a :href "mailto:webmaster@golb.in" "Contact us"))))
+  (fmtnil (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
+          (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
+          (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
+          (<:p (<:a :href "mailto:webmaster@golb.in" "Contact us"))))

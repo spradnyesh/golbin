@@ -37,37 +37,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; navigation
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                    (update-subcategory (event)
-                      ($prevent-default)
-                      ($apply ($ (aref ($apply ($ (@ event target parent-node))
-                                           children
-                                         "ul")
-                                       0))
-                          css
-                        "display" "block"))
-                    (restore-subcategory (event)
-                      ($prevent-default)
-                      (let* ((target (@ event target))
-                             (node-name (@ target node-name))
-                             (node (cond ((= node-name "LI")
-                                          ($ (@ target parent-node)))
-                                         ((= node-name "H2")
-                                          (aref ($apply ($ (@ target parent-node))
-                                                    children
-                                                  "ul")
-                                                0))
-                                         ((= node-name "H3")
-                                          ($ (@ target parent-node parent-node)))
-                                         ((= node-name "A")
-                                          (unless (= (@ target parent-node node-name) "H2")
-                                            ($ (@ target parent-node parent-node parent-node)))))))
-                        ($apply ($ node)
-                            css
-                          "display" "none")))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; common to article/photo pages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     ;; tags autocomplete
