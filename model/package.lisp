@@ -23,6 +23,10 @@
            :author
            :article-storage
            :articles
+           :approval
+           :approval-history
+           :editor
+           :message
            :last-id
            :category
            :name

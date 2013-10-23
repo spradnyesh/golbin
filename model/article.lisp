@@ -3,6 +3,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; classes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defclass approval ()
+  ((editor :initarg :editor :initform nil :accessor editor)
+   (date :initarg :date :initform nil :accessor date) ; actually timestamp
+   (message :initarg :message :initform nil :accessor message)))
 (defclass article ()
   ((id :initarg :id :initform nil :accessor id)
    (parent :initarg :parent :initform nil :accessor parent) ; id of already live article (on editing, new article gets a new ID so that existing (live) article will not disappear)
@@ -18,7 +22,8 @@
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
    (location :initarg :location :initform nil :accessor location)
-   (author :initarg :author :initform nil :accessor author))
+   (author :initarg :author :initform nil :accessor author)
+   (approval-history :initarg :approval-history :initform nil :accessor approval-history))
   (:documentation "Article Class"))
 
 (defclass article-storage ()
@@ -152,9 +157,9 @@
 (defun get-intermediate-articles (parent)
   (get-object-by #'(lambda (a)
                      (and (not (null (parent a)))
-                          (= parent
-                             (parent a))
-                          (eq :r (status a))))
+                          (= parent (parent a))
+                          (or (eq :r (status a))
+                              (eq :s (status a)))))
                  (get-all-articles)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
