@@ -2,10 +2,6 @@
 
 * tasks
 ** backlog
-*** [ed] article add/edit preview
-*** [ed] article add/edit submit buttons
-    - save and preview
-    - submit for approval
 *** setup dev envt
 *** TODO sendmail on dev
     :CLOCK:
@@ -3247,6 +3243,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-24 Thu 13:23
+     :END:
+**** DONE [ed] article add/edit preview
+     CLOSED: [2013-10-24 Thu 14:57]
+     :CLOCK:
+     CLOCK: [2013-10-24 Thu 14:45]--[2013-10-24 Thu 14:57] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-24 Thu 14:57
      :END:
 ** TODO refactor
    :CLOCK:

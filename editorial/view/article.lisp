@@ -214,18 +214,25 @@ CKEDITOR.on('instanceReady', function(e) {
                                      (tr-td-input "ed-tags" :value (when article (get-tags-markup article)))
                                      (<:tr (<:td "Status")
                                            (let ((status (get-article-status-markup article)))
-                                             (<:td :class (string-downcase status) status)))
+                                             (<:td status
+                                                   " "
+                                                   (unless (string-equal status "New")
+                                                     (<:a :href (h-genurl 'r-article
+                                                                          :slug-and-id (get-slug-and-id article))
+                                                          :target "_blank"
+                                                          (translate "preview"))))))
                                      (<:tr (<:td (<:a :class "submit"
                                                       :href "#"
                                                       (translate "save"))
                                                  (<:input :type "hidden"
                                                           :name "submit-type"
-                                                          :value "submit"))
+                                                          :value "submit")
+                                                 (tooltip "to-view"))
                                            (<:td (<:input :class "submit"
                                                           :type "submit"
                                                           :name "submit"
                                                           :value (translate "submit"))
-                                                 (tooltip "for approval"))))))))))
+                                                 (tooltip "for-approval"))))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
