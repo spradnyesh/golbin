@@ -370,7 +370,6 @@ CKEDITOR.on('instanceReady', function(e) {
            (article (get-article-by-id id))
            (parent-id (parent article))
            (approver (who-am-i)))
-      (break)
       (when article
         ;; process all intemediate edits (including current)
         (dolist (l (get-intermediate-articles parent-id))
@@ -389,6 +388,7 @@ CKEDITOR.on('instanceReady', function(e) {
                          :body (translate "article-approved-body" id)))
               ((string-equal submit-type "reject")
                (let ((parent (get-article-by-id parent-id)))
+                 ;; append approval-history to parent
                  (setf (approval-history parent)
                        (append (approval-history parent)
                                (list (make-instance 'approval
@@ -396,6 +396,12 @@ CKEDITOR.on('instanceReady', function(e) {
                                                     :date (get-universal-time)
                                                     :message message))))
                  (edit-article parent)
+
+                 ;; make current article status as "draft" (from submitted)
+                 (setf (status article) :r)
+                 (edit-article article)
+
+                 ;; send notification email to author
                  (sendmail :to (email (get-author-by-id (id (author article))))
                            :cc (list (get-config "site.email.address") (email (get-author-by-id (id approver))))
                            :subject (translate "article-rejected" id)
