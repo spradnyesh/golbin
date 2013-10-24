@@ -3227,6 +3227,14 @@
        - Password: spree123
      - http://demo.activeadmin.info/admin (ror admin)
      - http://radiantcms.org/demo/
+**** DONE [refactor][ed] no need for lamdba(e) inside of $event
+     CLOSED: [2013-10-24 Thu 13:10]
+     :CLOCK:
+     CLOCK: [2013-10-24 Thu 13:05]--[2013-10-24 Thu 13:10] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-24 Thu 13:10
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
