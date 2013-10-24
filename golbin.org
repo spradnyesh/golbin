@@ -2,12 +2,10 @@
 
 * tasks
 ** backlog
+*** [ed] article add/edit preview
 *** [ed] article add/edit submit buttons
     - save and preview
     - submit for approval
-*** [refactor][ed] add/edit article should have 2 submit buttons: save, submit
-    - no need for JS (#article a.submit)
-*** [ed] home in prinav
 *** setup dev envt
 *** TODO sendmail on dev
     :CLOCK:
@@ -3242,6 +3240,14 @@
        - when
        - why
      - send email to author/editor
+**** DONE [ed] home in prinav
+     CLOSED: [2013-10-24 Thu 13:23]
+     :CLOCK:
+     CLOCK: [2013-10-24 Thu 13:19]--[2013-10-24 Thu 13:23] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-24 Thu 13:23
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

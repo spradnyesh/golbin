@@ -120,13 +120,12 @@
     (("#nav li") (:display "block"
                              :position "relative"
                              :float "left"))
-    (("#nav li ul") (:display "none"
-                              :width "240px"))
+    (("#nav li ul") (:display "none"))
     (("#nav li a") (:display "block"
                                :text-decoration "none"
                                :color "#fff"
                                :padding "9px 0"
-                               :width "239px"
+                               :width "199px"
                                :white-space "nowrap"))
     (("#nav a:hover") (:color "#eeb000"))
     (("#nav li:hover ul") (:display "block"

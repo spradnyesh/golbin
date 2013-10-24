@@ -125,21 +125,24 @@
 (defun navigation (logged-in)
   (if logged-in
       (<:ul :id "nav"
-          (when (eq (status (who-am-i)) :a)
-            (fmtnil (<:li :class "prinav"
-                          (<:h2 (<:a :href (h-genurl 'r-article-new-get)
-                                     (translate "add-article"))))
-                    (<:li :class "prinav"
-                          (<:h2 (<:a :href "#" (translate "reports"))))
-                    (<:li :class "prinav"
-                          (<:h2 (<:a :href "#" (translate "account")))
-                          (nav-account))
-                    (<:li :class "prinav"
-                          (<:h2 (<:a :href "#" (translate "misc")))
-                          (nav-misc))))
-          (<:li :class "prinav"
-                (<:h2 (<:a :href (h-genurl 'r-logout)
-                           (translate "logout")))))
+            (<:li :class "prinav"
+                  (<:h2 (<:a :href (h-genurl 'r-home)
+                             (translate "home"))))
+            (when (eq (status (who-am-i)) :a)
+              (fmtnil (<:li :class "prinav"
+                            (<:h2 (<:a :href (h-genurl 'r-article-new-get)
+                                       (translate "add-article"))))
+                      (<:li :class "prinav"
+                            (<:h2 (<:a :href "#" (translate "reports"))))
+                      (<:li :class "prinav"
+                            (<:h2 (<:a :href "#" (translate "account")))
+                            (nav-account))
+                      (<:li :class "prinav"
+                            (<:h2 (<:a :href "#" (translate "misc")))
+                            (nav-misc))))
+            (<:li :class "prinav"
+                  (<:h2 (<:a :href (h-genurl 'r-logout)
+                             (translate "logout")))))
       (<:div :id "nav"
            (<:div :class "prinav"))))
 
