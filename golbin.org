@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [perf][ed] css/js need not get generated for every call; cache it
 *** setup dev envt
 *** TODO sendmail on dev
     :CLOCK:
@@ -275,15 +276,24 @@
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
 *** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
-*** tests
-**** stefil
-**** TODO fiveam
-     :CLOCK:
-     :END:
-     - http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-7
-     - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
-     - http://www.cliki.net/test%20framework
+*** UNDERGOING tests
+    :CLOCK:
+    CLOCK: [2013-10-25 Fri 11:30]--[2013-10-25 Fri 11:38] =>  0:08
+    :END:
 **** coverage (sb-cover)
+**** Archive                                                        :ARCHIVE:
+***** DONE decide framework (fiveam)
+      CLOSED: [2013-10-25 Fri 11:30]
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2013-10-25 Fri 11:30
+      :END:
+      - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
+      - http://www.cliki.net/test%20framework
+****** stefil
+****** fiveam
+       :CLOCK:
+       :END:
+       - http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-7
 *** [bug] route-cat-page not working due to refactor routes
 *** [fe] css 2 -> 3
     - http://css3please.com/ ***
@@ -3251,6 +3261,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-24 Thu 14:57
+     :END:
+**** DONE [ed] add target="_blank" to a-href while add/edit article
+     CLOSED: [2013-10-25 Fri 11:49]
+     :CLOCK:
+     CLOCK: [2013-10-25 Fri 11:38]--[2013-10-25 Fri 11:49] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 11:49
      :END:
 ** TODO refactor
    :CLOCK:

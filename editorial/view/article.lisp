@@ -75,6 +75,15 @@
                                                        (find-photo-by-img-tag img))))))
   body)
 
+(defun update-anchors (body)
+  (dolist (anchor (all-matches-as-strings "<a .*?>" body))
+    (unless (search "target=\"_blank\"" anchor :test #'string-equal)
+      (setf body
+            (regex-replace anchor
+                           body
+                           (regex-replace "<a " anchor "<a target=\"_blank\"")))))
+  body)
+
 (defun validate-article (title body)
   (let ((err0r nil)
         (non-golbin-images (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
@@ -259,7 +268,7 @@ CKEDITOR.on('instanceReady', function(e) {
            (article-tags nil))
       (let ((err0r (validate-article title body)))
         (if (not err0r)
-            (let ((body (add-photo-attribution (cleanup-ckeditor-text body))))
+            (let ((body (update-anchors (add-photo-attribution (cleanup-ckeditor-text body)))))
               (dolist (tag tags)
                 (let ((tag-added (add-tag tag)))
                   (when tag-added
