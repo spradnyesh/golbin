@@ -81,9 +81,6 @@
     CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
     :END:
 *** [fe] daily digest email for comments to authors
-*** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
-    - fe: comments
-    - ed: article body
 *** [ed][reports] investigate GA users
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
@@ -3306,15 +3303,16 @@
      :ARCHIVE_TIME: 2013-10-25 Fri 17:22
      :END:
 **** DONE [ed][security] sanitize html using https://github.com/archimag/cl-sanitize
-     CLOSED: [2013-10-25 Fri 17:27]
-     :CLOCK:
-     CLOCK: [2013-10-25 Fri 17:23]--[2013-10-25 Fri 17:27] =>  0:04
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-10-25 Fri 17:27
-     :END:
-     - fe: comments
-     - ed: article body
+     CLOSED: [2013-10-25 Fri 17:31]
+      :CLOCK:
+      CLOCK: [2013-10-25 Fri 17:29]--[2013-10-25 Fri 17:31] =>  0:02
+      CLOCK: [2013-10-25 Fri 17:23]--[2013-10-25 Fri 17:27] =>  0:04
+      :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2013-10-25 Fri 17:31
+      :END:
+      - fe: comments
+      - ed: article body
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

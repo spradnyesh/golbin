@@ -81,7 +81,7 @@
       (if (not err0r)
           (progn
             (add-comment (make-instance 'comment
-                                        :body body
+                                        :body (clean body)
                                         :date (get-universal-time)
                                         :status :a
                                         :article-id article-id
