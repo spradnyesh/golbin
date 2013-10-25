@@ -59,7 +59,11 @@
            :r-password-change-post
            :r-password-changed
            :r-ajax-password-post
-           :r-ajax-password-change-post))
+           :r-ajax-password-change-post
+           :r-ajax-approve-article-post
+           :r-ajax-article-delete-post
+           :r-approve-articles
+           :r-approve-article-post))
 
 (in-package :hawksbill.golbin.editorial)
 
