@@ -73,9 +73,6 @@
     CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
     CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
     :END:
-*** [fed][security] sanitize html using https://github.com/archimag/cl-sanitize
-    - fe: comments
-    - ed: article body
 *** [ed][reports] investigate GA users
 *** [reports][ed] link article approval w/ GA
 *** TODO cron for saving db (comments/articles) on linode
@@ -3308,6 +3305,16 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-25 Fri 17:22
      :END:
+**** DONE [ed][security] sanitize html using https://github.com/archimag/cl-sanitize
+     CLOSED: [2013-10-25 Fri 17:27]
+     :CLOCK:
+     CLOCK: [2013-10-25 Fri 17:23]--[2013-10-25 Fri 17:27] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:27
+     :END:
+     - fe: comments
+     - ed: article body
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

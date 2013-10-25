@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.editorial
-  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes)
+  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes :sanitize)
   (:decorators #'hawksbill.utils:init-dimensions)
   (:import-from :hawksbill.golbin.frontend :v-article)
   (:shadow :% :prototype :size :acceptor :mime-type)

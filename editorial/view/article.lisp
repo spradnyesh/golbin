@@ -268,7 +268,7 @@ CKEDITOR.on('instanceReady', function(e) {
            (article-tags nil))
       (let ((err0r (validate-article title body)))
         (if (not err0r)
-            (let ((body (update-anchors (add-photo-attribution (cleanup-ckeditor-text body)))))
+            (let ((body (clean (update-anchors (add-photo-attribution (cleanup-ckeditor-text body))))))
               (dolist (tag tags)
                 (let ((tag-added (add-tag tag)))
                   (when tag-added
