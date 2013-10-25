@@ -2,6 +2,17 @@
 
 * tasks
 ** backlog
+*** TODO [bug][seo] clear GA confusion b/n www. and mr.
+    :CLOCK:
+    CLOCK: [2013-10-25 Fri 18:48]--[2013-10-25 Fri 19:41] =>  0:53
+    CLOCK: [2013-08-18 Sun 07:06]--[2013-08-18 Sun 07:23] =>  0:17
+    :END:
+    - account: 35078884
+    - profile-id
+      - www: 64387896
+      - mr: 68192024
+      - hi: 68190841
+    - http://www.ericmobley.net/guide-to-tracking-multiple-subdomains-in-google-analytics/
 *** TODO [perf][ed] css/js need not get generated for every call; cache it
     :CLOCK:
     CLOCK: [2013-10-25 Fri 16:56]--[2013-10-25 Fri 17:14] =>  0:18
@@ -80,17 +91,12 @@
     CLOCK: [2013-09-08 Sun 01:22]--[2013-09-08 Sun 01:24] =>  0:02
     CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
     :END:
-*** [fe] daily digest email for comments to authors
 *** [ed][reports] investigate GA users
 *** [fe] "load more" pagination for comments
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
 *** [utils] replace utils/locale w/ cl-locale
-*** [ed] emails to golb_in
-    - [ ] on author registration
-    - [X] on article(s) submit (add/edit)
 *** [ed] emails to authors
-    - [ ] monthly report
     - [X] approval of add/edit article(s)
     - [ ] daily batch email of comments
       - http://www.cliki.net/cl-cron
@@ -115,36 +121,12 @@
     :CLOCK:
     CLOCK: [2013-07-18 Thu 11:10]--[2013-07-18 Thu 11:24] =>  0:14
     :END:
-*** TODO 50 4-digit numbers for every author for all forms
-    :CLOCK:
-    CLOCK: [2013-07-09 Tue 16:07]--[2013-07-09 Tue 16:16] =>  0:09
-    CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
-    CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
-    :END:
-**** change to all forms get/post pages
-     - steps
-       1. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
-       2. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
-       3. ensure "a-b,c-d" hasn't been tampered w/ (using encrypted string)
-       4. check for correctness of a,c digits of b,d numbers
-       5. if correct, process form
-**** registration
-     - send email w/ 50 numbers to all authors (after successful registration)
 *** TODO slime debug local variables
     :CLOCK:
     CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
     CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
     CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
     :END:
-*** TODO [bug][seo] clear GA confusion b/n www. and mr.
-    :CLOCK:
-    CLOCK: [2013-08-18 Sun 07:06]--[2013-08-18 Sun 07:23] =>  0:17
-    :END:
-    - account: 35078884
-    - profile-id
-      - www: 64387896
-      - mr: 68192024
-      - hi: 68190841
 *** [performance] partial responses for requests
     - send back the following as soon as we get the request
       - http header
@@ -3313,6 +3295,36 @@
       :END:
       - fe: comments
       - ed: article body
+**** DONE [ed] emails to golb_in
+     CLOSED: [2013-10-25 Fri 18:47]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 18:47
+     :END:
+     - [X] on author registration
+     - [X] on article(s) submit (add/edit)
+**** CANCELLED 50 4-digit numbers for every author for all forms
+     CLOSED: [2013-10-25 Fri 18:48]
+     :LOGBOOK:
+     - State "CANCELLED"  from "TODO"       [2013-10-25 Fri 18:48] \\
+       will use https instead
+     :END:
+     :CLOCK:
+     CLOCK: [2013-07-09 Tue 16:07]--[2013-07-09 Tue 16:16] =>  0:09
+     CLOCK: [2013-02-22 Fri 17:36]--[2013-02-22 Fri 18:26] =>  0:50
+     CLOCK: [2013-02-22 Fri 16:49]--[2013-02-22 Fri 17:32] =>  0:43
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 18:48
+     :END:
+***** change to all forms get/post pages
+      - steps
+        1. ask for "a-b,c-d" from user, where a,c = digit of b,d numbers
+        2. send "a-b,c-d" as encrypted string (using salt), as hidden field in salt
+        3. ensure "a-b,c-d" hasn't been tampered w/ (using encrypted string)
+        4. check for correctness of a,c digits of b,d numbers
+        5. if correct, process form
+***** registration
+      - send email w/ 50 numbers to all authors (after successful registration)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
