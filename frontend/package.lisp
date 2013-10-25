@@ -21,6 +21,7 @@
            :r-search
            :r-ajax-home-category-articles
            :r-ajax-article-related
+           :r-ajax-article-comment
            ;; enable article to be previewed in editorial
            :v-article
            :r-robots
