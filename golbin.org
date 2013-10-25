@@ -2,7 +2,10 @@
 
 * tasks
 ** backlog
-*** [perf][ed] css/js need not get generated for every call; cache it
+*** TODO [perf][ed] css/js need not get generated for every call; cache it
+    :CLOCK:
+    CLOCK: [2013-10-25 Fri 16:56]--[2013-10-25 Fri 17:14] =>  0:18
+    :END:
 *** setup dev envt
 *** TODO sendmail on dev
     :CLOCK:
@@ -185,11 +188,6 @@
 *** [security] http://en.wikipedia.org/wiki/Cross-site_scripting
 *** [performance] gzip content served by nginx
 *** [performance] http caching headers
-*** [seo][performance] favicon
-*** TODO [ed] editor should be able to approve/reject articles
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
-    :END:
 *** [fed] photo slideshow articles
 *** [fed] gravatar for author images
     - http://en.gravatar.com/site/implement/images/
@@ -199,36 +197,9 @@
       - rate per view
       - paid X INR
       - paid on date
-*** TODO [lang] externalize strings from code, add library code
-    :CLOCK:
-    CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
-    CLOCK: [2012-10-17 Wed 19:08]--[2012-10-17 Wed 19:49] =>  0:41
-    :END:
-    - [ ] fe
-      - [ ] 'home' in primary nav
-    - [ ] utils
-    - [ ] common
-    - [ ] ed
-    - notes
-      - (setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))
-      - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
-      - (load-language "en-IN")
-      - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
-*** [lang] ensure utf-8 in both fe and ed (including RTE)
-*** TODO [lang] mr/hi font in fe and RTE
-    :CLOCK:
-    CLOCK: [2012-11-04 Sun 11:30]--[2012-11-04 Sun 12:20] =>  0:50
-    :END:
-    - http://salrc.uchicago.edu/resources/fonts/available/hindi/
-    - http://tdil.mit.gov.in/
-    - http://www.walia.com/fonts/index.shtml
-    - http://www.indlinux.org/wiki/index.php/IndicFontsList#Devanagari
-*** [lang] find string replacements for different languages
 *** [lang] strings passed to JS land
 *** [ed] admin should be able to change author-type
     - promote author to editor (or viceversa)
-*** [ed] an editor should not be able to approve his own articles
-*** [ed] articles should have field for 'reason of rejection by editor'
 *** [ed] home page should show a table of
     - status icon
 | Color  | Meaning   |
@@ -3269,6 +3240,73 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-25 Fri 11:49
+     :END:
+**** DONE [seo][performance] favicon
+     CLOSED: [2013-10-25 Fri 17:15]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:15
+     :END:
+**** DONE [ed] editor should be able to approve/reject articles
+     CLOSED: [2013-10-25 Fri 17:15]
+     :CLOCK:
+     CLOCK: [2012-11-04 Sun 16:53]--[2012-11-04 Sun 17:23] =>  0:30
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:15
+     :END:
+**** DONE [lang] externalize strings from code, add library code
+     CLOSED: [2013-10-25 Fri 17:16]
+     :CLOCK:
+     CLOCK: [2012-10-17 Wed 20:04]--[2012-10-17 Wed 20:24] =>  0:20
+     CLOCK: [2012-10-17 Wed 19:08]--[2012-10-17 Wed 19:49] =>  0:41
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:16
+     :END:
+     - fe
+       - 'home' in primary nav
+     - utils
+     - common
+     - ed
+     - notes
+       - (setf *translation-file-root* (get-parent-directory-path-string (merge-pathnames "locale/" *home*)))
+       - (cl-i18n-utils:gen-translation-file "~/golbin/frontend/view/" "~/golbin/data/locale/en-IN.lisp" :ext "lisp$")
+       - (load-language "en-IN")
+       - combine split sentences into 1 long one using format and params (~a); eg as in article-preamble-markup
+**** DONE [lang] ensure utf-8 in both fe and ed (including RTE)
+     CLOSED: [2013-10-25 Fri 17:16]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:16
+     :END:
+**** DONE [lang] mr/hi font in fe and RTE
+     CLOSED: [2013-10-25 Fri 17:16]
+     :CLOCK:
+     CLOCK: [2012-11-04 Sun 11:30]--[2012-11-04 Sun 12:20] =>  0:50
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:16
+     :END:
+     - http://salrc.uchicago.edu/resources/fonts/available/hindi/
+     - http://tdil.mit.gov.in/
+     - http://www.walia.com/fonts/index.shtml
+     - http://www.indlinux.org/wiki/index.php/IndicFontsList#Devanagari
+**** DONE [lang] find string replacements for different languages
+     CLOSED: [2013-10-25 Fri 17:16]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:16
+     :END:
+**** DONE [ed] articles should have field for 'reason of rejection by editor'
+     CLOSED: [2013-10-25 Fri 17:16]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:16
+     :END:
+**** DONE [ed] an editor should not be able to approve his own articles
+     CLOSED: [2013-10-25 Fri 17:22]
+     :CLOCK:
+     CLOCK: [2013-10-25 Fri 17:17]--[2013-10-25 Fri 17:22] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-25 Fri 17:22
      :END:
 ** TODO refactor
    :CLOCK:
