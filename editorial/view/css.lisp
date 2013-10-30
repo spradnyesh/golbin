@@ -70,6 +70,9 @@
                                    :padding "0"))
     ((".mandatory") (:color "#f66"
                             :padding "5px"))
+    ((".static ul") (:list-style "disc inside none"
+                                 :margin-left "25px"))
+    ((".static li") (:padding "5px"))
     ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
     ((".tooltip") (:color "#61a1f0"
                           :cursor "help"
