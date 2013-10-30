@@ -51,3 +51,6 @@ tags=Tags: ~a
 ed-tags=Tags
 select-or-upload=~a or ~a a photo
 invalid-age=Age should be between 18 and 70 years
+tnc=Terms
+originality=Originality Pact
+tnc-and-originality=By joining you agree to our ~a and ~a

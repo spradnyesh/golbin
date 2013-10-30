@@ -30,6 +30,12 @@
                                                                   a))))
   (v-password-changed status))
 
+;; static pages
+(define-route r-tnc ("/tnc.html") (v-tnc))
+(define-route r-faq ("/faq.html") (v-faq))
+(define-route r-help ("/help.html") (v-help))
+(define-route r-originality ("/originality.html") (v-originality))
+
 ;; robots
 (define-route r-robots ("/robots.txt")
   (handle-static-file (merge-pathnames "../data/static/ed-robots.txt" *home*) "text/plain"))

@@ -115,6 +115,10 @@
                                                             (<:option :value "m" (translate "male"))
                                                             (<:option :value "f" (translate "female")))))
                                       (tr-td-input "phone number" :mandatory t)
+                                      (<:tr (<:td)
+                                            (<:td (translate "tnc-and-originality"
+                                                             (<:a :href (h-genurl 'r-tnc) (translate "tnc"))
+                                                             (<:a :href (h-genurl 'r-originality) (translate "originality")))))
                                       (tr-td-submit))))))))
 
 (defun v-register-post (&key (ajax nil))

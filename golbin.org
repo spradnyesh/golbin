@@ -2,6 +2,11 @@
 
 * tasks
 ** backlog
+*** [ed] static pages
+    - https://www.squidoo.com/member/registration
+    - http://www.squidoo.com/squidoo/65355501-Terms-of-Service
+    - http://www.squidoo.com/originalitypact
+    - (help and tips) http://www.squidoo.com/squidoo
 *** TODO [bug][seo] clear GA confusion b/n www. and mr.
     :CLOCK:
     CLOCK: [2013-10-25 Fri 18:48]--[2013-10-25 Fri 19:41] =>  0:53
@@ -223,7 +228,7 @@
         - 2 vertical photos + 3 vertical photos (smaller)
       - automatically scroll every few seconds
 *** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
-*** UNDERGOING tests
+*** TODO tests
     :CLOCK:
     CLOCK: [2013-10-25 Fri 11:30]--[2013-10-25 Fri 11:38] =>  0:08
     :END:
@@ -3325,6 +3330,14 @@
         5. if correct, process form
 ***** registration
       - send email w/ 50 numbers to all authors (after successful registration)
+**** DONE [#B] [ed] author should check tnc checkbox during registration
+     CLOSED: [2013-10-30 Wed 11:08]
+     :CLOCK:
+     CLOCK: [2013-10-30 Wed 10:40]--[2013-10-30 Wed 11:05] =>  0:25
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-10-30 Wed 11:08
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

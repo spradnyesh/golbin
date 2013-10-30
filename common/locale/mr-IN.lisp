@@ -54,4 +54,9 @@ add-a-comment=Add a comment
 user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span> म्हणाला (<span class="c-date">~a</span> या दिवशी <span class="c-time">~a</span> वाजता):</p>
 performance=वेबसाईटची स्पीड
 tags=Tags: ~a
+ed-tags=Tags
 select-or-upload=~a or ~a a photo
+invalid-age=Age should be between 18 and 70 years
+tnc=Terms
+originality=Originality Pact
+tnc-and-originality=By joining you agree to our ~a and ~a

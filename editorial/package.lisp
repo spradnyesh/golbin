@@ -100,5 +100,10 @@
                             r-why-register
                             r-register-hurdle
                             r-register-do-confirm
-                            r-register-done-confirm)
+                            r-register-done-confirm
+                            r-tnc
+                            r-originality
+                            r-faq
+                            r-help
+                            r-robots)
   "list of routes that can be accessed in a non-logged-in state")
