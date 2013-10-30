@@ -34,7 +34,7 @@
                (<:head
                 (<:meta :charset "UTF-8") ; http://www.w3.org/TR/html5-diff/#character-encoding
                 (<:meta :name "google" :content "notranslate")
-                (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
+                (<:title (format nil "~A - ~A" (get-config "site.name") (translate ,title)))
                 (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/golbin-logo.ico")
                 (<:link :rel "stylesheet" :type "text/css" :href "/static/css/yui3-reset-fonts-grids-min.css")
                 (when (or (not (is-logged-in?))

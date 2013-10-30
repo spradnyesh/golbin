@@ -16,7 +16,7 @@
                                                                     (list (get-config "site.name")))))
               (<:meta :name "description" :content ,description)
               (<:meta :name "google" :content "notranslate")
-              (<:title (format nil "~A - ~A" (get-config "site.name") ,title))
+              (<:title (format nil "~A - ~A" (get-config "site.name") (translate ,title)))
               (<:link :rel "shortcut icon" :type "image/vnd.microsoft.icon" :href "/static/css/images/golbin-logo.ico")
               (when (or (string= "mr-IN" lang)
                         (string= "hi-IN" lang))
