@@ -84,11 +84,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun logo ()
   (<:figure (<:h1 (<:a :href (h-genurl 'r-home)
-                       (<:img :src "/static/css/images/golbin-logo.png"
-                              :alt (get-config "site.name"))
-                       (<:img :src "/static/css/images/golbin-text.png"
-                              :alt (get-config "site.name"))
-                       (<:img :src "/static/css/images/golbin-slogan.png"
+                       (<:img :src "/static/css/images/golbin.png"
                               :alt (get-config "site.name"))))
             (logo-langs "www.golb.in"
                         "mr.golb.in"

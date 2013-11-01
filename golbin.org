@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fe] investigate in-text ads and how to dynamically add them in articles at (right?) places
 *** [fed] contact-us/feedback form
     - ed.g.in/feedback.html
 *** [ed] forums
@@ -3357,6 +3358,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-30 Wed 11:08
+     :END:
+**** DONE [fe] change and sprite logo
+     CLOSED: [2013-11-01 Fri 19:45]
+     :CLOCK:
+     CLOCK: [2013-11-01 Fri 19:04]--[2013-11-01 Fri 19:45] =>  0:41
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-01 Fri 19:45
      :END:
 ** TODO refactor
    :CLOCK:
