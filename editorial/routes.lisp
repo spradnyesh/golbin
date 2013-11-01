@@ -31,7 +31,7 @@
   (v-password-changed status))
 
 ;; static pages
-(define-route r-tnc ("/tnc.html") (v-tnc))
+(define-route r-tnc ("/tos.html") (v-tnc))
 (define-route r-faq ("/faq.html") (v-faq))
 (define-route r-help ("/help.html") (v-help))
 (define-route r-originality ("/originality.html") (v-originality))

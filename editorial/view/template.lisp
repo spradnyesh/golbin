@@ -151,6 +151,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun footer ()
   (fmtnil (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
-          (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
-          (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
-          (<:p (<:a :href "mailto:webmaster@golb.in" "Contact us"))))
+          (<:p (<:a :href (h-genurl 'r-tnc) (translate "terms-of-service")))
+          (<:p (<:a :href (h-genurl 'r-originality) (translate "originality")))
+          (<:p (<:a :href (h-genurl 'r-faq) "FAQ"))
+          (<:p (<:a :href "mailto:webmaster@golb.in" (translate "contact-us")))))

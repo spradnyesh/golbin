@@ -70,9 +70,18 @@
                                    :padding "0"))
     ((".mandatory") (:color "#f66"
                             :padding "5px"))
+    ;; static pages
     ((".static ul") (:list-style "disc inside none"
                                  :margin-left "25px"))
+    ((".static ol") (:list-style "decimal inside none"
+                                 :margin-left "25px"))
     ((".static li") (:padding "5px"))
+    ((".static p") (:margin "10px 0"))
+    ((".static .section") (:margin "10px 0"
+                                    :border-bottom "1px dotted gray"))
+    ((".static h2, .static h3") (:font-weight "bold"
+                                              :padding-bottom "5px"
+                                              ))
     ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
     ((".tooltip") (:color "#61a1f0"
                           :cursor "help"
@@ -175,7 +184,7 @@
                      :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
                      :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
                      :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
-                     :padding "20px 250px"
+                     :padding "20px 200px"
                      :height "50px"))
     (("#ft a") (:color "#fff"))
     (("#ft p") (:float "left"
