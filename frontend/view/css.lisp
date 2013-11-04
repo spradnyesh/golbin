@@ -246,7 +246,7 @@
     ((".carousel ul li div") (:width "100px"
                                      :height "100px"
                                      :margin "5px 0"))
-    ((".carousel ul li div.no-photo") (:background-color "#F0F0F0"))
+    ((".carousel ul li div.no-photo") (:background-image "url('/static/css/images/no-image.jpg')"))
 
     ;; pagination
     ((".pagination") (:text-align "center"
