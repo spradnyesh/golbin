@@ -26,13 +26,13 @@
 (defun get-article-status-markup (article)
   (if article
       (case (status article)
-        (:r "Draft")
-        (:e "Deleted")
-        (:s "Submitted")
-        (:a "Approved")
-        (:w "Withdrawn")
-        (otherwise "New"))
-      "New"))
+        (:r (translate "draft"))
+        (:e (translate "deleted"))
+        (:s (translate "submitted"))
+        (:a (translate "published"))
+        (:w (translate "withdrawn"))
+        (otherwise (translate "new")))
+      (translate "new")))
 
 (defun get-tags-markup (article)
   (let ((rslt nil))
@@ -240,8 +240,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                            (<:td (<:input :class "submit"
                                                           :type "submit"
                                                           :name "submit"
-                                                          :value (translate "submit"))
-                                                 (tooltip "for-approval"))))))))))
+                                                          :value (translate "publish")))))))))))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
@@ -287,7 +286,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                                 :summary summary
                                                 :body body
                                                 :date (date article)
-                                                :status (cond ((equal submit-type "submit") :s)
+                                                :status (cond ((equal submit-type "submit") :a)
                                                               ((equal submit-type "save") :r))
                                                 :cat cat
                                                 :subcat subcat
@@ -304,7 +303,8 @@ CKEDITOR.on('instanceReady', function(e) {
                                                            :body body
                                                            :status :r
                                                            :date (get-universal-time)
-                                                           :status :r
+                                                           :status (cond ((equal submit-type "submit") :a)
+                                                                         ((equal submit-type "save") :r))
                                                            :cat cat
                                                            :subcat subcat
                                                            :photo photo
@@ -335,95 +335,3 @@ CKEDITOR.on('instanceReady', function(e) {
         (edit-article article))
       (submit-success ajax
                       (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
-
-(defun v-articles-approve-get ()
-  (with-ed-login
-    (template
-     :title (translate "article-approval")
-     :js nil
-     :body (let ((articles-list (get-all-articles-for-approval)))
-             (<:div :id "approve"
-                    :class "wrapper"
-                    (<:ul (join-loop article
-                                     articles-list
-                                     (<:li :class "crud"
-                                           (<:form :method "POST"
-                                                   :action (h-genurl 'r-approve-article-post :id (id article))
-                                                   (<:input :name "approve"
-                                                            :type "submit"
-                                                            :value (translate "approve"))
-                                                   (<:input :name "reject"
-                                                            :type "submit"
-                                                            :class "reject"
-                                                            :value (translate "reject"))
-                                                   (<:textarea :name "message"
-                                                               :class "hidden")
-                                                   (<:input :name "submit-type"
-                                                            :type "text"
-                                                            :class "hidden"
-                                                            :value "approve"))
-                                           (<:div :class "new"
-                                                  (<:h3
-                                                   (<:a :href (h-genurl 'r-article
-                                                                        :slug-and-id (get-slug-and-id article))
-                                                        (title article)))
-                                                  (<:span :class "small"
-                                                          (translate "new")))
-                                           (let ((orig-article (get-article-by-id (parent article))))
-                                             (when orig-article
-                                               (<:div :class "orig"
-                                                      (<:h3
-                                                       (<:a :href (h-genurl 'r-article
-                                                                            :slug-and-id (get-slug-and-id orig-article))
-                                                            (title orig-article)))
-                                                      (<:span :class "small"
-                                                              (translate "original")))))))))))))
-
-(defun v-article-approve-post (id &key (ajax nil))
-  (with-ed-login
-    (let* ((submit-type (post-parameter "submit-type"))
-           (message (post-parameter "message"))
-           (article (get-article-by-id id))
-           (parent-id (parent article))
-           (approver (who-am-i)))
-      (if (= (id approver)
-                   (id (author article)))
-          (submit-error ajax (list (translate "cannot-approve-own-articles")) (h-genurl 'r-approve-articles))
-          (when article
-            ;; process all intemediate edits (including current)
-            (dolist (l (get-intermediate-articles parent-id))
-              (setf (status l) :p)
-              (edit-article l))
-            (cond ((string-equal submit-type "approve")
-                   ;; process parent article (w/ content of current article)
-                   (setf (status article) :a)
-                   (setf (id article) parent-id)
-                   (setf (parent article) nil)
-                   (edit-article article)
-
-                   (sendmail :to (email (get-author-by-id (id (author article))))
-                             :cc (list (get-config "site.email.address") (email (get-author-by-id (id approver))))
-                             :subject (translate "article-approved" id)
-                             :body (translate "article-approved-body" id)))
-                  ((string-equal submit-type "reject")
-                   (let ((parent (get-article-by-id parent-id)))
-                     ;; append approval-history to parent
-                     (setf (approval-history parent)
-                           (append (approval-history parent)
-                                   (list (make-instance 'approval
-                                                        :editor approver
-                                                        :date (get-universal-time)
-                                                        :message message))))
-                     (edit-article parent)
-
-                     ;; make current article status as "draft" (from submitted)
-                     (setf (status article) :r)
-                     (edit-article article)
-
-                     ;; send notification email to author
-                     (sendmail :to (email (get-author-by-id (id (author article))))
-                               :cc (list (get-config "site.email.address") (email (get-author-by-id (id approver))))
-                               :subject (translate "article-rejected" id)
-                               :body (translate "article-rejected-body" id message))))
-                  (t (submit-error ajax (list (translate "invalid-submission")) (h-genurl 'r-approve-articles))))
-            (submit-success ajax (h-genurl 'r-approve-articles)))))))

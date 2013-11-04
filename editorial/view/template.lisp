@@ -91,9 +91,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; navigations for different author types
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun editor-nav ()
-  (<:li (<:h3 (<:a :href (h-genurl 'r-approve-articles)
-                           (translate "approve-articles")))))
+(defun editor-nav ())
 
 (defun admin-nav ())
 

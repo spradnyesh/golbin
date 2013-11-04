@@ -9,11 +9,6 @@
     CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
     CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
     :END:
-*** [ed] disable article approval
-    - make author life as easy as possible
-    - delete article/account if necessary by
-      - doing regular reviews
-      - looking for "report abuse"
 *** TODO [ed] static pages
     :CLOCK:
     CLOCK: [2013-11-01 Fri 17:00]--[2013-11-01 Fri 17:25] =>  0:25
@@ -3387,6 +3382,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-04 Mon 16:12
      :END:
+**** DONE [ed] disable article approval
+     CLOSED: [2013-11-04 Mon 16:41]
+     :CLOCK:
+     CLOCK: [2013-11-04 Mon 16:31]--[2013-11-04 Mon 16:41] =>  0:10
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-04 Mon 16:41
+     :END:
+     - make author life as easy as possible
+     - delete article/account if necessary by
+       - doing regular reviews
+       - looking for "report abuse"
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01
