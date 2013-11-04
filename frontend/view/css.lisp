@@ -168,7 +168,9 @@
                               :padding "20px 250px"
                               :height "50px"))
     (("#ft p") (:float "left"
-                       :padding-right "35px"))
+                       :padding-right "35px"
+                       :margin "0"))
+    (("#ft #copyscape") (:margin "10px 250px"))
 
     ;; index
     (("#articles li") (:border-bottom "1px dotted"

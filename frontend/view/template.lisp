@@ -30,7 +30,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-31-min.css")
+                                  :href "/static/css/fe-32-min.css")
                           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
                           ;; hate that sharethis cannot be lazy-loaded :(
                           (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
@@ -173,9 +173,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun footer ()
   (fmtnil (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
-          (<:p (<:a :href (h-genurl 'r-tos) "Terms of Service"))
-          (<:p (<:a :href (h-genurl 'r-privacy) "Privacy"))
-          (<:p (<:a :href "mailto:webmaster@golb.in" "Contact us")))) ; XXX: translate
+          (<:p (<:a :href (h-genurl 'r-tos) (translate "terms-of-service")))
+          (<:p (<:a :href (h-genurl 'r-privacy) (translate "privacy")))
+          (<:p (<:a :href "mailto:webmaster@golb.in" (translate "contact-us")))
+          (<:p :id "copyscape"
+               (<:a :href "http://www.copyscape.com/" (<:img :src "/static/css/images/cs-wh-3d-234x16.gif")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads
