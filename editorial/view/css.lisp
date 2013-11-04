@@ -230,8 +230,6 @@
                                                 :height "34px"))
     (("#login fieldset.inputs .input:hover") (:border-color "#d5e6c0"))
     (("#login fieldset.inputs .input:focus") (:border-color "#61a1f0"))
-    ;; register
-    (("#register") (:margin-top "-75px"))
     ;; category
     (("#sort-catsubcat .cat") (:padding-left "20px"))
     (("#sort-catsubcat .subcat") (:padding-left "40px"))
