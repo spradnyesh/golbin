@@ -2,6 +2,13 @@
 
 * tasks
 ** backlog
+*** TODO [ed] translations
+    :CLOCK:
+    CLOCK: [2013-11-04 Mon 16:12]--[2013-11-04 Mon 16:14] =>  0:02
+    CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
+    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
+    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
+    :END:
 *** [ed] disable article approval
     - make author life as easy as possible
     - delete article/account if necessary by
@@ -55,12 +62,6 @@
     - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
     - https://www.varnish-software.com/what-is-varnish
-*** TODO [ed] translations
-    :CLOCK:
-    CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
-    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
-    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
-    :END:
 *** TODO check sites from windoZZZe
     :CLOCK:
     CLOCK: [2013-09-09 Mon 13:05]--[2013-09-09 Mon 13:27] =>  0:22
