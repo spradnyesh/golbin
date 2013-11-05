@@ -3412,6 +3412,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-05 Tue 17:29
      :END:
+**** DONE [utils] translate should fall back to en if translation does not exist
+     CLOSED: [2013-11-05 Tue 17:37]
+     :CLOCK:
+     CLOCK: [2013-11-05 Tue 17:11]--[2013-11-05 Tue 17:18] =>  0:07
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:37
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

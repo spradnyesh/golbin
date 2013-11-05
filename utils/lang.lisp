@@ -13,7 +13,7 @@
        (<:li (<:a :class (if ,selected
                              (concatenate 'string ,class " selected")
                              ,class)
-                  :href (concatenate 'string "http://" ,href)
+                  :href ,href
                   ,lang-name)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -55,7 +55,11 @@
 (defun get-translation (key)
   (let ((out-hash (gethash (get-dimension-value "lang") *translation-table*)))
     (if out-hash
-        (gethash key out-hash)
+        (let ((rslt (gethash key out-hash)))
+          (if rslt
+              rslt
+              (gethash key (gethash (get-config "site.lang") ; everything falls back to site.lang
+                              *translation-table*))))
         (gethash key (gethash (get-config "site.lang") ; everything falls back to site.lang
                               *translation-table*)))))
 
