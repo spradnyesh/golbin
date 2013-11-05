@@ -246,7 +246,9 @@ CKEDITOR.on('instanceReady', function(e) {
   (with-ed-login
     (let* ((title (post-parameter "title"))
            (summary (post-parameter "summary"))
-           (submit-type (post-parameter "submit-type"))
+           (p-submit-type (post-parameter "submit-type"))
+           (submit-type (cond ((string-equal p-submit-type "save") :r) ; draft
+                              ((string-equal p-submit-type "submit") :a))) ; active
            (body (post-parameter "body"))
            (p-cat (post-parameter "cat"))
            (cat (get-category-by-id (parse-integer p-cat)))
@@ -257,10 +259,9 @@ CKEDITOR.on('instanceReady', function(e) {
            (photo p-photo)
            (photo (unless (nil-or-empty photo) (get-mini-photo (get-photo-by-id (parse-integer photo)))))
            (p-pd (post-parameter "pd"))
-           (pd p-pd)
-           (pd (cond ((string-equal pd "center") :b)
-                     ((string-equal pd "left") :l)
-                     ((string-equal pd "right") :r)))
+           (pd (cond ((string-equal p-pd "center") :b)
+                     ((string-equal p-pd "left") :l)
+                     ((string-equal p-pd "right") :r)))
            (p-tags (post-parameter "ed-tags"))
            (tags p-tags)
            (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
@@ -286,8 +287,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                                            :summary summary
                                                            :body body
                                                            :date (get-universal-time)
-                                                           :status (cond ((equal submit-type "submit") :a)
-                                                                         ((equal submit-type "save") :r))
+                                                           :status submit-type
                                                            :cat cat
                                                            :subcat subcat
                                                            :photo photo
@@ -309,10 +309,10 @@ CKEDITOR.on('instanceReady', function(e) {
                   (let* ((article (get-article-by-id id))
                          (parent (parent article))
                          (status (status article)))
-                    (cond ((or (and (eq status :r) (null parent) (equal submit-type "save")) ; 1
-                               (and (eq status :r) (null parent) (equal submit-type "submit")) ; 2
-                               (and (eq status :a) (null parent) (equal submit-type "submit")) ; 4
-                               (and (eq status :r) parent (equal submit-type "save"))) ; 5
+                    (cond ((or (and (eq status :r) (null parent) (eq submit-type :r)) ; 1
+                               (and (eq status :r) (null parent) (eq submit-type :a)) ; 2
+                               (and (eq status :a) (null parent) (eq submit-type :a)) ; 4
+                               (and (eq status :r) parent (eq submit-type :r))) ; 5
                            (edit-article (make-instance 'article
                                                         :id id
                                                         :parent parent
@@ -321,15 +321,14 @@ CKEDITOR.on('instanceReady', function(e) {
                                                         :summary summary
                                                         :body body
                                                         :date (date article)
-                                                        :status (cond ((equal submit-type "submit") :a)
-                                                                      ((equal submit-type "save") :r))
+                                                        :status submit-type
                                                         :cat cat
                                                         :subcat subcat
                                                         :photo photo
                                                         :photo-direction pd
                                                         :tags article-tags
                                                         :author (author article))))
-                          ((and (eq status :a) (null parent) (equal submit-type "save")) ; 3
+                          ((and (eq status :a) (null parent) (eq submit-type :r)) ; 3
                            (setf id (id (add-article (make-instance 'article
                                                                     :id (get-new-article-id)
                                                                     :parent id
@@ -338,14 +337,14 @@ CKEDITOR.on('instanceReady', function(e) {
                                                                     :summary summary
                                                                     :body body
                                                                     :date (date article)
-                                                                    :status :r
+                                                                    :status submit-type
                                                                     :cat cat
                                                                     :subcat subcat
                                                                     :photo photo
                                                                     :photo-direction pd
                                                                     :tags article-tags
                                                                     :author (author article))))))
-                          ((and (eq status :r) parent (equal submit-type "submit")) ; 6
+                          ((and (eq status :r) parent (eq submit-type :a)) ; 6
                            (let ((parent-article (get-article-by-id parent)))
                              ;; edit and publish parent-article
                              (edit-article (make-instance 'article
@@ -356,7 +355,7 @@ CKEDITOR.on('instanceReady', function(e) {
                                                           :summary summary
                                                           :body body
                                                           :date (date parent-article)
-                                                          :status :a
+                                                          :status submit-type
                                                           :cat cat
                                                           :subcat subcat
                                                           :photo photo
