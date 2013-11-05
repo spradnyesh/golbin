@@ -25,9 +25,6 @@
     - http://www.squidoo.com/squidoo/65355501-Terms-of-Service
     - http://www.squidoo.com/originalitypact
     - (help and tips) http://www.squidoo.com/squidoo
-*** [fe] http://archive.org/web/web.php
-    - http://web.archive.org/save/http://www.golb.in/forgetting-forgive-and-forget-2.html
-    - http://web.archive.org/web/20131104063242/http://www.golb.in/virtualbox-guest-additions-on-sabayon-linux-6.html
 *** [fe] investigate in-text ads and how to dynamically add them in articles at (right?) places
 *** [fed] contact-us/feedback form
     - ed.g.in/feedback.html
@@ -3397,6 +3394,16 @@
      - delete article/account if necessary by
        - doing regular reviews
        - looking for "report abuse"
+**** DONE [ed] http://archive.org/web/web.php
+     CLOSED: [2013-11-05 Tue 16:45]
+     :CLOCK:
+     CLOCK: [2013-11-05 Tue 16:16]--[2013-11-05 Tue 16:45] =>  0:29
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 16:45
+     :END:
+     - http://web.archive.org/save/http://www.golb.in/forgetting-forgive-and-forget-2.html
+     - http://web.archive.org/web/20131104063242/http://www.golb.in/virtualbox-guest-additions-on-sabayon-linux-6.html
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:44]--[2013-09-09 Mon 13:45] =>  0:01

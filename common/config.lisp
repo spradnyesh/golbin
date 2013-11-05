@@ -12,6 +12,7 @@
                                    ("host" "smtp.mail.yahoo.com")
                                    ("password" ""))
                           ("timeout" ("email" "3")
+                                     ("archive" "3")
                                      ("comments" "3")))
                   ("cipher" ("insecure" "aCpLvFWfcfUxmz4h") ; used for non-secure encryption
                             ("secure" "")

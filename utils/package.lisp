@@ -39,7 +39,6 @@
            :tr-td-submit
            :label-input
            :cleanup-ckeditor-text
-           :hu-init
            :tooltip
            :click-here
            :timed-redirect
@@ -47,6 +46,10 @@
            :submit-error
            :cannot-be-empty
            :validate-email
+           ;; http
+           :hu-init
+           :logout
+           :web-archive
            ;; js
            :obfuscate-js
            :$event

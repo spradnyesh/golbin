@@ -368,9 +368,18 @@ CKEDITOR.on('instanceReady', function(e) {
                                                           :id id
                                                           :status :p))
                              (setf id parent))))))
-              (sendmail :to (get-config "site.email.address")
-                        :subject (translate "article-submitted-for-approval" id)
-                        :body (translate "article-submitted-for-approval-body" id))
+              ;; archive at http://archive.org/web/web.php
+              (when (equal submit-type "submit")
+                (web-archive (concatenate 'string
+                                          (cond ((string= (get-dimension-value "lang") "en-IN")
+                                                 "www")
+                                                ((string= (get-dimension-value "lang") "hi-IN")
+                                                 "hi")
+                                                ((string= (get-dimension-value "lang") "mr-IN")
+                                                 "mr"))
+                                          ".golb.in/"
+                                          (get-slug-and-id (get-article-by-id id))
+                                          ".html")))
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed

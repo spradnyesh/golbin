@@ -19,6 +19,7 @@
                                      (:file "restas" :depends-on ("dimensions" "string" "lang"))
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "html" :depends-on ("string"))
+                                     (:file "http" :depends-on ("string"))
                                      (:file "l10n" :depends-on ("package"))
                                      (:file "pagination" :depends-on ("restas"))
                                      (:file "db" :depends-on ("config" "dimensions" "macros"))
@@ -76,4 +77,4 @@
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model" "frontend"))
                (:module "reports"))
-  :depends-on (:restas :sexml :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :hunchentoot :restas :restas-directory-publisher :cl-prevalence :cl-gd :ironclad :trivial-utf-8 :flexi-streams :cl-smtp :cl-recaptcha :html-entities :trivial-timeout :sanitize))
+  :depends-on (:restas :sexml :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :hunchentoot :restas :restas-directory-publisher :cl-prevalence :cl-gd :ironclad :trivial-utf-8 :flexi-streams :cl-smtp :cl-recaptcha :html-entities :trivial-timeout :sanitize :drakma))
