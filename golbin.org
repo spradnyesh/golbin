@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [performance] http://www.appelsiini.net/projects/lazyload
 *** [fed] ideas/categories from http://voices.yahoo.com
 *** TODO [ed] translations
     :CLOCK:
@@ -30,29 +31,12 @@
     - ed.g.in/feedback.html
 *** [ed] forums
 *** [fed] report (and view) abuse
-*** TODO [bug][seo] clear GA confusion b/n www. and mr.
-    :CLOCK:
-    CLOCK: [2013-10-25 Fri 18:48]--[2013-10-25 Fri 19:41] =>  0:53
-    CLOCK: [2013-08-18 Sun 07:06]--[2013-08-18 Sun 07:23] =>  0:17
-    :END:
-    - account: 35078884
-    - profile-id
-      - www: 64387896
-      - mr: 68192024
-      - hi: 68190841
-    - http://www.ericmobley.net/guide-to-tracking-multiple-subdomains-in-google-analytics/
-*** TODO [perf][ed] css/js need not get generated for every call; cache it
-    :CLOCK:
-    CLOCK: [2013-10-25 Fri 16:56]--[2013-10-25 Fri 17:14] =>  0:18
-    :END:
 *** setup dev envt
 *** TODO sendmail on dev
     :CLOCK:
     CLOCK: [2013-10-18 Fri 15:26]--[2013-10-18 Fri 15:32] =>  0:06
     :END:
 *** [perf][fe] sharethis should be lazyload-ed
-*** tnc
-    - https://www.logaster.com/terms-of-use/
 *** https://www.varnish-cache.org/
     - https://www.varnish-software.com/what-is-varnish
 *** TODO check sites from windoZZZe
@@ -81,20 +65,12 @@
     - https://www.cacert.org/
 *** [ed] cl-twitter
     - auto post on twitter for every article approval
-*** [fed] http://www.squidoo.com/ @ seth godin
 *** TODO [fe] google site search
     :CLOCK:
     CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
     :END:
     - https://www.google.com/cse/
     - http://www.javascriptkit.com/script/script2/google_site_search.shtml
-*** [ed] inline editor
-    - http://www.barneyparker.com/world-simplest-html5-wysisyg-inline-editor/
-*** [bug][fe] responsive layouts
-    - css for multiple screen sizes (only desktop, tablet for now)
-    - 1024x768, 768x1024
-    - http://www.w3.org/TR/CSS21/media.html
-    - http://alistapart.com/article/responsive-web-design
 *** TODO [articles] add aai kavita
     :CLOCK:
     CLOCK: [2013-08-26 Mon 11:39]--[2013-08-26 Mon 11:53] =>  0:14
@@ -184,8 +160,6 @@
     - [ ] http://code.google.com/p/skipfish/
     - [ ] http://zaries.wordpress.com/2010/12/22/hunchentoot-webserver-and-application-security/
 *** [security] http://en.wikipedia.org/wiki/Cross-site_scripting
-*** [performance] gzip content served by nginx
-*** [performance] http caching headers
 *** [fed] photo slideshow articles
 *** [fed] gravatar for author images
     - http://en.gravatar.com/site/implement/images/
@@ -195,7 +169,6 @@
       - rate per view
       - paid X INR
       - paid on date
-*** [lang] strings passed to JS land
 *** [ed] admin should be able to change author-type
     - promote author to editor (or viceversa)
 *** [ed] home page should show a table of
@@ -263,7 +236,6 @@
        :CLOCK:
        :END:
        - http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-7
-*** [bug] route-cat-page not working due to refactor routes
 *** [fe] css 2 -> 3
     - http://css3please.com/ ***
     - http://perishablepress.com/css3-progressive-enhancement-smart-design/
@@ -275,13 +247,11 @@
     - good samples
       - http://html5gallery.com/
         - http://www.lastchart.com/
-*** [ed] theme RTE to not show some manipulations (eg, restrict image urls to only golbin images)
-*** [performance] http://www.appelsiini.net/projects/lazyload
-*** TODO investigate heroku
-    :CLOCK:
-    CLOCK: [2013-04-01 Mon 01:00]--[2013-04-01 Mon 01:37] =>  0:37
-    :END:
-    - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
+*** [fe] responsive layouts
+    - css for multiple screen sizes (only desktop, tablet for now)
+    - 1024x768, 768x1024
+    - http://www.w3.org/TR/CSS21/media.html
+    - http://alistapart.com/article/responsive-web-design
 *** investigate
     - [ ] github.com/hargettp/hh-web
     - [ ] github.com/arielnetworks/cl-locale
@@ -3419,6 +3389,86 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-05 Tue 17:37
+     :END:
+**** DONE [bug][seo] clear GA confusion b/n www. and mr.
+     CLOSED: [2013-11-05 Tue 17:38]
+     :CLOCK:
+     CLOCK: [2013-10-25 Fri 18:48]--[2013-10-25 Fri 19:41] =>  0:53
+     CLOCK: [2013-08-18 Sun 07:06]--[2013-08-18 Sun 07:23] =>  0:17
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:38
+     :END:
+     - account: 35078884
+     - profile-id
+       - www: 64387896
+       - mr: 68192024
+       - hi: 68190841
+     - http://www.ericmobley.net/guide-to-tracking-multiple-subdomains-in-google-analytics/
+**** CANCELLED [perf][ed] css/js need not get generated for every call; cache it
+     CLOSED: [2013-11-05 Tue 17:41]
+     :LOGBOOK:
+     - State "CANCELLED"  from "TODO"       [2013-11-05 Tue 17:41] \\
+       current performance is good enough
+     :END:
+     :CLOCK:
+     CLOCK: [2013-11-05 Tue 17:38]--[2013-11-05 Tue 17:40] =>  0:02
+     CLOCK: [2013-10-25 Fri 16:56]--[2013-10-25 Fri 17:14] =>  0:18
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:41
+     :END:
+**** DONE tnc
+     CLOSED: [2013-11-05 Tue 17:42]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:42
+     :END:
+     - https://www.logaster.com/terms-of-use/
+**** DONE [fed] http://www.squidoo.com/ @ seth godin
+     CLOSED: [2013-11-05 Tue 17:42]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:42
+     :END:
+**** CANCELLED [ed] inline editor
+     CLOSED: [2013-11-05 Tue 17:42]
+     :LOGBOOK:
+     - State "CANCELLED"  from ""           [2013-11-05 Tue 17:42] \\
+       feature does not increase value
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:42
+     :END:
+     - http://www.barneyparker.com/world-simplest-html5-wysisyg-inline-editor/
+**** CANCELLED investigate heroku
+     CLOSED: [2013-11-05 Tue 17:43]
+     :LOGBOOK:
+     - State "CANCELLED"  from "TODO"       [2013-11-05 Tue 17:43] \\
+       feature does not increase value
+     :END:
+     :CLOCK:
+     CLOCK: [2013-04-01 Mon 01:00]--[2013-04-01 Mon 01:37] =>  0:37
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:43
+     :END:
+     - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
+**** DONE [ed] theme RTE to not show some manipulations (eg, restrict image urls to only golbin images)
+     CLOSED: [2013-11-05 Tue 17:44]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:44
+     :END:
+**** DONE [performance] http caching headers
+     CLOSED: [2013-11-05 Tue 17:47]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 17:47
+     :END:
+**** DONE [performance] gzip content served by nginx
+     CLOSED: [2013-11-05 Tue 18:08]
+     :CLOCK:
+     CLOCK: [2013-11-05 Tue 17:49]--[2013-11-05 Tue 18:08] =>  0:19
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-05 Tue 18:08
      :END:
 ** TODO refactor
    :CLOCK:
