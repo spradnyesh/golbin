@@ -116,7 +116,8 @@
                                    (sb-int:simple-parse-error () 0))
                                  0)))
     (if (and article
-             (or editorial
+             (or (and editorial
+                      (not (eql :p (status article))))
                  (eql :a (status article))))
         (template
          :title (title article)

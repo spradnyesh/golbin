@@ -272,36 +272,19 @@ CKEDITOR.on('instanceReady', function(e) {
                 (let ((tag-added (add-tag tag)))
                   (when tag-added
                     (push tag-added article-tags))))
-              (if id
-                  ;; editing an existing article
-                  (let* ((article (get-article-by-id id))
-                         (parent (or (parent article)
-                                     id)))
-                    (setf id (get-new-article-id))
-                    (add-article (make-instance 'article
-                                                :id id
-                                                :parent parent
-                                                :title title
-                                                :slug (slug article)
-                                                :summary summary
-                                                :body body
-                                                :date (date article)
-                                                :status (cond ((equal submit-type "submit") :a)
-                                                              ((equal submit-type "save") :r))
-                                                :cat cat
-                                                :subcat subcat
-                                                :photo photo
-                                                :photo-direction pd
-                                                :tags article-tags
-                                                :author (author article))))
+              (if (not id)
                   ;; adding a new article
+
+                  ;; # -- status(parent-status) -- action -- end-result -- remarks
+                  ;; ========================================================
+                  ;; 1 -- nil(nil) -- draft -- draft(nil) -- **new ID**
+                  ;; 2 -- nil(nil) -- publish -- published(nil) -- **new ID**
                   (setf id (id (add-article (make-instance 'article
                                                            :id (get-new-article-id)
                                                            :title title
                                                            :slug (slugify title)
                                                            :summary summary
                                                            :body body
-                                                           :status :r
                                                            :date (get-universal-time)
                                                            :status (cond ((equal submit-type "submit") :a)
                                                                          ((equal submit-type "save") :r))
@@ -310,7 +293,81 @@ CKEDITOR.on('instanceReady', function(e) {
                                                            :photo photo
                                                            :photo-direction pd
                                                            :tags article-tags
-                                                           :author (get-mini-author))))))
+                                                           :author (get-mini-author)))))
+                  ;; editing an existing article
+
+                  ;; # -- status(parent) -- action -- end-result    -- remarks
+                  ;; =========================================================
+                  ;; 1 -- draft(nil)     -- save   -- draft(nil)    -- no new ID
+                  ;; 2 -- draft(nil)     -- submit -- active(nil)   -- no new ID
+                  ;; =========================================================
+                  ;; 3 -- active(nil)    -- save   -- draft(parent) -- **new ID**
+                  ;; 4 -- active(nil)    -- submit -- active(nil)   -- no new ID
+                  ;; =========================================================
+                  ;; 5 -- draft(parent)  -- save   -- draft(parent) -- no new ID
+                  ;; 6 -- draft(parent)  -- submit -- active(nil)   -- **delete new ID**
+                  (let* ((article (get-article-by-id id))
+                         (parent (parent article))
+                         (status (status article)))
+                    (cond ((or (and (eq status :r) (null parent) (equal submit-type "save")) ; 1
+                               (and (eq status :r) (null parent) (equal submit-type "submit")) ; 2
+                               (and (eq status :a) (null parent) (equal submit-type "submit")) ; 4
+                               (and (eq status :r) parent (equal submit-type "save"))) ; 5
+                           (edit-article (make-instance 'article
+                                                        :id id
+                                                        :parent parent
+                                                        :title title
+                                                        :slug (slug article)
+                                                        :summary summary
+                                                        :body body
+                                                        :date (date article)
+                                                        :status (cond ((equal submit-type "submit") :a)
+                                                                      ((equal submit-type "save") :r))
+                                                        :cat cat
+                                                        :subcat subcat
+                                                        :photo photo
+                                                        :photo-direction pd
+                                                        :tags article-tags
+                                                        :author (author article))))
+                          ((and (eq status :a) (null parent) (equal submit-type "save")) ; 3
+                           (setf id (id (add-article (make-instance 'article
+                                                                    :id (get-new-article-id)
+                                                                    :parent id
+                                                                    :title title
+                                                                    :slug (slug article)
+                                                                    :summary summary
+                                                                    :body body
+                                                                    :date (date article)
+                                                                    :status :r
+                                                                    :cat cat
+                                                                    :subcat subcat
+                                                                    :photo photo
+                                                                    :photo-direction pd
+                                                                    :tags article-tags
+                                                                    :author (author article))))))
+                          ((and (eq status :r) parent (equal submit-type "submit")) ; 6
+                           (let ((parent-article (get-article-by-id parent)))
+                             ;; edit and publish parent-article
+                             (edit-article (make-instance 'article
+                                                          :id parent
+                                                          :parent nil
+                                                          :title title
+                                                          :slug (slug parent-article)
+                                                          :summary summary
+                                                          :body body
+                                                          :date (date parent-article)
+                                                          :status :a
+                                                          :cat cat
+                                                          :subcat subcat
+                                                          :photo photo
+                                                          :photo-direction pd
+                                                          :tags article-tags
+                                                          :author (author parent-article)))
+                             ;; discard article
+                             (edit-article (make-instance 'article
+                                                          :id id
+                                                          :status :p))
+                             (setf id parent))))))
               (sendmail :to (get-config "site.email.address")
                         :subject (translate "article-submitted-for-approval" id)
                         :body (translate "article-submitted-for-approval-body" id))

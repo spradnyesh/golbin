@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fed] ideas/categories from http://voices.yahoo.com
 *** TODO [ed] translations
     :CLOCK:
     CLOCK: [2013-11-04 Mon 16:12]--[2013-11-04 Mon 16:14] =>  0:02
@@ -3383,12 +3384,14 @@
      :ARCHIVE_TIME: 2013-11-04 Mon 16:12
      :END:
 **** DONE [ed] disable article approval
-     CLOSED: [2013-11-04 Mon 16:41]
+     CLOSED: [2013-11-05 Tue 16:14]
      :CLOCK:
+     CLOCK: [2013-11-05 Tue 15:42]--[2013-11-05 Tue 16:14] =>  0:32
+     CLOCK: [2013-11-05 Tue 14:56]--[2013-11-05 Tue 15:29] =>  0:33
      CLOCK: [2013-11-04 Mon 16:31]--[2013-11-04 Mon 16:41] =>  0:10
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-11-04 Mon 16:41
+     :ARCHIVE_TIME: 2013-11-05 Tue 16:15
      :END:
      - make author life as easy as possible
      - delete article/account if necessary by
