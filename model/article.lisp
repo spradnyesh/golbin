@@ -32,6 +32,24 @@
   (:documentation "Object of this class will act as the storage for Articles"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; misc
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro get-slug-and-id (article)
+  `(fmtnil (slug ,article) "-" (id ,article)))
+
+(defmacro get-article-url (article)
+  `(fmtnil "http://"
+           (cond ((string= (get-dimension-value "lang") "en-IN")
+                  "www")
+                 ((string= (get-dimension-value "lang") "hi-IN")
+                  "hi")
+                 ((string= (get-dimension-value "lang") "mr-IN")
+                  "mr"))
+           ".golb.in/"
+           (get-slug-and-id ,article)
+           ".html"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-article (article)

@@ -1,8 +1,5 @@
 (in-package :hawksbill.golbin.editorial)
 
-(defmacro get-slug-and-id (article)
-  `(fmtnil (slug ,article) "-" (id ,article)))
-
 (defun who-am-i ()
   (declare (inline))
   (get-author-by-handle (session-value :author)))

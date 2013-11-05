@@ -105,6 +105,8 @@
            :get-all-articles-for-approval
            :get-intermediate-articles
            :get-new-article-id
+           :get-slug-and-id
+           :get-article-url
            ;; category
            :add-category
            :get-category-by-slug
