@@ -66,15 +66,19 @@
           (unless email
             (navigation logged-in))))
 
+(defmacro logo-langs-url (lang)
+  `(concatenate 'string protocol (host) (request-uri*) "?lang=" ,lang))
+
 (defun logo (logged-in)
   (<:figure :id "logo"
             (<:h1 (<:a :href (h-genurl 'r-home)
                        (<:img :src "/static/css/images/golbin.png"
                               :alt (get-config "site.name"))))
             (unless logged-in
-              (logo-langs (concatenate 'string (request-uri*) "?lang=en-IN")
-                          (concatenate 'string (request-uri*) "?lang=mr-IN")
-                          (concatenate 'string (request-uri*) "?lang=hi-IN")))))
+              (let ((protocol (get-config "site.protocol.ed")))
+                (logo-langs (logo-langs-url "en-IN")
+                            (logo-langs-url "mr-IN")
+                            (logo-langs-url "hi-IN"))))))
 
 (defun site-search ()
   #- (and)

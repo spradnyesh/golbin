@@ -86,9 +86,10 @@
   (<:figure (<:h1 (<:a :href (h-genurl 'r-home)
                        (<:img :src "/static/css/images/golbin.png"
                               :alt (get-config "site.name"))))
-            (logo-langs "www.golb.in"
-                        "mr.golb.in"
-                        "hi.golb.in")))
+            (let ((protocol (get-config "site.protocol.fe")))
+              (logo-langs (concatenate 'string protocol "www.golb.in")
+                          (concatenate 'string protocol "mr.golb.in")
+                          (concatenate 'string protocol "hi.golb.in")))))
 
 (defun site-search ()
   #- (and)

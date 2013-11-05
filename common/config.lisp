@@ -5,6 +5,8 @@
 (setf *valid-langs* '("en-IN" "hi-IN" "mr-IN"))
 (setf *config*
       `(("master" ("site" ("name" "Golbin")
+                          ("protocol" ("fe" "http://")
+                                      ("ed" "http://"))
                           ("url" "golb.in")
                           ("lang" "en-IN")
                           ("envt" "prod")
