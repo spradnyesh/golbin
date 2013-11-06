@@ -104,13 +104,6 @@
         (<:li (<:h3 (<:a :href (h-genurl 'r-article-new-get)
                          (translate "article"))))))
 
-(defun nav-account ()
-  (<:ul :class "subnav"
-        (<:li (<:h3 (<:a :href (h-genurl 'r-account-password-get)
-                         (translate "change-password"))))
-        (<:li (<:h3 (<:a :href (h-genurl 'r-account-email-get)
-                         (translate "change-email"))))))
-
 (defun nav-misc ()
   (let ((author-type (session-value :author-type)))
     (<:ul :class "subnav"
@@ -133,8 +126,8 @@
                       (<:li :class "prinav"
                             (<:h2 (<:a :href "#" (translate "reports"))))
                       (<:li :class "prinav"
-                            (<:h2 (<:a :href "#" (translate "account")))
-                            (nav-account))
+                            (<:h2 (<:a :href (h-genurl 'r-account-get)
+                                       (translate "account"))))
                       (<:li :class "prinav"
                             (<:h2 (<:a :href "#" (translate "misc")))
                             (nav-misc))))

@@ -52,19 +52,17 @@
            :gender
            :age
            :email
-           :address-1
-           :address-2
-           :address-3
+           :street
            :city
            :state
            :country
            :zipcode
-           :contact-1
-           :contact-2
-           :contact-3
+           :phone
            :bank-name
+           :bank-branch
            :bank-account-no
            :bank-ifsc
+           :paypal-userid
            :author-type
            :education
            :visitor

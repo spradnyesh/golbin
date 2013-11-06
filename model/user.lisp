@@ -25,8 +25,10 @@
    (location :initarg :location :initform nil :accessor location)
    (phone :initarg :phone :initform nil :accessor phone)
    (bank-name :initarg :bank-name :initform nil :accessor bank-name)
+   (bank-branch :initarg :bank-branch :initform nil :accessor bank-branch)
    (bank-account-no :initarg :account :initform nil :accessor bank-account-no)
    (bank-ifsc :initarg :ifsc :initform nil :accessor bank-ifsc)
+   (paypal-userid :initarg :ifsc :initform nil :accessor paypal-userid)
    (author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
    (education :initarg :education :initform nil :accessor education)))
 

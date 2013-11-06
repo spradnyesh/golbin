@@ -63,6 +63,8 @@
 (define-route r-tmp-photo-post ("/tmp-photo/" :method :post) (v-tmp-photo-post))
 
 ;; account
+(define-route r-account-get ("/account/") (v-account-get))
+(define-route r-account-post ("/account/" :method :post) (v-account-post))
 (define-route r-account-password-get ("/account/password/") (v-account-password-get))
 (define-route r-account-password-post ("/account/password/" :method :post) (v-account-password-post))
 (define-route r-account-password-done ("/account/password/:status"

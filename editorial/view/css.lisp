@@ -21,6 +21,7 @@
                                   :width "1200px"
                                   :margin "0 auto"))
     (("input") (:font "inherit"))
+    ((".label") (:margin-right "20px"))
     (("select") (:font "inherit"))
     (("textarea") (:font "inherit"))
     ;; common
@@ -37,8 +38,8 @@
                           :margin-bottom "10px"))
     (("p") (:margin "16px 0"))
     (("a") (:text-decoration "none"
-                             :color "#61a1f0"))
-    (("a:hover") (:color "#8dba53"))
+                             :color "#3c668a"))
+    (("a:hover") (:color "#113152"))
     (("figure") (:margin "0"))
     (("strong") (:font-weight "bold"))
     (("input, textarea") (:border "3px solid #ddd"
@@ -105,12 +106,12 @@
                                  :border "3px solid #abcdef"
                                  :padding "7px 20px"
                                  :text-transform "uppercase"
-                                 :background-color "#61a1f0"
+                                 :background-color "#3c668a"
                                  :color "#fff"
                                  :font-weight "bold"
                                  :font-size "12px"))
-    ((".submit:hover") (:border-color "#afdc75"
-                                      :background-color "#8dba53"
+    ((".submit:hover") (:border-color "#3c668a"
+                                      :background-color "#113152"
                                       :color "#fff"))
     ;; hd
     (("#hd") (:height "200px"))
@@ -204,10 +205,10 @@
     (("#articles .crud .delete") (:background-color "#fff"
                                                     :border "0"
                                                     :cursor "pointer"
-                                                    :color "#61a1f0"
+                                                    :color "#3c668a"
                                                     :padding "5px 0"
                                                     :margin-left "-3px"))
-    (("#articles .crud .delete:hover") (:color "#8dba53"))
+    (("#articles .crud .delete:hover") (:color "#113152"))
     ((".index-thumb") (:float "left"
                               :padding-right "10px"))
     (("#articles .a-title") (:color "#21629C"))
@@ -302,5 +303,4 @@
                               :border-bottom "1px dotted gray"))
     ;; accounts
     (("#accounts") (:margin "0 20px"))
-    (("#accounts label") (:display "block"
-                                   :margin "5px 0"))))
+    (("#accounts label") (:margin "5px 0"))))

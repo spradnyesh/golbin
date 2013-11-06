@@ -2,6 +2,14 @@
 
 * tasks
 ** backlog
+*** [bug][ed] email-change
+    - new email should not be activated (old keeps on working) until it is verified
+*** TODO [ed] account details
+    :CLOCK:
+    CLOCK: [2013-11-06 Wed 18:39]--[2013-11-06 Wed 19:12] =>  0:33
+    CLOCK: [2013-11-06 Wed 17:07]--[2013-11-06 Wed 17:34] =>  0:27
+    :END:
+    - enter/edit bank/paypal account
 *** [fed] comments
     - (dis)like
     - reply

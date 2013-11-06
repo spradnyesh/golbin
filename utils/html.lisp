@@ -24,8 +24,8 @@
                    name
                    "")
            :class class
-           (<:td (<:label :class "label"
-                          :for for
+           (<:td :class "label"
+                 (<:label :for for
                           (if mandatory
                               (fmtnil (translate for)
                                       (<:span :class "mandatory" "*"))
@@ -33,16 +33,17 @@
                  (when tooltip (tooltip tooltip)))
            (<:td ,@body))))
 
-(defmacro label-input (for typeof &optional (mandatory nil))
-  `(<:p (<:label :class "label"
-                 :for ,for
-                 (if ,mandatory
-                             (fmtnil (translate ,for)
-                                     (<:span :class "mandatory" "*"))
-                             (fmtnil (translate ,for))))
-        (<:input :class "input" :type ,typeof
-                 :name ,for
-                 :id ,for)))
+(defmacro label-input (for typeof &key (mandatory nil) (tooltip nil))
+  `(<:div (<:p (<:label :class "label"
+                        :for ,for
+                        (if ,mandatory
+                            (fmtnil (translate ,for)
+                                    (<:span :class "mandatory" "*"))
+                            (fmtnil (translate ,for))))
+               (when ,tooltip (tooltip ,tooltip)))
+          (<:input :class "input" :type ,typeof
+                   :name ,for
+                   :id ,for)))
 
 (defmacro submit-success (ajax route)
   `(if ,ajax
@@ -67,10 +68,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun tr-td-input (name &key (id nil) (class "") (value "") (typeof "text") (mandatory nil) (tooltip nil))
+(defun tr-td-input (name &key (id nil) (class "") (value "") (typeof "text") (mandatory nil) (tooltip nil) (disabled nil))
   (tr-td-helper (<:input :type typeof
                          :name for
-                         :value value)))
+                         :value value
+                         (when disabled :disabled))))
 
 (defun tr-td-text (name &key (id nil) (class "") (value "") (cols 40) (rows 7) (mandatory nil) (tooltip nil))
   (tr-td-helper (<:textarea :cols cols

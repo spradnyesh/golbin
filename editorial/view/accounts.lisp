@@ -25,6 +25,77 @@
     err0r))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; account view functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun v-account-get ()
+  (let ((author (who-am-i)))
+    (template
+     :title "change-account-details"
+     :js nil
+     :body (<:div :class "wrapper"
+                  (<:form :action (h-genurl 'r-account-post)
+                          :method "POST"
+                          (<:table (tr-td-input "name"
+                                                :value (name author)
+                                                :disabled t
+                                                :tooltip "contact-admin-to-change")
+                                   (tr-td-input "username"
+                                                :value (username author)
+                                                :disabled t
+                                                :tooltip "cannot-change")
+                                   (tr-td-input "alias"
+                                                :value (alias author)
+                                                :disabled t
+                                                :tooltip "cannot-change")
+                                   (<:tr (<:td (<:label :class "label"
+                                                        :for "password"
+                                                        (translate "password")))
+                                         (<:td (<:a :href (h-genurl 'r-account-password-get)
+                                                    (translate "change-password"))))
+                                   (<:tr (<:td (<:label :class "label"
+                                                        :for "email"
+                                                        (translate "email")))
+                                         (<:td (<:a :href (h-genurl 'r-account-email-get)
+                                                    (translate "change-email"))))
+                                   (tr-td-input "street"
+                                                :value (street author))
+                                   (tr-td-input "city"
+                                                :value (city author)
+                                                :mandatory t)
+                                   (tr-td-input "state"
+                                                :value (state author)
+                                                :mandatory t)
+                                   (tr-td-input "country"
+                                                :value (country author)
+                                                :mandatory t)
+                                   (tr-td-input "zipcode"
+                                                :value (zipcode author)
+                                                :mandatory t)
+                                   (tr-td-input "phone"
+                                                :value (phone author))
+                                   (tr-td-input "bank-name"
+                                                :value (bank-name author)
+                                                :tooltip "bank-or-paypal")
+                                   (tr-td-input "bank-branch"
+                                                :value (bank-branch author)
+                                                :tooltip "bank-or-paypal")
+                                   (tr-td-input "bank-account-no"
+                                                :value (bank-account-no author)
+                                                :tooltip "bank-or-paypal")
+                                   (tr-td-input "bank-ifsc"
+                                                :value (bank-ifsc author)
+                                                :tooltip "bank-or-paypal")
+                                   (tr-td-input "paypal-userid"
+                                                :value (paypal-userid author)
+                                                :tooltip "bank-or-paypal")
+                                   (tr-td-input "education"
+                                                :value (education author))
+                                   (tr-td-submit)))))))
+
+(defun v-account-post ()
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; password view functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-account-password-get ()
@@ -90,7 +161,7 @@
                                        :method "POST"
                                        :id "email"
                                        (<:fieldset :class "inputs"
-                                                   (label-input "new-email" "text")
+                                                   (label-input "new-email" "text" :tooltip "needs-verification")
                                                    (<:p (<:input :type "submit"
                                                                  :name "submit"
                                                                  :class "submit"

@@ -42,6 +42,8 @@
            :r-register-do-confirm
            :r-register-done-confirm
            :r-ajax-register-post
+           :r-account-get
+           :r-account-post
            :r-account-password-get
            :r-account-password-post
            :r-account-password-done

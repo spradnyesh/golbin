@@ -91,7 +91,9 @@
                         (<:fieldset :class "inputs"
                                     (<:table
                                      (<:tbody
-                                      (tr-td-input "name" :mandatory t)
+                                      (tr-td-input "name"
+                                                   :mandatory t
+                                                   :tooltip "name-match-bank-paypal")
                                       (tr-td-input "age" :mandatory t
                                                    :tooltip (translate "min-18-years"))
                                       (tr-td-input "email" :mandatory t)
