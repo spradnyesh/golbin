@@ -115,6 +115,9 @@
 (define-route r-ajax-register-post ("/ajax/register/" :method :post
                                                       :content-type "application/json")
   (v-register-post :ajax t))
+(define-route r-ajax-account-post ("/ajax/account/" :method :post
+                                                    :content-type "application/json")
+  (v-account-post :ajax t))
 (define-route r-ajax-account-password-post ("/ajax/account/password/" :method :post
                                                                       :content-type "application/json")
   (v-account-password-post :ajax t))

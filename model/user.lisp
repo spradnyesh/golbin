@@ -17,7 +17,7 @@
    (email :initarg :email :initform nil :accessor email)))
 
 (defclass author (user)
-  ((street :initarg :address1 :initform nil :accessor street)
+  ((street :initarg :street :initform nil :accessor street)
    (city :initarg :city :initform nil :accessor city)
    (state :initarg :state :initform nil :accessor state)
    (country :initarg :country :initform nil :accessor country)
@@ -26,9 +26,9 @@
    (phone :initarg :phone :initform nil :accessor phone)
    (bank-name :initarg :bank-name :initform nil :accessor bank-name)
    (bank-branch :initarg :bank-branch :initform nil :accessor bank-branch)
-   (bank-account-no :initarg :account :initform nil :accessor bank-account-no)
-   (bank-ifsc :initarg :ifsc :initform nil :accessor bank-ifsc)
-   (paypal-userid :initarg :ifsc :initform nil :accessor paypal-userid)
+   (bank-account-no :initarg :bank-account-no :initform nil :accessor bank-account-no)
+   (bank-ifsc :initarg :bank-ifsc :initform nil :accessor bank-ifsc)
+   (paypal-userid :initarg :paypal-userid :initform nil :accessor paypal-userid)
    (author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
    (education :initarg :education :initform nil :accessor education)))
 

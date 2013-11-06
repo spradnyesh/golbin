@@ -3,6 +3,29 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun validate-account (gender age city state country zipcode)
+  (let ((err0r nil))
+    (cannot-be-empty gender "gender" err0r
+      (unless (or (string= gender "m") (string= gender "f"))
+        (push (translate "invalid-gender") err0r)))
+    (cannot-be-empty age "age" err0r
+      (handler-case (let ((age (parse-integer age)))
+                      (unless (< 17 age 71)
+                        (push (translate "invalid-age") err0r)))
+        (sb-int:simple-parse-error ()
+          (push (translate "invalid-age") err0r))))
+    (cannot-be-empty city "city" err0r)
+    (cannot-be-empty state "state" err0r)
+    (cannot-be-empty country "country" err0r)
+    (cannot-be-empty zipcode "zipcode" err0r
+      (progn
+        (handler-case (parse-integer zipcode)
+          (sb-int:simple-parse-error ()
+            (push (translate "invalid-zipcode") err0r)))
+        (unless (< 3 (length zipcode) 8)
+          (push (translate "invalid-zipcode") err0r))))
+    err0r))
+
 (defun validate-account-password (current-password old-password new-password new-password-2)
   (let ((err0r nil))
     (cannot-be-empty old-password "old-password" err0r)
@@ -32,7 +55,7 @@
     (template
      :title "change-account-details"
      :js nil
-     :body (<:div :class "wrapper"
+     :body (<:div :id "accounts"
                   (<:form :action (h-genurl 'r-account-post)
                           :method "POST"
                           (<:table (tr-td-input "name"
@@ -57,6 +80,16 @@
                                                         (translate "email")))
                                          (<:td (<:a :href (h-genurl 'r-account-email-get)
                                                     (translate "change-email"))))
+                                   (<:tr (<:td (<:label :class "label" :for "gender"
+                                                        (translate "gender")
+                                                        (<:span :class "mandatory" "*")))
+                                         (<:td (<:select :class "input"
+                                                         :name "gender"
+                                                         (<:option :value "m" (translate "male"))
+                                                         (<:option :value "f" (translate "female")))))
+                                   (tr-td-input "age"
+                                                :value (age author)
+                                                :mandatory t)
                                    (tr-td-input "street"
                                                 :value (street author))
                                    (tr-td-input "city"
@@ -92,8 +125,54 @@
                                                 :value (education author))
                                    (tr-td-submit)))))))
 
-(defun v-account-post ()
-  )
+(defun v-account-post (&key (ajax nil))
+  (let* ((gender (post-parameter "gender"))
+         (age (post-parameter "age"))
+         (street (post-parameter "street"))
+         (city (post-parameter "city"))
+         (state (post-parameter "state"))
+         (country (post-parameter "country"))
+         (zipcode (post-parameter "zipcode"))
+         (phone (post-parameter "phone"))
+         (bank-name (post-parameter "bank-name"))
+         (bank-branch (post-parameter "bank-branch"))
+         (bank-account-no (post-parameter "bank-account-no"))
+         (bank-ifsc (post-parameter "bank-ifsc"))
+         (paypal-userid (post-parameter "paypal-userid"))
+         (education (post-parameter "education"))
+         (author (who-am-i))
+         (err0r (validate-account gender age city state country zipcode)))
+    (if (not err0r)
+        (progn
+          (edit-author (make-instance 'author
+                                      :id (id author)
+                                      :username (username author)
+                                      :alias (alias author)
+                                      :handle (handle author)
+                                      :password (password author)
+                                      :salt (salt author)
+                                      :name (name author)
+                                      :status (status author)
+                                      :gender gender
+                                      :age age
+                                      :email (email author)
+                                      :street street
+                                      :city city
+                                      :state state
+                                      :country country
+                                      :zipcode zipcode
+                                      :phone phone
+                                      :bank-name bank-name
+                                      :bank-branch bank-branch
+                                      :bank-account-no bank-account-no
+                                      :bank-ifsc bank-ifsc
+                                      :paypal-userid paypal-userid
+                                      :education education))
+          (submit-success ajax
+                          (h-genurl 'r-account-get)))
+        (submit-error ajax
+                      err0r
+                      (redirect (h-genurl 'r-account-get))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; password view functions

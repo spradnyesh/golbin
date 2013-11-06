@@ -4,12 +4,6 @@
 ** backlog
 *** [bug][ed] email-change
     - new email should not be activated (old keeps on working) until it is verified
-*** TODO [ed] account details
-    :CLOCK:
-    CLOCK: [2013-11-06 Wed 18:39]--[2013-11-06 Wed 19:12] =>  0:33
-    CLOCK: [2013-11-06 Wed 17:07]--[2013-11-06 Wed 17:34] =>  0:27
-    :END:
-    - enter/edit bank/paypal account
 *** [fed] comments
     - (dis)like
     - reply
@@ -3504,6 +3498,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-05 Tue 18:08
      :END:
+**** DONE [ed] account details
+     CLOSED: [2013-11-06 Wed 20:17]
+     :CLOCK:
+     CLOCK: [2013-11-06 Wed 20:03]--[2013-11-06 Wed 20:17] =>  0:14
+     CLOCK: [2013-11-06 Wed 19:12]--[2013-11-06 Wed 19:55] =>  0:43
+     CLOCK: [2013-11-06 Wed 18:39]--[2013-11-06 Wed 19:12] =>  0:33
+     CLOCK: [2013-11-06 Wed 17:07]--[2013-11-06 Wed 17:34] =>  0:27
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-06 Wed 20:17
+     :END:
+     - enter/edit bank/paypal account
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

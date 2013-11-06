@@ -9,13 +9,12 @@
                               :hash hash
                               :lang lang)))
 
-(defun validate-register (email username password password2 name age gender phone-number)
+(defun validate-register (email username password password2 name age gender)
   (let ((err0r nil))
     (cannot-be-empty name "name" err0r)
     (cannot-be-empty age "age" err0r
       (handler-case (let ((age (parse-integer age)))
-                      (when (or (< age 18)
-                                (> age 70))
+                      (unless (< 17 age 71)
                         (push (translate "invalid-age") err0r)))
         (sb-int:simple-parse-error ()
           (push (translate "invalid-age") err0r))))
@@ -28,9 +27,8 @@
     (unless (string-equal password password2)
       (push (translate "passwords-no-match") err0r))
     (cannot-be-empty gender "gender" err0r
-      (unless (or (string= gender "m")(string= gender "f"))
+      (unless (or (string= gender "m") (string= gender "f"))
         (push (translate "invalid-gender") err0r)))
-    (cannot-be-empty phone-number "phone-number" err0r)
     (when (get-author-by-username username)
       (push (translate "username-already-exists") err0r))
     (when (get-author-by-email email)
@@ -116,7 +114,7 @@
                                                             :name "gender"
                                                             (<:option :value "m" (translate "male"))
                                                             (<:option :value "f" (translate "female")))))
-                                      (tr-td-input "phone number" :mandatory t)
+                                      (tr-td-input "phone number")
                                       (<:tr (<:td)
                                             (<:td (translate "tnc-and-originality"
                                                              (<:a :href (h-genurl 'r-tnc) (translate "tnc"))
@@ -140,8 +138,7 @@
                                    password2
                                    name
                                    age
-                                   gender
-                                   phone-number)))
+                                   gender)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
                (hash (insecure-encrypt (concatenate 'string

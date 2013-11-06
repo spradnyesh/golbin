@@ -41,7 +41,7 @@ no=no
 add-a-comment=Add a comment
 user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span><span class="c-says"> said (on </span><span class="c-date">~a</span> at <span class="c-time">~a</span>):</p>
 captcha-verification-failed=Recaptcha verification failed with error ~a
-submit-error=There are errors in the submitted email. Please correct them and submit again.
+submit-error=There are errors in the submitted form. Please correct them and submit again.
 username-or-email=Please enter your username or email address
 password-email=Please click ~a to change your password
 change-email-email=Please click ~a to confirm changing your email
@@ -60,3 +60,5 @@ faq-body=<div class="section"><h2>Brand new to Golbin?</h2><p>Welcome!</p><p>Gol
 name-match-bank-paypal=Your given name should exactly match that in your bank account (if you will receive payment via NEFT in India), or your PayPal account.
 bank-or-paypal=You should provide atleast one of bank details or PayPal information to receive payment
 bank-ifsc=Bank IFSC code
+invalid-gender=Gender should be either male or female
+invalid-phone=Enter only digits (without any '+' or '-' symbols), including country and region code

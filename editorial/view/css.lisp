@@ -249,8 +249,10 @@
                                   :top "20px"
                                   :right "20px"))
     (("#pane .message") (:margin "50px 20px 20px"))
+    (("#pane ul") (:list-style "disc inside none"))
     (("#pane ul.photo") (:margin "20px 0 0 10px"
-                                 :height "500px"))
+                                 :height "500px"
+                                 :list-style "none inside none"))
     (("#pane ul.photo li") (:float "left"
                                    :height "130px"
                                    :margin "0 10px"
