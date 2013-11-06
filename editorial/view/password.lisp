@@ -38,7 +38,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-password-get ()
   (template
-   :title (translate "change-password")
+   :title "change-password"
    :js nil
    :body (<:div :class "wrapper"
                 :id "password"
@@ -79,7 +79,7 @@
 
 (defun v-password-email ()
   (template
-   :title (translate "change-password")
+   :title "change-password"
    :js nil
    :body (<:div :class "wrapper"
                 :id "password"
@@ -94,7 +94,7 @@
          (err0r (validate-password-change-get username timestamp)))
     (if (not err0r)
         (template
-         :title (translate "change-password")
+         :title "change-password"
          :js nil
          :body (<:div :class "wrapper"
                       :id "password"
@@ -115,7 +115,7 @@
                                                      :value hash)
                                             (tr-td-submit)))))))
         (template
-         :title (translate "change-password")
+         :title "change-password"
          :js nil
          :body (<:div :class "wrapper"
                       :id "password"
@@ -152,7 +152,7 @@
 
 (defun v-password-changed (status)
   (template
-   :title (translate "change-password")
+   :title "change-password"
    :js nil
    :body (<:div :class "wrapper"
                 (if (string= status "yes")

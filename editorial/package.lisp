@@ -31,6 +31,10 @@
            :r-ajax-tags
            :r-robots
            :r-404
+           :r-tnc
+           :r-faq
+           :r-help
+           :r-originality
            :r-register-get
            :r-register-post
            :r-why-register

@@ -29,7 +29,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-account-password-get ()
   (template
-   :title (translate "change-password")
+   :title "change-password"
    :js nil
    :body (<:div :id "accounts"
                 (<:form :action (h-genurl 'r-account-password-post)
@@ -71,7 +71,7 @@
 
 (defun v-account-password-done (status)
   (template
-   :title (translate "change-password")
+   :title "change-password"
    :js nil
    :body (<:div :class "wrapper"
                 (if (string= status "yes")
@@ -83,7 +83,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-account-email-get ()
   (template
-   :title (translate "change-email")
+   :title "change-email"
    :js nil
    :body (<:div :id "accounts"
                 (<:form :action (h-genurl 'r-account-email-post)
@@ -123,7 +123,7 @@
 
 (defun v-account-email-hurdle (email)
   (template
-   :title (translate "change-email")
+   :title "change-email"
    :js nil
    :body (<:div :class "wrapper"
                 (<:p (translate "confirmation-email-sent"
@@ -150,7 +150,7 @@
 
 (defun v-account-email-done (status)
   (template
-   :title (translate "change-email")
+   :title "change-email"
    :js nil
    :body (if (string= status "yes")
       (translate "email-changed")
