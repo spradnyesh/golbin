@@ -18,7 +18,7 @@
     ;; undo .yui3-g css
     ((".yui3-g") (:letter-spacing "normal"
                                   :word-spacing "normal"
-                                  :width "1200px"
+                                  :width "996px"
                                   :margin "0 auto"))
     (("input") (:font "inherit"))
     ((".label") (:margin-right "20px"))
@@ -30,8 +30,7 @@
                            :font-family "'Ubuntu',Arial,sans-serif"
                            :font-size "14px"
                            :line-height "21px"
-                           :margin "0 auto"
-                           :min-width "1200px"))
+                           :margin "0 auto"))
     (("h1") (:font-weight "bold"
                           :font-size "160%"
                           :display "inline-block"
@@ -140,7 +139,7 @@
                                :text-decoration "none"
                                :color "#fff"
                                :padding "9px 0"
-                               :width "199px"
+                               :width "165px"
                                :white-space "nowrap"))
     (("#nav a:hover") (:color "#eeb000"))
     (("#nav li:hover ul") (:display "block"
@@ -187,11 +186,11 @@
                      :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
                      :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
                      :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
-                     :padding "20px 190px"
+                     :padding "20px 100px"
                      :height "50px"))
     (("#ft a") (:color "#fff"))
     (("#ft p") (:float "left"
-                       :padding-right "35px"))
+                       :padding-right "30px"))
     ;; home
     (("#articles p") (:margin "0"))
     (("#articles li") (:min-height "50px"
