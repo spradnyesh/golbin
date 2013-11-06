@@ -2,17 +2,32 @@
 
 * tasks
 ** backlog
-*** [performance] http://www.appelsiini.net/projects/lazyload
-*** [fed] ideas/categories from http://voices.yahoo.com
-*** TODO [ed] translations
-    :CLOCK:
-    CLOCK: [2013-11-04 Mon 16:12]--[2013-11-04 Mon 16:14] =>  0:02
-    CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
-    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
-    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
-    :END:
+*** [fed] comments
+    - (dis)like
+    - reply
+    - flag/report-abuse
+    - eg: http://www.squidoo.com/i-am-malala-59938
+*** [fe] 404
+    - http://www.squidoo.com/
+*** [fe] author trophies
+    - http://www.squidoo.com/member/awards/BearTale
+    - http://www.squidoo.com/member/awards/britflorida
+    - http://www.squidoo.com/member/awards/raveonstudio
+    - http://www.squidoo.com/member/awards/Jadelynx
+*** [fe] page background
+    - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
+    - http://www.squidoo.com/linda-mccartneys-home-cooking
+    - http://www.squidoo.com/easy-chicken-soup
+    - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
+*** [fe] index page
+    - http://www.squidoo.com/topics/food-and-cooking/recipes/soups-and-stew-recipes
+*** [fe] author page
+    - http://www.squidoo.com/lensmasters/sahadeva
 *** TODO [ed] static pages
     :CLOCK:
+    CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
+    CLOCK: [2013-11-06 Wed 14:19]--[2013-11-06 Wed 14:32] =>  0:13
+    CLOCK: [2013-11-06 Wed 13:17]--[2013-11-06 Wed 13:26] =>  0:09
     CLOCK: [2013-11-01 Fri 17:00]--[2013-11-01 Fri 17:25] =>  0:25
     CLOCK: [2013-11-01 Fri 16:15]--[2013-11-01 Fri 16:30] =>  0:15
     CLOCK: [2013-11-01 Fri 14:02]--[2013-11-01 Fri 14:42] =>  0:40
@@ -26,6 +41,17 @@
     - http://www.squidoo.com/squidoo/65355501-Terms-of-Service
     - http://www.squidoo.com/originalitypact
     - (help and tips) http://www.squidoo.com/squidoo
+*** [performance] http://www.appelsiini.net/projects/lazyload
+*** [fed] ideas/categories
+    - http://voices.yahoo.com
+    - http://www.squidoo.com/
+*** TODO [ed] translations
+    :CLOCK:
+    CLOCK: [2013-11-04 Mon 16:12]--[2013-11-04 Mon 16:14] =>  0:02
+    CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
+    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
+    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
+    :END:
 *** [fe] investigate in-text ads and how to dynamically add them in articles at (right?) places
 *** [fed] contact-us/feedback form
     - ed.g.in/feedback.html

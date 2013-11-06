@@ -13,6 +13,8 @@
                                                      :line-height 0
                                                      :visibility "hidden"
                                                      :clear "both"))
+    ((".right") (:float "right"))
+    ((".left") (:float "left"))
     ;; undo .yui3-g css
     ((".yui3-g") (:letter-spacing "normal"
                                   :word-spacing "normal"
@@ -184,7 +186,7 @@
                      :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
                      :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
                      :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
-                     :padding "20px 200px"
+                     :padding "20px 190px"
                      :height "50px"))
     (("#ft a") (:color "#fff"))
     (("#ft p") (:float "left"
