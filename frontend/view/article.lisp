@@ -4,30 +4,34 @@
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro article-preamble-markup-common (key)
-  `(translate ,key
-              (<:a :id "a-author"
-                  :href (h-genurl 'r-author
-                                  :author (handle (author article)))
-                  (alias (author article)))
-              (prettyprint-date timestamp)
-              (prettyprint-time timestamp)
-              (<:a :id "a-cat"
-                  :href (h-genurl 'r-cat
-                                  :cat (slug (cat article)))
-                  (name (cat article)))
-              (if (string= "--" (name (subcat article)))
-                  ""
-                  (concatenate 'string
-                               " / "
-                               (<:a :id "a-cat-subcat"
-                                    :href (h-genurl 'r-cat-subcat
-                                                    :cat (slug (cat article))
-                                                    :subcat (slug (subcat article)))
-                                    (name (subcat article)))))))
+  `(let ((username (username (author article)))
+         (cat (cat article))
+         (subcat (subcat article)))
+     (translate ,key
+                (<:a :id "a-author"
+                     :href (h-genurl 'r-author
+                                     :author username)
+                     username)
+                (prettyprint-date timestamp)
+                (prettyprint-time timestamp)
+                (<:a :id "a-cat"
+                     :href (h-genurl 'r-cat
+                                     :cat (slug cat))
+                     (name cat))
+                (if (string= "--" (name subcat))
+                    ""
+                    (concatenate 'string
+                                 " / "
+                                 (<:a :id "a-cat-subcat"
+                                      :href (h-genurl 'r-cat-subcat
+                                                      :cat (slug cat)
+                                                      :subcat (slug subcat))
+                                      (name subcat)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun article-preamble-markup (article)
   (let ((timestamp (universal-to-timestamp (date article))))
     (fmtnil
