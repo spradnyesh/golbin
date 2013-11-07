@@ -5,10 +5,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass user ()
   ((id :initarg :id :initform nil :accessor id)
-   (username :initarg :username :initform nil :accessor username) ; used for logging in (can be the same as handle)
-   (alias :initarg :alias :initform nil :accessor alias) ; name that the user wants others to see
-   (handle :initarg :handle :initform nil :accessor handle) ; sanitized alias for use in URLs
-   (password :initarg :password :initform nil :accessor password) ; encrypted
+   (username :initarg :username :initform nil :accessor username)
+   (password :initarg :password :initform nil :accessor password) ; one-way hashed
    (salt :initarg :salt :initform nil :accessor salt) ; for encryption of password
    (name :initarg :name :initform nil :accessor name)
    (status :initarg :status :initform nil :accessor status) ; :d draft, :a active, :b blocked
@@ -32,8 +30,7 @@
 
 (defclass mini-author ()
   ((id :initarg :id :initform nil :accessor id)
-   (handle :initarg :handle :initform nil :accessor handle)
-   (alias :initarg :alias :initform nil :accessor alias))
+   (username :initarg :username :initform nil :accessor username))
   (:documentation "to be used as a foreign key in articles"))
 
 (defclass author-storage ()
@@ -42,19 +39,19 @@
   (:documentation "Object of this class will act as the storage for Authors"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; helper macros
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-mini-author ()
-  (multiple-value-bind (author-id author-alias author-handle)
-      (get-mini-author-details-from-id (get-current-author-id))
-    (make-instance 'mini-author
-                   :id author-id
-                   :alias author-alias
-                   :handle author-handle)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun who-am-i ()
+  (declare (inline))
+  (get-author-by-username (session-value :author)))
+
+(defun get-mini-author ()
+  (multiple-value-bind (id username)
+      (get-mini-author-details (who-am-i))
+    (make-instance 'mini-author
+                   :id id
+                   :username username)))
+
 (defun verify-login (username password)
   (let ((author (get-author-by-username username)))
     (when (and author
@@ -86,18 +83,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-mini-author-details-from-id (id)
-  (let ((author (find id (get-all-authors)
-                      :key #'id)))
-    (values (id author)
-            (alias author)
-            (handle author))))
-
-(defun get-author-by-handle (handle)
-  (find handle
-        (get-all-authors)
-        :key #'handle
-        :test #'string-equal))
+(defun get-mini-author-details (author)
+  (values (id author)
+          (username author)))
 
 (defun get-author-by-username (username)
   (find username
@@ -114,9 +102,6 @@
 (defun get-random-author ()
   (let ((all-authors (get-all-authors)))
     (nth (random (length all-authors)) all-authors)))
-
-(defun get-current-author-id ()
-  (id (get-author-by-handle (session-value :author))))
 
 (defun find-author-by-email-salt (email salt)
   (find (make-instance 'author
@@ -155,9 +140,7 @@
       (let ((slug (slugify author-name)))
         (add-author (make-instance 'author
                                    :name author-name
-                                   :alias author-name
                                    :username slug
-                                   :handle slug
                                    :password slug
                                    :salt (generate-salt 32)
                                    :status :a))))))

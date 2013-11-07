@@ -57,10 +57,6 @@
                                                 :value (username author)
                                                 :disabled t
                                                 :tooltip "cannot-change")
-                                   (tr-td-input "alias"
-                                                :value (alias author)
-                                                :disabled t
-                                                :tooltip "cannot-change")
                                    (<:tr (<:td (<:label :class "label"
                                                         :for "password"
                                                         (translate "password")))
@@ -121,8 +117,6 @@
           (edit-author (make-instance 'author
                                       :id (id author)
                                       :username (username author)
-                                      :alias (alias author)
-                                      :handle (handle author)
                                       :password (password author)
                                       :salt (salt author)
                                       :name name

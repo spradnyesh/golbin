@@ -83,8 +83,8 @@
                                                   :page 0))
             (article-carousel-container "Articles authored by:- "
                                         (<:span (<:a :href (h-genurl 'r-author
-                                                                     :author (handle author))
-                                                     (alias author)))
+                                                                     :author (username author))
+                                                     (username author)))
                                         author-list
                                         (h-genurl 'r-ajax-article-related
                                                   :id id

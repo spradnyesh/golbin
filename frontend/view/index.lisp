@@ -66,11 +66,11 @@
                 (get-articles-by-cat-subcat cat subcat)
                 'r-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))
 
-(defun v-author (author-handle &optional (page 0))
-  (let ((author (get-author-by-handle (string-to-utf-8 author-handle :latin1))))
+(defun v-author (username &optional (page 0))
+  (let ((author (get-author-by-username (string-to-utf-8 username :latin1))))
     (view-index (name author)
                 (get-articles-by-author author)
-                'r-author-page :author (handle author))))
+                'r-author-page :author (username author))))
 
 (defun v-tag (slug &optional (page 0))
   (let ((slug (string-to-utf-8 slug :latin1)))

@@ -44,8 +44,6 @@
            :tag-storage
            :user
            :username
-           :handle
-           :alias
            :password
            :salt
            :email
@@ -124,15 +122,13 @@
            ;; user
            :add-author
            :edit-author
-           :get-mini-author-details-from-id
-           :get-author-by-handle
            :get-author-by-username
            :get-author-by-email
            :get-random-author
-           :get-current-author-id
            :verify-login
            :find-author-by-email-salt
            :get-mini-author
+           :who-am-i
            ;; comment
            :userurl
            :useremail

@@ -51,7 +51,7 @@
         (validate-login username password)
       (if status ; login validated, and author found
           (progn (start-session)
-                 (setf (session-value :author) (handle err0r))
+                 (setf (session-value :author) (username err0r))
                  (setf (session-value :author-type) (author-type err0r))
                  (submit-success ajax
                                  (h-genurl 'r-home)))

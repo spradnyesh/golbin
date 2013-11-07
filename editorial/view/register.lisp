@@ -83,7 +83,6 @@
                                             (<:td (<:input :class "input" :type "text"
                                                            :name "username")))
                                       (tr-td-input "password" :typeof "password" :mandatory t)
-                                      (tr-td-input "alias" :tooltip "alias")
                                       (<:tr (<:td)
                                             (<:td (translate "tnc-and-originality"
                                                              (<:a :href (h-genurl 'r-tnc) (translate "tnc"))
@@ -94,7 +93,6 @@
 (defun v-register-post (&key (ajax nil))
   (let* ((email (post-parameter "email"))
          (username (post-parameter "username"))
-         (alias (post-parameter "alias"))
          (password (post-parameter "password"))
          (err0r (validate-register email username password)))
     (if (not err0r)
@@ -107,7 +105,6 @@
           (add-author (make-instance 'author
                                      :email email
                                      :username username
-                                     :alias (if alias alias username)
                                      :password (hash-password password)
                                      :salt salt
                                      :status :a))
