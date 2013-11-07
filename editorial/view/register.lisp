@@ -9,30 +9,17 @@
                               :hash hash
                               :lang lang)))
 
-(defun validate-register (email username password password2 name age gender)
+(defun validate-register (email username password)
   (let ((err0r nil))
-    (cannot-be-empty name "name" err0r)
-    (cannot-be-empty age "age" err0r
-      (handler-case (let ((age (parse-integer age)))
-                      (unless (< 17 age 71)
-                        (push (translate "invalid-age") err0r)))
-        (sb-int:simple-parse-error ()
-          (push (translate "invalid-age") err0r))))
     (cannot-be-empty email "email" err0r
-      (unless (validate-email email)
-        (push (translate "invalid-email") err0r)))
-    (cannot-be-empty username "username" err0r)
+      (progn (if (get-author-by-email email)
+                 (push (translate "email-already-exists") err0r)
+                 (unless (validate-email email)
+                   (push (translate "invalid-email") err0r)))))
+    (cannot-be-empty username "username" err0r
+      (when (get-author-by-username username)
+        (push (translate "username-already-exists") err0r)))
     (cannot-be-empty password "password" err0r)
-    (cannot-be-empty password2 "re-password" err0r)
-    (unless (string-equal password password2)
-      (push (translate "passwords-no-match") err0r))
-    (cannot-be-empty gender "gender" err0r
-      (unless (or (string= gender "m") (string= gender "f"))
-        (push (translate "invalid-gender") err0r)))
-    (when (get-author-by-username username)
-      (push (translate "username-already-exists") err0r))
-    (when (get-author-by-email email)
-      (push (translate "email-already-exists") err0r))
     err0r))
 
 (defmacro why-register-tr (odd-even key class-1 class-2 value-1 value-2 desc tooltip)
@@ -89,11 +76,6 @@
                         (<:fieldset :class "inputs"
                                     (<:table
                                      (<:tbody
-                                      (tr-td-input "name"
-                                                   :mandatory t
-                                                   :tooltip "name-match-bank-paypal")
-                                      (tr-td-input "age" :mandatory t
-                                                   :tooltip (translate "min-18-years"))
                                       (tr-td-input "email" :mandatory t)
                                       (<:tr (<:td (<:label :class "label" :for "username"
                                                            (translate "username")
@@ -101,24 +83,12 @@
                                             (<:td (<:input :class "input" :type "text"
                                                            :name "username")))
                                       (tr-td-input "password" :typeof "password" :mandatory t)
-                                      (<:tr (<:td (<:label :class "label" :for "password2"
-                                                           (translate "retype-password")
-                                                           (<:span :class "mandatory" "*")))
-                                            (<:td (<:input :class "input" :type "password"
-                                                           :name "password2")))
                                       (tr-td-input "alias" :tooltip "alias")
-                                      (<:tr (<:td (<:label :class "label" :for "gender"
-                                                           (translate "gender")
-                                                           (<:span :class "mandatory" "*")))
-                                            (<:td (<:select :class "input"
-                                                            :name "gender"
-                                                            (<:option :value "m" (translate "male"))
-                                                            (<:option :value "f" (translate "female")))))
-                                      (tr-td-input "phone number")
                                       (<:tr (<:td)
                                             (<:td (translate "tnc-and-originality"
                                                              (<:a :href (h-genurl 'r-tnc) (translate "tnc"))
-                                                             (<:a :href (h-genurl 'r-originality) (translate "originality")))))
+                                                             (<:a :href (h-genurl 'r-originality)
+                                                                  (translate "originality")))))
                                       (tr-td-submit))))))))
 
 (defun v-register-post (&key (ajax nil))
@@ -126,36 +96,19 @@
          (username (post-parameter "username"))
          (alias (post-parameter "alias"))
          (password (post-parameter "password"))
-         (password2 (post-parameter "password2"))
-         (name (post-parameter "name"))
-         (handle (slugify username))
-         (age (post-parameter "age"))
-         (gender (post-parameter "gender"))
-         (phone-number (post-parameter "phone-number"))
-         (err0r (validate-register email
-                                   username
-                                   password
-                                   password2
-                                   name
-                                   age
-                                   gender)))
+         (err0r (validate-register email username password)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
                (hash (insecure-encrypt (concatenate 'string
-                                              email
-                                              "|"
-                                              salt)))
+                                                    email
+                                                    "|"
+                                                    salt)))
                (err0r "false"))
           (add-author (make-instance 'author
                                      :email email
                                      :username username
-                                     :alias (if alias alias handle)
+                                     :alias (if alias alias username)
                                      :password (hash-password password)
-                                     :name name
-                                     :handle handle
-                                     :age age
-                                     :gender gender
-                                     :phone phone-number
                                      :salt salt
                                      :status :a))
           (sendmail :to email
@@ -165,7 +118,6 @@
           (submit-success ajax
                           (h-genurl 'r-register-hurdle
                                     :email (insecure-encrypt (concatenate 'string email "|" err0r)))))
-        ;; validation failed
         (submit-error ajax
                       err0r
                       (h-genurl 'r-register-get)))))

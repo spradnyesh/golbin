@@ -60,5 +60,3 @@ faq-body=<div class="section"><h2>Brand new to Golbin?</h2><p>Welcome!</p><p>Gol
 name-match-bank-paypal=Your given name should exactly match that in your bank account (if you will receive payment via NEFT in India), or your PayPal account.
 bank-or-paypal=You should provide atleast one of bank details or PayPal information to receive payment
 bank-ifsc=Bank IFSC code
-invalid-gender=Gender should be either male or female
-invalid-phone=Enter only digits (without any '+' or '-' symbols), including country and region code

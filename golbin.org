@@ -2,29 +2,7 @@
 
 * tasks
 ** backlog
-*** [bug][ed] email-change
-    - new email should not be activated (old keeps on working) until it is verified
-*** [fed] comments
-    - (dis)like
-    - reply
-    - flag/report-abuse
-    - eg: http://www.squidoo.com/i-am-malala-59938
-*** [fe] 404
-    - http://www.squidoo.com/
-*** [fe] author trophies
-    - http://www.squidoo.com/member/awards/BearTale
-    - http://www.squidoo.com/member/awards/britflorida
-    - http://www.squidoo.com/member/awards/raveonstudio
-    - http://www.squidoo.com/member/awards/Jadelynx
-*** [fe] page background
-    - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
-    - http://www.squidoo.com/linda-mccartneys-home-cooking
-    - http://www.squidoo.com/easy-chicken-soup
-    - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
-*** [fe] index page
-    - http://www.squidoo.com/topics/food-and-cooking/recipes/soups-and-stew-recipes
-*** [fe] author page
-    - http://www.squidoo.com/lensmasters/sahadeva
+*** [fed] use only username instead of alias/handle for author
 *** TODO [ed] static pages
     :CLOCK:
     CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
@@ -39,10 +17,36 @@
     CLOCK: [2013-10-30 Wed 14:38]--[2013-10-30 Wed 15:06] =>  0:28
     CLOCK: [2013-10-30 Wed 13:05]--[2013-10-30 Wed 13:30] =>  0:25
     :END:
-    - https://www.squidoo.com/member/registration
-    - http://www.squidoo.com/squidoo/65355501-Terms-of-Service
-    - http://www.squidoo.com/originalitypact
-    - (help and tips) http://www.squidoo.com/squidoo
+    - [ ] http://www.squidoo.com/wizard/start
+    - [X] https://www.squidoo.com/member/registration
+    - [X] http://www.squidoo.com/squidoo/65355501-Terms-of-Service
+    - [X] http://www.squidoo.com/originalitypact
+    - [X] (help and tips) http://www.squidoo.com/squidoo
+*** [bug][fe] related article carousel
+    - next happening even after last page
+*** [fe] footer (copyright)
+    - http://www.squidoo.com/wizard/start
+*** [fe] page background
+    - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
+    - http://www.squidoo.com/linda-mccartneys-home-cooking
+    - http://www.squidoo.com/easy-chicken-soup
+    - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
+*** [fe] author page
+    - http://www.squidoo.com/lensmasters/sahadeva
+*** [fed] comments
+    - (dis)like
+    - reply
+    - flag/report-abuse
+    - eg: http://www.squidoo.com/i-am-malala-59938
+*** [fe] 404
+    - http://www.squidoo.com/
+*** [fe] author trophies
+    - http://www.squidoo.com/member/awards/BearTale
+    - http://www.squidoo.com/member/awards/britflorida
+    - http://www.squidoo.com/member/awards/raveonstudio
+    - http://www.squidoo.com/member/awards/Jadelynx
+*** [fe] index page
+    - http://www.squidoo.com/topics/food-and-cooking/recipes/soups-and-stew-recipes
 *** [performance] http://www.appelsiini.net/projects/lazyload
 *** [fed] ideas/categories
     - http://voices.yahoo.com
@@ -3510,6 +3514,26 @@
      :ARCHIVE_TIME: 2013-11-06 Wed 20:17
      :END:
      - enter/edit bank/paypal account
+**** CANCELLED [bug][ed] email-change
+     CLOSED: [2013-11-07 Thu 11:18]
+     :LOGBOOK:
+     - State "CANCELLED"  from ""           [2013-11-07 Thu 11:18] \\
+       not a bug; existing implementation works fine
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-07 Thu 11:18
+     :END:
+     - new email should not be activated (old keeps on working) until it is verified
+**** DONE [ed] remove author age, gender, phone and education
+     CLOSED: [2013-11-07 Thu 13:40]
+     :CLOCK:
+     CLOCK: [2013-11-07 Thu 13:16]--[2013-11-07 Thu 13:39] =>  0:23
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-07 Thu 13:40
+     :END:
+     - tnc covers age; we don't need exact age
+     - other fields also not needed, unnecessarily scares author from registering
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

@@ -12,25 +12,20 @@
    (salt :initarg :salt :initform nil :accessor salt) ; for encryption of password
    (name :initarg :name :initform nil :accessor name)
    (status :initarg :status :initform nil :accessor status) ; :d draft, :a active, :b blocked
-   (gender :initarg :gender :initform nil :accessor gender)
-   (age :initarg :age :initform nil :accessor age)
    (email :initarg :email :initform nil :accessor email)))
 
 (defclass author (user)
-  ((street :initarg :street :initform nil :accessor street)
+  ((author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
+   (street :initarg :street :initform nil :accessor street)
    (city :initarg :city :initform nil :accessor city)
    (state :initarg :state :initform nil :accessor state)
    (country :initarg :country :initform nil :accessor country)
    (zipcode :initarg :zipcode :initform nil :accessor zipcode)
-   (location :initarg :location :initform nil :accessor location)
-   (phone :initarg :phone :initform nil :accessor phone)
    (bank-name :initarg :bank-name :initform nil :accessor bank-name)
    (bank-branch :initarg :bank-branch :initform nil :accessor bank-branch)
    (bank-account-no :initarg :bank-account-no :initform nil :accessor bank-account-no)
    (bank-ifsc :initarg :bank-ifsc :initform nil :accessor bank-ifsc)
-   (paypal-userid :initarg :paypal-userid :initform nil :accessor paypal-userid)
-   (author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
-   (education :initarg :education :initform nil :accessor education)))
+   (paypal-userid :initarg :paypal-userid :initform nil :accessor paypal-userid)))
 
 (defclass visitor (user)
   ((preference :initarg :preference :initform nil :accessor preference)))

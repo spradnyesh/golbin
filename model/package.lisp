@@ -19,7 +19,6 @@
            :cat
            :subcat
            :tags
-           :location
            :author
            :article-storage
            :articles
@@ -49,22 +48,18 @@
            :alias
            :password
            :salt
-           :gender
-           :age
            :email
            :street
            :city
            :state
            :country
            :zipcode
-           :phone
            :bank-name
            :bank-branch
            :bank-account-no
            :bank-ifsc
            :paypal-userid
            :author-type
-           :education
            :visitor
            :preference
            :mini-author
