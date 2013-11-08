@@ -99,6 +99,7 @@
          (err0r (validate-register email username password)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
+               (photo (build-gravtar-image email username))
                (hash (insecure-encrypt (concatenate 'string
                                                     email
                                                     "|"
@@ -109,6 +110,7 @@
                                      :username username
                                      :password (hash-password password)
                                      :salt salt
+                                     :photo photo
                                      :status :a))
           (sendmail :to email
                     :subject (translate "confirm-registration")

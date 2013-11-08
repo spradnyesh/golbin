@@ -110,6 +110,9 @@
 (define-route r-ajax-photo-post ("/ajax/photo/" :method :post
                                                 :content-type "application/json")
   (v-photo-post t))
+(define-route r-ajax-author-photo ("/ajax/photo/author/" :method :post
+                                                         :content-type "application/json")
+  (v-photo-author t))
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
 (define-route r-ajax-register-post ("/ajax/register/" :method :post

@@ -18,7 +18,6 @@
                              (<:td (<:select :name "typeof"
                                              :class "td-input"
                                              (<:option :value "article" "Article")
-                                             (<:option :value "author" "Author")
                                              #- (and)
                                              (<:option :value "slideshow" "Slideshow")))) ; TODO
                             (<:tr (<:td "Category")
@@ -78,8 +77,7 @@
             (push (add-tag tag) photo-tags))
           (setf photo (add-photo (make-instance 'photo
                                                 :title title
-                                                :typeof (cond ((string-equal typeof "article") :a)
-                                                              ((string-equal typeof "author") :u)
+                                                :typeof (cond ((string-equal typeof "author") :u)
                                                               ((string-equal typeof "slideshow") :s))
                                                 :orig-filename orig-filename
                                                 :new-filename (format nil
@@ -90,6 +88,26 @@
                                                 :subcat (get-category-by-id (when subcat (parse-integer subcat)))
                                                 :tags (normalize-photo-tags photo-tags)
                                                 :attribution attribution)))
+          (if ajax
+              (encode-json-to-string
+               `((:status . "success")
+                 (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
+              (redirect (h-genurl 'r-photo-get))))))))
+
+(defun v-photo-author (&optional (ajax nil))
+  (let ((photo (post-parameter "photo"))
+        (author (who-am-i)))
+    (when (and photo (listp photo))
+      (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
+        (when new-path
+          (add-photo (make-instance 'photo
+                                    :typeof :u
+                                    :orig-filename orig-filename
+                                    :new-filename (format nil
+                                                          "~A.~A"
+                                                          (pathname-name new-path)
+                                                          (pathname-type new-path))))
+          (setf (photo author) "")
           (if ajax
               (encode-json-to-string
                `((:status . "success")

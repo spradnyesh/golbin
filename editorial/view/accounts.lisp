@@ -64,6 +64,13 @@
                                                         (translate "email")))
                                          (<:td (<:a :href (h-genurl 'r-account-email-get)
                                                     (translate "change-email"))))
+                                   (<:tr (<:td (<:label :class "label"
+                                                        :for "photo"
+                                                        (translate "photo")))
+                                         (<:td (fmtnil (photo author)
+                                                       (<:a :href "#"
+                                                            :id "upload-author-photo"
+                                                            (translate "change-photo")))))
                                    (tr-td-input "street"
                                                 :value (street author))
                                    (tr-td-input "city"

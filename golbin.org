@@ -6,6 +6,9 @@
     - http://www.squidoo.com/lensmasters/sahadeva
 *** TODO [fed] gravatar for author/commenter images
     :CLOCK:
+    CLOCK: [2013-11-08 Fri 19:35]--[2013-11-08 Fri 19:55] =>  0:20
+    CLOCK: [2013-11-08 Fri 18:58]--[2013-11-08 Fri 19:32] =>  0:34
+    CLOCK: [2013-11-08 Fri 18:34]--[2013-11-08 Fri 18:54] =>  0:20
     CLOCK: [2013-11-08 Fri 16:35]--[2013-11-08 Fri 17:22] =>  0:47
     :END:
     - http://en.gravatar.com/site/implement/images/
