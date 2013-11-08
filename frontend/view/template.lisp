@@ -67,7 +67,7 @@
              #- (and)
              (<:script :type "text/javascript" (on-load))
              (if (string-equal (get-dimension-value "envt") "prod")
-                 (<:script :type "text/javascript" :src "/static/js/fe-11-min.js")
+                 (<:script :type "text/javascript" :src "/static/js/fe-12-min.js")
                  (<:script :type "text/javascript" (on-load)))
              (<:script :type "text/javascript"
                        (concatenate 'string

@@ -92,8 +92,8 @@
                                                   ajax
                                                 (create :url ($apply (elt page-typeof 1)
                                                                  replace
-                                                               (regex "/0\\\/$/")
-                                                               (+ (elt page-typeof 0) "/"))
+                                                               (regex "/0$/")
+                                                               (elt page-typeof 0))
                                                         :cache false
                                                         :async true
                                                         :data-type "json"))
