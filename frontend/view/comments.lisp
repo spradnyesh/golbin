@@ -29,15 +29,17 @@
     err0r))
 
 (defun get-comment-markup (comment)
-  (let ((url (userurl comment))
+  (let ((email (useremail comment))
+        (url (userurl comment))
+        (name (username comment))
         (datetime (universal-to-timestamp (date comment))))
     (<:li :class "comment"
           (<:span :class "hidden" (id comment))
           (translate "user-comment-prelude"
                      (if (nil-or-empty url)
-                         (username comment)
+                         (build-gravtar-image email name)
                          (<:a :href url
-                              (username comment)))
+                              (build-gravtar-image email name)))
                      (prettyprint-date datetime)
                      (prettyprint-time datetime))
           (<:p :class "c-body" (encode-entities (body comment))))))

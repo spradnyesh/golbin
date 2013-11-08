@@ -16,6 +16,10 @@
                           ("timeout" ("email" "3")
                                      ("archive" "3")
                                      ("comments" "3")))
+                  ("gravatar" ("url" "http://www.gravatar.com/avatar/")
+                              ("size" ("comments" "30")
+                                      ("author" "100"))
+                              ("type" "identicon"))
                   ("cipher" ("insecure" "aCpLvFWfcfUxmz4h") ; used for non-secure encryption
                             ("secure" "")
                             ("fe" ("comments" ("public" "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi")

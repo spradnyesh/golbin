@@ -118,7 +118,9 @@
            :create-code-map
            :create-code-map-image
            ;; email
-           :sendmail))
+           :sendmail
+           ;; misc
+           :build-gravtar-image))
 
 (in-package :hawksbill.utils)
 

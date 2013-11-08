@@ -2,6 +2,16 @@
 
 * tasks
 ** backlog
+*** [fed] author page
+    - http://www.squidoo.com/lensmasters/sahadeva
+*** TODO [fed] gravatar for author/commenter images
+    :CLOCK:
+    CLOCK: [2013-11-08 Fri 16:35]--[2013-11-08 Fri 17:22] =>  0:47
+    :END:
+    - http://en.gravatar.com/site/implement/images/
+    - http://www.gravatar.com/avatar/a0749a76a394be4232f7bafa92712db2?s=100&d=identicon
+    - [ ] author
+    - [X] commenter
 *** TODO [ed] static pages
     :CLOCK:
     CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
@@ -21,14 +31,12 @@
     - [X] http://www.squidoo.com/squidoo/65355501-Terms-of-Service
     - [X] http://www.squidoo.com/originalitypact
     - [X] (help and tips) http://www.squidoo.com/squidoo
-*** [fe] optimize carousel (don't call again if :page was already called)
+*** [perf][fe] optimize carousel (don't call again if :page was already called)
 *** [fe] page background
     - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
     - http://www.squidoo.com/linda-mccartneys-home-cooking
     - http://www.squidoo.com/easy-chicken-soup
     - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
-*** [fe] author page
-    - http://www.squidoo.com/lensmasters/sahadeva
 *** [fed] comments
     - (dis)like
     - reply
@@ -43,7 +51,7 @@
     - http://www.squidoo.com/member/awards/Jadelynx
 *** [fe] index page
     - http://www.squidoo.com/topics/food-and-cooking/recipes/soups-and-stew-recipes
-*** [performance] http://www.appelsiini.net/projects/lazyload
+*** [perf] http://www.appelsiini.net/projects/lazyload
 *** [fed] ideas/categories
     - http://voices.yahoo.com
     - http://www.squidoo.com/
@@ -153,7 +161,7 @@
     CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
     CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
     :END:
-*** [performance] partial responses for requests
+*** [perf] partial responses for requests
     - send back the following as soon as we get the request
       - http header
       - page header (logo, navigation)
@@ -189,8 +197,6 @@
     - [ ] http://zaries.wordpress.com/2010/12/22/hunchentoot-webserver-and-application-security/
 *** [security] http://en.wikipedia.org/wiki/Cross-site_scripting
 *** [fed] photo slideshow articles
-*** [fed] gravatar for author images
-    - http://en.gravatar.com/site/implement/images/
 *** [reports] accounts table/storage for authors
     - monthly
       - views
@@ -227,10 +233,10 @@
     CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
     :END:
 *** [config] utils/dimensions should not presume dimensions like envt or lang
-*** [performance] remove unnecessary id/class from page elements
+*** [perf] remove unnecessary id/class from page elements
     - [ ] fe
     - [ ] ed
-*** [performance][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
+*** [perf][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
 *** TODO [fe] home page to show carousel for categories/authors of articles
     :CLOCK:
     CLOCK: [2012-08-21 Tue 20:02]--[2012-08-21 Tue 20:09] =>  0:07
