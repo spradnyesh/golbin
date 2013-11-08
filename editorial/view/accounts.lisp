@@ -18,17 +18,14 @@
           (push (translate "invalid-zipcode") err0r))))
     err0r))
 
-(defun validate-account-password (current-password old-password new-password new-password-2)
+(defun validate-account-password (current-password old-password new-password)
   (let ((err0r nil))
     (cannot-be-empty old-password "old-password" err0r)
     (cannot-be-empty new-password "new-password" err0r)
-    (cannot-be-empty new-password-2 "new-password-2" err0r)
     (unless (string= old-password current-password)
       (push (translate "wrong-current-password") err0r))
     (when (string= (hash-password new-password) current-password)
       (push (translate "current-new-passwords-cannot-be-same") err0r))
-    (unless (string= new-password new-password-2)
-      (push (translate "new-passwords-dont-match") err0r))
     err0r))
 
 (defun validate-account-email (email author)
@@ -152,7 +149,6 @@
                         (<:fieldset :class "inputs"
                                     (label-input "current-password" "password")
                                     (label-input "new-password" "password")
-                                    (label-input "re-enter-password" "password")
                                     (<:p (<:input :type "submit"
                                                   :name "submit"
                                                   :class "submit"
@@ -161,12 +157,10 @@
 (defun v-account-password-post (&key (ajax nil))
   (let* ((old-password (post-parameter "current-password"))
          (new-password (post-parameter "new-password"))
-         (new-password-2 (post-parameter "re-enter-password"))
          (author (who-am-i))
          (err0r (validate-account-password (password author)
                                            (hash-password old-password)
-                                           new-password
-                                           new-password-2)))
+                                           new-password)))
     (if (not err0r)
         (progn
           (setf (password author) (hash-password new-password))
