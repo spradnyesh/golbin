@@ -17,8 +17,10 @@
                  (unless (validate-email email)
                    (push (translate "invalid-email") err0r)))))
     (cannot-be-empty username "username" err0r
-      (when (get-author-by-username username)
-        (push (translate "username-already-exists") err0r)))
+      (if (get-author-by-username username)
+          (push (translate "username-already-exists") err0r)
+          (unless (string-equal username (slugify username))
+            (push (translate "username-no-special-characters" "[/\\\"?~`!@#$%^&*()+=|{}':\;<,>.]") err0r))))
     (cannot-be-empty password "password" err0r)
     err0r))
 
