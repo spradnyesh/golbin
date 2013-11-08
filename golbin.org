@@ -22,8 +22,6 @@
     - [X] http://www.squidoo.com/originalitypact
     - [X] (help and tips) http://www.squidoo.com/squidoo
 *** [fe] optimize carousel (don't call again if :page was already called)
-*** [fe] footer (copyright)
-    - http://www.squidoo.com/wizard/start
 *** [fe] page background
     - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
     - http://www.squidoo.com/linda-mccartneys-home-cooking
@@ -3567,6 +3565,14 @@
      :ARCHIVE_TIME: 2013-11-08 Fri 16:08
      :END:
      - next happening even after last page
+**** DONE [fe] footer (copyright)
+     CLOSED: [2013-11-08 Fri 16:32]
+     :CLOCK:
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-08 Fri 16:32
+     :END:
+     - http://www.squidoo.com/wizard/start
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

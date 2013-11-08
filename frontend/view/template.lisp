@@ -173,7 +173,7 @@
 ;; page footer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun footer ()
-  (fmtnil (<:p "Copyright © 2012 Golbin Inc. All rights reserved.")
+  (fmtnil (<:p "Copyright © 2012 Golbin Inc, LLP and respective copyright owners. All rights reserved.")
           (<:p (<:a :href (h-genurl 'r-tos) (translate "terms-of-service")))
           (<:p (<:a :href (h-genurl 'r-privacy) (translate "privacy")))
           (<:p (<:a :href "mailto:webmaster@golb.in" (translate "contact-us")))
