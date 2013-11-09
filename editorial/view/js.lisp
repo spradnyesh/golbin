@@ -275,7 +275,9 @@
                       (create-pane "pane")
                       ($apply ($ "#pane .message")
                                 append
-                        "<form action='/ajax/photo/author/' method='POST' enctype='multipart/form-data'><table><tr><td class='label'><label for='photo'>Photo</label></td><td><input type='file' name='photo' value=''/></td></tr><tr><td></td><td><input class='submit' name='submit' type='submit' value='Upload'/></td></tr></table></form>"))
+                        "<form action='/ajax/photo/author/' method='POST' enctype='multipart/form-data'><table><tr><td class='label'><label for='photo'>Photo</label></td><td><input type='file' name='photo' value=''/></td></tr><tr><td></td><td><input class='submit' name='submit' type='submit' value='Upload'/></td></tr></table></form>")
+                      ($event ("#pane form" submit) (form-submit event "#pane form")))
+
                     ;; upload photo pane
                     (upload-lead-photo-init (event)
                       (setf lead true)

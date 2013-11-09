@@ -100,19 +100,26 @@
     (when (and photo (listp photo))
       (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
         (when new-path
-          (add-photo (make-instance 'photo
-                                    :typeof :u
-                                    :orig-filename orig-filename
-                                    :new-filename (format nil
-                                                          "~A.~A"
-                                                          (pathname-name new-path)
-                                                          (pathname-type new-path))))
-          (setf (photo author) "")
-          (if ajax
-              (encode-json-to-string
-               `((:status . "success")
-                 (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
-              (redirect (h-genurl 'r-photo-get))))))))
+          (let ((p (add-photo (make-instance 'photo
+                                             :typeof :u
+                                             :orig-filename orig-filename
+                                             :new-filename (format nil
+                                                                   "~A.~A"
+                                                                   (pathname-name new-path)
+                                                                   (pathname-type new-path))))))
+            (setf (photo author) (<:img :alt (username author)
+                                        :src (concatenate 'string
+                                                          "/static/photos/"
+                                                          (regex-replace "\\\."
+                                                                         (new-filename p)
+                                                                         (concatenate 'string
+                                                                                      "_"
+                                                                                      (write-to-string (get-config "photo.author.avatar.size"))
+                                                                                      "x"
+                                                                                      (write-to-string (get-config "photo.author.avatar.size"))
+                                                                                      ".")))))
+            (edit-author author))
+          (submit-success ajax(h-genurl 'r-account-get)))))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-ajax-photos-select (who start)

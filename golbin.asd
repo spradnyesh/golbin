@@ -6,7 +6,6 @@
 (defsystem golbin
   :components ((:module "utils"
                         :components ((:file "package")
-                                     (:file "misc" :depends-on ("package"))
                                      (:file "list" :depends-on ("package"))
                                      (:file "macros" :depends-on ("package"))
                                      (:file "string" :depends-on ("list"))

@@ -4,17 +4,7 @@
 ** backlog
 *** [fed] author page
     - http://www.squidoo.com/lensmasters/sahadeva
-*** TODO [fed] gravatar for author/commenter images
-    :CLOCK:
-    CLOCK: [2013-11-08 Fri 19:35]--[2013-11-08 Fri 19:55] =>  0:20
-    CLOCK: [2013-11-08 Fri 18:58]--[2013-11-08 Fri 19:32] =>  0:34
-    CLOCK: [2013-11-08 Fri 18:34]--[2013-11-08 Fri 18:54] =>  0:20
-    CLOCK: [2013-11-08 Fri 16:35]--[2013-11-08 Fri 17:22] =>  0:47
-    :END:
-    - http://en.gravatar.com/site/implement/images/
-    - http://www.gravatar.com/avatar/a0749a76a394be4232f7bafa92712db2?s=100&d=identicon
-    - [ ] author
-    - [X] commenter
+*** [fe] css based navigation
 *** TODO [ed] static pages
     :CLOCK:
     CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
@@ -3582,6 +3572,22 @@
      :ARCHIVE_TIME: 2013-11-08 Fri 16:32
      :END:
      - http://www.squidoo.com/wizard/start
+**** DONE [fed] gravatar for author/commenter images
+     CLOSED: [2013-11-09 Sat 15:10]
+     :CLOCK:
+     CLOCK: [2013-11-09 Sat 13:57]--[2013-11-09 Sat 14:39] =>  0:42
+     CLOCK: [2013-11-08 Fri 19:35]--[2013-11-08 Fri 19:55] =>  0:20
+     CLOCK: [2013-11-08 Fri 18:58]--[2013-11-08 Fri 19:32] =>  0:34
+     CLOCK: [2013-11-08 Fri 18:34]--[2013-11-08 Fri 18:54] =>  0:20
+     CLOCK: [2013-11-08 Fri 16:35]--[2013-11-08 Fri 17:22] =>  0:47
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-09 Sat 15:10
+     :END:
+     - http://en.gravatar.com/site/implement/images/
+     - http://www.gravatar.com/avatar/a0749a76a394be4232f7bafa92712db2?s=100&d=identicon
+     - [X] author
+     - [X] commenter
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

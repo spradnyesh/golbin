@@ -1,6 +1,21 @@
 (in-package :hawksbill.utils)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; misc
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmacro build-gravtar-image (email alt size)
+  `(<:img :alt ,alt
+          :src (concatenate 'string
+                            (get-config "gravatar.url")
+                            (byte-array-to-hex-string
+                             (digest-sequence :md5
+                                              (ascii-string-to-byte-array ,email)))
+                            "?s="
+                            ,size
+                            "&d="
+                            (get-config "gravatar.type"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; upload
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun save-photo-to-disk (photo)
