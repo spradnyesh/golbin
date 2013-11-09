@@ -27,32 +27,6 @@
                         #'(lambda (data text-status jqxhr)
                             ($apply ($ "div.lazyload_ad") lazy-load-ad))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; navigation
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                    (update-subcategory (event)
-                      ;; subnav <- #subnav, #subnav <- empty, #subnav <- @target
-                      ($prevent-default)
-                      (let ((node (@ event target parent-node parent-node)))
-                        (when (= (@ node node-name) "LI")
-                          (setf subnav ($apply ($ "#subnav") children))
-                          ($apply ($ "#subnav") empty)
-                          ($apply ($ "#subnav")
-                              append
-                            ($apply ($apply ($ (@ event target parent-node parent-node))
-                                        children
-                                      "ul")
-                                children)))))
-                    (restore-subcategory (event)
-                      ;; @target <- #subnav, #subnav <- empty, #subnav <- subnav
-                      ($prevent-default)
-                      (let ((node (@ event target parent-node parent-node)))
-                        (when (= (@ node node-name) "LI")
-                          ($apply ($apply ($ node) children "ul")
-                              append ($apply ($ "#subnav") children))
-                          ($apply ($ "#subnav") empty)
-                          ($apply ($ "#subnav") append subnav))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; carousel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     (carousel-prev (event)
@@ -122,9 +96,6 @@
           (submit-form-ajax "#comments form")
 
           ;; event handlers
-          ((@ ($ "#prinav .cat h2 a" ) hover)
-           (lambda (event) (update-subcategory event))
-           (lambda (event) (restore-subcategory event)))
           ($event (".carousel p.prev a" click) (carousel-prev event))
           ($event (".carousel p.next a" click) (carousel-next event))
           ($event ("#comments form" submit)

@@ -2,9 +2,9 @@
 
 * tasks
 ** backlog
+*** [fe] author image in list? article pages
 *** [fed] author page
     - http://www.squidoo.com/lensmasters/sahadeva
-*** [fe] css based navigation
 *** TODO [ed] static pages
     :CLOCK:
     CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
@@ -3588,6 +3588,16 @@
      - http://www.gravatar.com/avatar/a0749a76a394be4232f7bafa92712db2?s=100&d=identicon
      - [X] author
      - [X] commenter
+**** DONE [fe] css based navigation
+     CLOSED: [2013-11-09 Sat 16:27]
+     :CLOCK:
+     CLOCK: [2013-11-09 Sat 15:46]
+     CLOCK: [2013-11-09 Sat 15:12]--[2013-11-09 Sat 15:40] =>  0:28
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-09 Sat 16:27
+     :END:
+     - http://alistapart.com/article/hybrid
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

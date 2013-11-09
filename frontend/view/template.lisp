@@ -30,7 +30,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-32-min.css")
+                                  :href "/static/css/fe-33-min.css")
                           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
                           ;; hate that sharethis cannot be lazy-loaded :(
                           (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
@@ -67,7 +67,7 @@
              #- (and)
              (<:script :type "text/javascript" (on-load))
              (if (string-equal (get-dimension-value "envt") "prod")
-                 (<:script :type "text/javascript" :src "/static/js/fe-12-min.js")
+                 (<:script :type "text/javascript" :src "/static/js/fe-13-min.js")
                  (<:script :type "text/javascript" (on-load)))
              (<:script :type "text/javascript"
                        (concatenate 'string
@@ -112,8 +112,8 @@
      (let ((subcat-slug (slug subcat)))
        (<:li :class (nav-selected (string-equal (url-encode subcat-slug)
                                                 (second cat-subcat))
-                        "subcat selected"
-                        "subcat")
+                        "selected"
+                        "")
              (<:h3 (<:a :href ,url
                         (name subcat)))))))
 
@@ -134,32 +134,30 @@
                                            "cat "
                                            (when (eq route (fe-intern :r-home))
                                              "selected"))
-                       (<:h2 (<:a :href (h-genurl 'r-home) (translate "home"))))
+                       (<:h2 (<:a :href (h-genurl 'r-home) (translate "home")))
+                       (<:ul :class "subnav"))
                  (loop for cat in (get-root-categorys)
                     when (plusp (rank cat))
                     collecting (let ((cat-slug (slug cat)))
                                  (<:li :class (nav-selected (string-equal (url-encode cat-slug)
                                                                           (first cat-subcat))
-                                                  "cat selected"
-                                                  "cat"
+                                                  "selected"
+                                                  ""
                                                 (setf subnav-cat-slug cat-slug)
                                                 (setf subnav-subcats (get-subcategorys (id cat))))
                                        (<:h2 (<:a :href (h-genurl 'r-cat
                                                                   :cat cat-slug)
                                                   (name cat)))
-                                       (<:ul
-                                        (join-loop subcat
-                                                   (get-subcategorys (id cat))
-                                                   (subnav (h-genurl 'r-cat-subcat
-                                                                     :cat cat-slug
-                                                                     :subcat subcat-slug)))))) into a
+                                       (<:ul :class "subnav"
+                                             (join-loop subcat
+                                                                (get-subcategorys (id cat))
+                                                                (subnav (h-genurl 'r-cat-subcat
+                                                                                  :cat cat-slug
+                                                                                  :subcat subcat-slug))))))
+                    into a
                     finally (return (apply #'concatenate 'string a)))
                  (<:li :id "join"
-                       (<:h2 (<:a :href "http://ed.golb.in" (translate "join")))))
-           (<:ul :id "subnav"
-                 (join-loop subcat
-                            subnav-subcats
-                            (subnav (h-genurl 'r-cat-subcat :cat subnav-cat-slug :subcat subcat-slug)))))))
+                       (<:h2 (<:a :href "http://ed.golb.in" (translate "join"))))))))
 
 (defun header (email)
   (fmtnil (<:div :id "banner"
