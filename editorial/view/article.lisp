@@ -68,11 +68,13 @@
 (defun add-photo-attribution (body)
   (dolist (img (all-matches-as-strings "<img.*?/>" body))
     (unless (search "data-a=\"1\"" img :test #'string-equal)
-      (setf body
-            (regex-replace img
-                           body
-                           (make-photo-attribution-div (regex-replace "<img" img "<img data-a=\"1\"")
-                                                       (find-photo-by-img-tag img))))))
+      (let ((photo (find-photo-by-img-tag img)))
+        (when photo
+          (setf body
+                (regex-replace img
+                               body
+                               (make-photo-attribution-div (regex-replace "<img" img "<img data-a=\"1\"")
+                                                           photo)))))))
   body)
 
 (defun update-anchors (body)
@@ -86,14 +88,10 @@
 
 (defun validate-article (title body)
   (let ((err0r nil)
-        (non-golbin-images (all-matches-as-strings "<img(.*?)src=\\\"(?!\/static\/photos\/)(.*?)\/>"
-                                                   body))
         (script-tags (all-matches-as-strings "<script(.*?)>"
                                              body)))
     (cannot-be-empty title "title" err0r)
     (cannot-be-empty body "body" err0r)
-    (when non-golbin-images
-      (push (translate "non-golbin-images" (join-string-list-with-delim "," non-golbin-images)) err0r))
     (when script-tags
       (push (translate "script-tags" (join-string-list-with-delim "," script-tags)) err0r))
     err0r))
@@ -220,7 +218,9 @@ CKEDITOR.on('instanceReady', function(e) {
                                            (<:td (<:select :name "subcat"
                                                            :class "td-input subcat"
                                                            (get-cat-subcat-markup article subcats :s))))
-                                     (tr-td-input "ed-tags" :value (when article (get-tags-markup article)))
+                                     (tr-td-input "ed-tags"
+                                                  :value (when article (get-tags-markup article))
+                                                  :tooltip "comma-separated")
                                      (<:tr (<:td "Status")
                                            (let ((status (get-article-status-markup article)))
                                              (<:td status
@@ -268,7 +268,7 @@ CKEDITOR.on('instanceReady', function(e) {
            (article-tags nil))
       (let ((err0r (validate-article title body)))
         (if (not err0r)
-            (let ((body (clean (update-anchors (add-photo-attribution (cleanup-ckeditor-text body))))))
+            (let ((body (update-anchors (add-photo-attribution (cleanup-ckeditor-text body)))))
               (dolist (tag tags)
                 (let ((tag-added (add-tag tag)))
                   (when tag-added

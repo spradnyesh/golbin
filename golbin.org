@@ -2,6 +2,8 @@
 
 * tasks
 ** backlog
+*** [ed] story editing help
+    - add flickr images in "source" of RTE
 *** [fe] author image in list? article pages
 *** [fed] author page
     - http://www.squidoo.com/lensmasters/sahadeva
@@ -3589,15 +3591,23 @@
      - [X] author
      - [X] commenter
 **** DONE [fe] css based navigation
-     CLOSED: [2013-11-09 Sat 16:27]
+     CLOSED: [2013-11-09 Sat 16:30]
      :CLOCK:
-     CLOCK: [2013-11-09 Sat 15:46]
+     CLOCK: [2013-11-09 Sat 15:46]--[2013-11-09 Sat 16:30] =>  0:44
      CLOCK: [2013-11-09 Sat 15:12]--[2013-11-09 Sat 15:40] =>  0:28
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-09 Sat 16:27
      :END:
      - http://alistapart.com/article/hybrid
+**** DONE [ed] remove restriction for golbin images
+     CLOSED: [2013-11-09 Sat 17:13]
+     :CLOCK:
+     CLOCK: [2013-11-09 Sat 16:58]--[2013-11-09 Sat 17:13] =>  0:15
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-09 Sat 17:13
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

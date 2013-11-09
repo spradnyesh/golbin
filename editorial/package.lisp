@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.editorial
-  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes :sanitize)
+  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes)
   (:decorators #'hawksbill.utils:init-dimensions)
   (:import-from :hawksbill.golbin.frontend :v-article)
   (:shadow :% :prototype :size :acceptor :mime-type)
@@ -67,7 +67,8 @@
            :r-password-changed
            :r-ajax-password-post
            :r-ajax-password-change-post
-           :r-ajax-article-delete-post))
+           :r-ajax-article-delete-post
+           :r-ajax-author-photo))
 
 (in-package :hawksbill.golbin.editorial)
 

@@ -130,10 +130,11 @@
   (multiple-value-bind (match registers)
       (scan-to-strings "<img.*?src=\\\"\/static\/photos\/(.+?)_.+?x.+?\\\.(.+?)\\\".*?\/>" img-tag)
     (declare (ignore match))
-    (find-photo-by-new-filename (concatenate 'string
-                                             (aref registers 0)
-                                             "."
-                                             (aref registers 1)))))
+    (when registers
+      (find-photo-by-new-filename (concatenate 'string
+                                               (aref registers 0)
+                                               "."
+                                               (aref registers 1))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for resize photos cron
