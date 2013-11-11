@@ -17,7 +17,7 @@
     (cannot-be-empty body "body" err0r)
     (cannot-be-empty response "captcha" err0r
       (handler-case
-          (with-timeout ((parse-integer (get-config "site.timeout.comments")))
+          (with-timeout ((get-config "site.timeout.comments"))
             (multiple-value-bind (status error-code)
                 (verify-captcha challenge response userip :private-key (get-config "cipher.fe.comments.private"))
               (unless status

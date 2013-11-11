@@ -2,7 +2,7 @@
 
 (defmacro sendmail (&key to subject cc bcc attachments body package error-handle)
   (declare (ignore package))
-  `(handler-case (with-timeout ((parse-integer (get-config "site.timeout.email")))
+  `(handler-case (with-timeout ((get-config "site.timeout.email"))
                    (send-email (get-config "site.email.host")
                                (get-config "site.email.address")
                                ,to

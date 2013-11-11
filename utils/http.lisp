@@ -22,7 +22,7 @@
 ;;;; archive @ http://web.archive.org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro web-archive (uri &key error-handle)
-  `(handler-case (with-timeout ((parse-integer (get-config "site.timeout.archive")))
+  `(handler-case (with-timeout ((get-config "site.timeout.archive"))
                    (drakma:http-request (concatenate 'string
                                                      "http://web.archive.org/save/"
                                                      ,uri)))
