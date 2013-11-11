@@ -33,7 +33,9 @@
          (url (userurl comment))
          (name (username comment))
          (datetime (universal-to-timestamp (date comment)))
-         (img (build-gravtar-image email name (get-config "photo.comments.size"))))
+         (img (build-gravtar-image (hash email)
+                                   name
+                                   (get-config "photo.comments.size"))))
     (<:li :class "comment"
           (<:span :class "hidden" (id comment))
           (translate "user-comment-prelude"

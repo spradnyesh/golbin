@@ -24,7 +24,7 @@
     (cannot-be-empty new-password "new-password" err0r)
     (unless (string= old-password current-password)
       (push (translate "wrong-current-password") err0r))
-    (when (string= (hash-password new-password) current-password)
+    (when (string= (sha256-hash new-password) current-password)
       (push (translate "current-new-passwords-cannot-be-same") err0r))
     err0r))
 
@@ -166,11 +166,11 @@
          (new-password (post-parameter "new-password"))
          (author (who-am-i))
          (err0r (validate-account-password (password author)
-                                           (hash-password old-password)
+                                           (sha256-hash old-password)
                                            new-password)))
     (if (not err0r)
         (progn
-          (setf (password author) (hash-password new-password))
+          (setf (password author) (sha256-hash new-password))
           (setf (salt author) (generate-salt 32))
           (edit-author author)
           (sendmail :to (email author)

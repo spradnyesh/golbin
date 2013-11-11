@@ -56,7 +56,7 @@
 (defun verify-login (username password)
   (let ((author (get-author-by-username username)))
     (when (and author
-               (string-equal (hash-password password)
+               (string-equal (sha256-hash password)
                              (password author)))
       author)))
 
