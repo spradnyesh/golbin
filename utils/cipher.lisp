@@ -6,11 +6,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; http://www.cliki.net/ironclad
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun hash-password (password)
-  (byte-array-to-hex-string
-   (digest-sequence
-    :sha256
-    (ascii-string-to-byte-array password))))
+(defmacro hash (digest)
+  `(byte-array-to-hex-string (digest-sequence ,digest
+                                              (ascii-string-to-byte-array text))))
+
+(defun md5-hash (text)
+  (hash :md5))
+
+(defun sha256-hash (text)
+  (hash :sha256))
 
 (defun get-cipher (key)
   (make-cipher :blowfish

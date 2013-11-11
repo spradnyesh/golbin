@@ -108,7 +108,7 @@
           (add-author (make-instance 'author
                                      :email email
                                      :username username
-                                     :password (hash-password password)
+                                     :password (sha256-hash password)
                                      :salt salt
                                      :photo photo
                                      :status :a))

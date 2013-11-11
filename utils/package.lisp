@@ -108,7 +108,8 @@
            :lang-a
            :logo-langs
            ;; cipher
-           :hash-password
+           :md5-hash
+           :sha256-hash
            :do-encrypt
            :do-decrypt
            :insecure-encrypt

@@ -135,7 +135,7 @@
          (err0r (validate-password-change-post username timestamp password password2)))
     (if (not err0r)
         (let ((author (get-author-by-username username)))
-          (setf (password author) (hash-password password))
+          (setf (password author) (sha256-hash password))
           (setf (salt author) (generate-salt 32))
           (edit-author author)
           (sendmail :to (email author)
