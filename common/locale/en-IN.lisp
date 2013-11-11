@@ -61,3 +61,4 @@ name-match-bank-paypal=Your given name should exactly match that in your bank ac
 bank-or-paypal=You should provide atleast one of bank details or PayPal information to receive payment
 bank-ifsc=Bank IFSC code
 username-no-special-characters=Username cannot contain any of the following special characters: ~a
+reset-photo=Reset photo to Gravatar

@@ -94,32 +94,29 @@
                  (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
               (redirect (h-genurl 'r-photo-get))))))))
 
-(defun v-photo-author (&optional (ajax nil))
+(defun v-photo-author (reset)
   (let ((photo (post-parameter "photo"))
-        (author (who-am-i)))
-    (when (and photo (listp photo))
-      (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
-        (when new-path
-          (let ((p (add-photo (make-instance 'photo
-                                             :typeof :u
-                                             :orig-filename orig-filename
-                                             :new-filename (format nil
-                                                                   "~A.~A"
-                                                                   (pathname-name new-path)
-                                                                   (pathname-type new-path))))))
-            (setf (photo author) (<:img :alt (username author)
-                                        :src (concatenate 'string
-                                                          "/static/photos/"
-                                                          (regex-replace "\\\."
-                                                                         (new-filename p)
-                                                                         (concatenate 'string
-                                                                                      "_"
-                                                                                      (write-to-string (get-config "photo.author.avatar.size"))
-                                                                                      "x"
-                                                                                      (write-to-string (get-config "photo.author.avatar.size"))
-                                                                                      ".")))))
-            (edit-author author))
-          (submit-success ajax(h-genurl 'r-account-get)))))))
+        (author (who-am-i))
+        (ajax t))
+    (if reset
+        ;; reset to gravatar
+        (progn
+          (setf (photo author) (md5-hash (email author)))
+          (edit-author author))
+        ;; upload author photo
+        (when (and photo (listp photo))
+          (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
+            (when new-path
+              (let ((p (add-photo (make-instance 'photo
+                                                 :typeof :u
+                                                 :orig-filename orig-filename
+                                                 :new-filename (format nil
+                                                                       "~A.~A"
+                                                                       (pathname-name new-path)
+                                                                       (pathname-type new-path))))))
+                (setf (photo author) (new-filename p)))
+              (edit-author author)))))
+    (submit-success ajax (h-genurl 'r-account-get))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
 (defun v-ajax-photos-select (who start)

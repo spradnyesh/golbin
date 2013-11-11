@@ -67,10 +67,23 @@
                                    (<:tr (<:td (<:label :class "label"
                                                         :for "photo"
                                                         (translate "photo")))
-                                         (<:td (fmtnil (photo author)
-                                                       (<:a :href "#"
-                                                            :id "upload-author-photo"
-                                                            (translate "change-photo")))))
+                                         (<:td (let ((photo (photo author)))
+                                                 (if (find #\. photo)
+                                                     ;; uploaded image
+                                                     (fmtnil (<:img :alt (username author)
+                                                                    :src (build-sized-image "/static/photos/"
+                                                                                            photo
+                                                                                            (write-to-string (get-config "photo.author.avatar.size"))))
+                                                             (<:a :href (h-genurl 'r-ajax-author-photo-reset)
+                                                                  :id "gravatar-author-photo"
+                                                                  (translate "reset-photo")))
+                                                     ;; gravatar
+                                                     (fmtnil (build-gravtar-image photo
+                                                                                  (username author)
+                                                                                  (write-to-string (get-config "photo.author.avatar.size")))
+                                                             (<:a :href "#"
+                                                                  :id "upload-author-photo"
+                                                                  (translate "change-photo")))))))
                                    (tr-td-input "street"
                                                 :value (street author))
                                    (tr-td-input "city"

@@ -72,6 +72,13 @@
                                    :padding "0"))
     ((".mandatory") (:color "#f66"
                             :padding "5px"))
+    ((".link") (:border "0"
+                        :background "none"
+                        :margin "0"
+                        :padding "0"
+                        :color "#3c668a"
+                        :cursor "pointer"))
+    ((".link:hover") (:color "#113152"))
     ;; static pages
     ((".static ul") (:list-style "disc inside none"
                                  :margin-left "25px"))
