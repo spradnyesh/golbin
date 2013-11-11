@@ -277,6 +277,14 @@
                                 append
                         "<form action='/ajax/photo/author/' method='POST' enctype='multipart/form-data'><table><tr><td class='label'><label for='photo'>Photo</label></td><td><input type='file' name='photo' value=''/></td></tr><tr><td></td><td><input class='submit' name='submit' type='submit' value='Upload'/></td></tr></table></form>")
                       ($event ("#pane form" submit) (form-submit event "#pane form")))
+                    (gravatar-author-photo-init (event)
+                      ($prevent-default)
+                      (create-pane "pane")
+                      ($apply ($ "#pane .message")
+                                append
+                        "<form action='/ajax/photo/author/reset/' method='POST'></form>")
+                      ($event ("#pane form" submit) (form-submit event "#pane form"))
+                      ($apply ($ "#pane .message form") submit))
 
                     ;; upload photo pane
                     (upload-lead-photo-init (event)
@@ -371,6 +379,7 @@
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
         ($event ("#upload-author-photo" click) (upload-author-photo-init event))
+        ($event ("#gravatar-author-photo" click) (gravatar-author-photo-init event))
         ($event ("#article form" submit)
           ;; http://stackoverflow.com/a/1903820
           ($apply (@ -c-k-e-d-i-t-o-r instances body) update-element)

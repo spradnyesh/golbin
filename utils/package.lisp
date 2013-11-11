@@ -95,6 +95,8 @@
            ;; photo
            :save-photo-to-disk
            :scale-and-save-photo
+           :build-sized-image
+           :build-gravtar-image
            ;; file
            :get-directory-path-string
            ;; datetime

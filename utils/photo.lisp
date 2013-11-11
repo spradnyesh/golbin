@@ -3,13 +3,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro build-gravtar-image (email alt size)
+(defmacro build-sized-image (path file-name x &optional (y x))
+  `(concatenate 'string
+                ,path
+                (regex-replace "\\\."
+                               ,file-name
+                               (concatenate 'string
+                                            "_"
+                                            ,x
+                                            "x"
+                                            ,y
+                                            "."))))
+
+(defmacro build-gravtar-image (hash alt size)
   `(<:img :alt ,alt
           :src (concatenate 'string
                             (get-config "gravatar.url")
-                            (byte-array-to-hex-string
-                             (digest-sequence :md5
-                                              (ascii-string-to-byte-array ,email)))
+                            ,hash
                             "?s="
                             ,size
                             "&d="

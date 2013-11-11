@@ -4,7 +4,11 @@
 ** backlog
 *** [ed] story editing help
     - add flickr images in "source" of RTE
-*** [fe] author image in list? article pages
+*** TODO [fe] author image in article pages
+    :CLOCK:
+    CLOCK: [2013-11-11 Mon 16:58]--[2013-11-11 Mon 17:01] =>  0:03
+    :END:
+    - http://www.squidoo.com/my-emotional-visit-to-the-vietnam-memorial
 *** [fed] author page
     - http://www.squidoo.com/lensmasters/sahadeva
 *** TODO [ed] static pages
@@ -3608,6 +3612,17 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-09 Sat 17:13
      :END:
+**** DONE [ed] author photo redesign
+     CLOSED: [2013-11-11 Mon 20:12]
+     :CLOCK:
+     CLOCK: [2013-11-11 Mon 19:44]--[2013-11-11 Mon 20:12] =>  0:28
+     CLOCK: [2013-11-11 Mon 18:32]--[2013-11-11 Mon 19:20] =>  0:48
+     CLOCK: [2013-11-11 Mon 17:04]--[2013-11-11 Mon 17:34] =>  0:30
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-11 Mon 20:12
+     :END:
+     - store "hash" (for gravatar) or "/hash" for local static images
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
