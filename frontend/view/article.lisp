@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro article-preamble-markup-common (key)
+(defmacro article-preamble-markup-common (photo key)
   `(let ((username (username (author article)))
          (cat (cat article))
          (subcat (subcat article)))
@@ -11,7 +11,10 @@
                 (<:a :id "a-author"
                      :href (h-genurl 'r-author
                                      :author username)
-                     username)
+                     (if ,photo
+                         (fmtnil ,photo
+                                username)
+                         username))
                 (prettyprint-date timestamp)
                 (prettyprint-time timestamp)
                 (<:a :id "a-cat"
@@ -37,7 +40,9 @@
     (fmtnil
      (<:h2 :id "a-title" (title article))
      (<:span :class "a-cite small"
-             (article-preamble-markup-common "article-cite")))))
+             (article-preamble-markup-common (get-author-photo (author article)
+                                                               (get-config "photo.author.article-logo.size"))
+                                             "article-cite")))))
 
 (defun article-body-markup (article)
   (fmtnil (let ((photo (photo article)))

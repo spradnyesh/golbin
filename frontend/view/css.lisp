@@ -18,7 +18,7 @@
     (("em") (:font-style "italic"))
     (("u") (:text-decoration "underline"))
     (("p") (:margin "15px 0"))
-    (("h2, h3") (:padding-top "7px"))
+    (("h2, h3") (:padding "7px 0"))
     (("h4") (:font-weight "bold"))
     (("a:link, a:active, a:visited, a:hover") (:border "none"
                                                        :color "#21629C"
@@ -203,8 +203,11 @@
                                          :margin "15px 0 0 0"))
     (("#a-title") (:font-size "160%"))
     ((".a-cite") (:color "#999999"
-                         :padding "2px 0"
+                         :padding "0"
                          :display "block"))
+    (("#article .a-cite img") (:display "inline"
+                                        :padding "0 5px 0 0"
+                                        :margin-bottom "-15px"))
     (("#a-body") (:text-align "justify"
                               :padding-top "10px"))
     (("#a-body li") (:margin-bottom "15px"))

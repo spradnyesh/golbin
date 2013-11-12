@@ -31,6 +31,7 @@
 
 (defclass mini-author ()
   ((id :initarg :id :initform nil :accessor id)
+   (photo :initarg :photo :initform nil :accessor photo)
    (username :initarg :username :initform nil :accessor username))
   (:documentation "to be used as a foreign key in articles"))
 
@@ -47,10 +48,11 @@
   (get-author-by-username (session-value :author)))
 
 (defun get-mini-author ()
-  (multiple-value-bind (id username)
+  (multiple-value-bind (id photo username)
       (get-mini-author-details (who-am-i))
     (make-instance 'mini-author
                    :id id
+                   :photo photo
                    :username username)))
 
 (defun verify-login (username password)
@@ -86,6 +88,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-mini-author-details (author)
   (values (id author)
+          (photo author)
           (username author)))
 
 (defun get-author-by-username (username)
@@ -112,6 +115,18 @@
         :test #'(lambda (a b)
                   (and (string-equal (email a) (email b))
                        (string-equal (salt a) (salt b))))))
+
+(defmacro get-author-photo (author size)
+  `(let ((photo (photo ,author))
+         (alt (username ,author))
+         (size (write-to-string ,size)))
+     (when photo
+       (if (find #\. photo)
+           (<:img :alt alt
+                  :src (build-sized-image "/static/images/"
+                                          photo
+                                          size))
+           (build-gravtar-image photo alt size)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; needed for tmp-init

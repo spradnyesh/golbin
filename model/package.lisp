@@ -129,6 +129,7 @@
            :find-author-by-email-salt
            :get-mini-author
            :who-am-i
+           :get-author-photo
            ;; comment
            :userurl
            :useremail
