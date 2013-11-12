@@ -42,7 +42,7 @@
                                            ("related-thumb" ("max-width" 100)
                                                             ("max-height" 100)))
                            ("author" ("avatar" ("size" 100))
-                                     ("article-logo" ("size" 50)))
+                                     ("article-logo" ("size" 35)))
                            ("comments" ("size" 35)))
                   ("pagination" ("article" ("limit" 10) ; number of articles per (index) page
                                            ("range" 10) ; number of entries in pagination markup

@@ -311,4 +311,5 @@
                               :border-bottom "1px dotted gray"))
     ;; accounts
     (("#accounts") (:margin "0 20px"))
-    (("#accounts label") (:margin "5px 0"))))
+    (("#accounts label") (:margin "5px 0"))
+    (("#accounts a, #accounts img") (:margin-right "10px"))))

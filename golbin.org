@@ -3613,14 +3613,15 @@
      :ARCHIVE_TIME: 2013-11-09 Sat 17:13
      :END:
 **** DONE [ed] author photo redesign
-     CLOSED: [2013-11-11 Mon 20:12]
+     CLOSED: [2013-11-12 Tue 16:43]
      :CLOCK:
+     CLOCK: [2013-11-12 Tue 16:39]--[2013-11-12 Tue 16:43] =>  0:04
      CLOCK: [2013-11-11 Mon 19:44]--[2013-11-11 Mon 20:12] =>  0:28
      CLOCK: [2013-11-11 Mon 18:32]--[2013-11-11 Mon 19:20] =>  0:48
      CLOCK: [2013-11-11 Mon 17:04]--[2013-11-11 Mon 17:34] =>  0:30
      :END:
      :PROPERTIES:
-     :ARCHIVE_TIME: 2013-11-11 Mon 20:12
+     :ARCHIVE_TIME: 2013-11-12 Tue 16:43
      :END:
      - store "hash" (for gravatar) or "/hash" for local static images
 ** TODO refactor

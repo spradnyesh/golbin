@@ -66,7 +66,8 @@
                                                     (translate "change-email"))))
                                    (<:tr (<:td (<:label :class "label"
                                                         :for "photo"
-                                                        (translate "photo")))
+                                                        (translate "photo")
+                                                        (tooltip "only-new-articles")))
                                          (<:td (let ((photo (photo author)))
                                                  (if (find #\. photo)
                                                      ;; uploaded image
@@ -74,6 +75,9 @@
                                                                     :src (build-sized-image "/static/photos/"
                                                                                             photo
                                                                                             (write-to-string (get-config "photo.author.avatar.size"))))
+                                                             (<:a :href "#"
+                                                                  :id "upload-author-photo"
+                                                                  (translate "change-photo"))
                                                              (<:a :href (h-genurl 'r-ajax-author-photo-reset)
                                                                   :id "gravatar-author-photo"
                                                                   (translate "reset-photo")))
