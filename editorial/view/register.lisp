@@ -99,7 +99,7 @@
          (err0r (validate-register email username password)))
     (if (not err0r)
         (let* ((salt (generate-salt 32))
-               (photo (build-gravtar-image email username (get-config "photo.author.avatar.size")))
+               (photo (md5-hash email))
                (hash (insecure-encrypt (concatenate 'string
                                                     email
                                                     "|"

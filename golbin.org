@@ -2,6 +2,9 @@
 
 * tasks
 ** backlog
+*** [bug] correct photo for spradnyesh
+*** [ed] change photo
+    - re-publish published articles to update author photo
 *** [ed] story editing help
     - add flickr images in "source" of RTE
 *** [fed] author page
@@ -3632,6 +3635,14 @@
      :ARCHIVE_TIME: 2013-11-12 Tue 17:20
      :END:
      - http://www.squidoo.com/my-emotional-visit-to-the-vietnam-memorial
+**** DONE [ed] default gravatar during author registration
+     CLOSED: [2013-11-13 Wed 12:59]
+     :CLOCK:
+     CLOCK: [2013-11-13 Wed 12:56]--[2013-11-13 Wed 12:59] =>  0:03
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-13 Wed 12:59
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
