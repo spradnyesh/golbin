@@ -123,7 +123,7 @@
      (when photo
        (if (find #\. photo)
            (<:img :alt alt
-                  :src (build-sized-image "/static/images/"
+                  :src (build-sized-image "/static/photos/"
                                           photo
                                           size))
            (build-gravtar-image photo alt size)))))
