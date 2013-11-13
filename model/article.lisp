@@ -64,6 +64,13 @@
     (execute (get-db-handle) (make-transaction 'update-article article))
     article))
 
+(defmacro update-articles-author-photo ()
+  `(let ((mini-author (get-mini-author)))
+     (dolist (a (get-articles-by-author (get-author-by-id 1)))
+       (setf (author a) mini-author)
+       (edit-article a))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -2,13 +2,6 @@
 
 * tasks
 ** backlog
-*** DONE [bug] correct photo for spradnyesh
-    CLOSED: [2013-11-13 Wed 13:00]
-    :CLOCK:
-    CLOCK: [2013-11-13 Wed 12:59]--[2013-11-13 Wed 13:00] =>  0:01
-    :END:
-*** [ed] change photo
-    - re-publish published articles to update author photo
 *** [ed] story editing help
     - add flickr images in "source" of RTE
 *** [fed] author page
@@ -3647,6 +3640,23 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-13 Wed 12:59
      :END:
+**** DONE [bug] correct photo for spradnyesh
+     CLOSED: [2013-11-13 Wed 13:00]
+     :CLOCK:
+     CLOCK: [2013-11-13 Wed 12:59]--[2013-11-13 Wed 13:00] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-13 Wed 13:02
+     :END:
+**** DONE [ed] change photo
+     CLOSED: [2013-11-13 Wed 13:13]
+     :CLOCK:
+     CLOCK: [2013-11-13 Wed 13:02]--[2013-11-13 Wed 13:13] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-13 Wed 13:13
+     :END:
+     - re-publish published articles to update author photo
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
