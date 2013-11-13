@@ -2,7 +2,11 @@
 
 * tasks
 ** backlog
-*** [bug] correct photo for spradnyesh
+*** DONE [bug] correct photo for spradnyesh
+    CLOSED: [2013-11-13 Wed 13:00]
+    :CLOCK:
+    CLOCK: [2013-11-13 Wed 12:59]--[2013-11-13 Wed 13:00] =>  0:01
+    :END:
 *** [ed] change photo
     - re-publish published articles to update author photo
 *** [ed] story editing help
