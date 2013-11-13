@@ -98,6 +98,7 @@
            :get-new-article-id
            :get-slug-and-id
            :get-article-url
+           :update-articles-author-photo
            ;; category
            :add-category
            :get-category-by-slug

@@ -102,7 +102,8 @@
         ;; reset to gravatar
         (progn
           (setf (photo author) (md5-hash (email author)))
-          (edit-author author))
+          (edit-author author)
+          (update-articles-author-photo))
         ;; upload author photo
         (when (and photo (listp photo))
           (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
@@ -115,7 +116,8 @@
                                                                        (pathname-name new-path)
                                                                        (pathname-type new-path))))))
                 (setf (photo author) (new-filename p)))
-              (edit-author author)))))
+              (edit-author author)
+              (update-articles-author-photo)))))
     (submit-success ajax (h-genurl 'r-account-get))))
 
 ;; return a json-encoded list of [<id>, <img src="" alt="[title]">]
