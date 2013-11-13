@@ -108,26 +108,7 @@
                                    "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"
                                    (get-category-tree-json)
                                    (get-thumb-side-photo-sizes-json)))
-                 (<:script :type "text/javascript"
-                           :src "/static/ckeditor/ckeditor.js")
-                 (<:script :type "text/javascript"
-                           :src "/static/ckeditor/adapters/jquery.js")
-                 (<:script :type "text/javascript"
-                           (fmtnil "$('.ckeditor td textarea').ckeditor();"))
-                 ;; http://ckeditor.com/forums/FCKeditor-2.x/Change-default-font-editor
-                 (unless (string= "en-IN" lang)
-                   (<:script :type "text/javascript" "
-CKEDITOR.on('instanceReady', function(e) {
-    e.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
-    e.editor.on('mode', function(a) {
-        if (a.data.previousMode == 'source') {
-            a.editor.document.getBody().setStyle('font-family', 'Lohit Devanagari');
-        } else { // a.data.previousMode == 'wysiwyg'
-            a.editor.textarea.setStyle('font-family', 'Lohit Devanagari');
-        }
-    });
-});
-")))
+                 (ck-js lang))
      :body (let* ((article (when id (get-article-by-id id)))
                   (cats (get-root-categorys))
                   (subcats (get-subcategorys (if article

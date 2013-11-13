@@ -88,10 +88,3 @@
 
 (defun validate-email (email)
   (cl-ppcre:all-matches "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" (string-downcase email)))
-
-;; remove empty :p and :div tags
-;; remove ""
-(defun cleanup-ckeditor-text (body)
-  (regex-replace-all "<p>
-	&nbsp;</p>" (regex-replace-all "<div>
-	&nbsp;</div>" (regex-replace-all "" body "") "") ""))

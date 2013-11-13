@@ -43,7 +43,7 @@
   (let ((author (who-am-i)))
     (template
      :title "change-account-details"
-     :js nil
+     :js (ck-js lang)
      :body (<:div :id "accounts"
                   (<:form :action (h-genurl 'r-account-post)
                           :method "POST"
@@ -66,8 +66,7 @@
                                                     (translate "change-email"))))
                                    (<:tr (<:td (<:label :class "label"
                                                         :for "photo"
-                                                        (translate "photo")
-                                                        (tooltip "only-new-articles")))
+                                                        (translate "photo")))
                                          (<:td (let ((photo (photo author)))
                                                  (if (find #\. photo)
                                                      ;; uploaded image
@@ -88,6 +87,9 @@
                                                              (<:a :href "#"
                                                                   :id "upload-author-photo"
                                                                   (translate "change-photo")))))))
+                                   (tr-td-text "description"
+                                               :class "ckeditor"
+                                               :value (description author))
                                    (tr-td-input "street"
                                                 :value (street author))
                                    (tr-td-input "city"
@@ -121,6 +123,7 @@
 
 (defun v-account-post (&key (ajax nil))
   (let* ((name (post-parameter "name"))
+         (description (update-anchors (cleanup-ckeditor-text (post-parameter "description"))))
          (street (post-parameter "street"))
          (city (post-parameter "city"))
          (state (post-parameter "state"))
@@ -143,6 +146,7 @@
                                       :name name
                                       :status (status author)
                                       :email (email author)
+                                      :description description
                                       :street street
                                       :city city
                                       :state state

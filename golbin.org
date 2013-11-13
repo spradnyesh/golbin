@@ -4,7 +4,11 @@
 ** backlog
 *** [ed] story editing help
     - add flickr images in "source" of RTE
-*** [fed] author page
+*** TODO [fed] author page
+    :CLOCK:
+    CLOCK: [2013-11-13 Wed 15:27]--[2013-11-13 Wed 15:50] =>  0:23
+    CLOCK: [2013-11-13 Wed 15:20]--[2013-11-13 Wed 15:25] =>  0:05
+    :END:
     - http://www.squidoo.com/lensmasters/sahadeva
 *** TODO [ed] static pages
     :CLOCK:

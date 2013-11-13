@@ -18,6 +18,7 @@
                                      (:file "js" :depends-on ("package"))
                                      (:file "restas" :depends-on ("dimensions" "string" "lang"))
                                      (:file "memcache" :depends-on ("package"))
+                                     (:file "ckeditor" :depends-on ("package"))
                                      (:file "html" :depends-on ("string"))
                                      (:file "http" :depends-on ("string"))
                                      (:file "l10n" :depends-on ("package"))

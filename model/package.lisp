@@ -47,6 +47,7 @@
            :password
            :salt
            :email
+           :description
            :street
            :city
            :state

@@ -14,6 +14,7 @@
 
 (defclass author (user)
   ((author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
+   (description :initarg :description :initform nil :accessor description)
    (photo :initarg :photo :initform nil :accessor photo)
    (street :initarg :street :initform nil :accessor street)
    (city :initarg :city :initform nil :accessor city)
