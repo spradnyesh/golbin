@@ -49,6 +49,31 @@
            (get-slug-and-id ,article)
            ".html"))
 
+(defun article-lead-photo-url (photo photo-location)
+  (when photo
+    (let* ((photo-size-config-name (format nil
+                                           "photo.article-lead.~a"
+                                           (if (or (string-equal photo-location "left")
+                                                   (string-equal photo-location "right"))
+                                               "side"
+                                               photo-location)))
+           (photo-size (format nil
+                               "~ax~a"
+                               (get-config (format nil
+                                                   "~a.max-width"
+                                                   photo-size-config-name))
+                               (get-config (format nil
+                                                   "~a.max-height"
+                                                   photo-size-config-name))))
+           ;; XXX: photo filename should contain *exactly* 1 dot
+           (name-extn (split-sequence "." (new-filename photo) :test #'string-equal)))
+      (<:img :src (format nil
+                         "/static/photos/~a_~a.~a"
+                         (first name-extn)
+                         photo-size
+                         (second name-extn))
+            :alt (title photo)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

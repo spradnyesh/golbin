@@ -18,6 +18,8 @@
 
 (defun v-home (&optional (page 0))
   (view-index "Home"                    ; XXX: translate
+              nil
+              nil
               (get-active-articles)
               'r-home-page)
   ;; TODO till we get more articles

@@ -4,12 +4,6 @@
 ** backlog
 *** [ed] story editing help
     - add flickr images in "source" of RTE
-*** TODO [fed] author page
-    :CLOCK:
-    CLOCK: [2013-11-13 Wed 15:27]--[2013-11-13 Wed 15:50] =>  0:23
-    CLOCK: [2013-11-13 Wed 15:20]--[2013-11-13 Wed 15:25] =>  0:05
-    :END:
-    - http://www.squidoo.com/lensmasters/sahadeva
 *** TODO [ed] static pages
     :CLOCK:
     CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
@@ -3661,6 +3655,18 @@
      :ARCHIVE_TIME: 2013-11-13 Wed 13:13
      :END:
      - re-publish published articles to update author photo
+**** DONE [fed] author page
+     CLOSED: [2013-11-15 Fri 13:20]
+     :CLOCK:
+     CLOCK: [2013-11-15 Fri 13:14]--[2013-11-15 Fri 13:20] =>  0:06
+     CLOCK: [2013-11-14 Thu 14:40]--[2013-11-14 Thu 14:56] =>  0:16
+     CLOCK: [2013-11-13 Wed 15:27]--[2013-11-13 Wed 15:50] =>  0:23
+     CLOCK: [2013-11-13 Wed 15:20]--[2013-11-13 Wed 15:25] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-15 Fri 13:20
+     :END:
+     - http://www.squidoo.com/lensmasters/sahadeva
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

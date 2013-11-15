@@ -80,7 +80,7 @@
                                   :top "20px"
                                   :right "20px"))
     (("#pane .message li") (:border "0"
-                           :margin "0"))
+                                    :margin "0"))
     (("#pane .message") (:margin "50px 20px 20px"))
     (("#loading") (:width "128px"
                           :height "128px"
@@ -134,31 +134,42 @@
                               :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
                               :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
                               :height "34px"))
-    ;; prinav .selected (top -> bottom: #fff -> #ddd)
+    ;; prinav .selected (top -> bottom: #fff -> #aaa)
     (("#prinav .selected") (:background "#fff"
-                                     :background "-moz-linear-gradient(top, #fff 0%, #ddd 100%)"
-                                     :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ddd))"
-                                     :background "-webkit-linear-gradient(top, #fff 0%,#ddd 100%)"
-                                     :background "-o-linear-gradient(top, #fff 0%,#ddd 100%)"
-                                     :background "-ms-linear-gradient(top, #fff 0%,#ddd 100%)"
-                                     :background "linear-gradient(to bottom, #fff 0%,#ddd 100%)"
-                                     :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd',GradientType=0)"))
+                                        :background "-moz-linear-gradient(top, #fff 0%, #aaa 100%)"
+                                        :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#aaa))"
+                                        :background "-webkit-linear-gradient(top, #fff 0%,#aaa 100%)"
+                                        :background "-o-linear-gradient(top, #fff 0%,#aaa 100%)"
+                                        :background "-ms-linear-gradient(top, #fff 0%,#aaa 100%)"
+                                        :background "linear-gradient(to bottom, #fff 0%,#aaa 100%)"
+                                        :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd',GradientType=0)"))
     (("#nav li.selected a") (:color "#333"))
     (("#nav li") (:border-right "1px solid #333"))
     ;; subnav (top -> bottom: #ddd -> #fff)
-    ((".subnav") (:background "#ddd"
-                              :background "-moz-linear-gradient(top, #ddd 0%, #fff 100%)"
-                              :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(100%,#fff))"
-                              :background "-webkit-linear-gradient(top, #ddd 0%,#fff 100%)"
-                              :background "-o-linear-gradient(top, #ddd 0%,#fff 100%)"
-                              :background "-ms-linear-gradient(top, #ddd 0%,#fff 100%)"
-                              :background "linear-gradient(to bottom, #ddd 0%,#fff 100%)"
-                              :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ddd', endColorstr='#fff',GradientType=0)"
+    ((".subnav") (:background "#fff"
+                              :background "-moz-linear-gradient(top, #fff 0%, #aaa 100%)"
+                              :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#aaa))"
+                              :background "-webkit-linear-gradient(top, #fff 0%,#aaa 100%)"
+                              :background "-o-linear-gradient(top, #fff 0%,#aaa 100%)"
+                              :background "-ms-linear-gradient(top, #fff 0%,#aaa 100%)"
+                              :background "linear-gradient(to bottom, #fff 0%,#aaa 100%)"
+                              :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#aaa',GradientType=0)"
                               :border-bottom "1px solid #ebebeb"
                               :height "34px"
                               :width "100%"))
+    (("#prinav .subnav li.selected") (:background "#3c668a"
+                                                  :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
+                                                  :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c668a), color-stop(100%,#113152))"
+                                                  :background "-webkit-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                                                  :background "-o-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                                                  :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                                                  :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
+                                                  :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
+                                                  :height "34px"))
+
     (("#prinav .subnav a") (:padding "0 20px"
                                      :color "#21629c"))
+    (("#prinav .subnav li.selected a") (:color "#fff"))
     (("#nav li a:hover") (:color "#eeb000"))
     (("#nav li.selected a:hover") (:color "#eeb000"))
 
@@ -169,21 +180,26 @@
     (("#bd") (:background-color "#FFF"
                                 :padding-top "50px"))
     (("#ft") (:background "#3c668a"
-                              :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
-                              :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c668a), color-stop(100%,#113152))"
-                              :background "-webkit-linear-gradient(top, #3c668a 0%,#113152 100%)"
-                              :background "-o-linear-gradient(top, #3c668a 0%,#113152 100%)"
-                              :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
-                              :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
-                              :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
-                              :padding "20px 250px"
-                              :height "50px"))
+                          :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
+                          :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c668a), color-stop(100%,#113152))"
+                          :background "-webkit-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                          :background "-o-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                          :background "-ms-linear-gradient(top, #3c668a 0%,#113152 100%)"
+                          :background "linear-gradient(to bottom, #3c668a 0%,#113152 100%)"
+                          :filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c668a', endColorstr='#113152',GradientType=0)"
+                          :padding "20px 250px"
+                          :height "50px"))
     (("#ft p") (:float "left"
                        :padding-right "35px"
                        :margin "0"))
     (("#ft #copyscape") (:margin "10px 250px"))
 
     ;; index
+    (("#a-details") (:min-height "120px"
+                                 :border-bottom "1px dotted gray"
+                                 :margin-bottom "15px"))
+    (("#a-details img") (:float "left"
+                                :padding-right "10px"))
     (("#articles li") (:border-bottom "1px dotted"
                                       :border-color "#CCC"
                                       :margin-bottom "15px"))
