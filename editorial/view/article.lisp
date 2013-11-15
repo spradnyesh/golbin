@@ -183,11 +183,11 @@
                                      (unless (string-equal (get-dimension-value "lang") "en-IN")
                                        (<:tr (<:td (get-dimension-value "lang"))
                                              (<:td "Click " ; XXX: translate
-                                                   (<:a :href "http://www.google.co.in/transliterate"
+                                                   (<:a :href (get-config "helper.url.g-transliterate")
                                                         :target "_blank"
                                                         "here")
                                                    " to use Google Transliterate or "
-                                                   (<:a :href "http://www.google.com/inputtools/windows/index.html"
+                                                   (<:a :href (get-config "helper.url.g-inputtools")
                                                         :target "_blank"
                                                         "here")
                                                    " to download Google Transliterate software on your PC.")))
@@ -202,7 +202,7 @@
                                      (tr-td-input "ed-tags"
                                                   :value (when article (get-tags-markup article))
                                                   :tooltip "comma-separated")
-                                     (<:tr (<:td "Status")
+                                     (<:tr (<:td (translate "status"))
                                            (let ((status (get-article-status-markup article)))
                                              (<:td status
                                                    " "
@@ -211,6 +211,14 @@
                                                                           :slug-and-id (get-slug-and-id article))
                                                           :target "_blank"
                                                           (translate "preview"))))))
+                                     (when article
+                                       (<:tr (<:td (translate "archive-url"))
+                                             (<:td (let ((archive (archive article)))
+                                                     (<:a :href (concatenate 'string
+                                                                             (get-config "helper.url.webarchive")
+                                                                             archive)
+                                                          :target "_blank"
+                                                          archive)))))
                                      (<:tr (<:td (<:a :class "submit"
                                                       :href "#"
                                                       (translate "save"))
@@ -276,7 +284,6 @@
                                                            :tags article-tags
                                                            :author (get-mini-author)))))
                   ;; editing an existing article
-
                   ;; # -- status(parent) -- action -- end-result    -- remarks
                   ;; =========================================================
                   ;; 1 -- draft(nil)     -- save   -- draft(nil)    -- no new ID
@@ -349,8 +356,11 @@
                                                           :status :p))
                              (setf id parent))))))
               ;; archive at http://archive.org/web/web.php
-              (when (eq submit-type :a)
-                (web-archive (get-article-url (get-article-by-id id))))
+              (let ((article (get-article-by-id id)))
+                (when (and (eq submit-type :a) ; do only for un-archived articles
+                           (null (archive article)))
+                  (setf (archive article) (web-archive (get-article-url article)))
+                  (edit-article article)))
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed

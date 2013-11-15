@@ -3390,16 +3390,6 @@
      - delete article/account if necessary by
        - doing regular reviews
        - looking for "report abuse"
-**** DONE [ed] http://archive.org/web/web.php
-     CLOSED: [2013-11-05 Tue 16:45]
-     :CLOCK:
-     CLOCK: [2013-11-05 Tue 16:16]--[2013-11-05 Tue 16:45] =>  0:29
-     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-11-05 Tue 16:45
-     :END:
-     - http://web.archive.org/save/http://www.golb.in/forgetting-forgive-and-forget-2.html
-     - http://web.archive.org/web/20131104063242/http://www.golb.in/virtualbox-guest-additions-on-sabayon-linux-6.html
 **** DONE [#B] [bug][ed] lang links not working
      CLOSED: [2013-11-05 Tue 17:29]
      :CLOCK:
@@ -3667,6 +3657,18 @@
      :ARCHIVE_TIME: 2013-11-15 Fri 13:20
      :END:
      - http://www.squidoo.com/lensmasters/sahadeva
+**** DONE [ed] http://archive.org/web/web.php
+     CLOSED: [2013-11-15 Fri 20:40]
+     :CLOCK:
+     CLOCK: [2013-11-15 Fri 19:41]--[2013-11-15 Fri 20:40] =>  0:59
+     CLOCK: [2013-11-15 Fri 19:04]--[2013-11-15 Fri 19:23] =>  0:19
+     CLOCK: [2013-11-05 Tue 16:16]--[2013-11-05 Tue 16:45] =>  0:29
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-15 Fri 20:40
+     :END:
+     - http://web.archive.org/save/http://www.golb.in/forgetting-forgive-and-forget-2.html
+     - http://web.archive.org/web/20131104063242/http://www.golb.in/virtualbox-guest-additions-on-sabayon-linux-6.html
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

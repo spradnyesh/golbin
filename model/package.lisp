@@ -24,6 +24,7 @@
            :articles
            :approval
            :approval-history
+           :archive
            :editor
            :message
            :last-id

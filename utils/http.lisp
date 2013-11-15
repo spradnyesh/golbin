@@ -22,15 +22,22 @@
 ;;;; archive @ http://web.archive.org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro web-archive (uri &key error-handle)
-  `(handler-case (with-timeout ((get-config "site.timeout.archive"))
-                   (drakma:http-request (concatenate 'string
-                                                     "http://web.archive.org/save/"
-                                                     ,uri)))
-     (trivial-timeout:timeout-error ()
-       (progn ,error-handle
-              (when (and (boundp '*acceptor*) *acceptor*)
-                (log-message* :warning "failed to archive uri: [~a]" ,uri))))
-     (usocket:timeout-error ()
-       (progn ,error-handle
-              (when (and (boundp '*acceptor*) *acceptor*)
-                (log-message* :warning "failed to archive uri: [~a]" ,uri))))))
+  `(string-trim " \"\\;"
+                (second (split-sequence
+                         "="
+                         (first (all-matches-as-strings
+                                 "var redirUrl = .*;"
+                                 (handler-case (with-timeout ((get-config "site.timeout.archive"))
+                                                 (drakma:http-request
+                                                  (concatenate 'string
+                                                               "http://web.archive.org/save/"
+                                                               ,uri)))
+                                   (trivial-timeout:timeout-error ()
+                                     (progn ,error-handle
+                                            (when (and (boundp '*acceptor*) *acceptor*)
+                                              (log-message* :warning "failed to archive uri: [~a]" ,uri))))
+                                   (usocket:timeout-error ()
+                                     (progn ,error-handle
+                                            (when (and (boundp '*acceptor*) *acceptor*)
+                                              (log-message* :warning "failed to archive uri: [~a]" ,uri)))))))
+                         :test #'string=))))

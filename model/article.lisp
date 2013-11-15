@@ -3,10 +3,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; classes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defclass approval ()
-  ((editor :initarg :editor :initform nil :accessor editor)
-   (date :initarg :date :initform nil :accessor date) ; actually timestamp
-   (message :initarg :message :initform nil :accessor message)))
 (defclass article ()
   ((id :initarg :id :initform nil :accessor id)
    (parent :initarg :parent :initform nil :accessor parent) ; id of already live article (on editing, new article gets a new ID so that existing (live) article will not disappear)
@@ -22,9 +18,14 @@
    (subcat :initarg :subcat :initform nil :accessor subcat)
    (tags :initarg :tags :initform nil :accessor tags)
    (location :initarg :location :initform nil :accessor location)
+   (archive :initarg :archive :initform nil :accessor archive) ; http://web.archive.org/save/
    (author :initarg :author :initform nil :accessor author)
    (approval-history :initarg :approval-history :initform nil :accessor approval-history))
   (:documentation "Article Class"))
+(defclass approval ()
+  ((editor :initarg :editor :initform nil :accessor editor)
+   (date :initarg :date :initform nil :accessor date) ; actually timestamp
+   (message :initarg :message :initform nil :accessor message)))
 
 (defclass article-storage ()
   ((articles :initform nil :accessor articles)
