@@ -40,13 +40,26 @@
                                   done
                                 (lambda (data)
                                   (if (= data.status "success")
-                                      ($apply ($ "#comments")
-                                          append
-                                        data.data)
-                                      (form-fail data)) ))
+                                      (progn ($apply ($ "#comments")
+                                                 append
+                                               data.data)
+                                             ($event (".c-reply" click) (comments-reply event)))
+                                      (form-fail data))))
                           fail
                         (lambda (data)
                           (form-fail data))))
+                    (comments-reply (event)
+                      ($prevent-default)
+                      (let ((parent ($ (@ event target parent-node parent-node))))
+                        ($apply parent append ($ "#c-input"))
+                        ($apply ($apply ($ (elt ($apply ($ "#c-parent") children "td") 1))
+                                    children
+                                  "input")
+                            val
+                          ($apply ($apply parent children "span") text))
+                        ($apply ($ "#c-input")
+                            remove-class
+                          "hidden")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; carousel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

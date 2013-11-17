@@ -11,6 +11,8 @@
 *** [bug][fe] footer css broken
 *** TODO [fed] threaded comments
     :CLOCK:
+    CLOCK: [2013-11-17 Sun 20:08]--[2013-11-17 Sun 20:44] =>  0:36
+    CLOCK: [2013-11-17 Sun 19:50]--[2013-11-17 Sun 20:05] =>  0:15
     CLOCK: [2013-11-17 Sun 17:56]--[2013-11-17 Sun 18:35] =>  0:39
     CLOCK: [2013-11-17 Sun 16:55]--[2013-11-17 Sun 17:51] =>  0:56
     :END:

@@ -43,7 +43,8 @@
                          (<:a :href url img))
                      name
                      (prettyprint-date datetime)
-                     (prettyprint-time datetime))
+                     (prettyprint-time datetime)
+                     (translate "reply"))
           (<:p :class "c-body" (encode-entities (body comment)))
           (let ((children (gethash (id comment) ht)))
             (when children
@@ -55,17 +56,23 @@
 (defun article-comments-markup (article-id)
   (<:div :id "comments"
          (<:h3 (translate "comments"))
-         (<:div (<:div :class "yui3-u-1-2"
+         (<:div (<:p (<:a :href "#" ; the 2nd p is needed to have a similar structure w/ existing comments markup so that js is easier
+                        :class "c-reply"
+                        (translate "write-a-comment"))))
+         (<:div :id "c-input"
+                :class "hidden"
+                (<:div :class "yui3-u-1-2"
                        (<:form :method "POST"
                                :action (h-genurl 'r-comment-post
                                                  :article-id article-id)
                                (<:table
-                                (tr-td-input "parent"
+                                (tr-td-input "c-parent"
                                              :value 0
-                                             :class "hidden")
+                                             :class "hidden"
+                                             :id t)
                                 (tr-td-input "name" :mandatory t)
                                 (tr-td-input "email"
-                                             :tooltip "mandatory, but will not be shown"
+                                             :tooltip "mandatory-will-not-be-shown"
                                              :mandatory t)
                                 (tr-td-input "url")
                                 (tr-td-text "comment" :mandatory t)
@@ -87,7 +94,7 @@
                              (:data . ,(<:ul (children-markup ht (gethash 0 ht))))))))
 
 (defun v-comment-post (article-id &optional ajax)
-  (let* ((parent (post-parameter "parent"))
+  (let* ((parent (post-parameter "c-parent"))
          (name (post-parameter "name"))
          (email (post-parameter "email"))
          (url (post-parameter "url"))

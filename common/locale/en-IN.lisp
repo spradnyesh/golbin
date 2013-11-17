@@ -39,7 +39,7 @@ article-cite=~a | ~a, ~a | ~a ~a
 yes=yes
 no=no
 add-a-comment=Add a comment
-user-comment-prelude=<p class="c-prelude"><span class="c-name">~a ~a</span><span class="c-says"> said (on </span><span class="c-date">~a</span> at <span class="c-time">~a</span>):</p>
+user-comment-prelude=<div class="c-prelude">~a ~a said (on ~a at ~a):<a class="c-reply right" href="#">~a</a></div>
 captcha-verification-failed=Recaptcha verification failed with error ~a
 submit-error=There are errors in the submitted form. Please correct them and submit again.
 username-or-email=Please enter your username or email address
@@ -62,3 +62,4 @@ bank-or-paypal=You should provide atleast one of bank details or PayPal informat
 bank-ifsc=Bank IFSC code
 username-no-special-characters=Username cannot contain any of the following special characters: ~a
 reset-photo=Reset photo to Gravatar
+mandatory-will-not-be-shown=Mandatory, will not be shown on this website

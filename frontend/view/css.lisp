@@ -259,6 +259,8 @@
     ((".c-body") (:padding "10px"
                            :background-color "#f0f0f0"
                            :margin-top "-10px"))
+    ((".c-prelude") (:margin "15px 0"))
+    ((".c-reply") (:margin "10px 15px 0 0"))
 
     ;; carousel
     ((".carousel") (:font-size "12px"))
