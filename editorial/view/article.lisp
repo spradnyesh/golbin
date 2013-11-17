@@ -356,11 +356,13 @@
                                                           :status :p))
                              (setf id parent))))))
               ;; archive at http://archive.org/web/web.php
-              (let ((article (get-article-by-id id)))
-                (when (and (eq submit-type :a) ; do only for un-archived articles
-                           (null (archive article)))
-                  (setf (archive article) (web-archive (get-article-url article)))
-                  (edit-article article)))
+              (when (eq submit-type :a)
+                (let* ((article (get-article-by-id id))
+                       (archive (web-archive (get-article-url article))))
+                  ;; update DB only 1st time
+                  (when (null (archive article))
+                    (setf (archive article) archive)
+                    (edit-article article))))
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed

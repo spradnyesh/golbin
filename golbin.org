@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fe] display author info on author page only if info is not null
 *** [ed] story editing help
     - add flickr images in "source" of RTE
 *** TODO [ed] static pages
@@ -3669,6 +3670,15 @@
      :END:
      - http://web.archive.org/save/http://www.golb.in/forgetting-forgive-and-forget-2.html
      - http://web.archive.org/web/20131104063242/http://www.golb.in/virtualbox-guest-additions-on-sabayon-linux-6.html
+**** DONE [ed] web-archive for every publish
+     CLOSED: [2013-11-17 Sun 16:36]
+     :CLOCK:
+     CLOCK: [2013-11-17 Sun 16:32]--[2013-11-17 Sun 16:36] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-17 Sun 16:36
+     :END:
+     - update DB only 1st time
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
