@@ -39,7 +39,7 @@ article-cite=~a | ~a, ~a | ~a ~a
 yes=yes
 no=no
 add-a-comment=Add a comment
-user-comment-prelude=<p class="c-prelude"><span class="c-name">~a</span><span class="c-says"> said (on </span><span class="c-date">~a</span> at <span class="c-time">~a</span>):</p>
+user-comment-prelude=<p class="c-prelude"><span class="c-name">~a ~a</span><span class="c-says"> said (on </span><span class="c-date">~a</span> at <span class="c-time">~a</span>):</p>
 captcha-verification-failed=Recaptcha verification failed with error ~a
 submit-error=There are errors in the submitted form. Please correct them and submit again.
 username-or-email=Please enter your username or email address

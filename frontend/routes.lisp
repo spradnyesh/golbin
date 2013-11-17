@@ -17,9 +17,9 @@
 (define-route r-author-page ("/author/:author/:page" :parse-vars (list :page #'parse-integer)) (v-author author page))
 ;; article
 (define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
-(define-route r-article-comment ("/comment/:id/" :method :post
-                                                 :parse-vars (list :id #'parse-integer))
-  (v-comment id))
+(define-route r-comment-post ("/comment/:article-id/" :method :post
+                                              :parse-vars (list :article-id #'parse-integer))
+  (v-comment-post article-id))
 ;; static pages
 (define-route r-tos ("/tos.html") (v-tos))
 (define-route r-privacy ("/privacy.html") (v-privacy))
@@ -44,10 +44,13 @@
                                              :parse-vars (list :page #'parse-integer)
                                              :content-type "application/json")
   (v-ajax-home-category-articles cat-slug page))
-(define-route r-ajax-article-comment ("/ajax/comment/:id/" :method :post
-                                                           :parse-vars (list :id #'parse-integer)
-                                                           :content-type "application/json")
-  (v-comment id t))
+(define-route r-ajax-comment-get ("/comment/:article-id/" :parse-vars (list :article-id #'parse-integer)
+                                                          :content-type "application/json")
+  (v-comment-get article-id t))
+(define-route r-ajax-comment-post ("/ajax/comment/:article-id/" :method :post
+                                                                :parse-vars (list :article-id #'parse-integer)
+                                                                :content-type "application/json")
+  (v-comment-post article-id t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 404, define this as the last route

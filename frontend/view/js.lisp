@@ -10,8 +10,7 @@
 (defun on-load ()
   (ps ($event (window load)
         ;; define variables
-        (let ((subnav nil)
-              (carousel-move 4)
+        (let ((carousel-move 4)
               (switch-to5x t))
           ($pane
            ($ajax-form
@@ -26,6 +25,28 @@
                         "/static/js/jquery-lazyload-ad-1-4-2-min.js"
                         #'(lambda (data text-status jqxhr)
                             ($apply ($ "div.lazyload_ad") lazy-load-ad))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; comments
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                    (load-comments ()
+                      ($apply ($apply ($apply $
+                                          ajax
+                                        (create :url ($apply ($ "#comments form")
+                                                         attr
+                                                       "action")
+                                                :cache false
+                                                :async true
+                                                :data-type "json"))
+                                  done
+                                (lambda (data)
+                                  (if (= data.status "success")
+                                      ($apply ($ "#comments")
+                                          append
+                                        data.data)
+                                      (form-fail data)) ))
+                          fail
+                        (lambda (data)
+                          (form-fail data))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; carousel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,7 +114,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           ;; some init functions
           (lazy-load-js)
-          (submit-form-ajax "#comments form")
+          (if comments
+              (load-comments)
+              (submit-form-ajax "#comments form"))
 
           ;; event handlers
           ($event (".carousel p.prev a" click) (carousel-prev event))

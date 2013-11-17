@@ -5,6 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defclass comment ()
   ((id :initarg :id :initform nil :accessor id)
+   (parent :initarg :parent :initform nil :accessor parent)
    (body :initarg :body :initform nil :accessor body)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
    (status :initarg :status :initform nil :accessor status) ; :a active, :d deleted
@@ -24,7 +25,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun get-article-comments (article-id)
+(defun get-comments (article-id)
   (get-object-by #'(lambda (comment)
                      (= (article-id comment)
                         article-id))
@@ -42,10 +43,4 @@
     ;; save comment into storage
     (execute (get-db-handle) (make-transaction 'insert-comment comment))
 
-    comment))
-
-(defun edit-comment (comment)
-  (when comment
-    ;; save comment into storage
-    (execute (get-db-handle) (make-transaction 'update-comment comment))
     comment))

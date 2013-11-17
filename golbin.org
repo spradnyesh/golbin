@@ -2,6 +2,21 @@
 
 * tasks
 ** backlog
+*** [refactor][utils] utils/list/make-set
+    - rename to remove-duplicates
+    - why is it needed in model/article/get-active-articles (the original list already does not contain duplicates)
+    - and other places too? ???
+*** [fed] every ajax post need not result in get
+    - eg fe/comment
+*** [bug][fe] footer css broken
+*** TODO [fed] threaded comments
+    :CLOCK:
+    CLOCK: [2013-11-17 Sun 17:56]--[2013-11-17 Sun 18:35] =>  0:39
+    CLOCK: [2013-11-17 Sun 16:55]--[2013-11-17 Sun 17:51] =>  0:56
+    :END:
+    - need to undo commit 75ae9301bcc1642ec6a7dbc6153563f2f95adb47
+*** [fed] (dis)like comments
+*** [fed] report-abuse for articles/comments
 *** [ed] story editing help
     - add flickr images in "source" of RTE
 *** TODO [ed] static pages
@@ -29,11 +44,6 @@
     - http://www.squidoo.com/linda-mccartneys-home-cooking
     - http://www.squidoo.com/easy-chicken-soup
     - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
-*** [fed] comments
-    - (dis)like
-    - reply
-    - flag/report-abuse
-    - eg: http://www.squidoo.com/i-am-malala-59938
 *** [fe] 404
     - http://www.squidoo.com/
 *** [fe] author trophies
@@ -3685,6 +3695,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-17 Sun 16:39
+     :END:
+**** DONE [perf][fe] load comments by ajax
+     CLOSED: [2013-11-17 Sun 19:46]
+     :CLOCK:
+     CLOCK: [2013-11-17 Sun 19:20]--[2013-11-17 Sun 19:43] =>  0:23
+     CLOCK: [2013-11-17 Sun 18:38]--[2013-11-17 Sun 19:20] =>  0:42
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-17 Sun 19:46
      :END:
 ** TODO refactor
    :CLOCK:

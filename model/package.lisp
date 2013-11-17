@@ -86,7 +86,6 @@
            :get-comment-by-id
            ;; article
            :add-article
-           :add-article-comment
            :edit-article
            :get-active-articles
            :get-articles-by-author
@@ -134,12 +133,13 @@
            :who-am-i
            :get-author-photo
            ;; comment
+           :comments
            :userurl
            :useremail
            :userip
            :useragent
            :article-id
            :add-comment
-           :get-article-comments
+           :get-comments
            ;; init
            :model-init))

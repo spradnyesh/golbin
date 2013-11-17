@@ -34,7 +34,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun article-preamble-markup (article)
   (let ((timestamp (universal-to-timestamp (date article))))
     (fmtnil
@@ -117,13 +116,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun v-article (slug-and-id &optional (editorial nil))
   (let* ((id (get-id-from-slug-and-id slug-and-id))
-         (article (get-article-by-id id))
-         (comment-pagination (get-parameter "c-start"))
-         (comment-pagination (if comment-pagination
-                                 (handler-case
-                                     (parse-integer comment-pagination)
-                                   (sb-int:simple-parse-error () 0))
-                                 0)))
+         (article (get-article-by-id id)))
     (if (and article
              (or (and editorial
                       (not (eql :p (status article))))
@@ -131,34 +124,34 @@
         (template
          :title (title article)
          :js (ps ($event (window load)
-                   ($apply $
-                       get-script
-                     "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"
-                     #'(lambda (data text-status jqxhr)
-                         ($apply -recaptcha
-                             create
-                           "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi" ; (get-config "cipher.fe.comments.public")
-                           "recaptcha"
-                           (create :theme "white"
-                                   :callback "Recaptcha.focus_response_field"))))
-                   ($apply $
-                       get-script
-                     "http://malsup.github.io/jquery.form.js")))
+                   (let ((comments t))
+                     ($apply $
+                         get-script
+                       "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"
+                       #'(lambda (data text-status jqxhr)
+                           ($apply -recaptcha
+                               create
+                             "6LekB-YSAAAAAC55se2xnWzfaPKvvN0cm8b46mgi" ; (get-config "cipher.fe.comments.public")
+                             "recaptcha"
+                             (create :theme "white"
+                                     :callback "Recaptcha.focus_response_field"))))
+                     ($apply $
+                         get-script
+                       "http://malsup.github.io/jquery.form.js"))))
          :tags (append (loop for tag in (tags article)
                           collect (name tag))
                        (list (name (cat article))
                              (name (subcat article))))
          :description (summary article)
-         :body (<:div :class "wrapper"
-                      (<:div :id "article"
-                             (article-preamble-markup article)
-                             (article-body-markup article)
-                             (let ((tags (tags article)))
-                               (when tags
-                                 (<:p :class "a-tags"
-                                      (translate "tags" (fe-article-tags-markup tags))))))
-                (article-related-markup article)
-                (article-comments-markup id comment-pagination)))
+         :body (fmtnil (<:div :id "article"
+                              (article-preamble-markup article)
+                              (article-body-markup article)
+                              (let ((tags (tags article)))
+                                (when tags
+                                  (<:p :class "a-tags"
+                                       (translate "tags" (fe-article-tags-markup tags))))))
+                       (article-related-markup article)
+                       (article-comments-markup id)))
         (v-404))))
 
 (defun v-ajax-article-related (id typeof page)
