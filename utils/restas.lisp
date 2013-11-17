@@ -37,7 +37,7 @@
          (obfuscate-js)
          ;; init-model & db-connect only for the longest dim-str
          ;; ensure that the "db.path" config is present in longest dim-str
-         (dolist (dim (first (reverse (group-list #'length *dimensions-combos*))))
+         (dolist (dim (first (group-list #'length *dimensions-combos*)))
            ;; the below 'sort' ensures that the dim-str is lexically sorted based on the dimension
            ;; this reduces permutations-i -> combinations-i
            (let ((dim-str (dim-to-dim-str dim)))

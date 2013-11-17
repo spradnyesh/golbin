@@ -79,6 +79,7 @@
            :print-map
            :push-map
            :make-set
+           :group-list
            ;; string
            :slugify
            :join-string-list-with-delim

@@ -55,7 +55,7 @@
       (setf ele (push l (gethash key ht)))
       (setf (gethash key ht) ele))
     (maphash #'(lambda (k v) (declare (ignore k)) (push v rslt)) ht)
-    (reverse rslt)))
+    (values rslt ht)))
 
 ;; '((1.1 1.2) (2.1 2.2)) => '((1.1 1.2 nil) (2.1 2.2 nil))
 (defun append-nil (list-of-lists)
