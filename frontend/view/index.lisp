@@ -75,9 +75,11 @@
 (defun v-author (username &optional (page 0))
   (let ((author (get-author-by-username (string-to-utf-8 username :latin1))))
     (view-index (name author)
-                (<:div :id "a-details"
-                       (get-author-photo author (get-config "photo.author.avatar.size"))
-                       (<:p (description author)))
+                (let ((description (description author)))
+                  (when description
+                    (<:div :id "a-details"
+                           (get-author-photo author (get-config "photo.author.avatar.size"))
+                           (<:p description))))
                 nil
                 (get-articles-by-author author)
                 'r-author-page :author (username author))))
