@@ -128,7 +128,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           ;; some init functions
           (lazy-load-js)
-          (if comments
+          (when comments
               (load-comments)
               (submit-form-ajax "#comments form")
               ($event ("#comments form" submit)
