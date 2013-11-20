@@ -25,12 +25,12 @@
                         :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
               (if (string-equal (get-dimension-value "envt") "prod")
                   (fmtnil #- (and)
+                          (<:link :rel "stylesheet" :type "text/css"
+                                  :href "/static/css/fe-35-min.css")
                           (fmtnil
                             (<:link :rel "stylesheet" :type "text/css"
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
-                          (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-35-min.css")
                           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
                           ;; hate that sharethis cannot be lazy-loaded :(
                           (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
@@ -172,11 +172,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun footer ()
   (fmtnil (<:p "Copyright © 2012 Golbin Inc, LLP and respective copyright owners. All rights reserved.")
-          (<:p (<:a :href (h-genurl 'r-tos) (translate "terms-of-service")))
-          (<:p (<:a :href (h-genurl 'r-privacy) (translate "privacy")))
-          (<:p (<:a :href "mailto:webmaster@golb.in" (translate "contact-us")))
-          (<:p :id "copyscape"
-               (<:a :href "http://www.copyscape.com/" (<:img :src "/static/css/images/cs-wh-3d-234x16.gif")))))
+          (<:div (<:p (<:a :href (h-genurl 'r-tos) (translate "terms-of-service")))
+                 (<:p (<:a :href (h-genurl 'r-privacy) (translate "privacy")))
+                 (<:p (<:a :href "mailto:webmaster@golb.in" (translate "contact-us")))
+                 (<:p :class "last"
+                      (<:a :href "http://www.copyscape.com/"
+                           (<:img :src "/static/css/images/cs-wh-3d-234x16.gif"))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ads

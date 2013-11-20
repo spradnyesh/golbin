@@ -192,7 +192,7 @@
     (("#ft p") (:float "left"
                        :padding-right "35px"
                        :margin "0"))
-    (("#ft #copyscape") (:margin "10px 250px"))
+    (("#ft p.last") (:margin-top "5px"))
 
     ;; index
     (("#a-details") (:min-height "120px"
