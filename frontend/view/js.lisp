@@ -130,14 +130,14 @@
           (lazy-load-js)
           (if comments
               (load-comments)
-              (submit-form-ajax "#comments form"))
+              (submit-form-ajax "#comments form")
+              ($event ("#comments form" submit)
+                ((lambda (event)
+                   ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
+                   ($apply ($ "#response td input") val ($apply -recaptcha get_response))
+                   (form-submit event "#comments form" "comments"))
+                 event)))
 
           ;; event handlers
           ($event (".carousel p.prev a" click) (carousel-prev event))
-          ($event (".carousel p.next a" click) (carousel-next event))
-          ($event ("#comments form" submit)
-            ((lambda (event)
-               ($apply ($ "#challenge td input") val ($apply -recaptcha get_challenge))
-               ($apply ($ "#response td input") val ($apply -recaptcha get_response))
-               (form-submit event "#comments form" "comments"))
-             event))))))
+          ($event (".carousel p.next a" click) (carousel-next event))))))

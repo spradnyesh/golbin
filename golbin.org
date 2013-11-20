@@ -2,7 +2,12 @@
 
 * tasks
 ** backlog
-*** [#B] [bug][fe] comments ajax should not make page-jump
+*** TODO [#B] [bug][fe] comments ajax should not make page-jump
+    :CLOCK:
+    CLOCK: [2013-11-20 Wed 16:44]--[2013-11-20 Wed 16:50] =>  0:06
+    :END:
+    - does not happen in chrome
+      - because on page refresh it goes to top of page and then comes to bottom, by when the comments have already loaded
 *** [refactor][utils] utils/list/make-set
     - rename to remove-duplicates
     - why is it needed in model/article/get-active-articles (the original list already does not contain duplicates)
@@ -3722,6 +3727,15 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-20 Wed 16:38
+     :END:
+**** DONE [#A] [bug][fe] loading icon screwed
+     CLOSED: [2013-11-20 Wed 17:37]
+     :CLOCK:
+     CLOCK: [2013-11-20 Wed 17:33]--[2013-11-20 Wed 17:37] =>  0:04
+     CLOCK: [2013-11-20 Wed 16:50]--[2013-11-20 Wed 17:15] =>  0:25
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-20 Wed 17:37
      :END:
 ** TODO refactor
    :CLOCK:
