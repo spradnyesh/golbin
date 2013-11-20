@@ -25,12 +25,12 @@
                         :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
               (if (string-equal (get-dimension-value "envt") "prod")
                   (fmtnil #- (and)
-                          (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-34-min.css")
                           (fmtnil
                             (<:link :rel "stylesheet" :type "text/css"
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
+                          (<:link :rel "stylesheet" :type "text/css"
+                                  :href "/static/css/fe-35-min.css")
                           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
                           ;; hate that sharethis cannot be lazy-loaded :(
                           (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
@@ -65,10 +65,10 @@
                                           (ads-2)))
                             (<:footer :id "ft" (footer))))
              #- (and)
-             (if (string-equal (get-dimension-value "envt") "prod")
-                 (<:script :type "text/javascript" :src "/static/js/fe-14-min.js")
-                 (<:script :type "text/javascript" (on-load)))
              (<:script :type "text/javascript" (on-load))
+             (if (string-equal (get-dimension-value "envt") "prod")
+                 (<:script :type "text/javascript" :src "/static/js/fe-15-min.js")
+                 (<:script :type "text/javascript" (on-load)))
              (<:script :type "text/javascript"
                        (concatenate 'string
                                     ;; hate that sharethis cannot be lazy-loaded :(

@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [#B] [bug][fe] comments ajax should not make page-jump
 *** [refactor][utils] utils/list/make-set
     - rename to remove-duplicates
     - why is it needed in model/article/get-active-articles (the original list already does not contain duplicates)
@@ -9,14 +10,6 @@
 *** [fed] every ajax post need not result in get
     - eg fe/comment
 *** [bug][fe] footer css broken
-*** TODO [fed] threaded comments
-    :CLOCK:
-    CLOCK: [2013-11-17 Sun 20:08]--[2013-11-17 Sun 20:44] =>  0:36
-    CLOCK: [2013-11-17 Sun 19:50]--[2013-11-17 Sun 20:05] =>  0:15
-    CLOCK: [2013-11-17 Sun 17:56]--[2013-11-17 Sun 18:35] =>  0:39
-    CLOCK: [2013-11-17 Sun 16:55]--[2013-11-17 Sun 17:51] =>  0:56
-    :END:
-    - need to undo commit 75ae9301bcc1642ec6a7dbc6153563f2f95adb47
 *** [fed] (dis)like comments
 *** [fed] report-abuse for articles/comments
 *** [ed] story editing help
@@ -3707,6 +3700,22 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-17 Sun 19:46
      :END:
+**** DONE [fed] threaded comments
+     CLOSED: [2013-11-20 Wed 16:29]
+     :CLOCK:
+     CLOCK: [2013-11-20 Wed 16:23]--[2013-11-20 Wed 16:29] =>  0:06
+     CLOCK: [2013-11-20 Wed 16:17]--[2013-11-20 Wed 16:21] =>  0:04
+     CLOCK: [2013-11-20 Wed 15:37]--[2013-11-20 Wed 15:53] =>  0:16
+     CLOCK: [2013-11-20 Wed 15:21]--[2013-11-20 Wed 15:27] =>  0:06
+     CLOCK: [2013-11-17 Sun 20:08]--[2013-11-17 Sun 20:44] =>  0:36
+     CLOCK: [2013-11-17 Sun 19:50]--[2013-11-17 Sun 20:05] =>  0:15
+     CLOCK: [2013-11-17 Sun 17:56]--[2013-11-17 Sun 18:35] =>  0:39
+     CLOCK: [2013-11-17 Sun 16:55]--[2013-11-17 Sun 17:51] =>  0:56
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-20 Wed 16:29
+     :END:
+     - need to undo commit 75ae9301bcc1642ec6a7dbc6153563f2f95adb47
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

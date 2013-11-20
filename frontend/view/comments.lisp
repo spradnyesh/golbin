@@ -51,7 +51,7 @@
               (<:ul (children-markup ht children)))))))
 
 (defun children-markup (ht children)
-  (join-loop child children (single-comment-markup ht child)))
+  (join-loop child (reverse children) (single-comment-markup ht child)))
 
 (defun article-comments-markup (article-id)
   (<:div :id "comments"
@@ -91,7 +91,8 @@
       (group-list #'parent (get-comments article-id))
     (declare (ignore ignore))
     (encode-json-to-string `((:status . "success")
-                             (:data . ,(<:ul (children-markup ht (gethash 0 ht))))))))
+                             (:data . ,(<:ul :class "first"
+                                             (children-markup ht (gethash 0 ht))))))))
 
 (defun v-comment-post (article-id &optional ajax)
   (let* ((parent (post-parameter "c-parent"))

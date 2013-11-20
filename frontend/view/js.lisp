@@ -50,13 +50,14 @@
                           (form-fail data))))
                     (comments-reply (event)
                       ($prevent-default)
-                      (let ((parent ($ (@ event target parent-node parent-node))))
+                      (let* ((parent ($ (@ event target parent-node parent-node)))
+                             (parent-id ($apply ($apply parent children "span") text)))
                         ($apply parent append ($ "#c-input"))
                         ($apply ($apply ($ (elt ($apply ($ "#c-parent") children "td") 1))
                                     children
                                   "input")
                             val
-                          ($apply ($apply parent children "span") text))
+                          (if parent-id parent-id "0"))
                         ($apply ($ "#c-input")
                             remove-class
                           "hidden")))

@@ -244,10 +244,9 @@
                                 :padding-top "10px"
                                 :border-top "1px dotted #ccc"
                                 :position "relative"))
-    (("#comments ul") (:margin-top "20px"))
-    (("#comments li") (:border-bottom "1px dotted"
-                                      :border-color "#CCC"
-                                      :margin-bottom "15px"))
+    (("#comments ul") (:margin "20px 0 0 20px"))
+    (("#comments ul.first") (:margin "0"))
+    (("#comments li") (:margin-bottom "15px"))
     (("#comments td") (:padding "5px 5px 5px 0"))
     (("#comments input, #comments textarea") (:border "3px solid #ddd"
                                                       :padding "7px"
@@ -260,7 +259,7 @@
                            :background-color "#f0f0f0"
                            :margin-top "-10px"))
     ((".c-prelude") (:margin "15px 0"))
-    ((".c-reply") (:margin "10px 15px 0 0"))
+    ((".c-reply") (:margin "20px 15px 0 0"))
 
     ;; carousel
     ((".carousel") (:font-size "12px"))
