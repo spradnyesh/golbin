@@ -16,6 +16,7 @@
   ((author-type :initarg :author-type :initform nil :accessor author-type) ; :u author, :e editor, :d admin
    (description :initarg :description :initform nil :accessor description)
    (photo :initarg :photo :initform nil :accessor photo)
+   (background :initarg :background :initform nil :accessor background) ; background image for all author-pages
    (street :initarg :street :initform nil :accessor street)
    (city :initarg :city :initform nil :accessor city)
    (state :initarg :state :initform nil :accessor state)
@@ -33,6 +34,7 @@
 (defclass mini-author ()
   ((id :initarg :id :initform nil :accessor id)
    (photo :initarg :photo :initform nil :accessor photo)
+   (background :initarg :background :initform nil :accessor background)
    (username :initarg :username :initform nil :accessor username))
   (:documentation "to be used as a foreign key in articles"))
 
@@ -49,11 +51,12 @@
   (get-author-by-username (session-value :author)))
 
 (defun get-mini-author ()
-  (multiple-value-bind (id photo username)
+  (multiple-value-bind (id photo background username)
       (get-mini-author-details (who-am-i))
     (make-instance 'mini-author
                    :id id
                    :photo photo
+                   :background background
                    :username username)))
 
 (defun verify-login (username password)
@@ -90,6 +93,7 @@
 (defun get-mini-author-details (author)
   (values (id author)
           (photo author)
+          (background author)
           (username author)))
 
 (defun get-author-by-username (username)

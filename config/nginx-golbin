@@ -12,7 +12,7 @@ server {
 
     expires        30d;
 
-    location ~ ^/(static)/ {
+    location ~ ^/(static|uploads)/ {
         root       /home/hawksbill/code/startup/s/golbin/data;
         autoindex  on;
         expires    max;
@@ -45,7 +45,7 @@ server {
 
     expires        30d;
 
-    location ~ ^/(static)/ {
+    location ~ ^/(static|uploads)/ {
         root       /home/hawksbill/code/startup/s/golbin/data;
         autoindex  on;
         expires    max;

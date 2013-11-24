@@ -2,6 +2,11 @@
 
 * tasks
 ** backlog
+*** [fe] 404
+    - http://www.squidoo.com/
+*** [fed] ideas/categories
+    - http://voices.yahoo.com
+    - http://www.squidoo.com/
 *** TODO [#B] [bug][fe] comments ajax should not make page-jump
     :CLOCK:
     CLOCK: [2013-11-20 Wed 16:44]--[2013-11-20 Wed 16:50] =>  0:06
@@ -38,13 +43,6 @@
     - [X] http://www.squidoo.com/originalitypact
     - [X] (help and tips) http://www.squidoo.com/squidoo
 *** [perf][fe] optimize carousel (don't call again if :page was already called)
-*** [fe] page background
-    - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
-    - http://www.squidoo.com/linda-mccartneys-home-cooking
-    - http://www.squidoo.com/easy-chicken-soup
-    - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
-*** [fe] 404
-    - http://www.squidoo.com/
 *** [fe] author trophies
     - http://www.squidoo.com/member/awards/BearTale
     - http://www.squidoo.com/member/awards/britflorida
@@ -53,9 +51,6 @@
 *** [fe] index page
     - http://www.squidoo.com/topics/food-and-cooking/recipes/soups-and-stew-recipes
 *** [perf] http://www.appelsiini.net/projects/lazyload
-*** [fed] ideas/categories
-    - http://voices.yahoo.com
-    - http://www.squidoo.com/
 *** TODO [ed] translations
     :CLOCK:
     CLOCK: [2013-11-04 Mon 16:12]--[2013-11-04 Mon 16:14] =>  0:02
@@ -3757,6 +3752,18 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-24 Sun 15:48
      :END:
+**** DONE [fed] page background
+     CLOSED: [2013-11-24 Sun 16:27]
+     :CLOCK:
+     CLOCK: [2013-11-24 Sun 15:49]--[2013-11-24 Sun 16:27] =>  0:38
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-24 Sun 16:27
+     :END:
+     - http://www.squidoo.com/better-homes-and-gardens-new-cook-book
+     - http://www.squidoo.com/linda-mccartneys-home-cooking
+     - http://www.squidoo.com/easy-chicken-soup
+     - http://www.squidoo.com/spiced-french-toast-with-warm-apple-topping
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

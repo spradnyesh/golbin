@@ -53,17 +53,18 @@
              (<:body :class (if (string-equal "en-IN" lang)
                                 ""
                                 "dvngr")
-                     (<:div :class "yui3-g"
-                            (<:header :id "hd" (header ,email))
-                            (<:div :id "bd"
-                                   (<:div :class "yui3-u-17-24"
-                                          (<:div :id "col-1" :class "yui3-u-1-4"
-                                                 (ads-1))
-                                          (<:div :id "col-2" :class "yui3-u-3-4"
-                                                 (<:div :id "wrapper" ,body)))
-                                   (<:div :id "col-3" :class "yui3-u-7-24"
-                                          (ads-2)))
-                            (<:footer :id "ft" (footer))))
+                     (<:div :id "bkgrnd"
+                            (<:div :class "yui3-g"
+                                   (<:header :id "hd" (header ,email))
+                                   (<:div :id "bd"
+                                          (<:div :class "yui3-u-17-24"
+                                                 (<:div :id "col-1" :class "yui3-u-1-4"
+                                                        (ads-1))
+                                                 (<:div :id "col-2" :class "yui3-u-3-4"
+                                                        (<:div :id "wrapper" ,body)))
+                                          (<:div :id "col-3" :class "yui3-u-7-24"
+                                                 (ads-2)))
+                                   (<:footer :id "ft" (footer)))))
              #- (and)
              (<:script :type "text/javascript" (on-load))
              (<:script :type "text/javascript" :src "/static/js/fe-15-min.js")

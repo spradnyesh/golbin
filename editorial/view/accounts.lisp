@@ -87,6 +87,18 @@
                                                              (<:a :href "#"
                                                                   :id "upload-author-photo"
                                                                   (translate "change-photo")))))))
+                                   (<:tr (<:td (<:label :class "label"
+                                                        :for "background"
+                                                        (translate "background")))
+                                         (<:td (let ((background (background author)))
+                                                 (fmtnil (when background
+                                                           ;; uploaded image
+                                                           (<:img :src (build-sized-image "/static/photos/"
+                                                                                          background
+                                                                                          (write-to-string (get-config "photo.author.background.size")))))
+                                                         (<:a :href "#"
+                                                              :id "upload-author-background"
+                                                              (translate "change-background"))))))
                                    (tr-td-text "description"
                                                :class "ckeditor"
                                                :value (description author))

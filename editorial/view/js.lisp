@@ -270,12 +270,15 @@
                       (setf select-photo-paginate true)
                       (select-photo-call select-photo-who (elt select-photo-next-page select-photo-who)))
 
-                    (upload-author-photo-init (event)
+                    (upload-author-photo-init (event avatar-p)
                       ($prevent-default)
                       (create-pane "pane")
                       ($apply ($ "#pane .message")
                                 append
-                        "<form action='/ajax/photo/author/' method='POST' enctype='multipart/form-data'><table><tr><td class='label'><label for='photo'>Photo</label></td><td><input type='file' name='photo' value=''/></td></tr><tr><td></td><td><input class='submit' name='submit' type='submit' value='Upload'/></td></tr></table></form>")
+                        (+ "<form action='/ajax/photo/author/"
+                           (unless avatar-p
+                             "background/")
+                           "' method='POST' enctype='multipart/form-data'><table><tr><td class='label'><label for='photo'>Photo</label></td><td><input type='file' name='photo' value=''/></td></tr><tr><td></td><td><input class='submit' name='submit' type='submit' value='Upload'/></td></tr></table></form>"))
                       ($event ("#pane form" submit) (form-submit event "#pane form")))
                     (gravatar-author-photo-init (event)
                       ($prevent-default)
@@ -378,7 +381,8 @@
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
-        ($event ("#upload-author-photo" click) (upload-author-photo-init event))
+        ($event ("#upload-author-photo" click) (upload-author-photo-init event t))
+        ($event ("#upload-author-background" click) (upload-author-photo-init event nil))
         ($event ("#gravatar-author-photo" click) (gravatar-author-photo-init event))
         ($event ("#article form" submit)
           ;; http://stackoverflow.com/a/1903820

@@ -76,10 +76,13 @@
   (let ((author (get-author-by-username (string-to-utf-8 username :latin1))))
     (view-index (name author)
                 (let ((description (description author)))
-                  (when description
-                    (<:div :id "a-details"
-                           (get-author-photo author (get-config "photo.author.avatar.size"))
-                           (<:p description))))
+                  (fmtnil (<:style (format nil
+                                           "#bkgrnd {background-image: url('/uploads/photos/~a')}"
+                                           (background author)))
+                          (when description
+                            (<:div :id "a-details"
+                                   (get-author-photo author (get-config "photo.author.avatar.size"))
+                                   (<:p description)))))
                 nil
                 (get-articles-by-author author)
                 'r-author-page :author (username author))))

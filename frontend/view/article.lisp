@@ -143,7 +143,10 @@
                        (list (name (cat article))
                              (name (subcat article))))
          :description (summary article)
-         :body (fmtnil (<:div :id "article"
+         :body (fmtnil (<:style (format nil
+                                        "#bkgrnd {background-image: url('/uploads/photos/~a')}"
+                                        (background (author article))))
+                       (<:div :id "article"
                               (article-preamble-markup article)
                               (article-body-markup article)
                               (let ((tags (tags article)))

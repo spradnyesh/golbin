@@ -112,10 +112,14 @@
   (v-photo-post t))
 (define-route r-ajax-author-photo ("/ajax/photo/author/" :method :post
                                                          :content-type "application/json")
-  (v-photo-author nil))
+  (v-photo-author t nil))
+(define-route r-ajax-author-background ("/ajax/photo/author/background/"
+                                        :method :post
+                                        :content-type "application/json")
+  (v-photo-author nil nil))
 (define-route r-ajax-author-photo-reset ("/ajax/photo/author/reset/" :method :post
                                                                      :content-type "application/json")
-  (v-photo-author t))
+  (v-photo-author nil t))
 (define-route r-ajax-tags ("/ajax/tags/" :content-type "application/json")
   (v-ajax-tags))
 (define-route r-ajax-register-post ("/ajax/register/" :method :post

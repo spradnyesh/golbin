@@ -49,6 +49,7 @@
            :salt
            :email
            :description
+           :background
            :street
            :city
            :state

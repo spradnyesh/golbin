@@ -94,17 +94,17 @@
                  (:data . ,(list (id photo) (article-lead-photo-url photo "related-thumb")))))
               (redirect (h-genurl 'r-photo-get))))))))
 
-(defun v-photo-author (reset)
+(defun v-photo-author (avatar-p reset-p)
   (let ((photo (post-parameter "photo"))
         (author (who-am-i))
         (ajax t))
-    (if reset
+    (if reset-p
         ;; reset to gravatar
         (progn
           (setf (photo author) (md5-hash (email author)))
           (edit-author author)
           (update-articles-author-photo))
-        ;; upload author photo
+        ;; upload author photo/background
         (when (and photo (listp photo))
           (multiple-value-bind (orig-filename new-path) (save-photo-to-disk photo)
             (when new-path
@@ -115,7 +115,9 @@
                                                                        "~A.~A"
                                                                        (pathname-name new-path)
                                                                        (pathname-type new-path))))))
-                (setf (photo author) (new-filename p)))
+                (if avatar-p
+                    (setf (photo author) (new-filename p))
+                    (setf (background author) (new-filename p))))
               (edit-author author)
               (update-articles-author-photo)))))
     (submit-success ajax (h-genurl 'r-account-get))))
