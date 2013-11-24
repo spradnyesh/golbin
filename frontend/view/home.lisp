@@ -17,7 +17,7 @@
            (:data . nil))))))
 
 (defun v-home (&optional (page 0))
-  (view-index "Home"                    ; XXX: translate
+  (view-index (translate "home")
               nil
               nil
               (get-active-articles)

@@ -95,4 +95,13 @@
                 (get-articles-by-tag-slug slug)
                 'r-tag-page :tag slug)))
 
+(defun v-404 ()
+  (let ((page 0))
+    (view-index "404"
+                (<:p :class "error"
+                     (translate "404" (<:a :href "javascript:history.go(-1)" (translate "here"))))
+                nil
+                (get-active-articles)
+                'r-home-page)))
+
 (defun v-search ())

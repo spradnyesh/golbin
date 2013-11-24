@@ -46,6 +46,8 @@
     ((".hidden") (:display "none"))
     ((".lazyload_ad") (:text-align "center"
                                    :padding "20px 0"))
+    ((".error") (:background-color "#ddd"
+                                   :padding "10px"))
 
     ;; tooltip http://sixrevisions.com/css/css-only-tooltips/
     ((".tooltip") (:color "#61a1f0"
@@ -201,7 +203,7 @@
     (("#a-details img") (:float "left"
                                 :padding-right "10px"))
     (("#articles li") (:border-bottom "1px dotted"
-                                      :border-color "#CCC"
+                                      :border-color "#ddd"
                                       :margin-bottom "15px"))
     (("#articles .index-thumb") (:float "left"
                                         :padding-right "10px"))
@@ -218,7 +220,7 @@
     (("#article p.p-title") (:text-align "center"
                                          :margin "15px 0 0 0"))
     (("#a-title") (:font-size "160%"))
-    ((".a-cite") (:color "#999999"
+    ((".a-cite") (:color "#999"
                          :padding "0"
                          :display "block"))
     (("#article .a-cite img") (:display "inline"
@@ -235,14 +237,14 @@
     (("#a-body li") (:background "url('/static/css/images/icon_bullet.png') 5px 2px no-repeat"
                                  :padding-left "25px"))
     (("#a-body img") (:padding "10px"))
-    (("#related") (:border-top "1px dotted #ccc"
+    (("#related") (:border-top "1px dotted #ddd"
                                :margin-top "25px"
                                :padding-top "10px"))
 
     ;; comments
     (("#comments") (:margin-top "35px"
                                 :padding-top "10px"
-                                :border-top "1px dotted #ccc"
+                                :border-top "1px dotted #ddd"
                                 :position "relative"))
     (("#comments ul") (:margin "20px 0 0 20px"))
     (("#comments ul.first") (:margin "0"))
