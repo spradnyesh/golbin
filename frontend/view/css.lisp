@@ -298,6 +298,14 @@
                                      :margin-bottom "20px"
                                      :text-align "center"))
 
+    ;; ads
+    (("#i-ads") (:height "100px"
+                         :border-top "1px dotted #ddd"
+                         :border-bottom "1px dotted #ddd"
+                         :margin "15px 0"))
+    (("#i-ads div") (:float "left"
+                            :margin "0 20px"))
+
     ;; devanagari
     ((".dvngr h2, .dvngr h3") (:padding-top "10px"))
 

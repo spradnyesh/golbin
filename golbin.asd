@@ -27,7 +27,8 @@
                                      (:file "datetime" :depends-on ("lang" "string"))
                                      (:file "cipher" :depends-on ("string"))
                                      (:file "token-card" :depends-on ("package"))
-                                     (:file "email" :depends-on ("package"))))
+                                     (:file "email" :depends-on ("package"))
+                                     (:file "google-ads" :depends-on ("package"))))
                (:module "common"
                         :components ((:file "package")
                                      (:file "init" :depends-on ("package"))

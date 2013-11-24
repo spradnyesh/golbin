@@ -35,13 +35,13 @@
                           ;; hate that sharethis cannot be lazy-loaded :(
                           (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
                           (<:script :type "text/javascript" :src "http://s.sharethis.com/loader.js")
-                          ;; google analytics and adsense
+                          ;; google analytics
                           (<:script :type "text/javascript" "
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-35078884-1']);
   _gaq.push(['_setDomainName', 'golb.in']);
   _gaq.push(['_trackPageview']);
-  var switchTo5x=true;
+  var switchTo5x=true; // needed for sharethis
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -182,26 +182,8 @@
 ;; ads
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun ads-1 ()
-  (when (string-equal (get-dimension-value "envt") "prod")
-    (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-           (<:code :type "text/javascript"
-                   "<!-- google_ad_client = 'ca-pub-7627106577670276';
-                         google_ad_slot = '1936097987';
-                         google_ad_width = 160;
-                         google_ad_height = 600; //-->"))))
+  (ads-markup "ca-pub-7627106577670276" "1936097987" 160 300))
 
 (defun ads-2 ()
-  (when (string-equal (get-dimension-value "envt") "prod")
-    (fmtnil
-     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-            (<:code :type "text/javascript"
-                    "<!-- google_ad_client = 'ca-pub-7627106577670276';
-                          google_ad_slot = '5029165182';
-                          google_ad_width = 300;
-                          google_ad_height = 250; //-->"))
-     (<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-            (<:code :type "text/javascript"
-                    "<!-- google_ad_client = 'ca-pub-7627106577670276';
-                          google_ad_slot = '9459364786';
-                          google_ad_width = 300;
-                          google_ad_height = 600; //-->")))))
+  (fmtnil (ads-markup "ca-pub-7627106577670276" "5029165182" 300 250)
+          (ads-markup "ca-pub-7627106577670276" "9459364786" 300 600)))

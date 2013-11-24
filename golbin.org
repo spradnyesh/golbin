@@ -2,6 +2,20 @@
 
 * tasks
 ** backlog
+*** TODO [fe] update existing google ads markup
+    :CLOCK:
+    CLOCK: [2013-11-24 Sun 18:05]--[2013-11-24 Sun 18:07] =>  0:02
+    :END:
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- inline-1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:234px;height:60px"
+     data-ad-client="ca-pub-7627106577670276"
+     data-ad-slot="9310803587"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+*** html5 form validation
 *** [fed] ideas/categories
     - http://voices.yahoo.com
     - http://www.squidoo.com/
@@ -56,7 +70,6 @@
     CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
     CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
     :END:
-*** [fe] investigate in-text ads and how to dynamically add them in articles at (right?) places
 *** [fed] contact-us/feedback form
     - ed.g.in/feedback.html
 *** [ed] forums
@@ -3771,6 +3784,29 @@
      :ARCHIVE_TIME: 2013-11-24 Sun 17:09
      :END:
      - http://www.squidoo.com/
+**** DONE [fe] investigate in-text ads and how to dynamically add them in articles at (right?) places
+     CLOSED: [2013-11-24 Sun 19:13]
+     :CLOCK:
+     CLOCK: [2013-11-24 Sun 19:04]
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-24 Sun 19:13
+     :END:
+***** DONE investigate
+      CLOSED: [2013-11-24 Sun 18:04]
+      :CLOCK:
+      CLOCK: [2013-11-24 Sun 17:50]--[2013-11-24 Sun 18:04] =>  0:14
+      :END:
+***** DONE refactor
+      CLOSED: [2013-11-24 Sun 18:38]
+      :CLOCK:
+      CLOCK: [2013-11-24 Sun 18:07]--[2013-11-24 Sun 18:36] =>  0:29
+      :END:
+***** DONE add at right places
+      CLOSED: [2013-11-24 Sun 19:03]
+      :CLOCK:
+      CLOCK: [2013-11-24 Sun 18:38]--[2013-11-24 Sun 19:03] =>  0:25
+      :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

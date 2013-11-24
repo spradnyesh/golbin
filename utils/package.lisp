@@ -126,7 +126,11 @@
            ;; email
            :sendmail
            ;; misc
-           :build-gravtar-image))
+           :build-gravtar-image
+           ;; ads
+           :ads-markup
+           :insert-inline-ads
+           :remove-inline-ads))
 
 (in-package :hawksbill.utils)
 

@@ -178,7 +178,8 @@
                                                  " a photo"))
                                      (tr-td-text "body"
                                                  :class "ckeditor"
-                                                 :value (when article (body article))
+                                                 :value (when article (remove-inline-ads (body article)
+                                                                                         (inline-ads-markup)))
                                                  :mandatory t)
                                      (unless (string-equal (get-dimension-value "lang") "en-IN")
                                        (<:tr (<:td (get-dimension-value "lang"))
@@ -231,6 +232,11 @@
                                                           :name "submit"
                                                           :value (translate "publish")))))))))))
 
+(defun inline-ads-markup ()
+  (<:div :id "i-ads"
+         (ads-markup "ca-pub-7627106577670276" "9310803587" 234 60)
+         (ads-markup "ca-pub-7627106577670276" "1787536781" 234 60)))
+
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
     (let* ((title (post-parameter "title"))
@@ -258,10 +264,17 @@
       (let ((err0r (validate-article title body)))
         (if (not err0r)
             (let ((body (update-anchors (add-photo-attribution (cleanup-ckeditor-text body)))))
+
+              ;; add new tags if needed
               (dolist (tag tags)
                 (let ((tag-added (add-tag tag)))
                   (when tag-added
                     (push tag-added article-tags))))
+
+              ;; add inline google-ads markup
+              (when (eq submit-type :a)
+                (setf body (insert-inline-ads body (inline-ads-markup))))
+
               (if (not id)
                   ;; adding a new article
 
@@ -355,6 +368,7 @@
                                                           :id id
                                                           :status :p))
                              (setf id parent))))))
+
               ;; archive at http://archive.org/web/web.php
               (when (eq submit-type :a)
                 (let* ((article (get-article-by-id id))
