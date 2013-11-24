@@ -268,7 +268,7 @@
     (("#pane ul.photo li a") (:display "block"))
     (("#loading") (:width "128px"
                           :height "128px"
-                          :position "absolute"
+                          :position "fixed"
                           :top "200px"
                           :left "400px"
                           :border "0"))

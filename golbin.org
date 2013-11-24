@@ -3,9 +3,7 @@
 * tasks
 ** backlog
 *** TODO [fe] update existing google ads markup
-    :CLOCK:
-    CLOCK: [2013-11-24 Sun 18:05]--[2013-11-24 Sun 18:07] =>  0:02
-    :END:
+    - maybe can get rid of lazy_load.js
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- inline-1 -->
 <ins class="adsbygoogle"
@@ -3787,7 +3785,7 @@
 **** DONE [fe] investigate in-text ads and how to dynamically add them in articles at (right?) places
      CLOSED: [2013-11-24 Sun 19:13]
      :CLOCK:
-     CLOCK: [2013-11-24 Sun 19:04]
+     CLOCK: [2013-11-24 Sun 19:03]--[2013-11-24 Sun 19:13] => 0:10
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-11-24 Sun 19:13
@@ -3807,6 +3805,14 @@
       :CLOCK:
       CLOCK: [2013-11-24 Sun 18:38]--[2013-11-24 Sun 19:03] =>  0:25
       :END:
+**** DONE [bug][ed] loading icon not showing when editing article
+     CLOSED: [2013-11-24 Sun 19:18]
+     :CLOCK:
+     CLOCK: [2013-11-24 Sun 19:14]--[2013-11-24 Sun 19:18] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-11-24 Sun 19:18
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
