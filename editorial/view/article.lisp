@@ -86,6 +86,11 @@
                            (regex-replace "<a " anchor "<a target=\"_blank\"")))))
   body)
 
+(defun add-trailing-p (body)
+  (concatenate 'string
+               body
+               "<p></p>"))
+
 (defun validate-article (title body)
   (let ((err0r nil)
         (script-tags (all-matches-as-strings "<script(.*?)>"
@@ -263,7 +268,7 @@
            (article-tags nil))
       (let ((err0r (validate-article title body)))
         (if (not err0r)
-            (let ((body (update-anchors (add-photo-attribution (cleanup-ckeditor-text body)))))
+            (let ((body (add-trailing-p (update-anchors (add-photo-attribution (cleanup-ckeditor-text body))))))
 
               ;; add new tags if needed
               (dolist (tag tags)
