@@ -6,6 +6,7 @@
 (defsystem golbin
   :components ((:module "utils"
                         :components ((:file "package")
+                                     (:file "threads" :depends-on ("package"))
                                      (:file "list" :depends-on ("package"))
                                      (:file "macros" :depends-on ("package"))
                                      (:file "string" :depends-on ("list"))
@@ -20,14 +21,14 @@
                                      (:file "memcache" :depends-on ("package"))
                                      (:file "ckeditor" :depends-on ("package"))
                                      (:file "html" :depends-on ("string"))
-                                     (:file "http" :depends-on ("string"))
+                                     (:file "http" :depends-on ("string" "threads"))
                                      (:file "l10n" :depends-on ("package"))
                                      (:file "pagination" :depends-on ("restas"))
                                      (:file "db" :depends-on ("config" "dimensions" "macros"))
                                      (:file "datetime" :depends-on ("lang" "string"))
                                      (:file "cipher" :depends-on ("string"))
                                      (:file "token-card" :depends-on ("package"))
-                                     (:file "email" :depends-on ("package"))
+                                     (:file "email" :depends-on ("threads"))
                                      (:file "google-ads" :depends-on ("package"))))
                (:module "common"
                         :components ((:file "package")
@@ -79,4 +80,4 @@
                                      (:file "routes" :depends-on ("view")))
                         :depends-on ("model" "frontend"))
                (:module "reports"))
-  :depends-on (:restas :sexml :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :hunchentoot :restas :restas-directory-publisher :cl-prevalence :cl-gd :ironclad :trivial-utf-8 :flexi-streams :cl-smtp :cl-recaptcha :html-entities :trivial-timeout :sanitize :drakma))
+  :depends-on (:restas :sexml :local-time :cl-memcached :cl-ppcre :parenscript :cl-json :css-lite :hunchentoot :restas :restas-directory-publisher :cl-prevalence :cl-gd :ironclad :trivial-utf-8 :flexi-streams :cl-smtp :cl-recaptcha :html-entities :trivial-timeout :sanitize :drakma :eager-future2))

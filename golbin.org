@@ -4,7 +4,6 @@
 ** backlog
 *** rss
     - index (home, category) pages
-*** make sendmail background job
 *** html5 form validation
 *** [fed] find more ideas
     - http://voices.yahoo.com
@@ -3874,6 +3873,16 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+**** DONE [utils] make background jobs
+     CLOSED: [2013-12-01 Sun 13:30]
+     :CLOCK:
+     CLOCK: [2013-12-01 Sun 12:31]--[2013-12-01 Sun 13:30] =>  0:59
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 13:29
+     :END:
+     - [X] sendmail
+     - [X] web-archive
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

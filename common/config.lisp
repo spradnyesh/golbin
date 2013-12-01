@@ -13,9 +13,7 @@
                           ("email" ("address" "golb_in@yahoo.com")
                                    ("host" "smtp.mail.yahoo.com")
                                    ("password" ""))
-                          ("timeout" ("email" 3)
-                                     ("archive" 3)
-                                     ("comments" 3)))
+                          ("timeout" ("comments" 3)))
                   ("gravatar" ("url" "http://www.gravatar.com/avatar/")
                               ("type" "identicon"))
                   ("cipher" ("insecure" "aCpLvFWfcfUxmz4h") ; used for non-secure encryption

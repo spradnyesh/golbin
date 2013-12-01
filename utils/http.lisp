@@ -27,15 +27,11 @@
                          "="
                          (first (all-matches-as-strings
                                  "var redirUrl = .*;"
-                                 (handler-case (with-timeout ((get-config "site.timeout.archive"))
-                                                 (drakma:http-request
-                                                  (concatenate 'string
-                                                               "http://web.archive.org/save/"
-                                                               ,uri)))
-                                   (trivial-timeout:timeout-error ()
-                                     (progn ,error-handle
-                                            (when (and (boundp '*acceptor*) *acceptor*)
-                                              (log-message* :warning "failed to archive uri: [~a]" ,uri))))
+                                 ;; execute asynchronously
+                                 (handler-case (do-in-background (drakma:http-request
+                                                                  (concatenate 'string
+                                                                               "http://web.archive.org/save/"
+                                                                               ,uri)))
                                    (usocket:timeout-error ()
                                      (progn ,error-handle
                                             (when (and (boundp '*acceptor*) *acceptor*)
