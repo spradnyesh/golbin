@@ -2,7 +2,12 @@
 
 * tasks
 ** backlog
+*** rss
+    - index (home, category) pages
 *** TODO [fe] update existing google ads markup
+    :CLOCK:
+    CLOCK: [2013-12-01 Sun 10:48]--[2013-12-01 Sun 10:51] =>  0:03
+    :END:
     - maybe can get rid of lazy_load.js
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- inline-1 -->
@@ -14,7 +19,11 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 *** html5 form validation
-*** [fed] ideas/categories
+*** [fed] find more ideas
+    - http://voices.yahoo.com
+    - http://www.squidoo.com/
+    - http://hmexpress.happymelly.com
+*** [fed] categories
     - http://voices.yahoo.com
     - http://www.squidoo.com/
 *** TODO [#B] [bug][fe] comments ajax should not make page-jump
@@ -3822,6 +3831,14 @@
      :ARCHIVE_TIME: 2013-11-24 Sun 19:25
      :END:
      - so that inline ad shows at end of article if it does not contain any "</p>" in between
+**** DONE [bug][fe] background image should be shown only when defined
+     CLOSED: [2013-12-01 Sun 10:54]
+     :CLOCK:
+     CLOCK: [2013-12-01 Sun 10:52]--[2013-12-01 Sun 10:54] =>  0:02
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 10:54
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

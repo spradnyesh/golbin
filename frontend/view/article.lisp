@@ -143,18 +143,19 @@
                        (list (name (cat article))
                              (name (subcat article))))
          :description (summary article)
-         :body (fmtnil (<:style (format nil
-                                        "#bkgrnd {background-image: url('/uploads/photos/~a')}"
-                                        (background (author article))))
-                       (<:div :id "article"
-                              (article-preamble-markup article)
-                              (article-body-markup article)
-                              (let ((tags (tags article)))
-                                (when tags
-                                  (<:p :class "a-tags"
-                                       (translate "tags" (fe-article-tags-markup tags))))))
-                       (article-related-markup article)
-                       (article-comments-markup id)))
+         :body (let ((background (background (author article))))
+                 (fmtnil (when background (<:style (format nil
+                                                           "#bkgrnd {background-image: url('/uploads/photos/~a')}"
+                                                           background)))
+                         (<:div :id "article"
+                                (article-preamble-markup article)
+                                (article-body-markup article)
+                                (let ((tags (tags article)))
+                                  (when tags
+                                    (<:p :class "a-tags"
+                                         (translate "tags" (fe-article-tags-markup tags))))))
+                         (article-related-markup article)
+                         (article-comments-markup id))))
         (v-404))))
 
 (defun v-ajax-article-related (id typeof page)
