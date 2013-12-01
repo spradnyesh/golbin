@@ -101,6 +101,16 @@
       (push (translate "script-tags" (join-string-list-with-delim "," script-tags)) err0r))
     err0r))
 
+;;; development helper
+(defun republish-author-articles (author)
+  (let ((ia-markup (inline-ads-markup)))
+    (dolist (a (get-articles-by-author author))
+      ;; remove and insert inline ads
+      (setf (body a) (insert-inline-ads (remove-inline-ads (body a)
+                                                           ia-markup)
+                                        ia-markup))
+      (edit-article a))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; views
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

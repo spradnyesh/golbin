@@ -3839,6 +3839,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-01 Sun 10:54
      :END:
+**** DONE [ed] re-publish all author-active-articles
+     CLOSED: [2013-12-01 Sun 11:07]
+     :CLOCK:
+     CLOCK: [2013-12-01 Sun 10:56]--[2013-12-01 Sun 11:07] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 11:07
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
