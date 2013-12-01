@@ -4,20 +4,7 @@
 ** backlog
 *** rss
     - index (home, category) pages
-*** TODO [fe] update existing google ads markup
-    :CLOCK:
-    CLOCK: [2013-12-01 Sun 10:48]--[2013-12-01 Sun 10:51] =>  0:03
-    :END:
-    - maybe can get rid of lazy_load.js
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- inline-1 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:234px;height:60px"
-     data-ad-client="ca-pub-7627106577670276"
-     data-ad-slot="9310803587"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+*** make sendmail background job
 *** html5 form validation
 *** [fed] find more ideas
     - http://voices.yahoo.com
@@ -3864,6 +3851,29 @@
      :ARCHIVE_TIME: 2013-12-01 Sun 11:36
      :END:
      - add only if not already added
+**** CANCELLED [fe] update existing google ads markup
+    CLOSED: [2013-12-01 Sun 12:21]
+    :LOGBOOK:
+    - State "CANCELLED"  from "TODO"       [2013-12-01 Sun 12:21] \\
+      lazy-load not working w/ new format; reverting back all changes
+    :END:
+    :CLOCK:
+    CLOCK: [2013-12-01 Sun 11:40]--[2013-12-01 Sun 12:21] =>  0:41
+    CLOCK: [2013-12-01 Sun 10:48]--[2013-12-01 Sun 10:51] =>  0:03
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 12:23
+     :END:
+    - maybe can get rid of lazy_load.js
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- inline-1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:234px;height:60px"
+     data-ad-client="ca-pub-7627106577670276"
+     data-ad-slot="9310803587"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
