@@ -3855,6 +3855,15 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-01 Sun 11:12
      :END:
+**** DONE [bug][ed] while adding the <p></p> for inline-ads during add/edit article
+     CLOSED: [2013-12-01 Sun 11:36]
+     :CLOCK:
+     CLOCK: [2013-12-01 Sun 11:13]--[2013-12-01 Sun 11:36] =>  0:23
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 11:36
+     :END:
+     - add only if not already added
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

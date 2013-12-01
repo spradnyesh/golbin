@@ -219,6 +219,8 @@
                                              :right "30px"))
     (("#article p.p-title") (:text-align "center"
                                          :margin "15px 0 0 0"))
+    (("#article p.last") (:margin "0"
+                                  :height "0"))
     (("#a-title") (:font-size "160%"))
     ((".a-cite") (:color "#999"
                          :padding "0"

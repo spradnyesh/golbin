@@ -86,10 +86,16 @@
                            (regex-replace "<a " anchor "<a target=\"_blank\"")))))
   body)
 
+;;; adding <p> tag at end so that if there is no </p> in article, then we will add inline g-ads at end of article
 (defun add-trailing-p (body)
-  (concatenate 'string
-               body
-               "<p></p>"))
+  (if (not (string= "<p class=\"last\">
+	&nbsp;</p>
+"                                    ; add only if not already present
+                    (subseq body (- (length body) 29))))
+      (concatenate 'string
+                   body
+                   "<p class='last'></p>")
+      body))
 
 (defun validate-article (title body)
   (let ((err0r nil)
