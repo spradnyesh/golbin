@@ -22,6 +22,13 @@
            :r-ajax-home-category-articles
            :r-ajax-article-related
            :r-ajax-article-comment
+           :r-comment-post
+           :r-ajax-comment-post
+           :r-ajax-comment-get
+           :r-rss-home
+           :r-rss-cat
+           :r-rss-cat-subcat
+           :r-rss-author
            ;; enable article to be previewed in editorial
            :v-article
            :r-robots
@@ -43,5 +50,8 @@
     (standard-sexml xml-doctype)
   (support-dtd
    (merge-pathnames "html5.dtd" (asdf:system-source-directory "sexml"))
-   :<))
+   :<)
+  (support-dtd
+   (merge-pathnames "data/static/rss2.dtd" (asdf:system-source-directory "golbin"))
+   :rss2))
 (<:augment-with-doctype "html" "")

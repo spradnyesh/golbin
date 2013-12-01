@@ -56,6 +56,7 @@
                                                            (:file "comments" :depends-on ("carousel"))
                                                            (:file "article" :depends-on ("carousel" "comments"))
                                                            (:file "index" :depends-on ("carousel"))
+                                                           (:file "rss")
                                                            (:file "home" :depends-on ("article" "index"))
                                                            (:file "static" :depends-on ("template")))
                                               :depends-on ("package"))

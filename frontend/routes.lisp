@@ -24,6 +24,12 @@
 (define-route r-tos ("/tos.html") (v-tos))
 (define-route r-privacy ("/privacy.html") (v-privacy))
 
+;; RSS
+(define-route r-rss-home ("/feed.xml") (v-rss-home))
+(define-route r-rss-cat ("/category/:cat/feed.xml") (v-rss-cat cat))
+(define-route r-rss-cat-subcat ("/category/:cat/:subcat/feed.xml") (v-rss-cat-subcat cat subcat))
+(define-route r-rss-author ("/author/:author/feed.xml") (v-rss-author author))
+
 ;; robots
 (define-route r-robots ("/robots.txt")
   (handle-static-file (merge-pathnames "../data/static/fe-robots.txt" *home*) "text/plain"))

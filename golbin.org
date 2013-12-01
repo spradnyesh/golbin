@@ -2,8 +2,15 @@
 
 * tasks
 ** backlog
-*** rss
+*** TODO [fe] rss
+    :CLOCK:
+    CLOCK: [2013-12-01 Sun 16:00]
+    :END:
     - index (home, category) pages
+    - notes
+      - http://cyber.law.harvard.edu/rss/rss.html ***
+      - http://www.aspdotnetcodes.com/Create_Rss_Feeds_Display.aspx
+      - http://www.make-rss-feeds.com/making-an-rss-feed.htm
 *** html5 form validation
 *** [fed] find more ideas
     - http://voices.yahoo.com
