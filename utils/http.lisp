@@ -22,7 +22,11 @@
 ;;;; archive @ http://web.archive.org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro web-archive (uri &key error-handle)
-  `(string-trim " \"\\;"
+  (let* ((acceptor (gensym)))
+    `(progn
+       (when (boundp '*acceptor*)
+         (setf ,acceptor *acceptor*))
+       (string-trim " \"\\;"
                 (second (split-sequence
                          "="
                          (first (all-matches-as-strings
@@ -34,6 +38,6 @@
                                                                                ,uri)))
                                    (usocket:timeout-error ()
                                      (progn ,error-handle
-                                            (when (and (boundp '*acceptor*) *acceptor*)
+                                            (when ,acceptor
                                               (log-message* :warning "failed to archive uri: [~a]" ,uri)))))))
-                         :test #'string=))))
+                         :test #'string=))))))

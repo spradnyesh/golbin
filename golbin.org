@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [utils] handle do-in-background better
 *** rss
     - index (home, category) pages
 *** html5 form validation
@@ -130,6 +131,7 @@
 *** [fe] like/unlike for comments
 *** [ed] token key (crumb) should be time limited
 *** [utils] replace utils/locale w/ cl-locale
+*** [utils] cl-dimensions, instead of utils/dimensions
 *** [ed] emails to authors
     - [X] approval of add/edit article(s)
     - [ ] daily batch email of comments
@@ -3882,6 +3884,16 @@
      :ARCHIVE_TIME: 2013-12-01 Sun 13:29
      :END:
      - [X] sendmail
+     - [X] web-archive
+**** DONE [bug][utils] timeout error handling
+     CLOSED: [2013-12-01 Sun 15:26]
+     :CLOCK:
+     CLOCK: [2013-12-01 Sun 15:18]--[2013-12-01 Sun 15:26] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 15:26
+     :END:
+     - [X] email
      - [X] web-archive
 ** TODO refactor
    :CLOCK:
