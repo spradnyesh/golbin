@@ -2,7 +2,6 @@
 
 * tasks
 ** backlog
-*** [utils] handle do-in-background better
 *** rss
     - index (home, category) pages
 *** html5 form validation
@@ -3895,6 +3894,15 @@
      :END:
      - [X] email
      - [X] web-archive
+**** DONE [utils] handle do-in-background better
+     CLOSED: [2013-12-01 Sun 15:58]
+     :CLOCK:
+     CLOCK: [2013-12-01 Sun 15:27]--[2013-12-01 Sun 15:58] =>  0:31
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-01 Sun 15:58
+     :END:
+     - was not able to pass multiple functions to do-in-background macro
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

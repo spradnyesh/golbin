@@ -4,5 +4,6 @@
 ;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro do-in-background (fn)
-  `(plet ((status ,fn))
-     (declare (ignore status))))
+  (let ((status (gensym)))
+    `(plet ((,status ,fn))
+       (declare (ignore ,status)))))
