@@ -53,5 +53,5 @@
    :<)
   (support-dtd
    (merge-pathnames "data/static/rss2.dtd" (asdf:system-source-directory "golbin"))
-   :rss2))
+   :>))
 (<:augment-with-doctype "html" "")

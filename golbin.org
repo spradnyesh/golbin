@@ -2,15 +2,6 @@
 
 * tasks
 ** backlog
-*** TODO [fe] rss
-    :CLOCK:
-    CLOCK: [2013-12-01 Sun 16:00]
-    :END:
-    - index (home, category) pages
-    - notes
-      - http://cyber.law.harvard.edu/rss/rss.html ***
-      - http://www.aspdotnetcodes.com/Create_Rss_Feeds_Display.aspx
-      - http://www.make-rss-feeds.com/making-an-rss-feed.htm
 *** html5 form validation
 *** [fed] find more ideas
     - http://voices.yahoo.com
@@ -3910,6 +3901,22 @@
      :ARCHIVE_TIME: 2013-12-01 Sun 15:58
      :END:
      - was not able to pass multiple functions to do-in-background macro
+**** DONE [fe] rss
+     CLOSED: [2013-12-04 Wed 14:54]
+     :CLOCK:
+     CLOCK: [2013-12-04 Wed 14:45]--[2013-12-04 Wed 14:54] =>  0:09
+     CLOCK: [2013-12-03 Tue 20:01]--[2013-12-03 Tue 20:19] =>  0:18
+     CLOCK: [2013-12-03 Tue 17:05]--[2013-12-03 Tue 17:16] =>  0:11
+     CLOCK: [2013-12-01 Sun 16:00]--[2013-12-01 Sun 17:00] =>  1:00
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-04 Wed 14:54
+     :END:
+     - index (home, category) pages
+     - notes
+       - http://cyber.law.harvard.edu/rss/rss.html ***
+       - http://www.aspdotnetcodes.com/Create_Rss_Feeds_Display.aspx
+       - http://www.make-rss-feeds.com/making-an-rss-feed.htm
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

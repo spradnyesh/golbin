@@ -8,7 +8,8 @@
 (define-route r-cat-page ("/category/:cat/:page" :parse-vars (list :page #'parse-integer)) (v-cat cat page))
 ;; category/subcategory
 (define-route r-cat-subcat ("/category/:cat/:subcat/") (v-cat-subcat cat subcat))
-(define-route r-cat-subcat-page ("/category/:cat/:subcat/:page" :parse-vars (list :page #'parse-integer)) (v-cat-subcat cat subcat page))
+(define-route r-cat-subcat-page ("/category/:cat/:subcat/:page" :parse-vars (list :page #'parse-integer))
+  (v-cat-subcat cat subcat page))
 ;; tag
 (define-route r-tag ("/tag/:tag/") (v-tag tag))
 (define-route r-tag-page ("/tag/:tag/:page" :parse-vars (list :page #'parse-integer)) (v-tag tag page))
@@ -18,17 +19,21 @@
 ;; article
 (define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
 (define-route r-comment-post ("/comment/:article-id/" :method :post
-                                              :parse-vars (list :article-id #'parse-integer))
+                                                      :parse-vars (list :article-id #'parse-integer))
   (v-comment-post article-id))
 ;; static pages
 (define-route r-tos ("/tos.html") (v-tos))
 (define-route r-privacy ("/privacy.html") (v-privacy))
 
 ;; RSS
-(define-route r-rss-home ("/feed.xml") (v-rss-home))
-(define-route r-rss-cat ("/category/:cat/feed.xml") (v-rss-cat cat))
-(define-route r-rss-cat-subcat ("/category/:cat/:subcat/feed.xml") (v-rss-cat-subcat cat subcat))
-(define-route r-rss-author ("/author/:author/feed.xml") (v-rss-author author))
+(define-route r-rss-home ("/feed.xml") :content-type "application/rss+xml"
+              (v-rss-home))
+(define-route r-rss-cat ("/category/:cat/feed.xml") :content-type "application/rss+xml"
+              (v-rss-cat cat))
+(define-route r-rss-cat-subcat ("/category/:cat/:subcat/feed.xml") :content-type "application/rss+xml"
+              (v-rss-cat-subcat cat subcat))
+(define-route r-rss-author ("/author/:author/feed.xml") :content-type "application/rss+xml"
+              (v-rss-author author))
 
 ;; robots
 (define-route r-robots ("/robots.txt")
