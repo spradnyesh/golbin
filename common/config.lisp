@@ -67,7 +67,7 @@
         ("envt:prod,lang:mr-IN" ("db" ("path" ,(merge-pathnames "../data/db/prod/mr-IN/" *home*))))
 
         ;; Categories (not needed in config; given here just for reference)
-        #-(and)
+        #- (and)
         (progn
           ("lang:en-IN" ("categorys" (("Editorial"
                                        "Politics"
@@ -93,7 +93,10 @@
                                        "Home and Garden"
                                        "Health"
                                        "Theatre"
-                                       "Travel")
+                                       "Travel"
+                                       "Hobbies"
+                                       "Pets"
+                                       "Parenting")
                                       ("Science"
                                        "Environment"
                                        "Geography"

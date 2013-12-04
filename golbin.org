@@ -2,15 +2,13 @@
 
 * tasks
 ** backlog
+*** [bug][fe] mr not showing join link in nav
 *** [fe][rss] validate at http://feedvalidator.org/
 *** html5 form validation
 *** [fed] find more ideas
     - http://voices.yahoo.com
     - http://www.squidoo.com/
     - http://hmexpress.happymelly.com
-*** [fed] categories
-    - http://voices.yahoo.com
-    - http://www.squidoo.com/
 *** TODO [#B] [bug][fe] comments ajax should not make page-jump
     :CLOCK:
     CLOCK: [2013-11-20 Wed 16:44]--[2013-11-20 Wed 16:50] =>  0:06
@@ -3934,6 +3932,136 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-04 Wed 15:40
      :END:
+**** DONE [fed] categories
+     CLOSED: [2013-12-04 Wed 20:25]
+     :CLOCK:
+     CLOCK: [2013-12-04 Wed 20:08]--[2013-12-04 Wed 20:25] =>  0:17
+     CLOCK: [2013-12-04 Wed 19:55]--[2013-12-04 Wed 20:07] =>  0:12
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-04 Wed 20:25
+     :END:
+     - http://voices.yahoo.com
+       - arts-and-entertainment
+         - books
+         - movies
+         - music
+         - people
+         - television
+       - auto
+       - business-and-finance
+         - business-to-business
+         - carreers-and-job-searching
+         - legal
+         - marketing
+         - non-profit-information
+         - real-estate
+       - creative-writing
+         - humor
+         - memoirs
+         - poetry
+         - prose
+         - short-stories
+       - health-and-wellness
+         - alternative medicine
+         - dieting and weight loss
+         - diseases and conditions
+         - drugs and medications
+         - fertility and pregnancy
+         - fitness and excercise
+         - mental health
+       - home-improvement
+         - decorating and design
+         - gardening
+       - lifestyle
+         - beauty
+         - crafts and hobbies
+         - dating and relationships
+         - education
+         - food and wine
+         - green
+         - holidays
+         - parenting
+         - pets
+         - religion and spirituality
+         - seniors
+         - shopping and fashion
+         - weddings
+       - news
+         - history
+         - opinion and editorial
+         - politics
+       - sports
+         - recreation
+       - technology
+         - science
+         - tech tutorials
+         - video games
+       - travel
+         - local
+         - international
+     - http://www.squidoo.com/
+       - food
+       - hobbies
+       - pets
+       - books
+       - home
+       - travel
+       - arts
+       - music
+       - recreation
+       - parenting
+       - video games
+       - holidays
+       - fashion and beauty
+       - weddings
+       - education
+       - entertainment and media
+       - culture and society
+       - nonprofits
+       - healthy living
+     - http://www.golb.in/
+       - editorial
+         - politics
+         - religion
+         - education
+       - business
+         - companies
+         - economy
+         - industry
+         - markets
+       - entertainment
+         - arts
+         - books
+         - celebrities
+         - humor
+         - movies
+         - music
+         - tv
+       - lifestyle
+         - automotive
+         - culture
+         - food-and-beverage
+         - home-and-garden
+         - health
+         - theatre
+         - travel
+         - *** hobbies
+         - *** pets
+         - *** parenting
+       - science
+         - environment
+         - geography
+         - space
+       - sports
+         - chess
+         - badminton
+         - cricket
+       - technology
+         - computing
+         - internet
+         - personal technology
+         - video games
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

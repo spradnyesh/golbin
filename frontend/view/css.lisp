@@ -122,6 +122,7 @@
                               :position "absolute"
                               :top "34px"
                               :left "0"))
+    (("#nav li ul li") (:min-width "0"))
     (("#nav li.selected ul") (:display "block"))
     (("#nav li:hover ul") (:display "block"
                                     :z-index "2"))
