@@ -180,7 +180,7 @@
                                :clear "both"
                                :min-height "800px"))
     (("#bd") (:background-color "#FFF"
-                                :padding-top "50px"))
+                                :padding "50px 0 20px 0"))
     (("#ft") (:background "#3c668a"
                           :background "-moz-linear-gradient(top, #3c668a 0%, #113152 100%)"
                           :background "-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3c668a), color-stop(100%,#113152))"
@@ -297,8 +297,8 @@
                                   :text-decoration "none"))
     ((".pagination .disabled") (:border "none"))
     ((".pagination-results") (:color "#999"
-                                     :margin-bottom "20px"
-                                     :text-align "center"))
+                                     :margin "250px"))
+    ((".rss") (:float "right"))
 
     ;; ads
     (("#i-ads") (:height "100px"

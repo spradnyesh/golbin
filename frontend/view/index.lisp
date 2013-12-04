@@ -3,7 +3,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro view-index (title prelude postlude articles-list route &rest route-params)
+(defmacro view-index (title prelude postlude rss-url articles-list route &rest route-params)
   `(if ,articles-list
        (let* ((num-per-page (get-config "pagination.article.limit"))
               (num-pages (get-config "pagination.article.range"))
@@ -45,6 +45,7 @@
                                           num-per-page
                                           num-pages
                                           ,route))
+                 (<:a :class "rss" :href ,rss-url (translate "rss"))
                  ,postlude)))
        (v-404)))
 
@@ -57,6 +58,7 @@
     (view-index (name cat)
                 nil
                 nil
+                (h-gen-full-url 'r-rss-cat :cat (slug cat))
                 (get-articles-by-cat cat)
                 'r-cat-page :cat (slug cat))))
 
@@ -69,6 +71,9 @@
     (view-index (format nil "~a, ~a" (name cat) (name subcat))
                 nil
                 nil
+                (h-gen-full-url 'r-rss-cat-subcat
+                                :cat (slug cat)
+                                :subcat (slug subcat))
                 (get-articles-by-cat-subcat cat subcat)
                 'r-cat-subcat-page :cat (slug cat) :subcat (slug subcat))))
 
@@ -84,6 +89,7 @@
                                    (get-author-photo author (get-config "photo.author.avatar.size"))
                                    (<:p description)))))
                 nil
+                (h-gen-full-url 'r-rss-author :author (username author))
                 (get-articles-by-author author)
                 'r-author-page :author (username author))))
 
@@ -101,7 +107,8 @@
                 (<:p :class "error"
                      (translate "404" (<:a :href "javascript:history.go(-1)" (translate "here"))))
                 nil
+                nil
                 (get-active-articles)
-                'r-home-page)))
+                'r-home)))
 
 (defun v-search ())

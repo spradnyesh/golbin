@@ -20,6 +20,7 @@
   (view-index (translate "home")
               nil
               nil
+              (h-gen-full-url 'r-rss-home)
               (get-active-articles)
               'r-home-page)
   ;; TODO till we get more articles

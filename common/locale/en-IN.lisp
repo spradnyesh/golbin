@@ -64,3 +64,4 @@ username-no-special-characters=Username cannot contain any of the following spec
 reset-photo=Reset photo to Gravatar
 mandatory-will-not-be-shown=Mandatory, will not be shown on this website
 404=Sorry! We were unable to find the content that you are looking for. <br/>Please click ~a to go back. Or, enjoy one of the stories below!
+rss=RSS
