@@ -117,12 +117,13 @@
                          :display "block"
                          :height "34px"
                          :text-align "center"))
+    ((".dvngr #nav li") (:min-width "100px"))
     (("#nav li a") (:display "block"))
     (("#nav li ul") (:display "none"
                               :position "absolute"
                               :top "34px"
                               :left "0"))
-    (("#nav li ul li") (:min-width "0"))
+    (("#nav li ul li, .dvngr #nav li ul li") (:min-width "0"))
     (("#nav li.selected ul") (:display "block"))
     (("#nav li:hover ul") (:display "block"
                                     :z-index "2"))
