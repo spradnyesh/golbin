@@ -12,8 +12,8 @@
                             (join-loop article
                                        ,articles-list
                                        (fmtnil (>:item (>:title (title article))
-                                                          (>:description (summary article))
-                                                          (>:link (h-gen-full-url 'r-article
+                                                       (>:description (escape-for-html (body article)))
+                                                       (>:link (h-gen-full-url 'r-article
                                                                                :slug-and-id (get-slug-and-id article))))))))))
 
 (defun v-rss-home ()

@@ -2,6 +2,7 @@
 
 * tasks
 ** backlog
+*** [fe][rss] validate at http://feedvalidator.org/
 *** html5 form validation
 *** [fed] find more ideas
     - http://voices.yahoo.com
@@ -3924,6 +3925,14 @@
      :END:
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-04 Wed 15:22
+     :END:
+**** DONE [bug][fe][rss] should show body instead of description
+     CLOSED: [2013-12-04 Wed 15:39]
+     :CLOCK:
+     CLOCK: [2013-12-04 Wed 15:31]--[2013-12-04 Wed 15:39] =>  0:08
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-04 Wed 15:40
      :END:
 ** TODO refactor
    :CLOCK:
