@@ -2,6 +2,10 @@
 
 * tasks
 ** backlog
+*** [fed] enable authors to override default background page at individual story-page level
+    - if article-background is not defined then use author-background image
+    - when author-background is changed, no need to republish stories that already have article-background
+*** [fe] lazy-load comments (only when viewer is at bottom of page)
 *** [fe][rss] validate at http://feedvalidator.org/
 *** html5 form validation
 *** [fed] find more ideas
@@ -4470,247 +4474,147 @@
    - hindi, national language of India?
    - writing styles
    - curiosity
-** git push
-18:21:42 vc $ git push origin master
-error: --mirror can't be combined with refspecs
-usage: git push [<options>] [<repository> [<refspec>...]]
+** TODO Exciting new features on Golbin!
+   :CLOCK:
+   CLOCK: [2013-12-06 Fri 16:18]--[2013-12-06 Fri 16:22] =>  0:04
+   CLOCK: [2013-12-06 Fri 15:53]--[2013-12-06 Fri 16:17] =>  0:24
+   :END:
+   - toc:
+     - rss
+     - improved timing of editorial site 100x
+     - g-ads inside text
+     - page-background
+     - load comments via ajax
+     - threaded comments
+   - cat/subcat: editorial/--
+   - tags: golbin, new-features
+   - lead image:
+   - summary: We have been absent from writing articles for some time now because we were working on improving the Golbin! experience. For both viewers and story-tellers!
+   - body:
+We have been absent from writing articles for some time now because we were working on improving the [[http://www.golb.in/][Golbin!]] experience. For both viewers and story-tellers!
 
-    -v, --verbose         be more verbose
-    -q, --quiet           be more quiet
-    --repo <repository>   repository
-    --all                 push all refs
-    --mirror              mirror all refs
-    --delete              delete refs
-    --tags                push tags (can't be used with --all or --mirror)
-    -n, --dry-run         dry run
-    --porcelain           machine-readable output
-    -f, --force           force updates
-    --recurse-submodules[=<check>]
-                          control recursive pushing of submodules
-    --thin                use thin pack
-    --receive-pack <receive-pack>
-                          receive pack program
-    --exec <receive-pack>
-                          receive pack program
-    -u, --set-upstream    set upstream for git pull/status
-    --progress            force progress reporting
-    --prune               prune locally removed refs
+So lets see what's new in [[http://www.golb.in/][Golbin!]]:
+1. Load comments via [[http://en.wikipedia.org/wiki/Ajax_(programming)][ajax]]: This feature will load comments in a lazy fashion; that is, after the whole page has been loaded. Because of this, the page-load-time (as seen by search engines like Google, Bing, Yahoo!, etc) will improve and give [[http://www.golb.in/][Golbin!]] a better [[http://en.wikipedia.org/wiki/Search_engine_optimization][SEO]] ranking.
+2. Threaded comments: Viewers can now reply to existing comments, or add fresh new comments of their own. We hope that this will increase viewer engagement. Not only via interaction within themselves, but even the story-teller will be able to respond to particular comments and have a meaningful, relevant and easy-to-follow conversation!
+3. Page backgrounds: Story-tellers can now define a custom image for all of their pages (story pages, and author page) and make their stories more beautiful and attractive for viewers. Also, this will help them distinguish themselves from other story-tellers, and portray their personality more effectively!
+4. Improved editorial site timing by 100x: Last, but not least, we made some performance improvements to the editorial site. This small change alone brought the page timings down from 3 seconds to 30 milliseconds, an improvement of 100x!
 
-18:22:31 vc $ git config
-usage: git config [options]
+That's not all. We will be adding new features, both small and big, regularly. Sometimes they will be user facing (affecting either viewers and/or story-tellers) and sometimes not. But either ways, we will keep you folks updated. See you soon, with the next set of updates!
 
-Config file location
-    --global              use global config file
-    --system              use system config file
-    --local               use repository config file
-    -f, --file <file>     use given config file
-
-Action
-    --get                 get value: name [value-regex]
-    --get-all             get all values: key [value-regex]
-    --get-regexp          get values for regexp: name-regex [value-regex]
-    --replace-all         replace all matching variables: name value [value_regex]
-    --add                 add a new variable: name value
-    --unset               remove a variable: name [value-regex]
-    --unset-all           remove all matches: name [value-regex]
-    --rename-section      rename section: old-name new-name
-    --remove-section      remove a section: name
-    -l, --list            list all
-    -e, --edit            open an editor
-    --get-color <slot>    find the color configured: [default]
-    --get-colorbool <slot>
-                          find the color setting: [stdout-is-tty]
-
-Type
-    --bool                value is "true" or "false"
-    --int                 value is decimal number
-    --bool-or-int         value is --bool or --int
-    --path                value is a path (file or directory name)
-
-Other
-    -z, --null            terminate values with NUL byte
-    --includes            respect include directives on lookup
-
-18:22:49 vc $ git config --local --get-all
-error: wrong number of arguments
-usage: git config [options]
-
-Config file location
-    --global              use global config file
-    --system              use system config file
-    --local               use repository config file
-    -f, --file <file>     use given config file
-
-Action
-    --get                 get value: name [value-regex]
-    --get-all             get all values: key [value-regex]
-    --get-regexp          get values for regexp: name-regex [value-regex]
-    --replace-all         replace all matching variables: name value [value_regex]
-    --add                 add a new variable: name value
-    --unset               remove a variable: name [value-regex]
-    --unset-all           remove all matches: name [value-regex]
-    --rename-section      rename section: old-name new-name
-    --remove-section      remove a section: name
-    -l, --list            list all
-    -e, --edit            open an editor
-    --get-color <slot>    find the color configured: [default]
-    --get-colorbool <slot>
-                          find the color setting: [stdout-is-tty]
-
-Type
-    --bool                value is "true" or "false"
-    --int                 value is decimal number
-    --bool-or-int         value is --bool or --int
-    --path                value is a path (file or directory name)
-
-Other
-    -z, --null            terminate values with NUL byte
-    --includes            respect include directives on lookup
-
-18:22:56 vc $ git --local config --get-all
-Unknown option: --local
-usage: git [--version] [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p|--paginate|--no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           [-c name=value] [--help]
-           <command> [<args>]
-18:23:14 vc $ git config --get-all
-error: wrong number of arguments
-usage: git config [options]
-
-Config file location
-    --global              use global config file
-    --system              use system config file
-    --local               use repository config file
-    -f, --file <file>     use given config file
-
-Action
-    --get                 get value: name [value-regex]
-    --get-all             get all values: key [value-regex]
-    --get-regexp          get values for regexp: name-regex [value-regex]
-    --replace-all         replace all matching variables: name value [value_regex]
-    --add                 add a new variable: name value
-    --unset               remove a variable: name [value-regex]
-    --unset-all           remove all matches: name [value-regex]
-    --rename-section      rename section: old-name new-name
-    --remove-section      remove a section: name
-    -l, --list            list all
-    -e, --edit            open an editor
-    --get-color <slot>    find the color configured: [default]
-    --get-colorbool <slot>
-                          find the color setting: [stdout-is-tty]
-
-Type
-    --bool                value is "true" or "false"
-    --int                 value is decimal number
-    --bool-or-int         value is --bool or --int
-    --path                value is a path (file or directory name)
-
-Other
-    -z, --null            terminate values with NUL byte
-    --includes            respect include directives on lookup
-
-18:23:45 vc $ git config
-usage: git config [options]
-
-Config file location
-    --global              use global config file
-    --system              use system config file
-    --local               use repository config file
-    -f, --file <file>     use given config file
-
-Action
-    --get                 get value: name [value-regex]
-    --get-all             get all values: key [value-regex]
-    --get-regexp          get values for regexp: name-regex [value-regex]
-    --replace-all         replace all matching variables: name value [value_regex]
-    --add                 add a new variable: name value
-    --unset               remove a variable: name [value-regex]
-    --unset-all           remove all matches: name [value-regex]
-    --rename-section      rename section: old-name new-name
-    --remove-section      remove a section: name
-    -l, --list            list all
-    -e, --edit            open an editor
-    --get-color <slot>    find the color configured: [default]
-    --get-colorbool <slot>
-                          find the color setting: [stdout-is-tty]
-
-Type
-    --bool                value is "true" or "false"
-    --int                 value is decimal number
-    --bool-or-int         value is --bool or --int
-    --path                value is a path (file or directory name)
-
-Other
-    -z, --null            terminate values with NUL byte
-    --includes            respect include directives on lookup
-
-18:23:56 vc $ git config -l
-push.default=simple
-user.name=Pradnyesh Sawant
-user.email=me@spradnyesh.org
-core.repositoryformatversion=0
-core.filemode=true
-core.bare=false
-core.logallrefupdates=true
-remote.origin.url=git@bitbucket.org:hawksbill/pers.git
-remote.origin.mirror=true
-18:24:08 vc $ git config --unset remote.origin.mirror
-18:24:36 vc $ git config -l
-push.default=simple
-user.name=Pradnyesh Sawant
-user.email=me@spradnyesh.org
-core.repositoryformatversion=0
-core.filemode=true
-core.bare=false
-core.logallrefupdates=true
-remote.origin.url=git@bitbucket.org:hawksbill/pers.git
-18:24:38 vc $ gpho
-fatal: You are not currently on a branch.
-To push the history leading to the current (detached HEAD)
-state now, use
-
-    git push origin HEAD:<name-of-remote-branch>
-
-18:24:41 vc $ gpho HEAD:master
-Counting objects: 179, done.
-Delta compression using up to 2 threads.
-Compressing objects: 100% (98/98), done.
-Writing objects: 100% (173/173), 165.64 KiB, done.
-Total 173 (delta 114), reused 112 (delta 75)
-remote: bb/acl: hawksbill is allowed. accepted payload.
-To git@bitbucket.org:hawksbill/pers.git
-   a278a10..64b916e  HEAD -> master
-18:24:57 vc $ cd ~/golbin/
-18:25:01 golbin $ gpho HEAD:master
-Everything up-to-date
-18:25:06 golbin $ cd ~/home/
-18:25:08 home $ gpho HEAD:master
-error: --mirror can't be combined with refspecs
-usage: git push [<options>] [<repository> [<refspec>...]]
-
-    -v, --verbose         be more verbose
-    -q, --quiet           be more quiet
-    --repo <repository>   repository
-    --all                 push all refs
-    --mirror              mirror all refs
-    --delete              delete refs
-    --tags                push tags (can't be used with --all or --mirror)
-    -n, --dry-run         dry run
-    --porcelain           machine-readable output
-    -f, --force           force updates
-    --recurse-submodules[=<check>]
-                          control recursive pushing of submodules
-    --thin                use thin pack
-    --receive-pack <receive-pack>
-                          receive pack program
-    --exec <receive-pack>
-                          receive pack program
-    -u, --set-upstream    set upstream for git pull/status
-    --progress            force progress reporting
-    --prune               prune locally removed refs
-
-
+ps: We would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click [[http://ed.golb.in/register/why/][here]] to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
+   - html
+<p>
+	We have been absent from writing articles for some time now because we were working on improving the <a href="http://www.golb.in/">Golbin!</a> experience. For both viewers and story-tellers! So lets see what&#39;s new in <a href="http://www.golb.in/">Golbin!</a>:</p>
+<ol>
+	<li>
+		<strong>Load comments via <a href="http://en.wikipedia.org/wiki/Ajax_(programming)">ajax</a></strong>: This feature will load comments in a lazy fashion; that is, after the whole page has been loaded. Because of this, the page-load-time (as seen by search engines like Google, Bing, Yahoo!, etc) will improve and give <a href="http://www.golb.in/">Golbin!</a> a better <a href="http://en.wikipedia.org/wiki/Search_engine_optimization">SEO</a> ranking.</li>
+	<li>
+		<strong>Threaded comments</strong>: Viewers can now reply to existing comments, or add fresh new comments of their own. We hope that this will increase viewer engagement. Not only via interaction within themselves, but even the story-teller will be able to respond to particular comments and have a meaningful, relevant and easy-to-follow conversation!</li>
+	<li>
+		<strong>Page backgrounds</strong>: Story-tellers can now define a custom image for all of their pages (story pages, and author page) and make their stories more beautiful and attractive for viewers. Also, this will help them distinguish themselves from other story-tellers, and portray their personality more effectively!</li>
+	<li>
+		<strong>Improved editorial site performance</strong>: Last, but not least, we made some performance improvements to the editorial site. This small change alone brought the page timings down from 3 seconds to 30 milliseconds, an improvement of <strong>100x!</strong></li>
+</ol>
+<p>
+	That&#39;s not all. We will be adding new features, both small and big, regularly. Sometimes they will be user facing (affecting either viewers and/or story-tellers) and sometimes not. But either ways, we will keep you folks updated. See you soon, with the next set of updates!</p>
+<p>
+	ps: We would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click <a href="http://ed.golb.in/register/why/">here</a> to see the benefits of writing on <a href="http://www.golb.in/">Golbin!</a></p>
+   - notes:
+   - references:
+** TODO svn unmerge
+   :CLOCK:
+   CLOCK: [2013-12-06 Fri 18:52]--[2013-12-06 Fri 19:30] =>  0:38
+   :END:
+   - toc:
+   - cat/subcat: technology/computing
+   - tags: svn, git, version-control, branch, branching, feature, trunk
+   - lead image:
+   - summary: Fortunately, for us, the issue turned out to be a false-positive, and we got spared.
+   - body:
+I recently came across the following scenario in my work-place. We use [[http://en.wikipedia.org/wiki/Apache_Subversion][SVN]] as our [[http://en.wikipedia.org/wiki/Revision_control][version control]] repository, and use a [[http://en.wikipedia.org/wiki/Trunk_(software)][trunk]] for production pushes and feature branch for feature development. However, this time we made the mistake of merging feature-branch into trunk-prematurely; because the client team wanted to test both trunk features/bug-fixes and feature-branch changes together before the next launch (a very valid ask).
+Now the issue is that if we get an critical bug that needs to be fixed ASAP, then the trunk is no longer clean to do a bug-fix and re-deploy.
+However, on the other hand, we could not have merged the trunk changes into the feature-branch, because merging back (into trunk, after feature-branch work is done and tested) would have been a nightmare. Basically we chose the easier merge (feature-branch -> trunk) now, in order to avoid the (super) messy merge (trunk -> feature-branch -> trunk) later on.
+I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts
+-- less when we do feature-branch -> trunk, because (hopefully) the same files would not have been touched in both the branches
+-- but (too) many when we do trunk -> feature-branch -> trunk, because every (merge) file is touched in both branches
+So how do we solve this situation? What do we do?
+Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do "git rebase <trunk>" regularly to pull changes from trunk (known as "master" in git-land) into the feature-branch. This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does "git merge <feature-branch>".
+The benefit of this approach is:
+-- the feature-branch always has all trunk changes, so the client-team request can be easily fulfilled right from the feature-branch
+-- final merge (feature-branch -> trunk) is super easy, because no 2 files have changed simultaneously (if they had, then these merge-conflicts have already been resolved during the "rebase" step)
+I don't know how to achieve the same in SVN; atleast not easily. Please share if you do!
+Fortunately, for us, the issue turned out to be a false-positive, and we got spared.
+ps: Read [[http://paulhammant.com/2013/04/05/what-is-trunk-based-development/][this]], [[http://guides.beanstalkapp.com/version-control/branching-best-practices.html][this]] and [[http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html][this]] for more info on common branching patterns
+   - html
+<p>
+	I recently came across the following scenario in my work-place. We use <a href="http://en.wikipedia.org/wiki/Apache_Subversion">SVN</a> as our <a href="http://en.wikipedia.org/wiki/Revision_control">version control</a> repository, and use a <a href="http://en.wikipedia.org/wiki/Trunk_(software)">trunk</a> for production pushes and feature branch for feature development. However, this time we made the mistake of merging feature-branch into trunk-prematurely; because the client team wanted to test both trunk features/bug-fixes and feature-branch changes together before the next launch (a very valid ask).</p>
+<p>
+	Now the issue is that if we get an critical bug that needs to be fixed ASAP, then the trunk is no longer clean to do a bug-fix and re-deploy.</p>
+<p>
+	However, on the other hand, we could not have merged the trunk changes into the feature-branch, because merging back (into trunk, after feature-branch work is done and tested) would have been a nightmare. Basically we chose the easier merge (feature-branch -&gt; trunk) now, in order to avoid the (super) messy merge (trunk -&gt; feature-branch -&gt; trunk) later on.</p>
+<p>
+	I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts</p>
+<ul>
+	<li>
+		less when we do feature-branch -&gt; trunk, because (hopefully) the same files would not have been touched in both the branches</li>
+	<li>
+		but (too) many when we do trunk -&gt; feature-branch -&gt; trunk, because every (merge) file is touched in both branches</li>
+</ul>
+<p>
+	So how do we solve this situation? What do we do?</p>
+<p>
+	Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do &quot;git rebase &lt;trunk&gt;&quot; regularly to pull changes from trunk (known as &quot;master&quot; in git-land) into the feature-branch. This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does &quot;git merge &lt;feature-branch&gt;&quot;.</p>
+<p>
+	The benefit of this approach is:</p>
+<ul>
+	<li>
+		the feature-branch always has all trunk changes, so the client-team request can be easily fulfilled right from the feature-branch</li>
+	<li>
+		final merge (feature-branch -&gt; trunk) is super easy, because no 2 files have changed simultaneously (if they had, then these merge-conflicts have already been resolved during the &quot;rebase&quot; step)</li>
+</ul>
+<p>
+	I don&#39;t know how to achieve the same in SVN; atleast not easily. Please share if you do!</p>
+<p>
+	Fortunately, for us, the issue turned out to be a false-positive, and we got spared.</p>
+<p>
+	ps: Read <a href="http://paulhammant.com/2013/04/05/what-is-trunk-based-development/">this</a>, <a href="http://guides.beanstalkapp.com/version-control/branching-best-practices.html">this</a> and <a href="http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html">this</a> for more info on common branching patterns</p>
+   - notes:
+     - svn
+       - trunk and feature-branch
+       - merged before launch-date (because client wants to test both trunk changes and feature together)
+       - production issue (should be fixed in clean (non-merged) trunk
+       - how to???
+     - git
+       - regular "pull" (trunk -> feature)
+       - test in feature
+       - merge feature into trunk _during/after_ launch
+   - references:
+     - http://paulhammant.com/2013/04/05/what-is-trunk-based-development/
+     - http://guides.beanstalkapp.com/version-control/branching-best-practices.html
+     - http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html
+** speed your website 100x times
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+     - put long-running but not real-time processes in background
+     - eg sendmail, webarchive
+     - brought down from 3sec to 30ms
+   - references:
+** don't break the chain
+   - toc:
+   - cat/subcat:
+   - tags: productivity, procrastination, creativity, getting-things-done, gtd
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
 ** template
    - toc:
    - cat/subcat:
@@ -4718,6 +4622,7 @@ usage: git push [<options>] [<repository> [<refspec>...]]
    - lead image:
    - summary:
    - body:
+   - html
    - notes:
    - references:
 ** TODO organization: dictatorial v/s democratic?
@@ -5311,3 +5216,6 @@ Lets come to the "how" of "lucid dreaming". There is a ton of good material out 
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
+
+
+http://www.golb.in/
