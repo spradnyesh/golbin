@@ -77,7 +77,8 @@
             (push (add-tag tag) photo-tags))
           (setf photo (add-photo (make-instance 'photo
                                                 :title title
-                                                :typeof (cond ((string-equal typeof "author") :u)
+                                                :typeof (cond ((string-equal typeof "article") :a)
+                                                              ((string-equal typeof "author") :u)
                                                               ((string-equal typeof "slideshow") :s))
                                                 :orig-filename orig-filename
                                                 :new-filename (format nil
