@@ -4531,6 +4531,7 @@ ps: We would be delighted to hear from you about what features you would like to
    - references:
 ** TODO svn unmerge
    :CLOCK:
+   CLOCK: [2013-12-09 Mon 18:33]--[2013-12-09 Mon 18:45] =>  0:12
    CLOCK: [2013-12-09 Mon 17:06]--[2013-12-09 Mon 17:26] =>  0:20
    CLOCK: [2013-12-09 Mon 16:32]--[2013-12-09 Mon 16:59] =>  0:27
    CLOCK: [2013-12-06 Fri 18:52]--[2013-12-06 Fri 19:30] =>  0:38
@@ -4566,14 +4567,14 @@ ps: Read [[http://paulhammant.com/2013/04/05/what-is-trunk-based-development/][t
 	I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts</p>
 <ul>
 	<li>
-		less when we do feature-branch -&gt; trunk, because (hopefully) the same files would not have been touched in both the branches</li>
+		less when we do feature-branch -&gt; trunk, because (hopefully) the same files would not have been touched in both the branches (see part-1 of figure above)</li>
 	<li>
-		but (too) many when we do trunk -&gt; feature-branch -&gt; trunk, because every (merge) file is touched in both branches</li>
+		but (too) many when we do trunk -&gt; feature-branch -&gt; trunk, because every (merge) file is touched in both branches (see part-2 of figure above)</li>
 </ul>
 <p>
 	So how do we solve this situation? What do we do?</p>
 <p>
-	Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do &quot;git rebase &lt;trunk&gt;&quot; regularly to pull changes from trunk (known as &quot;master&quot; in git-land) into the feature-branch. This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does &quot;git merge &lt;feature-branch&gt;&quot;.</p>
+	Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do &quot;git rebase &lt;trunk&gt;&quot; regularly to pull changes from trunk (known as &quot;master&quot; in git-land) into the feature-branch (see parts-3, 4 and 5 of figure above). This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does &quot;git merge &lt;feature-branch&gt;&quot;.</p>
 <p>
 	The benefit of this approach is:</p>
 <ul>
@@ -4602,14 +4603,69 @@ ps: Read [[http://paulhammant.com/2013/04/05/what-is-trunk-based-development/][t
      - http://paulhammant.com/2013/04/05/what-is-trunk-based-development/
      - http://guides.beanstalkapp.com/version-control/branching-best-practices.html
      - http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html
-** speed your website 100x times
+** TODO speed your website 100x times
+   :CLOCK:
+   CLOCK: [2013-12-09 Mon 20:35]--[2013-12-09 Mon 20:38] =>  0:03
+   CLOCK: [2013-12-09 Mon 19:02]--[2013-12-09 Mon 19:13] =>  0:11
+   CLOCK: [2013-12-09 Mon 18:47]--[2013-12-09 Mon 18:59] =>  0:12
+   :END:
    - toc:
-   - cat/subcat:
-   - tags:
+   - cat/subcat: technology/internet
+   - tags: optimization, premature, donald-knuth, yslow, pagespeed
    - lead image:
-   - summary:
+   - summary: Find out how we sped up our editorial site 100x; and how you can do the same to your own!
    - body:
+If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That's right, 100 times! So what is the secret? How did we do it? Well, actually there's the short answer and the long answer.
+
+For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!
+
+However, in reality things are not so simple. As [[http://www-cs-faculty.stanford.edu/~knuth/][Donald Knuth]] put it: "Premature optimization is the root of all evil". So we did what was correct: measure. We performed the following steps:
+-- measure page speed (as perceived by end users) using tools like [[http://yslow.org/][yslow]], [[https://developers.google.com/speed/pagespeed/][pagespeed]], etc
+-- figure out which requests are taking time
+-- split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)
+-- during our measurements, we found that the article create/update page was the slowest
+-- this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x
+
+The lessons that we learned from the above exercise were
+-- don't do premature optimization
+-- measure before starting to optimize
+-- go for the low hanging fruits (find the thing that will give the maximum ROI)
+-- don't optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)
+
+We would like to hear about your optimization experiences!
    - html
+<p>
+	If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That&#39;s right, 100 times! So what is the secret? How did we do it? Well, actually there&#39;s the short answer and the long answer.</p>
+<p>
+	For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!</p>
+<p>
+	However, in reality things are not so simple. As [[http://www-cs-faculty.stanford.edu/~knuth/][Donald Knuth]] put it: &quot;Premature optimization is the root of all evil&quot;. So we did what was correct: measure. We performed the following steps:</p>
+<ul>
+	<li>
+		measure page speed (as perceived by end users) using tools like [[http://yslow.org/][yslow]], [[https://developers.google.com/speed/pagespeed/][pagespeed]], etc</li>
+	<li>
+		figure out which requests are taking time</li>
+	<li>
+		split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)</li>
+	<li>
+		during our measurements, we found that the article create/update page was the slowest</li>
+	<li>
+		this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x</li>
+</ul>
+<p>
+	The lessons that we learned from the above exercise were</p>
+<ul>
+	<li>
+		don&#39;t do premature optimization</li>
+	<li>
+		measure before starting to optimize</li>
+	<li>
+		go for the low hanging fruits (find the thing that will give the maximum ROI)</li>
+	<li>
+		don&#39;t optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)</li>
+</ul>
+<p>
+	We would like to hear about your optimization experiences!</p>
    - notes:
      - put long-running but not real-time processes in background
      - eg sendmail, webarchive
