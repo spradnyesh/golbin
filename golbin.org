@@ -4482,212 +4482,34 @@
    - hindi, national language of India?
    - writing styles
    - curiosity
-** TODO Exciting new features on Golbin!
+** TODO don't break the chain
    :CLOCK:
-   CLOCK: [2013-12-06 Fri 16:18]--[2013-12-06 Fri 16:22] =>  0:04
-   CLOCK: [2013-12-06 Fri 15:53]--[2013-12-06 Fri 16:17] =>  0:24
+   CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
+   CLOCK: [2013-12-10 Tue 15:56]--[2013-12-10 Tue 16:20] =>  0:24
+   CLOCK: [2013-12-10 Tue 15:12]--[2013-12-10 Tue 15:15] =>  0:03
+   CLOCK: [2013-12-10 Tue 14:45]--[2013-12-10 Tue 14:59] =>  0:14
    :END:
-   - toc:
-     - rss
-     - improved timing of editorial site 100x
-     - g-ads inside text
-     - page-background
-     - load comments via ajax
-     - threaded comments
-   - cat/subcat: editorial/--
-   - tags: golbin, new-features
-   - lead image:
-   - summary: We have been absent from writing articles for some time now because we were working on improving the Golbin! experience. For both viewers and story-tellers!
-   - body:
-We have been absent from writing articles for some time now because we were working on improving the [[http://www.golb.in/][Golbin!]] experience. For both viewers and story-tellers!
-
-So lets see what's new in [[http://www.golb.in/][Golbin!]]:
-1. Load comments via [[http://en.wikipedia.org/wiki/Ajax_(programming)][ajax]]: This feature will load comments in a lazy fashion; that is, after the whole page has been loaded. Because of this, the page-load-time (as seen by search engines like Google, Bing, Yahoo!, etc) will improve and give [[http://www.golb.in/][Golbin!]] a better [[http://en.wikipedia.org/wiki/Search_engine_optimization][SEO]] ranking.
-2. Threaded comments: Viewers can now reply to existing comments, or add fresh new comments of their own. We hope that this will increase viewer engagement. Not only via interaction within themselves, but even the story-teller will be able to respond to particular comments and have a meaningful, relevant and easy-to-follow conversation!
-3. Page backgrounds: Story-tellers can now define a custom image for all of their pages (story pages, and author page) and make their stories more beautiful and attractive for viewers. Also, this will help them distinguish themselves from other story-tellers, and portray their personality more effectively!
-4. Improved editorial site timing by 100x: Last, but not least, we made some performance improvements to the editorial site. This small change alone brought the page timings down from 3 seconds to 30 milliseconds, an improvement of 100x!
-
-That's not all. We will be adding new features, both small and big, regularly. Sometimes they will be user facing (affecting either viewers and/or story-tellers) and sometimes not. But either ways, we will keep you folks updated. See you soon, with the next set of updates!
-
-ps: We would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click [[http://ed.golb.in/register/why/][here]] to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
-   - html
-<p>
-	We have been absent from writing articles for some time now because we were working on improving the <a href="http://www.golb.in/">Golbin!</a> experience. For both viewers and story-tellers! So lets see what&#39;s new in <a href="http://www.golb.in/">Golbin!</a>:</p>
-<ol>
-	<li>
-		<strong>Load comments via <a href="http://en.wikipedia.org/wiki/Ajax_(programming)">ajax</a></strong>: This feature will load comments in a lazy fashion; that is, after the whole page has been loaded. Because of this, the page-load-time (as seen by search engines like Google, Bing, Yahoo!, etc) will improve and give <a href="http://www.golb.in/">Golbin!</a> a better <a href="http://en.wikipedia.org/wiki/Search_engine_optimization">SEO</a> ranking.</li>
-	<li>
-		<strong>Threaded comments</strong>: Viewers can now reply to existing comments, or add fresh new comments of their own. We hope that this will increase viewer engagement. Not only via interaction within themselves, but even the story-teller will be able to respond to particular comments and have a meaningful, relevant and easy-to-follow conversation!</li>
-	<li>
-		<strong>Page backgrounds</strong>: Story-tellers can now define a custom image for all of their pages (story pages, and author page) and make their stories more beautiful and attractive for viewers. Also, this will help them distinguish themselves from other story-tellers, and portray their personality more effectively!</li>
-	<li>
-		<strong>Improved editorial site performance</strong>: Last, but not least, we made some performance improvements to the editorial site. This small change alone brought the page timings down from 3 seconds to 30 milliseconds, an improvement of <strong>100x!</strong></li>
-</ol>
-<p>
-	That&#39;s not all. We will be adding new features, both small and big, regularly. Sometimes they will be user facing (affecting either viewers and/or story-tellers) and sometimes not. But either ways, we will keep you folks updated. See you soon, with the next set of updates!</p>
-<p>
-	ps: We would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click <a href="http://ed.golb.in/register/why/">here</a> to see the benefits of writing on <a href="http://www.golb.in/">Golbin!</a></p>
-   - notes:
-   - references:
-** TODO svn unmerge
-   :CLOCK:
-   CLOCK: [2013-12-09 Mon 18:33]--[2013-12-09 Mon 18:45] =>  0:12
-   CLOCK: [2013-12-09 Mon 17:06]--[2013-12-09 Mon 17:26] =>  0:20
-   CLOCK: [2013-12-09 Mon 16:32]--[2013-12-09 Mon 16:59] =>  0:27
-   CLOCK: [2013-12-06 Fri 18:52]--[2013-12-06 Fri 19:30] =>  0:38
-   :END:
-   - toc:
-   - cat/subcat: technology/computing
-   - tags: svn, git, version-control, branch, branching, feature, trunk
-   - lead image:
-   - summary: Fortunately, for us, the issue turned out to be a false-positive, and we got spared.
-   - body:
-I recently came across the following scenario in my work-place. We use [[http://en.wikipedia.org/wiki/Apache_Subversion][SVN]] as our [[http://en.wikipedia.org/wiki/Revision_control][version control]] repository, and use a [[http://en.wikipedia.org/wiki/Trunk_(software)][trunk]] for production pushes and feature branch for feature development. However, this time we made the mistake of merging feature-branch into trunk-prematurely; because the client team wanted to test both trunk features/bug-fixes and feature-branch changes together before the next launch (a very valid ask).
-Now the issue is that if we get an critical bug that needs to be fixed ASAP, then the trunk is no longer clean to do a bug-fix and re-deploy.
-However, on the other hand, we could not have merged the trunk changes into the feature-branch, because merging back (into trunk, after feature-branch work is done and tested) would have been a nightmare. Basically we chose the easier merge (feature-branch -> trunk) now, in order to avoid the (super) messy merge (trunk -> feature-branch -> trunk) later on.
-I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts
--- less when we do feature-branch -> trunk, because (hopefully) the same files would not have been touched in both the branches
--- but (too) many when we do trunk -> feature-branch -> trunk, because every (merge) file is touched in both branches
-So how do we solve this situation? What do we do?
-Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do "git rebase <trunk>" regularly to pull changes from trunk (known as "master" in git-land) into the feature-branch. This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does "git merge <feature-branch>".
-The benefit of this approach is:
--- the feature-branch always has all trunk changes, so the client-team request can be easily fulfilled right from the feature-branch
--- final merge (feature-branch -> trunk) is super easy, because no 2 files have changed simultaneously (if they had, then these merge-conflicts have already been resolved during the "rebase" step)
-I don't know how to achieve the same in SVN; atleast not easily. Please share if you do!
-Fortunately, for us, the issue turned out to be a false-positive, and we got spared.
-ps: Read [[http://paulhammant.com/2013/04/05/what-is-trunk-based-development/][this]], [[http://guides.beanstalkapp.com/version-control/branching-best-practices.html][this]] and [[http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html][this]] for more info on common branching patterns
-   - html
-<p>
-	I recently came across the following scenario in my work-place. We use <a href="http://en.wikipedia.org/wiki/Apache_Subversion">SVN</a> as our <a href="http://en.wikipedia.org/wiki/Revision_control">version control</a> repository, and use a <a href="http://en.wikipedia.org/wiki/Trunk_(software)">trunk</a> for production pushes and feature branch for feature development. However, this time we made the mistake of merging feature-branch into trunk-prematurely; because the client team wanted to test both trunk features/bug-fixes and feature-branch changes together before the next launch (a very valid ask).</p>
-<p>
-	Now the issue is that if we get an critical bug that needs to be fixed ASAP, then the trunk is no longer clean to do a bug-fix and re-deploy.</p>
-<p>
-	However, on the other hand, we could not have merged the trunk changes into the feature-branch, because merging back (into trunk, after feature-branch work is done and tested) would have been a nightmare. Basically we chose the easier merge (feature-branch -&gt; trunk) now, in order to avoid the (super) messy merge (trunk -&gt; feature-branch -&gt; trunk) later on.</p>
-<p>
-	I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts</p>
-<ul>
-	<li>
-		less when we do feature-branch -&gt; trunk, because (hopefully) the same files would not have been touched in both the branches (see part-1 of figure above)</li>
-	<li>
-		but (too) many when we do trunk -&gt; feature-branch -&gt; trunk, because every (merge) file is touched in both branches (see part-2 of figure above)</li>
-</ul>
-<p>
-	So how do we solve this situation? What do we do?</p>
-<p>
-	Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do &quot;git rebase &lt;trunk&gt;&quot; regularly to pull changes from trunk (known as &quot;master&quot; in git-land) into the feature-branch (see parts-3, 4 and 5 of figure above). This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does &quot;git merge &lt;feature-branch&gt;&quot;.</p>
-<p>
-	The benefit of this approach is:</p>
-<ul>
-	<li>
-		the feature-branch always has all trunk changes, so the client-team request can be easily fulfilled right from the feature-branch</li>
-	<li>
-		final merge (feature-branch -&gt; trunk) is super easy, because no 2 files have changed simultaneously (if they had, then these merge-conflicts have already been resolved during the &quot;rebase&quot; step)</li>
-</ul>
-<p>
-	I don&#39;t know how to achieve the same in SVN; atleast not easily. Please share if you do!</p>
-<p>
-	Fortunately, for us, the issue turned out to be a false-positive, and we got spared.</p>
-<p>
-	ps: Read <a href="http://paulhammant.com/2013/04/05/what-is-trunk-based-development/">this</a>, <a href="http://guides.beanstalkapp.com/version-control/branching-best-practices.html">this</a> and <a href="http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html">this</a> for more info on common branching patterns</p>
-   - notes:
-     - svn
-       - trunk and feature-branch
-       - merged before launch-date (because client wants to test both trunk changes and feature together)
-       - production issue (should be fixed in clean (non-merged) trunk
-       - how to???
-     - git
-       - regular "pull" (trunk -> feature)
-       - test in feature
-       - merge feature into trunk _during/after_ launch
-   - references:
-     - http://paulhammant.com/2013/04/05/what-is-trunk-based-development/
-     - http://guides.beanstalkapp.com/version-control/branching-best-practices.html
-     - http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html
-** TODO speed your website 100x times
-   :CLOCK:
-   CLOCK: [2013-12-09 Mon 20:35]--[2013-12-09 Mon 20:38] =>  0:03
-   CLOCK: [2013-12-09 Mon 19:02]--[2013-12-09 Mon 19:13] =>  0:11
-   CLOCK: [2013-12-09 Mon 18:47]--[2013-12-09 Mon 18:59] =>  0:12
-   :END:
-   - toc:
-   - cat/subcat: technology/internet
-   - tags: optimization, premature, donald-knuth, yslow, pagespeed
-   - lead image:
-   - summary: Find out how we sped up our editorial site 100x; and how you can do the same to your own!
-   - body:
-If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That's right, 100 times! So what is the secret? How did we do it? Well, actually there's the short answer and the long answer.
-
-For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!
-
-However, in reality things are not so simple. As [[http://www-cs-faculty.stanford.edu/~knuth/][Donald Knuth]] put it: "Premature optimization is the root of all evil". So we did what was correct: measure. We performed the following steps:
--- measure page speed (as perceived by end users) using tools like [[http://yslow.org/][yslow]], [[https://developers.google.com/speed/pagespeed/][pagespeed]], etc
--- figure out which requests are taking time
--- split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)
--- during our measurements, we found that the article create/update page was the slowest
--- this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x
-
-The lessons that we learned from the above exercise were
--- don't do premature optimization
--- measure before starting to optimize
--- go for the low hanging fruits (find the thing that will give the maximum ROI)
--- don't optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)
-
-We would like to hear about your optimization experiences!
-   - html
-<p>
-	If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That&#39;s right, 100 times! So what is the secret? How did we do it? Well, actually there&#39;s the short answer and the long answer.</p>
-<p>
-	For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!</p>
-<p>
-	However, in reality things are not so simple. As [[http://www-cs-faculty.stanford.edu/~knuth/][Donald Knuth]] put it: &quot;Premature optimization is the root of all evil&quot;. So we did what was correct: measure. We performed the following steps:</p>
-<ul>
-	<li>
-		measure page speed (as perceived by end users) using tools like [[http://yslow.org/][yslow]], [[https://developers.google.com/speed/pagespeed/][pagespeed]], etc</li>
-	<li>
-		figure out which requests are taking time</li>
-	<li>
-		split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)</li>
-	<li>
-		during our measurements, we found that the article create/update page was the slowest</li>
-	<li>
-		this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x</li>
-</ul>
-<p>
-	The lessons that we learned from the above exercise were</p>
-<ul>
-	<li>
-		don&#39;t do premature optimization</li>
-	<li>
-		measure before starting to optimize</li>
-	<li>
-		go for the low hanging fruits (find the thing that will give the maximum ROI)</li>
-	<li>
-		don&#39;t optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)</li>
-</ul>
-<p>
-	We would like to hear about your optimization experiences!</p>
-   - notes:
-     - put long-running but not real-time processes in background
-     - eg sendmail, webarchive
-     - brought down from 3sec to 30ms
-   - references:
-** don't break the chain
    - toc:
    - cat/subcat:
    - tags: productivity, procrastination, creativity, getting-things-done, gtd
    - lead image:
    - summary:
    - body:
-   - html
-   - notes:
-   - references:
-** template
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
+Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's ok and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
+
+Don't get me wrong, I'm not lazy. Quite on the contrary, I'm a [[http://en.wikipedia.org/wiki/Getting_Things_Done][GTD]] fan. I use [[http://www.gnu.org/s/emacs/][emacs]] and the super-excellent [[http://orgmode.org/][org-mode]] to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my "Doc-vim" status and entered the life of emacs. Anyways, that's a story for a different day ;)
+
+Coming back on track, so here I am, in the midst of such a streak when I stumbled upon "don't break the chain" approach to productivity. Earlier i have read about (and given a try) to methods like "[[http://pomodorotechnique.com/][pomodoro technique]]", etc. But they did not work for me.
+
+Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but i'm getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
+
+But, we should also realize that it's not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you've wanted to do for a long time but never got the time to get started.
+
+Good! I am in a slack period and have a lot of time. But there is no motivation. I don't feel like doing anything. I'm sure you have felt this too, at some time or the other. So what to do? Enter "[[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][don't break the chain]]". I recently stumbled over it [[http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method][here]]. I must agree that i liked it immediately and decided to try it out. I'm happy to report that it has worked fascinatingly for me till now, although it's been just a few days.
+
+In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that i'll move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
+
+Do you have techniques that work well for you? I will be happy to learn about them, so do share!
    - html
    - notes:
    - references:
@@ -4708,6 +4530,26 @@ We would like to hear about your optimization experiences!
    - references:
      - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
      - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
+** vim -> emacs
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
+** template
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -5279,6 +5121,207 @@ Lets come to the "how" of "lucid dreaming". There is a ton of good material out 
        - http://www.wikihow.com/Lucid-Dream
        - http://en.wikipedia.org/wiki/Lucid_dream
   - notes:
+*** DONE Exciting new features on Golbin!
+   CLOSED: [2013-12-10 Tue 14:36]
+   :CLOCK:
+   CLOCK: [2013-12-06 Fri 16:18]--[2013-12-06 Fri 16:22] =>  0:04
+   CLOCK: [2013-12-06 Fri 15:53]--[2013-12-06 Fri 16:17] =>  0:24
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-12-10 Tue 14:36
+    :END:
+   - toc:
+     - rss
+     - improved timing of editorial site 100x
+     - g-ads inside text
+     - page-background
+     - load comments via ajax
+     - threaded comments
+   - cat/subcat: editorial/--
+   - tags: golbin, new-features
+   - lead image:
+   - summary: We have been absent from writing articles for some time now because we were working on improving the Golbin! experience. For both viewers and story-tellers!
+   - body:
+We have been absent from writing articles for some time now because we were working on improving the [[http://www.golb.in/][Golbin!]] experience. For both viewers and story-tellers!
+
+So lets see what's new in [[http://www.golb.in/][Golbin!]]:
+1. Load comments via [[http://en.wikipedia.org/wiki/Ajax_(programming)][ajax]]: This feature will load comments in a lazy fashion; that is, after the whole page has been loaded. Because of this, the page-load-time (as seen by search engines like Google, Bing, Yahoo!, etc) will improve and give [[http://www.golb.in/][Golbin!]] a better [[http://en.wikipedia.org/wiki/Search_engine_optimization][SEO]] ranking.
+2. Threaded comments: Viewers can now reply to existing comments, or add fresh new comments of their own. We hope that this will increase viewer engagement. Not only via interaction within themselves, but even the story-teller will be able to respond to particular comments and have a meaningful, relevant and easy-to-follow conversation!
+3. Page backgrounds: Story-tellers can now define a custom image for all of their pages (story pages, and author page) and make their stories more beautiful and attractive for viewers. Also, this will help them distinguish themselves from other story-tellers, and portray their personality more effectively!
+4. Improved editorial site timing by 100x: Last, but not least, we made some performance improvements to the editorial site. This small change alone brought the page timings down from 3 seconds to 30 milliseconds, an improvement of 100x!
+
+That's not all. We will be adding new features, both small and big, regularly. Sometimes they will be user facing (affecting either viewers and/or story-tellers) and sometimes not. But either ways, we will keep you folks updated. See you soon, with the next set of updates!
+
+ps: We would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click [[http://ed.golb.in/register/why/][here]] to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
+   - html
+<p>
+	We have been absent from writing articles for some time now because we were working on improving the <a href="http://www.golb.in/">Golbin!</a> experience. For both viewers and story-tellers! So lets see what&#39;s new in <a href="http://www.golb.in/">Golbin!</a>:</p>
+<ol>
+	<li>
+		<strong>Load comments via <a href="http://en.wikipedia.org/wiki/Ajax_(programming)">ajax</a></strong>: This feature will load comments in a lazy fashion; that is, after the whole page has been loaded. Because of this, the page-load-time (as seen by search engines like Google, Bing, Yahoo!, etc) will improve and give <a href="http://www.golb.in/">Golbin!</a> a better <a href="http://en.wikipedia.org/wiki/Search_engine_optimization">SEO</a> ranking.</li>
+	<li>
+		<strong>Threaded comments</strong>: Viewers can now reply to existing comments, or add fresh new comments of their own. We hope that this will increase viewer engagement. Not only via interaction within themselves, but even the story-teller will be able to respond to particular comments and have a meaningful, relevant and easy-to-follow conversation!</li>
+	<li>
+		<strong>Page backgrounds</strong>: Story-tellers can now define a custom image for all of their pages (story pages, and author page) and make their stories more beautiful and attractive for viewers. Also, this will help them distinguish themselves from other story-tellers, and portray their personality more effectively!</li>
+	<li>
+		<strong>Improved editorial site performance</strong>: Last, but not least, we made some performance improvements to the editorial site. This small change alone brought the page timings down from 3 seconds to 30 milliseconds, an improvement of <strong>100x!</strong></li>
+</ol>
+<p>
+	That&#39;s not all. We will be adding new features, both small and big, regularly. Sometimes they will be user facing (affecting either viewers and/or story-tellers) and sometimes not. But either ways, we will keep you folks updated. See you soon, with the next set of updates!</p>
+<p>
+	ps: We would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click <a href="http://ed.golb.in/register/why/">here</a> to see the benefits of writing on <a href="http://www.golb.in/">Golbin!</a></p>
+   - notes:
+   - references:
+*** DONE svn unmerge
+   CLOSED: [2013-12-10 Tue 14:36]
+   :CLOCK:
+   CLOCK: [2013-12-09 Mon 18:33]--[2013-12-09 Mon 18:45] =>  0:12
+   CLOCK: [2013-12-09 Mon 17:06]--[2013-12-09 Mon 17:26] =>  0:20
+   CLOCK: [2013-12-09 Mon 16:32]--[2013-12-09 Mon 16:59] =>  0:27
+   CLOCK: [2013-12-06 Fri 18:52]--[2013-12-06 Fri 19:30] =>  0:38
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-12-10 Tue 14:36
+    :END:
+   - toc:
+   - cat/subcat: technology/computing
+   - tags: svn, git, version-control, branch, branching, feature, trunk
+   - lead image:
+   - summary: Fortunately, for us, the issue turned out to be a false-positive, and we got spared.
+   - body:
+I recently came across the following scenario in my work-place. We use [[http://en.wikipedia.org/wiki/Apache_Subversion][SVN]] as our [[http://en.wikipedia.org/wiki/Revision_control][version control]] repository, and use a [[http://en.wikipedia.org/wiki/Trunk_(software)][trunk]] for production pushes and feature branch for feature development. However, this time we made the mistake of merging feature-branch into trunk-prematurely; because the client team wanted to test both trunk features/bug-fixes and feature-branch changes together before the next launch (a very valid ask).
+Now the issue is that if we get an critical bug that needs to be fixed ASAP, then the trunk is no longer clean to do a bug-fix and re-deploy.
+However, on the other hand, we could not have merged the trunk changes into the feature-branch, because merging back (into trunk, after feature-branch work is done and tested) would have been a nightmare. Basically we chose the easier merge (feature-branch -> trunk) now, in order to avoid the (super) messy merge (trunk -> feature-branch -> trunk) later on.
+I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts
+-- less when we do feature-branch -> trunk, because (hopefully) the same files would not have been touched in both the branches
+-- but (too) many when we do trunk -> feature-branch -> trunk, because every (merge) file is touched in both branches
+So how do we solve this situation? What do we do?
+Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do "git rebase <trunk>" regularly to pull changes from trunk (known as "master" in git-land) into the feature-branch. This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does "git merge <feature-branch>".
+The benefit of this approach is:
+-- the feature-branch always has all trunk changes, so the client-team request can be easily fulfilled right from the feature-branch
+-- final merge (feature-branch -> trunk) is super easy, because no 2 files have changed simultaneously (if they had, then these merge-conflicts have already been resolved during the "rebase" step)
+I don't know how to achieve the same in SVN; atleast not easily. Please share if you do!
+Fortunately, for us, the issue turned out to be a false-positive, and we got spared.
+ps: Read [[http://paulhammant.com/2013/04/05/what-is-trunk-based-development/][this]], [[http://guides.beanstalkapp.com/version-control/branching-best-practices.html][this]] and [[http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html][this]] for more info on common branching patterns
+   - html
+<p>
+	I recently came across the following scenario in my work-place. We use <a href="http://en.wikipedia.org/wiki/Apache_Subversion">SVN</a> as our <a href="http://en.wikipedia.org/wiki/Revision_control">version control</a> repository, and use a <a href="http://en.wikipedia.org/wiki/Trunk_(software)">trunk</a> for production pushes and feature branch for feature development. However, this time we made the mistake of merging feature-branch into trunk-prematurely; because the client team wanted to test both trunk features/bug-fixes and feature-branch changes together before the next launch (a very valid ask).</p>
+<p>
+	Now the issue is that if we get an critical bug that needs to be fixed ASAP, then the trunk is no longer clean to do a bug-fix and re-deploy.</p>
+<p>
+	However, on the other hand, we could not have merged the trunk changes into the feature-branch, because merging back (into trunk, after feature-branch work is done and tested) would have been a nightmare. Basically we chose the easier merge (feature-branch -&gt; trunk) now, in order to avoid the (super) messy merge (trunk -&gt; feature-branch -&gt; trunk) later on.</p>
+<p>
+	I think we faced this issue because how SVN handles merges. Basically, it takes the 2 copies of the same file at the HEAD of each branch and tries to do a intelligent merge; it does NOT take the history of the changes into consideration while merging. This causes conflicts</p>
+<ul>
+	<li>
+		less when we do feature-branch -&gt; trunk, because (hopefully) the same files would not have been touched in both the branches (see part-1 of figure above)</li>
+	<li>
+		but (too) many when we do trunk -&gt; feature-branch -&gt; trunk, because every (merge) file is touched in both branches (see part-2 of figure above)</li>
+</ul>
+<p>
+	So how do we solve this situation? What do we do?</p>
+<p>
+	Enter git! In git, then branch and commit situation is extremely different (and easy). After creating a feature-branch, one should do &quot;git rebase &lt;trunk&gt;&quot; regularly to pull changes from trunk (known as &quot;master&quot; in git-land) into the feature-branch (see parts-3, 4 and 5 of figure above). This way, the conflicts, if any, will be very small and easily resolvable. Once the feature development and testing is complete, on simply does &quot;git merge &lt;feature-branch&gt;&quot;.</p>
+<p>
+	The benefit of this approach is:</p>
+<ul>
+	<li>
+		the feature-branch always has all trunk changes, so the client-team request can be easily fulfilled right from the feature-branch</li>
+	<li>
+		final merge (feature-branch -&gt; trunk) is super easy, because no 2 files have changed simultaneously (if they had, then these merge-conflicts have already been resolved during the &quot;rebase&quot; step)</li>
+</ul>
+<p>
+	I don&#39;t know how to achieve the same in SVN; atleast not easily. Please share if you do!</p>
+<p>
+	Fortunately, for us, the issue turned out to be a false-positive, and we got spared.</p>
+<p>
+	ps: Read <a href="http://paulhammant.com/2013/04/05/what-is-trunk-based-development/">this</a>, <a href="http://guides.beanstalkapp.com/version-control/branching-best-practices.html">this</a> and <a href="http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html">this</a> for more info on common branching patterns</p>
+   - notes:
+     - svn
+       - trunk and feature-branch
+       - merged before launch-date (because client wants to test both trunk changes and feature together)
+       - production issue (should be fixed in clean (non-merged) trunk
+       - how to???
+     - git
+       - regular "pull" (trunk -> feature)
+       - test in feature
+       - merge feature into trunk _during/after_ launch
+   - references:
+     - http://paulhammant.com/2013/04/05/what-is-trunk-based-development/
+     - http://guides.beanstalkapp.com/version-control/branching-best-practices.html
+     - http://svnbook.red-bean.com/en/1.7/svn.branchmerge.commonpatterns.html
+*** DONE speed your website 100x times
+   CLOSED: [2013-12-10 Tue 14:36]
+   :CLOCK:
+   CLOCK: [2013-12-09 Mon 20:35]--[2013-12-09 Mon 20:38] =>  0:03
+   CLOCK: [2013-12-09 Mon 19:02]--[2013-12-09 Mon 19:13] =>  0:11
+   CLOCK: [2013-12-09 Mon 18:47]--[2013-12-09 Mon 18:59] =>  0:12
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-12-10 Tue 14:36
+    :END:
+   - toc:
+   - cat/subcat: technology/internet
+   - tags: optimization, premature, donald-knuth, yslow, pagespeed
+   - lead image:
+   - summary: Find out how we sped up our editorial site 100x; and how you can do the same to your own!
+   - body:
+If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That's right, 100 times! So what is the secret? How did we do it? Well, actually there's the short answer and the long answer.
+
+For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!
+
+However, in reality things are not so simple. As [[http://www-cs-faculty.stanford.edu/~knuth/][Donald Knuth]] put it: "Premature optimization is the root of all evil". So we did what was correct: measure. We performed the following steps:
+-- measure page speed (as perceived by end users) using tools like [[http://yslow.org/][yslow]], [[https://developers.google.com/speed/pagespeed/][pagespeed]], etc
+-- figure out which requests are taking time
+-- split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)
+-- during our measurements, we found that the article create/update page was the slowest
+-- this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x
+
+The lessons that we learned from the above exercise were
+-- don't do premature optimization
+-- measure before starting to optimize
+-- go for the low hanging fruits (find the thing that will give the maximum ROI)
+-- don't optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)
+
+We would like to hear about your optimization experiences!
+   - html
+<p>
+	If you remember, we had mentioned in one of our recent posts that we increased the speed of our editorial site by 100 times. That&#39;s right, 100 times! So what is the secret? How did we do it? Well, actually there&#39;s the short answer and the long answer.</p>
+<p>
+	For all you impatient folks out there, the short answer first: We put extremely long processes (like sending email) into the background and returned the page without waiting for its result!</p>
+<p>
+	However, in reality things are not so simple. As [[http://www-cs-faculty.stanford.edu/~knuth/][Donald Knuth]] put it: &quot;Premature optimization is the root of all evil&quot;. So we did what was correct: measure. We performed the following steps:</p>
+<ul>
+	<li>
+		measure page speed (as perceived by end users) using tools like [[http://yslow.org/][yslow]], [[https://developers.google.com/speed/pagespeed/][pagespeed]], etc</li>
+	<li>
+		figure out which requests are taking time</li>
+	<li>
+		split the above requests into frontend (network and client-side) and backend (server-side) categories (explanation of these categories is for another post ;). for now, lets concentrate only on backend issues)</li>
+	<li>
+		during our measurements, we found that the article create/update page was the slowest</li>
+	<li>
+		this was mainly due to activities like sending emails and submitting pages to web-archive.com took the most times. but, we realized that the user need not wait for these activities to finish. thus, by simply putting these activities into a separate thread (and not waiting for the thread to finish execution), we were able to bring down the page load time from 3 seconds to about 30 milliseconds; a whopping gain of 100x</li>
+</ul>
+<p>
+	The lessons that we learned from the above exercise were</p>
+<ul>
+	<li>
+		don&#39;t do premature optimization</li>
+	<li>
+		measure before starting to optimize</li>
+	<li>
+		go for the low hanging fruits (find the thing that will give the maximum ROI)</li>
+	<li>
+		don&#39;t optimize parts that will not have any impact (for eg, improving the performance of some rarely called function from 5ms to 4ms by spending 2 hours is pretty much useless)</li>
+</ul>
+<p>
+	We would like to hear about your optimization experiences!</p>
+   - notes:
+     - put long-running but not real-time processes in background
+     - eg sendmail, webarchive
+     - brought down from 3sec to 30ms
+   - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
