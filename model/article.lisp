@@ -12,6 +12,7 @@
    (body :initarg :body :initform nil :accessor body)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
    (status :initarg :status :initform nil :accessor status) ; :r draft, :s submitted for approval, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin), :p processed (intermediate edits, discarded)
+   (background :initarg :background :initform nil :accessor background)
    (photo :initarg :photo :initform nil :accessor photo)
    (photo-direction :initarg :photo-direction :initform nil :accessor photo-direction) ; :l left, :r right, :b block
    (cat :initarg :cat :initform nil :accessor cat)

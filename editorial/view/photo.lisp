@@ -17,7 +17,8 @@
                              (<:td "Type of")
                              (<:td (<:select :name "typeof"
                                              :class "td-input"
-                                             (<:option :value "article" "Article")
+                                             (<:option :value "article" (translate "article"))
+                                             (<:option :value "article" (translate "article-background"))
                                              #- (and)
                                              (<:option :value "slideshow" "Slideshow")))) ; TODO
                             (<:tr (<:td "Category")
