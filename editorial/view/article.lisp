@@ -135,7 +135,8 @@
                   (subcats (get-subcategorys (if article
                                                  (id (cat article))
                                                  1)))
-                  (photo (when article (photo article))))
+                  (photo (when article (photo article)))
+                  (background (when article (background article))))
              (<:div :id "article"
                     :class "wrapper"
                     (<:form :action (if article
@@ -153,7 +154,29 @@
                                                                    :name "url"
                                                                    :value (slug article)))))
                                      (tr-td-text "summary" :value (when article (summary article)))
-                                     (<:tr (<:td "Lead Photo")
+                                     (<:tr (<:td (translate "background"))
+                                           (<:td (<:input :class "td-input"
+                                                          :type "hidden"
+                                                          :name "background"
+                                                          :id "background"
+                                                          :value (when background (id background)))
+                                                 (<:span (when background
+                                                           (fmtnil (article-lead-photo-url (background article)
+                                                                                           "related-thumb")
+                                                                   (<:a :id "unselect-background"
+                                                                        :href ""
+                                                                        (translate "unselect-background")))))
+                                                 (<:span :class (if background
+                                                                    "hidden"
+                                                                    "")
+                                                         (translate "select-or-upload"
+                                                                    (<:a :id "select-background"
+                                                                         :href ""
+                                                                         (translate "select"))
+                                                                    (<:a :id "upload-background"
+                                                                         :href ""
+                                                                         (translate "upload"))))))
+                                     (<:tr (<:td (translate "lead-photo"))
                                            (<:td (<:input :class "td-input"
                                                           :type "hidden"
                                                           :name "lead-photo"

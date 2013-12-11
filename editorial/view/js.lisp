@@ -112,17 +112,24 @@
                                  (+ "_" (elt image-sizes 1) ".")))))
 
                     ;; select photo pane
-                    (unselect-lead-photo (event)
+                    (unselect-photo (event target parent)
                       ($prevent-default)
                       ;; change the photo-id in hidden-field
-                      ($apply ($ "#lead-photo") val "")
-                      (let ((spans ($apply ($ "#lead-photo") siblings "span")))
+                      ($apply target val "")
+                      (let ((spans ($apply target siblings "span")))
                         ;; remove img tag
                         ($apply ($apply ($ (elt spans 0)) children) remove)
                         ;; unhide "select/upload photo"
                         ($apply ($ (elt spans 1)) remove-class "hidden"))
                       ;; remove 'unselect' link
-                      ($apply ($ "#unselect-lead-photo") remove))
+                      ($apply parent remove))
+                    (unselect-lead-photo (event)
+                      (unselect-photo event ($ "#lead-photo") ($ "#unselect-lead-photo")))
+                    (unselect-background (event)
+                      (unselect-photo event ($ "#background") ($ "#unselect-background")))
+                    (select-background-init (event)
+                      (setf lead true)
+                      (select-photo-init event))
                     (select-lead-photo-init (event)
                       (setf lead true)
                       (select-photo-init event))
@@ -377,6 +384,9 @@
         ($event ("#select-lead-photo" click) (select-lead-photo-init event))
         ($event ("#unselect-lead-photo" click) (unselect-lead-photo event))
         ($event ("#upload-lead-photo" click) (upload-lead-photo-init event))
+        ($event ("#select-background" click) (select-background-init event))
+        ($event ("#unselect-background" click) (unselect-background event))
+        ($event ("#upload-background" click) (upload-background-init event))
         ($event ("#select-nonlead-photo" click) (select-nonlead-photo-init event))
         ($event ("#upload-nonlead-photo" click) (upload-nonlead-photo-init event))
         ($event ("#upload-author-photo" click) (upload-author-photo-init event t))
