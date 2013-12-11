@@ -2,7 +2,12 @@
 
 * tasks
 ** backlog
-*** [fed] enable authors to override default background page at individual story-page level
+*** detach db from repo
+    - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
+*** TODO [fed] enable authors to override default background page at individual story-page level
+    :CLOCK:
+    CLOCK: [2013-12-10 Tue 19:37]--[2013-12-10 Tue 19:55] =>  0:18
+    :END:
     - if article-background is not defined then use author-background image
     - when author-background is changed, no need to republish stories that already have article-background
 *** [fe] lazy-load comments (only when viewer is at bottom of page)
@@ -4484,6 +4489,7 @@
    - curiosity
 ** TODO don't break the chain
    :CLOCK:
+   CLOCK: [2013-12-11 Wed 19:44]--[2013-12-11 Wed 19:49] =>  0:05
    CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
    CLOCK: [2013-12-10 Tue 15:56]--[2013-12-10 Tue 16:20] =>  0:24
    CLOCK: [2013-12-10 Tue 15:12]--[2013-12-10 Tue 15:15] =>  0:03
@@ -4491,28 +4497,99 @@
    :END:
    - toc:
    - cat/subcat:
-   - tags: productivity, procrastination, creativity, getting-things-done, gtd
-   - lead image:
-   - summary:
+   - tags: productivity, procrastination, creativity, getting-things-done, gtd, emacs, org-mode
+   - lead image: http://www.flickr.com/photos/22280677@N07/3529351545/
+   - summary: What is the productivity technique that works for you?
    - body:
-Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's ok and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
+Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's OK and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
 
 Don't get me wrong, I'm not lazy. Quite on the contrary, I'm a [[http://en.wikipedia.org/wiki/Getting_Things_Done][GTD]] fan. I use [[http://www.gnu.org/s/emacs/][emacs]] and the super-excellent [[http://orgmode.org/][org-mode]] to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my "Doc-vim" status and entered the life of emacs. Anyways, that's a story for a different day ;)
 
 Coming back on track, so here I am, in the midst of such a streak when I stumbled upon "don't break the chain" approach to productivity. Earlier i have read about (and given a try) to methods like "[[http://pomodorotechnique.com/][pomodoro technique]]", etc. But they did not work for me.
 
-Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but i'm getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
+Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
 
 But, we should also realize that it's not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you've wanted to do for a long time but never got the time to get started.
 
 Good! I am in a slack period and have a lot of time. But there is no motivation. I don't feel like doing anything. I'm sure you have felt this too, at some time or the other. So what to do? Enter "[[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][don't break the chain]]". I recently stumbled over it [[http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method][here]]. I must agree that i liked it immediately and decided to try it out. I'm happy to report that it has worked fascinatingly for me till now, although it's been just a few days.
 
-In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that i'll move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
+In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
 
-Do you have techniques that work well for you? I will be happy to learn about them, so do share!
+Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!
+   - html
+<p>
+	Lately i have been having streaks of unproductive days. Days when i don&#39;t feel like doing anything. I think it&#39;s OK and normal to have a day or 2 like that, but when it becomes day&quot;s&quot;, then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.</p>
+<p>
+	Don&#39;t get me wrong, I&#39;m not lazy. Quite on the contrary, I&#39;m a <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> fan. I use <a href="http://www.gnu.org/s/emacs/">emacs</a> and the super-excellent <a href="http://orgmode.org/">org-mode</a> to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my &quot;Doc-vim&quot; status and entered the life of emacs. Anyways, that&#39;s a story for a different day ;)</p>
+<p>
+	Coming back on track, so here I am, in the midst of such a streak when I stumbled upon &quot;don&#39;t break the chain&quot; approach to productivity. Earlier i have read about (and given a try) to methods like <a href="http://pomodorotechnique.com/">pomodoro technique</a>, etc. But they did not work for me.</p>
+<p>
+	Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.</p>
+<p>
+	But, we should also realize that it&#39;s not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you&#39;ve wanted to do for a long time but never got the time to get started.</p>
+<p>
+	Good! I am in a slack period and have a lot of time. But there is no motivation. I don&#39;t feel like doing anything. I&#39;m sure you have felt this too, at some time or the other. So what to do? Enter &quot;<a href="http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem">don&#39;t break the chain</a>&quot;. I recently stumbled over it <a href="http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method">here</a>. I must agree that i liked it immediately and decided to try it out. I&#39;m happy to report that it has worked fascinatingly for me till now, although it&#39;s been just a few days.</p>
+<p>
+	In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click <a href="http://lifehacker.com/5890129/five-best-productivity-methods">here</a>.</p>
+<p>
+	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
+   - notes:
+   - references:
+** TODO git week, part 1
+   :CLOCK:
+   CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
+   :END:
+   - toc:
+     - bundle
+     - bisect
+     - change author-names
+     - delete files from history
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary: Today I have learned more git techniques than in the past few months!
+   - body:
+As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!
+
+So here goes, in the order in which I stumbled upon them:
+1. git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
+
+Anyways, coming to the real issue that "git-bundle" solves. I work in a jail environment; well not really, but what's the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article "don't break the chain" to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.
+
+And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found "git-bundle" was exactly what I was searching for.
+
+That's enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some environment. Let's say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first:
+
+Perform the following steps at A:
+1. cd <repo>
+2. git bundle create <repo-name>.bdl master
+3. git tag -f "bdl" master
+
+Note that the ".bdl" extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case12), as we will show below.
+
+Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:
+1. git clone -b master <repo-name>.bdl <repo>
+2. git tag -f "bdl" master
+
+Once the initial setup is done, we simplify our life to be the same as case-2, that is incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:
+1. git bundle create <repo-name>-<date>.bdl bdl..master
+2. git tag -f "bdl" master
+
+Again, the <repo-name>-<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say "bdl..master" is the "tagging" part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or "pull"-ed as explained below) earlier and where the HEAD of the master branch is now.
+
+Then, we move the bundle file from B to A, and perform the following steps at A:
+1. git pull <repo-name>-<date>.bdl master:master
+2. git tag -f "bdl" master
+
+The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!
+
+ps: read the beautifully written man page "man git-bundle" for more info
    - html
    - notes:
    - references:
+** difference between learnt and learned
+   - http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html
+   - http://www.differencebetween.net/language/difference-between-learned-and-learnt/
 ** TODO organization: dictatorial v/s democratic?
    :CLOCK:
    CLOCK: [2013-10-16 Wed 09:52]--[2013-10-16 Wed 10:11] =>  0:19
@@ -4532,6 +4609,23 @@ Do you have techniques that work well for you? I will be happy to learn about th
      - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 ** vim -> emacs
    - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
+** environment variables in crontab
+   - toc:
+     - spent 1 hour on 10 min job
+     - various solutions tried
+       - at top
+       - export ...; command
+       - ...; command
+     - finally the 1 that worked
+       - env ... command
    - cat/subcat:
    - tags:
    - lead image:
