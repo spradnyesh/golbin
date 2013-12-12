@@ -94,18 +94,18 @@
 (defmacro m-404 (base-name)
   ;; do *NOT* use with-gensyms here (atleast for x-404), otherwise they get defined in :hawksbill.utils and screw things up
   ;; http://stackoverflow.com/a/5891899
-  (let*
-      ((package (symbol-package base-name))
-       (r-404 (intern (string-upcase  "r-404") package))
-       (v-404 (intern (string-upcase "v-404") package))
-       (template (intern (string-upcase "template") package)))
+  (let* ((package (symbol-package base-name))
+         (r-404 (intern (string-upcase  "r-404") package))
+         (v-404 (intern (string-upcase "v-404") package))
+         (template (intern (string-upcase "template") package))
+         (local-v-404 (intern (string-upcase "local-v-404") package)))
     `(progn
        (define-route ,r-404 ("*any")
          (,v-404))
        (defun ,v-404 ()
-         (,template
-          :title "page-not-found"
-          :body (<:div :class "error"
-                      "Sorry! We were unable to find the content that you are looking for. Please click "
-                      (<:a :href "javascript:history.go(-1)" "here")
-                      " to go back."))))))
+         (if (fboundp ',local-v-404)
+             (funcall #',local-v-404)
+             (,template
+              :title "page-not-found"
+              :body (<:p :class "error"
+                         (translate "404" (<:a :href "javascript:history.go(-1)" (translate "here"))))))))))

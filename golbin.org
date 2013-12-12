@@ -4094,6 +4094,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-12 Thu 18:49
      :END:
+**** DONE [bug][fe] 404 not working correctly
+     CLOSED: [2013-12-12 Thu 18:51]
+     :CLOCK:
+     CLOCK: [2013-12-12 Thu 18:25]--[2013-12-12 Thu 18:51] =>  0:26
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 18:51
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
