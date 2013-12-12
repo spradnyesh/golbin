@@ -4561,24 +4561,31 @@ Do you have productivity techniques that work well for you? I will be happy to l
 	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
    - notes:
    - references:
-** TODO git week, part 1
-   :CLOCK:
-   CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
-   :END:
+** git-week
    - toc:
      - bundle
      - bisect
      - change author-names
      - delete files from history
+     - rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
+     - lead images
+       - http://www.flickr.com/photos/cjsorg/508821261/
+       - http://www.flickr.com/photos/44458147@N00/263228000/
+       - http://www.flickr.com/photos/slimcoincidence/1454276711/
+       - http://www.flickr.com/photos/dealingwith/4295488113/
+*** TODO git week, part 1
+   :CLOCK:
+   CLOCK: [2013-12-12 Thu 19:03]--[2013-12-12 Thu 19:27] =>  0:24
+   CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
+   :END:
    - cat/subcat:
    - tags:
-   - lead image:
-   - summary: Today I have learned more git techniques than in the past few months!
+   - lead image: http://www.flickr.com/photos/trevi55/575665048/
+   - summary: I have learned more git techniques in this week than in the past few months!
    - body:
 As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!
 
-So here goes, in the order in which I stumbled upon them:
-1. git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
+git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
 
 Anyways, coming to the real issue that "git-bundle" solves. I work in a jail environment; well not really, but what's the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article "don't break the chain" to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.
 
@@ -4609,8 +4616,76 @@ Then, we move the bundle file from B to A, and perform the following steps at A:
 
 The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!
 
-ps: read the beautifully written man page "man git-bundle" for more info
+ps:
+1. read the beautifully written man page "man git-bundle" for more info
+2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!
    - html
+<p>
+	As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p>
+<p>
+	<strong>git-bundle</strong>: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn&#39;t blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)</p>
+<p>
+	Anyways, coming to the real issue that &quot;git-bundle&quot; solves. I work in a jail environment; well not really, but what&#39;s the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article &quot;don&#39;t break the chain&quot; to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p>
+<p>
+	And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found &quot;git-bundle&quot; was exactly what I was searching for.</p>
+<p>
+	That&#39;s enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some environment. Let&#39;s say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p>
+<blockquote>
+	<ul>
+		<li>
+			cd <repo></repo></li>
+		<li>
+			git bundle create <repo-name>.bdl master</repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Note that the &quot;.bdl&quot; extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case12), as we will show below.</p>
+<p>
+	Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:</repo-name></p>
+<blockquote>
+	<ul>
+		<li>
+			git clone -b master <repo-name>.bdl <repo></repo></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Once the initial setup is done, we simplify our life to be the same as case-2, that is incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:</p>
+<blockquote>
+	<ul>
+		<li>
+			git bundle create <repo-name>-<date>.bdl bdl..master</date></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Again, the <repo-name>-<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say &quot;bdl..master&quot; is the &quot;tagging&quot; part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or &quot;pull&quot;-ed as explained below) earlier and where the HEAD of the master branch is now.</date></repo-name></p>
+<p>
+	Then, we move the bundle file from B to A, and perform the following steps at A:</p>
+<blockquote>
+	<ul>
+		<li>
+			git pull <repo-name>-<date>.bdl master:master</date></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!</p>
+<p>
+	ps:</p>
+<ul>
+	<li>
+		read the beautifully written man page &quot;man git-bundle&quot; for more info</li>
+	<li>
+		2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!</li>
+</ul>
+<p class="last">
+	&nbsp;</p>
    - notes:
    - references:
 ** difference between learnt and learned
