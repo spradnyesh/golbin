@@ -2,6 +2,8 @@
 
 * tasks
 ** backlog
+*** [bug][fe] article page shows error popup on page load sometimes
+    - happens always when "preview" from editorial site (edit/add article page)
 *** detach db from repo
     - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
 *** TODO [fed] enable authors to override default background page at individual story-page level
@@ -4563,11 +4565,11 @@ Do you have productivity techniques that work well for you? I will be happy to l
    - references:
 ** git-week
    - toc:
-     - bundle
-     - bisect
-     - change author-names
-     - delete files from history
-     - rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
+     - [X] bundle
+     - [ ] bisect
+     - [X] filter-branch: change author-names
+     - [X] filter-branch: delete files from history
+     - [ ] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
      - lead images
        - http://www.flickr.com/photos/cjsorg/508821261/
        - http://www.flickr.com/photos/44458147@N00/263228000/
@@ -4688,6 +4690,128 @@ ps:
 	&nbsp;</p>
    - notes:
    - references:
+*** TODO git week, part 2
+    :CLOCK:
+    CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
+    CLOCK: [2013-12-12 Thu 20:00]--[2013-12-12 Thu 20:17] =>  0:17
+    CLOCK: [2013-12-12 Thu 19:45]--[2013-12-12 Thu 19:54] =>  0:09
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary: The 2nd post detailing another cool git feature that proved life-saver!
+    - body:
+Hello again! Today we will see some more git magic.
+
+This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
+
+The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:
+
+git filter-branch --commit-filter 'GIT_COMMITTER_NAME="<new-name>"; GIT_AUTHOR_NAME="<new-name>"; GIT_COMMITTER_EMAIL="<new-email>"; GIT_AUTHOR_EMAIL="<new-email>"; git commit-tree "$@";' HEAD
+
+Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].
+
+The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.
+
+But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $files" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <yyyymm>-*" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.
+
+With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)
+
+Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
+    - html
+<p>
+	Hello again! Today we will see some more git magic.</p>
+<p>
+	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
+<p>
+	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
+<blockquote>
+	<p>
+		git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</p>
+</blockquote>
+<p>
+	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].</p>
+<p>
+	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
+<p>
+	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
+<blockquote>
+	<ol>
+		<li>
+			git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD</li>
+		<li>
+			rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</li>
+	</ol>
+</blockquote>
+<p>
+	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
+<blockquote>
+	<ol>
+		<li>
+			git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD</li>
+		<li>
+			rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</li>
+	</ol>
+</blockquote>
+<p>
+	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
+<p>
+	With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p>
+<p>
+	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
 ** difference between learnt and learned
    - http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html
    - http://www.differencebetween.net/language/difference-between-learned-and-learnt/
