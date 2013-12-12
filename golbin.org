@@ -2,8 +2,6 @@
 
 * tasks
 ** backlog
-*** [bug][fe] article page shows error popup on page load sometimes
-    - happens always when "preview" from editorial site (edit/add article page)
 *** detach db from repo
     - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
 *** TODO [fed] enable authors to override default background page at individual story-page level
@@ -4114,6 +4112,17 @@
      :END:
      - put tag/404 before story-background
      - http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html
+**** CANCELLED [bug][fe] article page shows error popup on page load sometimes
+     CLOSED: [2013-12-12 Thu 20:25]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-12-12 Thu 20:25] \\
+       happening only in ed because loading comments fails; no issue ;)
+     CLOCK: [2013-12-12 Thu 20:24]--[2013-12-12 Thu 20:25] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 20:25
+     :END:
+     - happens always when "preview" from editorial site (edit/add article page)
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
