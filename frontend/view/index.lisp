@@ -98,6 +98,7 @@
     (view-index (name (get-tag-by-slug slug))
                 nil
                 nil
+                nil
                 (get-articles-by-tag-slug slug)
                 'r-tag-page :tag slug)))
 

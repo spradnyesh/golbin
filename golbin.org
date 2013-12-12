@@ -4086,6 +4086,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-09 Mon 18:32
      :END:
+**** DONE [bug][fe] tag index crashing
+     CLOSED: [2013-12-12 Thu 18:25]
+     :CLOCK:
+     CLOCK: [2013-12-12 Thu 18:20]--[2013-12-12 Thu 18:25] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 18:49
+     :END:
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
