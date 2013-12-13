@@ -1,4 +1,5 @@
 *fasl
+data/db
 data/uploads
 data/static/photos/*
 data/static/ckeditor
