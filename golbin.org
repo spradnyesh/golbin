@@ -4487,54 +4487,6 @@
    - hindi, national language of India?
    - writing styles
    - curiosity
-** TODO don't break the chain
-   :CLOCK:
-   CLOCK: [2013-12-11 Wed 19:44]--[2013-12-11 Wed 19:49] =>  0:05
-   CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
-   CLOCK: [2013-12-10 Tue 15:56]--[2013-12-10 Tue 16:20] =>  0:24
-   CLOCK: [2013-12-10 Tue 15:12]--[2013-12-10 Tue 15:15] =>  0:03
-   CLOCK: [2013-12-10 Tue 14:45]--[2013-12-10 Tue 14:59] =>  0:14
-   :END:
-   - toc:
-   - cat/subcat:
-   - tags: productivity, procrastination, creativity, getting-things-done, gtd, emacs, org-mode
-   - lead image: http://www.flickr.com/photos/22280677@N07/3529351545/
-   - summary: What is the productivity technique that works for you?
-   - body:
-Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's OK and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
-
-Don't get me wrong, I'm not lazy. Quite on the contrary, I'm a [[http://en.wikipedia.org/wiki/Getting_Things_Done][GTD]] fan. I use [[http://www.gnu.org/s/emacs/][emacs]] and the super-excellent [[http://orgmode.org/][org-mode]] to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my "Doc-vim" status and entered the life of emacs. Anyways, that's a story for a different day ;)
-
-Coming back on track, so here I am, in the midst of such a streak when I stumbled upon "don't break the chain" approach to productivity. Earlier i have read about (and given a try) to methods like "[[http://pomodorotechnique.com/][pomodoro technique]]", etc. But they did not work for me.
-
-Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
-
-But, we should also realize that it's not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you've wanted to do for a long time but never got the time to get started.
-
-Good! I am in a slack period and have a lot of time. But there is no motivation. I don't feel like doing anything. I'm sure you have felt this too, at some time or the other. So what to do? Enter "[[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][don't break the chain]]". I recently stumbled over it [[http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method][here]]. I must agree that i liked it immediately and decided to try it out. I'm happy to report that it has worked fascinatingly for me till now, although it's been just a few days.
-
-In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
-
-Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!
-   - html
-<p>
-	Lately i have been having streaks of unproductive days. Days when i don&#39;t feel like doing anything. I think it&#39;s OK and normal to have a day or 2 like that, but when it becomes day&quot;s&quot;, then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.</p>
-<p>
-	Don&#39;t get me wrong, I&#39;m not lazy. Quite on the contrary, I&#39;m a <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> fan. I use <a href="http://www.gnu.org/s/emacs/">emacs</a> and the super-excellent <a href="http://orgmode.org/">org-mode</a> to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my &quot;Doc-vim&quot; status and entered the life of emacs. Anyways, that&#39;s a story for a different day ;)</p>
-<p>
-	Coming back on track, so here I am, in the midst of such a streak when I stumbled upon &quot;don&#39;t break the chain&quot; approach to productivity. Earlier i have read about (and given a try) to methods like <a href="http://pomodorotechnique.com/">pomodoro technique</a>, etc. But they did not work for me.</p>
-<p>
-	Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.</p>
-<p>
-	But, we should also realize that it&#39;s not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you&#39;ve wanted to do for a long time but never got the time to get started.</p>
-<p>
-	Good! I am in a slack period and have a lot of time. But there is no motivation. I don&#39;t feel like doing anything. I&#39;m sure you have felt this too, at some time or the other. So what to do? Enter &quot;<a href="http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem">don&#39;t break the chain</a>&quot;. I recently stumbled over it <a href="http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method">here</a>. I must agree that i liked it immediately and decided to try it out. I&#39;m happy to report that it has worked fascinatingly for me till now, although it&#39;s been just a few days.</p>
-<p>
-	In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click <a href="http://lifehacker.com/5890129/five-best-productivity-methods">here</a>.</p>
-<p>
-	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
-   - notes:
-   - references:
 ** TODO git week, part 1
    :CLOCK:
    CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
@@ -5415,6 +5367,58 @@ We would like to hear about your optimization experiences!
      - put long-running but not real-time processes in background
      - eg sendmail, webarchive
      - brought down from 3sec to 30ms
+   - references:
+*** DONE don't break the chain
+   CLOSED: [2013-12-14 Sat 01:05]
+   :CLOCK:
+   CLOCK: [2013-12-11 Wed 19:44]--[2013-12-11 Wed 19:49] =>  0:05
+   CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
+   CLOCK: [2013-12-10 Tue 15:56]--[2013-12-10 Tue 16:20] =>  0:24
+   CLOCK: [2013-12-10 Tue 15:12]--[2013-12-10 Tue 15:15] =>  0:03
+   CLOCK: [2013-12-10 Tue 14:45]--[2013-12-10 Tue 14:59] =>  0:14
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-12-14 Sat 01:05
+    :END:
+   - toc:
+   - cat/subcat:
+   - tags: productivity, procrastination, creativity, getting-things-done, gtd, emacs, org-mode
+   - lead image: http://www.flickr.com/photos/22280677@N07/3529351545/
+   - summary: What is the productivity technique that works for you?
+   - body:
+Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's OK and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
+
+Don't get me wrong, I'm not lazy. Quite on the contrary, I'm a [[http://en.wikipedia.org/wiki/Getting_Things_Done][GTD]] fan. I use [[http://www.gnu.org/s/emacs/][emacs]] and the super-excellent [[http://orgmode.org/][org-mode]] to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my "Doc-vim" status and entered the life of emacs. Anyways, that's a story for a different day ;)
+
+Coming back on track, so here I am, in the midst of such a streak when I stumbled upon "don't break the chain" approach to productivity. Earlier i have read about (and given a try) to methods like "[[http://pomodorotechnique.com/][pomodoro technique]]", etc. But they did not work for me.
+
+Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
+
+But, we should also realize that it's not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you've wanted to do for a long time but never got the time to get started.
+
+Good! I am in a slack period and have a lot of time. But there is no motivation. I don't feel like doing anything. I'm sure you have felt this too, at some time or the other. So what to do? Enter "[[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][don't break the chain]]". I recently stumbled over it [[http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method][here]]. I must agree that i liked it immediately and decided to try it out. I'm happy to report that it has worked fascinatingly for me till now, although it's been just a few days.
+
+In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
+
+Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!
+   - html
+<p>
+	Lately i have been having streaks of unproductive days. Days when i don&#39;t feel like doing anything. I think it&#39;s OK and normal to have a day or 2 like that, but when it becomes day&quot;s&quot;, then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.</p>
+<p>
+	Don&#39;t get me wrong, I&#39;m not lazy. Quite on the contrary, I&#39;m a <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> fan. I use <a href="http://www.gnu.org/s/emacs/">emacs</a> and the super-excellent <a href="http://orgmode.org/">org-mode</a> to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my &quot;Doc-vim&quot; status and entered the life of emacs. Anyways, that&#39;s a story for a different day ;)</p>
+<p>
+	Coming back on track, so here I am, in the midst of such a streak when I stumbled upon &quot;don&#39;t break the chain&quot; approach to productivity. Earlier i have read about (and given a try) to methods like <a href="http://pomodorotechnique.com/">pomodoro technique</a>, etc. But they did not work for me.</p>
+<p>
+	Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.</p>
+<p>
+	But, we should also realize that it&#39;s not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you&#39;ve wanted to do for a long time but never got the time to get started.</p>
+<p>
+	Good! I am in a slack period and have a lot of time. But there is no motivation. I don&#39;t feel like doing anything. I&#39;m sure you have felt this too, at some time or the other. So what to do? Enter &quot;<a href="http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem">don&#39;t break the chain</a>&quot;. I recently stumbled over it <a href="http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method">here</a>. I must agree that i liked it immediately and decided to try it out. I&#39;m happy to report that it has worked fascinatingly for me till now, although it&#39;s been just a few days.</p>
+<p>
+	In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click <a href="http://lifehacker.com/5890129/five-best-productivity-methods">here</a>.</p>
+<p>
+	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
+   - notes:
    - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
