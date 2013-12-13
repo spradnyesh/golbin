@@ -4575,7 +4575,7 @@ Do you have productivity techniques that work well for you? I will be happy to l
 ** git-week
    - toc:
      - [X] bundle
-     - [ ] bisect
+     - [X] bisect
      - [X] filter-branch: change author-names
      - [X] filter-branch: delete files from history
      - [ ] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
@@ -4711,7 +4711,7 @@ ps:
     - lead image:
     - summary: The 2nd post detailing another cool git feature that proved life-saver!
     - body:
-Hello again! Today we will see some more git magic.
+Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)
 
 This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
 
@@ -4781,34 +4781,101 @@ Remember, both the above actions are destructive and may mess up your repository
 	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
     - notes:
     - references:
-*** template
+*** TODO git week, part 3
+    :CLOCK:
+    CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
+    CLOCK: [2013-12-13 Fri 15:11]--[2013-12-13 Fri 15:32] =>  0:21
+    :END:
     - toc:
     - cat/subcat:
     - tags:
     - lead image:
-    - summary:
+    - summary: The 3rd post detailing another cool git feature!
     - body:
+Hi there. Welcome back to the 3rd post in the "git week" series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git bisect".
+
+I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not "how" to fix, but to understand "what" broke this feature, and "when". Maybe, if you are like my manager, you are also looking out for the "who", to put some blame on.
+
+Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with "git-bisect". I am sure, that by this time, based on my description above, and based on the name "bisect", you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a "binary search" or a "divide-and-conquer" strategy to find the bad commit, you are absolutely correct.
+
+So how this works is that you find 2 commit hashes, G and B, which stand for "good" and "bad" respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).
+
+The steps are as follows:
+
+1. git bisect start
+2. git bisect bad <B>
+3. git bisect good <G>
+
+Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows
+
+git bisect good
+
+OR
+
+git bisect bad
+
+respectively.
+
+Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)
+
+After you have finished this bisection exercise, run the following command
+
+git bisect reset
+
+to come out of the bisect session back to where you started from.
+
+One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)
+
+For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
     - html
-    - notes:
-    - references:
-*** template
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-    - html
-    - notes:
-    - references:
-*** template
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-    - html
+<p>
+	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
+<p>
+	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
+<p>
+	Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with &quot;git-bisect&quot;. I am sure, that by this time, based on my description above, and based on the name &quot;bisect&quot;, you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a &quot;binary search&quot; or a &quot;divide-and-conquer&quot; strategy to find the bad commit, you are absolutely correct.</p>
+<p>
+	So how this works is that you find 2 commit hashes, G and B, which stand for &quot;good&quot; and &quot;bad&quot; respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).</p>
+<p>
+	The steps are as follows:</p>
+<blockquote>
+	<ol>
+		<li>
+			git bisect start</li>
+		<li>
+			git bisect bad</li>
+		<li>
+			git bisect good <g></g></li>
+	</ol>
+</blockquote>
+<p>
+	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows:</p>
+<blockquote>
+	<p>
+		git bisect good</p>
+</blockquote>
+<p>
+	OR</p>
+<blockquote>
+	<p>
+		git bisect bad</p>
+</blockquote>
+<p>
+	respectively.</p>
+<p>
+	Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)</p>
+<p>
+	After you have finished this bisection exercise, run the following command</p>
+<blockquote>
+	<p>
+		git bisect reset</p>
+</blockquote>
+<p>
+	to come out of the bisect session back to where you started from.</p>
+<p>
+	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
+<p>
+	For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you.</p>
     - notes:
     - references:
 *** template
