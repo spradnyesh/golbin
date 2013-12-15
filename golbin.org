@@ -4,12 +4,6 @@
 ** backlog
 *** detach db from repo
     - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
-*** TODO [fed] enable authors to override default background page at individual story-page level
-    :CLOCK:
-    CLOCK: [2013-12-10 Tue 19:37]--[2013-12-10 Tue 19:55] =>  0:18
-    :END:
-    - if article-background is not defined then use author-background image
-    - when author-background is changed, no need to republish stories that already have article-background
 *** [fe] lazy-load comments (only when viewer is at bottom of page)
 *** [fe][rss] validate at http://feedvalidator.org/
 *** html5 form validation
@@ -4123,6 +4117,17 @@
      :ARCHIVE_TIME: 2013-12-12 Thu 20:25
      :END:
      - happens always when "preview" from editorial site (edit/add article page)
+**** DONE [fed] enable authors to override default background page at individual story-page level
+     CLOSED: [2013-12-15 Sun 13:24]
+     :CLOCK:
+     CLOCK: [2013-12-15 Sun 12:26]
+     CLOCK: [2013-12-10 Tue 19:37]--[2013-12-10 Tue 19:55] =>  0:18
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-15 Sun 13:24
+     :END:
+     - if article-background is not defined then use author-background image
+     - when author-background is changed, no need to republish stories that already have article-background
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22

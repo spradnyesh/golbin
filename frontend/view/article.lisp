@@ -143,7 +143,9 @@
                        (list (name (cat article))
                              (name (subcat article))))
          :description (summary article)
-         :body (let ((background (background (author article))))
+         :body (let ((background (or (when (background article)
+                                       (new-filename (background article)))
+                                     (background (author article)))))
                  (fmtnil (when background (<:style (format nil
                                                            "#bkgrnd {background-image: url('/uploads/photos/~a')}"
                                                            background)))
