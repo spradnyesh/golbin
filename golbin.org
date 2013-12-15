@@ -4120,7 +4120,7 @@
 **** DONE [fed] enable authors to override default background page at individual story-page level
      CLOSED: [2013-12-15 Sun 13:24]
      :CLOCK:
-     CLOCK: [2013-12-15 Sun 12:26]
+     CLOCK: [2013-12-15 Sun 12:26]--[2013-12-15 Sun 13:24] =>  0:58
      CLOCK: [2013-12-10 Tue 19:37]--[2013-12-10 Tue 19:55] =>  0:18
      :END:
      :PROPERTIES:
@@ -4529,54 +4529,6 @@
    - hindi, national language of India?
    - writing styles
    - curiosity
-** TODO don't break the chain
-   :CLOCK:
-   CLOCK: [2013-12-11 Wed 19:44]--[2013-12-11 Wed 19:49] =>  0:05
-   CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
-   CLOCK: [2013-12-10 Tue 15:56]--[2013-12-10 Tue 16:20] =>  0:24
-   CLOCK: [2013-12-10 Tue 15:12]--[2013-12-10 Tue 15:15] =>  0:03
-   CLOCK: [2013-12-10 Tue 14:45]--[2013-12-10 Tue 14:59] =>  0:14
-   :END:
-   - toc:
-   - cat/subcat:
-   - tags: productivity, procrastination, creativity, getting-things-done, gtd, emacs, org-mode
-   - lead image: http://www.flickr.com/photos/22280677@N07/3529351545/
-   - summary: What is the productivity technique that works for you?
-   - body:
-Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's OK and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
-
-Don't get me wrong, I'm not lazy. Quite on the contrary, I'm a [[http://en.wikipedia.org/wiki/Getting_Things_Done][GTD]] fan. I use [[http://www.gnu.org/s/emacs/][emacs]] and the super-excellent [[http://orgmode.org/][org-mode]] to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my "Doc-vim" status and entered the life of emacs. Anyways, that's a story for a different day ;)
-
-Coming back on track, so here I am, in the midst of such a streak when I stumbled upon "don't break the chain" approach to productivity. Earlier i have read about (and given a try) to methods like "[[http://pomodorotechnique.com/][pomodoro technique]]", etc. But they did not work for me.
-
-Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
-
-But, we should also realize that it's not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you've wanted to do for a long time but never got the time to get started.
-
-Good! I am in a slack period and have a lot of time. But there is no motivation. I don't feel like doing anything. I'm sure you have felt this too, at some time or the other. So what to do? Enter "[[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][don't break the chain]]". I recently stumbled over it [[http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method][here]]. I must agree that i liked it immediately and decided to try it out. I'm happy to report that it has worked fascinatingly for me till now, although it's been just a few days.
-
-In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
-
-Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!
-   - html
-<p>
-	Lately i have been having streaks of unproductive days. Days when i don&#39;t feel like doing anything. I think it&#39;s OK and normal to have a day or 2 like that, but when it becomes day&quot;s&quot;, then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.</p>
-<p>
-	Don&#39;t get me wrong, I&#39;m not lazy. Quite on the contrary, I&#39;m a <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> fan. I use <a href="http://www.gnu.org/s/emacs/">emacs</a> and the super-excellent <a href="http://orgmode.org/">org-mode</a> to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my &quot;Doc-vim&quot; status and entered the life of emacs. Anyways, that&#39;s a story for a different day ;)</p>
-<p>
-	Coming back on track, so here I am, in the midst of such a streak when I stumbled upon &quot;don&#39;t break the chain&quot; approach to productivity. Earlier i have read about (and given a try) to methods like <a href="http://pomodorotechnique.com/">pomodoro technique</a>, etc. But they did not work for me.</p>
-<p>
-	Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.</p>
-<p>
-	But, we should also realize that it&#39;s not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you&#39;ve wanted to do for a long time but never got the time to get started.</p>
-<p>
-	Good! I am in a slack period and have a lot of time. But there is no motivation. I don&#39;t feel like doing anything. I&#39;m sure you have felt this too, at some time or the other. So what to do? Enter &quot;<a href="http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem">don&#39;t break the chain</a>&quot;. I recently stumbled over it <a href="http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method">here</a>. I must agree that i liked it immediately and decided to try it out. I&#39;m happy to report that it has worked fascinatingly for me till now, although it&#39;s been just a few days.</p>
-<p>
-	In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click <a href="http://lifehacker.com/5890129/five-best-productivity-methods">here</a>.</p>
-<p>
-	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
-   - notes:
-   - references:
 ** git-week
    - toc:
      - [X] bundle
@@ -4584,6 +4536,7 @@ Do you have productivity techniques that work well for you? I will be happy to l
      - [X] filter-branch: change author-names
      - [X] filter-branch: delete files from history
      - [ ] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
+     - [ ] subtree
      - lead images
        - http://www.flickr.com/photos/cjsorg/508821261/
        - http://www.flickr.com/photos/44458147@N00/263228000/
@@ -4595,7 +4548,7 @@ Do you have productivity techniques that work well for you? I will be happy to l
    CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
    :END:
    - cat/subcat:
-   - tags:
+   - tags: git, version-control, github, bitbucket, git-bundle
    - lead image: http://www.flickr.com/photos/trevi55/575665048/
    - summary: I have learned more git techniques in this week than in the past few months!
    - body:
@@ -4712,7 +4665,7 @@ ps:
     :END:
     - toc:
     - cat/subcat:
-    - tags:
+    - tags: git, version-control, github, bitbucket, git-filter-branch
     - lead image:
     - summary: The 2nd post detailing another cool git feature that proved life-saver!
     - body:
@@ -4793,7 +4746,7 @@ Remember, both the above actions are destructive and may mess up your repository
     :END:
     - toc:
     - cat/subcat:
-    - tags:
+    - tags: git, version-control, github, bitbucket, git-bisect
     - lead image:
     - summary: The 3rd post detailing another cool git feature!
     - body:
@@ -4881,6 +4834,153 @@ For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-
 	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
 <p>
 	For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you.</p>
+    - notes:
+    - references:
+*** TODO git week, part 4
+    :CLOCK:
+    CLOCK: [2013-12-15 Sun 15:55]--[2013-12-15 Sun 16:08] =>  0:13
+    :END:
+    - toc:
+      - subtree
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-subtree
+    - lead image:
+    - summary:
+    - body:
+Hello again. Welcome back to the 4th post in the "git week" series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git subtree".
+
+But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)
+
+Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say "pull" conflicts, not "merge" conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get "non-fast-forward" errors.
+
+I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.
+
+However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don't pull/push my code changes from/to the central repository (due to reasons mentioned in the "***git week, part 1***" story), I end up facing these "non-fast-forward" errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in "***git week, part 1***" story. This way I will get rid of all these "non-fast-forward" errors that git has been throwing at me previously. Yay!
+
+Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.
+
+~/my-projects/
+    - project-A/
+        - config/
+        - src/
+            - model/
+            - view/
+            - controller
+        - data/
+            - db/
+            - static/
+                - css/
+                - js/
+                - images/
+
+I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too.
+
+Our objective in this exercise is to split out the project-A/data/db (let's call this <new-repo>) out from the current project repository (let's call this <big-repo>). Note, that the important goal of this exercise is to get the history of <new-repo> changes into the new repository. Simply doing the following
+
+mv <new-repo> <big-repo>/..
+git rm -rf <new-repo>
+
+would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting <new-repo> out of <big-repo> is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:
+
+cd ~/my-projects/project-A
+git subtree split -p data/db -b project-A-db
+cd ~/my-projects/
+mkdir project-A-db
+cd project-A-db
+git init
+git pull ~/my-projects/project-A/ project-A-db
+cd ~/my-projects/project-A
+git rm -rf data/db
+
+The above steps apply to my directory setup. But, generically, we would do the following steps:
+
+cd <big-repo>
+git subtree split -p <name-of-data-folder> -b <new-branch-name>
+cd <big-repo>/..
+mkdir <new-repo>
+cd <new-repo>
+git init
+git pull <path-to-big-repo> <new-branch-name>
+cd <big-repo>
+git rm -rf <name-of-data-folder>
+
+The most important step of this whole flow, which I am sure you must have guessed by now, is the "git subtree" command. This is the one that does all the magic!
+
+For more details of how the "git subtree" command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]
+
+I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)
+    - html
+<p>
+	Hello again. Welcome back to the 4th post in the &quot;git week&quot; series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git subtree&quot;.</p>
+<p>
+	But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)</p>
+<p>
+	Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say &quot;pull&quot; conflicts, not &quot;merge&quot; conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get &quot;non-fast-forward&quot; errors.</p>
+<p>
+	I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.</p>
+<p>
+	However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don&#39;t pull/push my code changes from/to the central repository (due to reasons mentioned in the &quot;***git week, part 1***&quot; story), I end up facing these &quot;non-fast-forward&quot; errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in &quot;***git week, part 1***&quot; story. This way I will get rid of all these &quot;non-fast-forward&quot; errors that git has been throwing at me previously. Yay!</p>
+<p>
+	Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.</p>
+<blockquote>
+	~/my-projects/<br />
+	&nbsp;&nbsp;&nbsp; - project-A/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - config/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - src/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - model/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - view/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - controller<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - data/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - db/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - static/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - css/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - js/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - images/</blockquote>
+<p>
+	I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too. Our objective in this exercise is to split out the project-A/data/db (let&#39;s call this &lt;new-repo&gt;) out from the current project repository (let&#39;s call this &lt;big-repo&gt;). Note, that the important goal of this exercise is to get the history of &lt;new-repo&gt; changes into the new repository. Simply doing the following</p>
+<p>
+	mv &lt;new-repo&gt; &lt;big-repo&gt;/..<br />
+	git rm -rf &lt;new-repo&gt;</p>
+<p>
+	would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting &lt;new-repo&gt; out of &lt;big-repo&gt; is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:</p>
+<blockquote>
+	cd ~/my-projects/project-A<br />
+	git subtree split -p data/db -b project-A-db<br />
+	cd ~/my-projects/<br />
+	mkdir project-A-db<br />
+	cd project-A-db<br />
+	git init<br />
+	git pull ~/my-projects/project-A/ project-A-db<br />
+	cd ~/my-projects/project-A<br />
+	git rm -rf data/db</blockquote>
+<p>
+	The above steps apply to my directory setup. But, generically, we would do the following steps:</p>
+<blockquote>
+	cd &lt;big-repo&gt;<br />
+	git subtree split -p &lt;name-of-data-folder&gt; -b &lt;new-branch-name&gt;<br />
+	cd &lt;big-repo&gt;/..<br />
+	mkdir &lt;new-repo&gt;<br />
+	cd &lt;new-repo&gt;<br />
+	git init<br />
+	git pull &lt;path-to-big-repo&gt; &lt;new-branch-name&gt;<br />
+	cd &lt;big-repo&gt;<br />
+	git rm -rf &lt;name-of-data-folder&gt;</blockquote>
+<p>
+	The most important step of this whole flow, which I am sure you must have guessed by now, is the &quot;git subtree&quot; command. This is the one that does all the magic!</p>
+<p>
+	For more details of how the &quot;git subtree&quot; command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]</p>
+<p>
+	I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)</p>
+    - notes:
+    - references:
+*** problems with using git bundle + rebase -i + subtree all at the same time, and how to resolve them
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
     - notes:
     - references:
 *** template
@@ -5721,6 +5821,58 @@ We would like to hear about your optimization experiences!
      - put long-running but not real-time processes in background
      - eg sendmail, webarchive
      - brought down from 3sec to 30ms
+   - references:
+*** DONE don't break the chain
+   CLOSED: [2013-12-15 Sun 15:40]
+   :CLOCK:
+   CLOCK: [2013-12-11 Wed 19:44]--[2013-12-11 Wed 19:49] =>  0:05
+   CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
+   CLOCK: [2013-12-10 Tue 15:56]--[2013-12-10 Tue 16:20] =>  0:24
+   CLOCK: [2013-12-10 Tue 15:12]--[2013-12-10 Tue 15:15] =>  0:03
+   CLOCK: [2013-12-10 Tue 14:45]--[2013-12-10 Tue 14:59] =>  0:14
+   :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-12-15 Sun 15:40
+    :END:
+   - toc:
+   - cat/subcat:
+   - tags: productivity, procrastination, creativity, getting-things-done, gtd, emacs, org-mode
+   - lead image: http://www.flickr.com/photos/22280677@N07/3529351545/
+   - summary: What is the productivity technique that works for you?
+   - body:
+Lately i have been having streaks of unproductive days. Days when i don't feel like doing anything. I think it's OK and normal to have a day or 2 like that, but when it becomes day"s", then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.
+
+Don't get me wrong, I'm not lazy. Quite on the contrary, I'm a [[http://en.wikipedia.org/wiki/Getting_Things_Done][GTD]] fan. I use [[http://www.gnu.org/s/emacs/][emacs]] and the super-excellent [[http://orgmode.org/][org-mode]] to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my "Doc-vim" status and entered the life of emacs. Anyways, that's a story for a different day ;)
+
+Coming back on track, so here I am, in the midst of such a streak when I stumbled upon "don't break the chain" approach to productivity. Earlier i have read about (and given a try) to methods like "[[http://pomodorotechnique.com/][pomodoro technique]]", etc. But they did not work for me.
+
+Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.
+
+But, we should also realize that it's not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you've wanted to do for a long time but never got the time to get started.
+
+Good! I am in a slack period and have a lot of time. But there is no motivation. I don't feel like doing anything. I'm sure you have felt this too, at some time or the other. So what to do? Enter "[[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][don't break the chain]]". I recently stumbled over it [[http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method][here]]. I must agree that i liked it immediately and decided to try it out. I'm happy to report that it has worked fascinatingly for me till now, although it's been just a few days.
+
+In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click [[http://lifehacker.com/5890129/five-best-productivity-methods][here]].
+
+Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!
+   - html
+<p>
+	Lately i have been having streaks of unproductive days. Days when i don&#39;t feel like doing anything. I think it&#39;s OK and normal to have a day or 2 like that, but when it becomes day&quot;s&quot;, then one starts to worry. Work starts to pile up and frustration starts to build. Things go from normal to bad to worse. The mounting frustration does little to help getting out of this situation.</p>
+<p>
+	Don&#39;t get me wrong, I&#39;m not lazy. Quite on the contrary, I&#39;m a <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> fan. I use <a href="http://www.gnu.org/s/emacs/">emacs</a> and the super-excellent <a href="http://orgmode.org/">org-mode</a> to maintain both notes and tasks. In fact, org-mode was one big reason why i gave up my &quot;Doc-vim&quot; status and entered the life of emacs. Anyways, that&#39;s a story for a different day ;)</p>
+<p>
+	Coming back on track, so here I am, in the midst of such a streak when I stumbled upon &quot;don&#39;t break the chain&quot; approach to productivity. Earlier i have read about (and given a try) to methods like <a href="http://pomodorotechnique.com/">pomodoro technique</a>, etc. But they did not work for me.</p>
+<p>
+	Of course, i understand and agree that pomodoro technique is more for time-management and not motivation to get out of a slack phase. It works best when i have too much work to do but I am getting distracted and/or interrupted too often. It allows me to have uninterrupted time-slots for tasks, where i should be able to focus and concentrate without any distractions.</p>
+<p>
+	But, we should also realize that it&#39;s not possible to be super busy 24x7. There will be times when one does not have too much work. Of course, these days are there to allow one to recuperate, regain that lost energy (from the last sprint), store some extra energy (for the next sprint). Also, these days are excellent times to learn something new and expand our knowledge base, or get involved in some hobby -- maybe something that you&#39;ve wanted to do for a long time but never got the time to get started.</p>
+<p>
+	Good! I am in a slack period and have a lot of time. But there is no motivation. I don&#39;t feel like doing anything. I&#39;m sure you have felt this too, at some time or the other. So what to do? Enter &quot;<a href="http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem">don&#39;t break the chain</a>&quot;. I recently stumbled over it <a href="http://lifehacker.com/5939526/lift-for-iphone-keeps-you-on-track-helps-you-master-seinfelds-productivity-method">here</a>. I must agree that i liked it immediately and decided to try it out. I&#39;m happy to report that it has worked fascinatingly for me till now, although it&#39;s been just a few days.</p>
+<p>
+	In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click <a href="http://lifehacker.com/5890129/five-best-productivity-methods">here</a>.</p>
+<p>
+	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
+   - notes:
    - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
