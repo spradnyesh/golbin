@@ -292,18 +292,18 @@
            (p-cat (post-parameter "cat"))
            (cat (get-category-by-id (parse-integer p-cat)))
            (p-subcat (post-parameter "subcat"))
-           (subcat p-subcat)
-           (subcat (unless (nil-or-empty subcat) (get-category-by-id (parse-integer subcat))))
+           (subcat (unless (nil-or-empty p-subcat) (get-category-by-id (parse-integer p-subcat))))
            (p-photo (post-parameter "lead-photo"))
-           (photo p-photo)
-           (photo (unless (nil-or-empty photo) (get-mini-photo (get-photo-by-id (parse-integer photo)))))
+           (photo (unless (nil-or-empty p-photo) (get-mini-photo (get-photo-by-id (parse-integer p-photo)))))
+           (p-background (post-parameter "background"))
+           (background (unless (nil-or-empty p-background)
+                         (get-mini-photo (get-photo-by-id (parse-integer p-background)))))
            (p-pd (post-parameter "pd"))
            (pd (cond ((string-equal p-pd "center") :b)
                      ((string-equal p-pd "left") :l)
                      ((string-equal p-pd "right") :r)))
            (p-tags (post-parameter "ed-tags"))
-           (tags p-tags)
-           (tags (unless (nil-or-empty tags) (split-sequence "," tags :test #'string-equal)))
+           (tags (unless (nil-or-empty p-tags) (split-sequence "," p-tags :test #'string-equal)))
            (article-tags nil))
       (let ((err0r (validate-article title body)))
         (if (not err0r)
@@ -338,6 +338,7 @@
                                                            :subcat subcat
                                                            :photo photo
                                                            :photo-direction pd
+                                                           :background background
                                                            :tags article-tags
                                                            :author (get-mini-author)))))
                   ;; editing an existing article
@@ -371,6 +372,7 @@
                                                         :subcat subcat
                                                         :photo photo
                                                         :photo-direction pd
+                                                        :background background
                                                         :tags article-tags
                                                         :author (author article))))
                           ((and (eq status :a) (null parent) (eq submit-type :r)) ; 3
@@ -387,6 +389,7 @@
                                                                     :subcat subcat
                                                                     :photo photo
                                                                     :photo-direction pd
+                                                                    :background background
                                                                     :tags article-tags
                                                                     :author (author article))))))
                           ((and (eq status :r) parent (eq submit-type :a)) ; 6
@@ -405,6 +408,7 @@
                                                           :subcat subcat
                                                           :photo photo
                                                           :photo-direction pd
+                                                          :background background
                                                           :tags article-tags
                                                           :author (author parent-article)))
                              ;; discard article

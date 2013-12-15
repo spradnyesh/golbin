@@ -4,12 +4,6 @@
 ** backlog
 *** detach db from repo
     - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
-*** TODO [fed] enable authors to override default background page at individual story-page level
-    :CLOCK:
-    CLOCK: [2013-12-10 Tue 19:37]--[2013-12-10 Tue 19:55] =>  0:18
-    :END:
-    - if article-background is not defined then use author-background image
-    - when author-background is changed, no need to republish stories that already have article-background
 *** [fe] lazy-load comments (only when viewer is at bottom of page)
 *** [fe][rss] validate at http://feedvalidator.org/
 *** html5 form validation
@@ -4086,6 +4080,54 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-12-09 Mon 18:32
      :END:
+**** DONE [bug][fe] tag index crashing
+     CLOSED: [2013-12-12 Thu 18:25]
+     :CLOCK:
+     CLOCK: [2013-12-12 Thu 18:20]--[2013-12-12 Thu 18:25] =>  0:05
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 18:49
+     :END:
+**** DONE [bug][fe] 404 not working correctly
+     CLOSED: [2013-12-12 Thu 18:51]
+     :CLOCK:
+     CLOCK: [2013-12-12 Thu 18:25]--[2013-12-12 Thu 18:51] =>  0:26
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 18:51
+     :END:
+**** DONE re-order commits
+     CLOSED: [2013-12-12 Thu 18:56]
+     :CLOCK:
+     CLOCK: [2013-12-12 Thu 18:52]--[2013-12-12 Thu 18:56] =>  0:04
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 18:56
+     :END:
+     - put tag/404 before story-background
+     - http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html
+**** CANCELLED [bug][fe] article page shows error popup on page load sometimes
+     CLOSED: [2013-12-12 Thu 20:25]
+     :CLOCK:
+     - State "CANCELLED"  from "UNDERGOING" [2013-12-12 Thu 20:25] \\
+       happening only in ed because loading comments fails; no issue ;)
+     CLOCK: [2013-12-12 Thu 20:24]--[2013-12-12 Thu 20:25] =>  0:01
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-12 Thu 20:25
+     :END:
+     - happens always when "preview" from editorial site (edit/add article page)
+**** DONE [fed] enable authors to override default background page at individual story-page level
+     CLOSED: [2013-12-15 Sun 13:24]
+     :CLOCK:
+     CLOCK: [2013-12-15 Sun 12:26]--[2013-12-15 Sun 13:24] =>  0:58
+     CLOCK: [2013-12-10 Tue 19:37]--[2013-12-10 Tue 19:55] =>  0:18
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-15 Sun 13:24
+     :END:
+     - if article-background is not defined then use author-background image
+     - when author-background is changed, no need to republish stories that already have article-background
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
@@ -4487,24 +4529,32 @@
    - hindi, national language of India?
    - writing styles
    - curiosity
-** TODO git week, part 1
+** git-week
+   - toc:
+     - [X] bundle
+     - [X] bisect
+     - [X] filter-branch: change author-names
+     - [X] filter-branch: delete files from history
+     - [ ] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
+     - [ ] subtree
+     - lead images
+       - http://www.flickr.com/photos/cjsorg/508821261/
+       - http://www.flickr.com/photos/44458147@N00/263228000/
+       - http://www.flickr.com/photos/slimcoincidence/1454276711/
+       - http://www.flickr.com/photos/dealingwith/4295488113/
+*** TODO git week, part 1
    :CLOCK:
+   CLOCK: [2013-12-12 Thu 19:03]--[2013-12-12 Thu 19:27] =>  0:24
    CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
    :END:
-   - toc:
-     - bundle
-     - bisect
-     - change author-names
-     - delete files from history
    - cat/subcat:
-   - tags:
-   - lead image:
-   - summary: Today I have learned more git techniques than in the past few months!
+   - tags: git, version-control, github, bitbucket, git-bundle
+   - lead image: http://www.flickr.com/photos/trevi55/575665048/
+   - summary: I have learned more git techniques in this week than in the past few months!
    - body:
 As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!
 
-So here goes, in the order in which I stumbled upon them:
-1. git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
+git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
 
 Anyways, coming to the real issue that "git-bundle" solves. I work in a jail environment; well not really, but what's the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article "don't break the chain" to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.
 
@@ -4535,10 +4585,414 @@ Then, we move the bundle file from B to A, and perform the following steps at A:
 
 The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!
 
-ps: read the beautifully written man page "man git-bundle" for more info
+ps:
+1. read the beautifully written man page "man git-bundle" for more info
+2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!
    - html
+<p>
+	As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p>
+<p>
+	<strong>git-bundle</strong>: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn&#39;t blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)</p>
+<p>
+	Anyways, coming to the real issue that &quot;git-bundle&quot; solves. I work in a jail environment; well not really, but what&#39;s the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article &quot;don&#39;t break the chain&quot; to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p>
+<p>
+	And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found &quot;git-bundle&quot; was exactly what I was searching for.</p>
+<p>
+	That&#39;s enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some environment. Let&#39;s say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p>
+<blockquote>
+	<ul>
+		<li>
+			cd <repo></repo></li>
+		<li>
+			git bundle create <repo-name>.bdl master</repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Note that the &quot;.bdl&quot; extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case12), as we will show below.</p>
+<p>
+	Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:</repo-name></p>
+<blockquote>
+	<ul>
+		<li>
+			git clone -b master <repo-name>.bdl <repo></repo></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Once the initial setup is done, we simplify our life to be the same as case-2, that is incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:</p>
+<blockquote>
+	<ul>
+		<li>
+			git bundle create <repo-name>-<date>.bdl bdl..master</date></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Again, the <repo-name>-<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say &quot;bdl..master&quot; is the &quot;tagging&quot; part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or &quot;pull&quot;-ed as explained below) earlier and where the HEAD of the master branch is now.</date></repo-name></p>
+<p>
+	Then, we move the bundle file from B to A, and perform the following steps at A:</p>
+<blockquote>
+	<ul>
+		<li>
+			git pull <repo-name>-<date>.bdl master:master</date></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!</p>
+<p>
+	ps:</p>
+<ul>
+	<li>
+		read the beautifully written man page &quot;man git-bundle&quot; for more info</li>
+	<li>
+		2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!</li>
+</ul>
+<p class="last">
+	&nbsp;</p>
    - notes:
    - references:
+*** TODO git week, part 2
+    :CLOCK:
+    CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
+    CLOCK: [2013-12-12 Thu 20:00]--[2013-12-12 Thu 20:17] =>  0:17
+    CLOCK: [2013-12-12 Thu 19:45]--[2013-12-12 Thu 19:54] =>  0:09
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-filter-branch
+    - lead image:
+    - summary: The 2nd post detailing another cool git feature that proved life-saver!
+    - body:
+Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)
+
+This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
+
+The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:
+
+git filter-branch --commit-filter 'GIT_COMMITTER_NAME="<new-name>"; GIT_AUTHOR_NAME="<new-name>"; GIT_COMMITTER_EMAIL="<new-email>"; GIT_AUTHOR_EMAIL="<new-email>"; git commit-tree "$@";' HEAD
+
+Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].
+
+The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.
+
+But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $files" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <yyyymm>-*" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.
+
+With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)
+
+Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
+    - html
+<p>
+	Hello again! Today we will see some more git magic.</p>
+<p>
+	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
+<p>
+	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
+<blockquote>
+	<p>
+		git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</p>
+</blockquote>
+<p>
+	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].</p>
+<p>
+	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
+<p>
+	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
+<blockquote>
+	<ol>
+		<li>
+			git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD</li>
+		<li>
+			rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</li>
+	</ol>
+</blockquote>
+<p>
+	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
+<blockquote>
+	<ol>
+		<li>
+			git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD</li>
+		<li>
+			rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</li>
+	</ol>
+</blockquote>
+<p>
+	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
+<p>
+	With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p>
+<p>
+	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
+    - notes:
+    - references:
+*** TODO git week, part 3
+    :CLOCK:
+    CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
+    CLOCK: [2013-12-13 Fri 15:11]--[2013-12-13 Fri 15:32] =>  0:21
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-bisect
+    - lead image:
+    - summary: The 3rd post detailing another cool git feature!
+    - body:
+Hi there. Welcome back to the 3rd post in the "git week" series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git bisect".
+
+I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not "how" to fix, but to understand "what" broke this feature, and "when". Maybe, if you are like my manager, you are also looking out for the "who", to put some blame on.
+
+Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with "git-bisect". I am sure, that by this time, based on my description above, and based on the name "bisect", you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a "binary search" or a "divide-and-conquer" strategy to find the bad commit, you are absolutely correct.
+
+So how this works is that you find 2 commit hashes, G and B, which stand for "good" and "bad" respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).
+
+The steps are as follows:
+
+1. git bisect start
+2. git bisect bad <B>
+3. git bisect good <G>
+
+Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows
+
+git bisect good
+
+OR
+
+git bisect bad
+
+respectively.
+
+Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)
+
+After you have finished this bisection exercise, run the following command
+
+git bisect reset
+
+to come out of the bisect session back to where you started from.
+
+One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)
+
+For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
+    - html
+<p>
+	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
+<p>
+	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
+<p>
+	Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with &quot;git-bisect&quot;. I am sure, that by this time, based on my description above, and based on the name &quot;bisect&quot;, you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a &quot;binary search&quot; or a &quot;divide-and-conquer&quot; strategy to find the bad commit, you are absolutely correct.</p>
+<p>
+	So how this works is that you find 2 commit hashes, G and B, which stand for &quot;good&quot; and &quot;bad&quot; respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).</p>
+<p>
+	The steps are as follows:</p>
+<blockquote>
+	<ol>
+		<li>
+			git bisect start</li>
+		<li>
+			git bisect bad</li>
+		<li>
+			git bisect good <g></g></li>
+	</ol>
+</blockquote>
+<p>
+	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows:</p>
+<blockquote>
+	<p>
+		git bisect good</p>
+</blockquote>
+<p>
+	OR</p>
+<blockquote>
+	<p>
+		git bisect bad</p>
+</blockquote>
+<p>
+	respectively.</p>
+<p>
+	Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)</p>
+<p>
+	After you have finished this bisection exercise, run the following command</p>
+<blockquote>
+	<p>
+		git bisect reset</p>
+</blockquote>
+<p>
+	to come out of the bisect session back to where you started from.</p>
+<p>
+	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
+<p>
+	For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you.</p>
+    - notes:
+    - references:
+*** TODO git week, part 4
+    :CLOCK:
+    CLOCK: [2013-12-15 Sun 15:55]--[2013-12-15 Sun 16:08] =>  0:13
+    :END:
+    - toc:
+      - subtree
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-subtree
+    - lead image:
+    - summary:
+    - body:
+Hello again. Welcome back to the 4th post in the "git week" series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git subtree".
+
+But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)
+
+Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say "pull" conflicts, not "merge" conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get "non-fast-forward" errors.
+
+I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.
+
+However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don't pull/push my code changes from/to the central repository (due to reasons mentioned in the "***git week, part 1***" story), I end up facing these "non-fast-forward" errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in "***git week, part 1***" story. This way I will get rid of all these "non-fast-forward" errors that git has been throwing at me previously. Yay!
+
+Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.
+
+~/my-projects/
+    - project-A/
+        - config/
+        - src/
+            - model/
+            - view/
+            - controller
+        - data/
+            - db/
+            - static/
+                - css/
+                - js/
+                - images/
+
+I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too.
+
+Our objective in this exercise is to split out the project-A/data/db (let's call this <new-repo>) out from the current project repository (let's call this <big-repo>). Note, that the important goal of this exercise is to get the history of <new-repo> changes into the new repository. Simply doing the following
+
+mv <new-repo> <big-repo>/..
+git rm -rf <new-repo>
+
+would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting <new-repo> out of <big-repo> is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:
+
+cd ~/my-projects/project-A
+git subtree split -p data/db -b project-A-db
+cd ~/my-projects/
+mkdir project-A-db
+cd project-A-db
+git init
+git pull ~/my-projects/project-A/ project-A-db
+cd ~/my-projects/project-A
+git rm -rf data/db
+
+The above steps apply to my directory setup. But, generically, we would do the following steps:
+
+cd <big-repo>
+git subtree split -p <name-of-data-folder> -b <new-branch-name>
+cd <big-repo>/..
+mkdir <new-repo>
+cd <new-repo>
+git init
+git pull <path-to-big-repo> <new-branch-name>
+cd <big-repo>
+git rm -rf <name-of-data-folder>
+
+The most important step of this whole flow, which I am sure you must have guessed by now, is the "git subtree" command. This is the one that does all the magic!
+
+For more details of how the "git subtree" command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]
+
+I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)
+    - html
+<p>
+	Hello again. Welcome back to the 4th post in the &quot;git week&quot; series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git subtree&quot;.</p>
+<p>
+	But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)</p>
+<p>
+	Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say &quot;pull&quot; conflicts, not &quot;merge&quot; conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get &quot;non-fast-forward&quot; errors.</p>
+<p>
+	I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.</p>
+<p>
+	However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don&#39;t pull/push my code changes from/to the central repository (due to reasons mentioned in the &quot;***git week, part 1***&quot; story), I end up facing these &quot;non-fast-forward&quot; errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in &quot;***git week, part 1***&quot; story. This way I will get rid of all these &quot;non-fast-forward&quot; errors that git has been throwing at me previously. Yay!</p>
+<p>
+	Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.</p>
+<blockquote>
+	~/my-projects/<br />
+	&nbsp;&nbsp;&nbsp; - project-A/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - config/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - src/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - model/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - view/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - controller<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - data/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - db/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - static/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - css/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - js/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - images/</blockquote>
+<p>
+	I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too. Our objective in this exercise is to split out the project-A/data/db (let&#39;s call this &lt;new-repo&gt;) out from the current project repository (let&#39;s call this &lt;big-repo&gt;). Note, that the important goal of this exercise is to get the history of &lt;new-repo&gt; changes into the new repository. Simply doing the following</p>
+<p>
+	mv &lt;new-repo&gt; &lt;big-repo&gt;/..<br />
+	git rm -rf &lt;new-repo&gt;</p>
+<p>
+	would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting &lt;new-repo&gt; out of &lt;big-repo&gt; is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:</p>
+<blockquote>
+	cd ~/my-projects/project-A<br />
+	git subtree split -p data/db -b project-A-db<br />
+	cd ~/my-projects/<br />
+	mkdir project-A-db<br />
+	cd project-A-db<br />
+	git init<br />
+	git pull ~/my-projects/project-A/ project-A-db<br />
+	cd ~/my-projects/project-A<br />
+	git rm -rf data/db</blockquote>
+<p>
+	The above steps apply to my directory setup. But, generically, we would do the following steps:</p>
+<blockquote>
+	cd &lt;big-repo&gt;<br />
+	git subtree split -p &lt;name-of-data-folder&gt; -b &lt;new-branch-name&gt;<br />
+	cd &lt;big-repo&gt;/..<br />
+	mkdir &lt;new-repo&gt;<br />
+	cd &lt;new-repo&gt;<br />
+	git init<br />
+	git pull &lt;path-to-big-repo&gt; &lt;new-branch-name&gt;<br />
+	cd &lt;big-repo&gt;<br />
+	git rm -rf &lt;name-of-data-folder&gt;</blockquote>
+<p>
+	The most important step of this whole flow, which I am sure you must have guessed by now, is the &quot;git subtree&quot; command. This is the one that does all the magic!</p>
+<p>
+	For more details of how the &quot;git subtree&quot; command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]</p>
+<p>
+	I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)</p>
+    - notes:
+    - references:
+*** problems with using git bundle + rebase -i + subtree all at the same time, and how to resolve them
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
 ** difference between learnt and learned
    - http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html
    - http://www.differencebetween.net/language/difference-between-learned-and-learnt/
@@ -5369,7 +5823,7 @@ We would like to hear about your optimization experiences!
      - brought down from 3sec to 30ms
    - references:
 *** DONE don't break the chain
-   CLOSED: [2013-12-14 Sat 01:05]
+   CLOSED: [2013-12-15 Sun 15:40]
    :CLOCK:
    CLOCK: [2013-12-11 Wed 19:44]--[2013-12-11 Wed 19:49] =>  0:05
    CLOCK: [2013-12-10 Tue 16:32]--[2013-12-10 Tue 16:34] =>  0:02
@@ -5378,7 +5832,7 @@ We would like to hear about your optimization experiences!
    CLOCK: [2013-12-10 Tue 14:45]--[2013-12-10 Tue 14:59] =>  0:14
    :END:
     :PROPERTIES:
-    :ARCHIVE_TIME: 2013-12-14 Sat 01:05
+    :ARCHIVE_TIME: 2013-12-15 Sun 15:40
     :END:
    - toc:
    - cat/subcat:

@@ -47,7 +47,7 @@
                                           ,route))
                  (<:a :class "rss" :href ,rss-url (translate "rss"))
                  ,postlude)))
-       (v-404)))
+       (local-v-404)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; view functions
@@ -98,12 +98,13 @@
     (view-index (name (get-tag-by-slug slug))
                 nil
                 nil
+                nil
                 (get-articles-by-tag-slug slug)
                 'r-tag-page :tag slug)))
 
-(defun v-404 ()
+(defun local-v-404 ()
   (let ((page 0))
-    (view-index "404"
+    (view-index "page-not-found"
                 (<:p :class "error"
                      (translate "404" (<:a :href "javascript:history.go(-1)" (translate "here"))))
                 nil

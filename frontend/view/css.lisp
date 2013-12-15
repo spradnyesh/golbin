@@ -233,6 +233,7 @@
     (("#a-body") (:text-align "justify"
                               :padding-top "10px"))
     (("#a-body li") (:margin-bottom "15px"))
+    (("#a-body blockquote li") (:margin "0"))
     (("#a-body div.a-photo") (:float "right"))
     (("#a-body .block") (:padding-bottom "10px"
                                          :text-align "center"))
