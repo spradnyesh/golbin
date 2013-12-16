@@ -4535,8 +4535,8 @@
      - [X] bisect
      - [X] filter-branch: change author-names
      - [X] filter-branch: delete files from history
-     - [ ] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
-     - [ ] subtree
+     - [X] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
+     - [X] subtree
      - lead images
        - http://www.flickr.com/photos/cjsorg/508821261/
        - http://www.flickr.com/photos/44458147@N00/263228000/
@@ -4544,6 +4544,7 @@
        - http://www.flickr.com/photos/dealingwith/4295488113/
 *** TODO git week, part 1
    :CLOCK:
+   CLOCK: [2013-12-16 Mon 14:18]--[2013-12-16 Mon 14:27] =>  0:09
    CLOCK: [2013-12-12 Thu 19:03]--[2013-12-12 Thu 19:27] =>  0:24
    CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
    :END:
@@ -4590,55 +4591,55 @@ ps:
 2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!
    - html
 <p>
-	As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p>
+	<a href="http://www.git-scm.com/">git</a> rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p>
 <p>
 	<strong>git-bundle</strong>: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn&#39;t blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)</p>
 <p>
-	Anyways, coming to the real issue that &quot;git-bundle&quot; solves. I work in a jail environment; well not really, but what&#39;s the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article &quot;don&#39;t break the chain&quot; to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p>
+	Anyways, coming to the real issue that &quot;git-bundle&quot; solves. I work in a jail environment; well not really, but what&#39;s the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like <a href="https://github.com/">github</a>, <a href="https://bitbucket.org/">bitbucket</a>, etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article &quot;don&#39;t break the chain&quot; to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p>
 <p>
-	And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found &quot;git-bundle&quot; was exactly what I was searching for.</p>
+	And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found, &quot;git-bundle&quot;, was exactly what I was searching for.</p>
 <p>
-	That&#39;s enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some environment. Let&#39;s say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p>
+	That&#39;s enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some background first. Let&#39;s say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p>
 <blockquote>
 	<ul>
 		<li>
-			cd <repo></repo></li>
+			cd &lt;repo&gt;<repo></repo></li>
 		<li>
-			git bundle create <repo-name>.bdl master</repo-name></li>
+			git bundle create &lt;repo-name&gt;.bdl master</li>
 		<li>
 			git tag -f &quot;bdl&quot; master</li>
 	</ul>
 </blockquote>
 <p>
-	Note that the &quot;.bdl&quot; extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case12), as we will show below.</p>
+	Note that the &quot;.bdl&quot; extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case-2), as we will show below.</p>
 <p>
 	Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:</repo-name></p>
 <blockquote>
 	<ul>
 		<li>
-			git clone -b master <repo-name>.bdl <repo></repo></repo-name></li>
+			git clone -b master &lt;repo-name&gt;.bdl &lt;repo&gt;<repo-name><repo></repo></repo-name></li>
 		<li>
 			git tag -f &quot;bdl&quot; master</li>
 	</ul>
 </blockquote>
 <p>
-	Once the initial setup is done, we simplify our life to be the same as case-2, that is incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:</p>
+	Once the initial setup is done, we simplify our life to be the same as case-2, that is, incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:</p>
 <blockquote>
 	<ul>
 		<li>
-			git bundle create <repo-name>-<date>.bdl bdl..master</date></repo-name></li>
+			git bundle create &lt;repo-name&gt;-&lt;date&gt;.bdl bdl..master<repo-name><date></date></repo-name></li>
 		<li>
 			git tag -f &quot;bdl&quot; master</li>
 	</ul>
 </blockquote>
 <p>
-	Again, the <repo-name>-<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say &quot;bdl..master&quot; is the &quot;tagging&quot; part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or &quot;pull&quot;-ed as explained below) earlier and where the HEAD of the master branch is now.</date></repo-name></p>
+	Again, the <repo-name>&lt;repo-name&gt;-&lt;date&gt;<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say &quot;bdl..master&quot; is the &quot;tagging&quot; part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or &quot;pull&quot;-ed as explained below) earlier and where the HEAD of the master branch is now.</date></repo-name></p>
 <p>
 	Then, we move the bundle file from B to A, and perform the following steps at A:</p>
 <blockquote>
 	<ul>
 		<li>
-			git pull <repo-name>-<date>.bdl master:master</date></repo-name></li>
+			git pull &lt;repo-name&gt;-&lt;date&gt;.bdl master:master<repo-name><date></date></repo-name></li>
 		<li>
 			git tag -f &quot;bdl&quot; master</li>
 	</ul>
@@ -4649,12 +4650,10 @@ ps:
 	ps:</p>
 <ul>
 	<li>
-		read the beautifully written man page &quot;man git-bundle&quot; for more info</li>
+		Read the beautifully written man page &quot;man git-bundle&quot; for more info</li>
 	<li>
-		2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!</li>
+		Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!</li>
 </ul>
-<p class="last">
-	&nbsp;</p>
    - notes:
    - references:
 *** TODO git week, part 2
@@ -4698,39 +4697,27 @@ With this technique, I was able to reduce the repository size (after adding the 
 Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
     - html
 <p>
-	Hello again! Today we will see some more git magic.</p>
+	Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)</p>
 <p>
 	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
 <p>
 	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
 <blockquote>
-	<p>
-		git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</p>
-</blockquote>
+	git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</blockquote>
 <p>
-	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].</p>
+	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example <a href="http://stackoverflow.com/a/870367">here</a>.</p>
 <p>
 	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
 <p>
 	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
 <blockquote>
-	<ol>
-		<li>
-			git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD</li>
-		<li>
-			rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</li>
-	</ol>
-</blockquote>
+	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD<br />
+	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
 <p>
 	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
 <blockquote>
-	<ol>
-		<li>
-			git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD</li>
-		<li>
-			rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</li>
-	</ol>
-</blockquote>
+	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD<br />
+	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
 <p>
 	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
 <p>
@@ -4787,7 +4774,7 @@ One interesting situation you can also use git bisect is the other side of the c
 For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
     - html
 <p>
-	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
+	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
 <p>
 	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
 <p>
@@ -4797,27 +4784,23 @@ For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-
 <p>
 	The steps are as follows:</p>
 <blockquote>
-	<ol>
+	<ul>
 		<li>
 			git bisect start</li>
 		<li>
-			git bisect bad</li>
+			git bisect bad &lt;B&gt;</li>
 		<li>
-			git bisect good <g></g></li>
-	</ol>
+			git bisect good &lt;G&gt;</li>
+	</ul>
 </blockquote>
 <p>
-	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows:</p>
+	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows</p>
 <blockquote>
-	<p>
-		git bisect good</p>
-</blockquote>
+	git bisect good</blockquote>
 <p>
 	OR</p>
 <blockquote>
-	<p>
-		git bisect bad</p>
-</blockquote>
+	git bisect bad</blockquote>
 <p>
 	respectively.</p>
 <p>
@@ -4825,15 +4808,13 @@ For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-
 <p>
 	After you have finished this bisection exercise, run the following command</p>
 <blockquote>
-	<p>
-		git bisect reset</p>
-</blockquote>
+	git bisect reset</blockquote>
 <p>
 	to come out of the bisect session back to where you started from.</p>
 <p>
 	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
 <p>
-	For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you.</p>
+	For more details (advanced usage of git-bisect), RTFM and/or visit <a href="http://git-scm.com/docs/git-bisect">here</a>. Do share with us about if you have used git bisect before and how did it help you</p>
     - notes:
     - references:
 *** TODO git week, part 4
@@ -4968,9 +4949,113 @@ I hope that you have found this story as fun and informative to read as I have f
 <p>
 	The most important step of this whole flow, which I am sure you must have guessed by now, is the &quot;git subtree&quot; command. This is the one that does all the magic!</p>
 <p>
-	For more details of how the &quot;git subtree&quot; command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]</p>
+	For more details of how the &quot;git subtree&quot; command works, please see <a href="http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475">this</a> and <a href="http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/">this</a></p>
 <p>
 	I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)</p>
+    - notes:
+    - references:
+*** TODO git week, part 5
+    :CLOCK:
+    CLOCK: [2013-12-16 Mon 19:36]--[2013-12-16 Mon 19:44] =>  0:08
+    CLOCK: [2013-12-16 Mon 19:22]--[2013-12-16 Mon 19:36] =>  0:14
+    :END:
+    - toc:
+      - rebase -i
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-rebase-i
+    - lead image:
+    - summary:
+    - body:
+Hello again. Welcome to the 5th post in the "git week" series; visit the previous 4 ***here***, ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git rebase -i".
+
+If you remember, We have already used git-rebase once in the ***svn-unmerge*** post. In that post I already showed how one could use git-rebase to easily handle things that are either too difficult or, at times, impossible to do in SVN. Today we will see an advanced use of git-rebase, that is "git rebase -i". This command allows us to reorder commits. Yes, you read that right! One can actually reorder commits in git. Ain't that cool?
+
+One can easily imagine certain obvious uses of this feature. For example, lets say I always push to central repository from my master branch, but locally use feature branches. Also, I may be working in parallel on 1 or more features and may also fixing bugs directly in the master branch. And I may be merging (after feature completion) from some feature branch into master. In this case, I would want to reorder the commits in a more meaningful order (one that makes more sense and shows a well thought flow to an outsider) on the master before pushing it to the central repository.
+
+In fact, this use case happened to me last week. I was working on a certain feature, and had merged the incomplete feature to master (I know, bad boy ;) ); but, fortunately, not pushed it. Then I noticed a critical bug in the production system which had to be fixed immediately. So now this bug fix is at HEAD of master, and the unfinished feature is at "HEAD~1" location. Obviously I cannot push this state to production. This is where "git rebase -i" saves the day! I do the following
+
+git rebase -i HEAD~1
+
+Here, git opens up an editor asking you to change the order of the commits (newest is at bottom). So I swap the last and one-but-last commit and save and quit the editor. Then I did
+
+git log
+
+to see that the last 2 commits (incomplete-feature and critical-bug-fix) placed in the correct (as desired) order! Now I pushed the critical-bug-fix to central repository and created a build and deployed to my production server. This time, I took the care to not push the HEAD of master, but HEAD~1 to central repository.
+
+As an added bonus, I am going to tell you a special feature of "git rebase -i". That is once git opens the editor for you to reorder your commits, you will notice the following statements at the end of the editor
+
+# Rebase 3a40bd2..ba8573d onto 3a40bd2
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+
+If you read these statements carefully, you will notice that "git rebase -i" is allowing you to not only reorder your commits, but to delete, edit, etc your existing commits. This is awesome knowledge and will surely come in handy in the future. Yay!
+
+*WARNING*: Do remember, that this command makes very low level modifications to your repository and you can easily screw things up. So you should always make changes like these to a cloned repository. Also, as always, do NOT make these changes to the part of history that you have already published.
+
+I am going to keep this git-week series like a 5 day work-week and end this series here. I hope you found this (and previous posts ***here***, ***here***, ***here*** and ***here***) useful.
+
+Do let me know if they did, and how. Also let me know if you like my writing and would like me to write more such articles on other topics as well. Your comments will give me the confidence and motivation to "not break the chain" (see my previous article ***don't break the chain***)
+    - html
+<p>
+	Hello again. Welcome to the 5th post in the &quot;git week&quot; series; visit the previous 4 ***here***, ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git rebase -i&quot;.</p>
+<p>
+	If you remember, We have already used git-rebase once in the ***svn-unmerge*** post. In that post I already showed how one could use git-rebase to easily handle things that are either too difficult or, at times, impossible to do in SVN. Today we will see an advanced use of git-rebase, that is &quot;git rebase -i&quot;. This command allows us to reorder commits. Yes, you read that right! One can actually reorder commits in git. Ain&#39;t that cool?</p>
+<p>
+	One can easily imagine certain obvious uses of this feature. For example, lets say I always push to central repository from my master branch, but locally use feature branches. Also, I may be working in parallel on 1 or more features and may also fixing bugs directly in the master branch. And I may be merging (after feature completion) from some feature branch into master. In this case, I would want to reorder the commits in a more meaningful order (one that makes more sense and shows a well thought flow to an outsider) on the master before pushing it to the central repository.</p>
+<p>
+	In fact, this use case happened to me last week. I was working on a certain feature, and had merged the incomplete feature to master (I know, bad boy ;) ); but, fortunately, not pushed it. Then I noticed a critical bug in the production system which had to be fixed immediately. So now this bug fix is at HEAD of master, and the unfinished feature is at &quot;HEAD~1&quot; location. Obviously I cannot push this state to production. This is where &quot;git rebase -i&quot; saves the day!</p>
+<p>
+	I do the following</p>
+<blockquote>
+	git rebase -i HEAD~1</blockquote>
+<p>
+	Here, git opens up an editor asking you to change the order of the commits (newest is at bottom). So I swap the last and one-but-last commit and save and quit the editor. Then I did</p>
+<blockquote>
+	git log</blockquote>
+<p>
+	to see that the last 2 commits (incomplete-feature and critical-bug-fix) placed in the correct (as desired) order! Now I pushed the critical-bug-fix to central repository and created a build and deployed to my production server. This time, I took the care to not push the HEAD of master, but HEAD~1 to central repository.</p>
+<p>
+	As an added bonus, I am going to tell you a special feature of &quot;git rebase -i&quot;. That is once git opens the editor for you to reorder your commits, you will notice the following statements at the end of the editor</p>
+<blockquote>
+	# Rebase 3a40bd2..ba8573d onto 3a40bd2<br />
+	#<br />
+	# Commands:<br />
+	#&nbsp; p, pick = use commit<br />
+	#&nbsp; r, reword = use commit, but edit the commit message<br />
+	#&nbsp; e, edit = use commit, but stop for amending<br />
+	#&nbsp; s, squash = use commit, but meld into previous commit<br />
+	#&nbsp; f, fixup = like &quot;squash&quot;, but discard this commit&#39;s log message<br />
+	#&nbsp; x, exec = run command (the rest of the line) using shell<br />
+	#<br />
+	# These lines can be re-ordered; they are executed from top to bottom.<br />
+	#<br />
+	# If you remove a line here THAT COMMIT WILL BE LOST.<br />
+	#<br />
+	# However, if you remove everything, the rebase will be aborted.<br />
+	#<br />
+	# Note that empty commits are commented out</blockquote>
+<p>
+	If you read these statements carefully, you will notice that &quot;git rebase -i&quot; is allowing you to not only reorder your commits, but to delete, edit, etc your existing commits. This is awesome knowledge and will surely come in handy in the future. Yay!</p>
+<p>
+	<strong>WARNING</strong>: Do remember, that this command makes very low level modifications to your repository and you can easily screw things up. So you should always make changes like these to a cloned repository. Also, as always, do NOT make these changes to the part of history that you have already published.</p>
+<p>
+	I am going to keep this git-week series like a 5 day work-week and end this series here. I hope you found this (and previous posts ***here***, ***here***, ***here*** and ***here***) useful.</p>
+<p>
+	Do let me know if they did, and how. Also let me know if you like my writing and would like me to write more such articles on other topics as well. Your comments will give me the confidence and motivation to &quot;not break the chain&quot; (see my previous article ***don&#39;t break the chain***)</p>
     - notes:
     - references:
 *** problems with using git bundle + rebase -i + subtree all at the same time, and how to resolve them
