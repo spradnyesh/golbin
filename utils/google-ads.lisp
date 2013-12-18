@@ -4,14 +4,16 @@
 ;; macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro ads-markup (client slot width height)
-  `(<:div :class "lazyload_ad" :original "http://pagead2.googlesyndication.com/pagead/show_ads.js"
-           (<:code :type "text/javascript"
-                   (format nil
-                           "<!-- google_ad_client = '~a'; google_ad_slot = '~a'; google_ad_width = ~a; google_ad_height = ~a; //-->"
-                           ,client
-                           ,slot
-                           ,width
-                           ,height))))
+  `(<:div :class "g-ad"
+          (<:ins :class "adsbygoogle"
+                 :style (concatenate 'string
+                                     "display:inline-block;width:"
+                                     (write-to-string ,width)
+                                     "px;height:"
+                                     (write-to-string ,height)
+                                     "px")
+                 :data-ad-client ,client
+                 :data-ad-slot ,slot)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helpers

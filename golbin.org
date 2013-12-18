@@ -2,8 +2,6 @@
 
 * tasks
 ** backlog
-*** detach db from repo
-    - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
 *** [fe] lazy-load comments (only when viewer is at bottom of page)
 *** [fe][rss] validate at http://feedvalidator.org/
 *** html5 form validation
@@ -4128,6 +4126,31 @@
      :END:
      - if article-background is not defined then use author-background image
      - when author-background is changed, no need to republish stories that already have article-background
+**** DONE detach db from repo
+     CLOSED: [2013-12-18 Wed 15:24]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-18 Wed 15:24
+     :END:
+     - http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
+**** DONE [fe] lazy load ads w/o jquery addon
+    CLOSED: [2013-12-18 Wed 17:04]
+    :CLOCK:
+    CLOCK: [2013-12-18 Wed 16:49]--[2013-12-18 Wed 17:04] =>  0:15
+    CLOCK: [2013-12-18 Wed 15:25]--[2013-12-18 Wed 15:58] =>  0:33
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-18 Wed 17:04
+     :END:
+    - maybe can get rid of lazy_load.js
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- inline-1 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:234px;height:60px"
+     data-ad-client="ca-pub-7627106577670276"
+     data-ad-slot="9310803587"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
@@ -4529,6 +4552,16 @@
    - hindi, national language of India?
    - writing styles
    - curiosity
+** template
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
 ** git-week
    - toc:
      - [X] bundle
@@ -4954,16 +4987,6 @@ Do let me know if they did, and how. Also let me know if you like my writing and
     - html
     - notes:
     - references:
-*** template
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-    - html
-    - notes:
-    - references:
 *** Archive                                                         :ARCHIVE:
 **** DONE git week, part 1
     CLOSED: [2013-12-17 Tue 13:54]
@@ -5186,7 +5209,11 @@ What do you think?
    - html
    - notes:
    - references:
-** environment variables in crontab
+** TODO environment variables in crontab
+   :CLOCK:
+   CLOCK: [2013-12-18 Wed 13:46]--[2013-12-18 Wed 14:20] =>  0:34
+   CLOCK: [2013-12-18 Wed 13:33]--[2013-12-18 Wed 13:40] =>  0:07
+   :END:
    - toc:
      - spent 1 hour on 10 min job
      - various solutions tried
@@ -5200,19 +5227,161 @@ What do you think?
    - lead image:
    - summary:
    - body:
+As you all probably already know (from ***here*** and ***here***), I am currently working on a project that needs me to collect data from various online resources. Since this data needs to be collected at regular intervals (due to updates happening to the data continuously), and not in just one go, I am using cronjob scripts to collect this data.
+
+While writing this script I faced a lot of problems, and that is what I will discuss today. In the hope that someone out there will find something important from my mistakes and learnings, and that this post may be helpful in solving similar problems for him/her too.
+
+As always, let me first start with some background. When developing the script, my desktop was behind a proxy. Although both curl and wget have inbuilt proxy support, both of them refused to work for me. With wget, i was getting the following error:
+
+Connecting to 168.219.61.252:8080... connected.
+Proxy request sent, awaiting response... 403 Forbidden
+2013-12-18 13:39:36 ERROR 403: Forbidden.
+
+My first instinct was that the proxy is blocking the request. But I was able to download the file perfectly from browser (which also goes via the same proxy). I hit a dead end and did not know what to do next. So I searched for command line based download managers instead and found [[http://aria2.sourceforge.net/][aria2]] that worked fine for me. YMMV.
+
+Before going on, let me also mention that I had the following environment variables set
+
+13:47:17 ~ $ env | grep proxy
+http_proxy=http://168.219.61.252:8080/
+ftp_proxy=http://168.219.61.252:8080/
+all_proxy=socks://http://168.219.61.250:8080/
+https_proxy=http://168.219.61.252:8080/
+proxy=168.219.61.252:8080
+no_proxy=localhost,127.0.0.0/8,::1
+
+Back to the script now. The reason I needed a script (instead of just a simple wget/aria2 command inside crontab was simply because i needed to do some pre and post-processing to the downloaded content). Anyways, that's besides the point. So lets continue.
+
+I was ready with the script and tested it extensively, both for the download part and post-processing, and ensured that things were working fine. Then i setup crontab as follows:
+
+13:47:19 ~ $ crontab -l
+# DO NOT EDIT THIS FILE - edit the master and reinstall.
+# (/tmp/crontab.XXXX4oqDI8 installed on Wed Dec 11 19:42:26 2013)
+# (Cron version V5.0 -- $Id: crontab.c,v 1.12 2004/01/23 18:56:42 vixie Exp $)
+HOME=/home/spradnyesh
+
+0 */5 * * 1,2,3,4,5 $HOME/project/scripts/download-daily.sh 2>&1 > $HOME/dd.log
+
+I am sure you all know what the parameters of the cronjob line mean. But I will explain them just for the sake of completeness:
+
+1. 0: run at 00 minutes
+2. */5: run every 5 hours
+3. *: run on every day of the month
+4. *: run in every month
+5. 1,2,3,4,5: run only on weekdays (mon,tue,wed,thurs,fri)
+
+Having explained that, lets move to the script itself. It looked something like this
+
+#!/bin/bash
+
+##### initial setup
+cd $HOME/project/data/
+toDate=`date +%F--%H`
+prefix='http://www.example.com/'
+suffix='&a=b'
+outfile='download-daily.txt'
+
+##### download data
+rm $outfile
+touch $outfile
+for i in `cat ../list`
+do
+    echo "${prefix}${i}${suffix}" >> $outfile
+    echo " out=${toDate}-${i}.html" >> $outfile
+done
+aria2c -j 10 --allow-overwrite=true --remove-control-file=true --remove-control-file=false -i $outfile
+
+##### do some post-processing
+
+git add $toDate.html; git commit -am "added data for $toDate"
+
+The actual details of the script don't matter. Basically, I am simply doing some initial setup, downloading the data, doing post processing including saving the new file to git (read about my previous git experiences ***here***, ***here***, ***here***, ***here*** and ***here***).
+
+Unfortunately ([[http://en.wikipedia.org/wiki/Murphy%2527s_law][Murphy's law]]), the script failed to download any data. On examining closely, I found that the $http_proxy environment variable was not visible inside the script. Researching online on this issue I learnt (to learn about the difference between "learnt" and "learned", visit my previous story ***here***) that the environment available to a script run via cron is very limited (mostly for security reasons), which is why the $http_proxy variable was invisible inside the script.
+
+To deal with this issue, i found a few solutions [[http://stackoverflow.com/a/2229861][here]], [[http://stackoverflow.com/a/10657111][here]], [[http://stackoverflow.com/a/13579786][here]] (this one (and similarly [[http://stackoverflow.com/a/18647100][this]] one and [[http://stackoverflow.com/a/18647100][this]] one) is a big NO NO for security reasons, and also due to limitations as explained [[http://stackoverflow.com/questions/5934554/crontab-source-file#][here]] and [[http://stackoverflow.com/a/5935335][here]]), but none of them seemed to work for me. What eventually worked for me was setting up my cronjob rule as follows:
+
+0 */5 * * 1,2,3,4,5 env http_proxy=http://168.219.61.252:8080/ $HOME/project/scripts/download-daily.sh 2>&1 > $HOME/dd.log
+
+Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!
    - html
+<p>
+	As you all probably already know (from ***here*** and ***here***), I am currently working on a project that needs me to collect data from various online resources. Since this data needs to be collected at regular intervals (due to updates happening to the data continuously), and not in just one go, I am using cronjob scripts to collect this data.</p>
+<p>
+	While writing this script I faced a lot of problems, and that is what I will discuss today. In the hope that someone out there will find something important from my mistakes and learnings, and that this post may be helpful in solving similar problems for him/her too.</p>
+<p>
+	As always, let me first start with some background. When developing the script, my desktop was behind a proxy. Although both curl and wget have inbuilt proxy support, both of them refused to work for me. With wget, i was getting the following error:</p>
+<blockquote>
+	Connecting to 168.219.61.252:8080... connected.<br />
+	Proxy request sent, awaiting response... 403 Forbidden<br />
+	2013-12-18 13:39:36 ERROR 403: Forbidden.</blockquote>
+<p>
+	My first instinct was that the proxy is blocking the request. But I was able to download the file perfectly from browser (which also goes via the same proxy). I hit a dead end and did not know what to do next. So I searched for command line based download managers instead and found <a href="http://aria2.sourceforge.net/">aria2</a> that worked fine for me. YMMV.</p>
+<p>
+	Before going on, let me also mention that I had the following environment variables set</p>
+<blockquote>
+	13:47:17 ~ $ env | grep proxy<br />
+	http_proxy=http://168.219.61.252:8080/<br />
+	ftp_proxy=http://168.219.61.252:8080/<br />
+	all_proxy=socks://http://168.219.61.250:8080/<br />
+	https_proxy=http://168.219.61.252:8080/<br />
+	proxy=168.219.61.252:8080<br />
+	no_proxy=localhost,127.0.0.0/8,::1</blockquote>
+<p>
+	Back to the script now. The reason I needed a script (instead of just a simple wget/aria2 command inside crontab was simply because i needed to do some pre and post-processing to the downloaded content). Anyways, that&#39;s besides the point. So lets continue.</p>
+<p>
+	I was ready with the script and tested it extensively, both for the download part and post-processing, and ensured that things were working fine. Then i setup crontab as follows:</p>
+<blockquote>
+	13:47:19 ~ $ crontab -l<br />
+	# DO NOT EDIT THIS FILE - edit the master and reinstall.<br />
+	# (/tmp/crontab.XXXX4oqDI8 installed on Wed Dec 11 19:42:26 2013)<br />
+	# (Cron version V5.0 -- $Id: crontab.c,v 1.12 2004/01/23 18:56:42 vixie Exp $)<br />
+	HOME=/home/spradnyesh 0 */5 * * 1,2,3,4,5 $HOME/project/scripts/download-daily.sh 2&gt;&amp;1 &gt; $HOME/dd.log</blockquote>
+<p>
+	I am sure you all know what the parameters of the cronjob line mean. But I will explain them briefly just for the sake of completeness:</p>
+<blockquote>
+	1. 0: run at 00 minutes<br />
+	2. */5: run every 5 hours<br />
+	3. *: run on every day of the month<br />
+	4. *: run in every month<br />
+	5. 1,2,3,4,5: run only on weekdays (mon,tue,wed,thurs,fri)</blockquote>
+<p>
+	Having explained that, lets move to the script itself. It looked something like this</p>
+<blockquote>
+	#!/bin/bash<br />
+	<br />
+	##### initial setup<br />
+	cd $HOME/project/data/<br />
+	toDate=`date +%F--%H`<br />
+	prefix=&#39;http://www.example.com/&#39;<br />
+	suffix=&#39;&amp;a=b&#39;<br />
+	outfile=&#39;download-daily.txt&#39;<br />
+	<br />
+	##### download data<br />
+	rm $outfile<br />
+	touch $outfile<br />
+	for i in `cat ../list`<br />
+	do<br />
+	&nbsp;&nbsp;&nbsp; echo &quot;${prefix}${i}${suffix}&quot; &gt;&gt; $outfile<br />
+	&nbsp;&nbsp;&nbsp; echo &quot; out=${toDate}-${i}.html&quot; &gt;&gt; $outfile<br />
+	done<br />
+	aria2c -j 10 --allow-overwrite=true --remove-control-file=true --remove-control-file=false -i $outfile<br />
+	<br />
+	##### do some post-processing<br />
+	<br />
+	git add $toDate.html; git commit -am &quot;added data for $toDate&quot;</blockquote>
+<p>
+	The actual details of the script don&#39;t matter. Basically, I am simply doing some initial setup, downloading the data, doing post processing including saving the new file to git (read about my previous git experiences ***here***, ***here***, ***here***, ***here*** and ***here***).</p>
+<p>
+	Unfortunately (<a href="http://en.wikipedia.org/wiki/Murphy%2527s_law">Murphy&#39;s law</a>), the script failed to download any data. On examining closely, I found that the $http_proxy environment variable was not visible inside the script. Researching online on this issue I learnt (to learn about the difference between &quot;learnt&quot; and &quot;learned&quot;, visit my previous story ***here***) that the environment available to a script run via cron is very limited (mostly for security reasons), which is why the $http_proxy variable was invisible inside the script.</p>
+<p>
+	To deal with this issue, i found a few solutions <a href="http://stackoverflow.com/a/2229861">here</a>, <a href="http://stackoverflow.com/a/10657111">here</a>, <a href="http://stackoverflow.com/a/13579786">here</a> (this one (and similarly <a href="http://stackoverflow.com/a/18647100">this</a> one and <a href="http://stackoverflow.com/a/18647100">this</a> one) is a big NO NO for security reasons, and also due to limitations as explained <a href="http://stackoverflow.com/questions/5934554/crontab-source-file#">here</a> and <a href="http://stackoverflow.com/a/5935335">here</a>), but none of them seemed to work for me. What eventually worked for me was setting up my cronjob rule as follows:</p>
+<blockquote>
+	0 */5 * * 1,2,3,4,5 env http_proxy=http://168.219.61.252:8080/ $HOME/project/scripts/download-daily.sh 2&gt;&amp;1 &gt; $HOME/dd.log</blockquote>
+<p>
+	Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!</p>
    - notes:
    - references:
-** template
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-   - html
-   - notes:
-   - references:
+** http://stackoverflow.com/questions/610995/cant-append-script-element
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]

@@ -22,9 +22,13 @@
                     (lazy-load-js ()
                       ($apply $
                           get-script
-                        "/static/js/jquery-lazyload-ad-1-4-2-min.js"
+                        "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
                         #'(lambda (data text-status jqxhr)
-                            ($apply ($ "div.lazyload_ad") lazy-load-ad))))
+                            (let ((script ($apply document create-element "script")))
+                              (setf (@ script type) "text/javascript")
+                              (setf (@ script text) "(adsbygoogle = window.adsbygoogle || []).push({})")
+                              (dolist (a ($ "div.g-ad"))
+                                ($apply ($ a) append script))))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; comments
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
