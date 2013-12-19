@@ -4538,7 +4538,7 @@
    - going mouseless
    - i wrote Golbin in common-lisp. why?
      - http://www.paulgraham.com/avg.html
-   - *** democracy versus dictatorship in organizations
+   - democracy versus dictatorship in organizations
    - LOCNW: lines of code not written
      - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
      - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
@@ -4549,19 +4549,8 @@
      - t: the affect of stress on chairs (and on us)
      - t: usually you and your body are on the same side
      - t: nice guys do not end up last
-   - hindi, national language of India?
    - writing styles
    - curiosity
-** template
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-   - html
-   - notes:
-   - references:
 ** git-week
    - toc:
      - [X] bundle
@@ -5182,33 +5171,6 @@ What do you think?
 	What do you think?</p>
    - notes:
    - references:
-** TODO organization: dictatorial v/s democratic?
-   :CLOCK:
-   CLOCK: [2013-10-16 Wed 09:52]--[2013-10-16 Wed 10:11] =>  0:19
-   :END:
-   - toc:
-     - are we talking about "leadership style" or "organizational culture"?
-     - too many cooks spoil the curry
-     - Yahoo! v/s Samsung and India v/s South-Korea
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-   - notes:
-   - references:
-     - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
-     - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
-** vim -> emacs
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-   - html
-   - notes:
-   - references:
 ** TODO environment variables in crontab
    :CLOCK:
    CLOCK: [2013-12-18 Wed 13:46]--[2013-12-18 Wed 14:20] =>  0:34
@@ -5381,7 +5343,123 @@ Do share your experiences with setting environment variables inside of cronjob s
 	Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!</p>
    - notes:
    - references:
-** http://stackoverflow.com/questions/610995/cant-append-script-element
+** TODO organization: dictatorial v/s democratic?
+   :CLOCK:
+   CLOCK: [2013-10-16 Wed 09:52]--[2013-10-16 Wed 10:11] =>  0:19
+   :END:
+   - toc:
+     - are we talking about "leadership style" or "organizational culture"?
+     - too many cooks spoil the curry
+     - Yahoo! v/s Samsung and India v/s South-Korea
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - notes:
+   - references:
+     - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
+     - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
+** TODO LOCNW: lines of code not written
+   :CLOCK:
+   CLOCK: [2013-12-19 Thu 13:31]--[2013-12-19 Thu 13:52] =>  0:21
+   :END:
+   - toc:
+     - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
+     - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
+     - http://www.folklore.org/StoryView.py?story=Negative_2000_Lines_Of_Code.txt
+     - I didn't have time to write a short letter, so I wrote a long one instead. --Mark Twain
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+Lately, this subject has been doing the rounds in my mind quite frequently. The subject of "LOCNW", or "lines of code not written". The reason for my thinking about it so much is because at my office I work on J2EE and I am disgusted with the verbosity of the language. The sheer amount of Java code that one has to write to achieve even simple tasks is mind boggling. I am a proponent of writing the least amount of code to do a task simply because lesser the lines of code, lesser the bugs that will arise out of them, and easier it is to maintain it. To the extent that I think of the following quotes as sacred.
+
+     - I didn't have time to write a short letter, so I wrote a long one instead. --Mark Twain
+     - Shorter is better and shortest is best. --Jim Meehan (Maximize LOCNW (Lines Of Code Not Written))
+     - Someone complained that I took 3 days to write 3 lines of code. I told them they could have had it in 1 day but it would have been 20 lines. --Nicole Sullivan (http://twitter.com/stubbornella/status/240581955324899328)
+     - http://www.folklore.org/StoryView.py?story=Negative_2000_Lines_Of_Code.txt
+
+The thing I don't like about Java is that it has too much [[http://en.wikipedia.org/wiki/Boilerplate_code][boiler-plate code]]. And instead of trying to remove this boiler-plating (according to the principle of [[http://en.wikipedia.org/wiki/Don%2527t_repeat_yourself][DRY]], or don't repeat yourself), the Java community builds tools (IDEs, etc) to make this boiler-plate code generation easier to do, or even automate it completely. So now there is even more code to handle (understand, debug and maintain). Add to that the inclusion of XML. This took the boat from the ...muddy canal... into the ...dirty sea...
+
+Agreed that all this verbosity makes it easier for novices to understand the core of the language easily. But this is at the cost of this understanding being very shallow and full of bad practices, because the language itself promotes too much verbosity. As a result of this (as an extreme example), we get variable names like thisIsTheLoopIterationVariableThatGetsIncrementedByOneForEveryExecutionOfTheLoop :(
+
+Also, simple things get complex too soon, because
+   - html
+   - notes:
+   - references:
+** TODO The producer consumer problem
+   :CLOCK:
+   CLOCK: [2013-12-19 Thu 13:56]--[2013-12-19 Thu 14:22] =>  0:26
+   :END:
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary: Taking a different perspective a the "producer consumer" problem outside of the computer world
+   - body:
+Anyone who has learnt basic "operating system" concepts in their Computer Science engineering knows about the "[[http://en.wikipedia.org/wiki/Producer-consumer_problem][producer consumer problem]]". It is a classic synchronization problem, where there are 2 processes, the "producer" and the "consumer", both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.
+
+I had mentioned in one of my previous articles, ***here (don't break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.
+
+Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it's magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.
+
+Having laid out the background of "producer" and "consumer" in my story, let me now get to the "problem" part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the "git week" series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.
+
+I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don't break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the "problem"!
+
+Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:
+
+- Don't break the chain
+- Practice makes perfect
+
+I believe that the 1st rule "don't break the chain" will take me a long way till the gates of the 1st part of the 2nd rule "practice", which will eventually take me to the 2nd part "perfection". What say you?
+   - html
+<p>
+	Anyone who has learnt basic &quot;operating system&quot; concepts in their Computer Science engineering knows about the <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem">producer consumer problem</a>. It is a classic synchronization problem, where there are 2 processes, the &quot;producer&quot; and the &quot;consumer&quot;, both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.</p>
+<p>
+	I had mentioned in one of my previous articles, ***here (don&#39;t break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.</p>
+<p>
+	Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it&#39;s magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.</p>
+<p>
+	Having laid out the background of &quot;producer&quot; and &quot;consumer&quot; in my story, let me now get to the &quot;problem&quot; part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the &quot;git week&quot; series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.</p>
+<p>
+	I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don&#39;t break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the &quot;problem&quot;!</p>
+<p>
+	Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:</p>
+<blockquote>
+	<ul>
+		<li>
+			Don&#39;t break the chain</li>
+		<li>
+			Practice makes perfect</li>
+	</ul>
+</blockquote>
+<p>
+	I believe that the 1st rule &quot;don&#39;t break the chain&quot; will take me a long way till the gates of the 1st part of the 2nd rule &quot;practice&quot;, which will eventually take me to the 2nd part &quot;perfection&quot;. What say you?</p>
+   - notes:
+   - references:
+** writing software v/s blogging
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
+** template
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+   - html
+   - notes:
+   - references:
 ** Archive                                                          :ARCHIVE:
 *** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
