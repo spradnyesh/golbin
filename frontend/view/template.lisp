@@ -30,7 +30,7 @@
                                   :href "/static/css/yui3-reset-fonts-grids-min.css")
                             (<:style (get-css)))
                           (<:link :rel "stylesheet" :type "text/css"
-                                  :href "/static/css/fe-39-min.css")
+                                  :href "/static/css/fe-40-min.css")
                           (<:script :type "text/javascript" :src "http://code.jquery.com/jquery-1.8.2.min.js")
                           ;; hate that sharethis cannot be lazy-loaded :(
                           (<:script :type "text/javascript" :src "http://w.sharethis.com/button/buttons.js")
@@ -67,7 +67,7 @@
                                    (<:footer :id "ft" (footer)))))
              #- (and)
              (<:script :type "text/javascript" (on-load))
-             (<:script :type "text/javascript" :src "/static/js/fe-15-min.js")
+             (<:script :type "text/javascript" :src "/static/js/fe-16-min.js")
              (<:script :type "text/javascript"
                        (concatenate 'string
                                     ;; hate that sharethis cannot be lazy-loaded :(

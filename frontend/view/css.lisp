@@ -44,8 +44,8 @@
     ((".left") (:float "left"))
     ((".right") (:float "right"))
     ((".hidden") (:display "none"))
-    ((".lazyload_ad") (:text-align "center"
-                                   :padding "20px 0"))
+    ((".g-ad") (:text-align "center"
+                            :padding "20px 0"))
     ((".error") (:background-color "#ddd"
                                    :padding "10px"))
 

@@ -112,8 +112,7 @@
   (let ((ia-markup (inline-ads-markup)))
     (dolist (a (get-articles-by-author author))
       ;; remove and insert inline ads
-      (setf (body a) (insert-inline-ads (remove-inline-ads (body a)
-                                                           ia-markup)
+      (setf (body a) (insert-inline-ads (remove-inline-ads (body a))
                                         ia-markup))
       (edit-article a))))
 
@@ -222,8 +221,7 @@
                                                  " a photo"))
                                      (tr-td-text "body"
                                                  :class "ckeditor"
-                                                 :value (when article (remove-inline-ads (body article)
-                                                                                         (inline-ads-markup)))
+                                                 :value (when article (remove-inline-ads (body article)))
                                                  :mandatory t)
                                      (unless (string-equal (get-dimension-value "lang") "en-IN")
                                        (<:tr (<:td (get-dimension-value "lang"))

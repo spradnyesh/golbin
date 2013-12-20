@@ -31,9 +31,7 @@
                                              markup)
                                 :start mid))))
 
-(defun remove-inline-ads (body markup)
-  (regex-replace (concatenate 'string
-                              "</p>"
-                              markup)
+(defun remove-inline-ads (body)
+  (regex-replace "<div id=\"i-ads\".*<\/div><\/div>"
                  body
-                 "</p>"))
+                 ""))

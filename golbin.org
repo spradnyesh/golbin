@@ -4151,6 +4151,16 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+**** DONE [bug][fe] ads not showing up
+     CLOSED: [2013-12-20 Fri 13:48]
+     :CLOCK:
+     CLOCK: [2013-12-20 Fri 13:30]--[2013-12-20 Fri 13:48] =>  0:18
+     CLOCK: [2013-12-20 Fri 13:17]--[2013-12-20 Fri 13:28] =>  0:11
+     :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-20 Fri 13:48
+     :END:
+     - forgot to minimize js for commit 4135d8b
 ** TODO refactor
    :CLOCK:
    CLOCK: [2013-11-05 Tue 16:45]--[2013-11-05 Tue 17:07] =>  0:22
@@ -4564,167 +4574,6 @@
        - http://www.flickr.com/photos/44458147@N00/263228000/
        - http://www.flickr.com/photos/slimcoincidence/1454276711/
        - http://www.flickr.com/photos/dealingwith/4295488113/
-*** TODO git week, part 2
-    :CLOCK:
-    CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
-    CLOCK: [2013-12-12 Thu 20:00]--[2013-12-12 Thu 20:17] =>  0:17
-    CLOCK: [2013-12-12 Thu 19:45]--[2013-12-12 Thu 19:54] =>  0:09
-    :END:
-    - toc:
-    - cat/subcat:
-    - tags: git, version-control, github, bitbucket, git-filter-branch
-    - lead image: http://farm1.staticflickr.com/189/508821261_c92df143d2.jpg @ http://www.flickr.com/photos/cjsorg/508821261/
-    - summary: 2nd post in the git-week series detailing another cool git feature that proved life-saver!
-    - body:
-Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)
-
-This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
-
-The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:
-
-git filter-branch --commit-filter 'GIT_COMMITTER_NAME="<new-name>"; GIT_AUTHOR_NAME="<new-name>"; GIT_COMMITTER_EMAIL="<new-email>"; GIT_AUTHOR_EMAIL="<new-email>"; git commit-tree "$@";' HEAD
-
-Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].
-
-The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.
-
-But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:
-
-git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $files" HEAD
-rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
-
-Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:
-
-git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <yyyymm>-*" HEAD
-rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
-
-The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.
-
-With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)
-
-Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
-    - html
-<p>
-	Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)</p>
-<p>
-	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
-<p>
-	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
-<blockquote>
-	git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</blockquote>
-<p>
-	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example <a href="http://stackoverflow.com/a/870367">here</a>.</p>
-<p>
-	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
-<p>
-	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
-<blockquote>
-	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD<br />
-	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
-<p>
-	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
-<blockquote>
-	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD<br />
-	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
-<p>
-	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
-<p>
-	With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p>
-<p>
-	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
-    - notes:
-    - references:
-*** TODO git week, part 3
-    :CLOCK:
-    CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
-    CLOCK: [2013-12-13 Fri 15:11]--[2013-12-13 Fri 15:32] =>  0:21
-    :END:
-    - toc:
-    - cat/subcat:
-    - tags: git, version-control, github, bitbucket, git-bisect
-    - lead image: http://farm1.staticflickr.com/87/263228000_9513c97026.jpg @ http://www.flickr.com/photos/44458147@N00/263228000/
-    - summary: 3rd post in the git-week series detailing another cool git feature: git bisect!
-    - body:
-Hi there. Welcome back to the 3rd post in the "git week" series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git bisect".
-
-I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not "how" to fix, but to understand "what" broke this feature, and "when". Maybe, if you are like my manager, you are also looking out for the "who", to put some blame on.
-
-Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with "git-bisect". I am sure, that by this time, based on my description above, and based on the name "bisect", you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a "binary search" or a "divide-and-conquer" strategy to find the bad commit, you are absolutely correct.
-
-So how this works is that you find 2 commit hashes, G and B, which stand for "good" and "bad" respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).
-
-The steps are as follows:
-
-1. git bisect start
-2. git bisect bad <B>
-3. git bisect good <G>
-
-Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows
-
-git bisect good
-
-OR
-
-git bisect bad
-
-respectively.
-
-Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)
-
-After you have finished this bisection exercise, run the following command
-
-git bisect reset
-
-to come out of the bisect session back to where you started from.
-
-One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)
-
-For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
-    - html
-<p>
-	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
-<p>
-	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
-<p>
-	Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with &quot;git-bisect&quot;. I am sure, that by this time, based on my description above, and based on the name &quot;bisect&quot;, you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a &quot;binary search&quot; or a &quot;divide-and-conquer&quot; strategy to find the bad commit, you are absolutely correct.</p>
-<p>
-	So how this works is that you find 2 commit hashes, G and B, which stand for &quot;good&quot; and &quot;bad&quot; respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).</p>
-<p>
-	The steps are as follows:</p>
-<blockquote>
-	<ul>
-		<li>
-			git bisect start</li>
-		<li>
-			git bisect bad &lt;B&gt;</li>
-		<li>
-			git bisect good &lt;G&gt;</li>
-	</ul>
-</blockquote>
-<p>
-	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows</p>
-<blockquote>
-	git bisect good</blockquote>
-<p>
-	OR</p>
-<blockquote>
-	git bisect bad</blockquote>
-<p>
-	respectively.</p>
-<p>
-	Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)</p>
-<p>
-	After you have finished this bisection exercise, run the following command</p>
-<blockquote>
-	git bisect reset</blockquote>
-<p>
-	to come out of the bisect session back to where you started from.</p>
-<p>
-	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
-<p>
-	For more details (advanced usage of git-bisect), RTFM and/or visit <a href="http://git-scm.com/docs/git-bisect">here</a>. Do share with us about if you have used git bisect before and how did it help you</p>
-    - notes:
-    - references:
 *** TODO git week, part 4
     :CLOCK:
     CLOCK: [2013-12-15 Sun 15:55]--[2013-12-15 Sun 16:08] =>  0:13
@@ -5095,6 +4944,175 @@ ps:
 </ul>
    - notes:
    - references:
+**** DONE git week, part 2
+    CLOSED: [2013-12-20 Fri 13:16]
+    :CLOCK:
+    CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
+    CLOCK: [2013-12-12 Thu 20:00]--[2013-12-12 Thu 20:17] =>  0:17
+    CLOCK: [2013-12-12 Thu 19:45]--[2013-12-12 Thu 19:54] =>  0:09
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-20 Fri 13:17
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-filter-branch
+    - lead image: http://farm1.staticflickr.com/189/508821261_c92df143d2.jpg @ http://www.flickr.com/photos/cjsorg/508821261/
+    - summary: 2nd post in the git-week series detailing another cool git feature that proved life-saver!
+    - body:
+Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)
+
+This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
+
+The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:
+
+git filter-branch --commit-filter 'GIT_COMMITTER_NAME="<new-name>"; GIT_AUTHOR_NAME="<new-name>"; GIT_COMMITTER_EMAIL="<new-email>"; GIT_AUTHOR_EMAIL="<new-email>"; git commit-tree "$@";' HEAD
+
+Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].
+
+The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.
+
+But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $files" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <yyyymm>-*" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.
+
+With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)
+
+Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
+    - html
+<p>
+	Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)</p>
+<p>
+	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
+<p>
+	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
+<blockquote>
+	git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</blockquote>
+<p>
+	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example <a href="http://stackoverflow.com/a/870367">here</a>.</p>
+<p>
+	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
+<p>
+	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
+<blockquote>
+	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD<br />
+	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
+<p>
+	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
+<blockquote>
+	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD<br />
+	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
+<p>
+	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
+<p>
+	With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p>
+<p>
+	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
+    - notes:
+    - references:
+**** DONE git week, part 3
+    CLOSED: [2013-12-20 Fri 13:17]
+    :CLOCK:
+    CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
+    CLOCK: [2013-12-13 Fri 15:11]--[2013-12-13 Fri 15:32] =>  0:21
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-20 Fri 13:17
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-bisect
+    - lead image: http://farm1.staticflickr.com/87/263228000_9513c97026.jpg @ http://www.flickr.com/photos/44458147@N00/263228000/
+    - summary: 3rd post in the git-week series detailing another cool git feature: git bisect!
+    - body:
+Hi there. Welcome back to the 3rd post in the "git week" series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git bisect".
+
+I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not "how" to fix, but to understand "what" broke this feature, and "when". Maybe, if you are like my manager, you are also looking out for the "who", to put some blame on.
+
+Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with "git-bisect". I am sure, that by this time, based on my description above, and based on the name "bisect", you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a "binary search" or a "divide-and-conquer" strategy to find the bad commit, you are absolutely correct.
+
+So how this works is that you find 2 commit hashes, G and B, which stand for "good" and "bad" respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).
+
+The steps are as follows:
+
+1. git bisect start
+2. git bisect bad <B>
+3. git bisect good <G>
+
+Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows
+
+git bisect good
+
+OR
+
+git bisect bad
+
+respectively.
+
+Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)
+
+After you have finished this bisection exercise, run the following command
+
+git bisect reset
+
+to come out of the bisect session back to where you started from.
+
+One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)
+
+For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
+    - html
+<p>
+	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
+<p>
+	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
+<p>
+	Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with &quot;git-bisect&quot;. I am sure, that by this time, based on my description above, and based on the name &quot;bisect&quot;, you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a &quot;binary search&quot; or a &quot;divide-and-conquer&quot; strategy to find the bad commit, you are absolutely correct.</p>
+<p>
+	So how this works is that you find 2 commit hashes, G and B, which stand for &quot;good&quot; and &quot;bad&quot; respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).</p>
+<p>
+	The steps are as follows:</p>
+<blockquote>
+	<ul>
+		<li>
+			git bisect start</li>
+		<li>
+			git bisect bad &lt;B&gt;</li>
+		<li>
+			git bisect good &lt;G&gt;</li>
+	</ul>
+</blockquote>
+<p>
+	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows</p>
+<blockquote>
+	git bisect good</blockquote>
+<p>
+	OR</p>
+<blockquote>
+	git bisect bad</blockquote>
+<p>
+	respectively.</p>
+<p>
+	Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)</p>
+<p>
+	After you have finished this bisection exercise, run the following command</p>
+<blockquote>
+	git bisect reset</blockquote>
+<p>
+	to come out of the bisect session back to where you started from.</p>
+<p>
+	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
+<p>
+	For more details (advanced usage of git-bisect), RTFM and/or visit <a href="http://git-scm.com/docs/git-bisect">here</a>. Do share with us about if you have used git bisect before and how did it help you</p>
+    - notes:
+    - references:
 ** TODO difference between learnt and learned
    :CLOCK:
    CLOCK: [2013-12-17 Tue 16:54]--[2013-12-17 Tue 17:30] =>  0:36
