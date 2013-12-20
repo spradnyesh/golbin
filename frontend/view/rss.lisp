@@ -1,20 +1,48 @@
 (in-package :hawksbill.golbin.frontend)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helper functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun prepend-lead-photo-to-body (photo body)
+  (if photo
+      (regex-replace "^"
+                     body
+                     (<:div :class "a-photo" (article-lead-photo-url photo "left")))
+      body))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helper macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmacro view-rss (title description link articles-list)
-  `(>:rss :version "2.0"
-             (>:channel (fmtnil
-                            (>:title ,title)
-                            (>:description ,description)
-                            (>:link ,link)
-                            (join-loop article
-                                       ,articles-list
-                                       (fmtnil (>:item (>:title (title article))
-                                                       (>:description (escape-for-html (body article)))
-                                                       (>:link (h-gen-full-url 'r-article
-                                                                               :slug-and-id (get-slug-and-id article))))))))))
+  (let ((article-link (gensym))
+        (article-datetime (gensym)))
+    `(>:rss :version "2.0"
+            (>:channel
+             (fmtnil
+              (>:title (concatenate 'string (get-config "site.name") " - " ,title))
+              (>:description ,description)
+              (>:link ,link)
+              (>:image (>:url "http://www.golb.in/static/css/images/golbin.png")
+                       (>:link ,link))
+              (>:ttl 60)
+              (join-loop article
+                         ,articles-list
+                         (progn
+                           (setf ,article-link (h-gen-full-url 'r-article
+                                                               :slug-and-id (get-slug-and-id article)))
+                           (setf ,article-datetime (universal-to-timestamp (date article)))
+                           (fmtnil (>:item (>:title (title article))
+                                           (>:description (escape-for-html
+                                                           (prepend-lead-photo-to-body (photo article)
+                                                                                       (body article))))
+                                           (>:link ,article-link)
+                                           (>:guid ,article-link)
+                                           #- (and)
+                                           (>:pubDate (concatenate 'string
+                                                                   (prettyprint-date ,article-datetime)
+                                                                   " "
+                                                                   (prettyprint-time ,article-datetime)))
+                                           (>:category (name (cat article))))))))))))
 
 (defun v-rss-home ()
   (view-rss ""
