@@ -4537,6 +4537,14 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2013-12-20 Fri 16:28
     :END:
+*** DONE [bug][fe] pagination not working
+    CLOSED: [2013-12-30 Mon 14:57]
+    :CLOCK:
+    CLOCK: [2013-12-30 Mon 14:40]--[2013-12-30 Mon 14:57] =>  0:17
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2013-12-30 Mon 14:57
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/
@@ -4584,11 +4592,7 @@
    - routes:
      - trailing 'slash' should be put explicitly, to avoid matching to no/multiple rules
      - *submodule* and *route* special variables are populated during request, and aren't available from slime
-* TODO articles
-  :CLOCK:
-  CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
-  CLOCK: [2013-03-03 Sun 13:50]--[2013-03-03 Sun 13:57] =>  0:07
-  :END:
+* articles
   - http://www.mastersofseo.com/how-get-inspiration-to-writ/
   - tags should be nouns
   - search images on flickr. use advanced search and select 'only search within creative commons licensed content'
@@ -4599,6 +4603,8 @@
 ** write
 *** TODO search for topic
     :CLOCK:
+    CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
+    CLOCK: [2013-03-03 Sun 13:50]--[2013-03-03 Sun 13:57] =>  0:07
     CLOCK: [2013-01-03 Thu 19:27]--[2013-01-03 Thu 19:33] =>  0:06
     CLOCK: [2012-12-17 Mon 14:50]--[2012-12-17 Mon 15:04] =>  0:14
     CLOCK: [2012-12-17 Mon 13:44]--[2012-12-17 Mon 14:44] =>  1:00
@@ -4677,7 +4683,7 @@ Also, simple things get complex too soon, because
     - references:
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
-*** new features for gol
+*** lazyload google ads without jquery lazyload plugin
     - toc:
     - cat/subcat:
     - tags:
@@ -5549,6 +5555,38 @@ I believe that the 1st rule "don't break the chain" will take me a long way till
 	I believe that the 1st rule &quot;don&#39;t break the chain&quot; will take me a long way till the gates of the 1st part of the 2nd rule &quot;practice&quot;, which will eventually take me to the 2nd part &quot;perfection&quot;. What say you?</p>
    - notes:
    - references:
+*** TODO More exciting new features for golbin
+    :CLOCK:
+    CLOCK: [2013-12-20 Fri 16:35]--[2013-12-20 Fri 17:01] =>  0:26
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image: http://www.golb.in/static/css/images/golbin.png @ http://www.golb.in/
+    - summary:
+    - body:
+Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]] previously, we will try our best to continuously add small and big (both user-facing and not) features to our [[http://www.golb.in/][Golbin!]] website. So let's review what's new:
+
+- RSS: We have added a [[http://en.wikipedia.org/wiki/RSS][RSS]] stream for all our index pages; that is for the [[http://www.golb.in/][home]] page, and also for all category/sub-category (click [[http://www.golb.in/category/lifestyle/][here]] and [[http://www.golb.in/category/technology/internet/][here]] for example) and author pages (like [[http://www.golb.in/author/spradnyesh/][this]] for example). So now viewers can access [[http://www.golb.in/][Golbin!]] stories from your favorite feed reader. To use this functionality, simple search for and click the "RSS" link present at the bottom of any of our index pages.
+
+- lazyload [[http://www.google.com/][Google]] ads: If you have noticed earlier, google-ads on [[http://www.golb.in/][Golbin!]] pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome jQuery [[http://jqueryad.web2ajax.fr/][lazyload Ad]] plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of [[https://support.google.com/adsense/answer/3221666?hl%3Den][rendering ads]], we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on [[http://www.golb.in/][Golbin!]]
+
+- story page backgrounds: In our last post [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]], we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.
+
+As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
+    - html
+<p>
+	Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">here</a> previously, we will try our best to continuously add small and big (both user-facing and not) features to our <a href="http://www.golb.in/" target="_blank">Golbin!</a> website. So let&#39;s review what&#39;s new:</p>
+<p>
+	<strong>RSS</strong>: We have added a <a href="http://en.wikipedia.org/wiki/RSS" target="_blank">RSS</a> stream for all our index pages; that is for the <a href="http://www.golb.in/" target="_blank">home</a> page, and also for all category/sub-category (click <a href="http://www.golb.in/category/lifestyle/" target="_blank">here</a> and <a href="http://www.golb.in/category/technology/internet/" target="_blank">here</a> for example) and author pages (like <a href="http://www.golb.in/author/spradnyesh/" target="_blank">this</a> for example). So now viewers can access <a href="http://www.golb.in/" target="_blank">Golbin!</a> stories from your favorite feed reader. To use this functionality, simple search for and click the &quot;RSS&quot; link present at the bottom of any of our index pages.</p>
+<p>
+	<strong>lazyload <a href="http://www.google.com/" target="_blank">Google</a> ads</strong>: If you have noticed earlier, google-ads on <a href="http://www.golb.in/" target="_blank">Golbin!</a> pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome <a href="http://jqueryad.web2ajax.fr/" target="_blank">jQuery lazyload Ad</a> plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of <a href="https://support.google.com/adsense/answer/3221666?hl%3Den">rendering ads</a>, we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+<p>
+	<strong>story page backgrounds</strong>: In our last <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">post</a>, we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.</p>
+<p>
+	As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+    - notes:
+    - references:
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]

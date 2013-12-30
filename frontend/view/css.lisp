@@ -300,7 +300,7 @@
                                   :text-decoration "none"))
     ((".pagination .disabled") (:border "none"))
     ((".pagination-results") (:color "#999"
-                                     :margin "250px"))
+                                     :margin-left "250px"))
     ((".rss") (:float "right"))
 
     ;; ads
