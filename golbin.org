@@ -1,6 +1,8 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [bug][fe][rss] description should not contain relative URL references
+   - /static/photos/....jpeg
 ** [fe] lazy-load comments (only when viewer is at bottom of page)
 ** [fe][rss] validate at http://feedvalidator.org/
 ** html5 form validation
@@ -4693,6 +4695,217 @@ Also, simple things get complex too soon, because
     - html
     - notes:
     - references:
+*** busan week
+**** TODO Busan week, day-1: Haeundae beach
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 15:46]--[2014-01-05 Sun 16:28] =>  0:42
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, haeundae, beach, south-korea, 1003
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621124163/
+     - summary: Day 1 of my week long vacation with family to Busan was spent at the calm but chilly Haeundae beach!
+     - body:
+First of all, let me wish you all a very happy and prosperous 2014! Second, let me pray for Golbin! to get bigger, both in terms of readers and storytellers :)
+
+This and the next few of my stories are going to be about my week-long travel to [[http://en.wikipedia.org/wiki/Busan][Busan]], South Korea. I went there with my wife and 1 year old daughter in the week of Christmas (23-28 Dec), because of different reasons
+1. 23rd was my wife's birthday
+2. I had holidays in my office on 24 and 25, so only 3 days of leaves need be taken
+3. Busan, I was told, is much warmer (without any snow), but a lot windy, during this time of the year, than [[http://en.wikipedia.org/wiki/Suwon][Suwon]] (where I reside)
+
+Anyways, so we decided to go to Busan for a week long vacation. We had to prepare for a long time, because this was the 1st time that we were going out for such a long time taking our baby (who is just 1 year old) with us. The preparation revolved mostly around baby clothes, for the windy weather, and home-made baby food. The only thing we had actually reserved before going to Busan were the hotel (we stayed at the [[http://www.rivierahotel.co.kr/EN/][Riviera]] hotel, which was very close to Haeundae beach) and the to and fro train tickets. We did not want to book/reserve other things mostly because there was a huge amount of uncertainty regarding how my daughter would react to a new place. Fortunately, not only did she not give us much trouble, but she also enjoyed the place a lot
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11624256564/player/f8243639c2" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Considering that we had our baby with us, we had set low expectations of travel in a day. If we could visit 1-2 places in 1 day, that would be good enough for us. That is also 1 reason for the week long tour, even though some of my (bachelor / newly-married) friends had said that just 1-2 days were enough to visit Busan.
+
+We traveled from Suwon to Busan in the [[http://www.korail.com/en/][KTX]] train, which runs at a max speed of about 280 kmph. The idea of traveling so fast itself was enough reason for me to visit Busan. The other major attraction being the Busan aquarium, about which I had read and heard a [[http://www.tripadvisor.com/Attraction_Review-g297884-d669986-Reviews-Busan_Aquarium-Busan.html][few good things]], and had especially liked their [[http://www.busanaquarium.com/en/][website]]. I was also looking forward to the journey itself because I wanted to replicate the photography techniques that this guy ([[http://www.qiranger.com/2011/06/10/suwon-to-busan/][here]]) had used; my try was disastrous :(
+
+We started from Suwon station on 23rd morning 10.50am, and reached Busan at around 1.40pm and to our hotel (bus #1003) in [[http://en.wikipedia.org/wiki/Haeundae_District][Haeundae]] at about 2.30pm. Then we rested a bit, had some lunch, and visited Haeundae beach in the evening. Although my wife loved the beautiful beach, we had to return soon to the warm and cozy hotel room because it was a bit too windy and chilly for my daughter to handle
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621602166/player/66efefa17a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621601406/player/e76fa5d334" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621192974/player/0c3f21d1ce" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621191764/player/83e3b443b9" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621030403/player/e7a678e028" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Finally, we ate dinner at [[http://www.tripadvisor.com/Restaurant_Review-g297884-d4166622-Reviews-Namaste-Busan.html][Namaste India]]; the food was very tasty. Since it was my wife's birthday, we had some ice-cream and called it a day!
+     - html
+     - notes:
+     - references:
+**** TODO Busan week, day-2: Yeonggung-sa
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 17:12]--[2014-01-05 Sun 17:14] =>  0:02
+     CLOCK: [2014-01-05 Sun 16:39]--[2014-01-05 Sun 17:07] =>  0:28
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, yeonggungsa, temple, taejongdae, buddha, son
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621201843/
+     - summary: Yeonggungsa was undoubtedly the *best* place that we visited during our 1 week long vacation to Busan
+     - body:
+Before coming to Busan I had done some basic research about the places to visit in Busan. We had found that there are some city tours available. These tours were of 2 different types: looped and themed. The ticket for either was 10,000 won (approx. 10$). The difference between the 2 is that in the looped tour, there are buses that go around Busan in a circular fashion, and you can buy the ticket once (from the driver), and get in and down at any of the places (tourist spots) that the bus stops at. There is 1 bus every 30 mins (between 9.30am and 5pm starting from Busan station), so you can practically go to place A -> visit it for as long as you wish -> hop into the next bus and go to place B -> and so on. This mode of travel is extremely convenient and cheap; especially if you like traveling on your own and don't need a guide (have done some basic homework of what places interest you and you want to visit). There are 2 different routes of the looped tours, called the "[[http://en.wikipedia.org/wiki/Haeundae_District][Haeundae]]" and "[[http://en.wikipedia.org/wiki/Taejongdae][Taejongdae]]" loops, and the same ticket works on both.
+
+The 2nd type of city tour buses are the "themed" tours: "History and Culture", "[[http://yongkungsa.or.kr/en/][Haedong YeongGung temple]]", "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo Eco]]" and "Night view". These tours are about 3hrs 40 mins each, and the buses leave twice a day; except for the "Night view" which is about 2.5hrs long, and runs only once in the evening. One good thing about themed Busan city tours is that you can call up their online help-desk (+82-51-464-9898) and do a reservation but actually purchase the ticket from the driver (at the start of the tour). The bad thing is that the help-desk (in my experience) is open only for about 2 hours between 9-11am in the morning; and some of the tours get full about 10 days in advance.
+
+Anyways, we called up the help-desk in the morning, and were able to reserve 2 seats for the "Haedong YeongGung temple" tour. Since we reached a bit before the tour start time, I clicked a few photos in the Busan station area
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621680976/player/5547ccdaac" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+YeongGung-sa (sa means temple) was undoubtedly the best place that I visited in Busan. The temple is located on a cliff and the view is extremely serene and beautiful. It is the place that receives the 1st sun light in Korea.
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621397824/player/b3505ff0da" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621255003/player/a1206dcd7e" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621793556/player/145870c31a" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11620950435/player/436175ddb9" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621385194/player/37686de243" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621239643/player/b9813d77b8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621367824/player/300795d223" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621365494/player/9b1e3a8d7e" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+     - html
+     - notes:
+     - references:
+**** TODO Busan week, day-3: Taejongdae
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 19:05]--[2014-01-05 Sun 19:07] =>  0:02
+     CLOCK: [2014-01-05 Sun 18:32]--[2014-01-05 Sun 18:38] =>  0:06
+     CLOCK: [2014-01-05 Sun 18:27]--[2014-01-05 Sun 18:31] =>  0:04
+     CLOCK: [2014-01-05 Sun 18:02]--[2014-01-05 Sun 18:21] =>  0:19
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, taejongdae, city-tour, light-house, open-roof, double-decker-bus
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621630816/
+     - summary: Today we took the looped city tour bus and visited Taejongdae
+     - body:
+The first half of our third day (see the first 2 ***here*** and ***here***) in Busan was the lowest point of the whole week. We had a reservation for the "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo eco]]" tour in the morning, but my daughter vomited just when we were about to reach Busan station. We had no choice but to head back to the hotel.
+
+Once we were ready again, We took the looped city tour bus and visited [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D264167][Taejongdae]]. It is a hill which hosts the Taejongdae resort. This time, we took the Haeundae loop tour bus to go from Haeundae beach to busan and it passed via the famous [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D1064834][Gwangan bridge]]:
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621884866/player/3b9d96dfda" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621888096/player/29ba2542ac" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621887146/player/6b25b0f486" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Unfortunately, we made the bad decision of getting down at the "Busan art museum" stop. The decision was bad because after getting down, we went in the wrong direction and spent about 15 minutes just searching for the place. We were already pissed off because of the bad start, so we came back to the bus stop and waited another 20 mins for the bus. But this time we were laughing at our stupidity, because the art museum was just 1 min away from the stop. Anyways, we weren't in a mood to go there after this.
+
+Fortunately, the same bus got converted into the Taejongdae loop tour bus. So we did not have to get down of the bus, but also were able to catch a good window seat ;) On the way to Taejongdae from Busan, we passed the 75-square stop (which we did not get down at). The sea-meets-the-sky view was simply amazing. Here are some ok-ok shots from inside the moving bus
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621065865/player/63d2263e5b" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621842166/player/24a8924eb8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+On reaching Taejongdae we boarded the mini tram and saw the place; we did not get down from the tram at any of the stops that it made, including the light-house:
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621081583/player/4ae57fe096" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11620855015/player/54234f668b" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+From Taejongdae we took the loop tour bus back to Busan; but this time we got a bus with an open top. This was the first time for both my wife and me to sit in an open roof double-decker bus, and it was an amazing experience. On the way we passed [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D1054924][Songdo]] [[http://www.tripadvisor.com/Attraction_Review-g297884-d3420565-Reviews-Songdo_Beach-Busan.html][beach]] and the world famous [[http://www.tripadvisor.com/Attraction_Review-g297884-d1372972-Reviews-Jagalchi_Market-Busan.html][Jagalchi]] [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D264168][fish]] [[http://en.wikipedia.org/wiki/Jagalchi_Market][market]], but did not get down at either
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622017636/player/01fa200002" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621997836/player/caff767910" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621196655/player/06f6030ca3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621410203/player/aeffe8d89a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621546594/player/006bc526a9" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+
+     - html
+     - notes:
+     - references:
+**** TODO Busan week, day-4: Busan Aquarium and Shinsegae mall
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 18:38]--[2014-01-05 Sun 19:02] =>  0:24
+     CLOCK: [2014-01-05 Sun 18:26]--[2014-01-05 Sun 18:27] =>  0:01
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, aquarium, shinsegae, coex, seoul, cartoon, painting
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621664455/
+     - summary: Today was the day for local sightseeing, close to Haeundae beach. And in the process we learnt something extremely (and disappointingly) surprising about the shopping mall that is listed as the largest shopping mall in the world in the Guinness book of world records!
+     - body:
+Today I wasn't in a mood to travel all the way to Busan station (it's about 35-50 mins from Haeundae beach, depending on the traffic; also the Haeundae -> Busan (bus #1003) route is longer than the other way around). So we decided to do some local sightseeing, which included Busan aquarium and [[http://en.wikipedia.org/wiki/Shinsegae][Shinsegae]] mall.
+
+As I have mentioned ***here, day-1***, I was super excited to visit the Busan aquarium because it offered the once in a lifetime opportunity to swim with the sharks. Unfortunately, my hopes were shattered because when I inquired about it, I was sent from one desk to another and then asked to call some phone number where the man only spoke Korean. I spent 30 mins running from desk-to-desk, by which time my wife was pissed off because my daughter being difficult to be managed by her alone. We also did not get to sit in the glass-bottomed boat because my daughter was too young. The actual fishes weren't that exciting since the variety was almost the same as what we had already seen in [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D736274][COEX mall aquarium]] in [[http://en.wikipedia.org/wiki/Seoul][Seoul]]. I did manage to get 1 macro image that I liked a lot
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622415516/player/7a2993574a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Finally, we got a cartoon-painting made of the 3 of us and went back to the hotel for lunch
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621846323/player/b24a375893" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+In the evening we visited Shinsegae which has its name in the Guinness book of world records as the worlds largest shopping mall. This time we traveled by the subway because
+1. Haeundae subway station was pretty close from our hotel
+2. Shinsegae is directly reachable from the "City Centum" subway station
+3. City centum station is just 3 stations away from Haeundae station
+4. We would be able to avoid the heavy evening traffic
+
+Although we had seen the mall from outside a lot of times now (because it is on the way when traveling Busan <-> Haeundae), this was the first time we were inside it. And although it was not immediately apparent how huge it was, it was fascinating to see an ice-rink inside it. I even gave ice-skating a try but gave up within just 20 minutes after falling hard twice ;)
+
+But the most weird and disappointingly surprising thing about the world's largest mall was that it closes at 8pm! Yes you heard it right, it shuts down at 8pm. This was completely unexpected for us, and very inconvenient too. Because we had to rush out and found ourselves trapped in the wrong part of the mall. The elevators would either take us to a road-side exit (we didn't know which side of the mall), or to a do-not-enter red-tape. Eventually, with a baby in my hands, I did what I had to do. Entered the no-entry zone, found my way to the part that I knew we had entered from (the part that was connected to the subway station) and took the elevator from there. All this crazy running took us about 15 minutes, just to come from the 7th floor to the basement. It was one of the weirdest experience ever!
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622653554/player/3e3669eef3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623049916/player/c73456e243" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622642884/player/0197de3a84" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623046456/player/13d55a990c" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+     - html
+     - notes:
+     - references:
+**** TODO Busan week, day-5: Eulsukdo eco center
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 19:08]--[2014-01-05 Sun 19:32] =>  0:24
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, eulsukdo, eco-center, gamcheon, beomeosa, culture, village, temple, seagull
+     - lead image: http://www.flickr.com/photos/spradnyesh/11624333586/
+     - summary: Last day of the week long vacation to Busan!
+     - body:
+Since today was the last day of tour, we decided to go for the "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo eco-center]]" themed tour that we had missed on the unfortunate 3rd day. So we got up early and went to Busan station. But it looks like the Eulsukdo tour was jinxed. When I called the Busan city tour help-desk (+82-51-464-9898), they told me that both the morning and afternoon tours were fully reserved. Anyways, we were already in the bus and went to Busan station hoping that someone might skip (like we had on our 3rd day). We reached the station just a few minutes before the departure only to find out that there was just 1 empty seat. Dejected, we tried to decide what to do next. We had 3 options:
+1. Visit Beomeosa ([[[http://en.wikipedia.org/wiki/Beomeosa][1]]], [[[http://koreantemples.com/?p%3D241][2]]], [[[http://www.tripadvisor.com/Attraction_Review-g297884-d615908-Reviews-Beomeosa_Temple-Busan.html][3]]]) temple ourselves
+2. Visit [[http://www.busanhaps.com/article/history-hills-busans-gamcheon-culture-village][Gamcheon]] [[http://www.tripadvisor.com/Attraction_Review-g297884-d3901349-Reviews-Gamcheon_Culture_Village-Busan.html][culture]] village ourselves
+3. Go back to hotel and come back for afternoon tour
+
+We decided to do the third because we did not want to wander out on our own with a baby in our hands. We visited the Haeundae beach on our way back to the hotel, where we saw a lot of [[http://en.wikipedia.org/wiki/Black-legged_Kittiwake][black-legged seagulls]] up close
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11624357126/player/b40239cac8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623801213/player/8e465e2903" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+In the afternoon, we left early only to reach 40 mins before time for the Eulsukdo tour. This time our wait was fruitful because we were the 1st people to board the bus and got a good seat too. Unfortunately, there weren't any birds (other than ducks, which was not exciting at all) at the eco-center :(
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623740303/player/363e907ca3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+This marked the end of our tour, and the next day we traveled back from Busan to Suwon on the KTX. Although the train reached top speeds of 290+ kmph, it always did so when inside tunnels, so we weren't able to see outside. But we did notice our ears getting jammed, and could feel the speeds. Also, this time again, I tried to do the photography technique that I had mentioned in the day-1 post ***here, day-1***. This time I had more success, but none of the photos turned out to be good enough. Even then, it was a good learning experience.
+
+I hope you all loved the travelogue (older posts are ***here***, ***here***, ***here*** and ***here***)! Do share your thoughts :)
+     - html
+     - notes:
+     - references:
 *** template
     - toc:
     - cat/subcat:
