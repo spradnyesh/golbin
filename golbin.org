@@ -1,6 +1,10 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [fe][perf] use async js https://developers.google.com/speed/docs/insights/UseAsync
+   - [ ] GA
+   - [ ] adsense
+   - [ ] sharethis http://support.sharethis.com/customer/portal/articles/475260
 ** [bug][fe][rss] description should not contain relative URL references
    - /static/photos/....jpeg
 ** [fe] lazy-load comments (only when viewer is at bottom of page)
@@ -4685,7 +4689,7 @@ Also, simple things get complex too soon, because
     - references:
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
-*** lazyload google ads without jquery lazyload plugin
+*** problems with using git bundle + rebase -i + subtree all at the same time, and how to resolve them
     - toc:
     - cat/subcat:
     - tags:
@@ -4693,6 +4697,172 @@ Also, simple things get complex too soon, because
     - summary:
     - body:
     - html
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+** wrote (not published)
+*** TODO lazyload google ads without jQuery lazyload Ad plugin
+    :CLOCK:
+    CLOCK: [2014-01-06 Mon 13:09]--[2014-01-06 Mon 13:37] =>  0:28
+    CLOCK: [2014-01-06 Mon 12:55]--[2014-01-06 Mon 13:05] =>  0:10
+    CLOCK: [2014-01-06 Mon 12:50]--[2014-01-06 Mon 12:54] =>  0:04
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags: lazyload, google, ads, jquery, plugin, javascript, adsense, DOM, firefox, chrome, frontend, performance
+    - lead image:
+    - summary: How to make use of the new asynchronous support for google adsense ads instead of the jQuery lazyload Ad plugin
+    - body:
+I had mentioned in one of my previous articles ***here, More exciting new features for golbin*** that we had changed our lazyloading technique for google-ads on [[http://www.golb.in/][Golbin!]] pages. Today I will show you how we did it.
+
+Previously, we were using the awesome jQuery lazyload Ad plugin as shown in their documentation [[http://jqueryad.web2ajax.fr/][here]]. However, the plugin itself added about 8.4Kb to the page-weight. Even though Golbin! was using measures to lazyload the plugin itself, it was still additional page-weight, especially for first time (with browser cache empty) users.
+
+Then, recently, we noticed that google had made some changes to their [[https://support.google.com/adsense/answer/3221666][adsense]] code because of which the ads would be rendered asynchronously, thus removing the need for the jQuery lazyload Ad plugin. Sample code looks like below:
+
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+        data-ad-slot="6440411535"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+So far so good. However, we wanted to go a step further than this because:
+1. In our experience, if we put the script in the bottom of the page (just before the ending "</body>" tag), then the ads did not get rendered at all. Putting the js script at page bottom is good performance practice (see [[http://developer.yahoo.com/performance/rules.html][here]] and [[https://developers.google.com/speed/docs/insights/rules][here]] for best practices for website frontend performance).
+2. Golbin! was already using a technique to lazyload the javascript files needed by the page itself. And we wanted to continue using this technique for the new script too.
+
+Fortunately, one needs to include the script tag only once in the page irrespective of how many ad units were present on the page; this went well with our technique, because then we could lazyload the adsense script and use some JS to invoke some function to show the ads in the correct place.
+
+Our initial HTML markup snippet looks something similar to:
+
+<div class="g-ad">
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+        data-ad-slot="6440411535"></ins>
+</div>
+
+and the supporting javascript code looks like:
+
+$.getScript("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+    function (data, textStatus, jqxhr) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.text = "(adsbygoogle = window.adsbygoogle || []).push({})";
+        for (var a = null, arr = $("div.g-ad"), i = 0; i < arr.length; i += 1) {
+            a = arr[i];
+            $(a).append(script);
+       };
+    }
+);
+
+If you have ever used jQuery, you will notice that what the above javascript snippet does is that it lazyloads the adsense javascript via the getScript function. And when the adsense javascript is loaded, the anonymous function is called which does the following steps
+1. creates a script tag having the code shown in the adsense documentation
+2. finds all "div" elements having the class "g-ad"
+3. loops through the divs found in the above step and adds the script tag to the div
+
+And voila, we're done! We have now successfully reduced 8.4Kb of page-weight, which means faster pages for our readers :)
+
+The only drawback of this method is that it is impossible to debug it in the javascript debugger (in both firefox and chrome browsers), because the newly added script does not show up in the DOM :(
+
+But don't worry. If this technique has worked for us, it should for you too. So, go ahead and give it a try! And don't forget to share your experiences back :)
+    - html
+    - notes:
+    - references:
+*** TODO The producer consumer problem
+   :CLOCK:
+   CLOCK: [2013-12-19 Thu 13:56]--[2013-12-19 Thu 14:22] =>  0:26
+   :END:
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary: Taking a different perspective a the "producer consumer" problem outside of the computer world
+   - body:
+Anyone who has learnt basic "operating system" concepts in their Computer Science engineering knows about the "[[http://en.wikipedia.org/wiki/Producer-consumer_problem][producer consumer problem]]". It is a classic synchronization problem, where there are 2 processes, the "producer" and the "consumer", both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.
+
+I had mentioned in one of my previous articles, ***here (don't break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.
+
+Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it's magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.
+
+Having laid out the background of "producer" and "consumer" in my story, let me now get to the "problem" part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the "git week" series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.
+
+I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don't break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the "problem"!
+
+Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:
+
+- Don't break the chain
+- Practice makes perfect
+
+I believe that the 1st rule "don't break the chain" will take me a long way till the gates of the 1st part of the 2nd rule "practice", which will eventually take me to the 2nd part "perfection". What say you?
+   - html
+<p>
+	Anyone who has learnt basic &quot;operating system&quot; concepts in their Computer Science engineering knows about the <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem">producer consumer problem</a>. It is a classic synchronization problem, where there are 2 processes, the &quot;producer&quot; and the &quot;consumer&quot;, both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.</p>
+<p>
+	I had mentioned in one of my previous articles, ***here (don&#39;t break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.</p>
+<p>
+	Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it&#39;s magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.</p>
+<p>
+	Having laid out the background of &quot;producer&quot; and &quot;consumer&quot; in my story, let me now get to the &quot;problem&quot; part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the &quot;git week&quot; series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.</p>
+<p>
+	I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don&#39;t break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the &quot;problem&quot;!</p>
+<p>
+	Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:</p>
+<blockquote>
+	<ul>
+		<li>
+			Don&#39;t break the chain</li>
+		<li>
+			Practice makes perfect</li>
+	</ul>
+</blockquote>
+<p>
+	I believe that the 1st rule &quot;don&#39;t break the chain&quot; will take me a long way till the gates of the 1st part of the 2nd rule &quot;practice&quot;, which will eventually take me to the 2nd part &quot;perfection&quot;. What say you?</p>
+   - notes:
+   - references:
+*** TODO More exciting new features for golbin
+    :CLOCK:
+    CLOCK: [2013-12-20 Fri 16:35]--[2013-12-20 Fri 17:01] =>  0:26
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-06 Mon 13:37
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image: http://www.golb.in/static/css/images/golbin.png @ http://www.golb.in/
+    - summary:
+    - body:
+Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]] previously, we will try our best to continuously add small and big (both user-facing and not) features to our [[http://www.golb.in/][Golbin!]] website. So let's review what's new:
+
+- RSS: We have added a [[http://en.wikipedia.org/wiki/RSS][RSS]] stream for all our index pages; that is for the [[http://www.golb.in/][home]] page, and also for all category/sub-category (click [[http://www.golb.in/category/lifestyle/][here]] and [[http://www.golb.in/category/technology/internet/][here]] for example) and author pages (like [[http://www.golb.in/author/spradnyesh/][this]] for example). So now viewers can access [[http://www.golb.in/][Golbin!]] stories from your favorite feed reader. To use this functionality, simple search for and click the "RSS" link present at the bottom of any of our index pages.
+
+- lazyload [[http://www.google.com/][Google]] ads: If you have noticed earlier, google-ads on [[http://www.golb.in/][Golbin!]] pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome jQuery [[http://jqueryad.web2ajax.fr/][lazyload Ad]] plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of [[https://support.google.com/adsense/answer/3221666?hl%3Den][rendering ads]], we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on [[http://www.golb.in/][Golbin!]]
+
+- story page backgrounds: In our last post [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]], we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.
+
+As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
+    - html
+<p>
+	Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">here</a> previously, we will try our best to continuously add small and big (both user-facing and not) features to our <a href="http://www.golb.in/" target="_blank">Golbin!</a> website. So let&#39;s review what&#39;s new:</p>
+<p>
+	<strong>RSS</strong>: We have added a <a href="http://en.wikipedia.org/wiki/RSS" target="_blank">RSS</a> stream for all our index pages; that is for the <a href="http://www.golb.in/" target="_blank">home</a> page, and also for all category/sub-category (click <a href="http://www.golb.in/category/lifestyle/" target="_blank">here</a> and <a href="http://www.golb.in/category/technology/internet/" target="_blank">here</a> for example) and author pages (like <a href="http://www.golb.in/author/spradnyesh/" target="_blank">this</a> for example). So now viewers can access <a href="http://www.golb.in/" target="_blank">Golbin!</a> stories from your favorite feed reader. To use this functionality, simple search for and click the &quot;RSS&quot; link present at the bottom of any of our index pages.</p>
+<p>
+	<strong>lazyload <a href="http://www.google.com/" target="_blank">Google</a> ads</strong>: If you have noticed earlier, google-ads on <a href="http://www.golb.in/" target="_blank">Golbin!</a> pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome <a href="http://jqueryad.web2ajax.fr/" target="_blank">jQuery lazyload Ad</a> plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of <a href="https://support.google.com/adsense/answer/3221666?hl%3Den">rendering ads</a>, we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+<p>
+	<strong>story page backgrounds</strong>: In our last <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">post</a>, we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.</p>
+<p>
+	As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
     - notes:
     - references:
 *** busan week
@@ -4906,901 +5076,7 @@ I hope you all loved the travelogue (older posts are ***here***, ***here***, ***
      - html
      - notes:
      - references:
-*** template
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-    - html
-    - notes:
-    - references:
-** wrote
-*** git-week
-    - toc:
-      - [X] bundle
-      - [X] bisect
-      - [X] filter-branch: change author-names
-      - [X] filter-branch: delete files from history
-      - [X] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
-      - [X] subtree
-      - lead images
-        - http://www.flickr.com/photos/cjsorg/508821261/
-        - http://www.flickr.com/photos/44458147@N00/263228000/
-        - http://www.flickr.com/photos/slimcoincidence/1454276711/
-        - http://www.flickr.com/photos/dealingwith/4295488113/
-**** TODO git week, part 4
-    :CLOCK:
-    CLOCK: [2013-12-15 Sun 15:55]--[2013-12-15 Sun 16:08] =>  0:13
-    :END:
-    - toc:
-      - subtree
-    - cat/subcat:
-    - tags: git, version-control, github, bitbucket, git-subtree
-    - lead image: http://farm2.staticflickr.com/1137/1454276711_70900004b5.jpg @ http://www.flickr.com/photos/slimcoincidence/1454276711/
-    - summary: 4th post in the git-week series describing an awesome git feature that can come very handy at times!
-    - body:
-Hello again. Welcome back to the 4th post in the "git week" series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git subtree".
-
-But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)
-
-Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say "pull" conflicts, not "merge" conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get "non-fast-forward" errors.
-
-I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.
-
-However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don't pull/push my code changes from/to the central repository (due to reasons mentioned in the "***git week, part 1***" story), I end up facing these "non-fast-forward" errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in "***git week, part 1***" story. This way I will get rid of all these "non-fast-forward" errors that git has been throwing at me previously. Yay!
-
-Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.
-
-~/my-projects/
-    - project-A/
-        - config/
-        - src/
-            - model/
-            - view/
-            - controller
-        - data/
-            - db/
-            - static/
-                - css/
-                - js/
-                - images/
-
-I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too.
-
-Our objective in this exercise is to split out the project-A/data/db (let's call this <new-repo>) out from the current project repository (let's call this <big-repo>). Note, that the important goal of this exercise is to get the history of <new-repo> changes into the new repository. Simply doing the following
-
-mv <new-repo> <big-repo>/..
-git rm -rf <new-repo>
-
-would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting <new-repo> out of <big-repo> is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:
-
-cd ~/my-projects/project-A
-git subtree split -p data/db -b project-A-db
-cd ~/my-projects/
-mkdir project-A-db
-cd project-A-db
-git init
-git pull ~/my-projects/project-A/ project-A-db
-cd ~/my-projects/project-A
-git rm -rf data/db
-
-The above steps apply to my directory setup. But, generically, we would do the following steps:
-
-cd <big-repo>
-git subtree split -p <name-of-data-folder> -b <new-branch-name>
-cd <big-repo>/..
-mkdir <new-repo>
-cd <new-repo>
-git init
-git pull <path-to-big-repo> <new-branch-name>
-cd <big-repo>
-git rm -rf <name-of-data-folder>
-
-The most important step of this whole flow, which I am sure you must have guessed by now, is the "git subtree" command. This is the one that does all the magic!
-
-For more details of how the "git subtree" command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]
-
-I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)
-    - html
-<p>
-	Hello again. Welcome back to the 4th post in the &quot;git week&quot; series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git subtree&quot;.</p>
-<p>
-	But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)</p>
-<p>
-	Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say &quot;pull&quot; conflicts, not &quot;merge&quot; conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get &quot;non-fast-forward&quot; errors.</p>
-<p>
-	I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.</p>
-<p>
-	However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don&#39;t pull/push my code changes from/to the central repository (due to reasons mentioned in the &quot;***git week, part 1***&quot; story), I end up facing these &quot;non-fast-forward&quot; errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in &quot;***git week, part 1***&quot; story. This way I will get rid of all these &quot;non-fast-forward&quot; errors that git has been throwing at me previously. Yay!</p>
-<p>
-	Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.</p>
-<blockquote>
-	~/my-projects/<br />
-	&nbsp;&nbsp;&nbsp; - project-A/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - config/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - src/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - model/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - view/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - controller<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - data/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - db/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - static/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - css/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - js/<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - images/</blockquote>
-<p>
-	I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too. Our objective in this exercise is to split out the project-A/data/db (let&#39;s call this &lt;new-repo&gt;) out from the current project repository (let&#39;s call this &lt;big-repo&gt;). Note, that the important goal of this exercise is to get the history of &lt;new-repo&gt; changes into the new repository. Simply doing the following</p>
-<p>
-	mv &lt;new-repo&gt; &lt;big-repo&gt;/..<br />
-	git rm -rf &lt;new-repo&gt;</p>
-<p>
-	would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting &lt;new-repo&gt; out of &lt;big-repo&gt; is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:</p>
-<blockquote>
-	cd ~/my-projects/project-A<br />
-	git subtree split -p data/db -b project-A-db<br />
-	cd ~/my-projects/<br />
-	mkdir project-A-db<br />
-	cd project-A-db<br />
-	git init<br />
-	git pull ~/my-projects/project-A/ project-A-db<br />
-	cd ~/my-projects/project-A<br />
-	git rm -rf data/db</blockquote>
-<p>
-	The above steps apply to my directory setup. But, generically, we would do the following steps:</p>
-<blockquote>
-	cd &lt;big-repo&gt;<br />
-	git subtree split -p &lt;name-of-data-folder&gt; -b &lt;new-branch-name&gt;<br />
-	cd &lt;big-repo&gt;/..<br />
-	mkdir &lt;new-repo&gt;<br />
-	cd &lt;new-repo&gt;<br />
-	git init<br />
-	git pull &lt;path-to-big-repo&gt; &lt;new-branch-name&gt;<br />
-	cd &lt;big-repo&gt;<br />
-	git rm -rf &lt;name-of-data-folder&gt;</blockquote>
-<p>
-	The most important step of this whole flow, which I am sure you must have guessed by now, is the &quot;git subtree&quot; command. This is the one that does all the magic!</p>
-<p>
-	For more details of how the &quot;git subtree&quot; command works, please see <a href="http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475">this</a> and <a href="http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/">this</a></p>
-<p>
-	I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)</p>
-    - notes:
-    - references:
-**** TODO git week, part 5
-    :CLOCK:
-    CLOCK: [2013-12-16 Mon 19:36]--[2013-12-16 Mon 19:44] =>  0:08
-    CLOCK: [2013-12-16 Mon 19:22]--[2013-12-16 Mon 19:36] =>  0:14
-    :END:
-    - toc:
-      - rebase -i
-    - cat/subcat:
-    - tags: git, version-control, github, bitbucket, git-rebase-i
-    - lead image: http://farm5.staticflickr.com/4014/4295488113_6c60aa41c6.jpg @ http://www.flickr.com/photos/dealingwith/4295488113/
-    - summary: 5th post in the git-week series: git rebase -i
-    - body:
-Hello again. Welcome to the 5th post in the "git week" series; visit the previous 4 ***here***, ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git rebase -i".
-
-If you remember, We have already used git-rebase once in the ***svn-unmerge*** post. In that post I already showed how one could use git-rebase to easily handle things that are either too difficult or, at times, impossible to do in SVN. Today we will see an advanced use of git-rebase, that is "git rebase -i". This command allows us to reorder commits. Yes, you read that right! One can actually reorder commits in git. Ain't that cool?
-
-One can easily imagine certain obvious uses of this feature. For example, lets say I always push to central repository from my master branch, but locally use feature branches. Also, I may be working in parallel on 1 or more features and may also fixing bugs directly in the master branch. And I may be merging (after feature completion) from some feature branch into master. In this case, I would want to reorder the commits in a more meaningful order (one that makes more sense and shows a well thought flow to an outsider) on the master before pushing it to the central repository.
-
-In fact, this use case happened to me last week. I was working on a certain feature, and had merged the incomplete feature to master (I know, bad boy ;) ); but, fortunately, not pushed it. Then I noticed a critical bug in the production system which had to be fixed immediately. So now this bug fix is at HEAD of master, and the unfinished feature is at "HEAD~1" location. Obviously I cannot push this state to production. This is where "git rebase -i" saves the day! I do the following
-
-git rebase -i HEAD~1
-
-Here, git opens up an editor asking you to change the order of the commits (newest is at bottom). So I swap the last and one-but-last commit and save and quit the editor. Then I did
-
-git log
-
-to see that the last 2 commits (incomplete-feature and critical-bug-fix) placed in the correct (as desired) order! Now I pushed the critical-bug-fix to central repository and created a build and deployed to my production server. This time, I took the care to not push the HEAD of master, but HEAD~1 to central repository.
-
-As an added bonus, I am going to tell you a special feature of "git rebase -i". That is once git opens the editor for you to reorder your commits, you will notice the following statements at the end of the editor
-
-# Rebase 3a40bd2..ba8573d onto 3a40bd2
-#
-# Commands:
-#  p, pick = use commit
-#  r, reword = use commit, but edit the commit message
-#  e, edit = use commit, but stop for amending
-#  s, squash = use commit, but meld into previous commit
-#  f, fixup = like "squash", but discard this commit's log message
-#  x, exec = run command (the rest of the line) using shell
-#
-# These lines can be re-ordered; they are executed from top to bottom.
-#
-# If you remove a line here THAT COMMIT WILL BE LOST.
-#
-# However, if you remove everything, the rebase will be aborted.
-#
-# Note that empty commits are commented out
-
-If you read these statements carefully, you will notice that "git rebase -i" is allowing you to not only reorder your commits, but to delete, edit, etc your existing commits. This is awesome knowledge and will surely come in handy in the future. Yay!
-
-*WARNING*: Do remember, that this command makes very low level modifications to your repository and you can easily screw things up. So you should always make changes like these to a cloned repository. Also, as always, do NOT make these changes to the part of history that you have already published.
-
-I am going to keep this git-week series like a 5 day work-week and end this series here. I hope you found this (and previous posts ***here***, ***here***, ***here*** and ***here***) useful.
-
-Do let me know if they did, and how. Also let me know if you like my writing and would like me to write more such articles on other topics as well. Your comments will give me the confidence and motivation to "not break the chain" (see my previous article ***don't break the chain***)
-    - html
-<p>
-	Hello again. Welcome to the 5th post in the &quot;git week&quot; series; visit the previous 4 ***here***, ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git rebase -i&quot;.</p>
-<p>
-	If you remember, We have already used git-rebase once in the ***svn-unmerge*** post. In that post I already showed how one could use git-rebase to easily handle things that are either too difficult or, at times, impossible to do in SVN. Today we will see an advanced use of git-rebase, that is &quot;git rebase -i&quot;. This command allows us to reorder commits. Yes, you read that right! One can actually reorder commits in git. Ain&#39;t that cool?</p>
-<p>
-	One can easily imagine certain obvious uses of this feature. For example, lets say I always push to central repository from my master branch, but locally use feature branches. Also, I may be working in parallel on 1 or more features and may also fixing bugs directly in the master branch. And I may be merging (after feature completion) from some feature branch into master. In this case, I would want to reorder the commits in a more meaningful order (one that makes more sense and shows a well thought flow to an outsider) on the master before pushing it to the central repository.</p>
-<p>
-	In fact, this use case happened to me last week. I was working on a certain feature, and had merged the incomplete feature to master (I know, bad boy ;) ); but, fortunately, not pushed it. Then I noticed a critical bug in the production system which had to be fixed immediately. So now this bug fix is at HEAD of master, and the unfinished feature is at &quot;HEAD~1&quot; location. Obviously I cannot push this state to production. This is where &quot;git rebase -i&quot; saves the day!</p>
-<p>
-	I do the following</p>
-<blockquote>
-	git rebase -i HEAD~1</blockquote>
-<p>
-	Here, git opens up an editor asking you to change the order of the commits (newest is at bottom). So I swap the last and one-but-last commit and save and quit the editor. Then I did</p>
-<blockquote>
-	git log</blockquote>
-<p>
-	to see that the last 2 commits (incomplete-feature and critical-bug-fix) placed in the correct (as desired) order! Now I pushed the critical-bug-fix to central repository and created a build and deployed to my production server. This time, I took the care to not push the HEAD of master, but HEAD~1 to central repository.</p>
-<p>
-	As an added bonus, I am going to tell you a special feature of &quot;git rebase -i&quot;. That is once git opens the editor for you to reorder your commits, you will notice the following statements at the end of the editor</p>
-<blockquote>
-	# Rebase 3a40bd2..ba8573d onto 3a40bd2<br />
-	#<br />
-	# Commands:<br />
-	#&nbsp; p, pick = use commit<br />
-	#&nbsp; r, reword = use commit, but edit the commit message<br />
-	#&nbsp; e, edit = use commit, but stop for amending<br />
-	#&nbsp; s, squash = use commit, but meld into previous commit<br />
-	#&nbsp; f, fixup = like &quot;squash&quot;, but discard this commit&#39;s log message<br />
-	#&nbsp; x, exec = run command (the rest of the line) using shell<br />
-	#<br />
-	# These lines can be re-ordered; they are executed from top to bottom.<br />
-	#<br />
-	# If you remove a line here THAT COMMIT WILL BE LOST.<br />
-	#<br />
-	# However, if you remove everything, the rebase will be aborted.<br />
-	#<br />
-	# Note that empty commits are commented out</blockquote>
-<p>
-	If you read these statements carefully, you will notice that &quot;git rebase -i&quot; is allowing you to not only reorder your commits, but to delete, edit, etc your existing commits. This is awesome knowledge and will surely come in handy in the future. Yay!</p>
-<p>
-	<strong>WARNING</strong>: Do remember, that this command makes very low level modifications to your repository and you can easily screw things up. So you should always make changes like these to a cloned repository. Also, as always, do NOT make these changes to the part of history that you have already published.</p>
-<p>
-	I am going to keep this git-week series like a 5 day work-week and end this series here. I hope you found this (and previous posts ***here***, ***here***, ***here*** and ***here***) useful.</p>
-<p>
-	Do let me know if they did, and how. Also let me know if you like my writing and would like me to write more such articles on other topics as well. Your comments will give me the confidence and motivation to &quot;not break the chain&quot; (see my previous article ***don&#39;t break the chain***)</p>
-    - notes:
-    - references:
-**** problems with using git bundle + rebase -i + subtree all at the same time, and how to resolve them
-     - toc:
-     - cat/subcat:
-     - tags:
-     - lead image:
-     - summary:
-     - body:
-     - html
-     - notes:
-     - references:
-**** Archive                                                        :ARCHIVE:
-***** DONE git week, part 1
-    CLOSED: [2013-12-17 Tue 13:54]
-   :CLOCK:
-   CLOCK: [2013-12-16 Mon 14:18]--[2013-12-16 Mon 14:27] =>  0:09
-   CLOCK: [2013-12-12 Thu 19:03]--[2013-12-12 Thu 19:27] =>  0:24
-   CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
-   :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-12-17 Tue 13:56
-     :END:
-   - cat/subcat:
-   - tags: git, version-control, github, bitbucket, git-bundle
-   - lead image: http://www.flickr.com/photos/trevi55/575665048/
-   - summary: I have learned more git techniques in this week than in the past few months!
-   - body:
-As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!
-
-git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
-
-Anyways, coming to the real issue that "git-bundle" solves. I work in a jail environment; well not really, but what's the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article "don't break the chain" to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.
-
-And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found "git-bundle" was exactly what I was searching for.
-
-That's enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some environment. Let's say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first:
-
-Perform the following steps at A:
-1. cd <repo>
-2. git bundle create <repo-name>.bdl master
-3. git tag -f "bdl" master
-
-Note that the ".bdl" extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case12), as we will show below.
-
-Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:
-1. git clone -b master <repo-name>.bdl <repo>
-2. git tag -f "bdl" master
-
-Once the initial setup is done, we simplify our life to be the same as case-2, that is incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:
-1. git bundle create <repo-name>-<date>.bdl bdl..master
-2. git tag -f "bdl" master
-
-Again, the <repo-name>-<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say "bdl..master" is the "tagging" part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or "pull"-ed as explained below) earlier and where the HEAD of the master branch is now.
-
-Then, we move the bundle file from B to A, and perform the following steps at A:
-1. git pull <repo-name>-<date>.bdl master:master
-2. git tag -f "bdl" master
-
-The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!
-
-ps:
-1. read the beautifully written man page "man git-bundle" for more info
-2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!
-   - html
-<p>
-	<a href="http://www.git-scm.com/">git</a> rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p>
-<p>
-	<strong>git-bundle</strong>: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn&#39;t blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)</p>
-<p>
-	Anyways, coming to the real issue that &quot;git-bundle&quot; solves. I work in a jail environment; well not really, but what&#39;s the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like <a href="https://github.com/">github</a>, <a href="https://bitbucket.org/">bitbucket</a>, etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article &quot;don&#39;t break the chain&quot; to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p>
-<p>
-	And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found, &quot;git-bundle&quot;, was exactly what I was searching for.</p>
-<p>
-	That&#39;s enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some background first. Let&#39;s say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p>
-<blockquote>
-	<ul>
-		<li>
-			cd &lt;repo&gt;<repo></repo></li>
-		<li>
-			git bundle create &lt;repo-name&gt;.bdl master</li>
-		<li>
-			git tag -f &quot;bdl&quot; master</li>
-	</ul>
-</blockquote>
-<p>
-	Note that the &quot;.bdl&quot; extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case-2), as we will show below.</p>
-<p>
-	Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:</repo-name></p>
-<blockquote>
-	<ul>
-		<li>
-			git clone -b master &lt;repo-name&gt;.bdl &lt;repo&gt;<repo-name><repo></repo></repo-name></li>
-		<li>
-			git tag -f &quot;bdl&quot; master</li>
-	</ul>
-</blockquote>
-<p>
-	Once the initial setup is done, we simplify our life to be the same as case-2, that is, incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:</p>
-<blockquote>
-	<ul>
-		<li>
-			git bundle create &lt;repo-name&gt;-&lt;date&gt;.bdl bdl..master<repo-name><date></date></repo-name></li>
-		<li>
-			git tag -f &quot;bdl&quot; master</li>
-	</ul>
-</blockquote>
-<p>
-	Again, the <repo-name>&lt;repo-name&gt;-&lt;date&gt;<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say &quot;bdl..master&quot; is the &quot;tagging&quot; part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or &quot;pull&quot;-ed as explained below) earlier and where the HEAD of the master branch is now.</date></repo-name></p>
-<p>
-	Then, we move the bundle file from B to A, and perform the following steps at A:</p>
-<blockquote>
-	<ul>
-		<li>
-			git pull &lt;repo-name&gt;-&lt;date&gt;.bdl master:master<repo-name><date></date></repo-name></li>
-		<li>
-			git tag -f &quot;bdl&quot; master</li>
-	</ul>
-</blockquote>
-<p>
-	The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!</p>
-<p>
-	ps:</p>
-<ul>
-	<li>
-		Read the beautifully written man page &quot;man git-bundle&quot; for more info</li>
-	<li>
-		Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!</li>
-</ul>
-   - notes:
-   - references:
-***** DONE git week, part 2
-    CLOSED: [2013-12-20 Fri 13:16]
-    :CLOCK:
-    CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
-    CLOCK: [2013-12-12 Thu 20:00]--[2013-12-12 Thu 20:17] =>  0:17
-    CLOCK: [2013-12-12 Thu 19:45]--[2013-12-12 Thu 19:54] =>  0:09
-    :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-12-20 Fri 13:17
-     :END:
-    - toc:
-    - cat/subcat:
-    - tags: git, version-control, github, bitbucket, git-filter-branch
-    - lead image: http://farm1.staticflickr.com/189/508821261_c92df143d2.jpg @ http://www.flickr.com/photos/cjsorg/508821261/
-    - summary: 2nd post in the git-week series detailing another cool git feature that proved life-saver!
-    - body:
-Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)
-
-This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
-
-The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:
-
-git filter-branch --commit-filter 'GIT_COMMITTER_NAME="<new-name>"; GIT_AUTHOR_NAME="<new-name>"; GIT_COMMITTER_EMAIL="<new-email>"; GIT_AUTHOR_EMAIL="<new-email>"; git commit-tree "$@";' HEAD
-
-Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].
-
-The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.
-
-But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:
-
-git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $files" HEAD
-rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
-
-Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:
-
-git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <yyyymm>-*" HEAD
-rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
-
-The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.
-
-With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)
-
-Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
-    - html
-<p>
-	Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)</p>
-<p>
-	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
-<p>
-	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
-<blockquote>
-	git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</blockquote>
-<p>
-	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example <a href="http://stackoverflow.com/a/870367">here</a>.</p>
-<p>
-	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
-<p>
-	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
-<blockquote>
-	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD<br />
-	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
-<p>
-	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
-<blockquote>
-	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD<br />
-	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
-<p>
-	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
-<p>
-	With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p>
-<p>
-	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
-    - notes:
-    - references:
-***** DONE git week, part 3
-    CLOSED: [2013-12-20 Fri 13:17]
-    :CLOCK:
-    CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
-    CLOCK: [2013-12-13 Fri 15:11]--[2013-12-13 Fri 15:32] =>  0:21
-    :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2013-12-20 Fri 13:17
-     :END:
-    - toc:
-    - cat/subcat:
-    - tags: git, version-control, github, bitbucket, git-bisect
-    - lead image: http://farm1.staticflickr.com/87/263228000_9513c97026.jpg @ http://www.flickr.com/photos/44458147@N00/263228000/
-    - summary: 3rd post in the git-week series detailing another cool git feature: git bisect!
-    - body:
-Hi there. Welcome back to the 3rd post in the "git week" series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git bisect".
-
-I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not "how" to fix, but to understand "what" broke this feature, and "when". Maybe, if you are like my manager, you are also looking out for the "who", to put some blame on.
-
-Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with "git-bisect". I am sure, that by this time, based on my description above, and based on the name "bisect", you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a "binary search" or a "divide-and-conquer" strategy to find the bad commit, you are absolutely correct.
-
-So how this works is that you find 2 commit hashes, G and B, which stand for "good" and "bad" respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).
-
-The steps are as follows:
-
-1. git bisect start
-2. git bisect bad <B>
-3. git bisect good <G>
-
-Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows
-
-git bisect good
-
-OR
-
-git bisect bad
-
-respectively.
-
-Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)
-
-After you have finished this bisection exercise, run the following command
-
-git bisect reset
-
-to come out of the bisect session back to where you started from.
-
-One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)
-
-For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
-    - html
-<p>
-	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
-<p>
-	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
-<p>
-	Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with &quot;git-bisect&quot;. I am sure, that by this time, based on my description above, and based on the name &quot;bisect&quot;, you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a &quot;binary search&quot; or a &quot;divide-and-conquer&quot; strategy to find the bad commit, you are absolutely correct.</p>
-<p>
-	So how this works is that you find 2 commit hashes, G and B, which stand for &quot;good&quot; and &quot;bad&quot; respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).</p>
-<p>
-	The steps are as follows:</p>
-<blockquote>
-	<ul>
-		<li>
-			git bisect start</li>
-		<li>
-			git bisect bad &lt;B&gt;</li>
-		<li>
-			git bisect good &lt;G&gt;</li>
-	</ul>
-</blockquote>
-<p>
-	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows</p>
-<blockquote>
-	git bisect good</blockquote>
-<p>
-	OR</p>
-<blockquote>
-	git bisect bad</blockquote>
-<p>
-	respectively.</p>
-<p>
-	Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)</p>
-<p>
-	After you have finished this bisection exercise, run the following command</p>
-<blockquote>
-	git bisect reset</blockquote>
-<p>
-	to come out of the bisect session back to where you started from.</p>
-<p>
-	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
-<p>
-	For more details (advanced usage of git-bisect), RTFM and/or visit <a href="http://git-scm.com/docs/git-bisect">here</a>. Do share with us about if you have used git bisect before and how did it help you</p>
-    - notes:
-    - references:
-*** TODO difference between learnt and learned
-   :CLOCK:
-   CLOCK: [2013-12-17 Tue 16:54]--[2013-12-17 Tue 17:30] =>  0:36
-   :END:
-   - http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html
-   - http://www.differencebetween.net/language/difference-between-learned-and-learnt/
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-Hi there! Although I sincerely hope that you have been reading my recent git-week posts ***here***, ***here***, ***here***, ***here*** and ***here***, frankly, I myself am happy that the week is over. No, no, don't misunderstand me. I am happy that I learned and was able to share these git gems with you all. But, I am currently undergoing some stress, due to
-- things not going well at work (read ***this*** to know why)
-- I am starting to feel the pressure of "don't break the chain" (read about my attempt at it ***here***)
-- Being a newbie to blogging, I am having some difficulty finding good ideas/matter to write about
-
-Anyways, I will do an honest attempt to not only not break the chain, but also to not give under-cooked material to read. Otherwise you might feel bored and go away; now, we don't want that to happen, do we? But at the same time I will keep the topic for today light enough so that I am able to achieve my objectives
-- provide useful/entertaining information to you
-- improve my [[http://en.wikipedia.org/wiki/Cognition][cognitive]] and writing skills
-- not break the chain
-
-So the topic for today is "difference between learnt and learned". Before I go on to the formal differences, let me tell you my version of the story. I used to think that "learnt" was something that had happened very very long time ago, like "I had learnt to ride a bicycle when I was 5 years old", whereas "learned" was something that happened very recently, or just now, like "I just learned what this means". Also, I noticed (when saying sentences containing the words in my mind) that I would lean towards using "learnt" almost always instead of using "learned".
-
-Now I am not really sure if this is correct (along with the other definitions that I will show below) or not. What do you think? Probably you too thought similarly.
-
-But 1 important question that I have not said anything about is "why". As in, "why" did i get interested in the difference between "learnt" and "learned" in the first place. Why does it matter to me at all? The story behind this is that when i was writing the post about ***speed your website 100x times***, my editor showed the word "learnt" in yellow color grabbing my attention. I went into spell-check and the only option it showed was "learned"; "learnt" was not there at all in it's suggestions. This confused me because I knew for sure that "learnt" is a valid word. This piqued my curiosity enough for me to quickly search online for meanings and differences between the 2 words.
-
-Anyways, coming back to the actual differences. Unexpectedly I found 2 _unrelated_ differences [[http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html][here]] and [[http://www.differencebetween.net/language/difference-between-learned-and-learnt/][here]]. The first one says that they are the same words, but pronounced (and spelled) differently in British and American English. Well, that atleast explains
-- why I would lean towards using "learnt" instead of using "learned" almost every time (since I am Indian and learn British English. Actually what Indians use is our very own dialect of English, if I may call it that. But lets be content by saying that since India was ruled by the British for more than 150 years, what we use is British English
-- why my editor did not show "learnt" in its suggestions; because I am using the American (en-US) language pack for spelling check/correction
-
-The second definition [[http://www.differencebetween.net/language/difference-between-learned-and-learnt/][here]] mentioned "learned" as an adjective, like "he is a very learned man", whereas "learnt" as a verb, like "he has learnt many languages". Looking back, I remember having learnt something like this when I was in school. But I have never been very good with languages (and history and geography and ... (the list goes on, heh heh!)). But hey, I did manage to use the correct word in my previous sentence. Does that mean that I am a learned man now?
-
-What do you think?
-   - html
-<p>
-	Hi there! Although I sincerely hope that you have been reading my recent git-week posts ***here***, ***here***, ***here***, ***here*** and ***here***, frankly, I myself am happy that the week is over. No, no, don&#39;t misunderstand me. I am happy that I learned and was able to share these git gems with you all. But, I am currently undergoing some stress, due to</p>
-<ul>
-	<li>
-		things not going well at work (read ***this*** to know why)</li>
-	<li>
-		I am starting to feel the pressure of &quot;don&#39;t break the chain&quot; (read about my attempt at it ***here***)</li>
-	<li>
-		Being a newbie to blogging, I am having some difficulty finding good ideas/matter to write about</li>
-</ul>
-<p>
-	Anyways, I will do an honest attempt to not only not break the chain, but also to not give under-cooked material to read. Otherwise you might feel bored and go away; now, we don&#39;t want that to happen, do we? But at the same time I will keep the topic for today light enough so that I am able to achieve my objectives</p>
-<ul>
-	<li>
-		provide useful/entertaining information to you</li>
-	<li>
-		improve my <a href="http://en.wikipedia.org/wiki/Cognition">cognitive</a> and writing skills</li>
-	<li>
-		not break the chain</li>
-</ul>
-<p>
-	So the topic for today is &quot;difference between learnt and learned&quot;. Before I go on to the formal differences, let me tell you my version of the story. I used to think that &quot;learnt&quot; was something that had happened very very long time ago, like &quot;I had learnt to ride a bicycle when I was 5 years old&quot;, whereas &quot;learned&quot; was something that happened very recently, or just now, like &quot;I just learned what this means&quot;. Also, I noticed (when saying sentences containing the words in my mind) that I would lean towards using &quot;learnt&quot; almost always instead of using &quot;learned&quot;.</p>
-<p>
-	Now I am not really sure if this is correct (along with the other definitions that I will show below) or not. What do you think? Probably you too thought similarly.</p>
-<p>
-	But 1 important question that I have not said anything about is &quot;why&quot;. As in, &quot;why&quot; did i get interested in the difference between &quot;learnt&quot; and &quot;learned&quot; in the first place. Why does it matter to me at all? The story behind this is that when i was writing the post about ***speed your website 100x times***, my editor showed the word &quot;learnt&quot; in yellow color grabbing my attention. I went into spell-check and the only option it showed was &quot;learned&quot;; &quot;learnt&quot; was not there at all in it&#39;s suggestions. This confused me because I knew for sure that &quot;learnt&quot; is a valid word. This piqued my curiosity enough for me to quickly search online for meanings and differences between the 2 words.</p>
-<p>
-	Anyways, coming back to the actual differences. Unexpectedly I found 2 _unrelated_ differences <a href="http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html">here</a> and <a href="http://www.differencebetween.net/language/difference-between-learned-and-learnt/">here</a>. The first one says that they are the same words, but pronounced (and spelled) differently in British and American English. Well, that atleast explains</p>
-<ul>
-	<li>
-		why I would lean towards using &quot;learnt&quot; instead of using &quot;learned&quot; almost every time (since I am Indian and learn British English. Actually what Indians use is our very own dialect of English, if I may call it that. But lets be content by saying that since India was ruled by the British for more than 150 years, what we use is British English</li>
-	<li>
-		why my editor did not show &quot;learnt&quot; in its suggestions; because I am using the American (en-US) language pack for spelling check/correction</li>
-</ul>
-<p>
-	The second definition <a href="http://www.differencebetween.net/language/difference-between-learned-and-learnt/">here</a> mentioned &quot;learned&quot; as an adjective, like &quot;he is a very learned man&quot;, whereas &quot;learnt&quot; as a verb, like &quot;he has learnt many languages&quot;. Looking back, I remember having learnt something like this when I was in school. But I have never been very good with languages (and history and geography and ... (the list goes on, heh heh!)). But hey, I did manage to use the correct word in my previous sentence. Does that mean that I am a learned man now?</p>
-<p>
-	What do you think?</p>
-   - notes:
-   - references:
-*** TODO environment variables in crontab
-   :CLOCK:
-   CLOCK: [2013-12-18 Wed 13:46]--[2013-12-18 Wed 14:20] =>  0:34
-   CLOCK: [2013-12-18 Wed 13:33]--[2013-12-18 Wed 13:40] =>  0:07
-   :END:
-   - toc:
-     - spent 1 hour on 10 min job
-     - various solutions tried
-       - at top
-       - export ...; command
-       - ...; command
-     - finally the 1 that worked
-       - env ... command
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary:
-   - body:
-As you all probably already know (from ***here*** and ***here***), I am currently working on a project that needs me to collect data from various online resources. Since this data needs to be collected at regular intervals (due to updates happening to the data continuously), and not in just one go, I am using cronjob scripts to collect this data.
-
-While writing this script I faced a lot of problems, and that is what I will discuss today. In the hope that someone out there will find something important from my mistakes and learnings, and that this post may be helpful in solving similar problems for him/her too.
-
-As always, let me first start with some background. When developing the script, my desktop was behind a proxy. Although both curl and wget have inbuilt proxy support, both of them refused to work for me. With wget, i was getting the following error:
-
-Connecting to 168.219.61.252:8080... connected.
-Proxy request sent, awaiting response... 403 Forbidden
-2013-12-18 13:39:36 ERROR 403: Forbidden.
-
-My first instinct was that the proxy is blocking the request. But I was able to download the file perfectly from browser (which also goes via the same proxy). I hit a dead end and did not know what to do next. So I searched for command line based download managers instead and found [[http://aria2.sourceforge.net/][aria2]] that worked fine for me. YMMV.
-
-Before going on, let me also mention that I had the following environment variables set
-
-13:47:17 ~ $ env | grep proxy
-http_proxy=http://168.219.61.252:8080/
-ftp_proxy=http://168.219.61.252:8080/
-all_proxy=socks://http://168.219.61.250:8080/
-https_proxy=http://168.219.61.252:8080/
-proxy=168.219.61.252:8080
-no_proxy=localhost,127.0.0.0/8,::1
-
-Back to the script now. The reason I needed a script (instead of just a simple wget/aria2 command inside crontab was simply because i needed to do some pre and post-processing to the downloaded content). Anyways, that's besides the point. So lets continue.
-
-I was ready with the script and tested it extensively, both for the download part and post-processing, and ensured that things were working fine. Then i setup crontab as follows:
-
-13:47:19 ~ $ crontab -l
-# DO NOT EDIT THIS FILE - edit the master and reinstall.
-# (/tmp/crontab.XXXX4oqDI8 installed on Wed Dec 11 19:42:26 2013)
-# (Cron version V5.0 -- $Id: crontab.c,v 1.12 2004/01/23 18:56:42 vixie Exp $)
-HOME=/home/spradnyesh
-
-0 */5 * * 1,2,3,4,5 $HOME/project/scripts/download-daily.sh 2>&1 > $HOME/dd.log
-
-I am sure you all know what the parameters of the cronjob line mean. But I will explain them just for the sake of completeness:
-
-1. 0: run at 00 minutes
-2. */5: run every 5 hours
-3. *: run on every day of the month
-4. *: run in every month
-5. 1,2,3,4,5: run only on weekdays (mon,tue,wed,thurs,fri)
-
-Having explained that, lets move to the script itself. It looked something like this
-
-#!/bin/bash
-
-##### initial setup
-cd $HOME/project/data/
-toDate=`date +%F--%H`
-prefix='http://www.example.com/'
-suffix='&a=b'
-outfile='download-daily.txt'
-
-##### download data
-rm $outfile
-touch $outfile
-for i in `cat ../list`
-do
-    echo "${prefix}${i}${suffix}" >> $outfile
-    echo " out=${toDate}-${i}.html" >> $outfile
-done
-aria2c -j 10 --allow-overwrite=true --remove-control-file=true --remove-control-file=false -i $outfile
-
-##### do some post-processing
-
-git add $toDate.html; git commit -am "added data for $toDate"
-
-The actual details of the script don't matter. Basically, I am simply doing some initial setup, downloading the data, doing post processing including saving the new file to git (read about my previous git experiences ***here***, ***here***, ***here***, ***here*** and ***here***).
-
-Unfortunately ([[http://en.wikipedia.org/wiki/Murphy%2527s_law][Murphy's law]]), the script failed to download any data. On examining closely, I found that the $http_proxy environment variable was not visible inside the script. Researching online on this issue I learnt (to learn about the difference between "learnt" and "learned", visit my previous story ***here***) that the environment available to a script run via cron is very limited (mostly for security reasons), which is why the $http_proxy variable was invisible inside the script.
-
-To deal with this issue, i found a few solutions [[http://stackoverflow.com/a/2229861][here]], [[http://stackoverflow.com/a/10657111][here]], [[http://stackoverflow.com/a/13579786][here]] (this one (and similarly [[http://stackoverflow.com/a/18647100][this]] one and [[http://stackoverflow.com/a/18647100][this]] one) is a big NO NO for security reasons, and also due to limitations as explained [[http://stackoverflow.com/questions/5934554/crontab-source-file#][here]] and [[http://stackoverflow.com/a/5935335][here]]), but none of them seemed to work for me. What eventually worked for me was setting up my cronjob rule as follows:
-
-0 */5 * * 1,2,3,4,5 env http_proxy=http://168.219.61.252:8080/ $HOME/project/scripts/download-daily.sh 2>&1 > $HOME/dd.log
-
-Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!
-   - html
-<p>
-	As you all probably already know (from ***here*** and ***here***), I am currently working on a project that needs me to collect data from various online resources. Since this data needs to be collected at regular intervals (due to updates happening to the data continuously), and not in just one go, I am using cronjob scripts to collect this data.</p>
-<p>
-	While writing this script I faced a lot of problems, and that is what I will discuss today. In the hope that someone out there will find something important from my mistakes and learnings, and that this post may be helpful in solving similar problems for him/her too.</p>
-<p>
-	As always, let me first start with some background. When developing the script, my desktop was behind a proxy. Although both curl and wget have inbuilt proxy support, both of them refused to work for me. With wget, i was getting the following error:</p>
-<blockquote>
-	Connecting to 168.219.61.252:8080... connected.<br />
-	Proxy request sent, awaiting response... 403 Forbidden<br />
-	2013-12-18 13:39:36 ERROR 403: Forbidden.</blockquote>
-<p>
-	My first instinct was that the proxy is blocking the request. But I was able to download the file perfectly from browser (which also goes via the same proxy). I hit a dead end and did not know what to do next. So I searched for command line based download managers instead and found <a href="http://aria2.sourceforge.net/">aria2</a> that worked fine for me. YMMV.</p>
-<p>
-	Before going on, let me also mention that I had the following environment variables set</p>
-<blockquote>
-	13:47:17 ~ $ env | grep proxy<br />
-	http_proxy=http://168.219.61.252:8080/<br />
-	ftp_proxy=http://168.219.61.252:8080/<br />
-	all_proxy=socks://http://168.219.61.250:8080/<br />
-	https_proxy=http://168.219.61.252:8080/<br />
-	proxy=168.219.61.252:8080<br />
-	no_proxy=localhost,127.0.0.0/8,::1</blockquote>
-<p>
-	Back to the script now. The reason I needed a script (instead of just a simple wget/aria2 command inside crontab was simply because i needed to do some pre and post-processing to the downloaded content). Anyways, that&#39;s besides the point. So lets continue.</p>
-<p>
-	I was ready with the script and tested it extensively, both for the download part and post-processing, and ensured that things were working fine. Then i setup crontab as follows:</p>
-<blockquote>
-	13:47:19 ~ $ crontab -l<br />
-	# DO NOT EDIT THIS FILE - edit the master and reinstall.<br />
-	# (/tmp/crontab.XXXX4oqDI8 installed on Wed Dec 11 19:42:26 2013)<br />
-	# (Cron version V5.0 -- $Id: crontab.c,v 1.12 2004/01/23 18:56:42 vixie Exp $)<br />
-	HOME=/home/spradnyesh 0 */5 * * 1,2,3,4,5 $HOME/project/scripts/download-daily.sh 2&gt;&amp;1 &gt; $HOME/dd.log</blockquote>
-<p>
-	I am sure you all know what the parameters of the cronjob line mean. But I will explain them briefly just for the sake of completeness:</p>
-<blockquote>
-	1. 0: run at 00 minutes<br />
-	2. */5: run every 5 hours<br />
-	3. *: run on every day of the month<br />
-	4. *: run in every month<br />
-	5. 1,2,3,4,5: run only on weekdays (mon,tue,wed,thurs,fri)</blockquote>
-<p>
-	Having explained that, lets move to the script itself. It looked something like this</p>
-<blockquote>
-	#!/bin/bash<br />
-	<br />
-	##### initial setup<br />
-	cd $HOME/project/data/<br />
-	toDate=`date +%F--%H`<br />
-	prefix=&#39;http://www.example.com/&#39;<br />
-	suffix=&#39;&amp;a=b&#39;<br />
-	outfile=&#39;download-daily.txt&#39;<br />
-	<br />
-	##### download data<br />
-	rm $outfile<br />
-	touch $outfile<br />
-	for i in `cat ../list`<br />
-	do<br />
-	&nbsp;&nbsp;&nbsp; echo &quot;${prefix}${i}${suffix}&quot; &gt;&gt; $outfile<br />
-	&nbsp;&nbsp;&nbsp; echo &quot; out=${toDate}-${i}.html&quot; &gt;&gt; $outfile<br />
-	done<br />
-	aria2c -j 10 --allow-overwrite=true --remove-control-file=true --remove-control-file=false -i $outfile<br />
-	<br />
-	##### do some post-processing<br />
-	<br />
-	git add $toDate.html; git commit -am &quot;added data for $toDate&quot;</blockquote>
-<p>
-	The actual details of the script don&#39;t matter. Basically, I am simply doing some initial setup, downloading the data, doing post processing including saving the new file to git (read about my previous git experiences ***here***, ***here***, ***here***, ***here*** and ***here***).</p>
-<p>
-	Unfortunately (<a href="http://en.wikipedia.org/wiki/Murphy%2527s_law">Murphy&#39;s law</a>), the script failed to download any data. On examining closely, I found that the $http_proxy environment variable was not visible inside the script. Researching online on this issue I learnt (to learn about the difference between &quot;learnt&quot; and &quot;learned&quot;, visit my previous story ***here***) that the environment available to a script run via cron is very limited (mostly for security reasons), which is why the $http_proxy variable was invisible inside the script.</p>
-<p>
-	To deal with this issue, i found a few solutions <a href="http://stackoverflow.com/a/2229861">here</a>, <a href="http://stackoverflow.com/a/10657111">here</a>, <a href="http://stackoverflow.com/a/13579786">here</a> (this one (and similarly <a href="http://stackoverflow.com/a/18647100">this</a> one and <a href="http://stackoverflow.com/a/18647100">this</a> one) is a big NO NO for security reasons, and also due to limitations as explained <a href="http://stackoverflow.com/questions/5934554/crontab-source-file#">here</a> and <a href="http://stackoverflow.com/a/5935335">here</a>), but none of them seemed to work for me. What eventually worked for me was setting up my cronjob rule as follows:</p>
-<blockquote>
-	0 */5 * * 1,2,3,4,5 env http_proxy=http://168.219.61.252:8080/ $HOME/project/scripts/download-daily.sh 2&gt;&amp;1 &gt; $HOME/dd.log</blockquote>
-<p>
-	Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!</p>
-   - notes:
-   - references:
-*** TODO The producer consumer problem
-   :CLOCK:
-   CLOCK: [2013-12-19 Thu 13:56]--[2013-12-19 Thu 14:22] =>  0:26
-   :END:
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary: Taking a different perspective a the "producer consumer" problem outside of the computer world
-   - body:
-Anyone who has learnt basic "operating system" concepts in their Computer Science engineering knows about the "[[http://en.wikipedia.org/wiki/Producer-consumer_problem][producer consumer problem]]". It is a classic synchronization problem, where there are 2 processes, the "producer" and the "consumer", both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.
-
-I had mentioned in one of my previous articles, ***here (don't break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.
-
-Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it's magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.
-
-Having laid out the background of "producer" and "consumer" in my story, let me now get to the "problem" part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the "git week" series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.
-
-I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don't break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the "problem"!
-
-Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:
-
-- Don't break the chain
-- Practice makes perfect
-
-I believe that the 1st rule "don't break the chain" will take me a long way till the gates of the 1st part of the 2nd rule "practice", which will eventually take me to the 2nd part "perfection". What say you?
-   - html
-<p>
-	Anyone who has learnt basic &quot;operating system&quot; concepts in their Computer Science engineering knows about the <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem">producer consumer problem</a>. It is a classic synchronization problem, where there are 2 processes, the &quot;producer&quot; and the &quot;consumer&quot;, both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.</p>
-<p>
-	I had mentioned in one of my previous articles, ***here (don&#39;t break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.</p>
-<p>
-	Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it&#39;s magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.</p>
-<p>
-	Having laid out the background of &quot;producer&quot; and &quot;consumer&quot; in my story, let me now get to the &quot;problem&quot; part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the &quot;git week&quot; series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.</p>
-<p>
-	I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don&#39;t break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the &quot;problem&quot;!</p>
-<p>
-	Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:</p>
-<blockquote>
-	<ul>
-		<li>
-			Don&#39;t break the chain</li>
-		<li>
-			Practice makes perfect</li>
-	</ul>
-</blockquote>
-<p>
-	I believe that the 1st rule &quot;don&#39;t break the chain&quot; will take me a long way till the gates of the 1st part of the 2nd rule &quot;practice&quot;, which will eventually take me to the 2nd part &quot;perfection&quot;. What say you?</p>
-   - notes:
-   - references:
-*** TODO More exciting new features for golbin
-    :CLOCK:
-    CLOCK: [2013-12-20 Fri 16:35]--[2013-12-20 Fri 17:01] =>  0:26
-    :END:
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image: http://www.golb.in/static/css/images/golbin.png @ http://www.golb.in/
-    - summary:
-    - body:
-Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]] previously, we will try our best to continuously add small and big (both user-facing and not) features to our [[http://www.golb.in/][Golbin!]] website. So let's review what's new:
-
-- RSS: We have added a [[http://en.wikipedia.org/wiki/RSS][RSS]] stream for all our index pages; that is for the [[http://www.golb.in/][home]] page, and also for all category/sub-category (click [[http://www.golb.in/category/lifestyle/][here]] and [[http://www.golb.in/category/technology/internet/][here]] for example) and author pages (like [[http://www.golb.in/author/spradnyesh/][this]] for example). So now viewers can access [[http://www.golb.in/][Golbin!]] stories from your favorite feed reader. To use this functionality, simple search for and click the "RSS" link present at the bottom of any of our index pages.
-
-- lazyload [[http://www.google.com/][Google]] ads: If you have noticed earlier, google-ads on [[http://www.golb.in/][Golbin!]] pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome jQuery [[http://jqueryad.web2ajax.fr/][lazyload Ad]] plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of [[https://support.google.com/adsense/answer/3221666?hl%3Den][rendering ads]], we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on [[http://www.golb.in/][Golbin!]]
-
-- story page backgrounds: In our last post [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]], we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.
-
-As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
-    - html
-<p>
-	Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">here</a> previously, we will try our best to continuously add small and big (both user-facing and not) features to our <a href="http://www.golb.in/" target="_blank">Golbin!</a> website. So let&#39;s review what&#39;s new:</p>
-<p>
-	<strong>RSS</strong>: We have added a <a href="http://en.wikipedia.org/wiki/RSS" target="_blank">RSS</a> stream for all our index pages; that is for the <a href="http://www.golb.in/" target="_blank">home</a> page, and also for all category/sub-category (click <a href="http://www.golb.in/category/lifestyle/" target="_blank">here</a> and <a href="http://www.golb.in/category/technology/internet/" target="_blank">here</a> for example) and author pages (like <a href="http://www.golb.in/author/spradnyesh/" target="_blank">this</a> for example). So now viewers can access <a href="http://www.golb.in/" target="_blank">Golbin!</a> stories from your favorite feed reader. To use this functionality, simple search for and click the &quot;RSS&quot; link present at the bottom of any of our index pages.</p>
-<p>
-	<strong>lazyload <a href="http://www.google.com/" target="_blank">Google</a> ads</strong>: If you have noticed earlier, google-ads on <a href="http://www.golb.in/" target="_blank">Golbin!</a> pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome <a href="http://jqueryad.web2ajax.fr/" target="_blank">jQuery lazyload Ad</a> plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of <a href="https://support.google.com/adsense/answer/3221666?hl%3Den">rendering ads</a>, we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
-<p>
-	<strong>story page backgrounds</strong>: In our last <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">post</a>, we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.</p>
-<p>
-	As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
-    - notes:
-    - references:
-*** Archive                                                         :ARCHIVE:
+*** Archive (published)                                             :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
     :PROPERTIES:
@@ -6622,6 +5898,816 @@ Do you have productivity techniques that work well for you? I will be happy to l
 	In fact, maybe you have noticed that i have started writing articles almost everyday now here on [[http://www.golb.in/][Golbin!]] An I have also started doing some other stuff, including some hobby work. I think that this method is excellent while the slack period continues. After that I will move back to GTD :) To learn about more such methods, click <a href="http://lifehacker.com/5890129/five-best-productivity-methods">here</a>.</p>
 <p>
 	Do you have productivity techniques that work well for you? I will be happy to learn about them, so do share!</p>
+   - notes:
+   - references:
+**** DONE git-week
+     CLOSED: [2014-01-06 Mon 13:38]
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-06 Mon 13:37
+     :END:
+     - toc:
+       - [X] bundle
+       - [X] bisect
+       - [X] filter-branch: change author-names
+       - [X] filter-branch: delete files from history
+       - [X] rebase -i (for reordering commits: http://gitready.com/advanced/2009/03/20/reorder-commits-with-rebase.html)
+       - [X] subtree
+       - lead images
+         - http://www.flickr.com/photos/cjsorg/508821261/
+         - http://www.flickr.com/photos/44458147@N00/263228000/
+         - http://www.flickr.com/photos/slimcoincidence/1454276711/
+         - http://www.flickr.com/photos/dealingwith/4295488113/
+***** Archive                                                       :ARCHIVE:
+****** DONE git week, part 1
+    CLOSED: [2013-12-17 Tue 13:54]
+   :CLOCK:
+   CLOCK: [2013-12-16 Mon 14:18]--[2013-12-16 Mon 14:27] =>  0:09
+   CLOCK: [2013-12-12 Thu 19:03]--[2013-12-12 Thu 19:27] =>  0:24
+   CLOCK: [2013-12-11 Wed 19:49]--[2013-12-11 Wed 20:25] =>  0:36
+   :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-17 Tue 13:56
+     :END:
+   - cat/subcat:
+   - tags: git, version-control, github, bitbucket, git-bundle
+   - lead image: http://www.flickr.com/photos/trevi55/575665048/
+   - summary: I have learned more git techniques in this week than in the past few months!
+   - body:
+As always, [[http://www.git-scm.com/][git]] rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!
+
+git-bundle: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn't blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)
+
+Anyways, coming to the real issue that "git-bundle" solves. I work in a jail environment; well not really, but what's the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like [[https://github.com/][github]], [[https://bitbucket.org/][bitbucket]], etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article "don't break the chain" to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.
+
+And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found "git-bundle" was exactly what I was searching for.
+
+That's enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some environment. Let's say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first:
+
+Perform the following steps at A:
+1. cd <repo>
+2. git bundle create <repo-name>.bdl master
+3. git tag -f "bdl" master
+
+Note that the ".bdl" extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case12), as we will show below.
+
+Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:
+1. git clone -b master <repo-name>.bdl <repo>
+2. git tag -f "bdl" master
+
+Once the initial setup is done, we simplify our life to be the same as case-2, that is incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:
+1. git bundle create <repo-name>-<date>.bdl bdl..master
+2. git tag -f "bdl" master
+
+Again, the <repo-name>-<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say "bdl..master" is the "tagging" part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or "pull"-ed as explained below) earlier and where the HEAD of the master branch is now.
+
+Then, we move the bundle file from B to A, and perform the following steps at A:
+1. git pull <repo-name>-<date>.bdl master:master
+2. git tag -f "bdl" master
+
+The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!
+
+ps:
+1. read the beautifully written man page "man git-bundle" for more info
+2. Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!
+   - html
+<p>
+	<a href="http://www.git-scm.com/">git</a> rocks! I have been using git for all my personal projects for at-least the last 2 years now. But what I have learned in this week is probably more than what I have learned in the last few months, and I am dying to share them with you!</p>
+<p>
+	<strong>git-bundle</strong>: Honestly, I learned this maybe in the last month, or the month before that. But then, I wasn&#39;t blogging actively at that time. So what the heck? I will share it with you as if I have learned it in this week ;)</p>
+<p>
+	Anyways, coming to the real issue that &quot;git-bundle&quot; solves. I work in a jail environment; well not really, but what&#39;s the fun in something if there is not even a little hint of exaggeration? The point is that we are not allowed access to git hosting sites like <a href="https://github.com/">github</a>, <a href="https://bitbucket.org/">bitbucket</a>, etc. So I was having trouble moving my personal projects (that I work on during my free/slack (see my article &quot;don&#39;t break the chain&quot; to see how to make productive use of slack time) time between home and office without access to a central repository to sync between my home and office repositories. I searched for other github-like sites (even paid) that I might have access to from my jail, but without success. I was very frustrated.</p>
+<p>
+	And then, instead of looking outward, I looked inward (wow, that came out very philosophical!). That is, instead of finding websites that could help me, I searched for whether git has any functionality that could liberate me. And voila, the thing that I found, &quot;git-bundle&quot;, was exactly what I was searching for.</p>
+<p>
+	That&#39;s enough of history. Lets get to the details of how git-bundle helped me. For explaining the situation however, we need to set up some background first. Let&#39;s say the 2 repositories (home and office, in my case) that we want to keep in sync are A and B. We will cover 2 cases. case-1 is where we have created a new repository (A), and where B has not been setup yet. case-2 is where both A and B exist already (say before access to github was removed), and you have now made changes to one of them, say A. Lets start with the 1st case first. Perform the following steps at A:</p>
+<blockquote>
+	<ul>
+		<li>
+			cd &lt;repo&gt;<repo></repo></li>
+		<li>
+			git bundle create &lt;repo-name&gt;.bdl master</li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Note that the &quot;.bdl&quot; extension is completely arbitrary, and git does not put any restrictions on it. Similarly you can decide on what tag you want to use. Tagging is useful when sending incremental patches (case-2), as we will show below.</p>
+<p>
+	Back to case-1. Transfer the <repo-name>.bdl file to B (via email, etc) and perform the following steps at B:</repo-name></p>
+<blockquote>
+	<ul>
+		<li>
+			git clone -b master &lt;repo-name&gt;.bdl &lt;repo&gt;<repo-name><repo></repo></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Once the initial setup is done, we simplify our life to be the same as case-2, that is, incremental sync. For this case, lets assume that you have made some changes in B and want to move them to A. Perform the following steps at B:</p>
+<blockquote>
+	<ul>
+		<li>
+			git bundle create &lt;repo-name&gt;-&lt;date&gt;.bdl bdl..master<repo-name><date></date></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	Again, the <repo-name>&lt;repo-name&gt;-&lt;date&gt;<date>.bdl filename is completely arbitrary. I like putting the date part in there because that helps me avoid confusion when I am emailing multiple bundles everyday between my office and home. The part where we say &quot;bdl..master&quot; is the &quot;tagging&quot; part that i had mentioned earlier. Basically, what this tells git-bundle is to bundle only those commits that happened between when we had cloned (or &quot;pull&quot;-ed as explained below) earlier and where the HEAD of the master branch is now.</date></repo-name></p>
+<p>
+	Then, we move the bundle file from B to A, and perform the following steps at A:</p>
+<blockquote>
+	<ul>
+		<li>
+			git pull &lt;repo-name&gt;-&lt;date&gt;.bdl master:master<repo-name><date></date></repo-name></li>
+		<li>
+			git tag -f &quot;bdl&quot; master</li>
+	</ul>
+</blockquote>
+<p>
+	The steps are exactly the same when you want to sync from B to A. Now, lather, rinse, repeat!</p>
+<p>
+	ps:</p>
+<ul>
+	<li>
+		Read the beautifully written man page &quot;man git-bundle&quot; for more info</li>
+	<li>
+		Looks like this has become a long post. Well I will write about the other git magic stuff in the next post!</li>
+</ul>
+   - notes:
+   - references:
+****** DONE git week, part 2
+    CLOSED: [2013-12-20 Fri 13:16]
+    :CLOCK:
+    CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
+    CLOCK: [2013-12-12 Thu 20:00]--[2013-12-12 Thu 20:17] =>  0:17
+    CLOCK: [2013-12-12 Thu 19:45]--[2013-12-12 Thu 19:54] =>  0:09
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-20 Fri 13:17
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-filter-branch
+    - lead image: http://farm1.staticflickr.com/189/508821261_c92df143d2.jpg @ http://www.flickr.com/photos/cjsorg/508821261/
+    - summary: 2nd post in the git-week series detailing another cool git feature that proved life-saver!
+    - body:
+Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)
+
+This time we are going to learn about the "filter-branch" functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.
+
+The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:
+
+git filter-branch --commit-filter 'GIT_COMMITTER_NAME="<new-name>"; GIT_AUTHOR_NAME="<new-name>"; GIT_COMMITTER_EMAIL="<new-email>"; GIT_AUTHOR_EMAIL="<new-email>"; git commit-tree "$@";' HEAD
+
+Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example [[http://stackoverflow.com/a/870367][here]].
+
+The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.
+
+But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the "data" in the new format) from history. This is where "filter-branch" feature of git came in handy again. The commands to achieve this are:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch $files" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+Fortunately, even though I had hundreds of (small) files, I had created the filenames in the <date-in-yyyymmdd-format>-<source> format, so it was very easy for me to invoke the commands like so:
+
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch <yyyymm>-*" HEAD
+rm -rf .git/refs/original/ && git reflog expire --all &&  git gc --aggressive --prune
+
+The 2nd "rm -rf" command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.
+
+With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)
+
+Remember, both the above actions are destructive and may mess up your repository, so it's best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.
+    - html
+<p>
+	Hello again! Today we will see some more git magic. (Click ***here*** to see my previous post on git.)</p>
+<p>
+	This time we are going to learn about the &quot;filter-branch&quot; functionality which proved immensely helpful to me in 2 different scenarios, both unrelated, but both of which happened yesterday at different times of the day.</p>
+<p>
+	The 1st was that i use 2 different aliases for different projects. Unfortunately, in one recently started project, I used the default (wrong, in this project) user.name/user.email combination. Fortunately, I had not published it into any online repository (see my previous post as to why ;)). So I still had the opportunity to change this information. I knew that it could be done, but did not know how. So I learned it and will share it with you:</p>
+<blockquote>
+	git filter-branch --commit-filter &#39;GIT_COMMITTER_NAME=&quot;&lt;new-name&gt;&quot;; GIT_AUTHOR_NAME=&quot;&lt;new-name&gt;&quot;; GIT_COMMITTER_EMAIL=&quot;&lt;new-email&gt;&quot;; GIT_AUTHOR_EMAIL=&quot;&lt;new-email&gt;&quot;; git commit-tree &quot;$@&quot;;&#39; HEAD</blockquote>
+<p>
+	Of course, your case might not be as simple. That is, unlike me, you might need to change based on some condition, or only change a few particular commits. You can find a good example <a href="http://stackoverflow.com/a/870367">here</a>.</p>
+<p>
+	The second case where filter-branch turned out to be extremely life-saving was in the same recently started project. I have been scraping some info from the Internet and storing these (separate) files in the local repository. It was big data; largest that I have worked on personally, growing at a rate of about 23Mb everyday. Now it turned out that if I would concatenate the contents of these files into a single file then it would keep my directory structure more manageable and also better for the analysis tool that I would use.</p>
+<p>
+	But the problem was that I had already scraped data for 3 days (70Mb of data), and even if I removed the original files, they would still be in the history. This would mean that my repository would simple double the moment I moved to the new file format. The solution was to remove these files (I did not really need them in the history since I was still retaining the &quot;data&quot; in the new format) from history. This is where &quot;filter-branch&quot; feature of git came in handy again. The commands to achieve this are:</p>
+<blockquote>
+	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch $files&quot; HEAD<br />
+	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
+<p>
+	Fortunately, even though I had hundreds of (small) files, I had created the filenames in the &lt;date-in-yyyymmdd-format&gt;-&lt;source&gt; format, so it was very easy for me to invoke the commands like so:</p>
+<blockquote>
+	git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch &lt;yyyymm&gt;-*&quot; HEAD<br />
+	rm -rf .git/refs/original/ &amp;&amp; git reflog expire --all &amp;&amp;&nbsp; git gc --aggressive --prune</blockquote>
+<p>
+	The 2nd &quot;rm -rf&quot; command is needed to remove temporary files that git maintains for a long time even after asking it to clear everything.</p>
+<p>
+	With this technique, I was able to reduce the repository size (after adding the new format files) to about 60%, a good saving :)</p>
+<p>
+	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
+    - notes:
+    - references:
+****** DONE git week, part 3
+    CLOSED: [2013-12-20 Fri 13:17]
+    :CLOCK:
+    CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
+    CLOCK: [2013-12-13 Fri 15:11]--[2013-12-13 Fri 15:32] =>  0:21
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2013-12-20 Fri 13:17
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-bisect
+    - lead image: http://farm1.staticflickr.com/87/263228000_9513c97026.jpg @ http://www.flickr.com/photos/44458147@N00/263228000/
+    - summary: 3rd post in the git-week series detailing another cool git feature: git bisect!
+    - body:
+Hi there. Welcome back to the 3rd post in the "git week" series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git bisect".
+
+I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not "how" to fix, but to understand "what" broke this feature, and "when". Maybe, if you are like my manager, you are also looking out for the "who", to put some blame on.
+
+Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with "git-bisect". I am sure, that by this time, based on my description above, and based on the name "bisect", you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a "binary search" or a "divide-and-conquer" strategy to find the bad commit, you are absolutely correct.
+
+So how this works is that you find 2 commit hashes, G and B, which stand for "good" and "bad" respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).
+
+The steps are as follows:
+
+1. git bisect start
+2. git bisect bad <B>
+3. git bisect good <G>
+
+Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows
+
+git bisect good
+
+OR
+
+git bisect bad
+
+respectively.
+
+Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)
+
+After you have finished this bisection exercise, run the following command
+
+git bisect reset
+
+to come out of the bisect session back to where you started from.
+
+One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)
+
+For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-scm.com/docs/git-bisect][here]]. Do share with us about if you have used git bisect before and how did it help you
+    - html
+<p>
+	Hi there. Welcome back to the 3rd post in the &quot;git week&quot; series; visit the previous 2 ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git bisect&quot;.</p>
+<p>
+	I am sure you, like me, have faced situations when a feature, which you were sure was working previously, is found to have stopped working correctly. Obviously something changed in the recent past that broke this feature. If we have automated tests, one of which caught this breakage, then it should be pretty easy to fix. But what we are interested in, in this post, is not &quot;how&quot; to fix, but to understand &quot;what&quot; broke this feature, and &quot;when&quot;. Maybe, if you are like my manager, you are also looking out for the &quot;who&quot;, to put some blame on.</p>
+<p>
+	Anyways, coming back to the issue at hand. So basically, we want to find out that particular fix which broke this feature. This is surprisingly easy to do with &quot;git-bisect&quot;. I am sure, that by this time, based on my description above, and based on the name &quot;bisect&quot;, you would have guessed what this git feature really does. Well, if you have guessed that this feature will do some kind of a &quot;binary search&quot; or a &quot;divide-and-conquer&quot; strategy to find the bad commit, you are absolutely correct.</p>
+<p>
+	So how this works is that you find 2 commit hashes, G and B, which stand for &quot;good&quot; and &quot;bad&quot; respectively. Basically, G is where you know that the feature was working correctly (maybe a commit from a few days ago, or from your last QA certified stable build), and B is where the feature is not working (maybe as simple as the HEAD).</p>
+<p>
+	The steps are as follows:</p>
+<blockquote>
+	<ul>
+		<li>
+			git bisect start</li>
+		<li>
+			git bisect bad &lt;B&gt;</li>
+		<li>
+			git bisect good &lt;G&gt;</li>
+	</ul>
+</blockquote>
+<p>
+	Once you have given atleast 1 good and 1 bad commit hashes, git goes to work. It will successively give you the middle commit between good and bad and ask you to test. Once git has checked out a particular commit, you should (depending on your development environment) build, deploy and test. Then you know whether this particular commit (the one that git gave you just now) is good or bad. That is whether the feature you are interested in works correctly in this commit or not. Accordingly, you need to tell this to git as follows</p>
+<blockquote>
+	git bisect good</blockquote>
+<p>
+	OR</p>
+<blockquote>
+	git bisect bad</blockquote>
+<p>
+	respectively.</p>
+<p>
+	Continuing this binary search algorithm, you would have eventually reached the particular commit that introduced the bug. Now you can analyze what went wrong and why and come out of the exercise a learned man :)</p>
+<p>
+	After you have finished this bisection exercise, run the following command</p>
+<blockquote>
+	git bisect reset</blockquote>
+<p>
+	to come out of the bisect session back to where you started from.</p>
+<p>
+	One interesting situation you can also use git bisect is the other side of the coin. That is when you knew that there was a (hopefully minor) bug that was never getting fixed for a long time (because it was minor in priority, but was (maybe) difficult to fix) and you find out suddenly that it has been fixed (as a side effect of some recent commit). You can repeat the above exercise in this scenario to find out how the bug got fixed. And be an even more learned man ;)</p>
+<p>
+	For more details (advanced usage of git-bisect), RTFM and/or visit <a href="http://git-scm.com/docs/git-bisect">here</a>. Do share with us about if you have used git bisect before and how did it help you</p>
+    - notes:
+    - references:
+****** DONE git week, part 4
+      CLOSED: [2014-01-06 Mon 13:38]
+    :CLOCK:
+    CLOCK: [2013-12-15 Sun 15:55]--[2013-12-15 Sun 16:08] =>  0:13
+    :END:
+       :PROPERTIES:
+       :ARCHIVE_TIME: 2014-01-06 Mon 13:38
+       :END:
+    - toc:
+      - subtree
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-subtree
+    - lead image: http://farm2.staticflickr.com/1137/1454276711_70900004b5.jpg @ http://www.flickr.com/photos/slimcoincidence/1454276711/
+    - summary: 4th post in the git-week series describing an awesome git feature that can come very handy at times!
+    - body:
+Hello again. Welcome back to the 4th post in the "git week" series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git subtree".
+
+But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)
+
+Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say "pull" conflicts, not "merge" conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get "non-fast-forward" errors.
+
+I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.
+
+However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don't pull/push my code changes from/to the central repository (due to reasons mentioned in the "***git week, part 1***" story), I end up facing these "non-fast-forward" errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in "***git week, part 1***" story. This way I will get rid of all these "non-fast-forward" errors that git has been throwing at me previously. Yay!
+
+Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.
+
+~/my-projects/
+    - project-A/
+        - config/
+        - src/
+            - model/
+            - view/
+            - controller
+        - data/
+            - db/
+            - static/
+                - css/
+                - js/
+                - images/
+
+I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too.
+
+Our objective in this exercise is to split out the project-A/data/db (let's call this <new-repo>) out from the current project repository (let's call this <big-repo>). Note, that the important goal of this exercise is to get the history of <new-repo> changes into the new repository. Simply doing the following
+
+mv <new-repo> <big-repo>/..
+git rm -rf <new-repo>
+
+would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting <new-repo> out of <big-repo> is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:
+
+cd ~/my-projects/project-A
+git subtree split -p data/db -b project-A-db
+cd ~/my-projects/
+mkdir project-A-db
+cd project-A-db
+git init
+git pull ~/my-projects/project-A/ project-A-db
+cd ~/my-projects/project-A
+git rm -rf data/db
+
+The above steps apply to my directory setup. But, generically, we would do the following steps:
+
+cd <big-repo>
+git subtree split -p <name-of-data-folder> -b <new-branch-name>
+cd <big-repo>/..
+mkdir <new-repo>
+cd <new-repo>
+git init
+git pull <path-to-big-repo> <new-branch-name>
+cd <big-repo>
+git rm -rf <name-of-data-folder>
+
+The most important step of this whole flow, which I am sure you must have guessed by now, is the "git subtree" command. This is the one that does all the magic!
+
+For more details of how the "git subtree" command works, please see [[http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475][this]] and [[http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/][this]]
+
+I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)
+    - html
+<p>
+	Hello again. Welcome back to the 4th post in the &quot;git week&quot; series; visit the previous 3 ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git subtree&quot;.</p>
+<p>
+	But before i begin with the actual feature, let me give you the background story about how I came to discover it. I find it useful to explain something by first explaining the situation where I needed to use it. I hope that you find it helpful too :)</p>
+<p>
+	Anyways, back to the background story. As I have hinted in my previous stories, I am working on a [[http://en.wiktionary.org/wiki/pet_project][pet-project]] wherein i have to collect a lot of data. Currently I am storing these data files locally in the project git repository itself. However, since I collect this data from multiple machines, I get some pull conflicts. Note that I say &quot;pull&quot; conflicts, not &quot;merge&quot; conflicts. This is because, obviously, not the same file is updated from all these local repositories at the same time. But i mostly get &quot;non-fast-forward&quot; errors.</p>
+<p>
+	I think that this can be (almost) solved by first doing a pull before doing a commit, followed immediately by a push. Also, once I setup the cron jobs running on these different machines to run at non-overlapping times, I can remove these conflicts altogether.</p>
+<p>
+	However, my issue is not that. My issue is that since my code and data resides in the same git repository, and I don&#39;t pull/push my code changes from/to the central repository (due to reasons mentioned in the &quot;***git week, part 1***&quot; story), I end up facing these &quot;non-fast-forward&quot; errors anyways. The obvious solution that comes to mind is to manage the source code and data in 2 separate repositories. Since the data repositories are setup in a sync-ed fashion (as mentioned in the previous paragraph), and the source repository will be changed explicitly by me (in a non automated manner (using cron jobs, for example), I can explicitly push/pull the changes to/from the central repository (even if I change the code from multiple locations); that is by following the steps mentioned in &quot;***git week, part 1***&quot; story. This way I will get rid of all these &quot;non-fast-forward&quot; errors that git has been throwing at me previously. Yay!</p>
+<p>
+	Ok, now to get to the technical part. How to split the original repository into 2, one for the data and the other for the source. Before I proceed to that, I am going to describe my source folder setup.</p>
+<blockquote>
+	~/my-projects/<br />
+	&nbsp;&nbsp;&nbsp; - project-A/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - config/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - src/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - model/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - view/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - controller<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - data/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - db/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - static/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - css/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - js/<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - images/</blockquote>
+<p>
+	I am sure that you would have guessed the project to be a web-based project following the MVC architecture. I would guess that your project directory structure would be somewhat similar too. Our objective in this exercise is to split out the project-A/data/db (let&#39;s call this &lt;new-repo&gt;) out from the current project repository (let&#39;s call this &lt;big-repo&gt;). Note, that the important goal of this exercise is to get the history of &lt;new-repo&gt; changes into the new repository. Simply doing the following</p>
+<p>
+	mv &lt;new-repo&gt; &lt;big-repo&gt;/..<br />
+	git rm -rf &lt;new-repo&gt;</p>
+<p>
+	would be easy to do, but would not achieve anything, because we would have lost all the history. Fortunately, it turns out that this operation, of splitting &lt;new-repo&gt; out of &lt;big-repo&gt; is so common, that git has introduced a 1-step procedure to achieve our goal. The steps are as follows:</p>
+<blockquote>
+	cd ~/my-projects/project-A<br />
+	git subtree split -p data/db -b project-A-db<br />
+	cd ~/my-projects/<br />
+	mkdir project-A-db<br />
+	cd project-A-db<br />
+	git init<br />
+	git pull ~/my-projects/project-A/ project-A-db<br />
+	cd ~/my-projects/project-A<br />
+	git rm -rf data/db</blockquote>
+<p>
+	The above steps apply to my directory setup. But, generically, we would do the following steps:</p>
+<blockquote>
+	cd &lt;big-repo&gt;<br />
+	git subtree split -p &lt;name-of-data-folder&gt; -b &lt;new-branch-name&gt;<br />
+	cd &lt;big-repo&gt;/..<br />
+	mkdir &lt;new-repo&gt;<br />
+	cd &lt;new-repo&gt;<br />
+	git init<br />
+	git pull &lt;path-to-big-repo&gt; &lt;new-branch-name&gt;<br />
+	cd &lt;big-repo&gt;<br />
+	git rm -rf &lt;name-of-data-folder&gt;</blockquote>
+<p>
+	The most important step of this whole flow, which I am sure you must have guessed by now, is the &quot;git subtree&quot; command. This is the one that does all the magic!</p>
+<p>
+	For more details of how the &quot;git subtree&quot; command works, please see <a href="http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository/17864475#17864475">this</a> and <a href="http://blog.charlescy.com/blog/2013/08/17/git-subtree-tutorial/">this</a></p>
+<p>
+	I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)</p>
+    - notes:
+    - references:
+****** DONE git week, part 5
+      CLOSED: [2014-01-06 Mon 13:38]
+    :CLOCK:
+    CLOCK: [2013-12-16 Mon 19:36]--[2013-12-16 Mon 19:44] =>  0:08
+    CLOCK: [2013-12-16 Mon 19:22]--[2013-12-16 Mon 19:36] =>  0:14
+    :END:
+       :PROPERTIES:
+       :ARCHIVE_TIME: 2014-01-06 Mon 13:38
+       :END:
+    - toc:
+      - rebase -i
+    - cat/subcat:
+    - tags: git, version-control, github, bitbucket, git-rebase-i
+    - lead image: http://farm5.staticflickr.com/4014/4295488113_6c60aa41c6.jpg @ http://www.flickr.com/photos/dealingwith/4295488113/
+    - summary: 5th post in the git-week series: git rebase -i
+    - body:
+Hello again. Welcome to the 5th post in the "git week" series; visit the previous 4 ***here***, ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: "git rebase -i".
+
+If you remember, We have already used git-rebase once in the ***svn-unmerge*** post. In that post I already showed how one could use git-rebase to easily handle things that are either too difficult or, at times, impossible to do in SVN. Today we will see an advanced use of git-rebase, that is "git rebase -i". This command allows us to reorder commits. Yes, you read that right! One can actually reorder commits in git. Ain't that cool?
+
+One can easily imagine certain obvious uses of this feature. For example, lets say I always push to central repository from my master branch, but locally use feature branches. Also, I may be working in parallel on 1 or more features and may also fixing bugs directly in the master branch. And I may be merging (after feature completion) from some feature branch into master. In this case, I would want to reorder the commits in a more meaningful order (one that makes more sense and shows a well thought flow to an outsider) on the master before pushing it to the central repository.
+
+In fact, this use case happened to me last week. I was working on a certain feature, and had merged the incomplete feature to master (I know, bad boy ;) ); but, fortunately, not pushed it. Then I noticed a critical bug in the production system which had to be fixed immediately. So now this bug fix is at HEAD of master, and the unfinished feature is at "HEAD~1" location. Obviously I cannot push this state to production. This is where "git rebase -i" saves the day! I do the following
+
+git rebase -i HEAD~1
+
+Here, git opens up an editor asking you to change the order of the commits (newest is at bottom). So I swap the last and one-but-last commit and save and quit the editor. Then I did
+
+git log
+
+to see that the last 2 commits (incomplete-feature and critical-bug-fix) placed in the correct (as desired) order! Now I pushed the critical-bug-fix to central repository and created a build and deployed to my production server. This time, I took the care to not push the HEAD of master, but HEAD~1 to central repository.
+
+As an added bonus, I am going to tell you a special feature of "git rebase -i". That is once git opens the editor for you to reorder your commits, you will notice the following statements at the end of the editor
+
+# Rebase 3a40bd2..ba8573d onto 3a40bd2
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+
+If you read these statements carefully, you will notice that "git rebase -i" is allowing you to not only reorder your commits, but to delete, edit, etc your existing commits. This is awesome knowledge and will surely come in handy in the future. Yay!
+
+*WARNING*: Do remember, that this command makes very low level modifications to your repository and you can easily screw things up. So you should always make changes like these to a cloned repository. Also, as always, do NOT make these changes to the part of history that you have already published.
+
+I am going to keep this git-week series like a 5 day work-week and end this series here. I hope you found this (and previous posts ***here***, ***here***, ***here*** and ***here***) useful.
+
+Do let me know if they did, and how. Also let me know if you like my writing and would like me to write more such articles on other topics as well. Your comments will give me the confidence and motivation to "not break the chain" (see my previous article ***don't break the chain***)
+    - html
+<p>
+	Hello again. Welcome to the 5th post in the &quot;git week&quot; series; visit the previous 4 ***here***, ***here***, ***here*** and ***here***. Today I will share another extremely helpful git feature with you all: &quot;git rebase -i&quot;.</p>
+<p>
+	If you remember, We have already used git-rebase once in the ***svn-unmerge*** post. In that post I already showed how one could use git-rebase to easily handle things that are either too difficult or, at times, impossible to do in SVN. Today we will see an advanced use of git-rebase, that is &quot;git rebase -i&quot;. This command allows us to reorder commits. Yes, you read that right! One can actually reorder commits in git. Ain&#39;t that cool?</p>
+<p>
+	One can easily imagine certain obvious uses of this feature. For example, lets say I always push to central repository from my master branch, but locally use feature branches. Also, I may be working in parallel on 1 or more features and may also fixing bugs directly in the master branch. And I may be merging (after feature completion) from some feature branch into master. In this case, I would want to reorder the commits in a more meaningful order (one that makes more sense and shows a well thought flow to an outsider) on the master before pushing it to the central repository.</p>
+<p>
+	In fact, this use case happened to me last week. I was working on a certain feature, and had merged the incomplete feature to master (I know, bad boy ;) ); but, fortunately, not pushed it. Then I noticed a critical bug in the production system which had to be fixed immediately. So now this bug fix is at HEAD of master, and the unfinished feature is at &quot;HEAD~1&quot; location. Obviously I cannot push this state to production. This is where &quot;git rebase -i&quot; saves the day!</p>
+<p>
+	I do the following</p>
+<blockquote>
+	git rebase -i HEAD~1</blockquote>
+<p>
+	Here, git opens up an editor asking you to change the order of the commits (newest is at bottom). So I swap the last and one-but-last commit and save and quit the editor. Then I did</p>
+<blockquote>
+	git log</blockquote>
+<p>
+	to see that the last 2 commits (incomplete-feature and critical-bug-fix) placed in the correct (as desired) order! Now I pushed the critical-bug-fix to central repository and created a build and deployed to my production server. This time, I took the care to not push the HEAD of master, but HEAD~1 to central repository.</p>
+<p>
+	As an added bonus, I am going to tell you a special feature of &quot;git rebase -i&quot;. That is once git opens the editor for you to reorder your commits, you will notice the following statements at the end of the editor</p>
+<blockquote>
+	# Rebase 3a40bd2..ba8573d onto 3a40bd2<br />
+	#<br />
+	# Commands:<br />
+	#&nbsp; p, pick = use commit<br />
+	#&nbsp; r, reword = use commit, but edit the commit message<br />
+	#&nbsp; e, edit = use commit, but stop for amending<br />
+	#&nbsp; s, squash = use commit, but meld into previous commit<br />
+	#&nbsp; f, fixup = like &quot;squash&quot;, but discard this commit&#39;s log message<br />
+	#&nbsp; x, exec = run command (the rest of the line) using shell<br />
+	#<br />
+	# These lines can be re-ordered; they are executed from top to bottom.<br />
+	#<br />
+	# If you remove a line here THAT COMMIT WILL BE LOST.<br />
+	#<br />
+	# However, if you remove everything, the rebase will be aborted.<br />
+	#<br />
+	# Note that empty commits are commented out</blockquote>
+<p>
+	If you read these statements carefully, you will notice that &quot;git rebase -i&quot; is allowing you to not only reorder your commits, but to delete, edit, etc your existing commits. This is awesome knowledge and will surely come in handy in the future. Yay!</p>
+<p>
+	<strong>WARNING</strong>: Do remember, that this command makes very low level modifications to your repository and you can easily screw things up. So you should always make changes like these to a cloned repository. Also, as always, do NOT make these changes to the part of history that you have already published.</p>
+<p>
+	I am going to keep this git-week series like a 5 day work-week and end this series here. I hope you found this (and previous posts ***here***, ***here***, ***here*** and ***here***) useful.</p>
+<p>
+	Do let me know if they did, and how. Also let me know if you like my writing and would like me to write more such articles on other topics as well. Your comments will give me the confidence and motivation to &quot;not break the chain&quot; (see my previous article ***don&#39;t break the chain***)</p>
+    - notes:
+    - references:
+**** DONE difference between learnt and learned
+     CLOSED: [2014-01-06 Mon 13:38]
+   :CLOCK:
+   CLOCK: [2013-12-17 Tue 16:54]--[2013-12-17 Tue 17:30] =>  0:36
+   :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-06 Mon 13:37
+     :END:
+   - http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html
+   - http://www.differencebetween.net/language/difference-between-learned-and-learnt/
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+Hi there! Although I sincerely hope that you have been reading my recent git-week posts ***here***, ***here***, ***here***, ***here*** and ***here***, frankly, I myself am happy that the week is over. No, no, don't misunderstand me. I am happy that I learned and was able to share these git gems with you all. But, I am currently undergoing some stress, due to
+- things not going well at work (read ***this*** to know why)
+- I am starting to feel the pressure of "don't break the chain" (read about my attempt at it ***here***)
+- Being a newbie to blogging, I am having some difficulty finding good ideas/matter to write about
+
+Anyways, I will do an honest attempt to not only not break the chain, but also to not give under-cooked material to read. Otherwise you might feel bored and go away; now, we don't want that to happen, do we? But at the same time I will keep the topic for today light enough so that I am able to achieve my objectives
+- provide useful/entertaining information to you
+- improve my [[http://en.wikipedia.org/wiki/Cognition][cognitive]] and writing skills
+- not break the chain
+
+So the topic for today is "difference between learnt and learned". Before I go on to the formal differences, let me tell you my version of the story. I used to think that "learnt" was something that had happened very very long time ago, like "I had learnt to ride a bicycle when I was 5 years old", whereas "learned" was something that happened very recently, or just now, like "I just learned what this means". Also, I noticed (when saying sentences containing the words in my mind) that I would lean towards using "learnt" almost always instead of using "learned".
+
+Now I am not really sure if this is correct (along with the other definitions that I will show below) or not. What do you think? Probably you too thought similarly.
+
+But 1 important question that I have not said anything about is "why". As in, "why" did i get interested in the difference between "learnt" and "learned" in the first place. Why does it matter to me at all? The story behind this is that when i was writing the post about ***speed your website 100x times***, my editor showed the word "learnt" in yellow color grabbing my attention. I went into spell-check and the only option it showed was "learned"; "learnt" was not there at all in it's suggestions. This confused me because I knew for sure that "learnt" is a valid word. This piqued my curiosity enough for me to quickly search online for meanings and differences between the 2 words.
+
+Anyways, coming back to the actual differences. Unexpectedly I found 2 _unrelated_ differences [[http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html][here]] and [[http://www.differencebetween.net/language/difference-between-learned-and-learnt/][here]]. The first one says that they are the same words, but pronounced (and spelled) differently in British and American English. Well, that atleast explains
+- why I would lean towards using "learnt" instead of using "learned" almost every time (since I am Indian and learn British English. Actually what Indians use is our very own dialect of English, if I may call it that. But lets be content by saying that since India was ruled by the British for more than 150 years, what we use is British English
+- why my editor did not show "learnt" in its suggestions; because I am using the American (en-US) language pack for spelling check/correction
+
+The second definition [[http://www.differencebetween.net/language/difference-between-learned-and-learnt/][here]] mentioned "learned" as an adjective, like "he is a very learned man", whereas "learnt" as a verb, like "he has learnt many languages". Looking back, I remember having learnt something like this when I was in school. But I have never been very good with languages (and history and geography and ... (the list goes on, heh heh!)). But hey, I did manage to use the correct word in my previous sentence. Does that mean that I am a learned man now?
+
+What do you think?
+   - html
+<p>
+	Hi there! Although I sincerely hope that you have been reading my recent git-week posts ***here***, ***here***, ***here***, ***here*** and ***here***, frankly, I myself am happy that the week is over. No, no, don&#39;t misunderstand me. I am happy that I learned and was able to share these git gems with you all. But, I am currently undergoing some stress, due to</p>
+<ul>
+	<li>
+		things not going well at work (read ***this*** to know why)</li>
+	<li>
+		I am starting to feel the pressure of &quot;don&#39;t break the chain&quot; (read about my attempt at it ***here***)</li>
+	<li>
+		Being a newbie to blogging, I am having some difficulty finding good ideas/matter to write about</li>
+</ul>
+<p>
+	Anyways, I will do an honest attempt to not only not break the chain, but also to not give under-cooked material to read. Otherwise you might feel bored and go away; now, we don&#39;t want that to happen, do we? But at the same time I will keep the topic for today light enough so that I am able to achieve my objectives</p>
+<ul>
+	<li>
+		provide useful/entertaining information to you</li>
+	<li>
+		improve my <a href="http://en.wikipedia.org/wiki/Cognition">cognitive</a> and writing skills</li>
+	<li>
+		not break the chain</li>
+</ul>
+<p>
+	So the topic for today is &quot;difference between learnt and learned&quot;. Before I go on to the formal differences, let me tell you my version of the story. I used to think that &quot;learnt&quot; was something that had happened very very long time ago, like &quot;I had learnt to ride a bicycle when I was 5 years old&quot;, whereas &quot;learned&quot; was something that happened very recently, or just now, like &quot;I just learned what this means&quot;. Also, I noticed (when saying sentences containing the words in my mind) that I would lean towards using &quot;learnt&quot; almost always instead of using &quot;learned&quot;.</p>
+<p>
+	Now I am not really sure if this is correct (along with the other definitions that I will show below) or not. What do you think? Probably you too thought similarly.</p>
+<p>
+	But 1 important question that I have not said anything about is &quot;why&quot;. As in, &quot;why&quot; did i get interested in the difference between &quot;learnt&quot; and &quot;learned&quot; in the first place. Why does it matter to me at all? The story behind this is that when i was writing the post about ***speed your website 100x times***, my editor showed the word &quot;learnt&quot; in yellow color grabbing my attention. I went into spell-check and the only option it showed was &quot;learned&quot;; &quot;learnt&quot; was not there at all in it&#39;s suggestions. This confused me because I knew for sure that &quot;learnt&quot; is a valid word. This piqued my curiosity enough for me to quickly search online for meanings and differences between the 2 words.</p>
+<p>
+	Anyways, coming back to the actual differences. Unexpectedly I found 2 _unrelated_ differences <a href="http://www.tellmewhyfacts.com/2007/02/what-is-difference-between-learnt-and.html">here</a> and <a href="http://www.differencebetween.net/language/difference-between-learned-and-learnt/">here</a>. The first one says that they are the same words, but pronounced (and spelled) differently in British and American English. Well, that atleast explains</p>
+<ul>
+	<li>
+		why I would lean towards using &quot;learnt&quot; instead of using &quot;learned&quot; almost every time (since I am Indian and learn British English. Actually what Indians use is our very own dialect of English, if I may call it that. But lets be content by saying that since India was ruled by the British for more than 150 years, what we use is British English</li>
+	<li>
+		why my editor did not show &quot;learnt&quot; in its suggestions; because I am using the American (en-US) language pack for spelling check/correction</li>
+</ul>
+<p>
+	The second definition <a href="http://www.differencebetween.net/language/difference-between-learned-and-learnt/">here</a> mentioned &quot;learned&quot; as an adjective, like &quot;he is a very learned man&quot;, whereas &quot;learnt&quot; as a verb, like &quot;he has learnt many languages&quot;. Looking back, I remember having learnt something like this when I was in school. But I have never been very good with languages (and history and geography and ... (the list goes on, heh heh!)). But hey, I did manage to use the correct word in my previous sentence. Does that mean that I am a learned man now?</p>
+<p>
+	What do you think?</p>
+   - notes:
+   - references:
+**** DONE environment variables in crontab
+     CLOSED: [2014-01-06 Mon 13:38]
+   :CLOCK:
+   CLOCK: [2013-12-18 Wed 13:46]--[2013-12-18 Wed 14:20] =>  0:34
+   CLOCK: [2013-12-18 Wed 13:33]--[2013-12-18 Wed 13:40] =>  0:07
+   :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-06 Mon 13:37
+     :END:
+   - toc:
+     - spent 1 hour on 10 min job
+     - various solutions tried
+       - at top
+       - export ...; command
+       - ...; command
+     - finally the 1 that worked
+       - env ... command
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary:
+   - body:
+As you all probably already know (from ***here*** and ***here***), I am currently working on a project that needs me to collect data from various online resources. Since this data needs to be collected at regular intervals (due to updates happening to the data continuously), and not in just one go, I am using cronjob scripts to collect this data.
+
+While writing this script I faced a lot of problems, and that is what I will discuss today. In the hope that someone out there will find something important from my mistakes and learnings, and that this post may be helpful in solving similar problems for him/her too.
+
+As always, let me first start with some background. When developing the script, my desktop was behind a proxy. Although both curl and wget have inbuilt proxy support, both of them refused to work for me. With wget, i was getting the following error:
+
+Connecting to 168.219.61.252:8080... connected.
+Proxy request sent, awaiting response... 403 Forbidden
+2013-12-18 13:39:36 ERROR 403: Forbidden.
+
+My first instinct was that the proxy is blocking the request. But I was able to download the file perfectly from browser (which also goes via the same proxy). I hit a dead end and did not know what to do next. So I searched for command line based download managers instead and found [[http://aria2.sourceforge.net/][aria2]] that worked fine for me. YMMV.
+
+Before going on, let me also mention that I had the following environment variables set
+
+13:47:17 ~ $ env | grep proxy
+http_proxy=http://168.219.61.252:8080/
+ftp_proxy=http://168.219.61.252:8080/
+all_proxy=socks://http://168.219.61.250:8080/
+https_proxy=http://168.219.61.252:8080/
+proxy=168.219.61.252:8080
+no_proxy=localhost,127.0.0.0/8,::1
+
+Back to the script now. The reason I needed a script (instead of just a simple wget/aria2 command inside crontab was simply because i needed to do some pre and post-processing to the downloaded content). Anyways, that's besides the point. So lets continue.
+
+I was ready with the script and tested it extensively, both for the download part and post-processing, and ensured that things were working fine. Then i setup crontab as follows:
+
+13:47:19 ~ $ crontab -l
+# DO NOT EDIT THIS FILE - edit the master and reinstall.
+# (/tmp/crontab.XXXX4oqDI8 installed on Wed Dec 11 19:42:26 2013)
+# (Cron version V5.0 -- $Id: crontab.c,v 1.12 2004/01/23 18:56:42 vixie Exp $)
+HOME=/home/spradnyesh
+
+0 */5 * * 1,2,3,4,5 $HOME/project/scripts/download-daily.sh 2>&1 > $HOME/dd.log
+
+I am sure you all know what the parameters of the cronjob line mean. But I will explain them just for the sake of completeness:
+
+1. 0: run at 00 minutes
+2. */5: run every 5 hours
+3. *: run on every day of the month
+4. *: run in every month
+5. 1,2,3,4,5: run only on weekdays (mon,tue,wed,thurs,fri)
+
+Having explained that, lets move to the script itself. It looked something like this
+
+#!/bin/bash
+
+##### initial setup
+cd $HOME/project/data/
+toDate=`date +%F--%H`
+prefix='http://www.example.com/'
+suffix='&a=b'
+outfile='download-daily.txt'
+
+##### download data
+rm $outfile
+touch $outfile
+for i in `cat ../list`
+do
+    echo "${prefix}${i}${suffix}" >> $outfile
+    echo " out=${toDate}-${i}.html" >> $outfile
+done
+aria2c -j 10 --allow-overwrite=true --remove-control-file=true --remove-control-file=false -i $outfile
+
+##### do some post-processing
+
+git add $toDate.html; git commit -am "added data for $toDate"
+
+The actual details of the script don't matter. Basically, I am simply doing some initial setup, downloading the data, doing post processing including saving the new file to git (read about my previous git experiences ***here***, ***here***, ***here***, ***here*** and ***here***).
+
+Unfortunately ([[http://en.wikipedia.org/wiki/Murphy%2527s_law][Murphy's law]]), the script failed to download any data. On examining closely, I found that the $http_proxy environment variable was not visible inside the script. Researching online on this issue I learnt (to learn about the difference between "learnt" and "learned", visit my previous story ***here***) that the environment available to a script run via cron is very limited (mostly for security reasons), which is why the $http_proxy variable was invisible inside the script.
+
+To deal with this issue, i found a few solutions [[http://stackoverflow.com/a/2229861][here]], [[http://stackoverflow.com/a/10657111][here]], [[http://stackoverflow.com/a/13579786][here]] (this one (and similarly [[http://stackoverflow.com/a/18647100][this]] one and [[http://stackoverflow.com/a/18647100][this]] one) is a big NO NO for security reasons, and also due to limitations as explained [[http://stackoverflow.com/questions/5934554/crontab-source-file#][here]] and [[http://stackoverflow.com/a/5935335][here]]), but none of them seemed to work for me. What eventually worked for me was setting up my cronjob rule as follows:
+
+0 */5 * * 1,2,3,4,5 env http_proxy=http://168.219.61.252:8080/ $HOME/project/scripts/download-daily.sh 2>&1 > $HOME/dd.log
+
+Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!
+   - html
+<p>
+	As you all probably already know (from ***here*** and ***here***), I am currently working on a project that needs me to collect data from various online resources. Since this data needs to be collected at regular intervals (due to updates happening to the data continuously), and not in just one go, I am using cronjob scripts to collect this data.</p>
+<p>
+	While writing this script I faced a lot of problems, and that is what I will discuss today. In the hope that someone out there will find something important from my mistakes and learnings, and that this post may be helpful in solving similar problems for him/her too.</p>
+<p>
+	As always, let me first start with some background. When developing the script, my desktop was behind a proxy. Although both curl and wget have inbuilt proxy support, both of them refused to work for me. With wget, i was getting the following error:</p>
+<blockquote>
+	Connecting to 168.219.61.252:8080... connected.<br />
+	Proxy request sent, awaiting response... 403 Forbidden<br />
+	2013-12-18 13:39:36 ERROR 403: Forbidden.</blockquote>
+<p>
+	My first instinct was that the proxy is blocking the request. But I was able to download the file perfectly from browser (which also goes via the same proxy). I hit a dead end and did not know what to do next. So I searched for command line based download managers instead and found <a href="http://aria2.sourceforge.net/">aria2</a> that worked fine for me. YMMV.</p>
+<p>
+	Before going on, let me also mention that I had the following environment variables set</p>
+<blockquote>
+	13:47:17 ~ $ env | grep proxy<br />
+	http_proxy=http://168.219.61.252:8080/<br />
+	ftp_proxy=http://168.219.61.252:8080/<br />
+	all_proxy=socks://http://168.219.61.250:8080/<br />
+	https_proxy=http://168.219.61.252:8080/<br />
+	proxy=168.219.61.252:8080<br />
+	no_proxy=localhost,127.0.0.0/8,::1</blockquote>
+<p>
+	Back to the script now. The reason I needed a script (instead of just a simple wget/aria2 command inside crontab was simply because i needed to do some pre and post-processing to the downloaded content). Anyways, that&#39;s besides the point. So lets continue.</p>
+<p>
+	I was ready with the script and tested it extensively, both for the download part and post-processing, and ensured that things were working fine. Then i setup crontab as follows:</p>
+<blockquote>
+	13:47:19 ~ $ crontab -l<br />
+	# DO NOT EDIT THIS FILE - edit the master and reinstall.<br />
+	# (/tmp/crontab.XXXX4oqDI8 installed on Wed Dec 11 19:42:26 2013)<br />
+	# (Cron version V5.0 -- $Id: crontab.c,v 1.12 2004/01/23 18:56:42 vixie Exp $)<br />
+	HOME=/home/spradnyesh 0 */5 * * 1,2,3,4,5 $HOME/project/scripts/download-daily.sh 2&gt;&amp;1 &gt; $HOME/dd.log</blockquote>
+<p>
+	I am sure you all know what the parameters of the cronjob line mean. But I will explain them briefly just for the sake of completeness:</p>
+<blockquote>
+	1. 0: run at 00 minutes<br />
+	2. */5: run every 5 hours<br />
+	3. *: run on every day of the month<br />
+	4. *: run in every month<br />
+	5. 1,2,3,4,5: run only on weekdays (mon,tue,wed,thurs,fri)</blockquote>
+<p>
+	Having explained that, lets move to the script itself. It looked something like this</p>
+<blockquote>
+	#!/bin/bash<br />
+	<br />
+	##### initial setup<br />
+	cd $HOME/project/data/<br />
+	toDate=`date +%F--%H`<br />
+	prefix=&#39;http://www.example.com/&#39;<br />
+	suffix=&#39;&amp;a=b&#39;<br />
+	outfile=&#39;download-daily.txt&#39;<br />
+	<br />
+	##### download data<br />
+	rm $outfile<br />
+	touch $outfile<br />
+	for i in `cat ../list`<br />
+	do<br />
+	&nbsp;&nbsp;&nbsp; echo &quot;${prefix}${i}${suffix}&quot; &gt;&gt; $outfile<br />
+	&nbsp;&nbsp;&nbsp; echo &quot; out=${toDate}-${i}.html&quot; &gt;&gt; $outfile<br />
+	done<br />
+	aria2c -j 10 --allow-overwrite=true --remove-control-file=true --remove-control-file=false -i $outfile<br />
+	<br />
+	##### do some post-processing<br />
+	<br />
+	git add $toDate.html; git commit -am &quot;added data for $toDate&quot;</blockquote>
+<p>
+	The actual details of the script don&#39;t matter. Basically, I am simply doing some initial setup, downloading the data, doing post processing including saving the new file to git (read about my previous git experiences ***here***, ***here***, ***here***, ***here*** and ***here***).</p>
+<p>
+	Unfortunately (<a href="http://en.wikipedia.org/wiki/Murphy%2527s_law">Murphy&#39;s law</a>), the script failed to download any data. On examining closely, I found that the $http_proxy environment variable was not visible inside the script. Researching online on this issue I learnt (to learn about the difference between &quot;learnt&quot; and &quot;learned&quot;, visit my previous story ***here***) that the environment available to a script run via cron is very limited (mostly for security reasons), which is why the $http_proxy variable was invisible inside the script.</p>
+<p>
+	To deal with this issue, i found a few solutions <a href="http://stackoverflow.com/a/2229861">here</a>, <a href="http://stackoverflow.com/a/10657111">here</a>, <a href="http://stackoverflow.com/a/13579786">here</a> (this one (and similarly <a href="http://stackoverflow.com/a/18647100">this</a> one and <a href="http://stackoverflow.com/a/18647100">this</a> one) is a big NO NO for security reasons, and also due to limitations as explained <a href="http://stackoverflow.com/questions/5934554/crontab-source-file#">here</a> and <a href="http://stackoverflow.com/a/5935335">here</a>), but none of them seemed to work for me. What eventually worked for me was setting up my cronjob rule as follows:</p>
+<blockquote>
+	0 */5 * * 1,2,3,4,5 env http_proxy=http://168.219.61.252:8080/ $HOME/project/scripts/download-daily.sh 2&gt;&amp;1 &gt; $HOME/dd.log</blockquote>
+<p>
+	Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!</p>
    - notes:
    - references:
 * Footnotes
