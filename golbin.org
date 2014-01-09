@@ -4699,6 +4699,16 @@ Also, simple things get complex too soon, because
     - html
     - notes:
     - references:
+*** next, next, next, finish
+    - toc:
+    - cat/subcat:
+    - tags: windows, linux
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
 *** template
     - toc:
     - cat/subcat:
@@ -4710,373 +4720,86 @@ Also, simple things get complex too soon, because
     - notes:
     - references:
 ** wrote (not published)
-*** TODO lazyload google ads without jQuery lazyload Ad plugin
+*** TODO Kill that rat!
     :CLOCK:
-    CLOCK: [2014-01-06 Mon 13:09]--[2014-01-06 Mon 13:37] =>  0:28
-    CLOCK: [2014-01-06 Mon 12:55]--[2014-01-06 Mon 13:05] =>  0:10
-    CLOCK: [2014-01-06 Mon 12:50]--[2014-01-06 Mon 12:54] =>  0:04
+    CLOCK: [2014-01-09 Thu 20:08]--[2014-01-09 Thu 20:21] =>  0:13
+    CLOCK: [2014-01-09 Thu 18:57]--[2014-01-09 Thu 20:05] =>  1:08
     :END:
     - toc:
+      - going mouseless
+      - vimperator
+      - stumpwm
     - cat/subcat:
-    - tags: lazyload, google, ads, jquery, plugin, javascript, adsense, DOM, firefox, chrome, frontend, performance
-    - lead image:
-    - summary: How to make use of the new asynchronous support for google adsense ads instead of the jQuery lazyload Ad plugin
+    - tags: productivity, mouse, terminal, vimperator, stumpwm, ratpoison, browser, firefox, chrome, wmii, linux, redhat, fedora, debian, ubuntu, gentoo, sabayon, vim, emacs
+    - lead image: http://www.flickr.com/photos/7715592@N03/2186512039/
+    - summary: How to become 20x productive by killing the rat!
     - body:
-I had mentioned in one of my previous articles ***here, More exciting new features for golbin*** that we had changed our lazyloading technique for google-ads on [[http://www.golb.in/][Golbin!]] pages. Today I will show you how we did it.
+I have been using [[http://www.linux.org/][Linux]] for atleast the last 9 years, trying out different distributions like [[http://www.redhat.com/][RedHat]], [[http://fedoraproject.org/][Fedora]], [[http://www.debian.org/][Debian]], [[http://www.ubuntu.com/][Ubuntu]], [[http://www.gentoo.org/][Gentoo]] and finally settling down on [[http://www.sabayon.org/][Sabayon]] (for the last 2 years). Similarly, on the desktop manager side, I have used [[http://kde.org/][KDE]] for a long long time, but have been using [[http://www.nongnu.org/stumpwm/][Stumpwm]] for the last 3+ years. On the browser front, I use the awesome [[http://www.vimperator.org/][vimperator]] plugin for [[http://www.mozilla.org/en-US/][firefox]].
 
-Previously, we were using the awesome jQuery lazyload Ad plugin as shown in their documentation [[http://jqueryad.web2ajax.fr/][here]]. However, the plugin itself added about 8.4Kb to the page-weight. Even though Golbin! was using measures to lazyload the plugin itself, it was still additional page-weight, especially for first time (with browser cache empty) users.
+You might think, and correctly at that, "what is this guy talking about? what has all this to do with a rat, or even with productivity (if you read the description of this article on one of the Golbin! index pages)". Well, let me start with the following definition:
 
-Then, recently, we noticed that google had made some changes to their [[https://support.google.com/adsense/answer/3221666][adsense]] code because of which the ads would be rendered asynchronously, thus removing the need for the jQuery lazyload Ad plugin. Sample code looks like below:
+mouse, n: A device for pointing at the xterm in which you want to type. --A.S.R. (***???***)
 
-<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle"
-        style="display:inline-block;width:300px;height:250px"
-        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
-        data-ad-slot="6440411535"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+If you don't get the above, I am basically talking about the PC "mouse". I feel that the mouse is only there to slow you down. Based on my personal experience, I can say very confidently that the less mouse I use, the faster I work. Agreed, that it takes a bit of practice, and maybe making some (initially difficult) choices too, but in the long term you will be a completely different person. Notice, that I don't say "a more productive person", but a "completely different person". That is because, using the keyboard changes you in more than 1 ways.
 
-So far so good. However, we wanted to go a step further than this because:
-1. In our experience, if we put the script in the bottom of the page (just before the ending "</body>" tag), then the ads did not get rendered at all. Putting the js script at page bottom is good performance practice (see [[http://developer.yahoo.com/performance/rules.html][here]] and [[https://developers.google.com/speed/docs/insights/rules][here]] for best practices for website frontend performance).
-2. Golbin! was already using a technique to lazyload the javascript files needed by the page itself. And we wanted to continue using this technique for the new script too.
+Of course your typing speed will increase, which will make regular things (coding, typing emails, blogging, etc) faster. This alone will help you think faster, because our system throughput is limited by the I/O (typing). Even though we are capable of thinking faster, we end up thinking slowly because our typing puts pauses to our thinking, breaking the flow.
 
-Fortunately, one needs to include the script tag only once in the page irrespective of how many ad units were present on the page; this went well with our technique, because then we could lazyload the adsense script and use some JS to invoke some function to show the ads in the correct place.
+Also, more importantly, your choice of tools/systems will change too. For example, I use the following tools/systems:
 
-Our initial HTML markup snippet looks something similar to:
+Linux: I am a software developer, and strongly believe that every software developer should use a Linux desktop to:
+1. learn something more than clicking "next, next, next, finish"
+2. getting hands dirty on the terminal. that itself will teach you so many tools (if you don't know how to use "find" and "grep") and techniques (regular expressions, bash scripting, etc) to make you a better developer
+3. huge number choice of desktop managers (among other things)
 
-<div class="g-ad">
-    <ins class="adsbygoogle"
-        style="display:inline-block;width:300px;height:250px"
-        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
-        data-ad-slot="6440411535"></ins>
-</div>
+Stumpwm: I always liked KDE better than [[http://www.gnome.org/][Gnome]], simply because KDE allowed a *lot* more keyboard customization than gnome (about 5-9 years ago). But in my search for a mouseless [[http://en.wikipedia.org/wiki/Desktop_Window_Manager][DWM]] (desktop window manager), I stumbled upon [[http://www.nongnu.org/ratpoison/][Ratpoison]], [[http://en.wikipedia.org/wiki/Wmii][wmii]] and Stumpwm. At that time, one of my colleagues was using wmii and showed it to me and I was impressed. However, since Stumpwm is written in common-lisp, and I was trying to learn it at that time, I tried using it, and have never looked back. Stumpwm is a [[http://en.wikipedia.org/wiki/Tiling_window_manager][tiling window manager]] (unlike KDE, gnome, etc which are [[http://en.wikipedia.org/wiki/Stacking_window_manager][stacking window managers]]). It allows me to have absolute control of where and how to place my windows, and all that without touching the mouse. But the feature I like the most in Stumpwm is to be able to bind keyboard shortcuts to applications (switch to a certain app, or start it if it's not already running and then switch to it). Agreed that recently KDE (and other DWMs) support this functionality, but they did not about 4+ years ago. And, just using this feature made me so much more productive, and gave me a adrenaline rush that I have never bothered looking at DWM advancements since; I have achieved DWM nirvana ;)
 
-and the supporting javascript code looks like:
+Vim and Emacs: I had been a (pure) vim guy for almost 5 years, when I switched to Emacs. The move was motivated largely because of common-lisp (emacs + [[http://common-lisp.net/project/slime/][slime]] is the best way to code in common-lisp) and the uber awesome [[http://orgmode.org/][org-mode]] (which I use for note taking, reminders, organization, planning and almost everything). To some people, these might be simply editors, but people who use them know that they will change the way you think and do things. If you are a developer, you should definitely use them!
 
-$.getScript("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-    function (data, textStatus, jqxhr) {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.text = "(adsbygoogle = window.adsbygoogle || []).push({})";
-        for (var a = null, arr = $("div.g-ad"), i = 0; i < arr.length; i += 1) {
-            a = arr[i];
-            $(a).append(script);
-       };
-    }
-);
+Vimperator: Being a web developer, browser is my "the" tool. I tend to use both [[http://www.google.com/chrome/][Chrome]] ([[http://www.chromium.org/][chromium]]) and firefox during development. But for development I simply cannot do without the firefox+vimperator setup because browsing is such an easy (nay, great!) experience. Not only do i not need to move my hands (from the keyboard) to open links (in same or background tabs), but I can even do cool stuff like record a macro and play it back over and over again. This makes automated testing super easy!
 
-If you have ever used jQuery, you will notice that what the above javascript snippet does is that it lazyloads the adsense javascript via the getScript function. And when the adsense javascript is loaded, the anonymous function is called which does the following steps
-1. creates a script tag having the code shown in the adsense documentation
-2. finds all "div" elements having the class "g-ad"
-3. loops through the divs found in the above step and adds the script tag to the div
+As Eric Raymond said in "How to Become a Hacker"
 
-And voila, we're done! We have now successfully reduced 8.4Kb of page-weight, which means faster pages for our readers :)
+Lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp itself a lot.
 
-The only drawback of this method is that it is impossible to debug it in the javascript debugger (in both firefox and chrome browsers), because the newly added script does not show up in the DOM :(
-
-But don't worry. If this technique has worked for us, it should for you too. So, go ahead and give it a try! And don't forget to share your experiences back :)
+Similarly, going mouse-less is one way to learn something that will open the door to a wonderful new world. And if you believe me, let me tell you, the grass is certainly greener on this side of the wall :)
     - html
-    - notes:
-    - references:
-*** TODO The producer consumer problem
-   :CLOCK:
-   CLOCK: [2013-12-19 Thu 13:56]--[2013-12-19 Thu 14:22] =>  0:26
-   :END:
-   - toc:
-   - cat/subcat:
-   - tags:
-   - lead image:
-   - summary: Taking a different perspective a the "producer consumer" problem outside of the computer world
-   - body:
-Anyone who has learnt basic "operating system" concepts in their Computer Science engineering knows about the "[[http://en.wikipedia.org/wiki/Producer-consumer_problem][producer consumer problem]]". It is a classic synchronization problem, where there are 2 processes, the "producer" and the "consumer", both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.
-
-I had mentioned in one of my previous articles, ***here (don't break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.
-
-Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it's magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.
-
-Having laid out the background of "producer" and "consumer" in my story, let me now get to the "problem" part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the "git week" series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.
-
-I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don't break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the "problem"!
-
-Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:
-
-- Don't break the chain
-- Practice makes perfect
-
-I believe that the 1st rule "don't break the chain" will take me a long way till the gates of the 1st part of the 2nd rule "practice", which will eventually take me to the 2nd part "perfection". What say you?
-   - html
 <p>
-	Anyone who has learnt basic &quot;operating system&quot; concepts in their Computer Science engineering knows about the <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem">producer consumer problem</a>. It is a classic synchronization problem, where there are 2 processes, the &quot;producer&quot; and the &quot;consumer&quot;, both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.</p>
+	I have been using <a href="http://www.linux.org/">Linux</a> for atleast the last 9 years, trying out different distributions like <a href="http://www.redhat.com/">RedHat</a>, <a href="http://fedoraproject.org/">Fedora</a>, <a href="http://www.debian.org/">Debian</a>, <a href="http://www.ubuntu.com/">Ubuntu</a>, <a href="http://www.gentoo.org/">Gentoo</a> and finally settling down on <a href="http://www.sabayon.org/">Sabayon</a> (for the last 2 years). Similarly, on the desktop manager side, I have used <a href="http://kde.org/">KDE</a> for a long long time, but have been using <a href="http://www.nongnu.org/stumpwm/">Stumpwm</a> for the last 3+ years. On the browser front, I use the awesome <a href="http://www.vimperator.org/">vimperator</a> plugin for <a href="http://www.mozilla.org/en-US/">firefox</a>.</p>
 <p>
-	I had mentioned in one of my previous articles, ***here (don&#39;t break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.</p>
-<p>
-	Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it&#39;s magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.</p>
-<p>
-	Having laid out the background of &quot;producer&quot; and &quot;consumer&quot; in my story, let me now get to the &quot;problem&quot; part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the &quot;git week&quot; series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.</p>
-<p>
-	I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don&#39;t break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the &quot;problem&quot;!</p>
-<p>
-	Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:</p>
+	You might think, and correctly at that, &quot;what is this guy talking about? what has all this to do with a rat, or even with productivity (if you read the description of this article on one of the Golbin! index pages)&quot;. Well, let me start with the following definition:</p>
 <blockquote>
-	<ul>
-		<li>
-			Don&#39;t break the chain</li>
-		<li>
-			Practice makes perfect</li>
-	</ul>
-</blockquote>
+	mouse, n: A device for pointing at the xterm in which you want to type. --A.S.R. (***???***)</blockquote>
 <p>
-	I believe that the 1st rule &quot;don&#39;t break the chain&quot; will take me a long way till the gates of the 1st part of the 2nd rule &quot;practice&quot;, which will eventually take me to the 2nd part &quot;perfection&quot;. What say you?</p>
-   - notes:
-   - references:
-*** TODO More exciting new features for golbin
-    :CLOCK:
-    CLOCK: [2013-12-20 Fri 16:35]--[2013-12-20 Fri 17:01] =>  0:26
-    :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2014-01-06 Mon 13:37
-     :END:
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image: http://www.golb.in/static/css/images/golbin.png @ http://www.golb.in/
-    - summary:
-    - body:
-Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]] previously, we will try our best to continuously add small and big (both user-facing and not) features to our [[http://www.golb.in/][Golbin!]] website. So let's review what's new:
-
-- RSS: We have added a [[http://en.wikipedia.org/wiki/RSS][RSS]] stream for all our index pages; that is for the [[http://www.golb.in/][home]] page, and also for all category/sub-category (click [[http://www.golb.in/category/lifestyle/][here]] and [[http://www.golb.in/category/technology/internet/][here]] for example) and author pages (like [[http://www.golb.in/author/spradnyesh/][this]] for example). So now viewers can access [[http://www.golb.in/][Golbin!]] stories from your favorite feed reader. To use this functionality, simple search for and click the "RSS" link present at the bottom of any of our index pages.
-
-- lazyload [[http://www.google.com/][Google]] ads: If you have noticed earlier, google-ads on [[http://www.golb.in/][Golbin!]] pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome jQuery [[http://jqueryad.web2ajax.fr/][lazyload Ad]] plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of [[https://support.google.com/adsense/answer/3221666?hl%3Den][rendering ads]], we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on [[http://www.golb.in/][Golbin!]]
-
-- story page backgrounds: In our last post [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]], we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.
-
-As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
-    - html
+	If you don&#39;t get the above, I am basically talking about the PC &quot;mouse&quot;. I feel that the mouse is only there to slow you down. Based on my personal experience, I can say very confidently that the less mouse I use, the faster I work. Agreed, that it takes a bit of practice, and maybe making some (initially difficult) choices too, but in the long term you will be a completely different person. Notice, that I don&#39;t say &quot;a more productive person&quot;, but a &quot;completely different person&quot;. That is because, using the keyboard changes you in more than 1 ways.</p>
 <p>
-	Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">here</a> previously, we will try our best to continuously add small and big (both user-facing and not) features to our <a href="http://www.golb.in/" target="_blank">Golbin!</a> website. So let&#39;s review what&#39;s new:</p>
+	Of course your typing speed will increase, which will make regular things (coding, typing emails, blogging, etc) faster. This alone will help you think faster, because our system throughput is limited by the I/O (typing). Even though we are capable of thinking faster, we end up thinking slowly because our typing puts pauses to our thinking, breaking the flow.</p>
 <p>
-	<strong>RSS</strong>: We have added a <a href="http://en.wikipedia.org/wiki/RSS" target="_blank">RSS</a> stream for all our index pages; that is for the <a href="http://www.golb.in/" target="_blank">home</a> page, and also for all category/sub-category (click <a href="http://www.golb.in/category/lifestyle/" target="_blank">here</a> and <a href="http://www.golb.in/category/technology/internet/" target="_blank">here</a> for example) and author pages (like <a href="http://www.golb.in/author/spradnyesh/" target="_blank">this</a> for example). So now viewers can access <a href="http://www.golb.in/" target="_blank">Golbin!</a> stories from your favorite feed reader. To use this functionality, simple search for and click the &quot;RSS&quot; link present at the bottom of any of our index pages.</p>
+	Also, more importantly, your choice of tools/systems will change too. For example, I use the following tools/systems:</p>
 <p>
-	<strong>lazyload <a href="http://www.google.com/" target="_blank">Google</a> ads</strong>: If you have noticed earlier, google-ads on <a href="http://www.golb.in/" target="_blank">Golbin!</a> pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome <a href="http://jqueryad.web2ajax.fr/" target="_blank">jQuery lazyload Ad</a> plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of <a href="https://support.google.com/adsense/answer/3221666?hl%3Den">rendering ads</a>, we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+	Linux: I am a software developer, and strongly believe that every software developer should use a Linux desktop to:</p>
+<ol>
+	<li>
+		learn something more than clicking &quot;next, next, next, finish&quot; :p</li>
+	<li>
+		getting hands dirty on the terminal. That itself will teach you so many tools (find, grep, etc) and techniques (regular expressions, bash scripting, etc) to make you a better developer</li>
+	<li>
+		huge number choice of desktop managers (among other things)</li>
+</ol>
 <p>
-	<strong>story page backgrounds</strong>: In our last <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">post</a>, we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.</p>
+	Stumpwm: I always liked KDE better than <a href="http://www.gnome.org/">Gnome</a>, simply because KDE allowed a <strong>lot</strong> more keyboard customization than gnome (about 5-9 years ago). But in my search for a mouseless <a href="http://en.wikipedia.org/wiki/Desktop_Window_Manager">DWM</a> (desktop window manager), I stumbled upon <a href="http://www.nongnu.org/ratpoison/">Ratpoison</a>, <a href="http://en.wikipedia.org/wiki/Wmii">wmii</a> and Stumpwm. At that time, one of my colleagues was using wmii and showed it to me and I was impressed. However, since Stumpwm is written in common-lisp, and I was trying to learn it at that time, I tried using it, and have never looked back. Stumpwm is a <a href="http://en.wikipedia.org/wiki/Tiling_window_manager">tiling window manager</a> (unlike KDE, gnome, etc which are <a href="http://en.wikipedia.org/wiki/Stacking_window_manager">stacking window managers</a>). It allows me to have absolute control of where and how to place my windows, and all that without touching the mouse. But the feature I like the most in Stumpwm is to be able to bind keyboard shortcuts to applications (switch to a certain app, or start it if it&#39;s not already running and then switch to it). Agreed that recently KDE (and other DWMs) support this functionality, but they did not about 4+ years ago. And, just using this feature made me so much more productive, and gave me a adrenaline rush that I have never bothered looking at DWM advancements since; I have achieved DWM nirvana ;)</p>
 <p>
-	As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+	Vim and Emacs: I had been a (pure) <a href="http://www.vim.org/">vim</a> guy for almost 5 years, when I switched to Emacs. The move was motivated largely because of common-lisp (<a href="http://www.gnu.org/software/emacs/">emacs</a> + <a href="http://common-lisp.net/project/slime/">slime</a> is the best way to code in common-lisp) and the uber awesome <a href="http://orgmode.org/">org-mode</a> (which I use for note taking, reminders, organization, planning and almost everything). To some people, these might be simply editors, but people who use them know that they will change the way you think and do things. If you are a developer, you should definitely use them!</p>
+<p>
+	Vimperator: Being a web developer, browser is my &quot;the&quot; tool. I tend to use both <a href="http://www.google.com/chrome/">Chrome</a> (<a href="http://www.chromium.org/">chromium</a>) and firefox during development. But for development I simply cannot do without the firefox+vimperator setup because browsing is such an easy (nay, great!) experience. Not only do i not need to move my hands (from the keyboard) to open links (in same or background tabs), but I can even do cool stuff like record a macro and play it back over and over again. This makes automated testing super easy!</p>
+<p>
+	As Eric Raymond said in &quot;How to Become a Hacker&quot;</p>
+<blockquote>
+	Lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp itself a lot.</blockquote>
+<p>
+	Similarly, going mouse-less is an enlightening way to learn something that will open the door to a wonderful new world. And if you will believe me, let me tell you, the grass is certainly greener on this side of the wall :)</p>
     - notes:
     - references:
-*** busan week
-**** TODO Busan week, day-1: Haeundae beach
-     :CLOCK:
-     CLOCK: [2014-01-05 Sun 15:46]--[2014-01-05 Sun 16:28] =>  0:42
-     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
-     :END:
-     - toc:
-     - cat/subcat: lifestyle/travel
-     - tags: busan, haeundae, beach, south-korea, 1003
-     - lead image: http://www.flickr.com/photos/spradnyesh/11621124163/
-     - summary: Day 1 of my week long vacation with family to Busan was spent at the calm but chilly Haeundae beach!
-     - body:
-First of all, let me wish you all a very happy and prosperous 2014! Second, let me pray for Golbin! to get bigger, both in terms of readers and storytellers :)
-
-This and the next few of my stories are going to be about my week-long travel to [[http://en.wikipedia.org/wiki/Busan][Busan]], South Korea. I went there with my wife and 1 year old daughter in the week of Christmas (23-28 Dec), because of different reasons
-1. 23rd was my wife's birthday
-2. I had holidays in my office on 24 and 25, so only 3 days of leaves need be taken
-3. Busan, I was told, is much warmer (without any snow), but a lot windy, during this time of the year, than [[http://en.wikipedia.org/wiki/Suwon][Suwon]] (where I reside)
-
-Anyways, so we decided to go to Busan for a week long vacation. We had to prepare for a long time, because this was the 1st time that we were going out for such a long time taking our baby (who is just 1 year old) with us. The preparation revolved mostly around baby clothes, for the windy weather, and home-made baby food. The only thing we had actually reserved before going to Busan were the hotel (we stayed at the [[http://www.rivierahotel.co.kr/EN/][Riviera]] hotel, which was very close to Haeundae beach) and the to and fro train tickets. We did not want to book/reserve other things mostly because there was a huge amount of uncertainty regarding how my daughter would react to a new place. Fortunately, not only did she not give us much trouble, but she also enjoyed the place a lot
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11624256564/player/f8243639c2" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-Considering that we had our baby with us, we had set low expectations of travel in a day. If we could visit 1-2 places in 1 day, that would be good enough for us. That is also 1 reason for the week long tour, even though some of my (bachelor / newly-married) friends had said that just 1-2 days were enough to visit Busan.
-
-We traveled from Suwon to Busan in the [[http://www.korail.com/en/][KTX]] train, which runs at a max speed of about 280 kmph. The idea of traveling so fast itself was enough reason for me to visit Busan. The other major attraction being the Busan aquarium, about which I had read and heard a [[http://www.tripadvisor.com/Attraction_Review-g297884-d669986-Reviews-Busan_Aquarium-Busan.html][few good things]], and had especially liked their [[http://www.busanaquarium.com/en/][website]]. I was also looking forward to the journey itself because I wanted to replicate the photography techniques that this guy ([[http://www.qiranger.com/2011/06/10/suwon-to-busan/][here]]) had used; my try was disastrous :(
-
-We started from Suwon station on 23rd morning 10.50am, and reached Busan at around 1.40pm and to our hotel (bus #1003) in [[http://en.wikipedia.org/wiki/Haeundae_District][Haeundae]] at about 2.30pm. Then we rested a bit, had some lunch, and visited Haeundae beach in the evening. Although my wife loved the beautiful beach, we had to return soon to the warm and cozy hotel room because it was a bit too windy and chilly for my daughter to handle
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621602166/player/66efefa17a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621601406/player/e76fa5d334" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621192974/player/0c3f21d1ce" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621191764/player/83e3b443b9" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621030403/player/e7a678e028" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-Finally, we ate dinner at [[http://www.tripadvisor.com/Restaurant_Review-g297884-d4166622-Reviews-Namaste-Busan.html][Namaste India]]; the food was very tasty. Since it was my wife's birthday, we had some ice-cream and called it a day!
-     - html
-     - notes:
-     - references:
-**** TODO Busan week, day-2: Yeonggung-sa
-     :CLOCK:
-     CLOCK: [2014-01-05 Sun 17:12]--[2014-01-05 Sun 17:14] =>  0:02
-     CLOCK: [2014-01-05 Sun 16:39]--[2014-01-05 Sun 17:07] =>  0:28
-     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
-     :END:
-     - toc:
-     - cat/subcat: lifestyle/travel
-     - tags: busan, yeonggungsa, temple, taejongdae, buddha, son
-     - lead image: http://www.flickr.com/photos/spradnyesh/11621201843/
-     - summary: Yeonggungsa was undoubtedly the *best* place that we visited during our 1 week long vacation to Busan
-     - body:
-Before coming to Busan I had done some basic research about the places to visit in Busan. We had found that there are some city tours available. These tours were of 2 different types: looped and themed. The ticket for either was 10,000 won (approx. 10$). The difference between the 2 is that in the looped tour, there are buses that go around Busan in a circular fashion, and you can buy the ticket once (from the driver), and get in and down at any of the places (tourist spots) that the bus stops at. There is 1 bus every 30 mins (between 9.30am and 5pm starting from Busan station), so you can practically go to place A -> visit it for as long as you wish -> hop into the next bus and go to place B -> and so on. This mode of travel is extremely convenient and cheap; especially if you like traveling on your own and don't need a guide (have done some basic homework of what places interest you and you want to visit). There are 2 different routes of the looped tours, called the "[[http://en.wikipedia.org/wiki/Haeundae_District][Haeundae]]" and "[[http://en.wikipedia.org/wiki/Taejongdae][Taejongdae]]" loops, and the same ticket works on both.
-
-The 2nd type of city tour buses are the "themed" tours: "History and Culture", "[[http://yongkungsa.or.kr/en/][Haedong YeongGung temple]]", "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo Eco]]" and "Night view". These tours are about 3hrs 40 mins each, and the buses leave twice a day; except for the "Night view" which is about 2.5hrs long, and runs only once in the evening. One good thing about themed Busan city tours is that you can call up their online help-desk (+82-51-464-9898) and do a reservation but actually purchase the ticket from the driver (at the start of the tour). The bad thing is that the help-desk (in my experience) is open only for about 2 hours between 9-11am in the morning; and some of the tours get full about 10 days in advance.
-
-Anyways, we called up the help-desk in the morning, and were able to reserve 2 seats for the "Haedong YeongGung temple" tour. Since we reached a bit before the tour start time, I clicked a few photos in the Busan station area
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621680976/player/5547ccdaac" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-YeongGung-sa (sa means temple) was undoubtedly the best place that I visited in Busan. The temple is located on a cliff and the view is extremely serene and beautiful. It is the place that receives the 1st sun light in Korea.
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621397824/player/b3505ff0da" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621255003/player/a1206dcd7e" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621793556/player/145870c31a" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11620950435/player/436175ddb9" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621385194/player/37686de243" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621239643/player/b9813d77b8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621367824/player/300795d223" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621365494/player/9b1e3a8d7e" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-     - html
-     - notes:
-     - references:
-**** TODO Busan week, day-3: Taejongdae
-     :CLOCK:
-     CLOCK: [2014-01-05 Sun 19:05]--[2014-01-05 Sun 19:07] =>  0:02
-     CLOCK: [2014-01-05 Sun 18:32]--[2014-01-05 Sun 18:38] =>  0:06
-     CLOCK: [2014-01-05 Sun 18:27]--[2014-01-05 Sun 18:31] =>  0:04
-     CLOCK: [2014-01-05 Sun 18:02]--[2014-01-05 Sun 18:21] =>  0:19
-     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
-     :END:
-     - toc:
-     - cat/subcat: lifestyle/travel
-     - tags: busan, taejongdae, city-tour, light-house, open-roof, double-decker-bus
-     - lead image: http://www.flickr.com/photos/spradnyesh/11621630816/
-     - summary: Today we took the looped city tour bus and visited Taejongdae
-     - body:
-The first half of our third day (see the first 2 ***here*** and ***here***) in Busan was the lowest point of the whole week. We had a reservation for the "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo eco]]" tour in the morning, but my daughter vomited just when we were about to reach Busan station. We had no choice but to head back to the hotel.
-
-Once we were ready again, We took the looped city tour bus and visited [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D264167][Taejongdae]]. It is a hill which hosts the Taejongdae resort. This time, we took the Haeundae loop tour bus to go from Haeundae beach to busan and it passed via the famous [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D1064834][Gwangan bridge]]:
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621884866/player/3b9d96dfda" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621888096/player/29ba2542ac" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621887146/player/6b25b0f486" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-Unfortunately, we made the bad decision of getting down at the "Busan art museum" stop. The decision was bad because after getting down, we went in the wrong direction and spent about 15 minutes just searching for the place. We were already pissed off because of the bad start, so we came back to the bus stop and waited another 20 mins for the bus. But this time we were laughing at our stupidity, because the art museum was just 1 min away from the stop. Anyways, we weren't in a mood to go there after this.
-
-Fortunately, the same bus got converted into the Taejongdae loop tour bus. So we did not have to get down of the bus, but also were able to catch a good window seat ;) On the way to Taejongdae from Busan, we passed the 75-square stop (which we did not get down at). The sea-meets-the-sky view was simply amazing. Here are some ok-ok shots from inside the moving bus
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621065865/player/63d2263e5b" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621842166/player/24a8924eb8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-On reaching Taejongdae we boarded the mini tram and saw the place; we did not get down from the tram at any of the stops that it made, including the light-house:
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621081583/player/4ae57fe096" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11620855015/player/54234f668b" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-From Taejongdae we took the loop tour bus back to Busan; but this time we got a bus with an open top. This was the first time for both my wife and me to sit in an open roof double-decker bus, and it was an amazing experience. On the way we passed [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D1054924][Songdo]] [[http://www.tripadvisor.com/Attraction_Review-g297884-d3420565-Reviews-Songdo_Beach-Busan.html][beach]] and the world famous [[http://www.tripadvisor.com/Attraction_Review-g297884-d1372972-Reviews-Jagalchi_Market-Busan.html][Jagalchi]] [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D264168][fish]] [[http://en.wikipedia.org/wiki/Jagalchi_Market][market]], but did not get down at either
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11622017636/player/01fa200002" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621997836/player/caff767910" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621196655/player/06f6030ca3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621410203/player/aeffe8d89a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621546594/player/006bc526a9" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-
-     - html
-     - notes:
-     - references:
-**** TODO Busan week, day-4: Busan Aquarium and Shinsegae mall
-     :CLOCK:
-     CLOCK: [2014-01-05 Sun 18:38]--[2014-01-05 Sun 19:02] =>  0:24
-     CLOCK: [2014-01-05 Sun 18:26]--[2014-01-05 Sun 18:27] =>  0:01
-     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
-     :END:
-     - toc:
-     - cat/subcat: lifestyle/travel
-     - tags: busan, aquarium, shinsegae, coex, seoul, cartoon, painting
-     - lead image: http://www.flickr.com/photos/spradnyesh/11621664455/
-     - summary: Today was the day for local sightseeing, close to Haeundae beach. And in the process we learnt something extremely (and disappointingly) surprising about the shopping mall that is listed as the largest shopping mall in the world in the Guinness book of world records!
-     - body:
-Today I wasn't in a mood to travel all the way to Busan station (it's about 35-50 mins from Haeundae beach, depending on the traffic; also the Haeundae -> Busan (bus #1003) route is longer than the other way around). So we decided to do some local sightseeing, which included Busan aquarium and [[http://en.wikipedia.org/wiki/Shinsegae][Shinsegae]] mall.
-
-As I have mentioned ***here, day-1***, I was super excited to visit the Busan aquarium because it offered the once in a lifetime opportunity to swim with the sharks. Unfortunately, my hopes were shattered because when I inquired about it, I was sent from one desk to another and then asked to call some phone number where the man only spoke Korean. I spent 30 mins running from desk-to-desk, by which time my wife was pissed off because my daughter being difficult to be managed by her alone. We also did not get to sit in the glass-bottomed boat because my daughter was too young. The actual fishes weren't that exciting since the variety was almost the same as what we had already seen in [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D736274][COEX mall aquarium]] in [[http://en.wikipedia.org/wiki/Seoul][Seoul]]. I did manage to get 1 macro image that I liked a lot
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11622415516/player/7a2993574a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-Finally, we got a cartoon-painting made of the 3 of us and went back to the hotel for lunch
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11621846323/player/b24a375893" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-In the evening we visited Shinsegae which has its name in the Guinness book of world records as the worlds largest shopping mall. This time we traveled by the subway because
-1. Haeundae subway station was pretty close from our hotel
-2. Shinsegae is directly reachable from the "City Centum" subway station
-3. City centum station is just 3 stations away from Haeundae station
-4. We would be able to avoid the heavy evening traffic
-
-Although we had seen the mall from outside a lot of times now (because it is on the way when traveling Busan <-> Haeundae), this was the first time we were inside it. And although it was not immediately apparent how huge it was, it was fascinating to see an ice-rink inside it. I even gave ice-skating a try but gave up within just 20 minutes after falling hard twice ;)
-
-But the most weird and disappointingly surprising thing about the world's largest mall was that it closes at 8pm! Yes you heard it right, it shuts down at 8pm. This was completely unexpected for us, and very inconvenient too. Because we had to rush out and found ourselves trapped in the wrong part of the mall. The elevators would either take us to a road-side exit (we didn't know which side of the mall), or to a do-not-enter red-tape. Eventually, with a baby in my hands, I did what I had to do. Entered the no-entry zone, found my way to the part that I knew we had entered from (the part that was connected to the subway station) and took the elevator from there. All this crazy running took us about 15 minutes, just to come from the 7th floor to the basement. It was one of the weirdest experience ever!
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11622653554/player/3e3669eef3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11623049916/player/c73456e243" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11622642884/player/0197de3a84" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11623046456/player/13d55a990c" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-     - html
-     - notes:
-     - references:
-**** TODO Busan week, day-5: Eulsukdo eco center
-     :CLOCK:
-     CLOCK: [2014-01-05 Sun 19:08]--[2014-01-05 Sun 19:32] =>  0:24
-     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
-     :END:
-     - toc:
-     - cat/subcat: lifestyle/travel
-     - tags: busan, eulsukdo, eco-center, gamcheon, beomeosa, culture, village, temple, seagull
-     - lead image: http://www.flickr.com/photos/spradnyesh/11624333586/
-     - summary: Last day of the week long vacation to Busan!
-     - body:
-Since today was the last day of tour, we decided to go for the "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo eco-center]]" themed tour that we had missed on the unfortunate 3rd day. So we got up early and went to Busan station. But it looks like the Eulsukdo tour was jinxed. When I called the Busan city tour help-desk (+82-51-464-9898), they told me that both the morning and afternoon tours were fully reserved. Anyways, we were already in the bus and went to Busan station hoping that someone might skip (like we had on our 3rd day). We reached the station just a few minutes before the departure only to find out that there was just 1 empty seat. Dejected, we tried to decide what to do next. We had 3 options:
-1. Visit Beomeosa ([[[http://en.wikipedia.org/wiki/Beomeosa][1]]], [[[http://koreantemples.com/?p%3D241][2]]], [[[http://www.tripadvisor.com/Attraction_Review-g297884-d615908-Reviews-Beomeosa_Temple-Busan.html][3]]]) temple ourselves
-2. Visit [[http://www.busanhaps.com/article/history-hills-busans-gamcheon-culture-village][Gamcheon]] [[http://www.tripadvisor.com/Attraction_Review-g297884-d3901349-Reviews-Gamcheon_Culture_Village-Busan.html][culture]] village ourselves
-3. Go back to hotel and come back for afternoon tour
-
-We decided to do the third because we did not want to wander out on our own with a baby in our hands. We visited the Haeundae beach on our way back to the hotel, where we saw a lot of [[http://en.wikipedia.org/wiki/Black-legged_Kittiwake][black-legged seagulls]] up close
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11624357126/player/b40239cac8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11623801213/player/8e465e2903" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-In the afternoon, we left early only to reach 40 mins before time for the Eulsukdo tour. This time our wait was fruitful because we were the 1st people to board the bus and got a good seat too. Unfortunately, there weren't any birds (other than ducks, which was not exciting at all) at the eco-center :(
-
-<iframe src="https://www.flickr.com/photos/spradnyesh/11623740303/player/363e907ca3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-This marked the end of our tour, and the next day we traveled back from Busan to Suwon on the KTX. Although the train reached top speeds of 290+ kmph, it always did so when inside tunnels, so we weren't able to see outside. But we did notice our ears getting jammed, and could feel the speeds. Also, this time again, I tried to do the photography technique that I had mentioned in the day-1 post ***here, day-1***. This time I had more success, but none of the photos turned out to be good enough. Even then, it was a good learning experience.
-
-I hope you all loved the travelogue (older posts are ***here***, ***here***, ***here*** and ***here***)! Do share your thoughts :)
-     - html
-     - notes:
-     - references:
-*** Archive (published)                                             :ARCHIVE:
+*** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
     :PROPERTIES:
@@ -6710,6 +6433,403 @@ Do share your experiences with setting environment variables inside of cronjob s
 	Do share your experiences with setting environment variables inside of cronjob scripts. Maybe you found some other (easier) way that worked for you. I would really love to hear about it!</p>
    - notes:
    - references:
+**** busan week
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+     :END:
+***** Archive                                                       :ARCHIVE:
+****** DONE Busan week, day-1: Haeundae beach
+     CLOSED: [2014-01-08 Wed 19:24]
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 15:46]--[2014-01-05 Sun 16:28] =>  0:42
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+      :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, haeundae, beach, south-korea, 1003
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621124163/
+     - summary: Day 1 of my week long vacation with family to Busan was spent at the calm but chilly Haeundae beach!
+     - body:
+First of all, let me wish you all a very happy and prosperous 2014! Second, let me pray for Golbin! to get bigger, both in terms of readers and storytellers :)
+
+This and the next few of my stories are going to be about my week-long travel to [[http://en.wikipedia.org/wiki/Busan][Busan]], South Korea. I went there with my wife and 1 year old daughter in the week of Christmas (23-28 Dec), because of different reasons
+1. 23rd was my wife's birthday
+2. I had holidays in my office on 24 and 25, so only 3 days of leaves need be taken
+3. Busan, I was told, is much warmer (without any snow), but a lot windy, during this time of the year, than [[http://en.wikipedia.org/wiki/Suwon][Suwon]] (where I reside)
+
+Anyways, so we decided to go to Busan for a week long vacation. We had to prepare for a long time, because this was the 1st time that we were going out for such a long time taking our baby (who is just 1 year old) with us. The preparation revolved mostly around baby clothes, for the windy weather, and home-made baby food. The only thing we had actually reserved before going to Busan were the hotel (we stayed at the [[http://www.rivierahotel.co.kr/EN/][Riviera]] hotel, which was very close to Haeundae beach) and the to and fro train tickets. We did not want to book/reserve other things mostly because there was a huge amount of uncertainty regarding how my daughter would react to a new place. Fortunately, not only did she not give us much trouble, but she also enjoyed the place a lot
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11624256564/player/f8243639c2" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Considering that we had our baby with us, we had set low expectations of travel in a day. If we could visit 1-2 places in 1 day, that would be good enough for us. That is also 1 reason for the week long tour, even though some of my (bachelor / newly-married) friends had said that just 1-2 days were enough to visit Busan.
+
+We traveled from Suwon to Busan in the [[http://www.korail.com/en/][KTX]] train, which runs at a max speed of about 280 kmph. The idea of traveling so fast itself was enough reason for me to visit Busan. The other major attraction being the Busan aquarium, about which I had read and heard a [[http://www.tripadvisor.com/Attraction_Review-g297884-d669986-Reviews-Busan_Aquarium-Busan.html][few good things]], and had especially liked their [[http://www.busanaquarium.com/en/][website]]. I was also looking forward to the journey itself because I wanted to replicate the photography techniques that this guy ([[http://www.qiranger.com/2011/06/10/suwon-to-busan/][here]]) had used; my try was disastrous :(
+
+We started from Suwon station on 23rd morning 10.50am, and reached Busan at around 1.40pm and to our hotel (bus #1003) in [[http://en.wikipedia.org/wiki/Haeundae_District][Haeundae]] at about 2.30pm. Then we rested a bit, had some lunch, and visited Haeundae beach in the evening. Although my wife loved the beautiful beach, we had to return soon to the warm and cozy hotel room because it was a bit too windy and chilly for my daughter to handle
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621602166/player/66efefa17a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621601406/player/e76fa5d334" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621192974/player/0c3f21d1ce" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621191764/player/83e3b443b9" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621030403/player/e7a678e028" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Finally, we ate dinner at [[http://www.tripadvisor.com/Restaurant_Review-g297884-d4166622-Reviews-Namaste-Busan.html][Namaste India]]; the food was very tasty. Since it was my wife's birthday, we had some ice-cream and called it a day!
+     - html
+     - notes:
+     - references:
+****** DONE Busan week, day-2: Yeonggung-sa
+     CLOSED: [2014-01-08 Wed 19:24]
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 17:12]--[2014-01-05 Sun 17:14] =>  0:02
+     CLOCK: [2014-01-05 Sun 16:39]--[2014-01-05 Sun 17:07] =>  0:28
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+      :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, yeonggungsa, temple, taejongdae, buddha, son
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621201843/
+     - summary: Yeonggungsa was undoubtedly the *best* place that we visited during our 1 week long vacation to Busan
+     - body:
+Before coming to Busan I had done some basic research about the places to visit in Busan. We had found that there are some city tours available. These tours were of 2 different types: looped and themed. The ticket for either was 10,000 won (approx. 10$). The difference between the 2 is that in the looped tour, there are buses that go around Busan in a circular fashion, and you can buy the ticket once (from the driver), and get in and down at any of the places (tourist spots) that the bus stops at. There is 1 bus every 30 mins (between 9.30am and 5pm starting from Busan station), so you can practically go to place A -> visit it for as long as you wish -> hop into the next bus and go to place B -> and so on. This mode of travel is extremely convenient and cheap; especially if you like traveling on your own and don't need a guide (have done some basic homework of what places interest you and you want to visit). There are 2 different routes of the looped tours, called the "[[http://en.wikipedia.org/wiki/Haeundae_District][Haeundae]]" and "[[http://en.wikipedia.org/wiki/Taejongdae][Taejongdae]]" loops, and the same ticket works on both.
+
+The 2nd type of city tour buses are the "themed" tours: "History and Culture", "[[http://yongkungsa.or.kr/en/][Haedong YeongGung temple]]", "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo Eco]]" and "Night view". These tours are about 3hrs 40 mins each, and the buses leave twice a day; except for the "Night view" which is about 2.5hrs long, and runs only once in the evening. One good thing about themed Busan city tours is that you can call up their online help-desk (+82-51-464-9898) and do a reservation but actually purchase the ticket from the driver (at the start of the tour). The bad thing is that the help-desk (in my experience) is open only for about 2 hours between 9-11am in the morning; and some of the tours get full about 10 days in advance.
+
+Anyways, we called up the help-desk in the morning, and were able to reserve 2 seats for the "Haedong YeongGung temple" tour. Since we reached a bit before the tour start time, I clicked a few photos in the Busan station area
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621680976/player/5547ccdaac" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+YeongGung-sa (sa means temple) was undoubtedly the best place that I visited in Busan. The temple is located on a cliff and the view is extremely serene and beautiful. It is the place that receives the 1st sun light in Korea.
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621397824/player/b3505ff0da" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621255003/player/a1206dcd7e" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621793556/player/145870c31a" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11620950435/player/436175ddb9" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621385194/player/37686de243" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621239643/player/b9813d77b8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621367824/player/300795d223" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621365494/player/9b1e3a8d7e" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+     - html
+     - notes:
+     - references:
+****** DONE Busan week, day-3: Taejongdae
+     CLOSED: [2014-01-08 Wed 19:24]
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 19:05]--[2014-01-05 Sun 19:07] =>  0:02
+     CLOCK: [2014-01-05 Sun 18:32]--[2014-01-05 Sun 18:38] =>  0:06
+     CLOCK: [2014-01-05 Sun 18:27]--[2014-01-05 Sun 18:31] =>  0:04
+     CLOCK: [2014-01-05 Sun 18:02]--[2014-01-05 Sun 18:21] =>  0:19
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+      :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, taejongdae, city-tour, light-house, open-roof, double-decker-bus
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621630816/
+     - summary: Today we took the looped city tour bus and visited Taejongdae
+     - body:
+The first half of our third day (see the first 2 ***here*** and ***here***) in Busan was the lowest point of the whole week. We had a reservation for the "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo eco]]" tour in the morning, but my daughter vomited just when we were about to reach Busan station. We had no choice but to head back to the hotel.
+
+Once we were ready again, We took the looped city tour bus and visited [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D264167][Taejongdae]]. It is a hill which hosts the Taejongdae resort. This time, we took the Haeundae loop tour bus to go from Haeundae beach to busan and it passed via the famous [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D1064834][Gwangan bridge]]:
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621884866/player/3b9d96dfda" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621888096/player/29ba2542ac" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621887146/player/6b25b0f486" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Unfortunately, we made the bad decision of getting down at the "Busan art museum" stop. The decision was bad because after getting down, we went in the wrong direction and spent about 15 minutes just searching for the place. We were already pissed off because of the bad start, so we came back to the bus stop and waited another 20 mins for the bus. But this time we were laughing at our stupidity, because the art museum was just 1 min away from the stop. Anyways, we weren't in a mood to go there after this.
+
+Fortunately, the same bus got converted into the Taejongdae loop tour bus. So we did not have to get down of the bus, but also were able to catch a good window seat ;) On the way to Taejongdae from Busan, we passed the 75-square stop (which we did not get down at). The sea-meets-the-sky view was simply amazing. Here are some ok-ok shots from inside the moving bus
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621065865/player/63d2263e5b" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621842166/player/24a8924eb8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+On reaching Taejongdae we boarded the mini tram and saw the place; we did not get down from the tram at any of the stops that it made, including the light-house:
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621081583/player/4ae57fe096" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11620855015/player/54234f668b" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+From Taejongdae we took the loop tour bus back to Busan; but this time we got a bus with an open top. This was the first time for both my wife and me to sit in an open roof double-decker bus, and it was an amazing experience. On the way we passed [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D1054924][Songdo]] [[http://www.tripadvisor.com/Attraction_Review-g297884-d3420565-Reviews-Songdo_Beach-Busan.html][beach]] and the world famous [[http://www.tripadvisor.com/Attraction_Review-g297884-d1372972-Reviews-Jagalchi_Market-Busan.html][Jagalchi]] [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D264168][fish]] [[http://en.wikipedia.org/wiki/Jagalchi_Market][market]], but did not get down at either
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622017636/player/01fa200002" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621997836/player/caff767910" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621196655/player/06f6030ca3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621410203/player/aeffe8d89a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621546594/player/006bc526a9" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+
+     - html
+     - notes:
+     - references:
+****** DONE Busan week, day-4: Busan Aquarium and Shinsegae mall
+     CLOSED: [2014-01-08 Wed 19:24]
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 18:38]--[2014-01-05 Sun 19:02] =>  0:24
+     CLOCK: [2014-01-05 Sun 18:26]--[2014-01-05 Sun 18:27] =>  0:01
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+      :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, aquarium, shinsegae, coex, seoul, cartoon, painting
+     - lead image: http://www.flickr.com/photos/spradnyesh/11621664455/
+     - summary: Today was the day for local sightseeing, close to Haeundae beach. And in the process we learnt something extremely (and disappointingly) surprising about the shopping mall that is listed as the largest shopping mall in the world in the Guinness book of world records!
+     - body:
+Today I wasn't in a mood to travel all the way to Busan station (it's about 35-50 mins from Haeundae beach, depending on the traffic; also the Haeundae -> Busan (bus #1003) route is longer than the other way around). So we decided to do some local sightseeing, which included Busan aquarium and [[http://en.wikipedia.org/wiki/Shinsegae][Shinsegae]] mall.
+
+As I have mentioned ***here, day-1***, I was super excited to visit the Busan aquarium because it offered the once in a lifetime opportunity to swim with the sharks. Unfortunately, my hopes were shattered because when I inquired about it, I was sent from one desk to another and then asked to call some phone number where the man only spoke Korean. I spent 30 mins running from desk-to-desk, by which time my wife was pissed off because my daughter being difficult to be managed by her alone. We also did not get to sit in the glass-bottomed boat because my daughter was too young. The actual fishes weren't that exciting since the variety was almost the same as what we had already seen in [[http://english.visitkorea.or.kr/enu/SI/SI_EN_3_1_1_1.jsp?cid%3D736274][COEX mall aquarium]] in [[http://en.wikipedia.org/wiki/Seoul][Seoul]]. I did manage to get 1 macro image that I liked a lot
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622415516/player/7a2993574a" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+Finally, we got a cartoon-painting made of the 3 of us and went back to the hotel for lunch
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11621846323/player/b24a375893" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+In the evening we visited Shinsegae which has its name in the Guinness book of world records as the worlds largest shopping mall. This time we traveled by the subway because
+1. Haeundae subway station was pretty close from our hotel
+2. Shinsegae is directly reachable from the "City Centum" subway station
+3. City centum station is just 3 stations away from Haeundae station
+4. We would be able to avoid the heavy evening traffic
+
+Although we had seen the mall from outside a lot of times now (because it is on the way when traveling Busan <-> Haeundae), this was the first time we were inside it. And although it was not immediately apparent how huge it was, it was fascinating to see an ice-rink inside it. I even gave ice-skating a try but gave up within just 20 minutes after falling hard twice ;)
+
+But the most weird and disappointingly surprising thing about the world's largest mall was that it closes at 8pm! Yes you heard it right, it shuts down at 8pm. This was completely unexpected for us, and very inconvenient too. Because we had to rush out and found ourselves trapped in the wrong part of the mall. The elevators would either take us to a road-side exit (we didn't know which side of the mall), or to a do-not-enter red-tape. Eventually, with a baby in my hands, I did what I had to do. Entered the no-entry zone, found my way to the part that I knew we had entered from (the part that was connected to the subway station) and took the elevator from there. All this crazy running took us about 15 minutes, just to come from the 7th floor to the basement. It was one of the weirdest experience ever!
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622653554/player/3e3669eef3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623049916/player/c73456e243" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11622642884/player/0197de3a84" height="500" width="375"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623046456/player/13d55a990c" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+     - html
+     - notes:
+     - references:
+****** DONE Busan week, day-5: Eulsukdo eco center
+     CLOSED: [2014-01-08 Wed 19:24]
+     :CLOCK:
+     CLOCK: [2014-01-05 Sun 19:08]--[2014-01-05 Sun 19:32] =>  0:24
+     CLOCK: [2014-01-05 Sun 15:42]--[2014-01-05 Sun 15:46] =>  0:04
+     :END:
+      :PROPERTIES:
+      :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+      :END:
+     - toc:
+     - cat/subcat: lifestyle/travel
+     - tags: busan, eulsukdo, eco-center, gamcheon, beomeosa, culture, village, temple, seagull
+     - lead image: http://www.flickr.com/photos/spradnyesh/11624333586/
+     - summary: Last day of the week long vacation to Busan!
+     - body:
+Since today was the last day of tour, we decided to go for the "[[http://busan.for91days.com/2012/07/06/the-eulsukdo-island-bird-sanctuary/][Eulsukdo eco-center]]" themed tour that we had missed on the unfortunate 3rd day. So we got up early and went to Busan station. But it looks like the Eulsukdo tour was jinxed. When I called the Busan city tour help-desk (+82-51-464-9898), they told me that both the morning and afternoon tours were fully reserved. Anyways, we were already in the bus and went to Busan station hoping that someone might skip (like we had on our 3rd day). We reached the station just a few minutes before the departure only to find out that there was just 1 empty seat. Dejected, we tried to decide what to do next. We had 3 options:
+1. Visit Beomeosa ([[[http://en.wikipedia.org/wiki/Beomeosa][1]]], [[[http://koreantemples.com/?p%3D241][2]]], [[[http://www.tripadvisor.com/Attraction_Review-g297884-d615908-Reviews-Beomeosa_Temple-Busan.html][3]]]) temple ourselves
+2. Visit [[http://www.busanhaps.com/article/history-hills-busans-gamcheon-culture-village][Gamcheon]] [[http://www.tripadvisor.com/Attraction_Review-g297884-d3901349-Reviews-Gamcheon_Culture_Village-Busan.html][culture]] village ourselves
+3. Go back to hotel and come back for afternoon tour
+
+We decided to do the third because we did not want to wander out on our own with a baby in our hands. We visited the Haeundae beach on our way back to the hotel, where we saw a lot of [[http://en.wikipedia.org/wiki/Black-legged_Kittiwake][black-legged seagulls]] up close
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11624357126/player/b40239cac8" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623801213/player/8e465e2903" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+In the afternoon, we left early only to reach 40 mins before time for the Eulsukdo tour. This time our wait was fruitful because we were the 1st people to board the bus and got a good seat too. Unfortunately, there weren't any birds (other than ducks, which was not exciting at all) at the eco-center :(
+
+<iframe src="https://www.flickr.com/photos/spradnyesh/11623740303/player/363e907ca3" height="375" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+This marked the end of our tour, and the next day we traveled back from Busan to Suwon on the KTX. Although the train reached top speeds of 290+ kmph, it always did so when inside tunnels, so we weren't able to see outside. But we did notice our ears getting jammed, and could feel the speeds. Also, this time again, I tried to do the photography technique that I had mentioned in the day-1 post ***here, day-1***. This time I had more success, but none of the photos turned out to be good enough. Even then, it was a good learning experience.
+
+I hope you all loved the travelogue (older posts are ***here***, ***here***, ***here*** and ***here***)! Do share your thoughts :)
+     - html
+     - notes:
+     - references:
+**** TODO More exciting new features for golbin
+    :CLOCK:
+    CLOCK: [2013-12-20 Fri 16:35]--[2013-12-20 Fri 17:01] =>  0:26
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image: http://www.golb.in/static/css/images/golbin.png @ http://www.golb.in/
+    - summary:
+    - body:
+Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]] previously, we will try our best to continuously add small and big (both user-facing and not) features to our [[http://www.golb.in/][Golbin!]] website. So let's review what's new:
+
+- RSS: We have added a [[http://en.wikipedia.org/wiki/RSS][RSS]] stream for all our index pages; that is for the [[http://www.golb.in/][home]] page, and also for all category/sub-category (click [[http://www.golb.in/category/lifestyle/][here]] and [[http://www.golb.in/category/technology/internet/][here]] for example) and author pages (like [[http://www.golb.in/author/spradnyesh/][this]] for example). So now viewers can access [[http://www.golb.in/][Golbin!]] stories from your favorite feed reader. To use this functionality, simple search for and click the "RSS" link present at the bottom of any of our index pages.
+
+- lazyload [[http://www.google.com/][Google]] ads: If you have noticed earlier, google-ads on [[http://www.golb.in/][Golbin!]] pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome jQuery [[http://jqueryad.web2ajax.fr/][lazyload Ad]] plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of [[https://support.google.com/adsense/answer/3221666?hl%3Den][rendering ads]], we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on [[http://www.golb.in/][Golbin!]]
+
+- story page backgrounds: In our last post [[http://www.golb.in/exciting-new-features-on-golbin-9.html][here]], we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.
+
+As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don't feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on [[http://www.golb.in/][Golbin!]]
+    - html
+<p>
+	Hello. Welcome back! I am sure that you are as excited to find out about the new features that we have added to our website this week as we are to tell you about it. As mentioned <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">here</a> previously, we will try our best to continuously add small and big (both user-facing and not) features to our <a href="http://www.golb.in/" target="_blank">Golbin!</a> website. So let&#39;s review what&#39;s new:</p>
+<p>
+	<strong>RSS</strong>: We have added a <a href="http://en.wikipedia.org/wiki/RSS" target="_blank">RSS</a> stream for all our index pages; that is for the <a href="http://www.golb.in/" target="_blank">home</a> page, and also for all category/sub-category (click <a href="http://www.golb.in/category/lifestyle/" target="_blank">here</a> and <a href="http://www.golb.in/category/technology/internet/" target="_blank">here</a> for example) and author pages (like <a href="http://www.golb.in/author/spradnyesh/" target="_blank">this</a> for example). So now viewers can access <a href="http://www.golb.in/" target="_blank">Golbin!</a> stories from your favorite feed reader. To use this functionality, simple search for and click the &quot;RSS&quot; link present at the bottom of any of our index pages.</p>
+<p>
+	<strong>lazyload <a href="http://www.google.com/" target="_blank">Google</a> ads</strong>: If you have noticed earlier, google-ads on <a href="http://www.golb.in/" target="_blank">Golbin!</a> pages have always been loading in a lazy fashion (that is, after the whole page has been loaded). But earlier, we were using the awesome <a href="http://jqueryad.web2ajax.fr/" target="_blank">jQuery lazyload Ad</a> plugin. While, it was doing an excellent job, it was adding about 8.5K of javascript (and 1 extra http get request) to the website. But, after google introduced the async form of <a href="https://support.google.com/adsense/answer/3221666?hl%3Den">rendering ads</a>, we implemented the same. This gives us lighter and faster loading web-pages. We believe that this will improve viewer experience on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+<p>
+	<strong>story page backgrounds</strong>: In our last <a href="http://www.golb.in/exciting-new-features-on-golbin-9.html" target="_blank">post</a>, we mentioned that story-tellers now have the ability to provide a custom image as background to all their pages. However, the functionality was limited; because they could only upload 1 image which would apply to all of their pages (story-teller index, and story pages). But now story tellers can have a different background image for each individual stories. If they do not provide an image for a new story but have defined a default image, then the new story will pick up the default image.</p>
+<p>
+	As always, we would be delighted to hear from you about what features you would like to be added to our site! Also, don&#39;t feel shy to go ahead, register, and share your stories with the world! Click here to see the benefits of writing on <a href="http://www.golb.in/" target="_blank">Golbin!</a></p>
+    - notes:
+    - references:
+**** TODO The producer consumer problem
+   :CLOCK:
+   CLOCK: [2013-12-19 Thu 13:56]--[2013-12-19 Thu 14:22] =>  0:26
+   :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-08 Wed 19:24
+     :END:
+   - toc:
+   - cat/subcat:
+   - tags:
+   - lead image:
+   - summary: Taking a different perspective a the "producer consumer" problem outside of the computer world
+   - body:
+Anyone who has learnt basic "operating system" concepts in their Computer Science engineering knows about the "[[http://en.wikipedia.org/wiki/Producer-consumer_problem][producer consumer problem]]". It is a classic synchronization problem, where there are 2 processes, the "producer" and the "consumer", both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.
+
+I had mentioned in one of my previous articles, ***here (don't break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.
+
+Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it's magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.
+
+Having laid out the background of "producer" and "consumer" in my story, let me now get to the "problem" part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the "git week" series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.
+
+I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don't break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the "problem"!
+
+Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:
+
+- Don't break the chain
+- Practice makes perfect
+
+I believe that the 1st rule "don't break the chain" will take me a long way till the gates of the 1st part of the 2nd rule "practice", which will eventually take me to the 2nd part "perfection". What say you?
+   - html
+<p>
+	Anyone who has learnt basic &quot;operating system&quot; concepts in their Computer Science engineering knows about the <a href="http://en.wikipedia.org/wiki/Producer-consumer_problem">producer consumer problem</a>. It is a classic synchronization problem, where there are 2 processes, the &quot;producer&quot; and the &quot;consumer&quot;, both sharing a fixed size common buffer. The producer produces something that is consumed by the consumer. The problem is to make sure that the producer does not try to add to an already full buffer and that the consumer does not try to remove from an empty buffer. But today I am not going to discuss this problem from a Computer Science perspective, but from a completely different angle.</p>
+<p>
+	I had mentioned in one of my previous articles, ***here (don&#39;t break the chain)***, I am trying to write 1 new story every day, or atleast every weekday. Now you might ask what has that to do with the producer-consumer problem. Well, let me explain.</p>
+<p>
+	Before I started writing stories everyday, I was a pure consumer. I would only consume posts/stories/articles, really data, from different sources (blogs, forums, email, social-networking sites, etc). But now I am slowly making a shift towards being a producer as well. Obviously, one cannot become a pure producer -- one who only produces (articles/data) without consuming (articles/data), because for the human brain to perform it&#39;s magic, it needs a lot of input. A creative mind is one that takes to (apparently) unrelated things, and combines them in such a way as to create something new and coherent out of it.</p>
+<p>
+	Having laid out the background of &quot;producer&quot; and &quot;consumer&quot; in my story, let me now get to the &quot;problem&quot; part. Well, I notice that as I am making the move from being a consumer to trying to become a producer, I am falling short of things to write about. There are days, like when I was writing the &quot;git week&quot; series (see ***here (git week, part 1)***, ***here (git week, part 2)***, ***here (git week, part 3)***, ***here (git week, part 4)*** and ***here (git week, part 5)***) when writing was easy. But once the series concluded, I am finding it difficult to find new topics to write on.</p>
+<p>
+	I have noticed that I feel comfortable writing about technical things (eg, git-week series, ***svn-unmerge***, ***environment variables in crontab***, etc), than non-technical (***different b/n learnt and learned***, ***don&#39;t break the chain***, etc). But sometimes, when I have written part of a post, I feel like either I am not able to reach to a good ending, or like the post is not feeling coherent enough. At such times, I tend to give up much more easily on the post, rather than struggling to complete it. My mind seems to be eager to jump off to a different topic, leaving an unfinished mess behind. And this is the &quot;problem&quot;!</p>
+<p>
+	Although I have done some homework on this subject and read techniques to maintain steady writing, it is easier said than done. I think the only way to solve this problem is to have a plan and keep it simple:</p>
+<blockquote>
+	<ul>
+		<li>
+			Don&#39;t break the chain</li>
+		<li>
+			Practice makes perfect</li>
+	</ul>
+</blockquote>
+<p>
+	I believe that the 1st rule &quot;don&#39;t break the chain&quot; will take me a long way till the gates of the 1st part of the 2nd rule &quot;practice&quot;, which will eventually take me to the 2nd part &quot;perfection&quot;. What say you?</p>
+   - notes:
+   - references:
+**** DONE lazyload google ads without jQuery lazyload Ad plugin
+    CLOSED: [2014-01-09 Thu 18:57]
+    :CLOCK:
+    CLOCK: [2014-01-06 Mon 13:09]--[2014-01-06 Mon 13:37] =>  0:28
+    CLOCK: [2014-01-06 Mon 12:55]--[2014-01-06 Mon 13:05] =>  0:10
+    CLOCK: [2014-01-06 Mon 12:50]--[2014-01-06 Mon 12:54] =>  0:04
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-09 Thu 18:57
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags: lazyload, google, ads, jquery, plugin, javascript, adsense, DOM, firefox, chrome, frontend, performance
+    - lead image:
+    - summary: How to make use of the new asynchronous support for google adsense ads instead of the jQuery lazyload Ad plugin
+    - body:
+I had mentioned in one of my previous articles ***here, More exciting new features for golbin*** that we had changed our lazyloading technique for google-ads on [[http://www.golb.in/][Golbin!]] pages. Today I will show you how we did it.
+
+Previously, we were using the awesome jQuery lazyload Ad plugin as shown in their documentation [[http://jqueryad.web2ajax.fr/][here]]. However, the plugin itself added about 8.4Kb to the page-weight. Even though Golbin! was using measures to lazyload the plugin itself, it was still additional page-weight, especially for first time (with browser cache empty) users.
+
+Then, recently, we noticed that google had made some changes to their [[https://support.google.com/adsense/answer/3221666][adsense]] code because of which the ads would be rendered asynchronously, thus removing the need for the jQuery lazyload Ad plugin. Sample code looks like below:
+
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+        data-ad-slot="6440411535"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+So far so good. However, we wanted to go a step further than this because:
+1. In our experience, if we put the script in the bottom of the page (just before the ending "</body>" tag), then the ads did not get rendered at all. Putting the js script at page bottom is good performance practice (see [[http://developer.yahoo.com/performance/rules.html][here]] and [[https://developers.google.com/speed/docs/insights/rules][here]] for best practices for website frontend performance).
+2. Golbin! was already using a technique to lazyload the javascript files needed by the page itself. And we wanted to continue using this technique for the new script too.
+
+Fortunately, one needs to include the script tag only once in the page irrespective of how many ad units were present on the page; this went well with our technique, because then we could lazyload the adsense script and use some JS to invoke some function to show the ads in the correct place.
+
+Our initial HTML markup snippet looks something similar to:
+
+<div class="g-ad">
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+        data-ad-slot="6440411535"></ins>
+</div>
+
+and the supporting javascript code looks like:
+
+$.getScript("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+    function (data, textStatus, jqxhr) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.text = "(adsbygoogle = window.adsbygoogle || []).push({})";
+        for (var a = null, arr = $("div.g-ad"), i = 0; i < arr.length; i += 1) {
+            a = arr[i];
+            $(a).append(script);
+       };
+    }
+);
+
+If you have ever used jQuery, you will notice that what the above javascript snippet does is that it lazyloads the adsense javascript via the getScript function. And when the adsense javascript is loaded, the anonymous function is called which does the following steps
+1. creates a script tag having the code shown in the adsense documentation
+2. finds all "div" elements having the class "g-ad"
+3. loops through the divs found in the above step and adds the script tag to the div
+
+And voila, we're done! We have now successfully reduced 8.4Kb of page-weight, which means faster pages for our readers :)
+
+The only drawback of this method is that it is impossible to debug it in the javascript debugger (in both firefox and chrome browsers), because the newly added script does not show up in the DOM :(
+
+But don't worry. If this technique has worked for us, it should for you too. So, go ahead and give it a try! And don't forget to share your experiences back :)
+    - html
+    - notes:
+    - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
