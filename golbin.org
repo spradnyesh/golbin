@@ -1,6 +1,7 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [bug][fe][rss] lead images not showing in (feedly) list
 ** [fe][perf] use async js https://developers.google.com/speed/docs/insights/UseAsync
    - [ ] GA
    - [ ] adsense
@@ -4607,6 +4608,8 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
+*** vimperator
+*** org-mode
 *** TODO search for topic
     :CLOCK:
     CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
@@ -4720,6 +4723,70 @@ Also, simple things get complex too soon, because
     - notes:
     - references:
 ** wrote (not published)
+*** TODO stumpwm
+    :CLOCK:
+    CLOCK: [2014-01-10 Fri 19:03]--[2014-01-10 Fri 19:28] =>  0:25
+    CLOCK: [2014-01-10 Fri 18:27]--[2014-01-10 Fri 18:55] =>  0:28
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags: stumpwm, lisp
+    - lead image:
+    - summary:
+    - body:
+Yesterday, I mentioned ***here (kill that rat)*** about how I am using different tools and techniques to go mouseless and improve not only my productivity, but also the way I think. After writing it, I felt that each of those tools deserved a more detailed description than just a mention. This would also allow me to show you some of the cool things that I am able to do with them, and how I do them. Maybe they will act as a better motivating factor for you to make that switch :)
+
+Today I will talk about [[http://www.nongnu.org/stumpwm/][stumpwm]], the best (according to me) of them all. As a [[http://en.wikipedia.org/wiki/Desktop_Window_Manager][DWM]] it is extremely minimal in terms of look-and-feel, but highly configurable. Since a picture is worth a 1000 words, I'll let the below screenshots do the talking of the look-and-feel of stumpwm:
+
+I'm sure you would have noted that:
+1. windows do not have any borders; there are no close/minimize buttons
+2. all windows take up equal window space. tiling is a better word here, because every window is a tile. you can increase or decrease the size of a tile, and hence of the application that it contains
+3. due to the tiling nature, you can arrange the tiles (extremely easily) in any manner that you want
+4. the taskbar is at the top and is very minimal
+
+My favorite tiling structure, when I am coding is:
+- emacs: left top
+- terminal: left bottom
+- firefox: right
+with this structure the only time I have to ever touch the mouse is when I want to browse through the DOM structure in firefox!
+
+Enough about tiling, lets talk about some other features, and then we will move onto configuration. As mentioned ***previously (kill that rat)***, my favorite feature is "open-or-raise". What this means is that when you hit a (configured) key combination, stumpwm will try to switch to the (configured for that key combination) application if it is already running; if not, then stumpwm will first execute/start it and switch the focus to it. When I say "switch to", it does not mean that it will pull the app into the tile that is currently into focus, but will instead move focus to the tile which is hosting the application.
+
+This is better explained with help of another feature called "groups". Groups is the same as the "virtual desktop" concept that linux has had for so many years (and windoZZZe still does not have it). Virtual desktops are an extremely convenient way to manage multiple applications. Let me explain this with an example. I generally have the following 4 groups (this predates my use of stumpwm):
+1. coding: emacs + terminal + firefox(+vimperator)
+2. email client
+3. messenger windows
+4. general browsing: firefox, rss-reader, etc
+
+Coming back to open-or-raise. Lets say i am currently on group-2 and reading email. Then I can press super+e (super = the windoZZZe "start" key) and switch immediately to group-1 with focus in emacs. Similarly, I can press super+f once to go to firefox instance on group-1 and press again to go to instance on group-4. For comparison, imagine the other scenario (that most people use today):
+
+1. if you are a mouse user, move your hand from keyboard to mouse, navigate to the correct position on the taskbar, click, assume you have multiple instances of the application running, then navigate mouse to correct instance, click
+2. if you are a keyboard user, then press alt+tab (like 10000 times :p) to finally come to the correct application
+
+On the other hand, on stumpwm it's just 1 (or few) click(s). And configuring the keyboard binding is as simple as putting the below lines in your ~/.stumpwmrc file
+
+(defcommand emacs () () (run-or-raise "emacs" '(:class "Emacs")))
+(define-key *top-map* (kbd "s-e") "emacs")
+
+Don't get scared of the brackets. The above lines are simply defining a command "emacs" and assigning it to the "super+e" key.
+
+Personally, a setup like this makes the DWM invisible and makes me focus on the (really) important things; making it a "best" technology :)
+
+I think the best technologies disappear. -- Jack Dorsey
+
+It is really awesome, and there's no turning back once you get used to it. Of course, there are a lot more things that you can configure. But I would rather urge you to give it a try. It's as easy as running this command
+
+sudo apt-get install stumpwm
+
+on Ubuntu (other linuxes should have similar commands), and re-logging in with stumpwm selected as your DWM.
+
+Don't forget to share what your experience is. And don't feel shy to ask for help (there are a lot of good tutorials and documentation online, especially [[http://www.nongnu.org/stumpwm/manual/stumpwm.html][here]], [[http://www.mygooglest.com/fni/stumpwm.html][here]] and a sample (extremely detailed but well documented) stumpwmrc [[http://deftsp-dotfiles.googlecode.com/svn/trunk/.stumpwmrc][here]])!
+    - html
+    - notes:
+    - references:
+      - http://www.nongnu.org/stumpwm/manual/stumpwm.html
+      - http://deftsp-dotfiles.googlecode.com/svn/trunk/.stumpwmrc
+      - http://www.mygooglest.com/fni/stumpwm.html *****
 *** TODO Kill that rat!
     :CLOCK:
     CLOCK: [2014-01-09 Thu 20:08]--[2014-01-09 Thu 20:21] =>  0:13
