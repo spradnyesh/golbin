@@ -4608,7 +4608,12 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** vimperator
+*** vimperator, part-2
+    - toc:
+      - insert v/s normal mode
+      - textarea in emacsclient
+      - macro
+      - vimperatorrc
 *** org-mode
 *** TODO search for topic
     :CLOCK:
@@ -4692,26 +4697,6 @@ Also, simple things get complex too soon, because
     - references:
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
-*** problems with using git bundle + rebase -i + subtree all at the same time, and how to resolve them
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-    - html
-    - notes:
-    - references:
-*** next, next, next, finish
-    - toc:
-    - cat/subcat:
-    - tags: windows, linux
-    - lead image:
-    - summary:
-    - body:
-    - html
-    - notes:
-    - references:
 *** template
     - toc:
     - cat/subcat:
@@ -4723,6 +4708,58 @@ Also, simple things get complex too soon, because
     - notes:
     - references:
 ** wrote (not published)
+*** TODO vimperator, part-1
+    :CLOCK:
+    CLOCK: [2014-01-10 Fri 19:38]--[2014-01-10 Fri 20:08] =>  0:30
+    :END:
+    - toc:
+      - f, F, o, O, t, T
+      - gt, gT, b, a
+      - help, helpall
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary: Yet another awesome tool in the "kill that rat" series of productivity tools!
+    - body:
+Continuing with ***this (kill that rat)*** and ***this (stumpwm)***, let me introduce yet another of my favorite tools to you: [[http://www.vimperator.org/vimperator][vimperator]]. Vimperator is essentially a [[http://www.mozilla.org/en-US/][firefox]] plugin, but it is so awesome that it takes web browsing to a whole different level. And I am not exaggerating it at all; allow me to present the case in front of you.
+
+The most basic (but awesome, nonetheless) feature is mouseless browsing. Press the "f" key so that all links on the page get highlighted with a number.
+
+***image***
+
+Now you can press the number of the link you want to open, and that link will be opened in the current tab. Instead do the same with "F" and the link will be opened in a new tab. Similarly, the following keys can be used for navigation
+8. h, j, k, l: moving left, down, up, right (similar to vim) on the page
+6. gt: switch to next tab
+7. gT: switch to previous tab
+1. o: enter URL and open in current tab
+2. O: edit current URL and open page in current tab
+3. t: enter URL to open page in a new tab
+4. T: edit current URL and open page in new tab
+5. b+<number>: switch to tab #number
+9. f: find on page
+
+Another feature that I use regularly (atleast 10-20 times in a single day) is dynamic bookmarks. I am sure that online search (google, bing, wikipedia, etc) is an extremely frequent usecase in any persons browsing session. Most browsers provide a dedicated search-bar next to the location bar. And also, this search-bar is customizable, that is the browser provides a dropdown of the various search engines that you want to search on. This is definitely more convenient than first going to the search engine page and then searching; you save 1 step. But:
+1. see the above image again. Vimperator removes both the location bar and the search bar as well
+2. more importantly, navigating the mouse to the search bar and optionally changing the search engine is not the best way to do it at all
+
+So how do we solve this problem efficiently using vimperator? This is where dynamic bookmarks come in. Lets take an example of using the google search engine. You need to do this only the 1st time:
+1. go to google.com and search for "golb.in"
+2. press "a" to see a "bmark" command at the bottom of the page
+3. edit the URL to look similar to
+https://www.google.com/search?q=%s
+4. leave a space after the URL and enter "-keyword google"
+5. press enter
+
+And you are done. Now every time you want to search something on google, simply press "t google <your search query>" and you will be taken to the corresponding google search page. You can do similarly with other search engines, and create bookmarks like "bing", "wiki", etc. Heck, this technique can be used on any website that gives you a search functionality. Who needs browser supported search engines anymore? Ain't that cool?
+
+I hope this (and my previous ***post (kill that rat)*** on going mouseless) has convinced you to atleast give vimperator a try. If not, don't worry. I still have a few more, advanced but even more awesome, features of vimperator. I will leave them for the next post ;)
+
+But I won't leave you before telling you that you can reach the locally available help via the ":help" and ":helpall" commands
+
+If you did give vimperator a try, do let me know your experience using it, via comments. And don't feel shy or afraid to ask for help if you find it difficult
+    - html
+    - notes:
+    - references:
 *** TODO stumpwm
     :CLOCK:
     CLOCK: [2014-01-10 Fri 19:03]--[2014-01-10 Fri 19:28] =>  0:25
@@ -4730,9 +4767,9 @@ Also, simple things get complex too soon, because
     :END:
     - toc:
     - cat/subcat:
-    - tags: stumpwm, lisp
+    - tags: stumpwm, lisp, DWM, emacs, terminal, firefox, vimperator, common-lisp, stumpwmrc
     - lead image:
-    - summary:
+    - summary: This is a continuation of the "kill the rat" series, where I showcase my favorite productivity tool!
     - body:
 Yesterday, I mentioned ***here (kill that rat)*** about how I am using different tools and techniques to go mouseless and improve not only my productivity, but also the way I think. After writing it, I felt that each of those tools deserved a more detailed description than just a mention. This would also allow me to show you some of the cool things that I am able to do with them, and how I do them. Maybe they will act as a better motivating factor for you to make that switch :)
 
@@ -4801,7 +4838,7 @@ Don't forget to share what your experience is. And don't feel shy to ask for hel
     - lead image: http://www.flickr.com/photos/7715592@N03/2186512039/
     - summary: How to become 20x productive by killing the rat!
     - body:
-I have been using [[http://www.linux.org/][Linux]] for atleast the last 9 years, trying out different distributions like [[http://www.redhat.com/][RedHat]], [[http://fedoraproject.org/][Fedora]], [[http://www.debian.org/][Debian]], [[http://www.ubuntu.com/][Ubuntu]], [[http://www.gentoo.org/][Gentoo]] and finally settling down on [[http://www.sabayon.org/][Sabayon]] (for the last 2 years). Similarly, on the desktop manager side, I have used [[http://kde.org/][KDE]] for a long long time, but have been using [[http://www.nongnu.org/stumpwm/][Stumpwm]] for the last 3+ years. On the browser front, I use the awesome [[http://www.vimperator.org/][vimperator]] plugin for [[http://www.mozilla.org/en-US/][firefox]].
+I have been using [[http://www.linux.org/][Linux]] for atleast the last 9 years, trying out different distributions like [[http://www.redhat.com/][RedHat]], [[http://fedoraproject.org/][Fedora]], [[http://www.debian.org/][Debian]], [[http://www.ubuntu.com/][Ubuntu]], [[http://www.gentoo.org/][Gentoo]] and finally settling down on [[http://www.sabayon.org/][Sabayon]] (for the last 2 years). Similarly, on the desktop manager side, I have used [[http://kde.org/][KDE]] for a long long time, but have been using [[http://www.nongnu.org/stumpwm/][Stumpwm]] for the last 3+ years. On the browser front, I use the awesome [[http://www.vimperator.org/vimperator][vimperator]] plugin for [[http://www.mozilla.org/en-US/][firefox]].
 
 You might think, and correctly at that, "what is this guy talking about? what has all this to do with a rat, or even with productivity (if you read the description of this article on one of the Golbin! index pages)". Well, let me start with the following definition:
 
