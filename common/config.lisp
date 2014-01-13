@@ -37,7 +37,7 @@
                   ("photo" ("article-lead" ("side" ("max-width" 300)
                                                    ("max-height" 300))
                                            ("block" ("max-width" 600)
-                                                    ("max-height" 300))
+                                                    ("max-height" 600))
                                            ("index-thumb" ("max-width" 65)
                                                           ("max-height" 65))
                                            ("related-thumb" ("max-width" 100)

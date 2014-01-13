@@ -52,8 +52,8 @@
                  (get-config "photo.article-lead.related-thumb.max-width"))
          (format nil
                  "~ax~a"
-                 (get-config "photo.article-lead.side.max-height")
-                 (get-config "photo.article-lead.side.max-width")))))
+                 (get-config "photo.article-lead.block.max-height")
+                 (get-config "photo.article-lead.block.max-width")))))
 
 (defun make-photo-attribution-div (img-tag photo)
   (<:div :class "a-photo"

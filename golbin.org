@@ -1,8 +1,6 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [fed] upload images should have max width of 300/600; height should not be controlled
-   - especially for article inline photos
 ** [#A] [bug][fe] ads not showing up in production
    - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=160x300&output=html&h=300&slotname=1936097987&adk=348482573&w=160&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=9&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=1&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=26&ady=269&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=1&xpc=6ntZ6DudeF&p=http%3A//www.golb.in&dtd=203
    - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=160x300&output=html&h=300&slotname=1936097987&adk=348482573&w=160&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=9&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=1&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=26&ady=269&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=1&xpc=6ntZ6DudeF&p=http%3A//www.golb.in&dtd=203
@@ -4558,6 +4556,26 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2013-12-30 Mon 14:57
     :END:
+*** DONE [ed] why does article get saved twice in transaction-log.xml during publish
+    CLOSED: [2014-01-13 Mon 20:49]
+    :CLOCK:
+    CLOCK: [2014-01-13 Mon 20:45]--[2014-01-13 Mon 20:49] =>  0:04
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-13 Mon 20:49
+    :END:
+    - the 2nd save is after the async web-archive save is completed
+    - happens only on 1st publish
+*** DONE [fed] upload images should have max width of 300/600; height should not be controlled
+    CLOSED: [2014-01-13 Mon 21:01]
+    :CLOCK:
+    CLOCK: [2014-01-13 Mon 20:49]--[2014-01-13 Mon 21:01] =>  0:12
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-13 Mon 21:02
+    :END:
+    - especially for article inline photos
+    - controlled it to be max 600px
 * notes
 ** misc
    - http://www.html-ipsum.com/

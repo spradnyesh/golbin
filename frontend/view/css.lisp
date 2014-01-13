@@ -215,8 +215,6 @@
     ;; article
     (("#article img") (:display "block"
                                 :padding-bottom "5px"))
-    (("#article div.a-photo") (:padding "10px"
-                                        :position "relative"))
     (("#article a.p-attribution") (:position "absolute"
                                              :right "30px"))
     (("#article p.p-title") (:text-align "center"
@@ -234,7 +232,6 @@
                               :padding-top "10px"))
     (("#a-body li") (:margin-bottom "15px"))
     (("#a-body blockquote li") (:margin "0"))
-    (("#a-body div.a-photo") (:float "right"))
     (("#a-body .block") (:padding-bottom "10px"
                                          :text-align "center"))
     (("#a-body blockquote") (:background-color "#F0F0F0"
