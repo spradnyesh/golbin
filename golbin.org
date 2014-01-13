@@ -1,6 +1,8 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [fed] upload images should have max width of 300/600; height should not be controlled
+   - especially for article inline photos
 ** [#A] [bug][fe] ads not showing up in production
    - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=160x300&output=html&h=300&slotname=1936097987&adk=348482573&w=160&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=9&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=1&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=26&ady=269&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=1&xpc=6ntZ6DudeF&p=http%3A//www.golb.in&dtd=203
    - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=160x300&output=html&h=300&slotname=1936097987&adk=348482573&w=160&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=9&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=1&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=26&ady=269&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=1&xpc=6ntZ6DudeF&p=http%3A//www.golb.in&dtd=203
@@ -4612,7 +4614,113 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** org-mode
+*** TODO org-mode
+    :CLOCK:
+    CLOCK: [2014-01-13 Mon 19:22]--[2014-01-13 Mon 20:05] =>  0:43
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags: emacs, org-mode, productivity
+    - lead image:
+    - summary: Continuing the "kill that rat" series with one more super-awesome productivity tool!
+    - body:
+Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by "killing the rat!" (see ***here (kill that rat)***, ***here (stumpwm)***, ***here (vimperator-1)*** and ***here (vimperator-2)*** for previous post on the "kill that rat" series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too
+1. improving my writing skills
+2. writing/blogging improves cognitive skills (see ***here (to blog or not to blog)***)
+3. teaching is the best form of learning
+
+So lets continue the series and learn about the super-awesome [[http://orgmode.org/][org-mode]] in [[http://www.gnu.org/software/emacs/tour/][emacs]]. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.
+
+In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc
+
+Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see [[http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications][here]]) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.
+
+Ok, enough round-about stories. Lets get to the real point with some concrete features:
+
+1. Plain Text Files: org-mode uses plain text files to store all information, which means that
+    a. you are never tied up to any proprietary format, and can move to some other tool if you wish
+    b. you can version-control your data files (visit the git-week series ***here (git-1)***, ***here (git-2)***, ***here (git-3)***, ***here (git-4)*** and ***here (git-5)***)
+
+2. Section-ify: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this with the following image:
+
+***image***
+
+As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely "backlog", "notes", etc and sub-sections, namely "wrote (no published)...", etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.
+
+3. Agendas: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.
+***image http://orgmode.org/img/planning.jpg***
+***image http://orgmode.org/img/agenda.jpg***
+
+4. Clocking: They say
+
+You cannot manage what you cannot measure. --F. John Reh
+
+Well, we have been talking about improving productivity, but how can we do that if we don't measure it? Wouldn't it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn't matter what level it is at). Then you can simply take the cursor to that task and press 'C-c C-x C-i' to clock-in and 'C-c C-x C-o' to clock-out of the task. With practice it becomes second nature. And what's more org-mode even shows you a cool summary view
+***image http://orgmode.org/img/clocking.jpg***
+
+5. Tables: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.
+***image http://orgmode.org/img/table2.jpg***
+
+6. Exporting: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.
+***image http://orgmode.org/img/export.jpg***
+
+I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can't right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!
+
+Finally, as always, do share your experiences and don't feel shy/afraid to ask for help :)
+    - html
+<p>
+	Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by &quot;killing the rat!&quot; (see ***here (kill that rat)***, ***here (stumpwm)***, ***here (vimperator-1)*** and ***here (vimperator-2)*** for previous post on the &quot;kill that rat&quot; series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too</p>
+<p>
+	1. improving my writing skills<br />
+	2. writing/blogging improves cognitive skills (see ***here (to blog or not to blog)***)<br />
+	3. teaching is the best form of learning</p>
+<p>
+	So lets continue the series and learn about the super-awesome <a href="http://orgmode.org/">org-mode</a> in <a href="http://www.gnu.org/software/emacs/tour/">emacs</a>. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.</p>
+<p>
+	In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc</p>
+<p>
+	Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see <a href="http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications">here</a>) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.</p>
+<p>
+	Ok, enough round-about stories. Lets get to the real point with some concrete features:</p>
+<p>
+	1. Plain Text Files: org-mode uses plain text files to store all information, which means that<br />
+	&nbsp;&nbsp;&nbsp; a. you are never tied up to any proprietary format, and can move to some other tool if you wish<br />
+	&nbsp;&nbsp;&nbsp; b. you can version-control your data files (visit the git-week series ***here (git-1)***, ***here (git-2)***, ***here (git-3)***, ***here (git-4)*** and ***here (git-5)***)</p>
+<p>
+	2. Section-ify: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this with the following image:</p>
+<p>
+	***image***</p>
+<p>
+	As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely &quot;backlog&quot;, &quot;notes&quot;, etc and sub-sections, namely &quot;wrote (no published)...&quot;, etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.</p>
+<p>
+	3. Agendas: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/planning.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	<img alt="" src="http://orgmode.org/img/agenda.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	4. Clocking: They say</p>
+<blockquote>
+		You cannot manage what you cannot measure. --F. John Reh
+</blockquote>
+<p>
+	Well, we have been talking about improving productivity, but how can we do that if we don&#39;t measure it? Wouldn&#39;t it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn&#39;t matter what level it is at). Then you can simply take the cursor to that task and press &#39;C-c C-x C-i&#39; to clock-in and &#39;C-c C-x C-o&#39; to clock-out of the task. With practice it becomes second nature. And what&#39;s more org-mode even shows you a cool summary view</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/clocking.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	5. Tables: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/table2.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	6. Exporting: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/export.jpg" style="height: 450px; width: 600px;" /></p>
+<p>
+	I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can&#39;t right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!</p>
+<p>
+	Finally, as always, do share your experiences and don&#39;t feel shy/afraid to ask for help :)</p>
+    - notes:
+    - references:
 *** TODO search for topic
     :CLOCK:
     CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
@@ -4706,125 +4814,6 @@ Also, simple things get complex too soon, because
     - notes:
     - references:
 ** wrote (not published)
-*** TODO vimperator, part-2
-    :CLOCK:
-    CLOCK: [2014-01-12 Sun 20:11]--[2014-01-12 Sun 20:54] =>  0:43
-    :END:
-    - toc:
-      - insert v/s normal mode
-      - textarea in emacsclient
-      - macro
-      - vimperatorrc
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary: Advanced, but even more awesome, features of vimperator -- the tool that takes web browsing to another level!
-    - body:
-Hello there. Welcome back! I hope you have already read my first post on vimperator ***here (vimperator-1)***, if not, I urge you to read that first and then come back here. Go on, I'll wait :)
-
-Today I will show you some advanced, but even more awesome features of vimperator -- the tool that takes web browsing to another level! The first is "modes". If you have used the fantastic [[http://www.vim.org/][vim]] editor before, you will know what I am talking about; and you will feel very much at home with vimperator (in fact, I am sure you would have guessed that the name "vimperator" stems from "vim"). For those of you who have not used vim, worry not; that is why I am here, to help you out :)
-
-Anyways, so vimperator has different modes of operation. The most commonly used are the "insert" and the "normal" modes. The "insert" mode is where the focus is inside some inputbox or textarea of a form (for example when you are filling up the username/password in a login form, or even when you are typing inside the search box on some website). In this mode your keyboard shortcuts like h, j, k, l, etc (see my previous post ***here (vimperator-1)*** for details) will NOT work. Instead whatever you type on the keyboard will get filled in the box.
-
-As against this, the "normal" mode is where you really use the keyboard shortcuts to navigate on the page, or between tabs, etc. The easiest way to go from "normal" mode to "input" mode is
-1. either press "f", and select the number corresponding to the input box you want to type into
-2. or click with mouse inside the input box
-3. or press "gi" to go to the first (or last visited) input box
-
-Similarly, to go from "input" mode to "normal" mode is
-1. either left-click your mouse anywhere on the page (except inside an input box)
-2. press the "Esc" key on your keyboard
-
-The next feature, which is my favorite, that I am going to show you is "macros". Again, if you have used a real editor (vim and/or emacs), then you know what editor macros are. Basically they are a recorded set of commands that you can repeat with just 1 key press. Understanding macros can make your life super simple! So lets say you want to repeat a set of tasks a few number of times; for example, you want to register 10 accounts on a website that you are developing/testing. Also lets say, for the sake of this discussion, that the registration page is quite long (has say 20 fields). However, for the testing accounts you would want to only have the username to be different (something like "test1", "test2", "test3", and so on), and all other fields to be the same. Lets also assume filling 1 form takes about 2 minutes -- that is 20 minutes for 10 accounts. So how do we do the same task in like 2.5 mins; or maybe 20 accounts in 3 mins?
-
-The first thing you do, obviously, is to open the page ;). Now, before you start filling the form, press 'qa'. The key 'q' will start the recording and save it in a buffer 'a'. You should now see the word 'Recording' in your status bar (as shown below)
-
-***image (recording)***
-
-Then you fill up the form content. After finishing, press the 'q' key again, and the whole sequence (including form content) will be saved into the 'a' buffer. You should now see a message in the status bar like:
-
-Recorded macro 'a'
-
-Remember to NOT press the "submit" button of the form while the recording is still going on, because that will use the same username all the 10 (or 20) times, and will simply result in an error. After you have pressed 'q' for the second time (and completed the macro recording), you should press the submit button. Now that we have this macro recorded, we want to repeat it 10 times. For that all you need to do is to open the registration page, and press '@a'. The '@' key tells vimperator that we want to invoke a previously saved macro, and the 'a' tells the macro name. In fact this can be done in an even better way by saving the "page open" also inside the macro (using the "t <page-url>" command (see my previous post ***here (vimperator-1)***)); this is left as an excercise for the user ;)
-
-The above was just 1 scenario where one can use macros. But once you know that you have this powerful tool at your disposal, the opportunities of using it are endless. I have even successfully used it for developer testing of web frontend (something similar to what selenium does).
-
-Finally, let me show you some configurations that you can put in your ~/.vimperatorrc file, with the help of a snippet of my config file
-
-set ds=yahoo
-
-map <C-.> gt
-map <C-,> gT
-map <C-s> :sav
-
-ia Pra Pradnyesh
-ia Sa Sawant
-ia sp spradnyesh
-
-1. "set ds=yahoo" sets Yahoo! as my default search engine. so if i say "t <some space separated text>", then this is not a URL, and instead, vimperator will search for this text on the Yahoo! search engine
-2. the "map" command maps a key combination to a particular command. For example, I personally find the "gt" and "gT" combos extremely unwieldy for changing tabs. So I have mapped the "control+." and "control+,", respectively, which are much more convenient for me. Similarly, "control+s" saves the page ;)
-3. the "ia" command expands the shortform into the longform when the first is entered into some form input box. For example when I press "Pra" into an input box, it automatically gets expanded into "Pradnyesh". Ain't that neat?
-
-I sincerely hope that I have been able to show you what a great tool vimperator is and how it can turn web-browsing into a completely different ball game. I also hope that you have enjoyed reading this as much as I have writing it.
-
-Finally, as always, do share your experiences and don't feel shy/afraid to ask for help :)
-
-ps: I have tried similar plugins for the chrome browser, but they don't come anywhere near to what vimperator can do.
-    - html
-    - notes:
-    - references:
-*** TODO vimperator, part-1
-    :CLOCK:
-    CLOCK: [2014-01-10 Fri 19:38]--[2014-01-10 Fri 20:08] =>  0:30
-    :END:
-    - toc:
-      - f, F, o, O, t, T
-      - gt, gT, b, a
-      - help, helpall
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary: Yet another awesome tool in the "kill that rat" series of productivity tools!
-    - body:
-Continuing with ***this (kill that rat)*** and ***this (stumpwm)***, let me introduce yet another of my favorite tools to you: [[http://www.vimperator.org/vimperator][vimperator]]. Vimperator is essentially a [[http://www.mozilla.org/en-US/][firefox]] plugin, but it is so awesome that it takes web browsing to a whole different level. And I am not exaggerating it at all; allow me to present the case in front of you.
-
-The most basic (but awesome, nonetheless) feature is mouseless browsing. Press the "f" key so that all links on the page get highlighted with a number.
-
-***image (highlight)***
-
-Now you can press the number of the link you want to open, and that link will be opened in the current tab. Instead do the same with "F" and the link will be opened in a new tab. Similarly, the following keys can be used for navigation
-8. h, j, k, l: moving left, down, up, right (similar to vim) on the page
-6. gt: switch to next tab
-7. gT: switch to previous tab
-1. o: enter URL and open in current tab
-2. O: edit current URL and open page in current tab
-3. t: enter URL to open page in a new tab
-4. T: edit current URL and open page in new tab
-5. b+<number>: switch to tab #number
-9. f: find on page
-
-Another feature that I use regularly (atleast 10-20 times in a single day) is dynamic bookmarks. I am sure that online search (google, bing, wikipedia, etc) is an extremely frequent usecase in any persons browsing session. Most browsers provide a dedicated search-bar next to the location bar. And also, this search-bar is customizable, that is the browser provides a dropdown of the various search engines that you want to search on. This is definitely more convenient than first going to the search engine page and then searching; you save 1 step. But:
-1. see the above image again. Vimperator removes both the location bar and the search bar as well
-2. more importantly, navigating the mouse to the search bar and optionally changing the search engine is not the best way to do it at all
-
-So how do we solve this problem efficiently using vimperator? This is where dynamic bookmarks come in. Lets take an example of using the google search engine. You need to do this only the 1st time:
-1. go to google.com and search for "golb.in"
-2. press "a" to see a "bmark" command at the bottom of the page
-3. edit the URL to look similar to
-https://www.google.com/search?q=%s
-4. leave a space after the URL and enter "-keyword google"
-5. press enter
-
-And you are done. Now every time you want to search something on google, simply press "t google <your search query>" and you will be taken to the corresponding google search page. You can do similarly with other search engines, and create bookmarks like "bing", "wiki", etc. Heck, this technique can be used on any website that gives you a search functionality. Who needs browser supported search engines anymore? Ain't that cool?
-
-I hope this (and my previous ***post (kill that rat)*** on going mouseless) has convinced you to atleast give vimperator a try. If not, don't worry. I still have a few more, advanced but even more awesome, features of vimperator. I will leave them for the next post ;)
-
-But I won't leave you before telling you that you can reach the locally available help via the ":help" and ":helpall" commands
-
-If you did give vimperator a try, do let me know your experience using it, via comments. And don't feel shy or afraid to ask for help if you find it difficult
-    - html
-    - notes:
-    - references:
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -7007,6 +6996,133 @@ Don't forget to share what your experience is. And don't feel shy to ask for hel
       - http://www.nongnu.org/stumpwm/manual/stumpwm.html
       - http://deftsp-dotfiles.googlecode.com/svn/trunk/.stumpwmrc
       - http://www.mygooglest.com/fni/stumpwm.html *****
+**** DONE vimperator, part-1
+    CLOSED: [2014-01-13 Mon 18:46]
+    :CLOCK:
+    CLOCK: [2014-01-10 Fri 19:38]--[2014-01-10 Fri 20:08] =>  0:30
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-13 Mon 18:46
+     :END:
+    - toc:
+      - f, F, o, O, t, T
+      - gt, gT, b, a
+      - help, helpall
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary: Yet another awesome tool in the "kill that rat" series of productivity tools!
+    - body:
+Continuing with ***this (kill that rat)*** and ***this (stumpwm)***, let me introduce yet another of my favorite tools to you: [[http://www.vimperator.org/vimperator][vimperator]]. Vimperator is essentially a [[http://www.mozilla.org/en-US/][firefox]] plugin, but it is so awesome that it takes web browsing to a whole different level. And I am not exaggerating it at all; allow me to present the case in front of you.
+
+The most basic (but awesome, nonetheless) feature is mouseless browsing. Press the "f" key so that all links on the page get highlighted with a number.
+
+***image (highlight)***
+
+Now you can press the number of the link you want to open, and that link will be opened in the current tab. Instead do the same with "F" and the link will be opened in a new tab. Similarly, the following keys can be used for navigation
+8. h, j, k, l: moving left, down, up, right (similar to vim) on the page
+6. gt: switch to next tab
+7. gT: switch to previous tab
+1. o: enter URL and open in current tab
+2. O: edit current URL and open page in current tab
+3. t: enter URL to open page in a new tab
+4. T: edit current URL and open page in new tab
+5. b+<number>: switch to tab #number
+9. f: find on page
+
+Another feature that I use regularly (atleast 10-20 times in a single day) is dynamic bookmarks. I am sure that online search (google, bing, wikipedia, etc) is an extremely frequent usecase in any persons browsing session. Most browsers provide a dedicated search-bar next to the location bar. And also, this search-bar is customizable, that is the browser provides a dropdown of the various search engines that you want to search on. This is definitely more convenient than first going to the search engine page and then searching; you save 1 step. But:
+1. see the above image again. Vimperator removes both the location bar and the search bar as well
+2. more importantly, navigating the mouse to the search bar and optionally changing the search engine is not the best way to do it at all
+
+So how do we solve this problem efficiently using vimperator? This is where dynamic bookmarks come in. Lets take an example of using the google search engine. You need to do this only the 1st time:
+1. go to google.com and search for "golb.in"
+2. press "a" to see a "bmark" command at the bottom of the page
+3. edit the URL to look similar to
+https://www.google.com/search?q=%s
+4. leave a space after the URL and enter "-keyword google"
+5. press enter
+
+And you are done. Now every time you want to search something on google, simply press "t google <your search query>" and you will be taken to the corresponding google search page. You can do similarly with other search engines, and create bookmarks like "bing", "wiki", etc. Heck, this technique can be used on any website that gives you a search functionality. Who needs browser supported search engines anymore? Ain't that cool?
+
+I hope this (and my previous ***post (kill that rat)*** on going mouseless) has convinced you to atleast give vimperator a try. If not, don't worry. I still have a few more, advanced but even more awesome, features of vimperator. I will leave them for the next post ;)
+
+But I won't leave you before telling you that you can reach the locally available help via the ":help" and ":helpall" commands
+
+If you did give vimperator a try, do let me know your experience using it, via comments. And don't feel shy or afraid to ask for help if you find it difficult
+    - html
+    - notes:
+    - references:
+**** DONE vimperator, part-2
+    CLOSED: [2014-01-13 Mon 18:46]
+    :CLOCK:
+    CLOCK: [2014-01-12 Sun 20:11]--[2014-01-12 Sun 20:54] =>  0:43
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-13 Mon 18:46
+     :END:
+    - toc:
+      - insert v/s normal mode
+      - textarea in emacsclient
+      - macro
+      - vimperatorrc
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary: Advanced, but even more awesome, features of vimperator -- the tool that takes web browsing to another level!
+    - body:
+Hello there. Welcome back! I hope you have already read my first post on vimperator ***here (vimperator-1)***, if not, I urge you to read that first and then come back here. Go on, I'll wait :)
+
+Today I will show you some advanced, but even more awesome features of vimperator -- the tool that takes web browsing to another level! The first is "modes". If you have used the fantastic [[http://www.vim.org/][vim]] editor before, you will know what I am talking about; and you will feel very much at home with vimperator (in fact, I am sure you would have guessed that the name "vimperator" stems from "vim"). For those of you who have not used vim, worry not; that is why I am here, to help you out :)
+
+Anyways, so vimperator has different modes of operation. The most commonly used are the "insert" and the "normal" modes. The "insert" mode is where the focus is inside some inputbox or textarea of a form (for example when you are filling up the username/password in a login form, or even when you are typing inside the search box on some website). In this mode your keyboard shortcuts like h, j, k, l, etc (see my previous post ***here (vimperator-1)*** for details) will NOT work. Instead whatever you type on the keyboard will get filled in the box.
+
+As against this, the "normal" mode is where you really use the keyboard shortcuts to navigate on the page, or between tabs, etc. The easiest way to go from "normal" mode to "input" mode is
+1. either press "f", and select the number corresponding to the input box you want to type into
+2. or click with mouse inside the input box
+3. or press "gi" to go to the first (or last visited) input box
+
+Similarly, to go from "input" mode to "normal" mode is
+1. either left-click your mouse anywhere on the page (except inside an input box)
+2. press the "Esc" key on your keyboard
+
+The next feature, which is my favorite, that I am going to show you is "macros". Again, if you have used a real editor (vim and/or emacs), then you know what editor macros are. Basically they are a recorded set of commands that you can repeat with just 1 key press. Understanding macros can make your life super simple! So lets say you want to repeat a set of tasks a few number of times; for example, you want to register 10 accounts on a website that you are developing/testing. Also lets say, for the sake of this discussion, that the registration page is quite long (has say 20 fields). However, for the testing accounts you would want to only have the username to be different (something like "test1", "test2", "test3", and so on), and all other fields to be the same. Lets also assume filling 1 form takes about 2 minutes -- that is 20 minutes for 10 accounts. So how do we do the same task in like 2.5 mins; or maybe 20 accounts in 3 mins?
+
+The first thing you do, obviously, is to open the page ;). Now, before you start filling the form, press 'qa'. The key 'q' will start the recording and save it in a buffer 'a'. You should now see the word 'Recording' in your status bar (as shown below)
+
+***image (recording)***
+
+Then you fill up the form content. After finishing, press the 'q' key again, and the whole sequence (including form content) will be saved into the 'a' buffer. You should now see a message in the status bar like:
+
+Recorded macro 'a'
+
+Remember to NOT press the "submit" button of the form while the recording is still going on, because that will use the same username all the 10 (or 20) times, and will simply result in an error. After you have pressed 'q' for the second time (and completed the macro recording), you should press the submit button. Now that we have this macro recorded, we want to repeat it 10 times. For that all you need to do is to open the registration page, and press '@a'. The '@' key tells vimperator that we want to invoke a previously saved macro, and the 'a' tells the macro name. In fact this can be done in an even better way by saving the "page open" also inside the macro (using the "t <page-url>" command (see my previous post ***here (vimperator-1)***)); this is left as an excercise for the user ;)
+
+The above was just 1 scenario where one can use macros. But once you know that you have this powerful tool at your disposal, the opportunities of using it are endless. I have even successfully used it for developer testing of web frontend (something similar to what selenium does).
+
+Finally, let me show you some configurations that you can put in your ~/.vimperatorrc file, with the help of a snippet of my config file
+
+set ds=yahoo
+
+map <C-.> gt
+map <C-,> gT
+map <C-s> :sav
+
+ia Pra Pradnyesh
+ia Sa Sawant
+ia sp spradnyesh
+
+1. "set ds=yahoo" sets Yahoo! as my default search engine. so if i say "t <some space separated text>", then this is not a URL, and instead, vimperator will search for this text on the Yahoo! search engine
+2. the "map" command maps a key combination to a particular command. For example, I personally find the "gt" and "gT" combos extremely unwieldy for changing tabs. So I have mapped the "control+." and "control+,", respectively, which are much more convenient for me. Similarly, "control+s" saves the page ;)
+3. the "ia" command expands the shortform into the longform when the first is entered into some form input box. For example when I press "Pra" into an input box, it automatically gets expanded into "Pradnyesh". Ain't that neat?
+
+I sincerely hope that I have been able to show you what a great tool vimperator is and how it can turn web-browsing into a completely different ball game. I also hope that you have enjoyed reading this as much as I have writing it.
+
+Finally, as always, do share your experiences and don't feel shy/afraid to ask for help :)
+
+ps: I have tried similar plugins for the chrome browser, but they don't come anywhere near to what vimperator can do.
+    - html
+    - notes:
+    - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
