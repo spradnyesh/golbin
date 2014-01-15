@@ -4567,12 +4567,16 @@
     - the 2nd save is after the async web-archive save is completed
     - happens only on 1st publish
 *** DONE [fed] upload images should have max width of 300/600; height should not be controlled
-    CLOSED: [2014-01-13 Mon 21:01]
+    CLOSED: [2014-01-15 Wed 19:12]
     :CLOCK:
+    CLOCK: [2014-01-15 Wed 19:00]--[2014-01-15 Wed 19:12] =>  0:12
+    CLOCK: [2014-01-15 Wed 18:51]--[2014-01-15 Wed 18:59] =>  0:08
+    CLOCK: [2014-01-15 Wed 18:29]--[2014-01-15 Wed 18:51] =>  0:22
+    CLOCK: [2014-01-15 Wed 17:15]--[2014-01-15 Wed 17:23] =>  0:08
     CLOCK: [2014-01-13 Mon 20:49]--[2014-01-13 Mon 21:01] =>  0:12
     :END:
     :PROPERTIES:
-    :ARCHIVE_TIME: 2014-01-13 Mon 21:02
+    :ARCHIVE_TIME: 2014-01-15 Wed 19:12
     :END:
     - especially for article inline photos
     - controlled it to be max 600px
@@ -4632,113 +4636,6 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** TODO org-mode
-    :CLOCK:
-    CLOCK: [2014-01-13 Mon 19:22]--[2014-01-13 Mon 20:05] =>  0:43
-    :END:
-    - toc:
-    - cat/subcat:
-    - tags: emacs, org-mode, productivity
-    - lead image:
-    - summary: Continuing the "kill that rat" series with one more super-awesome productivity tool!
-    - body:
-Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by "killing the rat!" (see ***here (kill that rat)***, ***here (stumpwm)***, ***here (vimperator-1)*** and ***here (vimperator-2)*** for previous post on the "kill that rat" series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too
-1. improving my writing skills
-2. writing/blogging improves cognitive skills (see ***here (to blog or not to blog)***)
-3. teaching is the best form of learning
-
-So lets continue the series and learn about the super-awesome [[http://orgmode.org/][org-mode]] in [[http://www.gnu.org/software/emacs/tour/][emacs]]. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.
-
-In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc
-
-Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see [[http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications][here]]) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.
-
-Ok, enough round-about stories. Lets get to the real point with some concrete features:
-
-1. Plain Text Files: org-mode uses plain text files to store all information, which means that
-    a. you are never tied up to any proprietary format, and can move to some other tool if you wish
-    b. you can version-control your data files (visit the git-week series ***here (git-1)***, ***here (git-2)***, ***here (git-3)***, ***here (git-4)*** and ***here (git-5)***)
-
-2. Section-ify: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this with the following image:
-
-***image***
-
-As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely "backlog", "notes", etc and sub-sections, namely "wrote (no published)...", etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.
-
-3. Agendas: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.
-***image http://orgmode.org/img/planning.jpg***
-***image http://orgmode.org/img/agenda.jpg***
-
-4. Clocking: They say
-
-You cannot manage what you cannot measure. --F. John Reh
-
-Well, we have been talking about improving productivity, but how can we do that if we don't measure it? Wouldn't it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn't matter what level it is at). Then you can simply take the cursor to that task and press 'C-c C-x C-i' to clock-in and 'C-c C-x C-o' to clock-out of the task. With practice it becomes second nature. And what's more org-mode even shows you a cool summary view
-***image http://orgmode.org/img/clocking.jpg***
-
-5. Tables: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.
-***image http://orgmode.org/img/table2.jpg***
-
-6. Exporting: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.
-***image http://orgmode.org/img/export.jpg***
-
-I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can't right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!
-
-Finally, as always, do share your experiences and don't feel shy/afraid to ask for help :)
-    - html
-<p>
-	Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by &quot;killing the rat!&quot; (see ***here (kill that rat)***, ***here (stumpwm)***, ***here (vimperator-1)*** and ***here (vimperator-2)*** for previous post on the &quot;kill that rat&quot; series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too</p>
-<p>
-	1. improving my writing skills<br />
-	2. writing/blogging improves cognitive skills (see ***here (to blog or not to blog)***)<br />
-	3. teaching is the best form of learning</p>
-<p>
-	So lets continue the series and learn about the super-awesome <a href="http://orgmode.org/">org-mode</a> in <a href="http://www.gnu.org/software/emacs/tour/">emacs</a>. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.</p>
-<p>
-	In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc</p>
-<p>
-	Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see <a href="http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications">here</a>) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.</p>
-<p>
-	Ok, enough round-about stories. Lets get to the real point with some concrete features:</p>
-<p>
-	1. Plain Text Files: org-mode uses plain text files to store all information, which means that<br />
-	&nbsp;&nbsp;&nbsp; a. you are never tied up to any proprietary format, and can move to some other tool if you wish<br />
-	&nbsp;&nbsp;&nbsp; b. you can version-control your data files (visit the git-week series ***here (git-1)***, ***here (git-2)***, ***here (git-3)***, ***here (git-4)*** and ***here (git-5)***)</p>
-<p>
-	2. Section-ify: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this with the following image:</p>
-<p>
-	***image***</p>
-<p>
-	As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely &quot;backlog&quot;, &quot;notes&quot;, etc and sub-sections, namely &quot;wrote (no published)...&quot;, etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.</p>
-<p>
-	3. Agendas: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.</p>
-<p>
-	<img alt="" src="http://orgmode.org/img/planning.jpg" style="width: 600px; height: 450px;" /></p>
-<p>
-	<img alt="" src="http://orgmode.org/img/agenda.jpg" style="width: 600px; height: 450px;" /></p>
-<p>
-	4. Clocking: They say</p>
-<blockquote>
-		You cannot manage what you cannot measure. --F. John Reh
-</blockquote>
-<p>
-	Well, we have been talking about improving productivity, but how can we do that if we don&#39;t measure it? Wouldn&#39;t it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn&#39;t matter what level it is at). Then you can simply take the cursor to that task and press &#39;C-c C-x C-i&#39; to clock-in and &#39;C-c C-x C-o&#39; to clock-out of the task. With practice it becomes second nature. And what&#39;s more org-mode even shows you a cool summary view</p>
-<p>
-	<img alt="" src="http://orgmode.org/img/clocking.jpg" style="width: 600px; height: 450px;" /></p>
-<p>
-	5. Tables: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.</p>
-<p>
-	<img alt="" src="http://orgmode.org/img/table2.jpg" style="width: 600px; height: 450px;" /></p>
-<p>
-	6. Exporting: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.</p>
-<p>
-	<img alt="" src="http://orgmode.org/img/export.jpg" style="height: 450px; width: 600px;" /></p>
-<p>
-	I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can&#39;t right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!</p>
-<p>
-	Finally, as always, do share your experiences and don&#39;t feel shy/afraid to ask for help :)</p>
-    - notes:
-    - references:
 *** TODO search for topic
     :CLOCK:
     CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
@@ -7139,6 +7036,117 @@ Finally, as always, do share your experiences and don't feel shy/afraid to ask f
 
 ps: I have tried similar plugins for the chrome browser, but they don't come anywhere near to what vimperator can do.
     - html
+    - notes:
+    - references:
+**** DONE org-mode
+    CLOSED: [2014-01-15 Wed 12:33]
+    :CLOCK:
+    CLOCK: [2014-01-13 Mon 19:22]--[2014-01-13 Mon 20:05] =>  0:43
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-15 Wed 12:34
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags: emacs, org-mode, productivity
+    - lead image:
+    - summary: Continuing the "kill that rat" series with one more super-awesome productivity tool!
+    - body:
+Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by "killing the rat!" (see ***here (kill that rat)***, ***here (stumpwm)***, ***here (vimperator-1)*** and ***here (vimperator-2)*** for previous post on the "kill that rat" series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too
+1. improving my writing skills
+2. writing/blogging improves cognitive skills (see ***here (to blog or not to blog)***)
+3. teaching is the best form of learning
+
+So lets continue the series and learn about the super-awesome [[http://orgmode.org/][org-mode]] in [[http://www.gnu.org/software/emacs/tour/][emacs]]. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.
+
+In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc
+
+Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see [[http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications][here]]) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.
+
+Ok, enough round-about stories. Lets get to the real point with some concrete features:
+
+1. Plain Text Files: org-mode uses plain text files to store all information, which means that
+    a. you are never tied up to any proprietary format, and can move to some other tool if you wish
+    b. you can version-control your data files (visit the git-week series ***here (git-1)***, ***here (git-2)***, ***here (git-3)***, ***here (git-4)*** and ***here (git-5)***)
+
+2. Section-ify: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this with the following image:
+
+***image***
+
+As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely "backlog", "notes", etc and sub-sections, namely "wrote (no published)...", etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.
+
+3. Agendas: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.
+***image http://orgmode.org/img/planning.jpg***
+***image http://orgmode.org/img/agenda.jpg***
+
+4. Clocking: They say
+
+You cannot manage what you cannot measure. --F. John Reh
+
+Well, we have been talking about improving productivity, but how can we do that if we don't measure it? Wouldn't it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn't matter what level it is at). Then you can simply take the cursor to that task and press 'C-c C-x C-i' to clock-in and 'C-c C-x C-o' to clock-out of the task. With practice it becomes second nature. And what's more org-mode even shows you a cool summary view
+***image http://orgmode.org/img/clocking.jpg***
+
+5. Tables: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.
+***image http://orgmode.org/img/table2.jpg***
+
+6. Exporting: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.
+***image http://orgmode.org/img/export.jpg***
+
+I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can't right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!
+
+Finally, as always, do share your experiences and don't feel shy/afraid to ask for help :)
+    - html
+<p>
+	Looks like I really have you hooked onto the concept of not only improving productivity, but changing the way you think by &quot;killing the rat!&quot; (see ***here (kill that rat)***, ***here (stumpwm)***, ***here (vimperator-1)*** and ***here (vimperator-2)*** for previous post on the &quot;kill that rat&quot; series). Good for both of us! For you because you will pave your way onto a completely different level, and for me because I am benefiting through this series too</p>
+<p>
+	1. improving my writing skills<br />
+	2. writing/blogging improves cognitive skills (see ***here (to blog or not to blog)***)<br />
+	3. teaching is the best form of learning</p>
+<p>
+	So lets continue the series and learn about the super-awesome <a href="http://orgmode.org/">org-mode</a> in <a href="http://www.gnu.org/software/emacs/tour/">emacs</a>. If emacs was not as awesome as it is, but had just this 1 feature, even then it is worthwhile to undergo the steep learning curve and start using emacs. Is that claim a bit too far fetched? Not at all, allow me to explain.</p>
+<p>
+	In short org-mode = notes + todo + planner + reminders + tables (including calculator) + export (to html, pdf, tex, etc) + etc</p>
+<p>
+	Basically, if you have ever used a mind-mapping tool (if you have not, and are not on emacs yet, I would surely suggest that you try one out (see <a href="http://lifehacker.com/5188833/hive-five-five-best-mind-mapping-applications">here</a>) before starting on the steep learning curve of emacs), then org-mode is everything that your (favorite) mind-mapping tool did not offer, and not all the bloat that you wanted it to not have.</p>
+<p>
+	Ok, enough round-about stories. Lets get to the real point with some concrete features:</p>
+<p>
+	1. Plain Text Files: org-mode uses plain text files to store all information, which means that<br />
+	&nbsp;&nbsp;&nbsp; a. you are never tied up to any proprietary format, and can move to some other tool if you wish<br />
+	&nbsp;&nbsp;&nbsp; b. you can version-control your data files (visit the git-week series ***here (git-1)***, ***here (git-2)***, ***here (git-3)***, ***here (git-4)*** and ***here (git-5)***)</p>
+<p>
+	2. Section-ify: it is super easy to split your content into sections, sub-sections, sub-sub-sections, and so on. The best part about splitting your content into sections is that you can collapse all sections except the one that you are interested in reading and/or editing right now. This is the same reason why people use mind-mapping tools; to be able to zoom into just 1 sub-part at a time and concentrate on it. Thus you can see the whole picture by zooming out, or concentrate on a small section by zooming in at whatever level you want to. Let me explain this with the following image:</p>
+<p>
+	***image***</p>
+<p>
+	As you can see, I am currently writing this very article in the golbin.org file. But all other sections, namely &quot;backlog&quot;, &quot;notes&quot;, etc and sub-sections, namely &quot;wrote (no published)...&quot;, etc are all collapsed. Thus at this time, I am looking only at this article, and nothing else is distracting me.</p>
+<p>
+	3. Agendas: Each headline can be turned into a task, and you can assign a schedule (start date-time) and/or a deadline (end date-time) to it. Org-mode will then keep a track of it, and you will be able to see all of your todos in the agenda view (on a day/week/month level). This is really the killer feature of org-mode.</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/planning.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	<img alt="" src="http://orgmode.org/img/agenda.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	4. Clocking: They say</p>
+<blockquote>
+		You cannot manage what you cannot measure. --F. John Reh
+</blockquote>
+<p>
+	Well, we have been talking about improving productivity, but how can we do that if we don&#39;t measure it? Wouldn&#39;t it be great if we could know exactly how much time we are spending on every (non-trivial) activity? The clocking feature of org-mode allows one to do exactly that. All you have to do is to mention the task as a headline (doesn&#39;t matter what level it is at). Then you can simply take the cursor to that task and press &#39;C-c C-x C-i&#39; to clock-in and &#39;C-c C-x C-o&#39; to clock-out of the task. With practice it becomes second nature. And what&#39;s more org-mode even shows you a cool summary view</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/clocking.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	5. Tables: A lot of times we need to have some tabular data in our notes, but even our favorite note-taking (or mind-mapping) software does not allow us to do that; except org-mode that is ;). Org-mode allows not only creating and editing tables, but also allows us to import and export them from/to .csv and .tsv formats.</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/table2.jpg" style="width: 600px; height: 450px;" /></p>
+<p>
+	6. Exporting: Org mode allows one to easily export notes into various formats like html, pdf, latex, etc. A lot of people even use it for blogging directly from within emacs.</p>
+<p>
+	<img alt="" src="http://orgmode.org/img/export.jpg" style="height: 450px; width: 600px;" /></p>
+<p>
+	I hope I have given you enough reasons to atleast give it a try and see how you feel about it. But then, as I had said previously, if you are not in a mood (or can&#39;t right now due to other constraints) to go through the steep learning curve that emacs has, you should atleast use a mind-mapping tool. It will allow you to organize your thoughts better!</p>
+<p>
+	Finally, as always, do share your experiences and don&#39;t feel shy/afraid to ask for help :)</p>
     - notes:
     - references:
 * Footnotes

@@ -34,7 +34,7 @@
          (name (username comment))
          (img (build-gravtar-image (md5-hash (useremail comment))
                                    name
-                                   (write-to-string (get-config "photo.comments.size")))))
+                                   (write-to-string (get-config "photo.comments")))))
     (<:li :class "comment"
           (<:span :class "hidden" (id comment))
           (translate "user-comment-prelude"

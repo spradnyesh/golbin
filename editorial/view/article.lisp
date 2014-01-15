@@ -47,13 +47,11 @@
 (defun get-thumb-side-photo-sizes-json ()
   (encode-json-to-string
    (list (format nil
-                 "~ax~a"
-                 (get-config "photo.article-lead.related-thumb.max-height")
-                 (get-config "photo.article-lead.related-thumb.max-width"))
+                 "~a"
+                 (get-config "photo.article-lead.related-thumb"))
          (format nil
-                 "~ax~a"
-                 (get-config "photo.article-lead.block.max-height")
-                 (get-config "photo.article-lead.block.max-width")))))
+                 "~a"
+                 (get-config "photo.article-lead.block")))))
 
 (defun make-photo-attribution-div (img-tag photo)
   (<:div :class "a-photo"

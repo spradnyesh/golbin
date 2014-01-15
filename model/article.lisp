@@ -60,12 +60,9 @@
                                                "side"
                                                photo-location)))
            (photo-size (format nil
-                               "~ax~a"
+                               "~a"
                                (get-config (format nil
-                                                   "~a.max-width"
-                                                   photo-size-config-name))
-                               (get-config (format nil
-                                                   "~a.max-height"
+                                                   "~a"
                                                    photo-size-config-name))))
            ;; XXX: photo filename should contain *exactly* 1 dot
            (name-extn (split-sequence "." (new-filename photo) :test #'string-equal)))

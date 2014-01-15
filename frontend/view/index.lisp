@@ -30,7 +30,7 @@
                                                                 :slug-and-id (get-slug-and-id article))
                                                 (title article)))
                                      (let ((timestamp (universal-to-timestamp (date article))))
-                                       (<:span :class "a-cite small"
+                                       (<:div :class "a-cite small"
                                                (article-preamble-markup-common nil "article-cite")))
                                      (<:p :class "a-summary" (summary article))))))
                  ,(if route-params
@@ -86,7 +86,7 @@
                                            (background author)))
                           (when description
                             (<:div :id "a-details"
-                                   (get-author-photo author (get-config "photo.author.avatar.size"))
+                                   (get-author-photo author (get-config "photo.author.avatar"))
                                    (<:p description)))))
                 nil
                 (h-gen-full-url 'r-rss-author :author (username author))

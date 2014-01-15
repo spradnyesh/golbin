@@ -47,31 +47,26 @@
      (setf ,dim-1 ,max)))
 
 ;; m- => max-, o- => orig-
-(defun get-scaled-dimensions (m-width m-height width height)
-  (if (> width height)
-      ;; w > h, so w = mw and h < mh
-      (scale-photo-dimensions width height m-width)
-      ;; w <= h, so h = mh and w < mw
-      (scale-photo-dimensions height width m-height))
+(defun get-scaled-dimensions (m-size width height)
+  ;; scale only to max-width (ignore height)
+  (scale-photo-dimensions width height m-size)
   (values width height))
 
 ;; m- => max-, n- => new-, o- => orig-
-(defun scale-and-save-photo (o-path n-path o-filename m-width m-height)
+(defun scale-and-save-photo (o-path n-path o-filename size)
   (let* ((name-extn (split-sequence "." o-filename :test #'string-equal))
          (n-filename (format nil
-                             "~a/~a_~ax~a.~a"
+                             "~a/~a_~a.~a"
                              n-path
                              (first name-extn)
-                             m-width
-                             m-height
+                             size
                              (second name-extn))))
     (unless (probe-file n-filename) ; do-the-do only if the file does not already exist
       (with-image-from-file (o-photo (merge-pathnames o-filename o-path))
         (multiple-value-bind (o-width o-height)
             (image-size o-photo)
           (multiple-value-bind (n-width n-height)
-              (get-scaled-dimensions m-width
-                                     m-height
+              (get-scaled-dimensions size
                                      o-width
                                      o-height)
             #|(format t "~a x ~a ::: ~a x ~a -> ~a x ~a~%" m-width m-height o-width o-height n-width n-height)|#

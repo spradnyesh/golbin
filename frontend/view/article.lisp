@@ -38,9 +38,9 @@
   (let ((timestamp (universal-to-timestamp (date article))))
     (fmtnil
      (<:h2 :id "a-title" (title article))
-     (<:span :class "a-cite small"
+     (<:div :class "a-cite small"
              (article-preamble-markup-common (get-author-photo (author article)
-                                                               (get-config "photo.author.article-logo.size"))
+                                                               (get-config "photo.author.article-logo"))
                                              "article-cite")))))
 
 (defun article-body-markup (article)

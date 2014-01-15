@@ -211,6 +211,7 @@
                                         :padding-right "10px"))
     (("#articles .a-summary") (:color "#4a4a4a"
                                       :margin "0 0 10px 0"))
+    (("#articles .a-cite") (:padding "0"))
 
     ;; article
     (("#article img") (:display "block"
@@ -223,7 +224,7 @@
                                   :height "0"))
     (("#a-title") (:font-size "160%"))
     ((".a-cite") (:color "#999"
-                         :padding "0"
+                         :padding "0 0 15px 0"
                          :display "block"))
     (("#article .a-cite img") (:display "inline"
                                         :padding "0 5px 0 0"

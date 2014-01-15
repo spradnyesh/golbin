@@ -73,7 +73,7 @@
                                                      (fmtnil (<:img :alt (username author)
                                                                     :src (build-sized-image "/static/photos/"
                                                                                             photo
-                                                                                            (write-to-string (get-config "photo.author.avatar.size"))))
+                                                                                            (write-to-string (get-config "photo.author.avatar"))))
                                                              (<:a :href "#"
                                                                   :id "upload-author-photo"
                                                                   (translate "change-photo"))
@@ -83,7 +83,7 @@
                                                      ;; gravatar
                                                      (fmtnil (build-gravtar-image photo
                                                                                   (username author)
-                                                                                  (write-to-string (get-config "photo.author.avatar.size")))
+                                                                                  (write-to-string (get-config "photo.author.avatar")))
                                                              (<:a :href "#"
                                                                   :id "upload-author-photo"
                                                                   (translate "change-photo")))))))
@@ -95,7 +95,7 @@
                                                            ;; uploaded image
                                                            (<:img :src (build-sized-image "/static/photos/"
                                                                                           background
-                                                                                          (write-to-string (get-config "photo.author.background.size")))))
+                                                                                          (write-to-string (get-config "photo.author.background")))))
                                                          (<:a :href "#"
                                                               :id "upload-author-background"
                                                               (translate "change-background"))))))
