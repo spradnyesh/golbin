@@ -7,7 +7,7 @@
   (if photo
       (regex-replace "^"
                      body
-                     (<:div :class "a-photo" (article-lead-photo-url photo "left")))
+                     (<:div :class "a-photo" (article-lead-photo-url photo "block")))
       body))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
