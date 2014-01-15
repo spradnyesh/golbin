@@ -21,23 +21,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; archive @ http://web.archive.org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro web-archive (uri &key error-handle)
-  (let ((acceptor (gensym)))
-    `(progn
-       (when (boundp '*acceptor*)
-         (setf ,acceptor *acceptor*))
-       (string-trim " \"\\;"
-                    (second (split-sequence
-                             "="
-                             (first (all-matches-as-strings
-                                     "var redirUrl = .*;"
-                                     ;; execute asynchronously
-                                     (handler-case (do-in-background (drakma:http-request
-                                                                      (concatenate 'string
-                                                                                   "http://web.archive.org/save/"
-                                                                                   ,uri)))
-                                       (usocket:timeout-error ()
-                                         (progn ,error-handle
-                                                (when ,acceptor
-                                                  (log-message* :warning "failed to archive uri: [~a]" ,uri)))))))
-                             :test #'string=))))))
+(defmacro web-archive (article uri callback &key error-handle)
+  ;; execute asynchronously
+  `(handler-case (do-in-background
+                     (funcall #',callback
+                              ,article
+                              (string-trim " \"\\;"
+                                           (second (split-sequence
+                                                    "="
+                                                    (first (all-matches-as-strings
+                                                            "var redirUrl = .*;"
+                                                            (drakma:http-request
+                                                             (concatenate 'string
+                                                                          "http://web.archive.org/save/"
+                                                                          ,uri))))
+                                                    :test #'string=)))))
+     (usocket:timeout-error ()
+       (progn ,error-handle
+              (when *acceptor*
+                (log-message* :warning "failed to archive uri: [~a]" ,uri))))))
