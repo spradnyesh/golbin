@@ -4585,7 +4585,6 @@
 *** DONE [#A] [bug][fe] ads not showing up in production
     CLOSED: [2014-01-16 Thu 01:53]
     :CLOCK:
-    CLOCK: [2014-01-16 Thu 01:16]
     :END:
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-01-16 Thu 01:53
@@ -4650,6 +4649,59 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
+*** TODO ml-102: supervised learning
+    :CLOCK:
+    CLOCK: [2014-01-16 Thu 16:24]--[2014-01-16 Thu 16:30] =>  0:06
+    :END:
+    - toc:
+      - training dataset contains "right answers"
+      - eg: house price prediction
+        - we have been given X=size (in ft^2), and y=price
+        - we have to predict price of a new house
+        - also called a "regression" problem
+          - predict a continuous valued output (price)
+      - breast cancer (malignant, benign)
+        - X=tumor_size, y=yes/no
+        - classification problem
+          - discrete valued output (class)
+          - binary, or multiple classes
+        - X=(age, tumor_size)
+          - 2 features
+      - basically, need to find relationship between features and output
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+*** TODO ml-103: unsupervised learning
+    :CLOCK:
+    CLOCK: [2014-01-16 Thu 16:35]--[2014-01-16 Thu 16:41] =>  0:06
+    :END:
+    - toc:
+      - don't have a "right answer"
+      - need to find some structure to data
+        - eg: clustering (eg: google news, organize computing clusters, market segmentation, social network analysis, astronomical data analysis)
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
+*** template
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - html
+    - notes:
+    - references:
 *** TODO search for topic
     :CLOCK:
     CLOCK: [2013-03-03 Sun 15:10]--[2013-03-03 Sun 15:35] =>  0:25
@@ -4732,17 +4784,142 @@ Also, simple things get complex too soon, because
     - references:
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
-*** template
+** wrote (not published)
+*** TODO ml-101: introduction to Machine Learning
+    :CLOCK:
+    CLOCK: [2014-01-16 Thu 17:20]--[2014-01-16 Thu 17:22] =>  0:02
+    CLOCK: [2014-01-16 Thu 16:58]--[2014-01-16 Thu 17:20] =>  0:22
+    CLOCK: [2014-01-16 Thu 16:45]--[2014-01-16 Thu 16:58] =>  0:13
+    CLOCK: [2014-01-16 Thu 16:11]--[2014-01-16 Thu 16:18] =>  0:07
+    :END:
     - toc:
+      - very pervasive (especially ranking algos)
+        - google search
+        - spam classifier
+      - grown out of AI
+        - recently very hot topic
+        - improvement in understanding of complex problems
+        - improvement in hardware (parallelization)
+      - examples
+        - database mining
+          - webclick data, medical records, biology, engineering
+        - algos that can't be written by hand (need machine to learn it)
+          - autonomous helicoptor, handwritting recognition, NLP, computer vision, etc
+        - self customizing programs
+          - amazon, netflix, google search, etc
+      - what is ML
+        - Arthur Samuel (1959): ML: Field of study that gives computers the ability to learn without being explicitly programmed
+        - Tom Mitchell (1998): Well-posed learning problem: A computer program is said to learn from experience E with respect to some task T and some performance measure P, if it's performance on T, as measured by P, improves with experience E.
+      - broad classification of ML
+        - (un-)supervised learning, recommender systems
     - cat/subcat:
     - tags:
     - lead image:
     - summary:
     - body:
+Facts:
+1. As some of my friends on twitter and facebook know, I recently completed the "Machine Learning" course on [[https://www.coursera.org/][coursera]], taught by "Andrew Ng" from Stanford university. I managed to get a 100% score on the programming assignments and the review tests (mean attempt of 2.22 on the tests), but did not get a completion certificate because I missed the "completion survey" before the deadline (so stupid of me :( )
+2. While we teach, we learn --Roman philosopher Seneca (see [[http://en.wikipedia.org/wiki/Learning_by_teaching][this]] [[http://ideas.time.com/2011/11/30/the-protege-effect/][this]], [[http://ezinearticles.com/?The-Best-Way-to-Learn-is-to-Teach&id%3D560127][this]], and lots more)
+
+Combining these 2 facts I thought that it would be great to try and explain what I have learned during the last few weeks to all of you. This has the advantages of:
+1. My understanding of the subject will improve
+2. I've been having the "writers block" for the last 2-3 days, and was not able to think of what to write here on [[http://www.golb.in/][Golbin]]. Problem solved ;)
+3. Maybe someone will benefit from this and will get inspired to try it out. Maybe I will get someone to collaborate on a project with, who knows?
+
+So lets start! Wait! Before starting, let me put down a few notes:
+1. I have signed the "code of honor" on coursera, so do NOT expect to find assignment questions and answers to them here
+2. I will try to use different examples (than in the course) to explain. This is mostly so that by applying the concepts to different things, I believe I will be able to improve my understanding better
+
+Ok, lets start now. Really start! First some definitions:
+
+[Machine Learning is a] field of study that gives computers the ability to learn without being explicitly programmed. --Arthur Samuel (1959)
+
+A computer program is said to learn from experience E with respect to some task T and some performance measure P, if it's performance on T, as measured by P, improves with experience E. -- Tom Mitchell (1998)
+
+The 2nd definition is a mathematically more well-posed learning problem, but maybe a bit more difficult to understand. The best way to understand the concept is through the following example: In 1959 Arthur Samuel created a checkers program even though he himself was not a good checkers player. What he did was for the program to play tens of thousands of games against itself, and learn from the various board positions that it encountered during the games. That is, when a program is not told the rules of the game, but learns them itself by observation, we can call it a machine learning program.
+
+Machine learning is not a new field, but has been gaining a lot of interest and popularity in the last few years. It has grown out of "Artificial Intelligence" stream of computer science, but heavily uses other subjects like statistics for example.
+
+In fact, today, machine learning algorithms are very pervasive, especially on the web. You are surrounded by them, although you might not notice them. Take the following for example:
+1. Every time you use [[http://www.google.com/][google]] search, you are using a algorithm that has been automatically learned by machine(s) to show relevant results to you
+2. When you use email, there is a spam classifier algorithm working in the background to automatically send spam messages to the junk folder
+3. Even the various ads that you see on web pages; some machine has learnt which ads it should show to you so as to increase the probability of you clicking on them
+
+So what other kinds of programs can we write using ML?
+1. ML is very good for programs that we cannot write by hand; either because we don't understand the concept totally ourselves, or because it is too difficult to map the problem into the computer domain. For example, autonomous helicopter navigation, handwriting recognition, NLP (natural language processing), computer vision, etc
+2. Self customizing programs: When [[http://www.amazon.com/][amazon]] (or [[https://www.netflix.com/][netflix]], etc) shows you recommendations of what to buy next, this program should be different for every user. Obviously it is not possible to make a million different copies (with different behavior and hence algorithm) of the recommender program. ML shines beautifully when solving such problems
+3. Database mining: These days companies and organizations collect a huge amount of data (in terabytes), and in most cases we don't know what gems are hidden inside. This is where ML clustering algorithms can be used
+4. and the list goes on and on
+
+So that's it for today. We will slowly dig deeper into the subject in the upcoming posts. So keep watching this space :)
     - html
+<p>Facts:
+</p><ol>
+<li>As some of my friends on twitter and facebook know, I recently completed the "Machine Learning" course on <a href="https://www.coursera.org/">coursera</a>, taught by "Andrew Ng" from Stanford university. I managed to get a 100% score on the programming assignments and the review tests (mean attempt of 2.22 on the tests), but did not get a completion certificate because I missed the "completion survey" before the deadline (so stupid of me :( )
+</li>
+<li>While we teach, we learn &ndash;Roman philosopher Seneca (see <a href="http://en.wikipedia.org/wiki/Learning_by_teaching">this</a> <a href="http://ideas.time.com/2011/11/30/the-protege-effect/">this</a>, <a href="http://ezinearticles.com/?The-Best-Way-to-Learn-is-to-Teach&amp;id=560127">this</a>, and lots more)
+</li>
+</ol>
+<p>
+Combining these 2 facts I thought that it would be great to try and explain what I have learned during the last few weeks to all of you. This has the advantages of:
+</p><ol>
+<li>My understanding of the subject will improve
+</li>
+<li>I've been having the "writers block" for the last 2-3 days, and was not able to think of what to write here on <a href="http://www.golb.in/">Golbin</a>. Problem solved ;)
+</li>
+<li>Maybe someone will benefit from this and will get inspired to try it out. Maybe I will get someone to collaborate on a project with, who knows?
+</li>
+</ol>
+<p>
+So lets start! Wait! Before starting, let me put down a few notes:
+</p><ol>
+<li>I have signed the "code of honor" on coursera, so do NOT expect to find assignment questions and answers to them here
+</li>
+<li>I will try to use different examples (than in the course) to explain. This is mostly so that by applying the concepts to different things, I believe I will be able to improve my understanding better
+</li>
+</ol>
+<p>
+Ok, lets start now. Really start! First some definitions:
+</p>
+<p>
+[Machine Learning is a] field of study that gives computers the ability to learn without being explicitly programmed. &ndash;Arthur Samuel (1959)
+</p>
+<p>
+A computer program is said to learn from experience E with respect to some task T and some performance measure P, if it's performance on T, as measured by P, improves with experience E. &ndash; Tom Mitchell (1998)
+</p>
+<p>
+The 2nd definition is a mathematically more well-posed learning problem, but maybe a bit more difficult to understand. The best way to understand the concept is through the following example: In 1959 Arthur Samuel created a checkers program even though he himself was not a good checkers player. What he did was for the program to play tens of thousands of games against itself, and learn from the various board positions that it encountered during the games. That is, when a program is not told the rules of the game, but learns them itself by observation, we can call it a machine learning program.
+</p>
+<p>
+Machine learning is not a new field, but has been gaining a lot of interest and popularity in the last few years. It has grown out of "Artificial Intelligence" stream of computer science, but heavily uses other subjects like statistics for example.
+</p>
+<p>
+In fact, today, machine learning algorithms are very pervasive, especially on the web. You are surrounded by them, although you might not notice them. Take the following for example:
+</p><ol>
+<li>Every time you use <a href="http://www.google.com/">google</a> search, you are using a algorithm that has been automatically learned by machine(s) to show relevant results to you
+</li>
+<li>When you use email, there is a spam classifier algorithm working in the background to automatically send spam messages to the junk folder
+</li>
+<li>Even the various ads that you see on web pages; some machine has learnt which ads it should show to you so as to increase the probability of you clicking on them
+</li>
+</ol>
+<p>
+So what other kinds of programs can we write using ML?
+</p><ol>
+<li>ML is very good for programs that we cannot write by hand; either because we don't understand the concept totally ourselves, or because it is too difficult to map the problem into the computer domain. For example, autonomous helicopter navigation, handwriting recognition, NLP (natural language processing), computer vision, etc
+</li>
+<li>Self customizing programs: When <a href="http://www.amazon.com/">amazon</a> (or <a href="https://www.netflix.com/">netflix</a>, etc) shows you recommendations of what to buy next, this program should be different for every user. Obviously it is not possible to make a million different copies (with different behavior and hence algorithm) of the recommender program. ML shines beautifully when solving such problems
+</li>
+<li>Database mining: These days companies and organizations collect a huge amount of data (in terabytes), and in most cases we don't know what gems are hidden inside. This is where ML clustering algorithms can be used
+</li>
+<li>and the list goes on and on
+</li>
+</ol>
+<p>
+So that's it for today. We will slowly dig deeper into the subject in the upcoming posts. So keep watching this space :)
+</p>
     - notes:
     - references:
-** wrote (not published)
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
