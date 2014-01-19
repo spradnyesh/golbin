@@ -4649,20 +4649,13 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** TODO ml-103: unsupervised learning
-    :CLOCK:
-    CLOCK: [2014-01-16 Thu 16:35]--[2014-01-16 Thu 16:41] =>  0:06
-    :END:
+*** ml-202: linear regression with one variable
     - toc:
-      - don't have a "right answer"
-      - need to find some structure to data
-        - eg: clustering (eg: google news, organize computing clusters, market segmentation, social network analysis, astronomical data analysis)
     - cat/subcat:
     - tags:
     - lead image:
     - summary:
     - body:
-    - html
     - notes:
     - references:
 *** template
@@ -4672,7 +4665,6 @@
     - lead image:
     - summary:
     - body:
-    - html
     - notes:
     - references:
 *** TODO search for topic
@@ -4758,57 +4750,216 @@ Also, simple things get complex too soon, because
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 ** wrote (not published)
-*** TODO ml-102: supervised learning
+*** TODO ml-103: unsupervised learning and recommender systems
     :CLOCK:
-    CLOCK: [2014-01-17 Fri 19:25]--[2014-01-17 Fri 19:53] =>  0:28
-    CLOCK: [2014-01-17 Fri 19:13]--[2014-01-17 Fri 19:14] =>  0:01
-    CLOCK: [2014-01-16 Thu 16:24]--[2014-01-16 Thu 16:30] =>  0:06
+    CLOCK: [2014-01-19 Sun 19:14]--[2014-01-19 Sun 19:30] =>  0:16
+    CLOCK: [2014-01-19 Sun 17:05]--[2014-01-19 Sun 17:14] =>  0:09
+    CLOCK: [2014-01-19 Sun 16:59]--[2014-01-19 Sun 17:04] =>  0:05
+    CLOCK: [2014-01-16 Thu 16:35]--[2014-01-16 Thu 16:41] =>  0:06
     :END:
     - toc:
-      - broad classification of ML
-        - (un-)supervised learning, recommender systems
-      - training dataset contains "right answers"
-      - eg: house price prediction
-        - we have been given X=size (in ft^2), and y=price
-        - we have to predict price of a new house
-        - also called a "regression" problem
-          - predict a continuous valued output (price)
-      - breast cancer (malignant, benign)
-        - X=tumor_size, y=yes/no
-        - classification problem
-          - discrete valued output (class)
-          - binary, or multiple classes
-        - X=(age, tumor_size)
-          - 2 features
-      - basically, need to find relationship between features and output
+      - don't have a "right answer"
+      - need to find some structure to data
+        - eg: clustering (eg: google news, organize computing clusters, market segmentation, social network analysis, astronomical data analysis)
     - cat/subcat:
-    - tags: machine learning, supervised learning, recommender system, unsupervised learning, 101
+    - tags: machine learning, unsupervised learning, recommender systems, 101
+    - lead image:
+    - summary: Continuing the introduction to Machine learning algorithms, we will look into 2 more types
+    - body:
+Hello :) In the last 2 posts ***here (ml-101)*** and ***here (ml-102)***, we got a general overview of what Machine learning is and also looked at a particular category ML algorithms, viz the "supervised learning" type.
+
+Today we will briefly look at 2 more types of ML algorithms, viz the "unsupervised learning" and "recommender systems". I hope you remember that in the supervised learning types of ML algorithms, we get the "right answers" embedded in the training data. As against this, in the "unsupervised learning" algorithms, we do *not* get the right answers in the training data. In fact sometimes, there is no right answer at all, as I will show below.
+
+The above explanation seems to be very vague, so lets dig deeper with the help of an example.
+
+<iframe src="https://www.flickr.com/photos/giladlotan/5151742603/player/0c0134107b" height="461" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+The above image is a snippet of the facebook social graph; it's a graph of how a user is connected to other users. It also shows clusters of users; groups of users who are very strongly/closely connected to each other. In such a dataset, as you would rightly guess, there is no "right answer". Basically the objective is to find this cluster/closeness attribute.
+
+Similarly, if you see [[http://archive.ics.uci.edu/ml/datasets/3D%2BRoad%2BNetwork%2B(North%2BJutland,%2BDenmark)][this]] dataset, it's about the road network in North Jutland, Denmark in 3d (longitude, latitude, altitude). If the dataset is used to find information/knowledge which will be used to perform accurate routing for eco-routing, cyclist routes, etc, then there is no right answer which is present inside the dataset. The task is for the program to learn the structure of the data itself and find out interesting knowledge from it.
+
+Some other examples of unsupervised learning are:
+1. google news: it puts similar news, from various channels/websites, into similar (correct) sections
+2. organizing computer clusters in a data-center: based on network activity between them, for example
+3. market segmentation
+4. social network analysis
+5. astronomical data analysis
+6. etc
+
+Lets move on to the next type of ML algorithm, which is "recommender systems". The easiest way to imagine this algorithm is to understand an example that we have all experienced at some time or the other -- e-commerce websites. I am sure you all would have noticed that when we buy something online, we are recommended other objects, for which there is a higher probability of us buying; for example, books from same author or on same topic, or movies from same genre, etc.
+
+In ML, there are certain ways in which these systems are implemented. But don't you worry. We will be looking into all of these algorithms in much more depth in the forthcoming posts. So keep tuned :)
+   - notes:
+   - references:
+*** TODO ml-201: octave-1
+    :CLOCK:
+    CLOCK: [2014-01-19 Sun 20:00]--[2014-01-19 Sun 20:27] =>  0:27
+    CLOCK: [2014-01-19 Sun 19:32]--[2014-01-19 Sun 19:53] =>  0:21
+    :END:
+    - toc:
+    - cat/subcat:
+    - tags:
     - lead image:
     - summary:
     - body:
-Hi! I hope you enjoyed the last ***post (ml-101)*** on introduction to ML. Today we will dig just a little bit deeper and understand the various types of ML algorithms. Although not complete, some of the different types of ML algorithms are:
-1. Supervised learning
-2. Unsupervised learning
-3. Recommender systems
+Hi again! In the previous posts ***here (ml-101)***, ***here (ml-102)*** and ***here (ml-103)***, we did pretty theoretical and very basic introduction. But starting now (notice the *201* in the title of the article?), we will be digging deeper into specific algorithms, their working, intuition and implementation. But before we go there, we need to get familiar with some background setup.
 
-The first 2, viz supervised and unsupervised techniques are related to each other and are differentiated based on the input data and the problem statement. If the (training) data contains both the features and the output (value to be found), then algorithms that work on such data are called supervised learning algorithms. Let me explain with the help of an example.
+Firstly, you should have atleast some basic knowledge of the following disciplines of mathematics:
 
-Lets say we have some data about houses like "size in feet-square" and "price". We want our ML algorithm to observe this data and if we give it size data about some new house, then we want it to be able to predict the price for that new house. In this problem, then thing we want to predict (that is the output of the program) is the "price". However, do notice that the training data contains both the "size" feature and the "price" parameter. Hence in this problem, we call the technique as a supervised learning algorithm. To put another way, the training dataset contains "right answers".
+1. [[http://en.wikipedia.org/wiki/Linear_algebra][linear algebra]]
+2. [[http://en.wikipedia.org/wiki/Matrix_(mathematics)][matrix theory]]
+3. [[http://en.wikipedia.org/wiki/Calculus][calculus]]
 
-Some other examples of supervised learning are datasets like
-1. [[http://archive.ics.uci.edu/ml/datasets/Bike%2BSharing%2BDataset][this]]: Bike Sharing Dataset Data Set: From this dataset, if we want to predict how many bikes would be rented during the next month, then that problem would use a supervised learning ML algorithm
-2. [[http://archive.ics.uci.edu/ml/datasets/Thoracic%2BSurgery%2BData][this]]: Thoracic Surgery Data Data Set: Using this dataset we might want to predict whether the post-operative life expectancy of a certain patient
+Don't worry, you don't need to be gurus, just basic knowledge is good enough to understand the intuition of and implement ML algorithms correctly.
 
-In both of the above examples, the dataset contains the "right answers" for the data provided. Based on this information, our program needs to learn the mapping between the features and the output. Then given a new problem instance (set of feature values), we need to predict the output value.
+Furthermore, for this series I will use the [[https://www.gnu.org/software/octave/][octave]] programming language because:
+1. that is what was used in the [[https://www.coursera.org/][coursera]] course that I recently completed (which is what prompted this series)
+2. it is extremely good for rapid prototyping (most algorithms can be implemented in just a few lines of code)
+3. the smartest thing that you can do when implementing a ML algorithm is "rapid prototyping" to avoid getting trapped in a black hole of wrong effort which does not lead to a effective solution, but simply wastes time
 
-Supervised learning can be further divided into 2 broad categories based on the problem statement:
-1. *Regression*: This is the case when the output value to be predicted can take a wide range (mostly continuous) values. For example, in the "house price prediction" problem the predicted value is "price" which can take on a very wide range of values. Similarly, in the "bike sharing" problem, the value to be predicted is "number of bikes rented" which will also have a numerical value
-2. *Classification*: On the other hand, when the value to be predicted can have a value from within a fixed set of numbers, then it is called as a classification problem. For example, if our objective in the "Thoracic Surgery" dataset above would have been to find whether a patient died within the first year after surgery, then the output can have only 2 valid values "yes" or "no"; thus it would be a classification problem. The values are generally called "class" and it can be 2 or more. For example, in a handwriting recognition dataset, using the english alphabet, we would have 62 classes (A-Z, a-z, 0-9)
+So without further ado, lets start with getting a little bit familiar with the octave programming language:
+1. Octave is a [[http://www.gnu.org/][gnu]] software and its installers are available for OS X, windoZZZe, and linux [[http://www.gnu.org/software/octave/download.html][here]]
+2. It is a programming language made specifically for ML and has good library support
+3. However, it is very slow and hence might not be suitable for production programs
+4. You can execute octave commands both from the command line, or even a GUI
 
-That's it for today. In the next post we will look at the remaining 2 ML algorithm types; so stay tuned :)
-   - html
+Octave is very well documented and the complete documentation is available [[http://www.gnu.org/software/octave/doc/interpreter/index.html][here]], but we will go through some of the most commonly used commands (and more during the actual algorithm discussion). I have only used the command line version during the course, and that is what I will explain here. Maybe the GUI would be much easier for you, YMMV.
+
+*Basic*: The most frequently used command in octave (for us beginners) is, obviously the "help" command ;). The basic format of the help command is
+
+help <command-name>
+
+For example "help plot" shows the help section for the "plot" command
+
+Some other basic commands are:
+1. the '%' character starts a comment. If it comes in the middle of a line, then the part after the '%' is the comment. eg
+
+% this whole line is a command
+a = 5; % a is assigned the value 5
+
+2. a ';' suppresses the output. so for eg
+
+a = 5 % this will print 'a = 5'
+a = 5; % this will not print anything
+
+3. inside a matrix definition, the ';' character takes the remaining numbers onto the next row of the matrix. eg
+
+A = [1 2 3; 2 3 4; 3 4 5]
+
+is a 3x3 matrix of the form
+
+|---+---+---|
+| 1 | 2 | 3 |
+|---+---+---|
+| 2 | 3 | 4 |
+|---+---+---|
+| 3 | 4 | 5 |
+|---+---+---|
+
+1. Matrices (and vectors (single dimension matrices)) are the "the" way of representing data and performing computations on them during the implementation of ML algorithms in octave. So obviously, octave has a great support for matrix creation and manipulation. Some of the frequently used operations are:
+   1. A = zeros(2, 3) % will create a 2x3 matrix filled with the element zero
+   2. B = ones(3, 2) % will create a 3x2 matrix filled with the element one
+   3. B2 = 2 * ones(3, 2) % will create a 3x2 matrix filled with the element two
+   4. C = rand(3, 3) % will create a 3x3 matrix filled with numbers between 0 and 1 with a uniform distribution
+   5. D = eye(5) % will create a 5x5 [[http://en.wikipedia.org/wiki/Identity_matrix][identity matrix]]
+
+*Loading, saving and plotting data*: Of course the next most common operation that you would do while implementing a ML algorithm would be loading, saving and plotting of data. Octave supports these operations via:
+
+1. pwd: shows the current working directory
+2. cd <new-directory>: change to another directory (where data and/or code exists, so that you can load them)
+3. data = load(<file-name>): load data from file into variable named "data"
+4. who: shows what variables are present in the memory in the current scope
+5. whos: shows what variables are present in the memory, and show their size (and other information)
+6. clear [<variable-name>+] : remove variable(s) from memory
+7. save <file-name> <variable-name> : save value of variable (may be a vector or a matrix) into the named file
+
+I think that is a big enough bite for today. We will continue with some more octave in the next post, so keep watching this space :)
    - notes:
    - references:
+*** TODO ml-202: octave-2
+    :CLOCK:
+    CLOCK: [2014-01-19 Sun 20:40]--[2014-01-19 Sun 20:55] =>  0:15
+    CLOCK: [2014-01-19 Sun 20:28]--[2014-01-19 Sun 20:40] =>  0:12
+    :END:
+Hi there, welcome back! In the last ***post (ml-104)***, we looked at some basic [[http://www.gnu.org/software/octave/doc/interpreter/index.html][octave]] commands. Today we will dig deeper into octave and understand more concepts and commands. I hope you are eager and excited, so lets begin!
+
+*Plotting*: One of the most important things that we do during implementing ML algorithms is to plot data. This is done to
+1. understand the nature of our input/training data which gives us insight into what approach to take to solve the problem
+2. examine our implementation and ensure that it is indeed working correctly, and/or improve it
+Some of the important commands from the plotting world are:
+1. plot(A, B) % if A, B are both vectors, then it will plot them against the X and Y axes
+2. hold on % print a new graph on top of the previous graph
+3. xlabel('<label-name>') % label the x axis (similarly, ylabel)
+4. axis([0.5 1 -1 1]) % change X axis range to be between 0.5 and 1, and Y axis between -1 and 1
+5. print -dpng '<file-name>.png' % save graph as png file
+6. close % close the graph
+7. subplot(1, 2, 1) % divide figure into 2 parts, and access the first element
+
+*Computing on data*: Finally, the operations that you have been waiting for. Doing stuff to all the data that we have created and/or loaded earlier:
+1. E = D(:) % will create a column vector from matrix D
+2. sum(C) % will do a column-wise sum of matrix C and produce a 1x3 row vector
+3. sum(sum(C)) % will sum all the elements of matrix C and produce a single number
+4. some operators work at matrix level (example A * B is matrix multiplication), where as some operators (the ones beginning with the '.' character, like .* for example) work at element level (example A .* B is multiplication of corresponding elements of matrices A and B (assuming both A and B have the same ranks))
+5. size(A) % shows the rank of matrix A
+6. F = [B B2] % place B and B2 next to each other (horizontally) and save them in F
+7. G = [B; B2] % place B and B2 one below the other (vertically) and save them in G
+
+*Control statements*: Like any other programming language, octave too has its own set of control statements, and they are as follows:
+1. for loop
+
+v = zeros(10, 1);
+for i in 1:10
+    v(i) = 2 .^ i;
+end;
+
+2. while loop
+
+i = 1;
+while i <= 5
+    v(i) = v(i) * 2;
+    i = i + 1;
+end;
+
+3. if and break (to achieve the same thing as point-2 above)
+
+i = 1;
+while true
+    v(i) = v(i) * 2;
+    i = i + 1;
+    if i == 6
+        break;
+    end;
+end;
+
+4. if-elseif-else
+
+v(1) = 2;
+if v(1) == 1
+    disp('The value is one');
+elseif v(1) == 2
+    disp('The value is two');
+else
+    disp('The value is not one or two');
+end;
+
+5. functions
+
+function [y1, y2] = squareAndCubeThisNumber(x)
+    y1 = x ^ 2;
+    y2 = x ^ 3;
+end;
+squareAndCubeThisNumber(3) % will return and print 9 and 27
+
+One most important thing that I have not mentioned yet, but hope that you have noticed is that the array (vector and matrix) subscripts start with '1' and not '0' in octave. This information is very important for those of you who come from a programming background (I guess that would be all of you who are reading this post ;) )
+
+Do note that the above (and in the previous post) is *not* an exhaustive list of all capabilities of octave; and neither are they the only operations that we will be using during implementing ML algorithms. So I urge you all to please
+1. install octave on your local system
+2. Read further documentation [[http://www.gnu.org/software/octave/doc/interpreter/index.html][here]] and play around with the help command
+3. Try out the above commands (at the least) and feel a bit comfortable using them
+
+With the basics now out of our way, lets move with full speed ahead to really implementing some ML algorithms. God speed!
+
+ps: There is one more part about octave (vectorization), but we will get to that after studying atleast 1 more real algorithm first!
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -7366,6 +7517,61 @@ So that's it for today. We will slowly dig deeper into the subject in the upcomi
 </p>
     - notes:
     - references:
+**** DONE ml-102: supervised learning
+    CLOSED: [2014-01-19 Sun 16:59]
+    :CLOCK:
+    CLOCK: [2014-01-17 Fri 19:25]--[2014-01-17 Fri 19:53] =>  0:28
+    CLOCK: [2014-01-17 Fri 19:13]--[2014-01-17 Fri 19:14] =>  0:01
+    CLOCK: [2014-01-16 Thu 16:24]--[2014-01-16 Thu 16:30] =>  0:06
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-19 Sun 16:59
+     :END:
+    - toc:
+      - broad classification of ML
+        - (un-)supervised learning, recommender systems
+      - training dataset contains "right answers"
+      - eg: house price prediction
+        - we have been given X=size (in ft^2), and y=price
+        - we have to predict price of a new house
+        - also called a "regression" problem
+          - predict a continuous valued output (price)
+      - breast cancer (malignant, benign)
+        - X=tumor_size, y=yes/no
+        - classification problem
+          - discrete valued output (class)
+          - binary, or multiple classes
+        - X=(age, tumor_size)
+          - 2 features
+      - basically, need to find relationship between features and output
+    - cat/subcat:
+    - tags: machine learning, supervised learning, recommender system, unsupervised learning, 101
+    - lead image:
+    - summary:
+    - body:
+Hi! I hope you enjoyed the last ***post (ml-101)*** on introduction to ML. Today we will dig just a little bit deeper and understand the various types of ML algorithms. Although not complete, some of the different types of ML algorithms are:
+1. Supervised learning
+2. Unsupervised learning
+3. Recommender systems
+
+The first 2, viz supervised and unsupervised techniques are related to each other and are differentiated based on the input data and the problem statement. If the (training) data contains both the features and the output (value to be found), then algorithms that work on such data are called supervised learning algorithms. Let me explain with the help of an example.
+
+Lets say we have some data about houses like "size in feet-square" and "price". We want our ML algorithm to observe this data and if we give it size data about some new house, then we want it to be able to predict the price for that new house. In this problem, then thing we want to predict (that is the output of the program) is the "price". However, do notice that the training data contains both the "size" feature and the "price" parameter. Hence in this problem, we call the technique as a supervised learning algorithm. To put another way, the training dataset contains "right answers".
+
+Some other examples of supervised learning are datasets like
+1. [[http://archive.ics.uci.edu/ml/datasets/Bike%2BSharing%2BDataset][this]]: Bike Sharing Dataset Data Set: From this dataset, if we want to predict how many bikes would be rented during the next month, then that problem would use a supervised learning ML algorithm
+2. [[http://archive.ics.uci.edu/ml/datasets/Thoracic%2BSurgery%2BData][this]]: Thoracic Surgery Data Data Set: Using this dataset we might want to predict whether the post-operative life expectancy of a certain patient
+
+In both of the above examples, the dataset contains the "right answers" for the data provided. Based on this information, our program needs to learn the mapping between the features and the output. Then given a new problem instance (set of feature values), we need to predict the output value.
+
+Supervised learning can be further divided into 2 broad categories based on the problem statement:
+1. *Regression*: This is the case when the output value to be predicted can take a wide range (mostly continuous) values. For example, in the "house price prediction" problem the predicted value is "price" which can take on a very wide range of values. Similarly, in the "bike sharing" problem, the value to be predicted is "number of bikes rented" which will also have a numerical value
+2. *Classification*: On the other hand, when the value to be predicted can have a value from within a fixed set of numbers, then it is called as a classification problem. For example, if our objective in the "Thoracic Surgery" dataset above would have been to find whether a patient died within the first year after surgery, then the output can have only 2 valid values "yes" or "no"; thus it would be a classification problem. The values are generally called "class" and it can be 2 or more. For example, in a handwriting recognition dataset, using the english alphabet, we would have 62 classes (A-Z, a-z, 0-9)
+
+That's it for today. In the next post we will look at the remaining 2 ML algorithm types; so stay tuned :)
+   - html
+   - notes:
+   - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
