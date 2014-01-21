@@ -1,6 +1,11 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [ed] 'pre' element in RTE
+** [bug][fe][css] fix
+   - [ ] padding/margin/border for tables
+   - [ ] gap between li
+   - [ ] quote v/s backquote
 ** TODO [bug][ed] web-archive URL not showing up during edit article
    :CLOCK:
    CLOCK: [2014-01-15 Wed 19:30]--[2014-01-15 Wed 19:58] =>  0:28
@@ -4649,7 +4654,127 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** ml-202: linear regression with one variable
+*** UNDERGOING ml-301: linear regression with one variable
+    :CLOCK:
+    CLOCK: [2014-01-21 Tue 17:10]
+    CLOCK: [2014-01-21 Tue 16:35]--[2014-01-21 Tue 17:04] =>  0:29
+    :END:
+    - toc:
+      - supervised learning regression problem (housing)
+      - notation
+        - m => #examples
+        - x => input variable/feature
+        - y => output variable/target
+        - x^(i), y^(i) => i^th training example
+        - example
+| size in ft^2 (x) | price ($) in 1000's (y) |
+|------------------+-------------------------|
+|             2104 |                     460 |
+|             1416 |                     232 |
+|             1534 |                     315 |
+|              852 |                     178 |
+|              ... |                     ... |
+        - x^(1) = 2104, x^(2) 1416, y^(1) = 460
+
+      - algo working
+        - training set -> learning algorithm -> h (hypothesis)
+        - where h is a function that maps from x's to y's
+      - for linear regression with just 1 input feature, h is represented as
+        - h_Θ(x) = Θ_0 + Θ_1 x
+        - also called 'univariate linear regression'
+      - cost function
+        - chose Θ_0 and Θ_1 so that h_Θ(x) is as close to y for our training examples (x, y)
+        - so goal is to
+          - minimize_(Θ_0,Θ_1) (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+          - the divide by 2m is to make later math easier
+        - this is called the cost function J(Θ_0, Θ_1)
+        - also called squared error function, or squared error cost function
+        - most commonly used error function
+      - note
+        - h_Θ(x) is a function over x: if x changes h_Θ(x)
+        - whereas, J(Θ_0, Θ_1) is a function over Θ_0 and Θ_1
+        - in the ML program,
+          - our optimization objective is to minimize J, that is to find values of Θ_0 and Θ_1 so that value of J is min
+          - once we do this, we use these Θ_0 and Θ_1 to get our hypothesis function h_Θ(x)
+          - and it is this hypothesis function h_Θ(x) that allows us to predict y for new values of x
+    - summary:
+    - body:
+Welcome back! After having gone through some posts on introduction to ML (***here***, ....), lets now start learning a real ML algorithm. The algorithm that we will study today is a ***supervised learning*** ***regression*** algorithm.
+
+First lets define the problem statement. Today we will use a subset of [[http://archive.ics.uci.edu/ml/datasets/Auto%2BMPG][this]] [[http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data][data]]. The first few training examples in the data are:
+
+| 18.0 | 8 | 307.0 | 130.0 | 3504. | 12.0 | 70 | 1 | "chevrolet chevelle malibu" |
+| 15.0 | 8 | 350.0 | 165.0 | 3693. | 11.5 | 70 | 1 | "buick skylark 320"         |
+| 18.0 | 8 | 318.0 | 150.0 | 3436. | 11.0 | 70 | 1 | "plymouth satellite"        |
+| 16.0 | 8 | 304.0 | 150.0 | 3433. | 12.0 | 70 | 1 | "amc rebel sst"             |
+| 17.0 | 8 | 302.0 | 140.0 | 3449. | 10.5 | 70 | 1 | "ford torino"               |
+| 15.0 | 8 | 429.0 | 198.0 | 4341. | 10.0 | 70 | 1 | "ford galaxie 500"          |
+| 14.0 | 8 | 454.0 | 220.0 | 4354. |  9.0 | 70 | 1 | "chevrolet impala"          |
+| 14.0 | 8 | 440.0 | 215.0 | 4312. |  8.5 | 70 | 1 | "plymouth fury iii"         |
+| 14.0 | 8 | 455.0 | 225.0 | 4425. | 10.0 | 70 | 1 | "pontiac catalina"          |
+| 15.0 | 8 | 390.0 | 190.0 | 3850. |  8.5 | 70 | 1 | "amc ambassador dpl"        |
+| 15.0 | 8 | 383.0 | 170.0 | 3563. | 10.0 | 70 | 1 | "dodge challenger se"       |
+| 14.0 | 8 | 340.0 | 160.0 | 3609. |  8.0 | 70 | 1 | "plymouth 'cuda 340"        |
+| 15.0 | 8 | 400.0 | 150.0 | 3761. |  9.5 | 70 | 1 | "chevrolet monte carlo"     |
+| 14.0 | 8 | 455.0 | 225.0 | 3086. | 10.0 | 70 | 1 | "buick estate wagon (sw)"   |
+| 24.0 | 4 | 113.0 | 95.00 | 2372. | 15.0 | 70 | 3 | "toyota corona mark ii"     |
+| 22.0 | 6 | 198.0 | 95.00 | 2833. | 15.5 | 70 | 1 | "plymouth duster"           |
+| 18.0 | 6 | 199.0 | 97.00 | 2774. | 15.5 | 70 | 1 | "amc hornet"                |
+
+In this data, the 1st column is the "mpg" target variable, or the parameter that we have to predict, while the rest of the columns are the features or input variables. But today we will go simple and will use only 1 input variable, that is the 3rd column "displacement". To keep the algorithm simple, we will assume that our target variable "mpg" is someway dependent or related to only "displacement", our input variable.
+
+So now the first 10 training examples look like (notice that I have swapped the order of the data Note that the first column is x (input variable(s)), and second column is y (target variable))
+
+|     x |    y |
+| 307.0 | 18.0 |
+| 350.0 | 15.0 |
+| 318.0 | 18.0 |
+| 304.0 | 16.0 |
+| 302.0 | 17.0 |
+| 429.0 | 15.0 |
+| 454.0 | 14.0 |
+| 440.0 | 14.0 |
+| 455.0 | 14.0 |
+| 390.0 | 15.0 |
+
+Thus the problem definition is given a new "displacement" (x), we need to predict the value for "mpg" (y). To do this we need to a function "h" that maps the input "x" to the output "y". In ML world, this function "h" is called the hypothesis function, and is represented as
+
+h_Θ(x) = Θ_0 + Θ_1 x
+
+In the above example "h" is also called 'univariate linear regression', because we are using only 1 variable (or feature).
+
+Before we move ahead, lets get some terminology noted
+- m => #examples
+- x => input variable/feature
+- y => output variable/target
+- x^(i), y^(i) => i^th training example, so for example, in the above data, x^(1) = 307.0, x^(5) = 302.0, y^(7) = 14.0
+
+What we need to do next is to chose Θ_0 and Θ_1 so that h_Θ(x) is as close to y for our training examples (x, y). I hope you understand why we are doing this. This is because, if the hypothesis function that we find out (as the end goal of our ML problem) is perfect, then the value of h_Θ(x^(i)) should be exactly equal to the corresponding y^(i), for any example i.
+
+So, obviously, our goal would be to do the following
+
+minimize_(Θ_0,Θ_1) (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+
+The division by 2m is simply taking an average of the squared error and is done to make later math easier. This function is called the cost function J(Θ_0, Θ_1), and also called squared error function, or squared error cost function. This is the most most commonly used error function in ML world.
+
+By implementing the above we would find the optimum values of Θ_0 and Θ_1 that will minimize our cost function J. Then all we need to do is to insert these Θ_0 and Θ_1 values into our hypothesis function h_Θ(x) and our ML problem is solved. Then given any new value for x, we can simply put that x in the hypothesis function to get the y.
+
+Ain't that cool? We have already started solving ML problems and making predictions!
+
+Well, not so fast stud ;) We still have to figure out how to perform the last step of the puzzle, viz "minimize", don't we? But I think this much study is good for today, and we will jump to the minimization problem in the next post. So keep watching this space :)
+    - notes:
+      - http://chemistry.about.com/od/chartstables/a/htmlgreek.htm (greek letter html code chart)
+    - references:
+*** ml-302: gradient descent
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+    - notes:
+    - references:
+*** ml-203: octave *write this after 30x is complete*
     - toc:
     - cat/subcat:
     - tags:
@@ -4750,216 +4875,6 @@ Also, simple things get complex too soon, because
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 ** wrote (not published)
-*** TODO ml-103: unsupervised learning and recommender systems
-    :CLOCK:
-    CLOCK: [2014-01-19 Sun 19:14]--[2014-01-19 Sun 19:30] =>  0:16
-    CLOCK: [2014-01-19 Sun 17:05]--[2014-01-19 Sun 17:14] =>  0:09
-    CLOCK: [2014-01-19 Sun 16:59]--[2014-01-19 Sun 17:04] =>  0:05
-    CLOCK: [2014-01-16 Thu 16:35]--[2014-01-16 Thu 16:41] =>  0:06
-    :END:
-    - toc:
-      - don't have a "right answer"
-      - need to find some structure to data
-        - eg: clustering (eg: google news, organize computing clusters, market segmentation, social network analysis, astronomical data analysis)
-    - cat/subcat:
-    - tags: machine learning, unsupervised learning, recommender systems, 101
-    - lead image:
-    - summary: Continuing the introduction to Machine learning algorithms, we will look into 2 more types
-    - body:
-Hello :) In the last 2 posts ***here (ml-101)*** and ***here (ml-102)***, we got a general overview of what Machine learning is and also looked at a particular category ML algorithms, viz the "supervised learning" type.
-
-Today we will briefly look at 2 more types of ML algorithms, viz the "unsupervised learning" and "recommender systems". I hope you remember that in the supervised learning types of ML algorithms, we get the "right answers" embedded in the training data. As against this, in the "unsupervised learning" algorithms, we do *not* get the right answers in the training data. In fact sometimes, there is no right answer at all, as I will show below.
-
-The above explanation seems to be very vague, so lets dig deeper with the help of an example.
-
-<iframe src="https://www.flickr.com/photos/giladlotan/5151742603/player/0c0134107b" height="461" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-
-The above image is a snippet of the facebook social graph; it's a graph of how a user is connected to other users. It also shows clusters of users; groups of users who are very strongly/closely connected to each other. In such a dataset, as you would rightly guess, there is no "right answer". Basically the objective is to find this cluster/closeness attribute.
-
-Similarly, if you see [[http://archive.ics.uci.edu/ml/datasets/3D%2BRoad%2BNetwork%2B(North%2BJutland,%2BDenmark)][this]] dataset, it's about the road network in North Jutland, Denmark in 3d (longitude, latitude, altitude). If the dataset is used to find information/knowledge which will be used to perform accurate routing for eco-routing, cyclist routes, etc, then there is no right answer which is present inside the dataset. The task is for the program to learn the structure of the data itself and find out interesting knowledge from it.
-
-Some other examples of unsupervised learning are:
-1. google news: it puts similar news, from various channels/websites, into similar (correct) sections
-2. organizing computer clusters in a data-center: based on network activity between them, for example
-3. market segmentation
-4. social network analysis
-5. astronomical data analysis
-6. etc
-
-Lets move on to the next type of ML algorithm, which is "recommender systems". The easiest way to imagine this algorithm is to understand an example that we have all experienced at some time or the other -- e-commerce websites. I am sure you all would have noticed that when we buy something online, we are recommended other objects, for which there is a higher probability of us buying; for example, books from same author or on same topic, or movies from same genre, etc.
-
-In ML, there are certain ways in which these systems are implemented. But don't you worry. We will be looking into all of these algorithms in much more depth in the forthcoming posts. So keep tuned :)
-   - notes:
-   - references:
-*** TODO ml-201: octave-1
-    :CLOCK:
-    CLOCK: [2014-01-19 Sun 20:00]--[2014-01-19 Sun 20:27] =>  0:27
-    CLOCK: [2014-01-19 Sun 19:32]--[2014-01-19 Sun 19:53] =>  0:21
-    :END:
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-Hi again! In the previous posts ***here (ml-101)***, ***here (ml-102)*** and ***here (ml-103)***, we did pretty theoretical and very basic introduction. But starting now (notice the *201* in the title of the article?), we will be digging deeper into specific algorithms, their working, intuition and implementation. But before we go there, we need to get familiar with some background setup.
-
-Firstly, you should have atleast some basic knowledge of the following disciplines of mathematics:
-
-1. [[http://en.wikipedia.org/wiki/Linear_algebra][linear algebra]]
-2. [[http://en.wikipedia.org/wiki/Matrix_(mathematics)][matrix theory]]
-3. [[http://en.wikipedia.org/wiki/Calculus][calculus]]
-
-Don't worry, you don't need to be gurus, just basic knowledge is good enough to understand the intuition of and implement ML algorithms correctly.
-
-Furthermore, for this series I will use the [[https://www.gnu.org/software/octave/][octave]] programming language because:
-1. that is what was used in the [[https://www.coursera.org/][coursera]] course that I recently completed (which is what prompted this series)
-2. it is extremely good for rapid prototyping (most algorithms can be implemented in just a few lines of code)
-3. the smartest thing that you can do when implementing a ML algorithm is "rapid prototyping" to avoid getting trapped in a black hole of wrong effort which does not lead to a effective solution, but simply wastes time
-
-So without further ado, lets start with getting a little bit familiar with the octave programming language:
-1. Octave is a [[http://www.gnu.org/][gnu]] software and its installers are available for OS X, windoZZZe, and linux [[http://www.gnu.org/software/octave/download.html][here]]
-2. It is a programming language made specifically for ML and has good library support
-3. However, it is very slow and hence might not be suitable for production programs
-4. You can execute octave commands both from the command line, or even a GUI
-
-Octave is very well documented and the complete documentation is available [[http://www.gnu.org/software/octave/doc/interpreter/index.html][here]], but we will go through some of the most commonly used commands (and more during the actual algorithm discussion). I have only used the command line version during the course, and that is what I will explain here. Maybe the GUI would be much easier for you, YMMV.
-
-*Basic*: The most frequently used command in octave (for us beginners) is, obviously the "help" command ;). The basic format of the help command is
-
-help <command-name>
-
-For example "help plot" shows the help section for the "plot" command
-
-Some other basic commands are:
-1. the '%' character starts a comment. If it comes in the middle of a line, then the part after the '%' is the comment. eg
-
-% this whole line is a command
-a = 5; % a is assigned the value 5
-
-2. a ';' suppresses the output. so for eg
-
-a = 5 % this will print 'a = 5'
-a = 5; % this will not print anything
-
-3. inside a matrix definition, the ';' character takes the remaining numbers onto the next row of the matrix. eg
-
-A = [1 2 3; 2 3 4; 3 4 5]
-
-is a 3x3 matrix of the form
-
-|---+---+---|
-| 1 | 2 | 3 |
-|---+---+---|
-| 2 | 3 | 4 |
-|---+---+---|
-| 3 | 4 | 5 |
-|---+---+---|
-
-1. Matrices (and vectors (single dimension matrices)) are the "the" way of representing data and performing computations on them during the implementation of ML algorithms in octave. So obviously, octave has a great support for matrix creation and manipulation. Some of the frequently used operations are:
-   1. A = zeros(2, 3) % will create a 2x3 matrix filled with the element zero
-   2. B = ones(3, 2) % will create a 3x2 matrix filled with the element one
-   3. B2 = 2 * ones(3, 2) % will create a 3x2 matrix filled with the element two
-   4. C = rand(3, 3) % will create a 3x3 matrix filled with numbers between 0 and 1 with a uniform distribution
-   5. D = eye(5) % will create a 5x5 [[http://en.wikipedia.org/wiki/Identity_matrix][identity matrix]]
-
-*Loading, saving and plotting data*: Of course the next most common operation that you would do while implementing a ML algorithm would be loading, saving and plotting of data. Octave supports these operations via:
-
-1. pwd: shows the current working directory
-2. cd <new-directory>: change to another directory (where data and/or code exists, so that you can load them)
-3. data = load(<file-name>): load data from file into variable named "data"
-4. who: shows what variables are present in the memory in the current scope
-5. whos: shows what variables are present in the memory, and show their size (and other information)
-6. clear [<variable-name>+] : remove variable(s) from memory
-7. save <file-name> <variable-name> : save value of variable (may be a vector or a matrix) into the named file
-
-I think that is a big enough bite for today. We will continue with some more octave in the next post, so keep watching this space :)
-   - notes:
-   - references:
-*** TODO ml-202: octave-2
-    :CLOCK:
-    CLOCK: [2014-01-19 Sun 20:40]--[2014-01-19 Sun 20:55] =>  0:15
-    CLOCK: [2014-01-19 Sun 20:28]--[2014-01-19 Sun 20:40] =>  0:12
-    :END:
-Hi there, welcome back! In the last ***post (ml-104)***, we looked at some basic [[http://www.gnu.org/software/octave/doc/interpreter/index.html][octave]] commands. Today we will dig deeper into octave and understand more concepts and commands. I hope you are eager and excited, so lets begin!
-
-*Plotting*: One of the most important things that we do during implementing ML algorithms is to plot data. This is done to
-1. understand the nature of our input/training data which gives us insight into what approach to take to solve the problem
-2. examine our implementation and ensure that it is indeed working correctly, and/or improve it
-Some of the important commands from the plotting world are:
-1. plot(A, B) % if A, B are both vectors, then it will plot them against the X and Y axes
-2. hold on % print a new graph on top of the previous graph
-3. xlabel('<label-name>') % label the x axis (similarly, ylabel)
-4. axis([0.5 1 -1 1]) % change X axis range to be between 0.5 and 1, and Y axis between -1 and 1
-5. print -dpng '<file-name>.png' % save graph as png file
-6. close % close the graph
-7. subplot(1, 2, 1) % divide figure into 2 parts, and access the first element
-
-*Computing on data*: Finally, the operations that you have been waiting for. Doing stuff to all the data that we have created and/or loaded earlier:
-1. E = D(:) % will create a column vector from matrix D
-2. sum(C) % will do a column-wise sum of matrix C and produce a 1x3 row vector
-3. sum(sum(C)) % will sum all the elements of matrix C and produce a single number
-4. some operators work at matrix level (example A * B is matrix multiplication), where as some operators (the ones beginning with the '.' character, like .* for example) work at element level (example A .* B is multiplication of corresponding elements of matrices A and B (assuming both A and B have the same ranks))
-5. size(A) % shows the rank of matrix A
-6. F = [B B2] % place B and B2 next to each other (horizontally) and save them in F
-7. G = [B; B2] % place B and B2 one below the other (vertically) and save them in G
-
-*Control statements*: Like any other programming language, octave too has its own set of control statements, and they are as follows:
-1. for loop
-
-v = zeros(10, 1);
-for i in 1:10
-    v(i) = 2 .^ i;
-end;
-
-2. while loop
-
-i = 1;
-while i <= 5
-    v(i) = v(i) * 2;
-    i = i + 1;
-end;
-
-3. if and break (to achieve the same thing as point-2 above)
-
-i = 1;
-while true
-    v(i) = v(i) * 2;
-    i = i + 1;
-    if i == 6
-        break;
-    end;
-end;
-
-4. if-elseif-else
-
-v(1) = 2;
-if v(1) == 1
-    disp('The value is one');
-elseif v(1) == 2
-    disp('The value is two');
-else
-    disp('The value is not one or two');
-end;
-
-5. functions
-
-function [y1, y2] = squareAndCubeThisNumber(x)
-    y1 = x ^ 2;
-    y2 = x ^ 3;
-end;
-squareAndCubeThisNumber(3) % will return and print 9 and 27
-
-One most important thing that I have not mentioned yet, but hope that you have noticed is that the array (vector and matrix) subscripts start with '1' and not '0' in octave. This information is very important for those of you who come from a programming background (I guess that would be all of you who are reading this post ;) )
-
-Do note that the above (and in the previous post) is *not* an exhaustive list of all capabilities of octave; and neither are they the only operations that we will be using during implementing ML algorithms. So I urge you all to please
-1. install octave on your local system
-2. Read further documentation [[http://www.gnu.org/software/octave/doc/interpreter/index.html][here]] and play around with the help command
-3. Try out the above commands (at the least) and feel a bit comfortable using them
-
-With the basics now out of our way, lets move with full speed ahead to really implementing some ML algorithms. God speed!
-
-ps: There is one more part about octave (vectorization), but we will get to that after studying atleast 1 more real algorithm first!
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -7572,6 +7487,228 @@ That's it for today. In the next post we will look at the remaining 2 ML algorit
    - html
    - notes:
    - references:
+**** DONE ml-103: unsupervised learning and recommender systems
+    CLOSED: [2014-01-21 Tue 16:23]
+    :CLOCK:
+    CLOCK: [2014-01-19 Sun 19:14]--[2014-01-19 Sun 19:30] =>  0:16
+    CLOCK: [2014-01-19 Sun 17:05]--[2014-01-19 Sun 17:14] =>  0:09
+    CLOCK: [2014-01-19 Sun 16:59]--[2014-01-19 Sun 17:04] =>  0:05
+    CLOCK: [2014-01-16 Thu 16:35]--[2014-01-16 Thu 16:41] =>  0:06
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-21 Tue 16:23
+     :END:
+    - toc:
+      - don't have a "right answer"
+      - need to find some structure to data
+        - eg: clustering (eg: google news, organize computing clusters, market segmentation, social network analysis, astronomical data analysis)
+    - cat/subcat:
+    - tags: machine learning, unsupervised learning, recommender systems, 101
+    - lead image:
+    - summary: Continuing the introduction to Machine learning algorithms, we will look into 2 more types
+    - body:
+Hello :) In the last 2 posts ***here (ml-101)*** and ***here (ml-102)***, we got a general overview of what Machine learning is and also looked at a particular category ML algorithms, viz the "supervised learning" type.
+
+Today we will briefly look at 2 more types of ML algorithms, viz the "unsupervised learning" and "recommender systems". I hope you remember that in the supervised learning types of ML algorithms, we get the "right answers" embedded in the training data. As against this, in the "unsupervised learning" algorithms, we do *not* get the right answers in the training data. In fact sometimes, there is no right answer at all, as I will show below.
+
+The above explanation seems to be very vague, so lets dig deeper with the help of an example.
+
+<iframe src="https://www.flickr.com/photos/giladlotan/5151742603/player/0c0134107b" height="461" width="500"  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+The above image is a snippet of the facebook social graph; it's a graph of how a user is connected to other users. It also shows clusters of users; groups of users who are very strongly/closely connected to each other. In such a dataset, as you would rightly guess, there is no "right answer". Basically the objective is to find this cluster/closeness attribute.
+
+Similarly, if you see [[http://archive.ics.uci.edu/ml/datasets/3D%2BRoad%2BNetwork%2B(North%2BJutland,%2BDenmark)][this]] dataset, it's about the road network in North Jutland, Denmark in 3d (longitude, latitude, altitude). If the dataset is used to find information/knowledge which will be used to perform accurate routing for eco-routing, cyclist routes, etc, then there is no right answer which is present inside the dataset. The task is for the program to learn the structure of the data itself and find out interesting knowledge from it.
+
+Some other examples of unsupervised learning are:
+1. google news: it puts similar news, from various channels/websites, into similar (correct) sections
+2. organizing computer clusters in a data-center: based on network activity between them, for example
+3. market segmentation
+4. social network analysis
+5. astronomical data analysis
+6. etc
+
+Lets move on to the next type of ML algorithm, which is "recommender systems". The easiest way to imagine this algorithm is to understand an example that we have all experienced at some time or the other -- e-commerce websites. I am sure you all would have noticed that when we buy something online, we are recommended other objects, for which there is a higher probability of us buying; for example, books from same author or on same topic, or movies from same genre, etc.
+
+In ML, there are certain ways in which these systems are implemented. But don't you worry. We will be looking into all of these algorithms in much more depth in the forthcoming posts. So keep tuned :)
+   - notes:
+   - references:
+**** DONE ml-201: octave-1
+    CLOSED: [2014-01-21 Tue 16:23]
+    :CLOCK:
+    CLOCK: [2014-01-19 Sun 20:00]--[2014-01-19 Sun 20:27] =>  0:27
+    CLOCK: [2014-01-19 Sun 19:32]--[2014-01-19 Sun 19:53] =>  0:21
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-21 Tue 16:23
+     :END:
+    - toc:
+    - cat/subcat:
+    - tags:
+    - lead image:
+    - summary:
+    - body:
+Hi again! In the previous posts ***here (ml-101)***, ***here (ml-102)*** and ***here (ml-103)***, we did pretty theoretical and very basic introduction. But starting now (notice the *201* in the title of the article?), we will be digging deeper into specific algorithms, their working, intuition and implementation. But before we go there, we need to get familiar with some background setup.
+
+Firstly, you should have atleast some basic knowledge of the following disciplines of mathematics:
+
+1. [[http://en.wikipedia.org/wiki/Linear_algebra][linear algebra]]
+2. [[http://en.wikipedia.org/wiki/Matrix_(mathematics)][matrix theory]]
+3. [[http://en.wikipedia.org/wiki/Calculus][calculus]]
+
+Don't worry, you don't need to be gurus, just basic knowledge is good enough to understand the intuition of and implement ML algorithms correctly.
+
+Furthermore, for this series I will use the [[https://www.gnu.org/software/octave/][octave]] programming language because:
+1. that is what was used in the [[https://www.coursera.org/][coursera]] course that I recently completed (which is what prompted this series)
+2. it is extremely good for rapid prototyping (most algorithms can be implemented in just a few lines of code)
+3. the smartest thing that you can do when implementing a ML algorithm is "rapid prototyping" to avoid getting trapped in a black hole of wrong effort which does not lead to a effective solution, but simply wastes time
+
+So without further ado, lets start with getting a little bit familiar with the octave programming language:
+1. Octave is a [[http://www.gnu.org/][gnu]] software and its installers are available for OS X, windoZZZe, and linux [[http://www.gnu.org/software/octave/download.html][here]]
+2. It is a programming language made specifically for ML and has good library support
+3. However, it is very slow and hence might not be suitable for production programs
+4. You can execute octave commands both from the command line, or even a GUI
+
+Octave is very well documented and the complete documentation is available [[http://www.gnu.org/software/octave/doc/interpreter/index.html][here]], but we will go through some of the most commonly used commands (and more during the actual algorithm discussion). I have only used the command line version during the course, and that is what I will explain here. Maybe the GUI would be much easier for you, YMMV.
+
+*Basic*: The most frequently used command in octave (for us beginners) is, obviously the "help" command ;). The basic format of the help command is
+
+help <command-name>
+
+For example "help plot" shows the help section for the "plot" command
+
+Some other basic commands are:
+1. the '%' character starts a comment. If it comes in the middle of a line, then the part after the '%' is the comment. eg
+
+% this whole line is a command
+a = 5; % a is assigned the value 5
+
+2. a ';' suppresses the output. so for eg
+
+a = 5 % this will print 'a = 5'
+a = 5; % this will not print anything
+
+3. inside a matrix definition, the ';' character takes the remaining numbers onto the next row of the matrix. eg
+
+A = [1 2 3; 2 3 4; 3 4 5]
+
+is a 3x3 matrix of the form
+
+|---+---+---|
+| 1 | 2 | 3 |
+|---+---+---|
+| 2 | 3 | 4 |
+|---+---+---|
+| 3 | 4 | 5 |
+|---+---+---|
+
+1. Matrices (and vectors (single dimension matrices)) are the "the" way of representing data and performing computations on them during the implementation of ML algorithms in octave. So obviously, octave has a great support for matrix creation and manipulation. Some of the frequently used operations are:
+   1. A = zeros(2, 3) % will create a 2x3 matrix filled with the element zero
+   2. B = ones(3, 2) % will create a 3x2 matrix filled with the element one
+   3. B2 = 2 * ones(3, 2) % will create a 3x2 matrix filled with the element two
+   4. C = rand(3, 3) % will create a 3x3 matrix filled with numbers between 0 and 1 with a uniform distribution
+   5. D = eye(5) % will create a 5x5 [[http://en.wikipedia.org/wiki/Identity_matrix][identity matrix]]
+
+*Loading, saving and plotting data*: Of course the next most common operation that you would do while implementing a ML algorithm would be loading, saving and plotting of data. Octave supports these operations via:
+
+1. pwd: shows the current working directory
+2. cd <new-directory>: change to another directory (where data and/or code exists, so that you can load them)
+3. data = load(<file-name>): load data from file into variable named "data"
+4. who: shows what variables are present in the memory in the current scope
+5. whos: shows what variables are present in the memory, and show their size (and other information)
+6. clear [<variable-name>+] : remove variable(s) from memory
+7. save <file-name> <variable-name> : save value of variable (may be a vector or a matrix) into the named file
+
+I think that is a big enough bite for today. We will continue with some more octave in the next post, so keep watching this space :)
+   - notes:
+   - references:
+**** DONE ml-202: octave-2
+    CLOSED: [2014-01-21 Tue 16:23]
+    :CLOCK:
+    CLOCK: [2014-01-19 Sun 20:40]--[2014-01-19 Sun 20:55] =>  0:15
+    CLOCK: [2014-01-19 Sun 20:28]--[2014-01-19 Sun 20:40] =>  0:12
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-21 Tue 16:23
+     :END:
+Hi there, welcome back! In the last ***post (ml-104)***, we looked at some basic [[http://www.gnu.org/software/octave/doc/interpreter/index.html][octave]] commands. Today we will dig deeper into octave and understand more concepts and commands. I hope you are eager and excited, so lets begin!
+
+*Plotting*: One of the most important things that we do during implementing ML algorithms is to plot data. This is done to
+1. understand the nature of our input/training data which gives us insight into what approach to take to solve the problem
+2. examine our implementation and ensure that it is indeed working correctly, and/or improve it
+Some of the important commands from the plotting world are:
+1. plot(A, B) % if A, B are both vectors, then it will plot them against the X and Y axes
+2. hold on % print a new graph on top of the previous graph
+3. xlabel('<label-name>') % label the x axis (similarly, ylabel)
+4. axis([0.5 1 -1 1]) % change X axis range to be between 0.5 and 1, and Y axis between -1 and 1
+5. print -dpng '<file-name>.png' % save graph as png file
+6. close % close the graph
+7. subplot(1, 2, 1) % divide figure into 2 parts, and access the first element
+
+*Computing on data*: Finally, the operations that you have been waiting for. Doing stuff to all the data that we have created and/or loaded earlier:
+1. E = D(:) % will create a column vector from matrix D
+2. sum(C) % will do a column-wise sum of matrix C and produce a 1x3 row vector
+3. sum(sum(C)) % will sum all the elements of matrix C and produce a single number
+4. some operators work at matrix level (example A * B is matrix multiplication), where as some operators (the ones beginning with the '.' character, like .* for example) work at element level (example A .* B is multiplication of corresponding elements of matrices A and B (assuming both A and B have the same ranks))
+5. size(A) % shows the rank of matrix A
+6. F = [B B2] % place B and B2 next to each other (horizontally) and save them in F
+7. G = [B; B2] % place B and B2 one below the other (vertically) and save them in G
+
+*Control statements*: Like any other programming language, octave too has its own set of control statements, and they are as follows:
+1. for loop
+
+v = zeros(10, 1);
+for i in 1:10
+    v(i) = 2 .^ i;
+end;
+
+2. while loop
+
+i = 1;
+while i <= 5
+    v(i) = v(i) * 2;
+    i = i + 1;
+end;
+
+3. if and break (to achieve the same thing as point-2 above)
+
+i = 1;
+while true
+    v(i) = v(i) * 2;
+    i = i + 1;
+    if i == 6
+        break;
+    end;
+end;
+
+4. if-elseif-else
+
+v(1) = 2;
+if v(1) == 1
+    disp('The value is one');
+elseif v(1) == 2
+    disp('The value is two');
+else
+    disp('The value is not one or two');
+end;
+
+5. functions
+
+function [y1, y2] = squareAndCubeThisNumber(x)
+    y1 = x ^ 2;
+    y2 = x ^ 3;
+end;
+squareAndCubeThisNumber(3) % will return and print 9 and 27
+
+One most important thing that I have not mentioned yet, but hope that you have noticed is that the array (vector and matrix) subscripts start with '1' and not '0' in octave. This information is very important for those of you who come from a programming background (I guess that would be all of you who are reading this post ;) )
+
+Do note that the above (and in the previous post) is *not* an exhaustive list of all capabilities of octave; and neither are they the only operations that we will be using during implementing ML algorithms. So I urge you all to please
+1. install octave on your local system
+2. Read further documentation [[http://www.gnu.org/software/octave/doc/interpreter/index.html][here]] and play around with the help command
+3. Try out the above commands (at the least) and feel a bit comfortable using them
+
+With the basics now out of our way, lets move with full speed ahead to really implementing some ML algorithms. God speed!
+
+ps: There is one more part about octave (vectorization), but we will get to that after studying atleast 1 more real algorithm first!
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
