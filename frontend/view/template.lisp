@@ -182,8 +182,8 @@
 ;; ads
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun ads-1 ()
-  (ads-markup "ca-pub-7627106577670276" "1936097987" 160 300))
+  (ads-markup (get-config "ads.client") "1936097987" 160 300))
 
 (defun ads-2 ()
-  (fmtnil (ads-markup "ca-pub-7627106577670276" "5029165182" 300 250)
-          (ads-markup "ca-pub-7627106577670276" "9459364786" 300 600)))
+  (fmtnil (ads-markup (get-config "ads.client") "5029165182" 300 250)
+          (ads-markup (get-config "ads.client") "9459364786" 300 600)))

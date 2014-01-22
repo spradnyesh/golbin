@@ -274,8 +274,8 @@
 
 (defun inline-ads-markup ()
   (<:div :id "i-ads"
-         (ads-markup "ca-pub-7627106577670276" "9310803587" 234 60)
-         (ads-markup "ca-pub-7627106577670276" "1787536781" 234 60)))
+         (ads-markup (get-config "ads.client") "9310803587" 234 60)
+         (ads-markup (get-config "ads.client") "1787536781" 234 60)))
 
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login

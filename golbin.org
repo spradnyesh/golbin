@@ -3,7 +3,6 @@
 * backlog
 ** [ed] 'pre' element in RTE
 ** [refactor] pick up secret keys from defconst params
-** [refactor][fed] "ca-pub-7627106577670276" should be put in config
 ** [bug][fe][rss] description should not contain relative URL references
    - /static/photos/....jpeg
 ** TODO [#B] [bug][fe] comments ajax should not make page-jump
@@ -4619,6 +4618,14 @@
     :ARCHIVE_TIME: 2014-01-22 Wed 16:54
     :END:
     - should have been saved 1st time
+*** DONE [refactor][fed] "ca-pub-7627106577670276" should be put in config
+    CLOSED: [2014-01-22 Wed 17:00]
+    :CLOCK:
+    CLOCK: [2014-01-22 Wed 16:55]--[2014-01-22 Wed 17:00] =>  0:05
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-22 Wed 17:00
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/
