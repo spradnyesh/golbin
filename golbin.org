@@ -1,7 +1,14 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
+** TODO [fe] google site search
+   :CLOCK:
+   CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
+   :END:
+   - https://www.google.com/cse/
+   - http://www.javascriptkit.com/script/script2/google_site_search.shtml
 ** [bug][fe][rss] description should not contain relative URL references
    - /static/photos/....jpeg
 ** TODO [#B] [bug][fe] comments ajax should not make page-jump
@@ -10,7 +17,6 @@
    :END:
    - does not happen in chrome
      - because on page refresh it goes to top of page and then comes to bottom, by when the comments have already loaded
-** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [fe][perf] use async js https://developers.google.com/speed/docs/insights/UseAsync
    - [ ] GA
    - [ ] adsense
@@ -105,12 +111,6 @@
    - https://www.cacert.org/
 ** [ed] cl-twitter
    - auto post on twitter for every article approval
-** TODO [fe] google site search
-   :CLOCK:
-   CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
-   :END:
-   - https://www.google.com/cse/
-   - http://www.javascriptkit.com/script/script2/google_site_search.shtml
 ** TODO [articles] add aai kavita
    :CLOCK:
    CLOCK: [2013-08-26 Mon 11:39]--[2013-08-26 Mon 11:53] =>  0:14
