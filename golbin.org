@@ -2,10 +2,7 @@
 
 * backlog
 ** [ed] 'pre' element in RTE
-** [bug][fe][css] fix
-   - [ ] padding/margin/border for tables
-   - [ ] gap between li
-   - [ ] quote v/s backquote
+** [refactor] pick up secret keys from defconst params
 ** TODO [bug][ed] web-archive URL not showing up during edit article
    :CLOCK:
    CLOCK: [2014-01-15 Wed 19:30]--[2014-01-15 Wed 19:58] =>  0:28
@@ -4598,6 +4595,17 @@
     - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=160x300&output=html&h=300&slotname=1936097987&adk=348482573&w=160&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=9&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=1&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=26&ady=269&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=1&xpc=6ntZ6DudeF&p=http%3A//www.golb.in&dtd=203
     - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=300x250&output=html&h=250&slotname=5029165182&adk=38294925&w=300&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=33&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&prev_fmts=160x300&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=2&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=875&ady=269&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=2&xpc=UCzjyNFGvD&p=http%3A//www.golb.in&dtd=598
     - http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7627106577670276&format=300x600&output=html&h=600&slotname=9459364786&adk=2354686944&w=300&lmt=1389518695&flash=10.1.999.%3Cbr%3EGnash%200.8.11dev%2C%20the%20GNU%20SWF%20Player.%20%20%20Copyright%20(C)%202006%2C%202007%2C%202008%2C%202009%2C%202010%2C%202011%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.fsf.org%22%3EFree%20%20%20Software%20Foundation%3C%2Fa%3E%2C%20Inc.%20%3Cbr%3E%20%20%20Gnash%20comes%20with%20NO%20WARRANTY%2C%20to%20the%20extent%20permitted%20by%20law.%20%20%20You%20may%20redistribute%20copies%20of%20Gnash%20under%20the%20terms%20of%20the%20%20%20%3Ca%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Flicenses%2Fgpl.html%22%3EGNU%20General%20Public%20%20%20License%3C%2Fa%3E.%20For%20more%20information%20about%20Gnash%2C%20see%20%3Ca%20%20%20href%3D%22http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%2F%22%3E%20%20%20http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fgnash%3C%2Fa%3E.%20%20%20%3Cbr%3E%20%20Compatible%20Shockwave%20Flash%2010.1%20r999.&url=http%3A%2F%2Fwww.golb.in%2F%23sthash.AL7gOMkz.XnUxjWS8.dpbs&dt=1389518697979&bpp=38&bdt=2400&shv=r20140107&cbv=r20140107&saldr=aa&prev_fmts=160x300%2C300x250&correlator=1389518698169&frm=20&ga_vid=733673384.1364552567&ga_sid=1389518687&ga_hid=717415751&ga_fc=1&u_tz=540&u_his=3&u_java=1&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=4&u_nmime=42&dff=ubuntu&dfs=14&adx=875&ady=559&biw=942&bih=632&oid=3&rx=0&vis=1&fu=0&ifi=3&xpc=T242cajMhc&p=http%3A//www.golb.in&dtd=1130
+*** DONE [bug][fe][css] fix
+    CLOSED: [2014-01-22 Wed 16:19]
+    :CLOCK:
+    CLOCK: [2014-01-22 Wed 15:56]--[2014-01-22 Wed 16:19] =>  0:23
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-22 Wed 16:19
+    :END:
+    - [X] padding/margin/border for tables
+    - [X] gap between li
+    - [X] quote v/s backquote
 * notes
 ** misc
    - http://www.html-ipsum.com/
@@ -4654,118 +4662,16 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** UNDERGOING ml-301: linear regression with one variable
-    :CLOCK:
-    CLOCK: [2014-01-21 Tue 17:10]
-    CLOCK: [2014-01-21 Tue 16:35]--[2014-01-21 Tue 17:04] =>  0:29
-    :END:
+*** ml-302: intuition for univariate linear regression
     - toc:
-      - supervised learning regression problem (housing)
-      - notation
-        - m => #examples
-        - x => input variable/feature
-        - y => output variable/target
-        - x^(i), y^(i) => i^th training example
-        - example
-| size in ft^2 (x) | price ($) in 1000's (y) |
-|------------------+-------------------------|
-|             2104 |                     460 |
-|             1416 |                     232 |
-|             1534 |                     315 |
-|              852 |                     178 |
-|              ... |                     ... |
-        - x^(1) = 2104, x^(2) 1416, y^(1) = 460
-
-      - algo working
-        - training set -> learning algorithm -> h (hypothesis)
-        - where h is a function that maps from x's to y's
-      - for linear regression with just 1 input feature, h is represented as
-        - h_Θ(x) = Θ_0 + Θ_1 x
-        - also called 'univariate linear regression'
-      - cost function
-        - chose Θ_0 and Θ_1 so that h_Θ(x) is as close to y for our training examples (x, y)
-        - so goal is to
-          - minimize_(Θ_0,Θ_1) (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
-          - the divide by 2m is to make later math easier
-        - this is called the cost function J(Θ_0, Θ_1)
-        - also called squared error function, or squared error cost function
-        - most commonly used error function
-      - note
-        - h_Θ(x) is a function over x: if x changes h_Θ(x)
-        - whereas, J(Θ_0, Θ_1) is a function over Θ_0 and Θ_1
-        - in the ML program,
-          - our optimization objective is to minimize J, that is to find values of Θ_0 and Θ_1 so that value of J is min
-          - once we do this, we use these Θ_0 and Θ_1 to get our hypothesis function h_Θ(x)
-          - and it is this hypothesis function h_Θ(x) that allows us to predict y for new values of x
+    - cat/subcat:
+    - tags:
+    - lead image:
     - summary:
     - body:
-Welcome back! After having gone through some posts on introduction to ML (***here***, ....), lets now start learning a real ML algorithm. The algorithm that we will study today is a ***supervised learning*** ***regression*** algorithm.
-
-First lets define the problem statement. Today we will use a subset of [[http://archive.ics.uci.edu/ml/datasets/Auto%2BMPG][this]] [[http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data][data]]. The first few training examples in the data are:
-
-| 18.0 | 8 | 307.0 | 130.0 | 3504. | 12.0 | 70 | 1 | "chevrolet chevelle malibu" |
-| 15.0 | 8 | 350.0 | 165.0 | 3693. | 11.5 | 70 | 1 | "buick skylark 320"         |
-| 18.0 | 8 | 318.0 | 150.0 | 3436. | 11.0 | 70 | 1 | "plymouth satellite"        |
-| 16.0 | 8 | 304.0 | 150.0 | 3433. | 12.0 | 70 | 1 | "amc rebel sst"             |
-| 17.0 | 8 | 302.0 | 140.0 | 3449. | 10.5 | 70 | 1 | "ford torino"               |
-| 15.0 | 8 | 429.0 | 198.0 | 4341. | 10.0 | 70 | 1 | "ford galaxie 500"          |
-| 14.0 | 8 | 454.0 | 220.0 | 4354. |  9.0 | 70 | 1 | "chevrolet impala"          |
-| 14.0 | 8 | 440.0 | 215.0 | 4312. |  8.5 | 70 | 1 | "plymouth fury iii"         |
-| 14.0 | 8 | 455.0 | 225.0 | 4425. | 10.0 | 70 | 1 | "pontiac catalina"          |
-| 15.0 | 8 | 390.0 | 190.0 | 3850. |  8.5 | 70 | 1 | "amc ambassador dpl"        |
-| 15.0 | 8 | 383.0 | 170.0 | 3563. | 10.0 | 70 | 1 | "dodge challenger se"       |
-| 14.0 | 8 | 340.0 | 160.0 | 3609. |  8.0 | 70 | 1 | "plymouth 'cuda 340"        |
-| 15.0 | 8 | 400.0 | 150.0 | 3761. |  9.5 | 70 | 1 | "chevrolet monte carlo"     |
-| 14.0 | 8 | 455.0 | 225.0 | 3086. | 10.0 | 70 | 1 | "buick estate wagon (sw)"   |
-| 24.0 | 4 | 113.0 | 95.00 | 2372. | 15.0 | 70 | 3 | "toyota corona mark ii"     |
-| 22.0 | 6 | 198.0 | 95.00 | 2833. | 15.5 | 70 | 1 | "plymouth duster"           |
-| 18.0 | 6 | 199.0 | 97.00 | 2774. | 15.5 | 70 | 1 | "amc hornet"                |
-
-In this data, the 1st column is the "mpg" target variable, or the parameter that we have to predict, while the rest of the columns are the features or input variables. But today we will go simple and will use only 1 input variable, that is the 3rd column "displacement". To keep the algorithm simple, we will assume that our target variable "mpg" is someway dependent or related to only "displacement", our input variable.
-
-So now the first 10 training examples look like (notice that I have swapped the order of the data Note that the first column is x (input variable(s)), and second column is y (target variable))
-
-|     x |    y |
-| 307.0 | 18.0 |
-| 350.0 | 15.0 |
-| 318.0 | 18.0 |
-| 304.0 | 16.0 |
-| 302.0 | 17.0 |
-| 429.0 | 15.0 |
-| 454.0 | 14.0 |
-| 440.0 | 14.0 |
-| 455.0 | 14.0 |
-| 390.0 | 15.0 |
-
-Thus the problem definition is given a new "displacement" (x), we need to predict the value for "mpg" (y). To do this we need to a function "h" that maps the input "x" to the output "y". In ML world, this function "h" is called the hypothesis function, and is represented as
-
-h_Θ(x) = Θ_0 + Θ_1 x
-
-In the above example "h" is also called 'univariate linear regression', because we are using only 1 variable (or feature).
-
-Before we move ahead, lets get some terminology noted
-- m => #examples
-- x => input variable/feature
-- y => output variable/target
-- x^(i), y^(i) => i^th training example, so for example, in the above data, x^(1) = 307.0, x^(5) = 302.0, y^(7) = 14.0
-
-What we need to do next is to chose Θ_0 and Θ_1 so that h_Θ(x) is as close to y for our training examples (x, y). I hope you understand why we are doing this. This is because, if the hypothesis function that we find out (as the end goal of our ML problem) is perfect, then the value of h_Θ(x^(i)) should be exactly equal to the corresponding y^(i), for any example i.
-
-So, obviously, our goal would be to do the following
-
-minimize_(Θ_0,Θ_1) (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
-
-The division by 2m is simply taking an average of the squared error and is done to make later math easier. This function is called the cost function J(Θ_0, Θ_1), and also called squared error function, or squared error cost function. This is the most most commonly used error function in ML world.
-
-By implementing the above we would find the optimum values of Θ_0 and Θ_1 that will minimize our cost function J. Then all we need to do is to insert these Θ_0 and Θ_1 values into our hypothesis function h_Θ(x) and our ML problem is solved. Then given any new value for x, we can simply put that x in the hypothesis function to get the y.
-
-Ain't that cool? We have already started solving ML problems and making predictions!
-
-Well, not so fast stud ;) We still have to figure out how to perform the last step of the puzzle, viz "minimize", don't we? But I think this much study is good for today, and we will jump to the minimization problem in the next post. So keep watching this space :)
     - notes:
-      - http://chemistry.about.com/od/chartstables/a/htmlgreek.htm (greek letter html code chart)
     - references:
-*** ml-302: gradient descent
+*** ml-303: gradient descent
     - toc:
     - cat/subcat:
     - tags:
@@ -7709,6 +7615,121 @@ Do note that the above (and in the previous post) is *not* an exhaustive list of
 With the basics now out of our way, lets move with full speed ahead to really implementing some ML algorithms. God speed!
 
 ps: There is one more part about octave (vectorization), but we will get to that after studying atleast 1 more real algorithm first!
+**** DONE ml-301: linear regression with one variable
+    CLOSED: [2014-01-22 Wed 13:30]
+    :CLOCK:
+    CLOCK: [2014-01-21 Tue 17:10]--[2014-01-21 Tue 17:40] =>  0:30
+    CLOCK: [2014-01-21 Tue 16:35]--[2014-01-21 Tue 17:04] =>  0:29
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-22 Wed 13:30
+     :END:
+    - toc:
+      - supervised learning regression problem (housing)
+      - notation
+        - m => #examples
+        - x => input variable/feature
+        - y => output variable/target
+        - x^(i), y^(i) => i^th training example
+        - example
+| size in ft^2 (x) | price ($) in 1000's (y) |
+|------------------+-------------------------|
+|             2104 |                     460 |
+|             1416 |                     232 |
+|             1534 |                     315 |
+|              852 |                     178 |
+|              ... |                     ... |
+        - x^(1) = 2104, x^(2) 1416, y^(1) = 460
+
+      - algo working
+        - training set -> learning algorithm -> h (hypothesis)
+        - where h is a function that maps from x's to y's
+      - for linear regression with just 1 input feature, h is represented as
+        - h_Θ(x) = Θ_0 + Θ_1 x
+        - also called 'univariate linear regression'
+      - cost function
+        - chose Θ_0 and Θ_1 so that h_Θ(x) is as close to y for our training examples (x, y)
+        - so goal is to
+          - minimize_(Θ_0,Θ_1) (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+          - the divide by 2m is to make later math easier
+        - this is called the cost function J(Θ_0, Θ_1)
+        - also called squared error function, or squared error cost function
+        - most commonly used error function
+      - note
+        - h_Θ(x) is a function over x: if x changes h_Θ(x)
+        - whereas, J(Θ_0, Θ_1) is a function over Θ_0 and Θ_1
+        - in the ML program,
+          - our optimization objective is to minimize J, that is to find values of Θ_0 and Θ_1 so that value of J is min
+          - once we do this, we use these Θ_0 and Θ_1 to get our hypothesis function h_Θ(x)
+          - and it is this hypothesis function h_Θ(x) that allows us to predict y for new values of x
+    - summary:
+    - body:
+Welcome back! After having gone through some posts on introduction to ML (***here***, ....), lets now start learning a real ML algorithm. The algorithm that we will study today is a ***supervised learning*** ***regression*** algorithm.
+
+First lets define the problem statement. Today we will use a subset of [[http://archive.ics.uci.edu/ml/datasets/Auto%2BMPG][this]] [[http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data][data]]. The first few training examples in the data are:
+
+| 18.0 | 8 | 307.0 | 130.0 | 3504. | 12.0 | 70 | 1 | "chevrolet chevelle malibu" |
+| 15.0 | 8 | 350.0 | 165.0 | 3693. | 11.5 | 70 | 1 | "buick skylark 320"         |
+| 18.0 | 8 | 318.0 | 150.0 | 3436. | 11.0 | 70 | 1 | "plymouth satellite"        |
+| 16.0 | 8 | 304.0 | 150.0 | 3433. | 12.0 | 70 | 1 | "amc rebel sst"             |
+| 17.0 | 8 | 302.0 | 140.0 | 3449. | 10.5 | 70 | 1 | "ford torino"               |
+| 15.0 | 8 | 429.0 | 198.0 | 4341. | 10.0 | 70 | 1 | "ford galaxie 500"          |
+| 14.0 | 8 | 454.0 | 220.0 | 4354. |  9.0 | 70 | 1 | "chevrolet impala"          |
+| 14.0 | 8 | 440.0 | 215.0 | 4312. |  8.5 | 70 | 1 | "plymouth fury iii"         |
+| 14.0 | 8 | 455.0 | 225.0 | 4425. | 10.0 | 70 | 1 | "pontiac catalina"          |
+| 15.0 | 8 | 390.0 | 190.0 | 3850. |  8.5 | 70 | 1 | "amc ambassador dpl"        |
+| 15.0 | 8 | 383.0 | 170.0 | 3563. | 10.0 | 70 | 1 | "dodge challenger se"       |
+| 14.0 | 8 | 340.0 | 160.0 | 3609. |  8.0 | 70 | 1 | "plymouth 'cuda 340"        |
+| 15.0 | 8 | 400.0 | 150.0 | 3761. |  9.5 | 70 | 1 | "chevrolet monte carlo"     |
+| 14.0 | 8 | 455.0 | 225.0 | 3086. | 10.0 | 70 | 1 | "buick estate wagon (sw)"   |
+| 24.0 | 4 | 113.0 | 95.00 | 2372. | 15.0 | 70 | 3 | "toyota corona mark ii"     |
+| 22.0 | 6 | 198.0 | 95.00 | 2833. | 15.5 | 70 | 1 | "plymouth duster"           |
+| 18.0 | 6 | 199.0 | 97.00 | 2774. | 15.5 | 70 | 1 | "amc hornet"                |
+
+In this data, the 1st column is the "mpg" target variable, or the parameter that we have to predict, while the rest of the columns are the features or input variables. But today we will go simple and will use only 1 input variable, that is the 3rd column "displacement". To keep the algorithm simple, we will assume that our target variable "mpg" is someway dependent or related to only "displacement", our input variable.
+
+So now the first 10 training examples look like (notice that I have swapped the order of the data Note that the first column is x (input variable(s)), and second column is y (target variable))
+
+|     x |    y |
+| 307.0 | 18.0 |
+| 350.0 | 15.0 |
+| 318.0 | 18.0 |
+| 304.0 | 16.0 |
+| 302.0 | 17.0 |
+| 429.0 | 15.0 |
+| 454.0 | 14.0 |
+| 440.0 | 14.0 |
+| 455.0 | 14.0 |
+| 390.0 | 15.0 |
+
+Thus the problem definition is given a new "displacement" (x), we need to predict the value for "mpg" (y). To do this we need to a function "h" that maps the input "x" to the output "y". In ML world, this function "h" is called the hypothesis function, and is represented as
+
+h_Θ(x) = Θ_0 + Θ_1 x
+
+In the above example "h" is also called 'univariate linear regression', because we are using only 1 variable (or feature).
+
+Before we move ahead, lets get some terminology noted
+- m => #examples
+- x => input variable/feature
+- y => output variable/target
+- x^(i), y^(i) => i^th training example, so for example, in the above data, x^(1) = 307.0, x^(5) = 302.0, y^(7) = 14.0
+
+What we need to do next is to chose Θ_0 and Θ_1 so that h_Θ(x) is as close to y for our training examples (x, y). I hope you understand why we are doing this. This is because, if the hypothesis function that we find out (as the end goal of our ML problem) is perfect, then the value of h_Θ(x^(i)) should be exactly equal to the corresponding y^(i), for any example i.
+
+So, obviously, our goal would be to do the following
+
+minimize_(Θ_0,Θ_1) (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+
+The division by 2m is simply taking an average of the squared error and is done to make later math easier. This function is called the cost function J(Θ_0, Θ_1), and also called squared error function, or squared error cost function. This is the most most commonly used error function in ML world.
+
+By implementing the above we would find the optimum values of Θ_0 and Θ_1 that will minimize our cost function J. Then all we need to do is to insert these Θ_0 and Θ_1 values into our hypothesis function h_Θ(x) and our ML problem is solved. Then given any new value for x, we can simply put that x in the hypothesis function to get the y.
+
+Ain't that cool? We have already started solving ML problems and making predictions!
+
+Well, not so fast stud ;) We still have to figure out how to perform the last step of the puzzle, viz "minimize", don't we? But I think this much study is good for today, and we will jump to the minimization problem in the next post. So keep watching this space :)
+    - notes:
+      - http://chemistry.about.com/od/chartstables/a/htmlgreek.htm (greek letter html code chart)
+    - references:
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993

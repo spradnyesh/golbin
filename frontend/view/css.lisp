@@ -20,6 +20,10 @@
     (("p") (:margin "15px 0"))
     (("h2, h3") (:padding "7px 0"))
     (("h4") (:font-weight "bold"))
+    (("td") (:padding "5px"
+                      :border "1px solid"))
+    (("pre") (:background-color "#F0F0F0"
+                                :padding "10px"))
     (("a:link, a:active, a:visited, a:hover") (:border "none"
                                                        :color "#21629C"
                                                        :text-decoration "none"))
@@ -231,12 +235,12 @@
                                         :margin-bottom "-15px"))
     (("#a-body") (:text-align "justify"
                               :padding-top "10px"))
-    (("#a-body li") (:margin-bottom "15px"))
-    (("#a-body blockquote li") (:margin "0"))
     (("#a-body .block") (:padding-bottom "10px"
                                          :text-align "center"))
     (("#a-body blockquote") (:background-color "#F0F0F0"
                                                :padding "10px"))
+    (("#a-body q") (:background-color "#F0F0F0"
+                                      :padding "0 10px"))
     (("#a-body li") (:background "url('/static/css/images/icon_bullet.png') 5px 2px no-repeat"
                                  :padding-left "25px"))
     (("#a-body img") (:padding "10px"))
