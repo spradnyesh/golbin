@@ -21,11 +21,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; archive @ http://web.archive.org
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro web-archive (article uri callback &key error-handle)
+(defmacro web-archive (uri callback &key error-handle)
   ;; execute asynchronously
   `(handler-case (do-in-background
                      (funcall #',callback
-                              ,article
                               (string-trim " \"\\;"
                                            (second (split-sequence
                                                     "="

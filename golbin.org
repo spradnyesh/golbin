@@ -4606,6 +4606,14 @@
     - [X] padding/margin/border for tables
     - [X] gap between li
     - [X] quote v/s backquote
+*** DONE [bug][ed] publish article fails
+    CLOSED: [2014-01-22 Wed 16:35]
+    :CLOCK:
+    CLOCK: [2014-01-22 Wed 16:22]--[2014-01-22 Wed 16:35] =>  0:13
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-22 Wed 16:35
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/

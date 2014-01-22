@@ -277,13 +277,6 @@
          (ads-markup "ca-pub-7627106577670276" "9310803587" 234 60)
          (ads-markup "ca-pub-7627106577670276" "1787536781" 234 60)))
 
-(defun web-archive-callback (article uri)
-  ;; update DB only on 1st time and when archival was successful
-  (when (and (null (archive article))
-             uri)
-    (setf (archive article) uri)
-    (edit-article article)))
-
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
     (let* ((title (post-parameter "title"))
@@ -422,8 +415,14 @@
 
               ;; archive at http://archive.org/web/web.php
               (when (eq submit-type :a)
-                (let ((uri (get-article-url article)))
-                  (web-archive article uri web-archive-callback)))
+                (let* ((article (get-article-by-id id))
+                       (uri (get-article-url article)))
+                  (web-archive uri (lambda (uri)
+                                     ;; update DB only when
+                                     (when (and (null (archive article)) ; publishing 1st time
+                                                uri) ; archival was successful
+                                       (setf (archive article) uri)
+                                       (edit-article article))))))
               (submit-success ajax
                               (h-genurl 'r-article-edit-get :id (write-to-string id))))
             ;; validation failed
