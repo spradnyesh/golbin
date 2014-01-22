@@ -2,7 +2,6 @@
 
 * backlog
 ** [ed] 'pre' element in RTE
-** [refactor] pick up secret keys from defconst params
 ** [bug][fe][rss] description should not contain relative URL references
    - /static/photos/....jpeg
 ** TODO [#B] [bug][fe] comments ajax should not make page-jump
@@ -4625,6 +4624,14 @@
     :END:
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-01-22 Wed 17:00
+    :END:
+*** DONE [refactor] pick up secret keys from defconst params
+    CLOSED: [2014-01-22 Wed 17:29]
+    :CLOCK:
+    CLOCK: [2014-01-22 Wed 17:00]--[2014-01-22 Wed 17:29] =>  0:29
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-22 Wed 17:29
     :END:
 * notes
 ** misc
