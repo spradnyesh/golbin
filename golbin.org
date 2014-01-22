@@ -3,12 +3,6 @@
 * backlog
 ** [ed] 'pre' element in RTE
 ** [refactor] pick up secret keys from defconst params
-** TODO [bug][ed] web-archive URL not showing up during edit article
-   :CLOCK:
-   CLOCK: [2014-01-15 Wed 19:30]--[2014-01-15 Wed 19:58] =>  0:28
-   CLOCK: [2014-01-15 Wed 19:16]--[2014-01-15 Wed 19:29] =>  0:13
-   :END:
-   - should have been saved 1st time
 ** [refactor][fed] "ca-pub-7627106577670276" should be put in config
 ** [bug][fe][rss] description should not contain relative URL references
    - /static/photos/....jpeg
@@ -4614,6 +4608,17 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-01-22 Wed 16:35
     :END:
+*** DONE [bug][ed] web-archive URL not showing up during edit article
+    CLOSED: [2014-01-22 Wed 16:54]
+    :CLOCK:
+    CLOCK: [2014-01-22 Wed 16:38]--[2014-01-22 Wed 16:54] =>  0:16
+    CLOCK: [2014-01-15 Wed 19:30]--[2014-01-15 Wed 19:58] =>  0:28
+    CLOCK: [2014-01-15 Wed 19:16]--[2014-01-15 Wed 19:29] =>  0:13
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-22 Wed 16:54
+    :END:
+    - should have been saved 1st time
 * notes
 ** misc
    - http://www.html-ipsum.com/
