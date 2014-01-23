@@ -40,7 +40,7 @@
                      (show-calendar (event element)
                        (new (-js-date-pick (create "useMode" 2
                                                    :target element
-                                                   "dateFormat" "%d-%M-%Y"
+                                                   "dateFormat" "%d-%m-%Y"
                                                    "imgPath" "/static/css/img/"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

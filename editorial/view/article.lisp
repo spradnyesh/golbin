@@ -3,6 +3,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; helper functions and macros
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun inline-ads-markup ()
+  (<:div :id "i-ads"
+         (ads-markup (get-config "ads.client") "9310803587" 234 60)
+         (ads-markup (get-config "ads.client") "1787536781" 234 60)))
+
 (defun get-cat-subcat-markup (article list cat-subcat)
   (loop
      for l in list
@@ -95,12 +100,36 @@
                    "<p class='last'></p>")
       body))
 
-(defun validate-article (title body)
+(defun get-localtime (date hour)
+  (destructuring-bind (dd mm yyyy)
+      (split-sequence "-" date :test #'string=)
+    (encode-timestamp 0 0 0 (parse-integer hour) (parse-integer dd) (parse-integer mm) (parse-integer yyyy)
+                      :offset 19800)))
+
+(defun validate-article (title body date hour timestamp)
   (let ((err0r nil)
         (script-tags (all-matches-as-strings "<script(.*?)>"
                                              body)))
     (cannot-be-empty title "title" err0r)
     (cannot-be-empty body "body" err0r)
+    (if (or (and (is-null-or-empty date)
+                 (not (is-null-or-empty hour)))
+            (and (is-null-or-empty hour)
+                 (not (is-null-or-empty date))))
+        (push (translate "date-hour-empty-not-empty-error") err0r)
+        (handler-case (when (and (not (is-null-or-empty date))
+                                 (not (is-null-or-empty hour))
+                                 (< (timestamp-to-unix timestamp)
+                                    (timestamp-to-unix (now))))
+                        (push (translate "date-time-error") err0r))
+          (sb-int:simple-parse-error () ; parse-integer
+            (push (translate "invalid-date-time-error") err0r))
+          (sb-int:simple-program-error () ; encode-timestamp
+            (push (translate "invalid-date-time-error") err0r))
+          (type-error () ; encode-timestamp
+            (push (translate "invalid-date-time-error") err0r))
+          (sb-kernel::arg-count-error () ; destructuring-bind
+            (push (translate "invalid-date-time-error") err0r))))
     (when script-tags
       (push (translate "script-tags" (join-string-list-with-delim "," script-tags)) err0r))
     err0r))
@@ -257,14 +286,16 @@
                                                                           :slug-and-id (get-slug-and-id article))
                                                           :target "_blank"
                                                           (translate "preview"))))))
-                                     (unless article
-                                       (<:tr (<:td (translate "publish-date-time"))
+                                     (when (or (not article)
+                                               (eq :r (status article)))
+                                       (<:tr (<:td (fmtnil (translate "publish-date-time")
+                                                           (tooltip "publish-date-time-tooltip")))
                                              (<:td (<:input :class "td-input"
                                                             :type "text"
-                                                            :name "a-date"
+                                                            :name "date"
                                                             :id "a-date"
                                                             :value "")
-                                                   (<:select :name "a-time"
+                                                   (<:select :name "hour"
                                                              :class "td-input"
                                                              (fmtnil (<:option :selected "selected"
                                                                                :value "")
@@ -290,18 +321,13 @@
                                                           :name "submit"
                                                           :value (translate "publish")))))))))))
 
-(defun inline-ads-markup ()
-  (<:div :id "i-ads"
-         (ads-markup (get-config "ads.client") "9310803587" 234 60)
-         (ads-markup (get-config "ads.client") "1787536781" 234 60)))
-
 (defun v-article-post (&key (id nil) (ajax nil))
   (with-ed-login
     (let* ((title (post-parameter "title"))
            (summary (post-parameter "summary"))
            (p-submit-type (post-parameter "submit-type"))
-           (submit-type (cond ((string-equal p-submit-type "save") :r) ; draft
-                              ((string-equal p-submit-type "submit") :a))) ; active
+           (submit-type (cond ((string-equal p-submit-type "save") :r) ; draft/save
+                              ((string-equal p-submit-type "submit") :a))) ; active/publish
            (body (post-parameter "body"))
            (p-cat (post-parameter "cat"))
            (cat (get-category-by-id (parse-integer p-cat)))
@@ -318,8 +344,13 @@
                      ((string-equal p-pd "right") :r)))
            (p-tags (post-parameter "ed-tags"))
            (tags (unless (nil-or-empty p-tags) (split-sequence "," p-tags :test #'string-equal)))
+           (date (post-parameter "date"))
+           (hour (post-parameter "hour"))
+           (pub-date (when (and (not (is-null-or-empty date))
+                                        (not (is-null-or-empty hour)))
+                               (get-localtime date hour)))
            (article-tags nil))
-      (let ((err0r (validate-article title body)))
+      (let ((err0r (validate-article title body date hour pub-date)))
         (if (not err0r)
             (let ((body (add-trailing-p (update-anchors (add-photo-attribution (cleanup-ckeditor-text body))))))
 
@@ -329,7 +360,15 @@
                   (when tag-added
                     (push tag-added article-tags))))
 
+              ;; support publishing in the future
+              ;; (do this by saving article as "draft" (here)
+              ;; and publish it later (in #TODO))
+              (when pub-date
+                (setf submit-type :r))
+
               ;; add inline google-ads markup
+              ;; (for existing articles (edit + publish),
+              ;; inline ads markup was removed during v-article-get)
               (when (eq submit-type :a)
                 (setf body (insert-inline-ads body (inline-ads-markup))))
 
@@ -347,6 +386,7 @@
                                                            :summary summary
                                                            :body body
                                                            :date (get-universal-time)
+                                                           :pub-date pub-date
                                                            :status submit-type
                                                            :cat cat
                                                            :subcat subcat
@@ -381,6 +421,7 @@
                                                         :summary summary
                                                         :body body
                                                         :date (date article)
+                                                        :pub-date pub-date
                                                         :status submit-type
                                                         :cat cat
                                                         :subcat subcat
@@ -398,6 +439,7 @@
                                                                     :summary summary
                                                                     :body body
                                                                     :date (date article)
+                                                                    :pub-date pub-date
                                                                     :status submit-type
                                                                     :cat cat
                                                                     :subcat subcat
@@ -417,6 +459,7 @@
                                                           :summary summary
                                                           :body body
                                                           :date (date parent-article)
+                                                          :pub-date pub-date
                                                           :status submit-type
                                                           :cat cat
                                                           :subcat subcat

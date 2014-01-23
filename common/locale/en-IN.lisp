@@ -66,3 +66,6 @@ mandatory-will-not-be-shown=Mandatory, will not be shown on this website
 404=Sorry! We were unable to find the content that you are looking for. <br/>Please click ~a to go back. Or, enjoy one of the stories below!
 rss=RSS
 unselect-background=Unselect background.
+publish-date-time-tooltip=Selected date-time cannot be in the past
+date-time-empty-not-empty-error=Either both date and time should be empty or both should be filled
+date-time-error=Publish date-time cannot be in the past
