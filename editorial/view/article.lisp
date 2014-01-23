@@ -119,8 +119,8 @@
         (push (translate "date-hour-empty-not-empty-error") err0r)
         (handler-case (when (and (not (is-null-or-empty date))
                                  (not (is-null-or-empty hour))
-                                 (< (timestamp-to-unix timestamp)
-                                    (timestamp-to-unix (now))))
+                                 (< (timestamp-to-universal timestamp)
+                                    (timestamp-to-universal (now))))
                         (push (translate "date-time-error") err0r))
           (sb-int:simple-parse-error () ; parse-integer
             (push (translate "invalid-date-time-error") err0r))
@@ -347,8 +347,8 @@
            (date (post-parameter "date"))
            (hour (post-parameter "hour"))
            (pub-date (when (and (not (is-null-or-empty date))
-                                        (not (is-null-or-empty hour)))
-                               (get-localtime date hour)))
+                                (not (is-null-or-empty hour)))
+                       (timestamp-to-universal (get-localtime date hour))))
            (article-tags nil))
       (let ((err0r (validate-article title body date hour pub-date)))
         (if (not err0r)
@@ -505,3 +505,25 @@
         (edit-article article))
       (submit-success ajax
                       (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
+
+(defun article-future-publish ()
+  (dolist (a (get-future-articles ()))
+    (when (> (pub-date a)
+             (timestamp-to-universal (now)))
+      (edit-article (make-instance 'article
+                                   :pub-date nil
+                                   :status :a
+                                   :id (id a)
+                                   :parent (parent a)
+                                   :title (title a)
+                                   :slug (slug a)
+                                   :summary (summary a)
+                                   :body (body a)
+                                   :date (date a)
+                                   :cat (cat a)
+                                   :subcat (subcat a)
+                                   :photo (photo a)
+                                   :photo-direction (photo-direction a)
+                                   :background (background a)
+                                   :tags (tags a)
+                                   :author (author a))))))

@@ -104,12 +104,17 @@
   (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
 
 (defun get-active-articles ()
-  (sort (make-set (get-object-by #'(lambda (article)
-                                      (eql :a (status article)))
-                                  (get-all-articles))
-                   :key #'id)
+  (sort (get-object-by #'(lambda (article)
+                           (eql :a (status article)))
+                       (get-all-articles))
         #'>
         :key #'id))
+
+(defun get-future-articles ()
+  (get-object-by #'(lambda (article)
+                     (and (eql :r (status article))
+                          (not (null (pub-date article)))))
+                 (get-all-articles)))
 
 (defmacro get-articles-by (cond)
   `(get-object-by ,cond (get-active-articles)))

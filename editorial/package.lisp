@@ -1,5 +1,5 @@
 (restas:define-module :hawksbill.golbin.editorial
-  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes)
+  (:use :cl :hawksbill.utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :local-time :cl-gd :routes :cl-cron)
   (:decorators #'hawksbill.utils:init-dimensions)
   (:import-from :hawksbill.golbin.frontend :v-article)
   (:shadow :% :prototype :size :acceptor :mime-type)
@@ -81,14 +81,6 @@
   (restas.directory-publisher:*directory* (merge-pathnames "../data/static/" *home*))
   (restas.directory-publisher:*autoindex* t))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; login
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro with-ed-login (&body body)
-  `(with-login
-       (h-genurl 'r-login-get)
-     ,@body))
-
 (with-compiletime-active-layers
     (standard-sexml xml-doctype)
   (support-dtd
@@ -96,6 +88,9 @@
    :<))
 (<:augment-with-doctype "html" "")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; login
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defparameter *whitelist* '(r-login-get
                             r-password-get
                             r-password-email
@@ -112,3 +107,12 @@
                             r-help
                             r-robots)
   "list of routes that can be accessed in a non-logged-in state")
+(defmacro with-ed-login (&body body)
+  `(with-login
+       (h-genurl 'r-login-get)
+     ,@body))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; cron for publishing articles in future
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar *cron-started* nil)

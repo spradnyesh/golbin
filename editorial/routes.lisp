@@ -156,7 +156,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defmethod ed-start-real :after ((instance ed-acceptor))
   (declare (ignore instance))
+
+  ;; populate secret configs
   (when (nil-or-empty (get-config "cipher.secure"))
     (populate-config-from-secret "cipher.secure"))
   (when (nil-or-empty (get-config "site.email.password"))
-    (populate-config-from-secret "site.email.password")))
+    (populate-config-from-secret "site.email.password"))
+
+  ;; restart cron for future publishing
+  (unless *cron-started*
+    (make-cron-job #'article-future-publish :minute 0)
+    (setf *cron-started* t))
+  (restart-cron))
