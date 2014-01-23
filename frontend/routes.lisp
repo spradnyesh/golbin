@@ -79,6 +79,6 @@
 (defmethod fe-start-real :after ((instance fe-acceptor))
   (declare (ignore instance))
   (when (nil-or-empty (get-config "cipher.fe.comments.private"))
-    (populate-secret "cipher.fe.comments.private"))
+    (populate-config-from-secret "cipher.fe.comments.private"))
   (when (nil-or-empty (get-config "site.email.password"))
-    (populate-secret "site.email.password")))
+    (populate-config-from-secret "site.email.password")))

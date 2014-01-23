@@ -157,6 +157,6 @@
 (defmethod ed-start-real :after ((instance ed-acceptor))
   (declare (ignore instance))
   (when (nil-or-empty (get-config "cipher.secure"))
-    (populate-secret "cipher.secure"))
+    (populate-config-from-secret "cipher.secure"))
   (when (nil-or-empty (get-config "site.email.password"))
-    (populate-secret "site.email.password")))
+    (populate-config-from-secret "site.email.password")))
