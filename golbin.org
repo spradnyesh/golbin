@@ -1,7 +1,20 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [ed] publish at a future date
+** TODO [ed] publish at a future date
+   :CLOCK:
+   CLOCK: [2014-01-23 Thu 15:51]--[2014-01-23 Thu 16:11] =>  0:20
+   CLOCK: [2014-01-23 Thu 14:39]--[2014-01-23 Thu 15:45] =>  1:06
+   CLOCK: [2014-01-23 Thu 11:46]--[2014-01-23 Thu 11:51] =>  0:05
+   CLOCK: [2014-01-23 Thu 11:09]--[2014-01-23 Thu 11:44] =>  0:35
+   :END:
+   - js calendar widgets
+     - *** http://javascriptcalendar.org/
+     - http://www.softcomplex.com/products/tigra_calendar/
+     - http://www.tarrget.info/calendar/scw.htm
+   - bug in jsDatePick.jquery.min.1.3.js
+     - *wrong*: this.oConfiguration.imgPath=(g_jsDatePickImagePath.length!=null)?g_jsDatePickImagePath:"img/";
+     - *right*: this.oConfiguration.imgPath=(a.imgPath!=null)?a.imgPath:"img/";
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search

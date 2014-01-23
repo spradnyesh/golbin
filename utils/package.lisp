@@ -80,6 +80,7 @@
            :push-map
            :make-set
            :group-list
+           :range
            ;; string
            :slugify
            :join-string-list-with-delim

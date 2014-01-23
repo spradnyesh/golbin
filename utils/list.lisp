@@ -64,6 +64,12 @@
       (push (append list '(nil)) rslt))
     (reverse rslt)))
 
+;; http://coding.derkeiler.com/Archive/Lisp/comp.lang.lisp/2007-08/msg01182.html
+(defun range (start &optional end (step 1))
+  (if (null end)
+      (range 0 start step)
+      (loop for i from start below end by step collect i)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; permutations, combinations and cross-products
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

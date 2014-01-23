@@ -14,7 +14,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page template
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmacro template (&key title js body (email nil))
+(defmacro template (&key title js css body (email nil))
   `(let ((lang (get-parameter "lang")))
      (if lang
          (progn (set-cookie "lang"
@@ -42,7 +42,8 @@
                   (<:link :rel "stylesheet"
                           :type "text/css"
                           :href "http://fonts.googleapis.com/earlyaccess/lohitdevanagari.css"))
-                (<:style :type "text/css" (ed-get-css)))
+                (<:style :type "text/css" (ed-get-css))
+                ,css)
                (<:body :class (if (string= "en-IN" lang) "" "dvngr")
                        (<:div :class "yui3-g"
                               (<:header :id "hd" (header (is-logged-in?) ,email))

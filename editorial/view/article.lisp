@@ -126,7 +126,12 @@
                                    "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"
                                    (get-category-tree-json)
                                    (get-thumb-side-photo-sizes-json)))
-                 (ck-js lang))
+                 (ck-js lang)
+                 (<:script :type "text/javascript"
+                           :src "/static/js/jsDatePick.jquery.min.1.3.js"))
+     :css (<:link :rel "stylesheet"
+                          :type "text/css"
+                          :href "/static/css/jsDatePick_ltr.min.css")
      :body (let* ((article (when id (get-article-by-id id)))
                   (cats (get-root-categorys))
                   (subcats (get-subcategorys (if article
@@ -247,11 +252,24 @@
                                            (let ((status (get-article-status-markup article)))
                                              (<:td status
                                                    " "
-                                                   (unless (string-equal status "New")
+                                                   (unless (string-equal status (translate "new"))
                                                      (<:a :href (h-genurl 'r-article
                                                                           :slug-and-id (get-slug-and-id article))
                                                           :target "_blank"
                                                           (translate "preview"))))))
+                                     (unless article
+                                       (<:tr (<:td (translate "publish-date-time"))
+                                             (<:td (<:input :class "td-input"
+                                                            :type "text"
+                                                            :name "a-date"
+                                                            :id "a-date"
+                                                            :value "")
+                                                   (<:select :name "a-time"
+                                                             :class "td-input"
+                                                             (fmtnil (<:option :selected "selected"
+                                                                               :value "")
+                                                                     (join-loop i (range 24)
+                                                                                (fmtnil (<:option :value i i))))))))
                                      (when article
                                        (<:tr (<:td (translate "archive-url"))
                                              (<:td (let ((archive (archive article)))

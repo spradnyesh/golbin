@@ -35,6 +35,15 @@
                        (or (decode-u-r-i-component ((@ (elt (or ((@ (new (-reg-exp (+ "[?|&]" name "=" "([^&;]+?)(&|;|$)"))) exec) (@ location search)) (array null "")) 1) replace) (regex "/\\+/g") "%20")) null))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; calendar tool to publish article in future
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                     (show-calendar (event element)
+                       (new (-js-date-pick (create "useMode" 2
+                                                   :target element
+                                                   "dateFormat" "%d-%M-%Y"
+                                                   "imgPath" "/static/css/img/"))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; common to article/photo pages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                      ;; tags autocomplete
@@ -420,6 +429,7 @@
         (submit-form-ajax "#accounts form")
         (submit-form-ajax "#register form")
         (submit-form-ajax "#login form")
+        (show-calendar event "a-date")
 
         ;; define event handlers
         ($event (".cat" change) (change-category event ""))

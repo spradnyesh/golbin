@@ -11,6 +11,7 @@
    (summary :initarg :summary :initform nil :accessor summary)
    (body :initarg :body :initform nil :accessor body)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
+   (pub-date :initarg :pub-date :initform nil :accessor pub-date) ; date (in future) of publishing
    (status :initarg :status :initform nil :accessor status) ; :r draft, :s submitted for approval, :e deleted (by author), :a approved/active, :w rejected/withdrawn (deleted by admin), :p processed (intermediate edits, discarded)
    (background :initarg :background :initform nil :accessor background)
    (photo :initarg :photo :initform nil :accessor photo)
@@ -23,6 +24,7 @@
    (author :initarg :author :initform nil :accessor author)
    (approval-history :initarg :approval-history :initform nil :accessor approval-history))
   (:documentation "Article Class"))
+
 (defclass approval ()
   ((editor :initarg :editor :initform nil :accessor editor)
    (date :initarg :date :initform nil :accessor date) ; actually timestamp
