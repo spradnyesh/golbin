@@ -12,6 +12,7 @@
            :slug
            :summary
            :date
+           :pub-date
            :body
            :status
            :photo
@@ -101,6 +102,7 @@
            :get-slug-and-id
            :get-article-url
            :update-articles-author-photo
+           :get-future-articles
            ;; category
            :add-category
            :get-category-by-slug

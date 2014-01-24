@@ -29,7 +29,8 @@
                                      (:file "cipher" :depends-on ("string"))
                                      (:file "token-card" :depends-on ("package"))
                                      (:file "email" :depends-on ("threads"))
-                                     (:file "google-ads" :depends-on ("package"))))
+                                     (:file "google-ads" :depends-on ("package"))
+                                     (:file "cron" :depends-on ("package"))))
                (:module "common"
                         :components ((:file "package")
                                      (:file "init" :depends-on ("package"))
@@ -69,7 +70,6 @@
                                               :components ((:file "css")
                                                            (:file "js")
                                                            (:file "misc")
-                                                           (:file "publish-future")
                                                            (:file "template" :depends-on ("css" "js" "misc"))
                                                            (:file "article" :depends-on ("template"))
                                                            (:file "login" :depends-on ("template"))

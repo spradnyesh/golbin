@@ -100,26 +100,32 @@
                    "<p class='last'></p>")
       body))
 
-(defun get-localtime (date hour)
+(defun get-localtime (date hour min)
   (destructuring-bind (dd mm yyyy)
       (split-sequence "-" date :test #'string=)
-    (encode-timestamp 0 0 0 (parse-integer hour) (parse-integer dd) (parse-integer mm) (parse-integer yyyy)
+    (encode-timestamp 0 0 (parse-integer min) (parse-integer hour) (parse-integer dd) (parse-integer mm) (parse-integer yyyy)
                       :offset 19800)))
 
-(defun validate-article (title body date hour timestamp)
+(defun validate-article (title body date hour min)
   (let ((err0r nil)
         (script-tags (all-matches-as-strings "<script(.*?)>"
                                              body)))
     (cannot-be-empty title "title" err0r)
     (cannot-be-empty body "body" err0r)
     (if (or (and (is-null-or-empty date)
-                 (not (is-null-or-empty hour)))
+                 (or (not (is-null-or-empty hour))
+                     (not (is-null-or-empty min))))
             (and (is-null-or-empty hour)
-                 (not (is-null-or-empty date))))
+                 (or (not (is-null-or-empty date))
+                     (not (is-null-or-empty min))))
+            (and (is-null-or-empty min)
+                 (or (not (is-null-or-empty date))
+                     (not (is-null-or-empty hour)))))
         (push (translate "date-hour-empty-not-empty-error") err0r)
         (handler-case (when (and (not (is-null-or-empty date))
                                  (not (is-null-or-empty hour))
-                                 (< (timestamp-to-universal timestamp)
+                                 (not (is-null-or-empty min))
+                                 (< (timestamp-to-universal (get-localtime date hour min))
                                     (timestamp-to-universal (now))))
                         (push (translate "date-time-error") err0r))
           (sb-int:simple-parse-error () ; parse-integer
@@ -300,6 +306,12 @@
                                                              (fmtnil (<:option :selected "selected"
                                                                                :value "")
                                                                      (join-loop i (range 24)
+                                                                                (fmtnil (<:option :value i i)))))
+                                                   (<:select :name "min"
+                                                             :class "td-input"
+                                                             (fmtnil (<:option :selected "selected"
+                                                                               :value "")
+                                                                     (join-loop i (range 60)
                                                                                 (fmtnil (<:option :value i i))))))))
                                      (when article
                                        (<:tr (<:td (translate "archive-url"))
@@ -346,13 +358,15 @@
            (tags (unless (nil-or-empty p-tags) (split-sequence "," p-tags :test #'string-equal)))
            (date (post-parameter "date"))
            (hour (post-parameter "hour"))
-           (pub-date (when (and (not (is-null-or-empty date))
-                                (not (is-null-or-empty hour)))
-                       (timestamp-to-universal (get-localtime date hour))))
+           (min (post-parameter "min"))
            (article-tags nil))
-      (let ((err0r (validate-article title body date hour pub-date)))
+      (let ((err0r (validate-article title body date hour min)))
         (if (not err0r)
-            (let ((body (add-trailing-p (update-anchors (add-photo-attribution (cleanup-ckeditor-text body))))))
+            (let ((body (add-trailing-p (update-anchors (add-photo-attribution (cleanup-ckeditor-text body)))))
+                  (pub-date (when (and (not (is-null-or-empty date))
+                                       (not (is-null-or-empty hour))
+                                       (not (is-null-or-empty min)))
+                              (timestamp-to-universal (get-localtime date hour min)))))
 
               ;; add new tags if needed
               (dolist (tag tags)
@@ -362,7 +376,7 @@
 
               ;; support publishing in the future
               ;; (do this by saving article as "draft" (here)
-              ;; and publish it later (in #TODO))
+              ;; and publish it later routes.ed-start-real)
               (when pub-date
                 (setf submit-type :r))
 
@@ -507,7 +521,7 @@
                       (h-genurl 'r-home :page (parse-integer (post-parameter "page")))))))
 
 (defun article-future-publish ()
-  (dolist (a (get-future-articles ()))
+  (dolist (a (get-future-articles))
     (when (> (pub-date a)
              (timestamp-to-universal (now)))
       (edit-article (make-instance 'article

@@ -165,6 +165,6 @@
 
   ;; restart cron for future publishing
   (unless *cron-started*
-    (make-cron-job #'article-future-publish :minute 0)
+    (make-cron-job #'article-future-publish)
     (setf *cron-started* t))
-  (restart-cron))
+  (cron-restart))

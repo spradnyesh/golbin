@@ -67,5 +67,5 @@ mandatory-will-not-be-shown=Mandatory, will not be shown on this website
 rss=RSS
 unselect-background=Unselect background.
 publish-date-time-tooltip=Selected date-time cannot be in the past
-date-time-empty-not-empty-error=Either both date and time should be empty or both should be filled
+date-time-empty-not-empty-error=Either all of date, hour and min should be empty or all should be filled
 date-time-error=Publish date-time cannot be in the past
