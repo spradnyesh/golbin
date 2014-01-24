@@ -158,7 +158,7 @@
      :title "Add Article"
      :js (fmtnil (<:script :type "text/javascript"
                            (format nil
-                                   "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a;~%//]]>~%"
+                                   "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a, article = true;;~%//]]>~%"
                                    (get-category-tree-json)
                                    (get-thumb-side-photo-sizes-json)))
                  (ck-js lang)

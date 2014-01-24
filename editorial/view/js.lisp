@@ -429,7 +429,8 @@
         (submit-form-ajax "#accounts form")
         (submit-form-ajax "#register form")
         (submit-form-ajax "#login form")
-        (show-calendar event "a-date")
+        (when (not (undefined article))
+          (show-calendar event "a-date"))
 
         ;; define event handlers
         ($event (".cat" change) (change-category event ""))

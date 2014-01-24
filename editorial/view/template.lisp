@@ -55,8 +55,8 @@
                          (<:script :type "text/javascript" :src "http://code.jquery.com/ui/1.9.1/jquery-ui.min.js")
                          (<:script :type "text/javascript" :src "http://malsup.github.io/jquery.form.js")
                          ;(<:script :type "text/javascript" :src "http://raw.github.io/mjsarfatti/nestedSortable/master/jquery.mjs.nestedSortable.js")
-                         (<:script :type "text/javascript" (on-load))
-                         ,js)))))))
+                         ,js
+                         (<:script :type "text/javascript" (on-load)))))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; page header
