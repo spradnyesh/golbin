@@ -12,7 +12,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; storages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *config* nil)
 (defvar *article-storage* nil)
 (defvar *author-storage* nil)
 (defvar *category-storage* nil)
@@ -20,6 +19,13 @@
 #|(defvar *view-storage* nil)|#
 #|(defvar *count-storage* nil)|#
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; some more global vars needed in the system
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar *config* nil)
+(defvar *valid-envts* nil)
+(defvar *valid-langs* nil)
+(defvar *secrets* nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; i18n
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

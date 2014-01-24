@@ -1,8 +1,6 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [bug] *secrets* is being exported unbound (not bound to nil)
-   - similar w/ other exports too?
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -4671,6 +4669,15 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-01-24 Fri 13:53
     :END:
+*** DONE [bug] *secrets* is being exported unbound (not bound to nil)
+    CLOSED: [2014-01-24 Fri 18:38]
+    :CLOCK:
+    CLOCK: [2014-01-24 Fri 18:33]--[2014-01-24 Fri 18:38] =>  0:05
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-24 Fri 18:38
+    :END:
+    - similar w/ other exports too?
 * notes
 ** misc
    - http://www.html-ipsum.com/

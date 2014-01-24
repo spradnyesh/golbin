@@ -7,7 +7,3 @@
            :populate-config-from-secret
            :push-to-secret
            :golbin-restart))
-
-(defvar *valid-envts* nil)
-(defvar *valid-langs* nil)
-(defvar *secrets* nil)
