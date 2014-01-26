@@ -1,6 +1,10 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [utils] move common functionality (including (partial) views to web-utils
+   - [ ] login
+** [tests] write tests for web-utils
+** [refactor] split utils into a separate project web-utils
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -4678,6 +4682,21 @@
     :ARCHIVE_TIME: 2014-01-24 Fri 18:38
     :END:
     - similar w/ other exports too?
+*** CANCELLED [refactor] ql:upgrade
+    CLOSED: [2014-01-26 Sun 18:29]
+    :LOGBOOK:
+    - State "CANCELLED"  from "TODO"       [2014-01-26 Sun 18:29]
+    :END:
+    :CLOCK:
+    CLOCK: [2014-01-26 Sun 18:15]--[2014-01-26 Sun 18:29] =>  0:14
+    CLOCK: [2014-01-26 Sun 18:01]--[2014-01-26 Sun 18:12] =>  0:11
+    CLOCK: [2014-01-26 Sun 17:40]--[2014-01-26 Sun 17:52] =>  0:12
+    CLOCK: [2014-01-26 Sun 16:45]--[2014-01-26 Sun 17:14] =>  0:29
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-26 Sun 18:30
+    :END:
+    - XXX use restas upgrades (decorators not working in define-module)
 * notes
 ** misc
    - http://www.html-ipsum.com/
@@ -4734,17 +4753,7 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** ml-303: gradient descent
-    - body:
 *** ml-203: octave *write this after 30x is complete*
-    - toc:
-    - cat/subcat:
-    - tags:
-    - lead image:
-    - summary:
-    - body:
-    - notes:
-    - references:
 *** template
     - toc:
     - cat/subcat:
@@ -4837,111 +4846,124 @@ Also, simple things get complex too soon, because
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 ** wrote (not published)
-*** TODO ml-302: intuition for univariate linear regression
+*** TODO ml-305: univariate linear regression
     :CLOCK:
-    CLOCK: [2014-01-24 Fri 19:08]--[2014-01-24 Fri 19:43] =>  0:35
-    CLOCK: [2014-01-24 Fri 18:39]--[2014-01-24 Fri 19:07] =>  0:28
+    CLOCK: [2014-01-26 Sun 15:24]--[2014-01-26 Sun 15:40] =>  0:16
+    :END:
+In the last posts ***here (ml-303)*** and ***here (ml-304)***, we looked in much depth at the "gradient descent" minimization algorithm. Today we will complete the puzzle by fitting that last piece in the whole jigsaw of the "univariate linear regression" ML algorithm that we have been studying in this 30x series.
+
+To do that, lets recap what we have learnt so far:
+- x => input variable/feature (in "univariate", we have only 1 feature)
+- y => output variable/target (this is the value that we need to predict)
+- m => #training examples
+- h(x) => hypothesis function, defined as
+
+h_Θ(x) = Θ_0 + Θ_1 x
+
+- J(Θ_0, Θ_1) = (Σ_i=1^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+- Goal is to minimize the cost function, to find optimal values of Θ_0 and Θ_1 (to be substituted in the hypothesis function). This is achieved using gradient descent algorithm, defined as
+
+repeat until convergence {
+    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+}
+
+where,
+- *α*: is called the "learning rate"
+- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
+
+The only thing left is to substitute the real value of J(Θ_0, Θ_1) inside the gradient descent algorithm. To do that we need to know the partial derivative of J(Θ_0, Θ_1) with respect to Θ_0 and Θ_1. Without going into derivation of the partial derivatives (because
+
+- it is too complex and mathematically involved
+- i don't know it ;) and
+- knowing the derivation is not needed to correctly implement gradient descent
+
+), the gradient descent steps are defined (for our cost function for univariate linear regression) as:
+
+repeat until convergence {
+    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
+    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i)) * (x^(i))), for j = 1
+}
+
+That is we are inserting the actual values of the partial derivatives of J(Θ_0, Θ_1), with respect to Θ_0 and Θ_1 respectively in the gradient descent implementation. As mentioned previously, while implementing this step in octave (or any other software), it is extremely important to make both updates simultaneously.
+
+With this we have completed learning our first ML algorithm, viz the "univariate linear regression". I hope you have had as much fun learning it as I have teaching it. For me, a lot of my concepts have become clear while explaining things over here in so much detail! This alone has made the whole effort worthwhile. It has also given me motivation to continue this series. So in the upcoming posts I will try to explain other more advanced ML algorithms.
+
+Do leave comments below to share with me your experience here, especially (constructive) criticism about how I can strive to make these posts better. I am eagerly looking forward to hearing from you :)
+*** TODO ml-304: gradient descent and learning rate "α"
+    :CLOCK:
+    CLOCK: [2014-01-26 Sun 14:52]--[2014-01-26 Sun 15:22] =>  0:30
+    :END:
+Hi. In the last ***post***, we learnt about the "gradient descent" algorithm that is used to minimize our cost function "J(Θ_0, Θ_1)". Gradient descent algorithm was defined as:
+
+repeat until convergence {
+    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+}
+
+where,
+- *α*: is called the "learning rate"
+- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
+
+Today we will try to understand the working of the gradient descent algorithm itself. We will also learn about the role of the learning rate "α". Let us start by understanding a single step of the algorithm, viz
+
+Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+
+As we have mentioned above, the term "δ/δΘ_j J(Θ_0, Θ_1)" is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j. The partial derivative of a function defines the "slope" of that function at a given point. That is, in this case, this term defines the slope of our cost function at a given point.
+
+***image 2014-01-24-193040_958x530_scrot-1.png***
+
+We also know, from this ***post (ml-302)***, that the term Θ defines the slope of our hypothesis function "h(x)". So in a single step of the gradient descent algorithm, we are trying to change the slope Θ by a small amount (given by α times the slope of J).
+
+***image 2014-01-24-193040_958x530_scrot-1.png***
+
+How "small" is the change, is what is determined by the learning rate "α". If "α" is too small, then the changes will be very small and our gradient descent implementation will take a long time to converge (see the green points in the graph below). Whereas if "α" is too large, then gradient descent will take very big steps, and it is even possible for it to overshoot the minimum value and even diverge. But if "α" is just right (see red points in graph), then the implementation will take just the right steps and converge soon to the local minimum.
+
+***image 2014-01-24-193040_958x530_scrot.png***
+
+As such, the gradient descent algorithm can be used to find any minima (local or global). But because we have defined our cost function in such a way, that it is always convex and always has a global minima, our gradient descent implementation will always find the global minima!
+*** TODO ml-303: gradient descent
+    :CLOCK:
+    CLOCK: [2014-01-26 Sun 14:34]--[2014-01-26 Sun 14:51] =>  0:17
+    CLOCK: [2014-01-26 Sun 13:51]--[2014-01-26 Sun 14:00] =>  0:09
     :END:
     - body:
-Hello! Welcome back. Last time we studied the "univariate linear regression" ML algorithm ***here***. That time we took in a lot of new concepts, and not everything might be clear to all. So today we will dig a bit deeper into the various components and try to understand how and why they work correctly. This will help us analyze if our implementation is working correctly and also to debug things if it is not.
+Hi, welcome back! I hope you have been following our machine learning algorithm series in the last few posts. If you have, then you know that till now we have developed the basic framework for a particular algorithm called  "univariate linear regression" and the only step pending is to minimize our cost function "J(Θ_0, Θ_1)" so that we can find the optimal values of Θ_0 and Θ_1. Once we have these values, we can substitute them and arrive at the definition of our hypothesis function "h(x)" which will let us predict the values for our target variable "y".
 
-So lets begin with a quick review. First, the terminology
-- m => #examples
-- x => input variable/feature
-- y => output variable/target
-- x^(i), y^(i) => i^th training example
-- h_Θ(x) = Θ_0 + Θ_1 x => hypothesis function; it maps from 'x' to 'y'
-- J(Θ_0, Θ_1) = (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m) => cost function; it is a function of Θ (not 'x')
+I hope that things are clear till here. If they are, then lets move on to our last and final step of the algorithm, that is to minimize our cost function "J(Θ_0, Θ_1)". The general outline of the steps that we will follow to achieve this are:
 
-The algorithm flow is:
-- define the hypothesis function (univariate for now)
-- find optimal values for Θ_0 and Θ_1 by minimizing cost function
-- substitute Θ_0 and Θ_1 in h, to find the hypothesis function
-- now using this hypothesis function, we can predict value of 'y' for any given 'x'
+- start with some value of Θ_0, Θ_1 (a common choice is "0, 0")
+- keep changing Θ_0, Θ_1 to reduce J(Θ_0, Θ_1) until we hopefully end up at a minimum
 
-I remember that we have still not figured out how to do the minimization step, but we will get there, don't worry :)
-Today we will look in detail at the first few steps to improve our understanding of them to such an extent so as to
-- ensure that our implementation is correct
-- fix it if it is not
+Fortunately for us, as mentioned in the last ***post***, our cost function J(Θ_0, Θ_1) is a convex function (see image below), because of which a global minimum always exists. Due to this ...***
 
-So lets begin! To keep things simple, and our explanation easier to understand, lets assume that Θ_0 = 0, so that:
-- h_Θ(x) = Θ_1 x
-- J(Θ_1) = (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+***2014-01-24-193040_958x530_scrot.png***
 
-If we take the following data
+There are various minimization algorithms available, but the most commonly used (and the one that we will study now) is the "gradient descent" minimization algorithm. It is defined as below
 
-x = [0:10]
+repeat until convergence {
+    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+}
 
-and plot the following data
+where,
+- *α*: is called the "learning rate"
+- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
 
-hold on
-plot(x, x * 2)
-plot(x, x * 3)
-plot(x, x * 4)
-hold off
+Note that in the above algorithm, in any 1 step, _all_ of the Θ's should be updated simultaneously. So,
 
-***image***
+temp0 = Θ_0 - α δ/δΘ_0 J(Θ_0, Θ_1)
+temp1 = Θ_1 - α δ/δΘ_1 J(Θ_0, Θ_1)
+Θ_0 = temp0
+Θ_1 = temp1
 
-that is, we take different values of Θ_1 (2, 3 and 4 respectively), then we see that we get 3 different lines. All of them pass through the origin (because Θ_0 = 0), but have different angles. This means that our variable Θ_1 defines the angle (or slope) of our line. Also note that this line is the representation of our hypothesis function. It is a straight line because we our hypothesis function is a function of a single variable (x); it is "univariate" linear regression.
+is correct, but the following is not
 
-Lets move on to our cost function J. As before, visualization will help us understand it better. But to get there, we should first define some data. So lets borrow the data from the last ***post***
+temp0 = Θ_0 - α δ/δΘ_0 J(Θ_0, Θ_1)
+Θ_0 = temp0
+temp1 = Θ_1 - α δ/δΘ_1 J(Θ_0, Θ_1)
+Θ_1 = temp1
 
-|     x |    y |
-| 307.0 | 18.0 |
-| 350.0 | 15.0 |
-| 318.0 | 18.0 |
-| 304.0 | 16.0 |
-| 302.0 | 17.0 |
-| 429.0 | 15.0 |
-| 454.0 | 14.0 |
-| 440.0 | 14.0 |
-| 455.0 | 14.0 |
-| 390.0 | 15.0 |
+That is because in the second set of commands, when we are calculating temp1, we use the _new_ value of Θ_0, instead of the old one. This is a very important step and missing this can lead to a lot of difficult to find errors, so be careful about implementing this step.
 
-x = [307.0; 350.0; 318.0; 304.0; 302.0; 429.0; 454.0; 440.0; 455.0; 390.0];
-y = [18.0; 15.0; 18.0; 16.0; 17.0; 15.0; 14.0; 14.0; 14.0; 15.0];
-
-Also, for easy implementation, lets define our hypothesis to be function of both 'Θ_1' and 'x' as follows
-
-function h = hypothesis(theta, x)
-    h = theta * x;
-end;
-
-Similarly, let us define our cost function as follows
-
-function J = cost(theta, x, y)
-    m = length(x);
-    J = 0;
-    for i = 1:m
-      J = J + (((hypothesis(theta, x(i))) - y(i)) ^ 2);
-    endfor;
-    J = J / (2 * m);
-end;
-
-To get an understanding of how the cost varies with theta, we will take some theta values (say between -10 and 10 with a step of 0.5) and calculate the cost for these values. Then we can plot theta against these values to see how they interact with each other
-
-theta = [-10:0.5:10];
-theta = theta(:);
-costs = zeros(length(theta), 1);
-
-for i = 1:length(theta)
-    costs(i) = cost(theta(i), x, y);
-endfor;
-
-plot(theta, costs);
-
-***image***
-
-[a, b] = min(costs)
-theta(b)
-
-Our cost-function (J) is minimum (122.80) when theta = 0; but that is not the point. The point is that the above curve is a 'convex' curve, and has a global minimum. In the next post we are going to learn techniques to find this global minimum value, so keep watching this space for that!
-
-I hope that the above explanation convinces you that:
-- the cost function is defined in such a way that it has a global minimum (that needs to be found)
-- once we find the values of theta which minimize the cost (or error), we would get a hypothesis that will allow us to predict the value of y, given x
-
-So lets now meet in the next post in which we will see how to implement logic to minimize the cost-function J.
+That's it for today. In the next post we will dig deeper to get an understanding of how gradient descent works to find the minimal value of the cost function (J(Θ_0, Θ_1)) and in turn help us to find the optimal values of Θ_0 and Θ_1. We will also see what is the learning rate "α" and how it's value will have an impact on the performance of our gradient descent implementation.
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -7891,6 +7913,115 @@ Well, not so fast stud ;) We still have to figure out how to perform the last st
     - notes:
       - http://chemistry.about.com/od/chartstables/a/htmlgreek.htm (greek letter html code chart)
     - references:
+**** DONE ml-302: intuition for univariate linear regression
+    CLOSED: [2014-01-26 Sun 13:48]
+    :CLOCK:
+    CLOCK: [2014-01-24 Fri 19:08]--[2014-01-24 Fri 19:43] =>  0:35
+    CLOCK: [2014-01-24 Fri 18:39]--[2014-01-24 Fri 19:07] =>  0:28
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-26 Sun 13:48
+     :END:
+    - body:
+Hello! Welcome back. Last time we studied the "univariate linear regression" ML algorithm ***here***. That time we took in a lot of new concepts, and not everything might be clear to all. So today we will dig a bit deeper into the various components and try to understand how and why they work correctly. This will help us analyze if our implementation is working correctly and also to debug things if it is not.
+
+So lets begin with a quick review. First, the terminology
+- m => #examples
+- x => input variable/feature
+- y => output variable/target
+- x^(i), y^(i) => i^th training example
+- h_Θ(x) = Θ_0 + Θ_1 x => hypothesis function; it maps from 'x' to 'y'
+- J(Θ_0, Θ_1) = (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m) => cost function; it is a function of Θ (not 'x')
+
+The algorithm flow is:
+- define the hypothesis function (univariate for now)
+- find optimal values for Θ_0 and Θ_1 by minimizing cost function
+- substitute Θ_0 and Θ_1 in h, to find the hypothesis function
+- now using this hypothesis function, we can predict value of 'y' for any given 'x'
+
+I remember that we have still not figured out how to do the minimization step, but we will get there, don't worry :)
+Today we will look in detail at the first few steps to improve our understanding of them to such an extent so as to
+- ensure that our implementation is correct
+- fix it if it is not
+
+So lets begin! To keep things simple, and our explanation easier to understand, lets assume that Θ_0 = 0, so that:
+- h_Θ(x) = Θ_1 x
+- J(Θ_1) = (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+
+If we take the following data
+
+x = [0:10]
+
+and plot the following data
+
+hold on
+plot(x, x * 2)
+plot(x, x * 3)
+plot(x, x * 4)
+hold off
+
+***image***
+
+that is, we take different values of Θ_1 (2, 3 and 4 respectively), then we see that we get 3 different lines. All of them pass through the origin (because Θ_0 = 0), but have different angles. This means that our variable Θ_1 defines the angle (or slope) of our line. Also note that this line is the representation of our hypothesis function. It is a straight line because we our hypothesis function is a function of a single variable (x); it is "univariate" linear regression.
+
+Lets move on to our cost function J. As before, visualization will help us understand it better. But to get there, we should first define some data. So lets borrow the data from the last ***post***
+
+|     x |    y |
+| 307.0 | 18.0 |
+| 350.0 | 15.0 |
+| 318.0 | 18.0 |
+| 304.0 | 16.0 |
+| 302.0 | 17.0 |
+| 429.0 | 15.0 |
+| 454.0 | 14.0 |
+| 440.0 | 14.0 |
+| 455.0 | 14.0 |
+| 390.0 | 15.0 |
+
+x = [307.0; 350.0; 318.0; 304.0; 302.0; 429.0; 454.0; 440.0; 455.0; 390.0];
+y = [18.0; 15.0; 18.0; 16.0; 17.0; 15.0; 14.0; 14.0; 14.0; 15.0];
+
+Also, for easy implementation, lets define our hypothesis to be function of both 'Θ_1' and 'x' as follows
+
+function h = hypothesis(theta, x)
+    h = theta * x;
+end;
+
+Similarly, let us define our cost function as follows
+
+function J = cost(theta, x, y)
+    m = length(x);
+    J = 0;
+    for i = 1:m
+      J = J + (((hypothesis(theta, x(i))) - y(i)) ^ 2);
+    endfor;
+    J = J / (2 * m);
+end;
+
+To get an understanding of how the cost varies with theta, we will take some theta values (say between -10 and 10 with a step of 0.5) and calculate the cost for these values. Then we can plot theta against these values to see how they interact with each other
+
+theta = [-10:0.5:10];
+theta = theta(:);
+costs = zeros(length(theta), 1);
+
+for i = 1:length(theta)
+    costs(i) = cost(theta(i), x, y);
+endfor;
+
+plot(theta, costs);
+
+***image***
+
+[a, b] = min(costs)
+theta(b)
+
+Our cost-function (J) is minimum (122.80) when theta = 0; but that is not the point. The point is that the above curve is a 'convex' curve, and has a global minimum. In the next post we are going to learn techniques to find this global minimum value, so keep watching this space for that!
+
+I hope that the above explanation convinces you that:
+- the cost function is defined in such a way that it has a global minimum (that needs to be found)
+- once we find the values of theta which minimize the cost (or error), we would get a hypothesis that will allow us to predict the value of y, given x
+
+So lets now meet in the next post in which we will see how to implement logic to minimize the cost-function J.
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
