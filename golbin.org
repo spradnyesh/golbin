@@ -4,10 +4,6 @@
 ** [utils] move common functionality (including (partial) views to web-utils
    - [ ] login
 ** [tests] write tests for web-utils
-** TODO [refactor] split utils into a separate project web-utils
-   :CLOCK:
-   CLOCK: [2014-01-27 Mon 13:12]--[2014-01-27 Mon 13:25] =>  0:13
-   :END:
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -4700,6 +4696,15 @@
     :ARCHIVE_TIME: 2014-01-26 Sun 18:30
     :END:
     - XXX use restas upgrades (decorators not working in define-module)
+*** DONE [refactor] split utils into a separate project web-utils
+    CLOSED: [2014-01-27 Mon 13:44]
+    :CLOCK:
+    CLOCK: [2014-01-27 Mon 13:25]--[2014-01-27 Mon 13:44] =>  0:19
+    CLOCK: [2014-01-27 Mon 13:12]--[2014-01-27 Mon 13:25] =>  0:13
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-27 Mon 13:44
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/

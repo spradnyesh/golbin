@@ -1,6 +1,6 @@
 
 (defpackage :hawksbill.golbin.model
-  (:use :cl :cl-memcached :cl-prevalence :hawksbill.utils :local-time :json :split-sequence :cl-ppcre :trivial-utf-8 :flexi-streams)
+  (:use :cl :cl-memcached :cl-prevalence :web-utils :local-time :json :split-sequence :cl-ppcre :trivial-utf-8 :flexi-streams)
   (:import-from :hunchentoot :session-value :url-encode)
   (:export :db-reconnect
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
