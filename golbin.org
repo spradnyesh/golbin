@@ -4,7 +4,10 @@
 ** [utils] move common functionality (including (partial) views to web-utils
    - [ ] login
 ** [tests] write tests for web-utils
-** [refactor] split utils into a separate project web-utils
+** TODO [refactor] split utils into a separate project web-utils
+   :CLOCK:
+   CLOCK: [2014-01-27 Mon 13:12]--[2014-01-27 Mon 13:25] =>  0:13
+   :END:
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -4846,124 +4849,6 @@ Also, simple things get complex too soon, because
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 ** wrote (not published)
-*** TODO ml-305: univariate linear regression
-    :CLOCK:
-    CLOCK: [2014-01-26 Sun 15:24]--[2014-01-26 Sun 15:40] =>  0:16
-    :END:
-In the last posts ***here (ml-303)*** and ***here (ml-304)***, we looked in much depth at the "gradient descent" minimization algorithm. Today we will complete the puzzle by fitting that last piece in the whole jigsaw of the "univariate linear regression" ML algorithm that we have been studying in this 30x series.
-
-To do that, lets recap what we have learnt so far:
-- x => input variable/feature (in "univariate", we have only 1 feature)
-- y => output variable/target (this is the value that we need to predict)
-- m => #training examples
-- h(x) => hypothesis function, defined as
-
-h_Θ(x) = Θ_0 + Θ_1 x
-
-- J(Θ_0, Θ_1) = (Σ_i=1^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
-- Goal is to minimize the cost function, to find optimal values of Θ_0 and Θ_1 (to be substituted in the hypothesis function). This is achieved using gradient descent algorithm, defined as
-
-repeat until convergence {
-    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
-}
-
-where,
-- *α*: is called the "learning rate"
-- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
-
-The only thing left is to substitute the real value of J(Θ_0, Θ_1) inside the gradient descent algorithm. To do that we need to know the partial derivative of J(Θ_0, Θ_1) with respect to Θ_0 and Θ_1. Without going into derivation of the partial derivatives (because
-
-- it is too complex and mathematically involved
-- i don't know it ;) and
-- knowing the derivation is not needed to correctly implement gradient descent
-
-), the gradient descent steps are defined (for our cost function for univariate linear regression) as:
-
-repeat until convergence {
-    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
-    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i)) * (x^(i))), for j = 1
-}
-
-That is we are inserting the actual values of the partial derivatives of J(Θ_0, Θ_1), with respect to Θ_0 and Θ_1 respectively in the gradient descent implementation. As mentioned previously, while implementing this step in octave (or any other software), it is extremely important to make both updates simultaneously.
-
-With this we have completed learning our first ML algorithm, viz the "univariate linear regression". I hope you have had as much fun learning it as I have teaching it. For me, a lot of my concepts have become clear while explaining things over here in so much detail! This alone has made the whole effort worthwhile. It has also given me motivation to continue this series. So in the upcoming posts I will try to explain other more advanced ML algorithms.
-
-Do leave comments below to share with me your experience here, especially (constructive) criticism about how I can strive to make these posts better. I am eagerly looking forward to hearing from you :)
-*** TODO ml-304: gradient descent and learning rate "α"
-    :CLOCK:
-    CLOCK: [2014-01-26 Sun 14:52]--[2014-01-26 Sun 15:22] =>  0:30
-    :END:
-Hi. In the last ***post***, we learnt about the "gradient descent" algorithm that is used to minimize our cost function "J(Θ_0, Θ_1)". Gradient descent algorithm was defined as:
-
-repeat until convergence {
-    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
-}
-
-where,
-- *α*: is called the "learning rate"
-- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
-
-Today we will try to understand the working of the gradient descent algorithm itself. We will also learn about the role of the learning rate "α". Let us start by understanding a single step of the algorithm, viz
-
-Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
-
-As we have mentioned above, the term "δ/δΘ_j J(Θ_0, Θ_1)" is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j. The partial derivative of a function defines the "slope" of that function at a given point. That is, in this case, this term defines the slope of our cost function at a given point.
-
-***image 2014-01-24-193040_958x530_scrot-1.png***
-
-We also know, from this ***post (ml-302)***, that the term Θ defines the slope of our hypothesis function "h(x)". So in a single step of the gradient descent algorithm, we are trying to change the slope Θ by a small amount (given by α times the slope of J).
-
-***image 2014-01-24-193040_958x530_scrot-1.png***
-
-How "small" is the change, is what is determined by the learning rate "α". If "α" is too small, then the changes will be very small and our gradient descent implementation will take a long time to converge (see the green points in the graph below). Whereas if "α" is too large, then gradient descent will take very big steps, and it is even possible for it to overshoot the minimum value and even diverge. But if "α" is just right (see red points in graph), then the implementation will take just the right steps and converge soon to the local minimum.
-
-***image 2014-01-24-193040_958x530_scrot.png***
-
-As such, the gradient descent algorithm can be used to find any minima (local or global). But because we have defined our cost function in such a way, that it is always convex and always has a global minima, our gradient descent implementation will always find the global minima!
-*** TODO ml-303: gradient descent
-    :CLOCK:
-    CLOCK: [2014-01-26 Sun 14:34]--[2014-01-26 Sun 14:51] =>  0:17
-    CLOCK: [2014-01-26 Sun 13:51]--[2014-01-26 Sun 14:00] =>  0:09
-    :END:
-    - body:
-Hi, welcome back! I hope you have been following our machine learning algorithm series in the last few posts. If you have, then you know that till now we have developed the basic framework for a particular algorithm called  "univariate linear regression" and the only step pending is to minimize our cost function "J(Θ_0, Θ_1)" so that we can find the optimal values of Θ_0 and Θ_1. Once we have these values, we can substitute them and arrive at the definition of our hypothesis function "h(x)" which will let us predict the values for our target variable "y".
-
-I hope that things are clear till here. If they are, then lets move on to our last and final step of the algorithm, that is to minimize our cost function "J(Θ_0, Θ_1)". The general outline of the steps that we will follow to achieve this are:
-
-- start with some value of Θ_0, Θ_1 (a common choice is "0, 0")
-- keep changing Θ_0, Θ_1 to reduce J(Θ_0, Θ_1) until we hopefully end up at a minimum
-
-Fortunately for us, as mentioned in the last ***post***, our cost function J(Θ_0, Θ_1) is a convex function (see image below), because of which a global minimum always exists. Due to this ...***
-
-***2014-01-24-193040_958x530_scrot.png***
-
-There are various minimization algorithms available, but the most commonly used (and the one that we will study now) is the "gradient descent" minimization algorithm. It is defined as below
-
-repeat until convergence {
-    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
-}
-
-where,
-- *α*: is called the "learning rate"
-- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
-
-Note that in the above algorithm, in any 1 step, _all_ of the Θ's should be updated simultaneously. So,
-
-temp0 = Θ_0 - α δ/δΘ_0 J(Θ_0, Θ_1)
-temp1 = Θ_1 - α δ/δΘ_1 J(Θ_0, Θ_1)
-Θ_0 = temp0
-Θ_1 = temp1
-
-is correct, but the following is not
-
-temp0 = Θ_0 - α δ/δΘ_0 J(Θ_0, Θ_1)
-Θ_0 = temp0
-temp1 = Θ_1 - α δ/δΘ_1 J(Θ_0, Θ_1)
-Θ_1 = temp1
-
-That is because in the second set of commands, when we are calculating temp1, we use the _new_ value of Θ_0, instead of the old one. This is a very important step and missing this can lead to a lot of difficult to find errors, so be careful about implementing this step.
-
-That's it for today. In the next post we will dig deeper to get an understanding of how gradient descent works to find the minimal value of the cost function (J(Θ_0, Θ_1)) and in turn help us to find the optimal values of Θ_0 and Θ_1. We will also see what is the learning rate "α" and how it's value will have an impact on the performance of our gradient descent implementation.
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -5805,8 +5690,7 @@ Do you have productivity techniques that work well for you? I will be happy to l
          - http://www.flickr.com/photos/44458147@N00/263228000/
          - http://www.flickr.com/photos/slimcoincidence/1454276711/
          - http://www.flickr.com/photos/dealingwith/4295488113/
-***** Archive                                                       :ARCHIVE:
-****** DONE git week, part 1
+***** DONE git week, part 1
     CLOSED: [2013-12-17 Tue 13:54]
    :CLOCK:
    CLOCK: [2013-12-16 Mon 14:18]--[2013-12-16 Mon 14:27] =>  0:09
@@ -5924,7 +5808,7 @@ ps:
 </ul>
    - notes:
    - references:
-****** DONE git week, part 2
+***** DONE git week, part 2
     CLOSED: [2013-12-20 Fri 13:16]
     :CLOCK:
     CLOCK: [2013-12-12 Thu 20:17]--[2013-12-12 Thu 20:20] =>  0:03
@@ -5998,7 +5882,7 @@ Remember, both the above actions are destructive and may mess up your repository
 	Remember, both the above actions are destructive and may mess up your repository, so it&#39;s best to try them out on a clone first. Also, do NOT do them if you have already published your changes to prevent others from facing non-fast-forward pull errors.</p>
     - notes:
     - references:
-****** DONE git week, part 3
+***** DONE git week, part 3
     CLOSED: [2013-12-20 Fri 13:17]
     :CLOCK:
     CLOCK: [2013-12-13 Fri 16:46]--[2013-12-13 Fri 16:55] =>  0:09
@@ -6093,7 +5977,7 @@ For more details (advanced usage of git-bisect), RTFM and/or visit [[http://git-
 	For more details (advanced usage of git-bisect), RTFM and/or visit <a href="http://git-scm.com/docs/git-bisect">here</a>. Do share with us about if you have used git bisect before and how did it help you</p>
     - notes:
     - references:
-****** DONE git week, part 4
+***** DONE git week, part 4
       CLOSED: [2014-01-06 Mon 13:38]
     :CLOCK:
     CLOCK: [2013-12-15 Sun 15:55]--[2013-12-15 Sun 16:08] =>  0:13
@@ -6234,7 +6118,7 @@ I hope that you have found this story as fun and informative to read as I have f
 	I hope that you have found this story as fun and informative to read as I have found it to write. Do share your thoughts about both git and my writing :)</p>
     - notes:
     - references:
-****** DONE git week, part 5
+***** DONE git week, part 5
       CLOSED: [2014-01-06 Mon 13:38]
     :CLOCK:
     CLOCK: [2013-12-16 Mon 19:36]--[2013-12-16 Mon 19:44] =>  0:08
@@ -8022,6 +7906,136 @@ I hope that the above explanation convinces you that:
 - once we find the values of theta which minimize the cost (or error), we would get a hypothesis that will allow us to predict the value of y, given x
 
 So lets now meet in the next post in which we will see how to implement logic to minimize the cost-function J.
+**** DONE ml-303: gradient descent
+    CLOSED: [2014-01-27 Mon 13:20]
+    :CLOCK:
+    CLOCK: [2014-01-26 Sun 14:34]--[2014-01-26 Sun 14:51] =>  0:17
+    CLOCK: [2014-01-26 Sun 13:51]--[2014-01-26 Sun 14:00] =>  0:09
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-27 Mon 13:20
+     :END:
+    - body:
+Hi, welcome back! I hope you have been following our machine learning algorithm series in the last few posts. If you have, then you know that till now we have developed the basic framework for a particular algorithm called  "univariate linear regression" and the only step pending is to minimize our cost function "J(Θ_0, Θ_1)" so that we can find the optimal values of Θ_0 and Θ_1. Once we have these values, we can substitute them and arrive at the definition of our hypothesis function "h(x)" which will let us predict the values for our target variable "y".
+
+I hope that things are clear till here. If they are, then lets move on to our last and final step of the algorithm, that is to minimize our cost function "J(Θ_0, Θ_1)". The general outline of the steps that we will follow to achieve this are:
+
+- start with some value of Θ_0, Θ_1 (a common choice is "0, 0")
+- keep changing Θ_0, Θ_1 to reduce J(Θ_0, Θ_1) until we hopefully end up at a minimum
+
+Fortunately for us, as mentioned in the last ***post***, our cost function J(Θ_0, Θ_1) is a convex function (see image below), because of which a global minimum always exists. Due to this ...***
+
+***2014-01-24-193040_958x530_scrot.png***
+
+There are various minimization algorithms available, but the most commonly used (and the one that we will study now) is the "gradient descent" minimization algorithm. It is defined as below
+
+repeat until convergence {
+    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+}
+
+where,
+- *α*: is called the "learning rate"
+- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
+
+Note that in the above algorithm, in any 1 step, _all_ of the Θ's should be updated simultaneously. So,
+
+temp0 = Θ_0 - α δ/δΘ_0 J(Θ_0, Θ_1)
+temp1 = Θ_1 - α δ/δΘ_1 J(Θ_0, Θ_1)
+Θ_0 = temp0
+Θ_1 = temp1
+
+is correct, but the following is not
+
+temp0 = Θ_0 - α δ/δΘ_0 J(Θ_0, Θ_1)
+Θ_0 = temp0
+temp1 = Θ_1 - α δ/δΘ_1 J(Θ_0, Θ_1)
+Θ_1 = temp1
+
+That is because in the second set of commands, when we are calculating temp1, we use the _new_ value of Θ_0, instead of the old one. This is a very important step and missing this can lead to a lot of difficult to find errors, so be careful about implementing this step.
+
+That's it for today. In the next post we will dig deeper to get an understanding of how gradient descent works to find the minimal value of the cost function (J(Θ_0, Θ_1)) and in turn help us to find the optimal values of Θ_0 and Θ_1. We will also see what is the learning rate "α" and how it's value will have an impact on the performance of our gradient descent implementation.
+**** DONE ml-304: gradient descent and learning rate "α"
+    CLOSED: [2014-01-27 Mon 13:20]
+    :CLOCK:
+    CLOCK: [2014-01-26 Sun 14:52]--[2014-01-26 Sun 15:22] =>  0:30
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-27 Mon 13:20
+     :END:
+Hi. In the last ***post***, we learnt about the "gradient descent" algorithm that is used to minimize our cost function "J(Θ_0, Θ_1)". Gradient descent algorithm was defined as:
+
+repeat until convergence {
+    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+}
+
+where,
+- *α*: is called the "learning rate"
+- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
+
+Today we will try to understand the working of the gradient descent algorithm itself. We will also learn about the role of the learning rate "α". Let us start by understanding a single step of the algorithm, viz
+
+Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+
+As we have mentioned above, the term "δ/δΘ_j J(Θ_0, Θ_1)" is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j. The partial derivative of a function defines the "slope" of that function at a given point. That is, in this case, this term defines the slope of our cost function at a given point.
+
+***image 2014-01-24-193040_958x530_scrot-1.png***
+
+We also know, from this ***post (ml-302)***, that the term Θ defines the slope of our hypothesis function "h(x)". So in a single step of the gradient descent algorithm, we are trying to change the slope Θ by a small amount (given by α times the slope of J).
+
+***image 2014-01-24-193040_958x530_scrot-1.png***
+
+How "small" is the change, is what is determined by the learning rate "α". If "α" is too small, then the changes will be very small and our gradient descent implementation will take a long time to converge (see the green points in the graph below). Whereas if "α" is too large, then gradient descent will take very big steps, and it is even possible for it to overshoot the minimum value and even diverge. But if "α" is just right (see red points in graph), then the implementation will take just the right steps and converge soon to the local minimum.
+
+***image 2014-01-24-193040_958x530_scrot.png***
+
+As such, the gradient descent algorithm can be used to find any minima (local or global). But because we have defined our cost function in such a way, that it is always convex and always has a global minima, our gradient descent implementation will always find the global minima!
+**** DONE ml-305: univariate linear regression
+    CLOSED: [2014-01-27 Mon 13:20]
+    :CLOCK:
+    CLOCK: [2014-01-26 Sun 15:24]--[2014-01-26 Sun 15:40] =>  0:16
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-27 Mon 13:20
+     :END:
+In the last posts ***here (ml-303)*** and ***here (ml-304)***, we looked in much depth at the "gradient descent" minimization algorithm. Today we will complete the puzzle by fitting that last piece in the whole jigsaw of the "univariate linear regression" ML algorithm that we have been studying in this 30x series.
+
+To do that, lets recap what we have learnt so far:
+- x => input variable/feature (in "univariate", we have only 1 feature)
+- y => output variable/target (this is the value that we need to predict)
+- m => #training examples
+- h(x) => hypothesis function, defined as
+
+h_Θ(x) = Θ_0 + Θ_1 x
+
+- J(Θ_0, Θ_1) = (Σ_i=1^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+- Goal is to minimize the cost function, to find optimal values of Θ_0 and Θ_1 (to be substituted in the hypothesis function). This is achieved using gradient descent algorithm, defined as
+
+repeat until convergence {
+    Θ_j = Θ_j - α δ/δΘ_j J(Θ_0, Θ_1) (for j = 0, 1)
+}
+
+where,
+- *α*: is called the "learning rate"
+- *δ/δΘ_j J(Θ_0, Θ_1)*: is the partial derivative of the cost function (J(Θ_0, Θ_1)) with respect to Θ_j
+
+The only thing left is to substitute the real value of J(Θ_0, Θ_1) inside the gradient descent algorithm. To do that we need to know the partial derivative of J(Θ_0, Θ_1) with respect to Θ_0 and Θ_1. Without going into derivation of the partial derivatives (because
+
+- it is too complex and mathematically involved
+- i don't know it ;) and
+- knowing the derivation is not needed to correctly implement gradient descent
+
+), the gradient descent steps are defined (for our cost function for univariate linear regression) as:
+
+repeat until convergence {
+    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
+    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i)) * (x^(i))), for j = 1
+}
+
+That is we are inserting the actual values of the partial derivatives of J(Θ_0, Θ_1), with respect to Θ_0 and Θ_1 respectively in the gradient descent implementation. As mentioned previously, while implementing this step in octave (or any other software), it is extremely important to make both updates simultaneously.
+
+With this we have completed learning our first ML algorithm, viz the "univariate linear regression". I hope you have had as much fun learning it as I have teaching it. For me, a lot of my concepts have become clear while explaining things over here in so much detail! This alone has made the whole effort worthwhile. It has also given me motivation to continue this series. So in the upcoming posts I will try to explain other more advanced ML algorithms.
+
+Do leave comments below to share with me your experience here, especially (constructive) criticism about how I can strive to make these posts better. I am eagerly looking forward to hearing from you :)
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
