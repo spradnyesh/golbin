@@ -140,8 +140,8 @@
                                        (= subcat (id (subcat photo)))
                                        t)
                                    (if tags
-                                       (when (subset (split-string-by-delim tags ",")
-                                                     (mapcar #'slug (tags photo)))
+                                       (when (subsetp (split-string-by-delim tags ",")
+                                                      (mapcar #'slug (tags photo)))
                                          t)
                                        t)))
                           (if (string-equal who "me")
