@@ -1,9 +1,6 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [utils] move common functionality (including (partial) views to web-utils
-   - [ ] login
-** [tests] write tests for web-utils
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -31,10 +28,6 @@
    - http://voices.yahoo.com
    - http://www.squidoo.com/
    - http://hmexpress.happymelly.com
-** [refactor][utils] utils/list/make-set
-   - rename to remove-duplicates
-   - why is it needed in model/article/get-active-articles (the original list already does not contain duplicates)
-   - and other places too? ???
 ** [fed] every ajax post need not result in get
    - eg fe/comment
 ** [fed] (dis)like comments
@@ -136,8 +129,6 @@
 ** [fe] "load more" pagination for comments
 ** [fe] like/unlike for comments
 ** [ed] token key (crumb) should be time limited
-** [utils] replace utils/locale w/ cl-locale
-** [utils] cl-dimensions, instead of utils/dimensions
 ** [ed] emails to authors
    - [X] approval of add/edit article(s)
    - [ ] daily batch email of comments
@@ -4704,6 +4695,14 @@
     :END:
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-01-27 Mon 13:44
+    :END:
+*** DONE [bug][ed] hawksbill.utils -> web-utils has broken ed css
+    CLOSED: [2014-01-28 Tue 16:20]
+    :CLOCK:
+    CLOCK: [2014-01-28 Tue 16:09]--[2014-01-28 Tue 16:20] =>  0:11
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-01-28 Tue 16:20
     :END:
 * notes
 ** misc
