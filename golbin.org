@@ -1,6 +1,7 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [bug][ed] js not working in edit article page
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -4760,7 +4761,76 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
-*** ml-203: octave *write this after 30x is complete*
+*** TODO ml-306: "multivariate linear regression"
+    :CLOCK:
+    CLOCK: [2014-01-28 Tue 16:55]--[2014-01-28 Tue 17:17] =>  0:22
+    :END:
+    - summary
+    - tags: machine learning, multivariate, linear, regression
+    - body
+Hi! In the last ***post (ml-305)***, we completed learning our very first machine learning algorithm, viz "linear regression". As you might remember from ***here (ml-102)***, this is a type of "supervised learning" ML algorithm. However, during our study, we had only 1 feature (or input variable), so that what we learnt was really the "univariate linear regression". Today we will take a look at how to handle a more real life situation, that is when we have more than one feature. Such an algorithm is called the "multivariate linear regression" ML algorithm.
+
+To recap, for univariate linear regression, the steps were:
+
+- *x* => input variable/feature (in "univariate", we have only 1 feature)
+- *y* => output variable/target (this is the value that we need to predict)
+- *m* => #training examples
+- *h(x)* => hypothesis function, defined as
+
+h_Θ(x) = Θ_0 + Θ_1 x
+
+- *cost function* => J(Θ_0, Θ_1) = (Σ_i=1^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+- minimization of the cost function was done using the "gradient descent" algorithm which was implemented as
+
+repeat until convergence {
+    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
+    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i)) * (x^(i))), for j = 1
+}
+
+For the "multivariate" version of "linear regression" ML algorithm, we will have multiple features x_1, x_2, x_3, etc. We define one more notation
+
+- *n* => number of features
+
+In this case our hypothesis function "h(x)" will change as:
+
+h_Θ(x) = Θ_0 + Θ_1 x_1 + Θ_2 x_2 + Θ_3 x_3 + ... + Θ_n x_n
+
+or
+
+h_Θ(x) = Θ_0 + Σ_j=1^n Θ_j x_j
+
+It is customary (makes later maths easier) to add an extra feature x_0 whose value is always "1", so that h(x) becomes
+
+h_Θ(x) = Σ_j=0^n Θ_j x_j
+
+Our cost function too will change as:
+
+J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
+
+And so will the gradient descent:
+
+repeat until convergence {
+    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
+    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_1) - y^(i)) * (x^(i)_1)), for j = 1
+    Θ_2 = Θ_2 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_2) - y^(i)) * (x^(i)_2)), for j = 1
+    ...
+    Θ_n = Θ_n - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_n) - y^(i)) * (x^(i)_2)), for j = 1
+}
+
+or, re-written simply:
+
+repeat until convergence {
+    Θ_j = Θ_j - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_j) - y^(i)) * (x^(i)_j)), for j = 0 to n
+}
+
+As always, remember that the above updates to all Θ_j (for j = 0 to n) should happen simultaneously for a correct implementation (see ***here (ml-305)***)
+
+Once we compute our hypothesis function using the above implementation, it is then trivial to predict "y" for any given input set of features
+
+y = h(x)
+  = Σ_j=0^n Θ_j x_j
+
+That's it for today. In the next post we will learn how to implement these algorithms using "vectorization" for faster performance. So stay tuned!
 *** template
     - toc:
     - cat/subcat:
