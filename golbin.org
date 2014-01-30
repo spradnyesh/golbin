@@ -1,6 +1,9 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** [bug][ed] js not working in edit article page
+** [ed] remove "pagination" outside of "articles"
+   - to prevent border-bottom "dotted"
 ** TODO [articles] investigate math rendering from org to html
    :CLOCK:
    CLOCK: [2014-01-29 Wed 12:55]--[2014-01-29 Wed 12:57] =>  0:02
@@ -8,7 +11,6 @@
    - http://orgmode.org/manual/HTML-export.html#HTML-export
    - http://docs.mathjax.org/en/latest/installation.html
      - http://docs.mathjax.org/en/latest/configuration.html#loading
-** [bug][ed] js not working in edit article page
 ** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
 ** [ed] 'pre' element in RTE
 ** TODO [fe] google site search
@@ -4720,6 +4722,7 @@
      - body -> div.goog-transliterate-labswidget -> iframe -> #document -> body
        - font-family: "lohit hindi"
    - http://beta.quicklisp.org/dist/quicklisp/2012-07-03/distinfo.txt
+   - http://htmlhelp.com/reference/html40/entities/symbols.html
 ** ideas
    - https://github.com/Inaimathi/formlets
    - http://kuomarc.wordpress.com/2012/05/13/12-steps-to-build-and-deploy-common-lisp-in-the-cloud-and-comparing-rails/
@@ -4768,6 +4771,14 @@
     - http://www.dollarshower.com/why-many-of-your-readers-are-passive/
     - http://www.shoutmeloud.com/how-commenting-can-help-you-get-1000-feed-subscriber-in-few-days.html
 ** write
+*** TODO ml-404: polynomial regression
+    :CLOCK:
+    :END:
+    - toc:
+    - tags:
+    - summary:
+    - body:
+    - html:
 *** template
     - toc:
     - cat/subcat:
@@ -4775,6 +4786,7 @@
     - lead image:
     - summary:
     - body:
+    - html:
     - notes:
     - references:
 *** TODO search for topic
@@ -4860,82 +4872,578 @@ Also, simple things get complex too soon, because
       - http://weirdblog.wordpress.com/2007/09/04/leadership-styles-dictatorial-authoritative-consultative-participative/
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 *** Archive                                                         :ARCHIVE:
-**** DONE ml-306: "multivariate linear regression"
-    CLOSED: [2014-01-28 Tue 23:45]
+** wrote (not published)
+*** TODO ml-403: feature scaling
     :CLOCK:
-    CLOCK: [2014-01-28 Tue 23:05]--[2014-01-28 Tue 23:45] =>  0:40
-    CLOCK: [2014-01-28 Tue 16:55]--[2014-01-28 Tue 17:17] =>  0:22
+    CLOCK: [2014-01-30 Thu 18:19]--[2014-01-30 Thu 18:23] =>  0:04
+    CLOCK: [2014-01-30 Thu 17:24]--[2014-01-30 Thu 18:07] =>  0:43
+    CLOCK: [2014-01-30 Thu 16:24]--[2014-01-30 Thu 16:35] =>  0:11
     :END:
-     :PROPERTIES:
-     :ARCHIVE_TIME: 2014-01-29 Wed 12:55
-     :END:
-    - summary
-    - tags: machine learning, multivariate, linear, regression
-    - body
-Hi! In the last ***post (ml-305)***, we completed learning our very first machine learning algorithm, viz "linear regression". As you might remember from ***here (ml-102)***, this is a type of "supervised learning" ML algorithm. However, during our study, we had only 1 feature (or input variable), so that what we learnt was really the "univariate linear regression". Today we will take a look at how to handle a more real life situation, that is when we have more than one feature. Such an algorithm is called the "multivariate linear regression" ML algorithm.
+    - toc:
+      - features should be on a similar scale
+      - otherwise gradient descent will take a long time to reach minima
+        - it will take a lot more #steps
+        - because the contour map is very narrow ellipse
+      - scale features (get every feature into approx -1 <= x <= 1)
+      - mean normalization
+        - x_i = (x_i - m_i) / s_i
+          - where
+          - m_i = avg value of x_i (for all i)
+          - s_i = range (max - min)
+            - or s_i = std. deviation of x_i (for all i)
+          - i = i^th feature (not i^th example)
+    - tags: machine learning, feature scaling, 30x, mean, normalization, scaling, scale, contour, map, minima, standard deviation, average, range, feature
+    - summary: In this post we will look at one more technique which should be applied to the multivariate version of the linear regression ML algorithm to improve its performance, viz "feature scaling".
+    - body:
+Hello. Welcome back. I hope that you are enjoying this series on machine learning, especially the last 2 posts  ***here (ml-402)*** and ***here (ml-203)*** where we implemented the "multivariate linear regression" ML algorithm and even improved its performance. In this post we will look at one more technique which should be applied to the multivariate version of the linear regression ML algorithm to improve its performance, viz "feature scaling". The reason why I say that this technique should be used for the "multivariate" version, is because by using this technique we solve a certain problem from which the "univariate" version does not suffer.
 
-To recap, for univariate linear regression, the steps were:
+Lets take a concrete example to throw more light on what I am trying to say. For this, let's consider this [[http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data][data]], a small snippet of which is shown below:
 
-- *x* => input variable/feature (in "univariate", we have only 1 feature)
-- *y* => output variable/target (this is the value that we need to predict)
-- *m* => #training examples
-- *h(x)* => hypothesis function, defined as
+| 18.0 | 8 | 307.0 | 130.0 | 3504. | 12.0 | 70 | 1 | "chevrolet chevelle malibu"    |
+| 15.0 | 8 | 350.0 | 165.0 | 3693. | 11.5 | 70 | 1 | "buick skylark 320"            |
+| 18.0 | 8 | 318.0 | 150.0 | 3436. | 11.0 | 70 | 1 | "plymouth satellite"           |
+| 16.0 | 8 | 304.0 | 150.0 | 3433. | 12.0 | 70 | 1 | "amc rebel sst"                |
+| 17.0 | 8 | 302.0 | 140.0 | 3449. | 10.5 | 70 | 1 | "ford torino"                  |
+| 15.0 | 8 | 429.0 | 198.0 | 4341. | 10.0 | 70 | 1 | "ford galaxie 500"             |
+| 14.0 | 8 | 454.0 | 220.0 | 4354. |  9.0 | 70 | 1 | "chevrolet impala"             |
+| 14.0 | 8 | 440.0 | 215.0 | 4312. |  8.5 | 70 | 1 | "plymouth fury iii"            |
+| 14.0 | 8 | 455.0 | 225.0 | 4425. | 10.0 | 70 | 1 | "pontiac catalina"             |
+| 15.0 | 8 | 390.0 | 190.0 | 3850. |  8.5 | 70 | 1 | "amc ambassador dpl"           |
 
-h_Θ(x) = Θ_0 + Θ_1 x
+If you remember, we have seen this dataset earlier ***here (ml-301)***. Let's ignore the first column for now, because that is the target variable, so that leaves us with 8 features. We notice that (in our limited dataset snippet):
 
-- *cost function* => J(Θ_0, Θ_1) = (Σ_i=1^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
-- minimization of the cost function was done using the "gradient descent" algorithm which was implemented as
+- 1st feature ranges between 4 and 8 (in the complete dataset)
+- 2nd feature ranges between 300 and 500 (approx)
+- 3rd feature ranges between 100 and 250 (approx)
+- 4th feature ranges between 3400 and 4500 (approx)
+- 5th feature ranges between 8 and 12 (approx)
+- 6th feature ranges between 70 and 85 (in the complete dataset)
+- 7th feature ranges between 1 and 3 (in the complete dataset)
+- 8th feature is a string (so we'll ignore it for this discussion)
 
-repeat until convergence {
-    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
-    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i)) * (x^(i))), for j = 1
-}
+The reason that we are interested in the "range" of values that our features take is because depending on the relative ranges that the feature variables take the shape of the cost function will differ. And this will impact the performance of our implementation.
 
-For the "multivariate" version of "linear regression" ML algorithm, we will have multiple features x_1, x_2, x_3, etc. We define one more notation
+I hope that you remember from ***this (ml-302)*** and ***this (ml-303)*** posts that our cost function "J(&theta;)" always has a convex (like a bowl) shape. When we see a bowl from the top, we see a circle. But for our cost function, it can vary between being circular to an extremely thin [[http://en.wikipedia.org/wiki/Ellipse][ellipse]]. Whether it will be a circle or an ellipse is determined by the relative ranges of the features.
 
-- *n* => number of features
+Also, the more circular the shape of our cost function, the better is the performance of the gradient descent implementation. That is because in this case the gradient descent needs much lesser number of steps (iterations) to reach the global optima. As against this, if the shape is narrow, then the cost can oscillate around the major axis of the ellipse and take lot of iterations to reach the global optima.
 
-In this case our hypothesis function "h(x)" will change as:
+In order for the shape of our cost function to be as circular as possible, we must modify our input variables such that their ranges are similar. This process is known as "feature-scaling". Although, there are various methods to achieve this, the most commonly used technique is the "mean normalization" and is defined as
 
-h_Θ(x) = Θ_0 + Θ_1 x_1 + Θ_2 x_2 + Θ_3 x_3 + ... + Θ_n x_n
+x_j = (x_j - m_j) / s_j, where
+m_j = average (or mean) value of x_j
+s_j = range (max - min) OR std. deviation of x_j
+j = j^th feature
 
-or
+By implementing the above on all our input variables, we make the data of the form
 
-h_Θ(x) = Θ_0 + Σ_j=1^n Θ_j x_j
+-1 <= X(i, j) <= 1
 
-It is customary (makes later maths easier) to add an extra feature x_0 whose value is always "1", so that h(x) becomes
+One thing to note though is that we need not follow the above rule very religiously; approximate values are ok too. For example,
+
+-1 <= X(:, 1) <= 1           % 1st feature
+5 <= X(:, 2) <= 10           % 2nd feature
+-100 <= X(:3) <= -50         % 3rd feature
+
+is fine. But the below is not
+
+-1 <= X(:, 1) <= 1           % 1st feature
+5 <= X(:, 2) <= 1000         % 2nd feature (notice the "1000")
+-100 <= X(:3) <= -50         % 3rd feature
+
+Of course, even with the above data the implementation will work, but it might take a very long time to converge.
+
+Another very important thing to remember is that we should *not* scale the pivot feature x_0.
+
+I think that's it for today. In the upcoming posts we will study other ML algorithms and also understand which to use when. So stay tuned!
+    - html:
+<p>Hello. Welcome back! I hope that you are enjoying this series on machine learning, especially the last 2 posts  ***here (ml-402)*** and ***here (ml-203)*** where we implemented the "multivariate linear regression" ML algorithm and even improved its performance. In this post we will look at one more technique which should be applied to the multivariate version of the linear regression ML algorithm to improve its performance, viz "feature scaling". The reason why I say that this technique should be used for the "multivariate" version, is because by using this technique we solve a certain problem from which the "univariate" version does not suffer.
+</p>
+<p>
+Lets take a concrete example to throw more light on what I am trying to say. For this, let's consider this <a href="http://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data">data</a>, a small snippet of which is shown below:
+</p>
+<table>
+<tbody>
+<tr><td>18.0</td><td>8</td><td>307.0</td><td>130.0</td><td>3504.</td><td>12.0</td><td>70</td><td>1</td><td class="left">"chevrolet chevelle malibu"</td></tr>
+<tr><td>15.0</td><td>8</td><td>350.0</td><td>165.0</td><td>3693.</td><td>11.5</td><td>70</td><td>1</td><td class="left">"buick skylark 320"</td></tr>
+<tr><td>18.0</td><td>8</td><td>318.0</td><td>150.0</td><td>3436.</td><td>11.0</td><td>70</td><td>1</td><td class="left">"plymouth satellite"</td></tr>
+<tr><td>16.0</td><td>8</td><td>304.0</td><td>150.0</td><td>3433.</td><td>12.0</td><td>70</td><td>1</td><td class="left">"amc rebel sst"</td></tr>
+<tr><td>17.0</td><td>8</td><td>302.0</td><td>140.0</td><td>3449.</td><td>10.5</td><td>70</td><td>1</td><td class="left">"ford torino"</td></tr>
+<tr><td>15.0</td><td>8</td><td>429.0</td><td>198.0</td><td>4341.</td><td>10.0</td><td>70</td><td>1</td><td class="left">"ford galaxie 500"</td></tr>
+<tr><td>14.0</td><td>8</td><td>454.0</td><td>220.0</td><td>4354.</td><td>9.0</td><td>70</td><td>1</td><td class="left">"chevrolet impala"</td></tr>
+<tr><td>14.0</td><td>8</td><td>440.0</td><td>215.0</td><td>4312.</td><td>8.5</td><td>70</td><td>1</td><td class="left">"plymouth fury iii"</td></tr>
+<tr><td>14.0</td><td>8</td><td>455.0</td><td>225.0</td><td>4425.</td><td>10.0</td><td>70</td><td>1</td><td class="left">"pontiac catalina"</td></tr>
+<tr><td>15.0</td><td>8</td><td>390.0</td><td>190.0</td><td>3850.</td><td>8.5</td><td>70</td><td>1</td><td class="left">"amc ambassador dpl"</td></tr>
+</tbody>
+</table>
+<p>
+If you remember, we have seen this dataset earlier ***here (ml-301)***. Let's ignore the first column for now, because that is the target variable, so that leaves us with 8 features. We notice that (in our limited dataset snippet):
+</p>
+<ul>
+<li>1st feature ranges between 4 and 8 (in the complete dataset)
+</li>
+<li>2nd feature ranges between 300 and 500 (approx)
+</li>
+<li>3rd feature ranges between 100 and 250 (approx)
+</li>
+<li>4th feature ranges between 3400 and 4500 (approx)
+</li>
+<li>5th feature ranges between 8 and 12 (approx)
+</li>
+<li>6th feature ranges between 70 and 85 (in the complete dataset)
+</li>
+<li>7th feature ranges between 1 and 3 (in the complete dataset)
+</li>
+<li>8th feature is a string (so we'll ignore it for this discussion)
+</li>
+</ul>
+<p>
+The reason that we are interested in the "range" of values that our features take is because depending on the relative ranges that the feature variables take the shape of the cost function will differ. And this will impact the performance of our implementation.
+</p>
+<p>
+I hope that you remember from ***this (ml-302)*** and ***this (ml-303)*** posts that our cost function "J(&amp;theta;)" always has a convex (like a bowl) shape. When we see a bowl from the top, we see a circle. But for our cost function, it can vary between being circular to an extremely thin <a href="http://en.wikipedia.org/wiki/Ellipse">ellipse</a>. Whether it will be a circle or an ellipse is determined by the relative ranges of the features.
+</p>
+<p>
+Also, the more circular the shape of our cost function, the better is the performance of the gradient descent implementation. That is because in this case the gradient descent needs much lesser number of steps (iterations) to reach the global optima. As against this, if the shape is narrow, then the cost can oscillate around the major axis of the ellipse and take lot of iterations to reach the global optima.
+</p>
+<p>
+In order for the shape of our cost function to be as circular as possible, we must modify our input variables such that their ranges are similar. This process is known as "feature-scaling". Although, there are various methods to achieve this, the most commonly used technique is the "mean normalization" and is defined as
+</p>
+<pre>
+x<sub>j</sub> = (x<sub>j</sub> - m<sub>j</sub>) / s<sub>j</sub>; where
+m<sub>j</sub> = average (or mean) value of x<sub>j</sub>
+s<sub>j</sub> = range (max - min) OR std. deviation of x<sub>j</sub>
+j = j<sup>th</sup> feature
+</pre>
+<p>
+By implementing the above on all our input variables, we make the data of the form
+</p>
+<pre>
+-1 &lt;= X(i, j) &lt;= 1
+</pre>
+<p>
+One thing to note though is that we need not follow the above rule very religiously; approximate values are ok too. For example,
+</p>
+<pre>
+-1 &lt;= X(:, 1) &lt;= 1           % 1st feature
+5 &lt;= X(:, 2) &lt;= 10           % 2nd feature
+-100 &lt;= X(:3) &lt;= -50         % 3rd feature
+</pre>
+<p>
+is fine. But the below is not
+</p>
+<pre>
+-1 &lt;= X(:, 1) &lt;= 1           % 1st feature
+5 &lt;= X(:, 2) &lt;= <b>1000</b>         % 2nd feature
+-100 &lt;= X(:3) &lt;= -50         % 3rd feature
+</pre>
+<p>
+Of course, even with the above data the implementation will work, but it might take a very long time to converge.
+</p>
+<p>
+Another very important thing to remember is that we should <b>not</b> scale the pivot feature x<sub>0</sub>.
+</p>
+<p>
+I think that's it for today. In the upcoming posts we will study other ML algorithms and also understand which to use when. So stay tuned!
+</p>
+*** TODO ml-203: vectorization in octave
+    :CLOCK:
+    CLOCK: [2014-01-30 Thu 14:46]--[2014-01-30 Thu 15:41] =>  0:55
+    CLOCK: [2014-01-30 Thu 12:28]--[2014-01-30 Thu 12:31] =>  0:03
+    :END:
+    - tags: vectorization, octave, machine learning, 20x
+    - summary:
+    - body:
+I hope you have noticed that we have jumped back to the 20x series from the last ***post (ml-402)*** which was in the 40x series, and wondered why are we moving backwards ;). Well, that is because in the last 20x ***post (ml-202)*** I had said that there is still one thing left about octave that we have not studied yet, but which we will study after completing one ML algorithm. So lets get onto that.
+
+But before we move ahead, I urge you to take a look at our final program for "multivariate linear regression" ML algorithm implementation in the previous ***post (ml-402)***, because our today's discussion is all about how we can improve it's performance by making use of the "vectorization" property in octave.
+
+The basic meaning of vectorization is that instead of running a (for) loop over a vector, we use matrix theory to do the computations. This is because in most of the programming languages that support matrix manipulations the libraries for doing them are heavily optimized and can run orders of magnitude faster than the corresponding loop implementation.
+
+Lets take a concrete example to understand better. Lets look at the following snippet from our complete multivariate linear regression implementation (see previous ***post (ml-402)***):
+
+function y = hypothesis(x, theta)
+    N = length(x); % this is actually inclusive of pivot x_0, so this N = n + 1, where n = #features
+    y = 0;
+        for j in 1:N
+            y = y + x(j) * theta(j);
+        end;
+end;
+
+Remember that, the input variables "x" and "theta" in the above function are "1xN" and "Nx1" vectors respectively, so if we do the following vector multiplication
+
+x * theta;
+
+then the result is exactly the same as that of our previous implementation of the hypothesis function. So by implementing our hypothesis function as the following:
+
+function y = hypothesis(x, theta)
+    y = x * theta;
+end;
+
+we get the following benefits:
+- our LOC (lines of code) reduces; and the less code we write, the less bugs it will have ;)
+- more importantly, we have moved from a loop structure to matrix algebra, so that we are making use of the highly optimized libraries of octave. thus our overall program performance will improve tremendously
+- the implementation becomes generic and will work for all of scalars, vectors and matrices
+
+Similarly, we should take benefit from octave functions that will work on vectors and matrices and avoid loops completely. Taking cue from the above, lets re-implement our multivariate linear regression algorithm as follows:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% helper functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function y = hypothesis(x, theta)
+    y = x' * theta;
+end;
+
+function J = cost(X, y, theta)
+    m = size(X, 1);
+    X = [ones(m, 1), X]; % add the x_0 feature column
+
+    J = sum((hypothesis(X, theta) - y) .^ 2) / (2 * m);
+end;
+
+function [J, theta] = gradientDescent(X, y, theta, alpha, num_iters)
+    m = size(X, 1);
+    n = size(X, 2);
+
+    for iter in 1:num_iters
+        diff = hypothesis(X, theta) - y;
+        sum = zeros(n, 1);
+        for j = 1:n
+            sum(j) = sum(diff(j) .* X'(:, j));
+        endfor;
+        theta = theta - (alpha * (sum(j) / m));
+    end
+
+    J = cost(X, y, theta);
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% main program remains unchanged
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Do you see the reduction in complexity? Still there is an improvement in the generality of the program! And to top it all this implementation runs super fast as compared to the previous. Ain't that great?
+
+Ensure that you understand what is going on here. Take help from the previous 20x octave posts ***here (ml-201)*** and ***here (ml-202)***. Remember, the easiest trick to know that you are doing the correct thing is to check the ranks of the matrices that you are doing computation on. For example, in the first example above,
+
+rank(x) => 1, n
+rank(theta) => n, 1
+
+expected rank of h => 1, 1
+
+so it should be that => h = x * theta
+
+If you remember the above rule-of-thumb, it should be difficult to make mistakes ;) But if you still have any doubts, don't hesitate to ask them using the comments, and I'll try my best to answer them. So what are you waiting for? Try implementing the above in octave on your system and try experimenting to improve your own understanding!
+
+ps: In the coursera ML course, all octave programs are really programming assignments and have credits. I have broken the promise by giving (partially) answers here and in the previous ***post (ml-402)***. I will not show anymore octave programs continuing forward, but only the functions and intuitions behind them. I hope that you will understand. Thanks :)
+    - html:
+<p>I hope you have noticed that we have jumped back to the 20x series from the last ***post (ml-402)*** which was in the 30x series, and wondered why are we moving backwards ;). Well, that is because in the last 20x ***post (ml-202)*** I had said that there is still one thing left about octave that we have not studied yet, but which we will study after completing one ML algorithm. So lets get onto that.
+</p>
+<p>
+But before we move ahead, I urge you to take a look at our final program for "multivariate linear regression" ML algorithm implementation in the previous ***post (ml-402)***, because our today's discussion is all about how we can improve it's performance by making use of the "vectorization" property in octave.
+</p>
+<p>
+The basic meaning of vectorization is that instead of running a (for) loop over a vector, we use matrix theory to do the computations. This is because in most of the programming languages that support matrix manipulations the libraries for doing them are heavily optimized and can run orders of magnitude faster than the corresponding loop implementation.
+</p>
+<p>
+Lets take a concrete example to understand better. Lets look at the following snippet from our complete multivariate linear regression implementation (see previous ***post (ml-402)***):
+</p>
+<pre>
+function y = hypothesis(x, theta)
+    N = length(x);
+    y = 0;
+        for j in 1:N
+            y = y + x(j) * theta(j);
+        end;
+end;
+</pre>
+<p>
+Remember that, the input variables "x" and "theta" in the above function are "1xN" and "Nx1" vectors respectively, so if we do the following vector multiplication
+</p>
+<pre>
+x * theta;
+</pre>
+<p>
+then the result is exactly the same as that of our previous implementation of the hypothesis function. So by implementing our hypothesis function as the following:
+</p>
+<pre>
+function y = hypothesis(x, theta)
+    y = x * theta;
+end;
+</pre>
+<p>
+we get the following benefits:
+</p><ul>
+<li>our LOC (lines of code) reduces; and the less code we write, the less bugs it will have ;)
+</li>
+<li>more importantly, we have moved from a loop structure to matrix algebra, so that we are making use of the highly optimized libraries of octave. thus our overall program performance will improve tremendously
+</li>
+<li>the implementation becomes generic and will work for all of scalars, vectors and matrices
+</li>
+</ul>
+
+
+<p>
+Similarly, we should take benefit from octave functions that will work on vectors and matrices and avoid loops completely. Taking cue from the above, lets re-implement our multivariate linear regression algorithm as follows:
+</p>
+<pre>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% helper functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function y = hypothesis(x, theta)
+    y = x' * theta;
+end;
+
+function J = cost(X, y, theta)
+    m = size(X, 1);
+    X = [ones(m, 1), X]; % add the x<sub>0</sub> feature column
+    J = sum((hypothesis(X, theta) - y) .^ 2) / (2 * m);
+end;
+
+function [J, theta] = gradientDescent(X, y, theta, alpha, num_iters)
+    m = size(X, 1);
+    n = size(X, 2);
+    for iter in 1:num_iters
+        diff = hypothesis(X, theta) - y;
+        sum = zeros(n, 1);
+        for j = 1:n
+            sum(j) = sum(diff(j) .* X'(:, j));
+        endfor;
+        theta = theta - (alpha * (sum / m));
+    end
+    J = cost(X, y, theta);
+end;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% main program remains unchanged
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+</pre>
+<p>
+Do you see the reduction in complexity? Still there is an improvement in the generality of the program! And to top it all this implementation runs super fast as compared to the previous. Ain't that great?
+</p>
+<p>
+Ensure that you understand what is going on here. Take help from the previous 20x octave posts ***here (ml-201)*** and ***here (ml-202)***. Remember, the easiest trick to know that you are doing the correct thing is to check the ranks of the matrices that you are doing computation on. For example, in the first example above,
+</p>
+<pre>
+rank(x) => 1, n
+rank(theta) => n, 1
+
+expected rank of h => 1, 1
+
+so it should be that => h = x * theta
+</pre>
+<p>
+If you remember the above rule-of-thumb, it should be difficult to make mistakes ;) But if you still have any doubts, don't hesitate to ask them using the comments, and I'll try my best to answer them. So what are you waiting for? Try implementing the above in octave on your system and try experimenting to improve your own understanding!
+</p>
+<p>
+ps: In the coursera ML course, all octave programs are really programming assignments and have credits. I have broken the promise by giving (partially) answers here and in the previous ***post (ml-402)***. I will not show anymore octave programs continuing forward, but only the functions and intuitions behind them. I hope that you will understand. Thanks :)
+</p>
+*** TODO ml-402: multivariate linear regression in octave
+    :CLOCK:
+    CLOCK: [2014-01-30 Thu 14:32]--[2014-01-30 Thu 14:43] =>  0:11
+    CLOCK: [2014-01-30 Thu 12:32]--[2014-01-30 Thu 13:19] =>  0:47
+    :END:
+    - tags: multivariate, linear, regression, octave, machine learning, 40x, cost function, gradient descent, theta, alpha, pivot, hypothesis, function,
+    - summary: Enough theory! Lets implement the multivariate linear regression ML algorithm in our programming language of choice, viz octave!
+    - body:
+Hi! I hope that you have been following the recent posts in the ML series where we have understood in much detail the various aspects of the linear regression ML algorithm, and also intuition about how it works. We have also formulated all the mathematical formulae, but have not seen how to implement them in octave yet. So that's what we are going to do today. Lets start with a small recap (of only the functions) of the multivariate linear regression ML algorithm:
+
+hypothesis function is defined as:
 
 h_Θ(x) = Σ_j=0^n Θ_j x_j
 
-Our cost function too will change as:
+*cost function* is defined as:
 
 J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
 
-And so will the gradient descent:
-
-repeat until convergence {
-    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
-    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_1) - y^(i)) * (x^(i)_1)), for j = 1
-    Θ_2 = Θ_2 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_2) - y^(i)) * (x^(i)_2)), for j = 1
-    ...
-    Θ_n = Θ_n - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_n) - y^(i)) * (x^(i)_2)), for j = 1
-}
-
-or, re-written simply:
+While the *gradient descent* steps are:
 
 repeat until convergence {
     Θ_j = Θ_j - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_j) - y^(i)) * (x^(i)_j)), for j = 0 to n
 }
 
-As always, remember that the above updates to all Θ_j (for j = 0 to n) should happen simultaneously for a correct implementation (see ***here (ml-305)***)
+Before we move onto octave, lets define some variables:
 
-Once we compute our hypothesis function using the above implementation, it is then trivial to predict "y" for any given input set of features
+*X* => input feature "matrix" of size "mxn"
+*x* => "one" example "vector" of size "(n+1)x1" (including the pivot feature x_0 (which is always = 1))
+*Σ* => vector of size "(n+1)x1"
+*y* => output target variable "vector" of size "mx1"
 
-y = h(x)
-  = Σ_j=0^n Θ_j x_j
+Now for the actual octave program
 
-That's it for today. In the next post we will learn how to implement these algorithms using "vectorization" for faster performance. So stay tuned!
-** wrote (not published)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% helper functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function y = hypothesis(x, theta)
+    N = length(x); % this is actually inclusive of pivot x_0, so this N = n + 1, where n = #features
+    y = 0;
+    for j in 1:N
+        y = y + x(j) * theta(j);
+    end;
+end;
+
+function J = cost(X, y, theta)
+    m = size(X, 1);
+    X = [ones(m, 1), X]; % add the x_0 feature column
+    n = size(X, 2); % note that this n includes the x_0 feature too
+    J = 0;
+    for i in 1:m
+        J = J + (hypothesis(X(i, :), theta) - y(i)) ^ 2; % the inner "j" for-loop is inside the "hypothesis" function
+    end;
+    J = J / (2 * m);
+end;
+
+function [J, theta] = gradientDescent(X, y, theta, alpha, num_iters)
+    % ideally we should let gradientDescent run until convergence,
+    % but for simplicity we will run it for a fixed number of iterations (num_iters)
+
+    m = size(X, 1);
+    n = size(X, 2);
+
+    for iter in 1:num_iters
+        sum = zeros(n, 1);
+        for i = 1:m
+            diff = hypothesis(X(i, :), theta) - y(i);
+            for j = 1:n
+                sum(j) = sum(j) + diff * X(i, j);
+            end;
+        end;
+        for j = 1:n
+            theta(j) = theta(j) - (alpha * (sum(j) / m));
+        end;
+    end;
+
+    J = cost(X, y, theta);
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% main program starts here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+[X, y] = load("data");        % load some data
+
+%%%%% initialize some basic variables
+m = size(X, 1);               % #training examples
+X = [ones(m, 1), X];          % add pivot feature vector x_0
+n = size(X, 2);               % #features + 1
+alpha = 0.01;                 % "learning rate"; actual value needs to be determined experimentally
+theta = zeros(n, 1);          % initialize to some arbitrary value
+num_iters = 1000;             % initialize to some arbitrary value
+
+%%%%% run gradientDescent
+[J, theta] = gradientDescent(X, y, theta, alpha, num_iters);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% program end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+That's it! Wasn't that easy?
+
+Once we have found out the optimal values for Θ (theta), we can find the value for any new "y", by simply calling the hypothesis function using the new (given) value for "x".
+    - html:
+<p>Hi! I hope that you have been following the recent posts in the ML series where we have understood in much detail the various aspects of the linear regression ML algorithm, and also intuition about how it works. We have also formulated all the mathematical formulae, but have not seen how to implement them in octave yet. So that's what we are going to do today. Lets start with a small recap (of only the functions) of the multivariate linear regression ML algorithm:
+</p>
+<p>
+<b>hypothesis function</b> is defined as:
+</p>
+<pre>
+h<sub>&theta;</sub>(x) = &Sigma;<sub>j</sub>=0<sup>n</sup> &theta;<sub>j</sub> x<sub>j</sub>
+</pre>
+<p>
+<b>cost function</b> is defined as:
+</p>
+<pre>
+J(&theta;<sub>0</sub>, &theta;<sub>1</sub>, &theta;<sub>2</sub>, &hellip;, &theta;<sub>n</sub>) = (&Sigma;<sub>i</sub>=1<sup>m</sup> &Sigma;<sub>j</sub>=1<sup>n</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup><sub>j</sub>) - y<sup>(i)</sup>)<sup>2</sup>)/(2*m)
+</pre>
+<p>
+While the <b>gradient descent</b> steps are:
+</p>
+<pre>
+repeat until convergence {
+    &theta;<sub>j</sub> = &theta;<sub>j</sub> - &alpha;*(1/m)* (&Sigma;<sub>i</sub>=1<sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup><sub>j</sub>) - y<sup>(i)</sup>) * (x<sup>(i)</sup><sub>j</sub>)), for j = 0 to n
+}
+</pre>
+<p>
+Before we move onto octave, lets define some variables:
+</p>
+<pre>
+<b>X</b> =&gt; input feature "matrix" of size "mxn"
+<b>x</b> =&gt; "one" example "vector" of size "(n+1)x1" (including the pivot feature x<sub>0</sub> (which is always = 1))
+<b>&theta;</b> =&gt; vector of size "(n+1)x1"
+<b>y</b> =&gt; output target variable "vector" of size "mx1"
+</pre>
+<p>
+Now for the actual octave program
+</p>
+<pre>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% helper functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function y = hypothesis(x, theta)
+    N = length(x); % this is actually inclusive of pivot x<sub>0</sub>, so this N = n + 1, where n = #features
+    y = 0;
+    for j in 1:N
+        y = y + x(j) * theta(j);
+    end;
+end;
+
+function J = cost(X, y, theta)
+    m = size(X, 1);
+    X = [ones(m, 1), X]; % add the x<sub>0</sub> feature column
+    n = size(X, 2); % note that this n includes the x<sub>0</sub> feature too
+    J = 0;
+    for i in 1:m
+        J = J + (hypothesis(X(i, :), theta) - y(i)) ^ 2; % the inner "j" for-loop is inside the "hypothesis" function
+    end;
+    J = J / (2 * m);
+end;
+
+function [J, theta] = gradientDescent(X, y, theta, alpha, num_iters)
+    % ideally we should let gradientDescent run until convergence,
+    % but for simplicity we will run it for a fixed number of iterations (num_iters)
+
+    m = size(X, 1);
+    n = size(X, 2);
+
+    for iter in 1:num_iters
+        sum = zeros(n, 1);
+        for i = 1:m
+            diff = hypothesis(X(i, :), theta) - y(i);
+            for j = 1:n
+                sum(j) = sum(j) + diff * X(i, j);
+            end;
+        end;
+        for j = 1:n
+            theta(j) = theta(j) - (alpha * (sum(j) / m));
+        end;
+    end;
+
+    J = cost(X, y, theta);
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% main program starts here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+[X, y] = load("data");        % load some data
+
+%%%%% initialize some basic variables
+m = size(X, 1);               % #training examples
+X = [ones(m, 1), X];          % add pivot feature vector x<sub>0</sub>
+n = size(X, 2);               % #features + 1
+alpha = 0.01;                 % "learning rate"; actual value needs to be determined experimentally
+theta = zeros(n, 1);          % initialize to some arbitrary value
+num_iters = 1000;             % initialize to some arbitrary value
+
+%%%%% run gradientDescent
+[J, theta] = gradientDescent(X, y, theta, alpha, num_iters);
+</pre>
+<p>
+That's it! Wasn't that easy?
+</p>
+<p>
+Once we have found out the optimal values for &theta; (theta), we can find the value for any new "y", by simply calling the hypothesis function using the new (given) value for "x".
+</p>
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -8123,8 +8631,81 @@ That is we are inserting the actual values of the partial derivatives of J(Θ_0,
 With this we have completed learning our first ML algorithm, viz the "univariate linear regression". I hope you have had as much fun learning it as I have teaching it. For me, a lot of my concepts have become clear while explaining things over here in so much detail! This alone has made the whole effort worthwhile. It has also given me motivation to continue this series. So in the upcoming posts I will try to explain other more advanced ML algorithms.
 
 Do leave comments below to share with me your experience here, especially (constructive) criticism about how I can strive to make these posts better. I am eagerly looking forward to hearing from you :)
+**** DONE ml-401: "multivariate linear regression"
+    CLOSED: [2014-01-28 Tue 23:45]
+    :CLOCK:
+    CLOCK: [2014-01-28 Tue 23:05]--[2014-01-28 Tue 23:45] =>  0:40
+    CLOCK: [2014-01-28 Tue 16:55]--[2014-01-28 Tue 17:17] =>  0:22
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-01-29 Wed 12:55
+     :END:
+    - summary
+    - tags: machine learning, multivariate, linear, regression
+    - body
+Hi! In the last ***post (ml-305)***, we completed learning our very first machine learning algorithm, viz "linear regression". As you might remember from ***here (ml-102)***, this is a type of "supervised learning" ML algorithm. However, during our study, we had only 1 feature (or input variable), so that what we learnt was really the "univariate linear regression". Today we will take a look at how to handle a more real life situation, that is when we have more than one feature. Such an algorithm is called the "multivariate linear regression" ML algorithm.
+
+To recap, for univariate linear regression, the steps were:
+
+- *x* => input variable/feature (in "univariate", we have only 1 feature)
+- *y* => output variable/target (this is the value that we need to predict)
+- *m* => #training examples
+- *h(x)* => hypothesis function, defined as
+
+h_Θ(x) = Θ_0 + Θ_1 x
+
+- *cost function* => J(Θ_0, Θ_1) = (Σ_i=1^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+- minimization of the cost function was done using the "gradient descent" algorithm which was implemented as
+
+repeat until convergence {
+    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
+    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i)) * (x^(i))), for j = 1
+}
+
+For the "multivariate" version of "linear regression" ML algorithm, we will have multiple features x_1, x_2, x_3, etc. We define one more notation
+
+- *n* => number of features
+
+In this case our hypothesis function "h(x)" will change as:
+
+h_Θ(x) = Θ_0 + Θ_1 x_1 + Θ_2 x_2 + Θ_3 x_3 + ... + Θ_n x_n
+
+or
+
+h_Θ(x) = Θ_0 + Σ_j=1^n Θ_j x_j
+
+It is customary (makes later maths easier) to add an extra feature x_0 whose value is always "1", so that h(x) becomes
+
+h_Θ(x) = Σ_j=0^n Θ_j x_j
+
+Our cost function too will change as:
+
+J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
+
+And so will the gradient descent:
+
+repeat until convergence {
+    Θ_0 = Θ_0 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)) - y^(i))), for j = 0
+    Θ_1 = Θ_1 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_1) - y^(i)) * (x^(i)_1)), for j = 1
+    Θ_2 = Θ_2 - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_2) - y^(i)) * (x^(i)_2)), for j = 1
+    ...
+    Θ_n = Θ_n - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_n) - y^(i)) * (x^(i)_2)), for j = 1
+}
+
+or, re-written simply:
+
+repeat until convergence {
+    Θ_j = Θ_j - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_j) - y^(i)) * (x^(i)_j)), for j = 0 to n
+}
+
+As always, remember that the above updates to all Θ_j (for j = 0 to n) should happen simultaneously for a correct implementation (see ***here (ml-305)***)
+
+Once we compute our hypothesis function using the above implementation, it is then trivial to predict "y" for any given input set of features
+
+y = h(x)
+  = Σ_j=0^n Θ_j x_j
+
+That's it for today. In the next post we will learn how to implement these algorithms using "vectorization" for faster performance. So stay tuned!
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
-* a
-olhc_19940101-20131205.csv
