@@ -1,9 +1,6 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [css] fix
-   - [ ] ed: pagination-results
-   - [ ] fe: sub/sup size
 ** TODO [articles] investigate math rendering from org to html
    :CLOCK:
    CLOCK: [2014-01-29 Wed 12:55]--[2014-01-29 Wed 12:57] =>  0:02
@@ -4739,6 +4736,16 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-02-04 Tue 14:30
     :END:
+*** DONE [css] fix
+    CLOSED: [2014-02-04 Tue 14:39]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 14:30]--[2014-02-04 Tue 14:39] =>  0:09
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-04 Tue 14:39
+    :END:
+    - [X] ed: pagination-results
+    - [X] fe: sub/sup size
 * notes
 ** misc
    - http://www.html-ipsum.com/

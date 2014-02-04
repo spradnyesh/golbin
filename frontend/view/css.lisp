@@ -16,6 +16,7 @@
                            :min-width "1200px"))
     (("strong") (:font-weight "bold"))
     (("em") (:font-style "italic"))
+    (("sub, sup") (:font-size "70%"))
     (("u") (:text-decoration "underline"))
     (("p") (:margin "15px 0"))
     (("h2, h3") (:padding "7px 0"))
@@ -301,8 +302,7 @@
     ((".pagination li a") (:color "#035583"
                                   :text-decoration "none"))
     ((".pagination .disabled") (:border "none"))
-    ((".pagination-results") (:color "#999"
-                                     :margin-left "250px"))
+    ((".pagination-results") (:color "#999"))
     ((".rss") (:float "right"))
 
     ;; ads
