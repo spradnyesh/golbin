@@ -1,7 +1,9 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [bug][ed] background select and upload show 2 panes
+** [css] fix
+   - [ ] ed: pagination-results
+   - [ ] fe: sub/sup size
 ** TODO [articles] investigate math rendering from org to html
    :CLOCK:
    CLOCK: [2014-01-29 Wed 12:55]--[2014-01-29 Wed 12:57] =>  0:02
@@ -4729,6 +4731,14 @@
     :ARCHIVE_TIME: 2014-02-04 Tue 14:26
     :END:
     - to prevent border-bottom "dotted"
+*** DONE [bug][ed] background select and upload show 2 panes
+    CLOSED: [2014-02-04 Tue 14:30]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 14:27]--[2014-02-04 Tue 14:30] =>  0:03
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-04 Tue 14:30
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/
