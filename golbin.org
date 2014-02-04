@@ -1,7 +1,6 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [bug][ed] js not working in edit article page
 ** [ed] remove "pagination" outside of "articles"
    - to prevent border-bottom "dotted"
 ** TODO [articles] investigate math rendering from org to html
@@ -4713,6 +4712,14 @@
     :END:
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-01-28 Tue 16:20
+    :END:
+*** DONE [bug][ed] js not working in edit article page
+    CLOSED: [2014-02-04 Tue 14:24]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 14:17]--[2014-02-04 Tue 14:24] =>  0:07
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-04 Tue 14:24
     :END:
 * notes
 ** misc

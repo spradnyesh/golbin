@@ -158,12 +158,14 @@
      :title "Add Article"
      :js (fmtnil (<:script :type "text/javascript"
                            (format nil
-                                   "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a, article = true;;~%//]]>~%"
+                                   "~%//<![CDATA[~%var categoryTree = ~a, imageSizes = ~a, article = ~a;~%//]]>~%"
                                    (get-category-tree-json)
-                                   (get-thumb-side-photo-sizes-json)))
+                                   (get-thumb-side-photo-sizes-json)
+                                   (if id "false" "true")))
                  (ck-js lang)
-                 (<:script :type "text/javascript"
-                           :src "/static/js/jsDatePick.jquery.min.1.3.js"))
+                 (unless id
+                   (<:script :type "text/javascript"
+                             :src "/static/js/jsDatePick.jquery.min.1.3.js")))
      :css (<:link :rel "stylesheet"
                           :type "text/css"
                           :href "/static/css/jsDatePick_ltr.min.css")

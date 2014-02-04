@@ -429,7 +429,8 @@
         (submit-form-ajax "#accounts form")
         (submit-form-ajax "#register form")
         (submit-form-ajax "#login form")
-        (when (not (undefined article))
+        (when (and (not (undefined article))
+                   (= article "true"))
           (show-calendar event "a-date"))
 
         ;; define event handlers
