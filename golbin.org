@@ -1,8 +1,7 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** [ed] remove "pagination" outside of "articles"
-   - to prevent border-bottom "dotted"
+** [bug][ed] background select and upload show 2 panes
 ** TODO [articles] investigate math rendering from org to html
    :CLOCK:
    CLOCK: [2014-01-29 Wed 12:55]--[2014-01-29 Wed 12:57] =>  0:02
@@ -4721,6 +4720,15 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-02-04 Tue 14:24
     :END:
+*** DONE [ed] remove "pagination" outside of "articles"
+    CLOSED: [2014-02-04 Tue 14:26]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 14:24]--[2014-02-04 Tue 14:26] =>  0:02
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-04 Tue 14:26
+    :END:
+    - to prevent border-bottom "dotted"
 * notes
 ** misc
    - http://www.html-ipsum.com/
