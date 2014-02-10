@@ -4897,223 +4897,267 @@ Also, simple things get complex too soon, because
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 *** Archive                                                         :ARCHIVE:
 ** wrote (not published)
-*** TODO ml-406: normal equation, part-2
+*** TODO ml-503: non-linear decision boundary
     :CLOCK:
-    CLOCK: [2014-02-04 Tue 21:09]--[2014-02-04 Tue 21:33] =>  0:24
+    CLOCK: [2014-02-10 Mon 20:18]--[2014-02-10 Mon 20:43] =>  0:25
     :END:
     - toc:
-      - running example
-|     | size(feet^2) | #bedrooms | #floors | age (years) | price($1000) |
-| x_0 | x_1          | x_2       | x_3     | x_4         | y            |
-|-----+--------------+-----------+---------+-------------+--------------|
-|   1 | 2104         | 5         | 1       | 45          | 460          |
-|   1 | 1416         | 3         | 2       | 40          | 232          |
-|   1 | 1534         | 3         | 2       | 30          | 315          |
-|   1 | 852          | 2         | 1       | 36          | 178          |
-
-X = (size = mx(n+1))
-|   1 | 2104         | 5         | 1       | 45          |
-|   1 | 1416         | 3         | 2       | 40          |
-|   1 | 1534         | 3         | 2       | 30          |
-|   1 | 852          | 2         | 1       | 36          |
-
-y = (size = mx1)
-| 460 |
-| 232 |
-| 315 |
-| 178 |
-
-theta = (X^T * X)^-1 * X^T * y;
-
-In octave, the command to solve the above is
-
-theta = pinv(X' * X) * X' * y;
-
-      - adv
-        - feature-scaling is *not* needed
-        - no need to choose alpha
-        - no need to iterate
-      - disadv
-        - does not work well when #features (n) is very large because
-          - (X^T * X)^-1 is a nxn matrix
-          - cost to invert matrix is O(n^3)
-          - n < 10000 is ok on modern computers
-      - non-invertibility
-        - x_i and x_j are linearly dependent
-        - too many features (m <= n)
-    - summary: Today we will take a concrete example and see how to implement the solution for the same in octave.
-    - body
-Hello there! Welcome back. In the last ***post (ml-405)*** we took a look at another algorithm, viz "normal equation" to solve the linear regression ML problem. However that was, maybe, too theoretical in nature. Today we will take a concrete example and see how to implement the solution for the same in octave. Are you ready? If so, lets move on...
-
-The concrete example for today is as follows (including the pivot feature x_0):
-
-|     | size(feet^2) | #bedrooms | #floors | age (years) | price($1000) |
-| x_0 | x_1          | x_2       | x_3     | x_4         | y            |
-|-----+--------------+-----------+---------+-------------+--------------|
-|   1 | 2104         | 5         | 1       | 45          | 460          |
-|   1 | 1416         | 3         | 2       | 40          | 232          |
-|   1 | 1534         | 3         | 2       | 30          | 315          |
-|   1 | 852          | 2         | 1       | 36          | 178          |
-
-In matrix forms, it gives rise to the following X (of size mx(n+1)):
-|   1 | 2104         | 5         | 1       | 45          |
-|   1 | 1416         | 3         | 2       | 40          |
-|   1 | 1534         | 3         | 2       | 30          |
-|   1 | 852          | 2         | 1       | 36          |
-
-and y (of size mx1):
-| 460 |
-| 232 |
-| 315 |
-| 178 |
-
-If that is the case, then by implementing matrix algebra, theta can be solved as:
-
-theta = (X^T * X)^-1 * X^T * y;
-
-In octave, the command to solve the above is
-
-theta = pinv(X' * X) * X' * y;
-
-That's it! Ain't it cool how such a complex concept can be expressed in just 1 line-of-code in a high level language like octave? Hence, as I had mentioned ***here (ml-)***, it is extremely important (and useful) to first write solutions for any ML problem in a high level language (like octave, matlab, python, etc) and only when we are sure that we have the right solution, to port them to other faster languages if need be.
-
-Coming back to our problem at hand. Aren't you wondering that if it is so simple to solve for the values of theta, then why did we learn the "gradient descent" algorithm in the first place? Well, obviously, because there are scenarios where the normal equation method does not work. To understand this, lets compare the 2 methods, viz gradient descent and normal equation, and see their relative advantages and disadvantages.
-
-Lets look at the advantages of normal equation method over gradient descent:
-- there is no need to do feature scaling
-- there is no need to choose the learning rate "alpha"
-- there is no need iterate
-
-Now lets look at scenarios where normal equation method does not work:
-- when the number of features (n) is very large, then the cost to compute the inverse of the nxn matrix (X^T * X), is extremely large (order of O(n^3)). On modern computers, for n < 10000, the implementation will work (speed will decrease as n increases), but for values of n above 10000, the processing might never complete.
-
-Although, at this stage of our study, n of the order of 10000 looks extremely big, do note that:
-- in real world problems, it is possible to have these many (and more) features
-- when you consider the "polynomial regression" algorithm from ***this (ml-404)*** post, one can easily see how n can grow very fast
-
-Finally, there is 1 more special case when the normal equation algorithm might get stuck. This is when the matrix (X^T * X) is non-invertible, that it does not have an inverse. This should happen in only the following 2 cases:
-- some features x_i and x_j are linearly dependent on each other (for example, x_1 = size in feet, and x_2 = size in meters). in such a case we need to find out such features and remove one of them
-- #training-examples (m) <= #features (n). that is, there is not enough data to fit all features and find the optimal theta. in this case we need to
-  - either reduce features
-  - or add more data
-
-Both the above situations are easily avoidable, which leaves us with the only limitation of "n < 10000", thus making the normal equation algorithm a very attractive choice while solving linear regression ML problems.
-
-This also brings us to the end of the 40x series. In the next post we will start looking at other ML problems and algorithms to solve them. So don't go away. Keep watching this space :)
-*** TODO ml-405: normal equation, part-1
-    :CLOCK:
-    CLOCK: [2014-02-04 Tue 20:44]--[2014-02-04 Tue 21:03] =>  0:19
-    CLOCK: [2014-02-04 Tue 20:11]--[2014-02-04 Tue 20:28] =>  0:17
-    :END:
-    - toc:
-      - gradient descent takes an iterative approach
-      - instead, normal equation method, directly solves (mathematically) for values of theta
-      - intuition
-        - imagine theta is a scalar
-        - j(theta) = a * theta ^ 2 + b * theta + c
-        - to minimize j, we take derivative of j, and set it to 0
-        - then we can solve the above new eq, and get value of theta
-        - but theta is not a scalar
-        - calculus theory
-          - take partial derivative of J wrt each theta_0, .... theta_n
-          - set it to 0, and solve
-          - find values of theta_0, .... theta_n
-      - cat/subcat:
-      - tags: hypothesis, cost, function, gradient descent, theta, iteration, mathematics, equation, partial, derivative, 40x
-      - lead image:
-      - summary: Today we will learn an amazing ML algorithm that allows us to find the hypothesis function for a regression problem in just 1 step. Sounds exciting? So lets move forward with full force!
-      - body:
-Hello! Today we will learn an amazing ML algorithm that allows us to find the hypothesis function for a regression problem in just 1 step. Sounds exciting? So lets move forward with full force!
-
-As we already know from ***here (ml-402)***, the steps to solve a regression problem are:
-
-*hypothesis function* is defined as:
-
-h_Θ(x) = Σ_j=0^n Θ_j x_j
-
-*cost function* is defined as:
-
-J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
-
-While the *gradient descent* steps are:
-
-repeat until convergence {
-    Θ_j = Θ_j - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_j) - y^(i)) * (x^(i)_j)), for j = 0 to n
-}
-
-Notice that the last step, viz the "gradient descent" is a loop, that is it takes an "iterative" approach to minimize the cost function, and thus find the optimal values for Θ (that is Θ_0, Θ_1, ..., Θ_n).
-
-Wouldn't it be great if we could skip this whole iteration step, and find the optimal values for Θ directly? Well, it is certainly possible; and that is exactly what we will learn today. This method of mathematically finding the optimal values of Θ directly (in just 1 step) is known as the "normal equation" method. Let us try to understand how it works by first solving a simple problem and then going on to the more general but difficult problem definition. So for now, let us assume that Θ is a scalar (real number), instead of a vector (Θ_0, Θ_1, ..., Θ_n). So our cost function is defined as:
-
-j(Θ) = a * Θ ^ 2 + b * Θ + c;
-
-The mathematical way to find the optimal value of Θ that minimizes the above cost function is to find the derivative of the cost function and set it to 0 as follows
-
-2 * a * Θ + b = 0;
-
-This is an equation with a single variable (Θ) and can be easily solved. The resulting value of Θ is the optimal value that we are looking for! Ain't that cool?
-
-To generalize, lets look at our original cost function again:
-
-J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
-
-According to calculus theory, if we take the "partial derivatives" of the above cost function with respect to each of the Θs (Θ_0, Θ_1, ...., Θ_n), set them to 0 (zero) and solve, we will get the optimal values for each of our Θ_j (j = 0, 1, ..., n)! Now  these values can be easily substituted in the hypothesis function and used to predict values for "y".
-
-Ain't this cool? If it is, keep watching this space for the next post where we will look at the implementation of this method in octave, and also look at what advantages and disadvantages does this method have when compared with the gradient descent algorithm.
-      - html:
-      - notes:
-      - references:
-*** TODO ml-404: feature choice and polynomial regression
-    :CLOCK:
-    CLOCK: [2014-02-04 Tue 19:23]--[2014-02-04 Tue 20:09] =>  0:46
-    :END:
-    - toc:
-    - tags:
+      - summary
+      - *** graph of example data (w/o decision boundary) ***
+      - h_theta(x) = theta_0 + theta_1 x1 + theta_2 x2 + theta_3 x1^2 + theta_4 x2^2
+      - say, we have found that theta = [-1 0 0 1 1]
+      - *** graph of example data (w/ decision boundary) ***
+      - again, decision boundary is property of hypothesis function, not data set
+      - similarly, more complex hypothesis functions (using more higher order polynomials) can result in more complex decision boundaries
+      - next time, algo to find theta
     - summary:
     - body:
-Hi. It's good to see you once more. Today we will learn a particular technique to choose features that might improve the performance (in terms of prediction accuracy) of the regression algorithm, and in turn look at a subset type of regression that results from it.
+Hi there! Welcome back to this series of posts on ML algorithms. In the last ***post (ml-502)*** we looked at the hypothesis representation and decision boundary concepts in the logistic regression ML algorithm. Today we will look at some more examples of decision boundaries and get a deeper understanding regarding them.
 
-In one of the initial ***posts (ml-301)*** when we started learning the linear regression ML algorithm, we had used the following data
+But, let's do a quick review of what we learned last time so that we can continue from there. We defined our hypothesis function as:
 
-| size in ft^2 (x) | price ($) in 1000's (y) |
-|------------------+-------------------------|
-|             2104 |                     460 |
-|             1416 |                     232 |
-|             1534 |                     315 |
-|              852 |                     178 |
-|              ... |                     ... |
+h_theta(x) = g(theta' * x)
 
-and called our problem as the "housing prediction" problem. This particular problem is the "univariate" type of linear regression because we have only 1 input feature, viz the size of the house in sq-ft.
+where,
 
-However, it is very easy to assume that we might have got our input features in the form of "length" and "depth", that is as x_1 and x_2 instead. But, maybe, we had some background domain knowledge to know that the price of the house is _more_ dependent on the area (length * depth), instead of the individual features of length and depth themselves. So in this case, it's like we created a new feature x_3
+g(z) = 1 / (1 + e ^ -z)
 
-x_3 = x_1 * x_2;
+is the sigmoid function. We also saw an important result that:
 
-and used it in place of x_1 and x_2. Maybe, we also knew, due to domain knowledge, that given the area (x_3), the features of length (x_1) and depth (x_2) do not play any significant role in the prediction of the price (y), and hence can be dropped; thus making y dependent only on x_3.
+y = 1 if (theta' *x) >= 0
+and
+y = 0 if (theta' *x) < 0
 
-The point to note here is that x_3 is no longer a simple variable/feature, but in fact is the product of 2 (x_1 and x_2) simpler features. Thus, while the graph of x_1 versus y might have been linear, the graph of x_3 versus y would appear to have a quadratic shape (having some sort of a curved nature).
+The decision boundary we saw last time was a simple straight line. But what if our dataset is like below?
 
-Similar effect (in terms of the graph plot) would appear if we would have used a polynomial power of the base variable itself. For example, if
+***graph (ml-503-0.png)***
 
-y = x_1 ^ 2;
+If you remember what we discussed in one of the previous ***posts (ml-404)***, then the solution is simple. We should use higher order polynomials. Let us define our hypothesis function as:
 
+h_theta(x) = theta_0 + theta_1 x1 + theta_2 x2 + theta_3 x1^2 + theta_4 x2^2
+
+And, furthermore, let us say that we have somehow found the correct values for theta already as:
+
+theta = [-1 0 0 1 1]
+
+I know that we have not yet looked at how to find the optimal values of theta for logistic regression. But fear not, we will get there.
+
+Coming back to the problem at hand. When we use the above theta, we get the following hypothesis function output:
+
+***graph (ml-503-1.png)***
+
+You see that the decision boundary is now a circle, and
+
+y = 1 if x1^2 + x2^2 >= 1
+and
+y = 0 if x1^2 + x2^2 < 1
+
+Similarly, if we take more complex higher order polynomials like,
+
+h_theta(x) = theta_0 + theta_1 x1 + theta_2 x2 + theta_3 x1^2 + theta_4 x2^2 + theta_5 x1x2 + theta_5 x1^2 + ...
+
+then we can get even more complex forms of the decision boundary which will help us correctly classify our dataset.
+
+I hope you are with me till here, and are loving reading about these algorithms as much as I am loving writing about them. In the next post we will take a look at the methods to compute the optimal values of theta. So keep watching this space!
+*** TODO ml-502: hypothesis representation and decision boundary
+    :CLOCK:
+    CLOCK: [2014-02-10 Mon 19:29]--[2014-02-10 Mon 20:02] =>  0:33
+    CLOCK: [2014-02-10 Mon 18:35]--[2014-02-10 Mon 19:00] =>  0:25
+    CLOCK: [2014-02-10 Mon 18:05]--[2014-02-10 Mon 18:33] =>  0:28
+    :END:
+    - toc:
+      - we want: 0 <= h_theta(x) <= 1
+      - in linear regression: h_theta(x) = theta' * x
+      - in logistic regression: h_theta(x) = g(theta' * x)
+        - where g(z) = 1 / (1 + e ^ -z)
+        - called logistic/sigmoid function
+        - thus h_theta(x) = 1 / (1 + e ^ -(theta' * x))
+      - *** graph of sigmoid function *** (2014-02-10-183856_958x530_scrot.png)
+        - asymptotes at 0 (as g(z) ~ -inf) and 1 (as g(z) ~ inf)
+      - interpretation of hypothesis output
+        - h_theta(x) = estimated probability that "y = 1" on input "x"
+        - eg: x = [x_0 x_1]' = [1 tumorSize]'
+          - if h_theta(x) = 0.7, then tumor has 70% chance of being malignant
+        - h_theta(x) = P(y = 1 | x; theta)
+          - probability that y = 1, given x, parameterized by theta
+        - P(y = 0 | x; theta) = 1 - P(y = 1 | x; theta)
+      - suppose
+        - y = 1 if h_theta(x) >= 0.5 and y = 0 if h_theta(x) < 0.5
+        - notice (in above graph) that g(z) >= 0.5 when z => 0
+        - ie h_theta(x) = g(theta' * x) >= 0.5, whenever (theta' * x) >= 0
+        - similarly, when (theta' * x) < 0, y = 0
+        - *** graph (ml-502-1.png) ***
+        - say, h_theta(x) = theta_0 + theta_1 x_1, theta_2 x_2
+        - say, we have found that theta = [-3 1 1]'
+        - predict y = 1 if -4 + x1 + x2 >= 0
+        - *** graph (ml-502-2.png) ***
+        - decision boundary is property of hypothesis function
+          - including parameters (theta)
+          - *not* of data set
+        - similarly, y = 0 when x1 + x2 < 4
+    - tags: hypothesis, representation, decision, boundary, 50x, machine learning, interpretation, asymptote, theta, parameter, sigmoid, graph
+    - summary:
+    - body:
+Hello! In the last ***post (ml-501)*** we took an initial swing at a new type of ML problem, viz classification. We also looked at how the ML linear regression algorithm fails to work for this type of problem, and saw that there is another ML algorithm, logistic regression, that is used to solve them. Today we will do a deeper dive into various concepts surrounding the logistic regression ML algorithm.
+
+We saw in the last ***post (ml-501)*** that we want:
+
+0 <= h_theta(x) <= 1
+
+In linear regression, we know that:
+
+h_theta(x) = theta' * x
+
+In logistic regression, we will define:
+
+h_theta(x) = g(theta' * x)
+
+where,
+
+g(z) = 1 / (1 + e ^ -z)
+
+g(z) is called the logistic or sigmoid function (hence the name "logistic" regression for this algorithm). The graph (z v/s g(z)) of the sigmoid function looks like:
+
+***2014-02-10-183856_958x530_scrot.png***
+
+As you might notice, the sigmoid function has this interesting that it asymptotes at 0 as g(z) nears -infinity, and asymptotes at 1 as g(z) nears +infinity. This property makes this function extremely useful in our logistic regression implementation. Also, notice in the above graph that
+
+g(z) >= 0.5 when z >= 0
+and
+g(z) < 0.5 when z < 0
+
+that is
+
+h_theta(x) = g(theta' * x) >= 0.5, whenever (theta' * x) >= 0
+and
+h_theta(x) = g(theta' * x) < 0.5, whenever (theta' * x) < 0
+
+
+We would define our threshold such that
+
+y = 1 if h_theta(x) >= 0.5
+and
+y = 0 if h_theta(x) < 0.5
+
+Combining the above 2 we get
+
+y = 1 if (theta' *x) >= 0
+and
+y = 0 if (theta' *x) < 0
+
+Remember this condition, because it will be used when we try to understand the next important concept of "decision boundary".
+
+Anyways, coming back to our hypothesis function, it becomes:
+
+h_theta(x) = 1 / (1 + e ^ -(theta' * x))
+
+This might seem confusing to understand, so let's try to put it in simpler terms. The meaning of the output of hypothesis function is "estimated probability that 'y = 1' on input 'x'". For example, if
+
+x = [x_0 x_1]' = [1 tumorSize]'
+
+and if, for this x
+
+h_theta(x) = 0.7
+
+then, it means that the probability that the tumor is malignant is 70%. Mathematically, it is written as
+
+h_theta(x) = P(y = 1 | x; theta)
+
+and is read is "probability that 'y = 1', given 'x', parameterized by 'theta'". Conversely, probability for 'y = 0' is
+
+P(y = 0 | x; theta) = 1 - P(y = 1 | x; theta)
+
+Next, let's look at another important concept called the "decision boundary". To explain this let us consider the following dataset:
+
+***graph (ml-502-1.png)***
+
+Let us also define our hypothesis function as
+
+h_theta(x) = theta_0 + theta_1 x_1, theta_2 x_2
+
+and assume that we have somehow found the values of theta already as:
+
+theta = [-4 1 1]'
+
+So our hypothesis function becomes (based on our previously noted equation above) to predict:
+
+'y = 1' if -4 + x1 + x2 >= 0
 or
+'y = 1' if x1 + x2 >= 4
 
-y = x_2 ^ 3;
+Similarly,
 
-etc, would give the curve of the input versus output variable a different shape.
+'y = 0' if x1 + x2 < 4
 
- *** image (2014-02-04-195802_958x530_scrot.png) ***
- *** image (2014-02-04-195941_958x530_scrot.png) ***
- *** image (2014-02-04-200104_958x530_scrot.png) ***
+***graph (ml-502-2.png)***
 
-Looking at the plots of your input versus output variable, you might get an idea a polynomial feature might be needed. In such cases, armed with some domain knowledge, if one can play with choosing the power of the input feature variables, it is possible to radically improve the performance (in terms of prediction accuracy, not speed) of our implementation.
+The line in the above graph that separates the 2 binary classes "y = 1" and "y = 0" is called the decision boundary. It is extremely important to note that the decision boundary is the property of the hypothesis function and is parameterized by theta, and is not dependent on the dataset.
 
-Since, in these cases, we use a polynomial power of our input variable(s), these algorithms are also known as "polynomial regression" type of ML algorithms. Of course, if one has domain knowledge and already knows some relationship (although not exactly) between the input and output variables, then it can be extremely helpful.
+I think it has been a bit heavy today, so let's stop here. In the next post, we will take a look at some other, more interesting, decision boundaries and understand more about them. So stay tuned!
+*** TODO ml-501: logistic regression
+    :CLOCK:
+    CLOCK: [2014-02-10 Mon 16:30]--[2014-02-10 Mon 16:58] =>  0:28
+    CLOCK: [2014-02-10 Mon 15:50]--[2014-02-10 Mon 16:19] =>  0:29
+    :END:
+    - toc:
+      - logistic regression, where "y" is "discrete" value
+      - eg
+        - email: (not-)spam
+        - fraudulent? online transactions
+        - tumor: malign/benign
+      - y: 0 (-ve) or 1 (+ve) => "class"
+        - class assignment to 0 or 1 is somewhat arbitrary
+        - but mostly, 0 => absence, 1 => presence
+      - for now, only 2 classes (0 and 1) "binary-class classification"
+        - later more classes "multi-class classification"
+      - problem statement: tumor: malign/benign
+        - ***graph-0 (ml-501-0.png)***
+        - data: X => tumor size, y => yes/no
+        - ***graph-0 (ml-501-0.png)***
+        - use linear regression
+        - use threshold
+          - if h_theta(x) >= 0.5, predict "y = 1"
+          - if h_theta(x) < 0.5, predict "y = 0"
+        - ***graph-2 (ml-501-2.png)***
+        - fails w/ outliers
+        - conclusion: using linear regression to classification is often not a good idea
+          - also, for classification y = 0 or 1, but h_theta(x) can have values < 0 or > 1, which is weird
+        - so introduce new algo => logistic regression such that
+          - 0 <= h_theta(x) <= 0
+          - it is actually a "classification" algo, even though called "regression"
+    - tags: logistic, regression, class, discrete, classification, linear, binary, machine learning, 50x
+    - summary: If you have not noticed, we have moved from the 40x series into the 50x series of ML posts today. Yay! This means that we will start learning a new section, or type of ML algorithms.
+    - body:
+Hello :) I have a good news today! If you have not noticed, we have moved from the 40x series into the 50x series of ML posts today. Yay! This means that we will start learning a new section, or type of ML algorithms. But wait, isn't that logistic "regression" there in the title? Haven't we been learning regression algorithms already in the 40x series *** here (ml-401) ***, *** here (ml-402) ***, *** here (ml-403) ***, *** here (ml-404) ***, *** here (ml-405) *** and *** here (ml-406) ***. The reason this is so is because we will look at a different type of ML problem, viz "classification" in this 50x series, but for historical reasons these algorithms are called logistic regression. Note the "logistic" part, which means "logical", or "classes". Ready to start? Here we go!
 
-In future posts we will take a look at some advanced algorithms which can automatically find out such relationships, and other algorithms which can automatically choose only those features which improve the performance of the implementation significantly and drop the others. So keep watching this space to learn about them :)
-    - html:
-    - notes
+Today we will be learning the "classification" type of ML problem, where the output variable "y" is a set of "discrete" values. If you remember, we had given a brief introduction to these problems in this 10x introductory *** post (ml-102) ***. But now, let's take a deeper look using some examples:
+- email spam: In the email spam classification, we have a spam classifier ML implementation which, given a text of email, classifies it as either "yes" (spam), or "no" (not-spam)
+- online transactions: In this case, the problem statement is to classify a particular online transaction as either "fraudulent" or "not-fraudulent"
+- tumor: In this problem, the ML implementation should tell whether a given tumor is "benign" (not-harmful), or malignant (harmful)
+
+In all of the above cases, the output variable "y" can take one of 2 values, "yes" or "no". Traditionally, this has been represented as "class-1" (presence of something), or "class-0" (absence of something), but this assignment is mostly arbitrary. Also, in the above cases, there are only 2 values, and hence the classification is also known as a binary-class classification; whereas when there are more than 2 values, then the algorithm is known as a multi-class classification.
+
+Since this is the first post in the "classification" domain, we will keep it simple and look at only the binary-class classification type of problems today. So let's move onto the problem statement for today's example.
+
+***graph-0 (ml-501-0.png)***
+
+In this example:
+- X: tumor size
+- y: 1 (malignant), 0 (benign)
+That is, given just the tumor size, we need to predict whether the tumor is malignant or benign. The sample data looks like shown above. Notice that all data points are either at "y = 0", or "y = 1", signifying that this is a classification problem.
+
+***graph-1 (ml-501-1.png)***
+
+Let's say that, since we have not learnt the logistic regression ML algorithm yet, we will apply the linear regression ML algorithm, that we already know, and see how it performs. After running linear regression, we get our hypothesis line as shown in the above figure. In this case, if we define a threshold as:
+          - if h_theta(x) >= 0.5, predict "y = 1"
+          - if h_theta(x) < 0.5, predict "y = 0"
+then it looks like our linear regression implementation has done a pretty good job of classifying the benign and malignant examples correctly, and is in fact working as a logistic regression algorithm.
+
+***graph-2 (ml-501-2.png)***
+
+However, if we get another data point, an outlier actually, then we get a different hypothesis function as shown in the above figure. But this time, we see that our new hypothesis function performs terribly on the data, and is in fact mis-classifying the malignant examples as benign. What really happened is that the first time, our linear regression implementation turned out to be lucky. In general, the linear regression does not work well for classification problems.
+
+In the next post we will look at the linear regression algorithm itself and how it is used to solve a classification ML problem. So stay tuned!
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -8959,6 +9003,235 @@ Another very important thing to remember is that we should <b>not</b> scale the 
 <p>
 I think that's it for today. In the upcoming posts we will study other ML algorithms and also understand which to use when. So stay tuned!
 </p>
+**** DONE ml-404: feature choice and polynomial regression
+    CLOSED: [2014-02-05 Wed 12:38]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 19:23]--[2014-02-04 Tue 20:09] =>  0:46
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-02-05 Wed 12:38
+     :END:
+    - toc:
+    - tags:
+    - summary:
+    - body:
+Hi. It's good to see you once more. Today we will learn a particular technique to choose features that might improve the performance (in terms of prediction accuracy) of the regression algorithm, and in turn look at a subset type of regression that results from it.
+
+In one of the initial ***posts (ml-301)*** when we started learning the linear regression ML algorithm, we had used the following data
+
+| size in ft^2 (x) | price ($) in 1000's (y) |
+|------------------+-------------------------|
+|             2104 |                     460 |
+|             1416 |                     232 |
+|             1534 |                     315 |
+|              852 |                     178 |
+|              ... |                     ... |
+
+and called our problem as the "housing prediction" problem. This particular problem is the "univariate" type of linear regression because we have only 1 input feature, viz the size of the house in sq-ft.
+
+However, it is very easy to assume that we might have got our input features in the form of "length" and "depth", that is as x_1 and x_2 instead. But, maybe, we had some background domain knowledge to know that the price of the house is _more_ dependent on the area (length * depth), instead of the individual features of length and depth themselves. So in this case, it's like we created a new feature x_3
+
+x_3 = x_1 * x_2;
+
+and used it in place of x_1 and x_2. Maybe, we also knew, due to domain knowledge, that given the area (x_3), the features of length (x_1) and depth (x_2) do not play any significant role in the prediction of the price (y), and hence can be dropped; thus making y dependent only on x_3.
+
+The point to note here is that x_3 is no longer a simple variable/feature, but in fact is the product of 2 (x_1 and x_2) simpler features. Thus, while the graph of x_1 versus y might have been linear, the graph of x_3 versus y would appear to have a quadratic shape (having some sort of a curved nature).
+
+Similar effect (in terms of the graph plot) would appear if we would have used a polynomial power of the base variable itself. For example, if
+
+y = x_1 ^ 2;
+
+or
+
+y = x_2 ^ 3;
+
+etc, would give the curve of the input versus output variable a different shape.
+
+ *** image (2014-02-04-195802_958x530_scrot.png) ***
+ *** image (2014-02-04-195941_958x530_scrot.png) ***
+ *** image (2014-02-04-200104_958x530_scrot.png) ***
+
+Looking at the plots of your input versus output variable, you might get an idea a polynomial feature might be needed. In such cases, armed with some domain knowledge, if one can play with choosing the power of the input feature variables, it is possible to radically improve the performance (in terms of prediction accuracy, not speed) of our implementation.
+
+Since, in these cases, we use a polynomial power of our input variable(s), these algorithms are also known as "polynomial regression" type of ML algorithms. Of course, if one has domain knowledge and already knows some relationship (although not exactly) between the input and output variables, then it can be extremely helpful.
+
+In future posts we will take a look at some advanced algorithms which can automatically find out such relationships, and other algorithms which can automatically choose only those features which improve the performance of the implementation significantly and drop the others. So keep watching this space to learn about them :)
+    - html:
+    - notes
+**** DONE ml-405: normal equation, part-1
+    CLOSED: [2014-02-05 Wed 12:38]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 20:44]--[2014-02-04 Tue 21:03] =>  0:19
+    CLOCK: [2014-02-04 Tue 20:11]--[2014-02-04 Tue 20:28] =>  0:17
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-02-05 Wed 12:38
+     :END:
+    - toc:
+      - gradient descent takes an iterative approach
+      - instead, normal equation method, directly solves (mathematically) for values of theta
+      - intuition
+        - imagine theta is a scalar
+        - j(theta) = a * theta ^ 2 + b * theta + c
+        - to minimize j, we take derivative of j, and set it to 0
+        - then we can solve the above new eq, and get value of theta
+        - but theta is not a scalar
+        - calculus theory
+          - take partial derivative of J wrt each theta_0, .... theta_n
+          - set it to 0, and solve
+          - find values of theta_0, .... theta_n
+      - cat/subcat:
+      - tags: hypothesis, cost, function, gradient descent, theta, iteration, mathematics, equation, partial, derivative, 40x
+      - lead image:
+      - summary: Today we will learn an amazing ML algorithm that allows us to find the hypothesis function for a regression problem in just 1 step. Sounds exciting? So lets move forward with full force!
+      - body:
+Hello! Today we will learn an amazing ML algorithm that allows us to find the hypothesis function for a regression problem in just 1 step. Sounds exciting? So lets move forward with full force!
+
+As we already know from ***here (ml-402)***, the steps to solve a regression problem are:
+
+*hypothesis function* is defined as:
+
+h_Θ(x) = Σ_j=0^n Θ_j x_j
+
+*cost function* is defined as:
+
+J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
+
+While the *gradient descent* steps are:
+
+repeat until convergence {
+    Θ_j = Θ_j - α*(1/m)* (Σ_i=1^m (h_Θ(x^(i)_j) - y^(i)) * (x^(i)_j)), for j = 0 to n
+}
+
+Notice that the last step, viz the "gradient descent" is a loop, that is it takes an "iterative" approach to minimize the cost function, and thus find the optimal values for Θ (that is Θ_0, Θ_1, ..., Θ_n).
+
+Wouldn't it be great if we could skip this whole iteration step, and find the optimal values for Θ directly? Well, it is certainly possible; and that is exactly what we will learn today. This method of mathematically finding the optimal values of Θ directly (in just 1 step) is known as the "normal equation" method. Let us try to understand how it works by first solving a simple problem and then going on to the more general but difficult problem definition. So for now, let us assume that Θ is a scalar (real number), instead of a vector (Θ_0, Θ_1, ..., Θ_n). So our cost function is defined as:
+
+j(Θ) = a * Θ ^ 2 + b * Θ + c;
+
+The mathematical way to find the optimal value of Θ that minimizes the above cost function is to find the derivative of the cost function and set it to 0 as follows
+
+2 * a * Θ + b = 0;
+
+This is an equation with a single variable (Θ) and can be easily solved. The resulting value of Θ is the optimal value that we are looking for! Ain't that cool?
+
+To generalize, lets look at our original cost function again:
+
+J(Θ_0, Θ_1, Θ_2, ..., Θ_n) = (Σ_i=1^m Σ_j=1^n (h_Θ(x^(i)_j) - y^(i))^2)/(2*m)
+
+According to calculus theory, if we take the "partial derivatives" of the above cost function with respect to each of the Θs (Θ_0, Θ_1, ...., Θ_n), set them to 0 (zero) and solve, we will get the optimal values for each of our Θ_j (j = 0, 1, ..., n)! Now  these values can be easily substituted in the hypothesis function and used to predict values for "y".
+
+Ain't this cool? If it is, keep watching this space for the next post where we will look at the implementation of this method in octave, and also look at what advantages and disadvantages does this method have when compared with the gradient descent algorithm.
+      - html:
+      - notes:
+      - references:
+**** DONE ml-406: normal equation, part-2
+    CLOSED: [2014-02-05 Wed 12:38]
+    :CLOCK:
+    CLOCK: [2014-02-04 Tue 21:09]--[2014-02-04 Tue 21:33] =>  0:24
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-02-05 Wed 12:38
+     :END:
+    - toc:
+      - running example
+|     | size(feet^2) | #bedrooms | #floors | age (years) | price($1000) |
+| x_0 | x_1          | x_2       | x_3     | x_4         | y            |
+|-----+--------------+-----------+---------+-------------+--------------|
+|   1 | 2104         | 5         | 1       | 45          | 460          |
+|   1 | 1416         | 3         | 2       | 40          | 232          |
+|   1 | 1534         | 3         | 2       | 30          | 315          |
+|   1 | 852          | 2         | 1       | 36          | 178          |
+
+X = (size = mx(n+1))
+|   1 | 2104         | 5         | 1       | 45          |
+|   1 | 1416         | 3         | 2       | 40          |
+|   1 | 1534         | 3         | 2       | 30          |
+|   1 | 852          | 2         | 1       | 36          |
+
+y = (size = mx1)
+| 460 |
+| 232 |
+| 315 |
+| 178 |
+
+theta = (X^T * X)^-1 * X^T * y;
+
+In octave, the command to solve the above is
+
+theta = pinv(X' * X) * X' * y;
+
+      - adv
+        - feature-scaling is *not* needed
+        - no need to choose alpha
+        - no need to iterate
+      - disadv
+        - does not work well when #features (n) is very large because
+          - (X^T * X)^-1 is a nxn matrix
+          - cost to invert matrix is O(n^3)
+          - n < 10000 is ok on modern computers
+      - non-invertibility
+        - x_i and x_j are linearly dependent
+        - too many features (m <= n)
+    - summary: Today we will take a concrete example and see how to implement the solution for the same in octave.
+    - body
+Hello there! Welcome back. In the last ***post (ml-405)*** we took a look at another algorithm, viz "normal equation" to solve the linear regression ML problem. However that was, maybe, too theoretical in nature. Today we will take a concrete example and see how to implement the solution for the same in octave. Are you ready? If so, lets move on...
+
+The concrete example for today is as follows (including the pivot feature x_0):
+
+|     | size(feet^2) | #bedrooms | #floors | age (years) | price($1000) |
+| x_0 | x_1          | x_2       | x_3     | x_4         | y            |
+|-----+--------------+-----------+---------+-------------+--------------|
+|   1 | 2104         | 5         | 1       | 45          | 460          |
+|   1 | 1416         | 3         | 2       | 40          | 232          |
+|   1 | 1534         | 3         | 2       | 30          | 315          |
+|   1 | 852          | 2         | 1       | 36          | 178          |
+
+In matrix forms, it gives rise to the following X (of size mx(n+1)):
+|   1 | 2104         | 5         | 1       | 45          |
+|   1 | 1416         | 3         | 2       | 40          |
+|   1 | 1534         | 3         | 2       | 30          |
+|   1 | 852          | 2         | 1       | 36          |
+
+and y (of size mx1):
+| 460 |
+| 232 |
+| 315 |
+| 178 |
+
+If that is the case, then by implementing matrix algebra, theta can be solved as:
+
+theta = (X^T * X)^-1 * X^T * y;
+
+In octave, the command to solve the above is
+
+theta = pinv(X' * X) * X' * y;
+
+That's it! Ain't it cool how such a complex concept can be expressed in just 1 line-of-code in a high level language like octave? Hence, as I had mentioned ***here (ml-)***, it is extremely important (and useful) to first write solutions for any ML problem in a high level language (like octave, matlab, python, etc) and only when we are sure that we have the right solution, to port them to other faster languages if need be.
+
+Coming back to our problem at hand. Aren't you wondering that if it is so simple to solve for the values of theta, then why did we learn the "gradient descent" algorithm in the first place? Well, obviously, because there are scenarios where the normal equation method does not work. To understand this, lets compare the 2 methods, viz gradient descent and normal equation, and see their relative advantages and disadvantages.
+
+Lets look at the advantages of normal equation method over gradient descent:
+- there is no need to do feature scaling
+- there is no need to choose the learning rate "alpha"
+- there is no need iterate
+
+Now lets look at scenarios where normal equation method does not work:
+- when the number of features (n) is very large, then the cost to compute the inverse of the nxn matrix (X^T * X), is extremely large (order of O(n^3)). On modern computers, for n < 10000, the implementation will work (speed will decrease as n increases), but for values of n above 10000, the processing might never complete.
+
+Although, at this stage of our study, n of the order of 10000 looks extremely big, do note that:
+- in real world problems, it is possible to have these many (and more) features
+- when you consider the "polynomial regression" algorithm from ***this (ml-404)*** post, one can easily see how n can grow very fast
+
+Finally, there is 1 more special case when the normal equation algorithm might get stuck. This is when the matrix (X^T * X) is non-invertible, that it does not have an inverse. This should happen in only the following 2 cases:
+- some features x_i and x_j are linearly dependent on each other (for example, x_1 = size in feet, and x_2 = size in meters). in such a case we need to find out such features and remove one of them
+- #training-examples (m) <= #features (n). that is, there is not enough data to fit all features and find the optimal theta. in this case we need to
+  - either reduce features
+  - or add more data
+
+Both the above situations are easily avoidable, which leaves us with the only limitation of "n < 10000", thus making the normal equation algorithm a very attractive choice while solving linear regression ML problems.
+
+This also brings us to the end of the 40x series. In the next post we will start looking at other ML problems and algorithms to solve them. So don't go away. Keep watching this space :)
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993
