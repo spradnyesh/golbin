@@ -1,66 +1,66 @@
 (in-package :hawksbill.golbin.frontend)
 
 ;; home
-(define-route r-home ("/") (v-home))
-(define-route r-home-page ("/:page" :parse-vars (list :page #'parse-integer)) (v-home page))
+(def-route r-home ("/") (v-home))
+(def-route r-home-page ("/:page") (:sift-variables (page 'integer)) (v-home page))
 ;; category
-(define-route r-cat ("/category/:cat/") (v-cat cat))
-(define-route r-cat-page ("/category/:cat/:page" :parse-vars (list :page #'parse-integer)) (v-cat cat page))
+(def-route r-cat ("/category/:cat/") (v-cat cat))
+(def-route r-cat-page ("/category/:cat/:page") (:sift-variables (page 'integer)) (v-cat cat page))
 ;; category/subcategory
-(define-route r-cat-subcat ("/category/:cat/:subcat/") (v-cat-subcat cat subcat))
-(define-route r-cat-subcat-page ("/category/:cat/:subcat/:page" :parse-vars (list :page #'parse-integer))
-  (v-cat-subcat cat subcat page))
+(def-route r-cat-subcat ("/category/:cat/:subcat/") (v-cat-subcat cat subcat))
+(def-route r-cat-subcat-page ("/category/:cat/:subcat/:page") (:sift-variables (page 'integer))
+           (v-cat-subcat cat subcat page))
 ;; tag
-(define-route r-tag ("/tag/:tag/") (v-tag tag))
-(define-route r-tag-page ("/tag/:tag/:page" :parse-vars (list :page #'parse-integer)) (v-tag tag page))
+(def-route r-tag ("/tag/:tag/") (v-tag tag))
+(def-route r-tag-page ("/tag/:tag/:page") (:sift-variables (page 'integer)) (v-tag tag page))
 ;; author
-(define-route r-author ("/author/:author/") (v-author author))
-(define-route r-author-page ("/author/:author/:page" :parse-vars (list :page #'parse-integer)) (v-author author page))
+(def-route r-author ("/author/:author/") (v-author author))
+(def-route r-author-page ("/author/:author/:page") (:sift-variables (page 'integer)) (v-author author page))
 ;; article
-(define-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
-(define-route r-comment-post ("/comment/:article-id/" :method :post
-                                                      :parse-vars (list :article-id #'parse-integer))
+(def-route r-article ("/:(slug-and-id).html") (v-article slug-and-id))
+(def-route r-comment-post ("/comment/:article-id/" :method :post)
+  (:sift-variables (article-id 'integer))
   (v-comment-post article-id))
 ;; static pages
-(define-route r-tos ("/tos.html") (v-tos))
-(define-route r-privacy ("/privacy.html") (v-privacy))
+(def-route r-tos ("/tos.html") (v-tos))
+(def-route r-privacy ("/privacy.html") (v-privacy))
 
 ;; RSS
-(define-route r-rss-home ("/feed.xml") :content-type "application/rss+xml"
-              (v-rss-home))
-(define-route r-rss-cat ("/category/:cat/feed.xml") :content-type "application/rss+xml"
-              (v-rss-cat cat))
-(define-route r-rss-cat-subcat ("/category/:cat/:subcat/feed.xml") :content-type "application/rss+xml"
-              (v-rss-cat-subcat cat subcat))
-(define-route r-rss-author ("/author/:author/feed.xml") :content-type "application/rss+xml"
-              (v-rss-author author))
+(def-route r-rss-home ("/feed.xml") :content-type "application/rss+xml"
+           (v-rss-home))
+(def-route r-rss-cat ("/category/:cat/feed.xml") :content-type "application/rss+xml"
+           (v-rss-cat cat))
+(def-route r-rss-cat-subcat ("/category/:cat/:subcat/feed.xml") :content-type "application/rss+xml"
+           (v-rss-cat-subcat cat subcat))
+(def-route r-rss-author ("/author/:author/feed.xml") :content-type "application/rss+xml"
+           (v-rss-author author))
 
 ;; robots
-(define-route r-robots ("/robots.txt")
+(def-route r-robots ("/robots.txt")
   (handle-static-file (merge-pathnames "../data/static/fe-robots.txt" *home*) "text/plain"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ajax
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define-route r-ajax-article-related ("/ajax/article-related/:id/:typeof/:page"
-                                      :parse-vars (list :id #'parse-integer
-                                                        :page #'parse-integer
-                                                        :typeof #'(lambda (a)
-                                                                    (when (or (string= a "author")
-                                                                              (string= a "cat-subcat"))
-                                                                      a)))
-                                      :content-type "application/json")
+(def-route r-ajax-article-related ("/ajax/article-related/:id/:typeof/:page"
+                                   :content-type "application/json")
+  (:sift-variables (id 'integer)
+                   (page 'integer)
+                   (typeof #'(lambda (a)
+                               (when (or (string= a "author")
+                                         (string= a "cat-subcat"))
+                                 a))))
   (v-ajax-article-related id typeof page))
-(define-route r-ajax-home-category-articles ("/ajax/home/:cat-slug/:page"
-                                             :parse-vars (list :page #'parse-integer)
-                                             :content-type "application/json")
+(def-route r-ajax-home-category-articles ("/ajax/home/:cat-slug/:page"
+                                          :content-type "application/json")
+  (:sift-variables (page 'integer))
   (v-ajax-home-category-articles cat-slug page))
-(define-route r-ajax-comment-get ("/comment/:article-id/" :parse-vars (list :article-id #'parse-integer)
-                                                          :content-type "application/json")
+(def-route r-ajax-comment-get ("/comment/:article-id/" :content-type "application/json")
+  (:sift-variables (article-id 'integer))
   (v-comment-get article-id t))
-(define-route r-ajax-comment-post ("/ajax/comment/:article-id/" :method :post
-                                                                :parse-vars (list :article-id #'parse-integer)
-                                                                :content-type "application/json")
+(def-route r-ajax-comment-post ("/ajax/comment/:article-id/" :method :post
+                                                             :content-type "application/json")
+  (:sift-variables (article-id 'integer))
   (v-comment-post article-id t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

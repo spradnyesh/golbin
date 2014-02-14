@@ -1,6 +1,5 @@
 (restas:define-module :hawksbill.golbin.frontend
   (:use :cl :web-utils :hawksbill.golbin :hawksbill.golbin.model :sexml :cl-ppcre :cl-prevalence :split-sequence :restas :parenscript :json :css-lite :hunchentoot :trivial-utf-8 :flexi-streams :local-time :cl-recaptcha :html-entities :trivial-timeout :sanitize)
-  (:decorators #'web-utils:init-dimensions)
   (:shadow :% :prototype :size :acceptor :mime-type :v-404)
   (:shadowing-import-from :restas :redirect :start)
   (:shadowing-import-from :hawksbill.golbin.model :typeof :comment)
@@ -29,10 +28,10 @@
            :r-rss-cat
            :r-rss-cat-subcat
            :r-rss-author
-           ;; enable article to be previewed in editorial
-           :v-article
            :r-robots
-           :r-404))
+           :r-404
+           ;; enable article to be previewed in editorial
+           :v-article))
 
 (in-package :hawksbill.golbin.frontend)
 
@@ -40,6 +39,7 @@
 ;; default routes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; copied from ~/quicklisp/dists/quicklisp/software/restas-20120703-git/example/publish-rst.lisp
+#- (and)
 (mount-submodule -static- (#:restas.directory-publisher)
   (restas.directory-publisher:*baseurl* '("static"))
   (restas.directory-publisher:*directory* (merge-pathnames "../data/static/" *home*))
