@@ -21,12 +21,12 @@
 (defun add-category (category)
   ;; set some params
   (setf (id category)
-        (execute (get-db-handle) (make-transaction 'incf-category-last-id)))
+        (db-execute 'incf-category-last-id))
   (setf (slug category)
         (slugify (name category)))
 
   ;; add to store
-  (execute (get-db-handle) (make-transaction 'insert-category category))
+  (db-execute 'insert-category category)
 
   category)
 

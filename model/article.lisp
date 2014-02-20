@@ -81,13 +81,13 @@
 (defun add-article (article)
   (when article
     ;; save article into storage
-    (execute (get-db-handle) (make-transaction 'insert-article article))
+    (db-execute 'insert-article article)
     article))
 
 (defun edit-article (article)
   (when article
     ;; save article into storage
-    (execute (get-db-handle) (make-transaction 'update-article article))
+    (db-execute 'update-article article)
     article))
 
 (defmacro update-articles-author-photo ()
@@ -101,7 +101,7 @@
 ;; getters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun get-new-article-id ()
-  (execute (get-db-handle) (make-transaction 'incf-article-last-id)))
+  (db-execute 'incf-article-last-id))
 
 (defun get-active-articles ()
   (sort (get-object-by #'(lambda (article)

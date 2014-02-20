@@ -1,6 +1,7 @@
 #+FILETAGS: :Globin:
 
 * backlog
+** investigate https://github.com/redline6561/coleslaw
 ** [refactor][fed] replace submodule -static- w/ hunchentoot static
 ** TODO [bug][ed] preview of article not working after ql:upgrade
    :CLOCK:
@@ -4756,6 +4757,26 @@
     :ARCHIVE_TIME: 2014-02-14 Fri 17:53
     :END:
     - XXX [2014-01-26 Sun] use restas upgrades (decorators not working in define-module)
+*** CANCELLED [#B] [bug][web-utils] mocks defined in web-utils-tests are overriding library functions in golbin code
+    CLOSED: [2014-02-20 Thu 18:42]
+    :LOGBOOK:
+    - State "CANCELLED"  from "DONE"       [2014-02-20 Thu 18:42] \\
+      not a bug; just needed to restart slime
+    :END:
+    :CLOCK:
+    CLOCK: [2014-02-20 Thu 18:40]--[2014-02-20 Thu 18:42] =>  0:02
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-20 Thu 18:42
+    :END:
+*** DONE [refactor] db-execute
+    CLOSED: [2014-02-20 Thu 18:42]
+    :CLOCK:
+    CLOCK: [2014-02-20 Thu 18:30]--[2014-02-20 Thu 18:40] =>  0:10
+    :END:
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-20 Thu 18:42
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/
@@ -4907,460 +4928,6 @@ Also, simple things get complex too soon, because
       - http://www.ehow.com/about_6540492_leadership-style-vs_-organizational-culture.html
 *** Archive                                                         :ARCHIVE:
 ** wrote (not published)
-*** TODO ml-506: multi-class classification
-    :CLOCK:
-    CLOCK: [2014-02-16 Sun 16:49]--[2014-02-16 Sun 17:41] =>  0:52
-    :END:
-    - toc:
-      - one v/s all
-      - eg:
-        - email foldering/tagging: work (y = 1), friends (y = 2), family (y = 3), hobby (y = 4)
-        - medical diagnosis: not ill (y = 1), cold (y = 2), flu (y = 3)
-        - weather: sunny (y = 1), cloudy (y = 2), rain (y = 3), snow (y = 4)
-        - does not matter whether index starts from 0 or 1
-      - example graph for binary v/s multi-class (screenshot in cell)
-      - turn into k separate binary classes classifiers
-        - h_theta^(i)(x) = p(y = i|x; theta), where i = 1, 2, ..., k
-      - to make prediction
-        - y = i, where class i is one that maximizes h_theta^(i)(x)
-    - tags: 50x, machine learning, binary, multi-class, classification, prediction, hypothesis
-    - body:
-Hello and welcome back! Previously, we have discussed the various aspects in much detail in these posts ***here (ml-501)***, ***here (ml-502)***, ***here (ml-503)***, ***here (ml-504)*** and ***here (ml-505)***. Today we will look at the final topic in classification ML algorithms, viz multi-class classification.
-
-Before starting with the actual algorithm, let us first take a look at some examples of multi-classes to ensure that our understanding about them is correct:
-
-- email foldering/tagging: work (y = 1), friends (y = 2), family (y = 3), hobby (y = 4)
-- medical diagnosis: not ill (y = 1), cold (y = 2), flu (y = 3)
-- weather: sunny (y = 1), cloudy (y = 2), rain (y = 3), snow (y = 4)
-
-***plot (ml-506-1.png)***
-
-In all of the above examples, the output variable "y" takes on values from a discrete set (size greater than 2), instead of just "0" and "1" (as in binary classification). This is the problem statement multi-class classification. Note that it does not matter whether the class index starts from 0 or 1.
-
-The technique that is used to solve multi-class classification problems is known as the "one vs all" (or "one vs rest") algorithm. Let us say that our multi-class classification problem has "k" classes (where, k > 2). Then, in "one vs all" classification technique, we take only one class at a time and combine all the other classes into a single class; thus turning the k-class classification problem into k binary classification problems as shown in below graphs
-
-***plot (ml-506-2.png)***
-
-***plot (ml-506-3.png)***
-
-***plot (ml-506-4.png)***
-
-Then we will get k hypothesis functions as below:
-
-h_theta^(i)(x) = p(y = i|x; theta), where i = 1, 2, ..., k
-
-The actual prediction (finding y) is done as follows:
-
-y = i, where class i is one that maximizes h_theta^(i)(x)
-
-This completes our ***50x*** series of ML algorithms which dealt with the topic of classification or logistic regression. I hope you have been following me till now and have enjoyed reading and learning as much as I have writing it and learning from it too :) Do share your thoughts on how I can improve this series further by leaving comments below.
-
-From the next time we will move onto more complex topics and delve much deeper into the realm of ML algorithms. So do come back and enjoy :)
-    - html:
-<p>Hello and welcome back! Previously, we have discussed the various aspects in much detail in these posts ***here (ml-501)***, ***here (ml-502)***, ***here (ml-503)***, ***here (ml-504)*** and ***here (ml-505)***. Today we will look at the final topic in classification ML algorithms, viz multi-class classification.
-</p>
-<p>
-Before starting with the actual algorithm, let us first take a look at some examples of multi-classes to ensure that our understanding about them is correct:
-</p>
-<ul>
-<li>email foldering/tagging: work (y = 1), friends (y = 2), family (y = 3), hobby (y = 4)
-</li>
-<li>medical diagnosis: not ill (y = 1), cold (y = 2), flu (y = 3)
-</li>
-<li>weather: sunny (y = 1), cloudy (y = 2), rain (y = 3), snow (y = 4)
-</li>
-</ul>
-
-
-<p>
-***plot (ml-506-1.png)***
-</p>
-<p>
-In all of the above examples, the output variable "y" takes on values from a discrete set (size greater than 2), instead of just "0" and "1" (as in binary classification). This is the problem statement multi-class classification. Note that it does not matter whether the class index starts from 0 or 1.
-</p>
-<p>
-The technique that is used to solve multi-class classification problems is known as the "one vs all" (or "one vs rest") algorithm. Let us say that our multi-class classification problem has "k" classes (where, k &gt; 2). Then, in "one vs all" classification technique, we take only one class at a time and combine all the other classes into a single class; thus turning the k-class classification problem into k binary classification problems as shown in below graphs
-</p>
-<p>
-***plot (ml-506-2.png)***
-</p>
-<p>
-***plot (ml-506-3.png)***
-</p>
-<p>
-***plot (ml-506-4.png)***
-</p>
-<p>
-Then we will get k hypothesis functions as below:
-</p>
-<pre>
-h<sub>&theta;</sub><sup>(i)</sup>(x) = p(y = i|x; &theta;), where i = 1, 2, &hellip;, k
-</pre>
-<p>
-The actual prediction (finding y) is done as follows:
-</p>
-<pre>
-y = i, where class i is one that maximizes h<sub>&theta;</sub><sup>(i)</sup>(x)
-</pre>
-<p>
-This completes our ***50x*** series of ML algorithms which dealt with the topic of classification or logistic regression. I hope you have been following me till now and have enjoyed reading and learning as much as I have writing it and learning from it too :) Do share your thoughts on how I can improve this series further by leaving comments below.
-</p>
-<p>
-From the next time we will move onto more complex topics and delve much deeper into the realm of ML algorithms. So do come back and enjoy :)
-</p>
-*** TODO ml-505: simplified cost function and gradient descent for logistic regression
-    :CLOCK:
-    CLOCK: [2014-02-16 Sun 16:06]--[2014-02-16 Sun 16:38] =>  0:32
-    CLOCK: [2014-02-16 Sun 15:52]--[2014-02-16 Sun 16:04] =>  0:12
-    :END:
-    - toc:
-      - logistic regression: cost(h_theta(x), y) = -log(h_theta(x)), if y = 1
-        - -log(1 = h_theta(x)), if y = 0
-        - cost(h_theta(x), y) = -y log(h_theta(x)) - (1 - y) log(1 - h_theta(x))
-          - explain equivalence to previous
-        - thus J(theta) = -(y log(h_theta(x)) + (1 - y) log(1 - h_theta(x))) / m
-      - to fit params theta, we need to min_theta J(theta)
-      - once find theta, hypothesis
-        - h_theta(x) = ...
-        - hypothesis => p(y = 1 | x; theta)
-      - usual template for gradient descent
-        - repeat
-          - theta_j = theta_j - alpha d/dtheta_j J(theta)
-          - update all theta_j simultaneously
-      - d/dtheta_j J(theta) = sum i=1 to m (h_theta(x^(i)) - y^(i)) x_j^(i)
-      - thus gradient descent for logistic regression
-        - repeat
-          - theta_j = theta_j - alpha sum i=1 to m (h_theta(x^(i)) - y^(i)) x_j^(i)
-          - update all theta_j simultaneously
-      - the above gradient descent looks exactly same as gradient descent for linear regression. but they are really different because h_theta(x) is different for linear and logistic regression. so they are different gradient descent implementations
-      - same method as ***post*** to monitor gradient descent is converging correctly
-    - tags: 50x, machine learning, classification, logistic regression, cost, gradient descent, hypothesis
-    - summary:
-    - body:
-Hello, welcome back! In the last ***post (ml-504)*** we defined the cost function for our logistic regression implementation. Today we will simplify it, and also move onto the next stage, viz minimization of the cost function.
-
-As a short recap, in the last ***post (ml-504)***, we defined the cost function as
-
-cost(h_theta(x), y) = -log(h_theta(x)), if y = 1
-        - -log(1 = h_theta(x)), if y = 0
-
-The same can be rewritten simply as follows:
-
-cost(h_theta(x), y) = -y log(h_theta(x)) - (1 - y) log(1 - h_theta(x))
-
-To see how this is the same as the previous one, we need to remember that our output variable "y" can take only 1 of 2 possible values, viz "0" and "1". So let's try to substitute these values in our 2nd equation to see if we can get to the 1st
-
-When "y = 1"
-
-cost(h_theta(x), y) = -1 log(h_theta(x)) - (1 - 1) log(1 - h_theta(x))
-= -log(h_theta(x)) - 0 * log(1 - h_theta(x))
-= -log(h_theta(x)) - 0
-= -log(h_theta(x))
-
-Similarly, when "y = 0"
-
-cost(h_theta(x), y) = -0 * log(h_theta(x)) - (1 - 0) log(1 - h_theta(x))
-= -0 - 1 * log(1 - h_theta(x))
-= -log(1 - h_theta(x))
-
-Combining the above 2 new equations, we get
-
-cost(h_theta(x), y) = -log(h_theta(x)), when "y = 1"
-= -log(1 - h_theta(x)), when "y = 0"
-
-which is exactly the same as our original cost function as defined in the 1st equation.
-
-Using this new definition, our real cost function J(theta) becomes:
-
-J(theta) = -(y log(h_theta(x)) + (1 - y) log(1 - h_theta(x))) / m
-
-With that out of the way, let us move onto the next step, viz minimization. For this, we will use our old friend which was introduced in these earlier posts ***here (ml-303)*** and ***here (ml-401)***, viz gradient descent. I hope you remember that the general template for gradient descent is:
-
-repeat until convergence {
-    theta_j = theta_j - alpha * delta/delta theta_j J(theta)
-    update all theta_j simultaneously
-}
-
-Without going into the mathematical derivation, the partial derivative of J(theta) w.r.t theta_j is:
-
-delta/delta theta_j J(theta) = sigma_(i=1)^m (h_theta(x^(i)) - y^(i)) x_j^(i) / m
-
-With this information, our gradient descent step becomes
-
-repeat until convergence {
-    theta_j = theta_j - alpha * sigma_(i=1)^m (h_theta(x^(i)) - y^(i)) x_j^(i) / m
-    update all theta_j simultaneously
-}
-
-You might notice that this gradient descent definition is exactly the same as that for linear regression as defined ***here (ml-401)***. Does this mean that both instances of the gradient descent implementations (for linear and logistic regression) are the same? Close inspection will show that this is not the case. That is because the hypothesis function (h_theta(x)) for linear and logistic are different. Thus the two gradient descent too are different, although they look the same superficially.
-
-Once we have the optimized values of theta, it is trivial to substitute them in the definition for the hypothesis function which can be used for prediction of new values of y, given x. However, do remember, that the hypothesis function for logistic regression is actually a probability function (as mentioned in ***this (ml-502)*** post). Thus
-
-hypothesis function = h_theta(x) = p(y = 1|x; theta) = probability that "y = 1" given "x" and parameterized by "theta"
-
-Lastly, we had described a method for verifying that the gradient descent implementation is indeed working correctly and is minimizing the cost function in ***this (ml-304)*** post. Although that method was used for linear regression, the exact same method can be used for logistic regression too.
-
-This almost completes the logistic regression part of ML algorithms. The only thing left is to look at cases when y can take a value from a predefined set of values, instead of just 2 values "0" and "1"; that is multi-class classification instead of binary classification. We will look at this last detail in the next post. So stay tuned!
-    - html:
-<p>Hello, welcome back! In the last ***post (ml-504)*** we defined the cost function for our logistic regression implementation. Today we will simplify it, and also move onto the next stage, viz minimization of the cost function.
-</p>
-<p>
-As a short recap, in the last ***post (ml-504)***, we defined the cost function as
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if y = 1
-                 -log(1 = h<sub>&theta;</sub>(x)), if y = 0
-</pre><p>
-The same can be rewritten simply as follows:
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x), y) = -y log(h<sub>&theta;</sub>(x)) - (1 - y) log(1 - h<sub>&theta;</sub>(x))
-</pre>
-<p>
-To see how this is the same as the previous one, we need to remember that our output variable "y" can take only 1 of 2 possible values, viz "0" and "1". So let's try to substitute these values in our 2nd equation to see if we can get to the 1st
-</p>
-<p>
-When "y = 1"
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x), y) = -1 log(h<sub>&theta;</sub>(x)) - (1 - 1) log(1 - h<sub>&theta;</sub>(x))
-= -log(h<sub>&theta;</sub>(x)) - 0 * log(1 - h<sub>&theta;</sub>(x))
-= -log(h<sub>&theta;</sub>(x))
-</pre>
-<p>
-Similarly, when "y = 0"
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x), y) = -0 * log(h<sub>&theta;</sub>(x)) - (1 - 0) log(1 - h<sub>&theta;</sub>(x))
-= -0 - 1 * log(1 - h<sub>&theta;</sub>(x))
-= -log(1 - h<sub>&theta;</sub>(x))
-</pre>
-<p>
-Combining the above 2 new equations, we get
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), when "y = 1"
-= -log(1 - h<sub>&theta;</sub>(x)), when "y = 0"
-</pre>
-<p>
-which is exactly the same as our original cost function as defined in the 1st equation.
-</p>
-<p>
-Using this new definition, our real cost function J(&theta;) becomes:
-</p>
-<pre>
-J(&theta;) = -(y log(h<sub>&theta;</sub>(x)) + (1 - y) log(1 - h<sub>&theta;</sub>(x))) / m
-</pre>
-<p>
-With that out of the way, let us move onto the next step, viz minimization. For this, we will use our old friend which was introduced in these earlier posts ***here (ml-303)*** and ***here (ml-401)***, viz gradient descent. I hope you remember that the general template for gradient descent is:
-</p>
-<pre>
-repeat until convergence {
-    &theta;<sub>j</sub> = &theta;<sub>j</sub> - &alpha; * &delta;/&delta;&theta;<sub>j</sub> J(&theta;)
-    update all &theta;<sub>j</sub> simultaneously
-}
-</pre>
-<p>
-Without going into the mathematical derivation, the partial derivative of J(&theta;) w.r.t &theta;<sub>j</sub> is:
-</p>
-<pre>
-&delta;/&delta;&theta;<sub>j</sub> J(&theta;) = &Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>) x<sub>j</sub><sup>(i)</sup> / m
-</pre>
-<p>
-With this information, our gradient descent step becomes
-</p>
-<pre>
-repeat until convergence {
-    &theta;<sub>j</sub> = &theta;<sub>j</sub> - &alpha; * &Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>) x<sub>j</sub><sup>(i)</sup> / m
-    update all &theta;<sub>j</sub> simultaneously
-}
-</pre>
-<p>
-You might notice that this gradient descent definition is exactly the same as that for linear regression as defined ***here (ml-401)***. Does this mean that both instances of the gradient descent implementations (for linear and logistic regression) are the same? Close inspection will show that this is not the case. That is because the hypothesis function (h<sub>&theta;</sub>(x)) for linear and logistic are different. Thus the two gradient descent too are different, although they look the same superficially.
-</p>
-<p>
-Once we have the optimized values of &theta;, it is trivial to substitute them in the definition for the hypothesis function which can be used for prediction of new values of y, given x. However, do remember, that the hypothesis function for logistic regression is actually a probability function (as mentioned in ***this (ml-502)*** post). Thus
-</p>
-<pre>
-hypothesis function = h<sub>&theta;</sub>(x) = p(y = 1|x; &theta;)
-= probability that "y = 1" given "x" and parameterized by "&theta;"
-</pre>
-<p>
-Lastly, we had described a method for verifying that the gradient descent implementation is indeed working correctly and is minimizing the cost function in ***this (ml-304)*** post. Although that method was used for linear regression, the exact same method can be used for logistic regression too.
-</p>
-<p>
-This almost completes the logistic regression part of ML algorithms. The only thing left is to look at cases when y can take a value from a predefined set of values, instead of just 2 values "0" and "1"; that is multi-class classification instead of binary classification. We will look at this last detail in the next post. So stay tuned!
-</p>
-*** TODO ml-504: cost function for logistic regression
-    :CLOCK:
-    CLOCK: [2014-02-16 Sun 15:16]--[2014-02-16 Sun 15:50] =>  0:34
-    CLOCK: [2014-02-16 Sun 14:04]--[2014-02-16 Sun 14:19] =>  0:15
-    CLOCK: [2014-02-16 Sun 13:50]--[2014-02-16 Sun 14:03] =>  0:13
-    :END:
-    - toc:
-      - hypothesis: h_theta(x) = g(theta' x) = 1 / (1 + e ^ -(theta' * x))
-      - linear regression, cost = J(theta) = (sum(1, m) (h_theta(x^(i)) - y^(i))^2 / 2) / m
-      - let's say, (sum(1, m) (h_theta(x^(i)) - y^(i))^2 / 2) = cost(h_theta(x^(i)), y^(i))
-        - or, cost(h_theta(x), y) = (sum(1, m) (h_theta(x) - y)^2 / 2)
-      - but this cost function is non-convex :( (because of squared-cost of sigmoid is non-linear)
-        - so finding optimal/global minimum is (mostly) impossible
-      - logistic regression: cost(h_theta(x), y) = -log(h_theta(x)), if y = 1
-        - -log(1 = h_theta(x)), if y = 0
-      - *** plot of y = 1 ***
-        - this cost function has interesting and desirable properties
-          - for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0
-          - but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity
-      - *** plot of y = 0 ***
-        - for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0
-        - but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity
-    - tags: hypothesis, theta, linear, regression, logistic, cost, convex, sigmoid, minimum, optimal, machine learning, 50x
-    - summary:
-    - body:
-Hello. In the previous few posts (***here (ml-501)***, ***here (ml-502)*** and ***here (ml-503)***) we learned about linear regression and also formulated its hypothesis function using the sigmoid function so that the output variable "y" always is either 0 or 1. Today we will move onto the next stage and learn about the cost function that shall be used in the logistic regression ML problem.
-
-In ***post (ml-502)*** we defined our hypothesis function as
-
-h_theta(x) = g(theta' x) = 1 / (1 + e ^ -(theta' * x))
-
-Also, in ***post (ml-301)***, we had defined the cost function for linear regression as:
-
-J(theta) = (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
-
-Let's re-write it as:
-
-J(theta) = (Σ_i^m ((h_Θ(x^(i)) - y^(i))^2) / 2) / m
-
-or
-
-J(theta) = cost(h_theta(x^(i)), y^(i)) / m
-
-that is
-
-cost(h_theta(x^(i)), y^(i)) = (Σ_i^m ((h_Θ(x^(i)) - y^(i))^2) / 2)
-
-But this cost-function is non-convex :( (unlike that of linear regression (see ***post (ml-302)***)). This is because the squared cost of sigmoid function is non-linear (remember that our hypothesis function is the sigmoid of (theta' * x)). Due to this finding the optimal (global) minimum is (mostly, unless by luck) impossible. Hence we need to define a new cost-function for our logistic regression problem.
-
-Let us define the new cost-function as follows:
-
-cost(h_theta(x), y) = -log(h_theta(x)), if "y = 1"
--log(1 = h_theta(x)), if "y = 0"
-
-Now we need to prove that the above cost-function is convex. To do this let us first consider the case when "y = 1"
-
-***plot of y = 1 (ml-504-1.png)***
-
-The above graph is a plot for the function "-log(h_theta(x))". As can bee seen from this graph, our newly defined cost function has interesting and desirable properties:
-
-- for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0
-- but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity
-
-Now see what happens when "y = 0"
-
-***plot of y = 0 (ml-504-2.png)***
-
-The above graph is a plot for the function "-log(1 - h_theta(x))". Similar to the previous graph, we have some interesting and desirable properties here too:
-
-- for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0
-- but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity
-
-These properties are good because when our implementation is working as expected the cost (error) is 0, but when it is not, then it gets penalized heavily. When, in later stages, we apply minimization algorithms to this cost function, we are sure it will work in the right direction and produce the correct values of theta. From there, we will follow the standards steps of defining the hypothesis function which will be used to predict "y" given "x".
-
-Coming back to the point, our real cost function "J(theta)" will now be defined as
-
-J(theta) = cost(h_theta(x^(i)), y^(i)) / m
-where
-cost(h_theta(x), y) = -log(h_theta(x)), if "y = 1"
--log(1 = h_theta(x)), if "y = 0"
-
-Keep watching this space until next time when we will move onto the next stage of the logistic regression ML algorithm and learn about minimization techniques for our new cost function!
-    - html:
-<p>Hello. In the previous few posts (***here (ml-501)***, ***here (ml-502)*** and ***here (ml-503)***) we learned about linear regression and also formulated its hypothesis function using the sigmoid function so that the output variable "y" always is either 0 or 1. Today we will move onto the next stage and learn about the cost function that shall be used in the logistic regression ML problem.
-</p>
-<p>
-In ***post (ml-502)*** we defined our hypothesis function as
-</p>
-<pre>
-h<sub>&theta;</sub>(x) = g(&theta;' * x) = 1 / (1 + e<sup>-(&theta;' * x)</sup>)
-</pre>
-<p>
-Also, in ***post (ml-301)***, we had defined the cost function for linear regression as:
-</p>
-<pre>
-J(&theta;) = (&Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>)/(2*m)
-</pre>
-<p>
-Let's re-write it as:
-</p>
-<pre>
-J(&theta;) = (&Sigma;<sub>i=1</sub><sup>m</sup> ((h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>) / 2) / m
-</pre>
-<p>
-or
-</p>
-<pre>
-J(&theta;) = cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) / m
-</pre>
-<p>
-that is
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) = (&Sigma;<sub>i=1</sub><sup>m</sup> ((h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>) / 2)
-</pre>
-<p>
-But this cost-function is non-convex :( (unlike that of linear regression (see ***post (ml-302)***)). This is because the squared cost of sigmoid function is non-linear (remember that our hypothesis function is the sigmoid of (&theta;' * x)). Due to this finding the optimal (global) minimum is (mostly, unless by luck) impossible. Hence we need to define a new cost-function for our logistic regression problem.
-</p>
-<p>
-Let us define the new cost-function as follows:
-</p>
-<pre>
-cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if "y = 1"
-                 -log(1 = h<sub>&theta;</sub>(x)), if "y = 0"
-</pre>
-<p>
-Now we need to prove that the above cost-function is convex. To do this let us first consider the case when "y = 1"
-</p>
-<p>
-***plot of y = 1 (ml-504-1.png)***
-</p>
-<p>
-The above graph is a plot for the function "-log(h<sub>&theta;</sub>(x))". As can bee seen from this graph, our newly defined cost function has interesting and desirable properties:
-</p>
-<ul>
-<li>for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0
-</li>
-<li>but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity
-</li>
-</ul>
-<p>
-Now see what happens when "y = 0"
-</p>
-<p>
-***plot of y = 0 (ml-504-2.png)***
-</p>
-<p>
-The above graph is a plot for the function "-log(1 - h<sub>&theta;</sub>(x))". Similar to the previous graph, we have some interesting and desirable properties here too:
-</p>
-<ul>
-<li>for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0
-</li>
-<li>but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity
-</li>
-</ul>
-<p>
-These properties are good because when our implementation is working as expected the cost (error) is 0, but when it is not, then it gets penalized heavily. When, in later stages, we apply minimization algorithms to this cost function, we are sure it will work in the right direction and produce the correct values of &theta;. From there, we will follow the standards steps of defining the hypothesis function which will be used to predict "y" given "x".
-</p>
-<p>
-Coming back to the point, our real cost function "J(&theta;)" will now be defined as
-</p>
-<pre>
-J(&theta;) = cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) / m
-where
-cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if "y = 1"
-                 -log(1 = h<sub>&theta;</sub>(x)), if "y = 0"
-</pre>
-<p>
-Keep watching this space until next time when we will move onto the next stage of the logistic regression ML algorithm and learn about minimization techniques for our new cost function!
-</p>
 *** Archive                                                         :ARCHIVE:
 **** DONE Discovering the joy of writing
    CLOSED: [2012-12-22 Sat 18:41]
@@ -9708,6 +9275,472 @@ h_theta(x) = theta_0 + theta_1 x1 + theta_2 x2 + theta_3 x1^2 + theta_4 x2^2 + t
 then we can get even more complex forms of the decision boundary which will help us correctly classify our dataset.
 
 I hope you are with me till here, and are loving reading about these algorithms as much as I am loving writing about them. In the next post we will take a look at the methods to compute the optimal values of theta. So keep watching this space!
+**** DONE ml-504: cost function for logistic regression
+    CLOSED: [2014-02-17 Mon 15:33]
+    :CLOCK:
+    CLOCK: [2014-02-16 Sun 15:16]--[2014-02-16 Sun 15:50] =>  0:34
+    CLOCK: [2014-02-16 Sun 14:04]--[2014-02-16 Sun 14:19] =>  0:15
+    CLOCK: [2014-02-16 Sun 13:50]--[2014-02-16 Sun 14:03] =>  0:13
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-02-17 Mon 15:33
+     :END:
+    - toc:
+      - hypothesis: h_theta(x) = g(theta' x) = 1 / (1 + e ^ -(theta' * x))
+      - linear regression, cost = J(theta) = (sum(1, m) (h_theta(x^(i)) - y^(i))^2 / 2) / m
+      - let's say, (sum(1, m) (h_theta(x^(i)) - y^(i))^2 / 2) = cost(h_theta(x^(i)), y^(i))
+        - or, cost(h_theta(x), y) = (sum(1, m) (h_theta(x) - y)^2 / 2)
+      - but this cost function is non-convex :( (because of squared-cost of sigmoid is non-linear)
+        - so finding optimal/global minimum is (mostly) impossible
+      - logistic regression: cost(h_theta(x), y) = -log(h_theta(x)), if y = 1
+        - -log(1 = h_theta(x)), if y = 0
+      - *** plot of y = 1 ***
+        - this cost function has interesting and desirable properties
+          - for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0
+          - but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity
+      - *** plot of y = 0 ***
+        - for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0
+        - but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity
+    - tags: hypothesis, theta, linear, regression, logistic, cost, convex, sigmoid, minimum, optimal, machine learning, 50x
+    - summary:
+    - body:
+Hello. In the previous few posts (***here (ml-501)***, ***here (ml-502)*** and ***here (ml-503)***) we learned about linear regression and also formulated its hypothesis function using the sigmoid function so that the output variable "y" always is either 0 or 1. Today we will move onto the next stage and learn about the cost function that shall be used in the logistic regression ML problem.
+
+In ***post (ml-502)*** we defined our hypothesis function as
+
+h_theta(x) = g(theta' x) = 1 / (1 + e ^ -(theta' * x))
+
+Also, in ***post (ml-301)***, we had defined the cost function for linear regression as:
+
+J(theta) = (Σ_i^m (h_Θ(x^(i)) - y^(i))^2)/(2*m)
+
+Let's re-write it as:
+
+J(theta) = (Σ_i^m ((h_Θ(x^(i)) - y^(i))^2) / 2) / m
+
+or
+
+J(theta) = cost(h_theta(x^(i)), y^(i)) / m
+
+that is
+
+cost(h_theta(x^(i)), y^(i)) = (Σ_i^m ((h_Θ(x^(i)) - y^(i))^2) / 2)
+
+But this cost-function is non-convex :( (unlike that of linear regression (see ***post (ml-302)***)). This is because the squared cost of sigmoid function is non-linear (remember that our hypothesis function is the sigmoid of (theta' * x)). Due to this finding the optimal (global) minimum is (mostly, unless by luck) impossible. Hence we need to define a new cost-function for our logistic regression problem.
+
+Let us define the new cost-function as follows:
+
+cost(h_theta(x), y) = -log(h_theta(x)), if "y = 1"
+-log(1 = h_theta(x)), if "y = 0"
+
+Now we need to prove that the above cost-function is convex. To do this let us first consider the case when "y = 1"
+
+***plot of y = 1 (ml-504-1.png)***
+
+The above graph is a plot for the function "-log(h_theta(x))". As can bee seen from this graph, our newly defined cost function has interesting and desirable properties:
+
+- for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0
+- but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity
+
+Now see what happens when "y = 0"
+
+***plot of y = 0 (ml-504-2.png)***
+
+The above graph is a plot for the function "-log(1 - h_theta(x))". Similar to the previous graph, we have some interesting and desirable properties here too:
+
+- for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0
+- but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity
+
+These properties are good because when our implementation is working as expected the cost (error) is 0, but when it is not, then it gets penalized heavily. When, in later stages, we apply minimization algorithms to this cost function, we are sure it will work in the right direction and produce the correct values of theta. From there, we will follow the standards steps of defining the hypothesis function which will be used to predict "y" given "x".
+
+Coming back to the point, our real cost function "J(theta)" will now be defined as
+
+J(theta) = cost(h_theta(x^(i)), y^(i)) / m
+where
+cost(h_theta(x), y) = -log(h_theta(x)), if "y = 1"
+-log(1 = h_theta(x)), if "y = 0"
+
+Keep watching this space until next time when we will move onto the next stage of the logistic regression ML algorithm and learn about minimization techniques for our new cost function!
+    - html:
+<p>Hello. In the previous few posts (***here (ml-501)***, ***here (ml-502)*** and ***here (ml-503)***) we learned about linear regression and also formulated its hypothesis function using the sigmoid function so that the output variable "y" always is either 0 or 1. Today we will move onto the next stage and learn about the cost function that shall be used in the logistic regression ML problem.
+</p>
+<p>
+In ***post (ml-502)*** we defined our hypothesis function as
+</p>
+<pre>
+h<sub>&theta;</sub>(x) = g(&theta;' * x) = 1 / (1 + e<sup>-(&theta;' * x)</sup>)
+</pre>
+<p>
+Also, in ***post (ml-301)***, we had defined the cost function for linear regression as:
+</p>
+<pre>
+J(&theta;) = (&Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>)/(2*m)
+</pre>
+<p>
+Let's re-write it as:
+</p>
+<pre>
+J(&theta;) = (&Sigma;<sub>i=1</sub><sup>m</sup> ((h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>) / 2) / m
+</pre>
+<p>
+or
+</p>
+<pre>
+J(&theta;) = cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) / m
+</pre>
+<p>
+that is
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) = (&Sigma;<sub>i=1</sub><sup>m</sup> ((h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>)<sup>2</sup>) / 2)
+</pre>
+<p>
+But this cost-function is non-convex :( (unlike that of linear regression (see ***post (ml-302)***)). This is because the squared cost of sigmoid function is non-linear (remember that our hypothesis function is the sigmoid of (&theta;' * x)). Due to this finding the optimal (global) minimum is (mostly, unless by luck) impossible. Hence we need to define a new cost-function for our logistic regression problem.
+</p>
+<p>
+Let us define the new cost-function as follows:
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if "y = 1"
+                 -log(1 = h<sub>&theta;</sub>(x)), if "y = 0"
+</pre>
+<p>
+Now we need to prove that the above cost-function is convex. To do this let us first consider the case when "y = 1"
+</p>
+<p>
+***plot of y = 1 (ml-504-1.png)***
+</p>
+<p>
+The above graph is a plot for the function "-log(h<sub>&theta;</sub>(x))". As can bee seen from this graph, our newly defined cost function has interesting and desirable properties:
+</p>
+<ul>
+<li>for true-positive (hypothesis predicts y = 1, and really y = 1), then cost = 0
+</li>
+<li>but false-negative (hypothesis predicts y = 0, but really y = 1), then cost grows to infinity
+</li>
+</ul>
+<p>
+Now see what happens when "y = 0"
+</p>
+<p>
+***plot of y = 0 (ml-504-2.png)***
+</p>
+<p>
+The above graph is a plot for the function "-log(1 - h<sub>&theta;</sub>(x))". Similar to the previous graph, we have some interesting and desirable properties here too:
+</p>
+<ul>
+<li>for true-negative (hypothesis predicts y = 0, and really y = 0), then cost = 0
+</li>
+<li>but false-positive (hypothesis predicts y = 1, but really y = 0), then cost grows to infinity
+</li>
+</ul>
+<p>
+These properties are good because when our implementation is working as expected the cost (error) is 0, but when it is not, then it gets penalized heavily. When, in later stages, we apply minimization algorithms to this cost function, we are sure it will work in the right direction and produce the correct values of &theta;. From there, we will follow the standards steps of defining the hypothesis function which will be used to predict "y" given "x".
+</p>
+<p>
+Coming back to the point, our real cost function "J(&theta;)" will now be defined as
+</p>
+<pre>
+J(&theta;) = cost(h<sub>&theta;</sub>(x<sup>(i)</sup>), y<sup>(i)</sup>) / m
+where
+cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if "y = 1"
+                 -log(1 = h<sub>&theta;</sub>(x)), if "y = 0"
+</pre>
+<p>
+Keep watching this space until next time when we will move onto the next stage of the logistic regression ML algorithm and learn about minimization techniques for our new cost function!
+</p>
+**** DONE ml-505: simplified cost function and gradient descent for logistic regression
+    CLOSED: [2014-02-17 Mon 15:33]
+    :CLOCK:
+    CLOCK: [2014-02-16 Sun 16:06]--[2014-02-16 Sun 16:38] =>  0:32
+    CLOCK: [2014-02-16 Sun 15:52]--[2014-02-16 Sun 16:04] =>  0:12
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-02-17 Mon 15:33
+     :END:
+    - toc:
+      - logistic regression: cost(h_theta(x), y) = -log(h_theta(x)), if y = 1
+        - -log(1 = h_theta(x)), if y = 0
+        - cost(h_theta(x), y) = -y log(h_theta(x)) - (1 - y) log(1 - h_theta(x))
+          - explain equivalence to previous
+        - thus J(theta) = -(y log(h_theta(x)) + (1 - y) log(1 - h_theta(x))) / m
+      - to fit params theta, we need to min_theta J(theta)
+      - once find theta, hypothesis
+        - h_theta(x) = ...
+        - hypothesis => p(y = 1 | x; theta)
+      - usual template for gradient descent
+        - repeat
+          - theta_j = theta_j - alpha d/dtheta_j J(theta)
+          - update all theta_j simultaneously
+      - d/dtheta_j J(theta) = sum i=1 to m (h_theta(x^(i)) - y^(i)) x_j^(i)
+      - thus gradient descent for logistic regression
+        - repeat
+          - theta_j = theta_j - alpha sum i=1 to m (h_theta(x^(i)) - y^(i)) x_j^(i)
+          - update all theta_j simultaneously
+      - the above gradient descent looks exactly same as gradient descent for linear regression. but they are really different because h_theta(x) is different for linear and logistic regression. so they are different gradient descent implementations
+      - same method as ***post*** to monitor gradient descent is converging correctly
+    - tags: 50x, machine learning, classification, logistic regression, cost, gradient descent, hypothesis
+    - summary:
+    - body:
+Hello, welcome back! In the last ***post (ml-504)*** we defined the cost function for our logistic regression implementation. Today we will simplify it, and also move onto the next stage, viz minimization of the cost function.
+
+As a short recap, in the last ***post (ml-504)***, we defined the cost function as
+
+cost(h_theta(x), y) = -log(h_theta(x)), if y = 1
+        - -log(1 = h_theta(x)), if y = 0
+
+The same can be rewritten simply as follows:
+
+cost(h_theta(x), y) = -y log(h_theta(x)) - (1 - y) log(1 - h_theta(x))
+
+To see how this is the same as the previous one, we need to remember that our output variable "y" can take only 1 of 2 possible values, viz "0" and "1". So let's try to substitute these values in our 2nd equation to see if we can get to the 1st
+
+When "y = 1"
+
+cost(h_theta(x), y) = -1 log(h_theta(x)) - (1 - 1) log(1 - h_theta(x))
+= -log(h_theta(x)) - 0 * log(1 - h_theta(x))
+= -log(h_theta(x)) - 0
+= -log(h_theta(x))
+
+Similarly, when "y = 0"
+
+cost(h_theta(x), y) = -0 * log(h_theta(x)) - (1 - 0) log(1 - h_theta(x))
+= -0 - 1 * log(1 - h_theta(x))
+= -log(1 - h_theta(x))
+
+Combining the above 2 new equations, we get
+
+cost(h_theta(x), y) = -log(h_theta(x)), when "y = 1"
+= -log(1 - h_theta(x)), when "y = 0"
+
+which is exactly the same as our original cost function as defined in the 1st equation.
+
+Using this new definition, our real cost function J(theta) becomes:
+
+J(theta) = -(y log(h_theta(x)) + (1 - y) log(1 - h_theta(x))) / m
+
+With that out of the way, let us move onto the next step, viz minimization. For this, we will use our old friend which was introduced in these earlier posts ***here (ml-303)*** and ***here (ml-401)***, viz gradient descent. I hope you remember that the general template for gradient descent is:
+
+repeat until convergence {
+    theta_j = theta_j - alpha * delta/delta theta_j J(theta)
+    update all theta_j simultaneously
+}
+
+Without going into the mathematical derivation, the partial derivative of J(theta) w.r.t theta_j is:
+
+delta/delta theta_j J(theta) = sigma_(i=1)^m (h_theta(x^(i)) - y^(i)) x_j^(i) / m
+
+With this information, our gradient descent step becomes
+
+repeat until convergence {
+    theta_j = theta_j - alpha * sigma_(i=1)^m (h_theta(x^(i)) - y^(i)) x_j^(i) / m
+    update all theta_j simultaneously
+}
+
+You might notice that this gradient descent definition is exactly the same as that for linear regression as defined ***here (ml-401)***. Does this mean that both instances of the gradient descent implementations (for linear and logistic regression) are the same? Close inspection will show that this is not the case. That is because the hypothesis function (h_theta(x)) for linear and logistic are different. Thus the two gradient descent too are different, although they look the same superficially.
+
+Once we have the optimized values of theta, it is trivial to substitute them in the definition for the hypothesis function which can be used for prediction of new values of y, given x. However, do remember, that the hypothesis function for logistic regression is actually a probability function (as mentioned in ***this (ml-502)*** post). Thus
+
+hypothesis function = h_theta(x) = p(y = 1|x; theta) = probability that "y = 1" given "x" and parameterized by "theta"
+
+Lastly, we had described a method for verifying that the gradient descent implementation is indeed working correctly and is minimizing the cost function in ***this (ml-304)*** post. Although that method was used for linear regression, the exact same method can be used for logistic regression too.
+
+This almost completes the logistic regression part of ML algorithms. The only thing left is to look at cases when y can take a value from a predefined set of values, instead of just 2 values "0" and "1"; that is multi-class classification instead of binary classification. We will look at this last detail in the next post. So stay tuned!
+    - html:
+<p>Hello, welcome back! In the last ***post (ml-504)*** we defined the cost function for our logistic regression implementation. Today we will simplify it, and also move onto the next stage, viz minimization of the cost function.
+</p>
+<p>
+As a short recap, in the last ***post (ml-504)***, we defined the cost function as
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), if y = 1
+                 -log(1 = h<sub>&theta;</sub>(x)), if y = 0
+</pre><p>
+The same can be rewritten simply as follows:
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x), y) = -y log(h<sub>&theta;</sub>(x)) - (1 - y) log(1 - h<sub>&theta;</sub>(x))
+</pre>
+<p>
+To see how this is the same as the previous one, we need to remember that our output variable "y" can take only 1 of 2 possible values, viz "0" and "1". So let's try to substitute these values in our 2nd equation to see if we can get to the 1st
+</p>
+<p>
+When "y = 1"
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x), y) = -1 log(h<sub>&theta;</sub>(x)) - (1 - 1) log(1 - h<sub>&theta;</sub>(x))
+= -log(h<sub>&theta;</sub>(x)) - 0 * log(1 - h<sub>&theta;</sub>(x))
+= -log(h<sub>&theta;</sub>(x))
+</pre>
+<p>
+Similarly, when "y = 0"
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x), y) = -0 * log(h<sub>&theta;</sub>(x)) - (1 - 0) log(1 - h<sub>&theta;</sub>(x))
+= -0 - 1 * log(1 - h<sub>&theta;</sub>(x))
+= -log(1 - h<sub>&theta;</sub>(x))
+</pre>
+<p>
+Combining the above 2 new equations, we get
+</p>
+<pre>
+cost(h<sub>&theta;</sub>(x), y) = -log(h<sub>&theta;</sub>(x)), when "y = 1"
+= -log(1 - h<sub>&theta;</sub>(x)), when "y = 0"
+</pre>
+<p>
+which is exactly the same as our original cost function as defined in the 1st equation.
+</p>
+<p>
+Using this new definition, our real cost function J(&theta;) becomes:
+</p>
+<pre>
+J(&theta;) = -(y log(h<sub>&theta;</sub>(x)) + (1 - y) log(1 - h<sub>&theta;</sub>(x))) / m
+</pre>
+<p>
+With that out of the way, let us move onto the next step, viz minimization. For this, we will use our old friend which was introduced in these earlier posts ***here (ml-303)*** and ***here (ml-401)***, viz gradient descent. I hope you remember that the general template for gradient descent is:
+</p>
+<pre>
+repeat until convergence {
+    &theta;<sub>j</sub> = &theta;<sub>j</sub> - &alpha; * &delta;/&delta;&theta;<sub>j</sub> J(&theta;)
+    update all &theta;<sub>j</sub> simultaneously
+}
+</pre>
+<p>
+Without going into the mathematical derivation, the partial derivative of J(&theta;) w.r.t &theta;<sub>j</sub> is:
+</p>
+<pre>
+&delta;/&delta;&theta;<sub>j</sub> J(&theta;) = &Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>) x<sub>j</sub><sup>(i)</sup> / m
+</pre>
+<p>
+With this information, our gradient descent step becomes
+</p>
+<pre>
+repeat until convergence {
+    &theta;<sub>j</sub> = &theta;<sub>j</sub> - &alpha; * &Sigma;<sub>i=1</sub><sup>m</sup> (h<sub>&theta;</sub>(x<sup>(i)</sup>) - y<sup>(i)</sup>) x<sub>j</sub><sup>(i)</sup> / m
+    update all &theta;<sub>j</sub> simultaneously
+}
+</pre>
+<p>
+You might notice that this gradient descent definition is exactly the same as that for linear regression as defined ***here (ml-401)***. Does this mean that both instances of the gradient descent implementations (for linear and logistic regression) are the same? Close inspection will show that this is not the case. That is because the hypothesis function (h<sub>&theta;</sub>(x)) for linear and logistic are different. Thus the two gradient descent too are different, although they look the same superficially.
+</p>
+<p>
+Once we have the optimized values of &theta;, it is trivial to substitute them in the definition for the hypothesis function which can be used for prediction of new values of y, given x. However, do remember, that the hypothesis function for logistic regression is actually a probability function (as mentioned in ***this (ml-502)*** post). Thus
+</p>
+<pre>
+hypothesis function = h<sub>&theta;</sub>(x) = p(y = 1|x; &theta;)
+= probability that "y = 1" given "x" and parameterized by "&theta;"
+</pre>
+<p>
+Lastly, we had described a method for verifying that the gradient descent implementation is indeed working correctly and is minimizing the cost function in ***this (ml-304)*** post. Although that method was used for linear regression, the exact same method can be used for logistic regression too.
+</p>
+<p>
+This almost completes the logistic regression part of ML algorithms. The only thing left is to look at cases when y can take a value from a predefined set of values, instead of just 2 values "0" and "1"; that is multi-class classification instead of binary classification. We will look at this last detail in the next post. So stay tuned!
+</p>
+**** DONE ml-506: multi-class classification
+    CLOSED: [2014-02-17 Mon 15:33]
+    :CLOCK:
+    CLOCK: [2014-02-16 Sun 16:49]--[2014-02-16 Sun 17:41] =>  0:52
+    :END:
+     :PROPERTIES:
+     :ARCHIVE_TIME: 2014-02-17 Mon 15:33
+     :END:
+    - toc:
+      - one v/s all
+      - eg:
+        - email foldering/tagging: work (y = 1), friends (y = 2), family (y = 3), hobby (y = 4)
+        - medical diagnosis: not ill (y = 1), cold (y = 2), flu (y = 3)
+        - weather: sunny (y = 1), cloudy (y = 2), rain (y = 3), snow (y = 4)
+        - does not matter whether index starts from 0 or 1
+      - example graph for binary v/s multi-class (screenshot in cell)
+      - turn into k separate binary classes classifiers
+        - h_theta^(i)(x) = p(y = i|x; theta), where i = 1, 2, ..., k
+      - to make prediction
+        - y = i, where class i is one that maximizes h_theta^(i)(x)
+    - tags: 50x, machine learning, binary, multi-class, classification, prediction, hypothesis
+    - body:
+Hello and welcome back! Previously, we have discussed the various aspects in much detail in these posts ***here (ml-501)***, ***here (ml-502)***, ***here (ml-503)***, ***here (ml-504)*** and ***here (ml-505)***. Today we will look at the final topic in classification ML algorithms, viz multi-class classification.
+
+Before starting with the actual algorithm, let us first take a look at some examples of multi-classes to ensure that our understanding about them is correct:
+
+- email foldering/tagging: work (y = 1), friends (y = 2), family (y = 3), hobby (y = 4)
+- medical diagnosis: not ill (y = 1), cold (y = 2), flu (y = 3)
+- weather: sunny (y = 1), cloudy (y = 2), rain (y = 3), snow (y = 4)
+
+***plot (ml-506-1.png)***
+
+In all of the above examples, the output variable "y" takes on values from a discrete set (size greater than 2), instead of just "0" and "1" (as in binary classification). This is the problem statement multi-class classification. Note that it does not matter whether the class index starts from 0 or 1.
+
+The technique that is used to solve multi-class classification problems is known as the "one vs all" (or "one vs rest") algorithm. Let us say that our multi-class classification problem has "k" classes (where, k > 2). Then, in "one vs all" classification technique, we take only one class at a time and combine all the other classes into a single class; thus turning the k-class classification problem into k binary classification problems as shown in below graphs
+
+***plot (ml-506-2.png)***
+
+***plot (ml-506-3.png)***
+
+***plot (ml-506-4.png)***
+
+Then we will get k hypothesis functions as below:
+
+h_theta^(i)(x) = p(y = i|x; theta), where i = 1, 2, ..., k
+
+The actual prediction (finding y) is done as follows:
+
+y = i, where class i is one that maximizes h_theta^(i)(x)
+
+This completes our ***50x*** series of ML algorithms which dealt with the topic of classification or logistic regression. I hope you have been following me till now and have enjoyed reading and learning as much as I have writing it and learning from it too :) Do share your thoughts on how I can improve this series further by leaving comments below.
+
+From the next time we will move onto more complex topics and delve much deeper into the realm of ML algorithms. So do come back and enjoy :)
+    - html:
+<p>Hello and welcome back! Previously, we have discussed the various aspects in much detail in these posts ***here (ml-501)***, ***here (ml-502)***, ***here (ml-503)***, ***here (ml-504)*** and ***here (ml-505)***. Today we will look at the final topic in classification ML algorithms, viz multi-class classification.
+</p>
+<p>
+Before starting with the actual algorithm, let us first take a look at some examples of multi-classes to ensure that our understanding about them is correct:
+</p>
+<ul>
+<li>email foldering/tagging: work (y = 1), friends (y = 2), family (y = 3), hobby (y = 4)
+</li>
+<li>medical diagnosis: not ill (y = 1), cold (y = 2), flu (y = 3)
+</li>
+<li>weather: sunny (y = 1), cloudy (y = 2), rain (y = 3), snow (y = 4)
+</li>
+</ul>
+
+
+<p>
+***plot (ml-506-1.png)***
+</p>
+<p>
+In all of the above examples, the output variable "y" takes on values from a discrete set (size greater than 2), instead of just "0" and "1" (as in binary classification). This is the problem statement multi-class classification. Note that it does not matter whether the class index starts from 0 or 1.
+</p>
+<p>
+The technique that is used to solve multi-class classification problems is known as the "one vs all" (or "one vs rest") algorithm. Let us say that our multi-class classification problem has "k" classes (where, k &gt; 2). Then, in "one vs all" classification technique, we take only one class at a time and combine all the other classes into a single class; thus turning the k-class classification problem into k binary classification problems as shown in below graphs
+</p>
+<p>
+***plot (ml-506-2.png)***
+</p>
+<p>
+***plot (ml-506-3.png)***
+</p>
+<p>
+***plot (ml-506-4.png)***
+</p>
+<p>
+Then we will get k hypothesis functions as below:
+</p>
+<pre>
+h<sub>&theta;</sub><sup>(i)</sup>(x) = p(y = i|x; &theta;), where i = 1, 2, &hellip;, k
+</pre>
+<p>
+The actual prediction (finding y) is done as follows:
+</p>
+<pre>
+y = i, where class i is one that maximizes h<sub>&theta;</sub><sup>(i)</sup>(x)
+</pre>
+<p>
+This completes our ***50x*** series of ML algorithms which dealt with the topic of classification or logistic regression. I hope you have been following me till now and have enjoyed reading and learning as much as I have writing it and learning from it too :) Do share your thoughts on how I can improve this series further by leaving comments below.
+</p>
+<p>
+From the next time we will move onto more complex topics and delve much deeper into the realm of ML algorithms. So do come back and enjoy :)
+</p>
 * Footnotes
 [fn:1] http://en.wikipedia.org/wiki/Wikipedia:Category
 [fn:2] http://support.google.com/webmasters/bin/answer.py?hl=en&answer=42993

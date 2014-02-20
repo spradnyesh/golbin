@@ -10,7 +10,7 @@
 
 (defun model-first-run ()
   (dolist (l '("article" "author" "category" "photo" "tag" "comment"))
-    (execute (get-db-handle) (make-transaction (intern (string-upcase (format nil "make-~as-root" l))))))
+    (db-execute (intern (string-upcase (format nil "make-~as-root" l)))))
   (add-cat/subcat))
 
 (defmethod model-init (dim-str)

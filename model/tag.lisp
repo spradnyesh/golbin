@@ -25,7 +25,7 @@
       (if existing-tag
           existing-tag
           (progn
-            (execute (get-db-handle) (make-transaction 'insert-tag new-tag))
+            (db-execute 'insert-tag new-tag)
             new-tag)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

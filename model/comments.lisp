@@ -38,9 +38,9 @@
   (when comment
     ;; set some comment params
     (setf (id comment)
-          (execute (get-db-handle) (make-transaction 'incf-comment-last-id)))
+          (db-execute 'incf-comment-last-id))
 
     ;; save comment into storage
-    (execute (get-db-handle) (make-transaction 'insert-comment comment))
+    (db-execute 'insert-comment comment)
 
     comment))
