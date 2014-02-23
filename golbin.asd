@@ -7,8 +7,7 @@
   :components ((:module "common"
                         :components ((:file "package")
                                      (:file "init" :depends-on ("package"))
-                                     (:file "config" :depends-on ("init"))
-                                     (:file "secrets" :depends-on ("package"))))
+                                     (:file "config" :depends-on ("init"))))
                (:module "model"
                         :components ((:file "package")
                                      (:file "category" :depends-on ("package"))

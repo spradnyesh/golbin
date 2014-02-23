@@ -4777,6 +4777,11 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-02-20 Thu 18:42
     :END:
+*** DONE move golbin/common/secrets to web-utils
+    CLOSED: [2014-02-23 Sun 10:43]
+    :PROPERTIES:
+    :ARCHIVE_TIME: 2014-02-23 Sun 10:43
+    :END:
 * notes
 ** misc
    - http://www.html-ipsum.com/

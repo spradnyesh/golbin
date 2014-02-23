@@ -4,6 +4,4 @@
   (:export :*valid-envts*
            :*valid-langs*
            :*secrets*
-           :populate-config-from-secret
-           :push-to-secret
            :golbin-restart))

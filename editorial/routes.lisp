@@ -158,10 +158,8 @@
   (declare (ignore instance))
 
   ;; populate secret configs
-  (when (nil-or-empty (get-config "cipher.secure"))
-    (populate-config-from-secret "cipher.secure"))
-  (when (nil-or-empty (get-config "site.email.password"))
-    (populate-config-from-secret "site.email.password"))
+  (populate-config-from-secret "cipher.secure" *secrets*)
+  (populate-config-from-secret "site.email.password" *secrets*)
 
   ;; restart cron for future publishing
   (unless *cron-started*
