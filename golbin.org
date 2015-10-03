@@ -1,57 +1,90 @@
 #+FILETAGS: :Globin:
 
 * backlog
-** investigate https://github.com/redline6561/coleslaw
-** [refactor][fed] replace submodule -static- w/ hunchentoot static
-** TODO [bug][ed] preview of article not working after ql:upgrade
+** won't do                                                        :ARCHIVE:
+*** migrate linode to 64-bit
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-10-03 Sat 15:29
+:END:
+:CLOCK:
+- State "UNDERGOING" from "BLOCKED"    [2015-10-03 Sat 19:54]
+- State "CANCELLED"  from              [2015-10-03 Sat 15:29]
+:END:
+   - because of gryffin dependency on mongodb 64-bit
+   - steps
+     - cd ~/quicklisp/local-projects
+       - add golbin, web-utils
+     - cd ~/quicklisp/dists/quicklisp/software/cl-gd-0.6.0
+       - rm cl-gd-glue.so
+       - make
+     - swank
+       - sbcl
+       - (ql:quickload :swank)
+       - (swank:create-server :port 4005)
+     - slime
+       - emacs
+         - slime-connect
+           - http://blog.quicklisp.org/2011/08/going-back-in-dist-time.html
+             - (in-package :cl-user)
+             - (use-package :ql-dist)
+             - (available-versions (dist "quicklisp"))
+             - (install-dist "http://beta.quicklisp.org/dist/quicklisp/2014-02-11/distinfo.txt" :replace t)
+           - (ql:quickload :golbin)
+           - (in-package :hawksbill.golbin.editorial)
+           - (ed-start)
+           - (in-package :hawksbill.golbin.frontend)
+           - (fe-start)
+*** investigate https://github.com/redline6561/coleslaw
+*** [refactor][fed] replace submodule -static- w/ hunchentoot static
+*** TODO [bug][ed] preview of article not working after ql:upgrade
    :CLOCK:
    CLOCK: [2014-02-14 Fri 17:28]--[2014-02-14 Fri 17:52] =>  0:24
    CLOCK: [2014-02-14 Fri 16:36]--[2014-02-14 Fri 17:11] =>  0:35
    :END:
-** [bug][ed] upload-photo pane in article page
+*** [bug][ed] upload-photo pane in article page
    - type need not be a dropdown
    - can be determined to be article/article-background
-** TODO [articles] investigate math rendering from org to html
+*** TODO [articles] investigate math rendering from org to html
    :CLOCK:
    CLOCK: [2014-01-29 Wed 12:55]--[2014-01-29 Wed 12:57] =>  0:02
    :END:
    - http://orgmode.org/manual/HTML-export.html#HTML-export
    - http://docs.mathjax.org/en/latest/installation.html
      - http://docs.mathjax.org/en/latest/configuration.html#loading
-** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
-** [ed] 'pre' element in RTE
-** TODO [fe] google site search
+*** [bug][ed] article add/edit page, tag autocomplete not working (for all languages???)
+*** [ed] 'pre' element in RTE
+*** TODO [fe] google site search
    :CLOCK:
    CLOCK: [2013-09-04 Wed 17:10]--[2013-09-04 Wed 17:12] =>  0:02
    :END:
    - https://www.google.com/cse/
    - http://www.javascriptkit.com/script/script2/google_site_search.shtml
-** [bug][fe][rss] description should not contain relative URL references
+*** [bug][fe][rss] description should not contain relative URL references
    - /static/photos/....jpeg
-** TODO [#B] [bug][fe] comments ajax should not make page-jump
+*** TODO [#B] [bug][fe] comments ajax should not make page-jump
    :CLOCK:
    CLOCK: [2013-11-20 Wed 16:44]--[2013-11-20 Wed 16:50] =>  0:06
    :END:
    - does not happen in chrome
      - because on page refresh it goes to top of page and then comes to bottom, by when the comments have already loaded
-** [fe][perf] use async js https://developers.google.com/speed/docs/insights/UseAsync
+*** [fe][perf] use async js https://developers.google.com/speed/docs/insights/UseAsync
    - [ ] GA
    - [ ] adsense
    - [ ] sharethis http://support.sharethis.com/customer/portal/articles/475260
-** [fe] lazy-load comments (only when viewer is at bottom of page)
-** [fe][rss] validate at http://feedvalidator.org/
-** html5 form validation
-** [fed] find more ideas
+*** [fe] lazy-load comments (only when viewer is at bottom of page)
+*** [fe][rss] validate at http://feedvalidator.org/
+*** html5 form validation
+*** [fed] find more ideas
    - http://voices.yahoo.com
    - http://www.squidoo.com/
    - http://hmexpress.happymelly.com
-** [fed] every ajax post need not result in get
+*** [fed] every ajax post need not result in get
    - eg fe/comment
-** [fed] (dis)like comments
-** [fed] report-abuse for articles/comments
-** [ed] story editing help
+*** [fed] (dis)like comments
+*** [fed] report-abuse for articles/comments
+*** [ed] story editing help
    - add flickr images in "source" of RTE
-** TODO [ed] static pages
+*** TODO [ed] static pages
    :CLOCK:
    CLOCK: [2013-11-06 Wed 15:26]--[2013-11-06 Wed 16:19] =>  0:53
    CLOCK: [2013-11-06 Wed 14:19]--[2013-11-06 Wed 14:32] =>  0:13
@@ -70,46 +103,46 @@
    - [X] http://www.squidoo.com/squidoo/65355501-Terms-of-Service
    - [X] http://www.squidoo.com/originalitypact
    - [X] (help and tips) http://www.squidoo.com/squidoo
-** [perf][fe] optimize carousel (don't call again if :page was already called)
-** [fe] author trophies
+*** [perf][fe] optimize carousel (don't call again if :page was already called)
+*** [fe] author trophies
    - http://www.squidoo.com/member/awards/BearTale
    - http://www.squidoo.com/member/awards/britflorida
    - http://www.squidoo.com/member/awards/raveonstudio
    - http://www.squidoo.com/member/awards/Jadelynx
-** [fe] index page
+*** [fe] index page
    - http://www.squidoo.com/topics/food-and-cooking/recipes/soups-and-stew-recipes
-** [perf] http://www.appelsiini.net/projects/lazyload
-** TODO [ed] translations
+*** [perf] http://www.appelsiini.net/projects/lazyload
+*** TODO [ed] translations
    :CLOCK:
    CLOCK: [2013-11-04 Mon 16:12]--[2013-11-04 Mon 16:14] =>  0:02
    CLOCK: [2013-09-12 Thu 11:35]--[2013-09-12 Thu 11:46] =>  0:11
    CLOCK: [2013-08-28 Wed 11:02]--[2013-08-28 Wed 11:35] =>  0:33
    CLOCK: [2013-08-06 Tue 20:25]--[2013-08-06 Tue 20:45] =>  0:20
    :END:
-** [fed] contact-us/feedback form
+*** [fed] contact-us/feedback form
    - ed.g.in/feedback.html
-** [ed] forums
-** [fed] report (and view) abuse
-** setup dev envt
-** TODO sendmail on dev
+*** [ed] forums
+*** [fed] report (and view) abuse
+*** setup dev envt
+*** TODO sendmail on dev
    :CLOCK:
    CLOCK: [2013-10-18 Fri 15:26]--[2013-10-18 Fri 15:32] =>  0:06
    :END:
-** [perf][fe] sharethis should be lazyload-ed
-** https://www.varnish-cache.org/
+*** [perf][fe] sharethis should be lazyload-ed
+*** https://www.varnish-cache.org/
    - https://www.varnish-software.com/what-is-varnish
-** TODO check sites from windoZZZe
+*** TODO check sites from windoZZZe
    :CLOCK:
    CLOCK: [2013-09-09 Mon 13:05]--[2013-09-09 Mon 13:27] =>  0:22
    :END:
-** TODO [bug][ed] html email
+*** TODO [bug][ed] html email
    :CLOCK:
    CLOCK: [2013-09-09 Mon 11:00]--[2013-09-09 Mon 11:06] =>  0:06
    :END:
    - http://kb.mailchimp.com/article/how-to-code-html-emails
    - http://24ways.org/2009/rock-solid-html-emails/
-*** Archive                                                         :ARCHIVE:
-**** DONE send text email for now
+**** Archive                                                     :ARCHIVE:
+***** DONE send text email for now
      CLOSED: [2013-09-09 Mon 11:33]
      :CLOCK:
      CLOCK: [2013-09-09 Mon 11:29]--[2013-09-09 Mon 11:33] =>  0:04
@@ -117,14 +150,14 @@
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-09-09 Mon 11:33
      :END:
-** TODO [ed] replace token card by https
+*** TODO [ed] replace token card by https
    :CLOCK:
    CLOCK: [2013-09-09 Mon 09:10]--[2013-09-09 Mon 09:22] =>  0:12
    :END:
    - https://www.cacert.org/
-** [ed] cl-twitter
+*** [ed] cl-twitter
    - auto post on twitter for every article approval
-** TODO [articles] add aai kavita
+*** TODO [articles] add aai kavita
    :CLOCK:
    CLOCK: [2013-08-26 Mon 11:39]--[2013-08-26 Mon 11:53] =>  0:14
    CLOCK: [2013-08-26 Mon 11:30]--[2013-08-26 Mon 11:33] =>  0:03
@@ -135,23 +168,23 @@
    CLOCK: [2013-07-05 Fri 11:55]--[2013-07-05 Fri 11:56] =>  0:01
    CLOCK: [2013-07-05 Fri 11:00]--[2013-07-05 Fri 11:33] =>  0:33
    :END:
-** [ed][reports] investigate GA users
-** [reports][ed] link article approval w/ GA
-** TODO cron for saving db (comments/articles) on linode
+*** [ed][reports] investigate GA users
+*** [reports][ed] link article approval w/ GA
+*** TODO cron for saving db (comments/articles) on linode
    :CLOCK:
    CLOCK: [2013-09-08 Sun 01:22]--[2013-09-08 Sun 01:24] =>  0:02
    CLOCK: [2013-08-18 Sun 07:28]--[2013-08-18 Sun 07:40] =>  0:12
    :END:
-** [ed][reports] investigate GA users
-** [fe] "load more" pagination for comments
-** [fe] like/unlike for comments
-** [ed] token key (crumb) should be time limited
-** [ed] emails to authors
+*** [ed][reports] investigate GA users
+*** [fe] "load more" pagination for comments
+*** [fe] like/unlike for comments
+*** [ed] token key (crumb) should be time limited
+*** [ed] emails to authors
    - [X] approval of add/edit article(s)
    - [ ] daily batch email of comments
      - http://www.cliki.net/cl-cron
-** [fe] collect emails (submitted in comments) for spamming
-** TODO [reports] author report dashboard
+*** [fe] collect emails (submitted in comments) for spamming
+*** TODO [reports] author report dashboard
     :CLOCK:
     CLOCK: [2013-08-06 Tue 17:07]--[2013-08-06 Tue 17:11] =>  0:04
     CLOCK: [2013-08-06 Tue 16:07]--[2013-08-06 Tue 16:23] =>  0:16
@@ -162,27 +195,27 @@
 | article-Id | today | current week | current month | last month | ??? |
 |------------+-------+--------------+---------------+------------+-----|
 |            |       |              |               |            |     |
-** TODO restas daemon + swank + slime
+*** TODO restas daemon + swank + slime
    :CLOCK:
    CLOCK: [2013-07-23 Tue 18:23]--[2013-07-23 Tue 18:57] =>  0:34
    :END:
-** TODO utf8 -> url-encode
+*** TODO utf8 -> url-encode
    :CLOCK:
    CLOCK: [2013-07-18 Thu 11:10]--[2013-07-18 Thu 11:24] =>  0:14
    :END:
-** TODO slime debug local variables
+*** TODO slime debug local variables
    :CLOCK:
    CLOCK: [2013-07-15 Mon 18:14]--[2013-07-15 Mon 18:47] =>  0:33
    CLOCK: [2013-07-15 Mon 17:20]--[2013-07-15 Mon 17:38] =>  0:18
    CLOCK: [2013-07-15 Mon 17:14]--[2013-07-15 Mon 17:16] =>  0:02
    :END:
-** [perf] partial responses for requests
+*** [perf] partial responses for requests
    - send back the following as soon as we get the request
      - http header
      - page header (logo, navigation)
      - css
-** [lang] make translate accept positional/named params
-** TODO [fe] google/bing/yahoo cache URL
+*** [lang] make translate accept positional/named params
+*** TODO [fe] google/bing/yahoo cache URL
    :CLOCK:
    CLOCK: [2013-04-06 Sat 04:17]--[2013-04-06 Sat 04:39] =>  0:22
    :END:
@@ -193,34 +226,34 @@
        - http://webcache.googleusercontent.com/search?q=cache:<your url without "http://">
    - bing
    - yahoo
-** [ed] change hunchentoot session secret, etc
+*** [ed] change hunchentoot session secret, etc
    - http://weitz.de/hunchentoot/#sessions
-** [fed] analyze http://common-lisp.net/project/ht-ajax/ht-ajax.html and/or http://martin-loetzsch.de/ht-simple-ajax/
-** [ed] use https://github.com/Inaimathi/formlets for ed forms
-** [fed] error messages
+*** [fed] analyze http://common-lisp.net/project/ht-ajax/ht-ajax.html and/or http://martin-loetzsch.de/ht-simple-ajax/
+*** [ed] use https://github.com/Inaimathi/formlets for ed forms
+*** [fed] error messages
    - [X] ed: inline photos in articles should be of /static/photos/*.jpeg
    - [ ] fe: spam comment
-** TODO [security] escape input/output data
+*** TODO [security] escape input/output data
    :CLOCK:
    CLOCK: [2012-12-01 Sat 17:10]--[2012-12-01 Sat 17:26] =>  0:16
    :END:
    - (ql:quickload "do-urlencode")
-** [security] server scans
+*** [security] server scans
    - [ ] http://www.cirt.net/nikto2
      - http://www.cirt.net/nikto2-docs/
    - [ ] http://code.google.com/p/skipfish/
    - [ ] http://zaries.wordpress.com/2010/12/22/hunchentoot-webserver-and-application-security/
-** [security] http://en.wikipedia.org/wiki/Cross-site_scripting
-** [fed] photo slideshow articles
-** [reports] accounts table/storage for authors
+*** [security] http://en.wikipedia.org/wiki/Cross-site_scripting
+*** [fed] photo slideshow articles
+*** [reports] accounts table/storage for authors
    - monthly
      - views
      - rate per view
      - paid X INR
      - paid on date
-** [ed] admin should be able to change author-type
+*** [ed] admin should be able to change author-type
    - promote author to editor (or viceversa)
-** [ed] home page should show a table of
+*** [ed] home page should show a table of
     - status icon
 | Color  | Meaning   |
 |--------+-----------|
@@ -238,8 +271,8 @@
       - this quarter
       - this half-year
       - this year
-** [fe] disable prev/next when carousel is no longer scrollable in that direction
-** TODO [ed] add search (using cat/subcat, tags) in select-photo pane
+*** [fe] disable prev/next when carousel is no longer scrollable in that direction
+*** TODO [ed] add search (using cat/subcat, tags) in select-photo pane
    :CLOCK:
    CLOCK: [2012-09-03 Mon 21:00]--[2012-09-03 Mon 21:36] =>  0:36
    CLOCK: [2012-09-03 Mon 20:16]--[2012-09-03 Mon 20:25] =>  0:09
@@ -247,12 +280,12 @@
    CLOCK: [2012-09-03 Mon 15:48]--[2012-09-03 Mon 16:03] =>  0:15
    CLOCK: [2012-08-28 Tue 16:25]--[2012-08-28 Tue 16:45] =>  0:20
    :END:
-** [config] utils/dimensions should not presume dimensions like envt or lang
-** [perf] remove unnecessary id/class from page elements
+*** [config] utils/dimensions should not presume dimensions like envt or lang
+*** [perf] remove unnecessary id/class from page elements
    - [ ] fe
    - [ ] ed
-** [perf][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
-** TODO [fe] home page to show carousel for categories/authors of articles
+*** [perf][cache] pass cache=nil (optional, t by default) param to bypass cache (useful for editorial)
+*** TODO [fe] home page to show carousel for categories/authors of articles
    :CLOCK:
    CLOCK: [2012-08-21 Tue 20:02]--[2012-08-21 Tue 20:09] =>  0:07
    CLOCK: [2012-08-21 Tue 16:57]--[2012-08-21 Tue 16:59] =>  0:02
@@ -266,46 +299,46 @@
      - http://navercast.naver.com/
        - 2 vertical photos + 3 vertical photos (smaller)
      - automatically scroll every few seconds
-** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
-** TODO tests
+*** [js] put related functions (and variables) into modules, so that they don't interact outside of modules (thus reducing bugs)
+*** TODO tests
    :CLOCK:
    CLOCK: [2013-10-25 Fri 11:30]--[2013-10-25 Fri 11:38] =>  0:08
    :END:
-*** coverage (sb-cover)
-*** Archive                                                         :ARCHIVE:
-**** DONE decide framework (fiveam)
+**** coverage (sb-cover)
+**** Archive                                                     :ARCHIVE:
+***** DONE decide framework (fiveam)
      CLOSED: [2013-10-25 Fri 11:30]
      :PROPERTIES:
      :ARCHIVE_TIME: 2013-10-25 Fri 11:30
      :END:
      - http://aperiodic.net/phil/archives/Geekery/notes-on-lisp-testing-frameworks.html
      - http://www.cliki.net/test%20framework
-***** stefil
-***** fiveam
+****** stefil
+****** fiveam
       :CLOCK:
       :END:
       - http://msnyder.info/posts/2011/07/lisp-for-the-web-part-ii/#sec-7
-** [fe] css 2 -> 3
+*** [fe] css 2 -> 3
    - http://css3please.com/ ***
    - http://perishablepress.com/css3-progressive-enhancement-smart-design/
    - http://coding.smashingmagazine.com/2011/04/21/css3-vs-css-a-speed-benchmark/
-** [fe] html 4 -> 5
+*** [fe] html 4 -> 5
    - http://www.w3.org/TR/html5/
      - http://www.w3.org/TR/html5-diff/
    - http://diveinto.html5doctor.com/
    - good samples
      - http://html5gallery.com/
        - http://www.lastchart.com/
-** [fe] responsive layouts
+*** [fe] responsive layouts
    - css for multiple screen sizes (only desktop, tablet for now)
    - 1024x768, 768x1024
    - http://www.w3.org/TR/CSS21/media.html
    - http://alistapart.com/article/responsive-web-design
-** investigate
+*** investigate
    - [ ] github.com/hargettp/hh-web
    - [ ] github.com/arielnetworks/cl-locale
    - [ ] cl-annotate
-** [perf] nginx caching
+*** [perf] nginx caching
 ** Archive                                                          :ARCHIVE:
 *** DONE refactor
     CLOSED: [2013-12-20 Fri 15:44]
@@ -4782,6 +4815,42 @@
     :PROPERTIES:
     :ARCHIVE_TIME: 2014-02-23 Sun 10:43
     :END:
+*** CANCELLED migrate to openshift
+CLOSED: [2015-10-03 Sat 20:23]
+:PROPERTIES:
+:ARCHIVE_TIME: 2015-10-03 Sat 20:24
+:END:
+:CLOCK:
+- State "CANCELLED"  from              [2015-10-03 Sat 20:23] \\
+  look-n-feel is in terrible shape; will take too much time and effort to restore => not doing
+:END:
+**** get golbin to work locally
+:CLOCK:
+CLOCK: [2015-10-03 Sat 19:53]--[2015-10-03 Sat 20:25] =>  0:32
+CLOCK: [2015-10-03 Sat 17:22]--[2015-10-03 Sat 18:25] =>  1:03
+CLOCK: [2015-10-03 Sat 15:30]--[2015-10-03 Sat 16:47] =>  1:17
+:END:
+1. # apt-get install libgd-dev
+2. sbcl (1.2.14.debian)
+3. http://blog.quicklisp.org/2011/08/going-back-in-dist-time.html
+   - (in-package :cl-user)
+   - ;; (use-package :ql-dist)
+     - ;; (available-versions (dist "quicklisp"))
+     - ;; (install-dist "http://beta.quicklisp.org/dist/quicklisp/2014-02-11/distinfo.txt" :replace t)
+   - (ql:quickload :cl-gd)
+4. cd ~/quicklisp/dists/quicklisp/software/cl-gd-0.6.0
+   - rm cl-gd-glue.so
+   - make
+5. cd ~/quicklisp/local-projects
+   - add golbin, web-utils
+6. emacs: slime
+   - ;; (ql:quickload :web-utils)
+   - (ql:quickload :golbin)
+   - (in-package :hawksbill.golbin.editorial)
+   - (ed-start)
+   - (in-package :hawksbill.golbin.frontend)
+   - (fe-start)
+**** setup on openshift
 * notes
 ** misc
    - http://www.html-ipsum.com/
